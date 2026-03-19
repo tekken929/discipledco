@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Download, BookText, Moon, Sun } from 'lucide-react';
+import { Download, Moon, Sun } from 'lucide-react';
 import { useDarkMode } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -23,9 +23,11 @@ function AppContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-3 rounded-xl">
-                <BookText className="w-8 h-8 text-white" />
-              </div>
+              <img
+                src="https://images.pexels.com/photos/6120234/pexels-photo-6120234.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+                alt="Cross Logo"
+                className="w-12 h-12 rounded-xl object-cover"
+              />
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Discipled Co.</h1>
                 <p className="text-gray-600 dark:text-gray-300 text-sm"></p>
