@@ -4,16 +4,16 @@ import { BookOpen, Users, FolderOpen } from 'lucide-react';
 export function Footer() {
   const footerLinks = [
     {
-      to: '/resources',
+      to: '/bible-versions',
       icon: BookOpen,
       title: 'Bible Versions',
       description: 'Which one should I use?'
     },
     {
-      to: '/studyguides',
+      to: '/resources',
       icon: FolderOpen,
-      title: 'Religions',
-      description: 'How the early Churches split into different groups.'
+      title: 'Bible Versions',
+      description: 'Understanding the different Bible Versions'
     },
     {
       to: '/faqs',

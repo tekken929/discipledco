@@ -1,12 +1,12 @@
-export function studyguides() {
+export function StudyGuides() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">Study Guides</h1>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">Bible Versions</h1>
 
         <div className="space-y-8">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Comprehensive Bible Study Resources</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Which one should I use?</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

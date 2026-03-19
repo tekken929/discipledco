@@ -1,12 +1,12 @@
-export function faqs() {
+export function FAQs() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">Community</h1>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">FAQs</h1>
 
         <div className="space-y-8">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Join Our Growing Community</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Some of your common questions answered.</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
               eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
