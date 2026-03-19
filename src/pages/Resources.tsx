@@ -24,7 +24,7 @@ export function Resources() {
                 alt="Reading materials"
                 className="w-full h-40 object-cover rounded-lg mb-4"
               />
-              <h3 className="text-lg font-bold text-orange-900 dark:text-orange-100 mb-2">Reading Plans</h3>
+              <h3 className="text-lg font-bold text-orange-900 dark:text-orange-100 mb-2">New International Version (NIV)</h3>
               <p className="text-sm text-orange-800 dark:text-orange-200">
                 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
               </p>
@@ -36,7 +36,7 @@ export function Resources() {
                 alt="Bible translations"
                 className="w-full h-40 object-cover rounded-lg mb-4"
               />
-              <h3 className="text-lg font-bold text-red-900 dark:text-red-100 mb-2">Translations Guide</h3>
+              <h3 className="text-lg font-bold text-red-900 dark:text-red-100 mb-2">King James Version (KJV)</h3>
               <p className="text-sm text-red-800 dark:text-red-200">
                 Quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est.
               </p>
