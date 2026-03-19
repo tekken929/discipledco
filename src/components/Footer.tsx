@@ -10,10 +10,10 @@ export function Footer() {
       description: 'Which one should I use?'
     },
     {
-      to: '/resources',
+      to: '/religions',
       icon: FolderOpen,
-      title: 'Bible Versions',
-      description: 'Understanding the different Bible Versions'
+      title: 'Religions',
+      description: 'How the early Churches split into different groups'
     },
     {
       to: '/faqs',

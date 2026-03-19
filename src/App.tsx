@@ -3,9 +3,9 @@ import { Download, BookText, Moon, Sun } from 'lucide-react';
 import { useDarkMode } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
-import { StudyGuides } from './pages/StudyGuides';
-import { Resources } from './pages/Resources';
-import { FAQs } from './pages/Community';
+import { BibleVersions } from './pages/BibleVersions';
+import { Religions } from './pages/Religions';
+import { FAQs } from './pages/FAQs';
 
 function AppContent() {
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -59,8 +59,8 @@ function AppContent() {
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/bible-versions" element={<StudyGuides />} />
-          <Route path="/resources" element={<Resources />} />
+          <Route path="/bible-versions" element={<BibleVersions />} />
+          <Route path="/religions" element={<Religions />} />
           <Route path="/faqs" element={<FAQs />} />
         </Routes>
       </div>
