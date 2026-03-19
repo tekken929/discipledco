@@ -28,7 +28,7 @@ function AppContent() {
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Discipled Co.</h1>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">Visual Overview Charts</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm"></p>
               </div>
             </Link>
 
