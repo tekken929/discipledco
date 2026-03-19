@@ -10,7 +10,7 @@ export function Footer() {
       description: 'Which one should I use?'
     },
     {
-      to: '/religions',
+      to: '/studyguides',
       icon: FolderOpen,
       title: 'Religions',
       description: 'How the early Churches split into different groups.'
