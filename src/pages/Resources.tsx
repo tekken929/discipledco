@@ -48,7 +48,7 @@ export function Resources() {
                 alt="Study tools"
                 className="w-full h-40 object-cover rounded-lg mb-4"
               />
-              <h3 className="text-lg font-bold text-teal-900 dark:text-teal-100 mb-2">Study Tools</h3>
+              <h3 className="text-lg font-bold text-teal-900 dark:text-teal-100 mb-2">Revised Standard Version : Second Catholic Edition (RSV2CE)</h3>
               <p className="text-sm text-teal-800 dark:text-teal-200">
                 Omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis.
               </p>
