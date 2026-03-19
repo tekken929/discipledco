@@ -4,22 +4,22 @@ import { BookOpen, Users, FolderOpen } from 'lucide-react';
 export function Footer() {
   const footerLinks = [
     {
-      to: '/study-guides',
+      to: '/bible-versions',
       icon: BookOpen,
-      title: 'Study Guides',
-      description: 'Comprehensive resources'
+      title: 'Bible Versions',
+      description: 'Which one should I use?'
     },
     {
-      to: '/resources',
+      to: '/religions',
       icon: FolderOpen,
-      title: 'Resources',
-      description: 'Essential tools & materials'
+      title: 'Religions',
+      description: 'How the early Churches split into different groups.'
     },
     {
-      to: '/community',
+      to: '/faqs',
       icon: Users,
-      title: 'Community',
-      description: 'Connect with others'
+      title: 'FAQs',
+      description: 'Some of your common questions answered.'
     }
   ];
 
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         <div className="text-center text-gray-600 dark:text-gray-300 text-sm pt-6 border-t border-gray-200 dark:border-gray-700">
-          <p>© 2026 Discipled Co. Clear, structured overviews of every book of the Bible.</p>
+          <p>© 2026 Discipled Co. | Clear, structured overviews of the Bible and how to break free from this world.</p>
         </div>
       </div>
     </footer>
