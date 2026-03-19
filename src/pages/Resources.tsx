@@ -6,7 +6,7 @@ export function Resources() {
 
         <div className="space-y-8">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Essential Tools for Biblical Understanding</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Understanding the different Bible Versions</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
               quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
