@@ -4,7 +4,7 @@ import { BookOpen, Users, FolderOpen } from 'lucide-react';
 export function Footer() {
   const footerLinks = [
     {
-      to: '/bible-versions',
+      to: '/resources',
       icon: BookOpen,
       title: 'Bible Versions',
       description: 'Which one should I use?'
