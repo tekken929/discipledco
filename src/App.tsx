@@ -89,54 +89,67 @@ function AppContent() {
                     e.stopPropagation();
                     setShowThemeMenu(!showThemeMenu);
                   }}
-                  className="flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
+                  className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
                   aria-label="Change color theme"
                 >
                   <Palette className="w-5 h-5" />
+                  <span className="hidden sm:inline">Theme</span>
                 </button>
 
                 {showThemeMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50">
+                  <div className="absolute right-0 mt-2 w-56 theme-card rounded-lg shadow-2xl border-2 overflow-hidden z-50">
+                    <div className="p-2 border-b border-gray-200 dark:border-gray-700">
+                      <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Color Mood</p>
+                    </div>
                     <button
                       onClick={() => handleThemeChange('subtle')}
-                      className={`w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
-                        colorTheme === 'subtle' ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : ''
+                      className={`w-full px-4 py-3 text-left hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${
+                        colorTheme === 'subtle' ? 'bg-slate-100 dark:bg-slate-800' : ''
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex gap-1">
-                          <div className="w-4 h-4 rounded-full bg-slate-400"></div>
-                          <div className="w-4 h-4 rounded-full bg-blue-400"></div>
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-slate-400 to-blue-500 shadow-md"></div>
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-slate-600 shadow-md"></div>
                         </div>
-                        <span className="text-gray-900 dark:text-white">Subtle</span>
+                        <div>
+                          <span className="text-gray-900 dark:text-white font-semibold">Subtle</span>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Professional & calm</p>
+                        </div>
                       </div>
                     </button>
                     <button
                       onClick={() => handleThemeChange('happy')}
-                      className={`w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
-                        colorTheme === 'happy' ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : ''
+                      className={`w-full px-4 py-3 text-left hover:bg-amber-50 dark:hover:bg-orange-950 transition-colors ${
+                        colorTheme === 'happy' ? 'bg-amber-50 dark:bg-orange-950' : ''
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex gap-1">
-                          <div className="w-4 h-4 rounded-full bg-amber-400"></div>
-                          <div className="w-4 h-4 rounded-full bg-teal-400"></div>
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-md"></div>
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-teal-500 shadow-md"></div>
                         </div>
-                        <span className="text-gray-900 dark:text-white">Happy</span>
+                        <div>
+                          <span className="text-gray-900 dark:text-white font-semibold">Happy</span>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Warm & vibrant</p>
+                        </div>
                       </div>
                     </button>
                     <button
                       onClick={() => handleThemeChange('blackwhite')}
-                      className={`w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
-                        colorTheme === 'blackwhite' ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : ''
+                      className={`w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors ${
+                        colorTheme === 'blackwhite' ? 'bg-gray-100 dark:bg-gray-900' : ''
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex gap-1">
-                          <div className="w-4 h-4 rounded-full bg-black border border-gray-300"></div>
-                          <div className="w-4 h-4 rounded-full bg-white border border-gray-300"></div>
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-400 shadow-md"></div>
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-white to-gray-300 border border-gray-400 shadow-md"></div>
                         </div>
-                        <span className="text-gray-900 dark:text-white">Black & White</span>
+                        <div>
+                          <span className="text-gray-900 dark:text-white font-semibold">Black & White</span>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Classic monochrome</p>
+                        </div>
                       </div>
                     </button>
                   </div>
@@ -145,10 +158,11 @@ function AppContent() {
 
               <button
                 onClick={toggleDarkMode}
-                className="flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+                className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                <span className="hidden sm:inline">{darkMode ? 'Light' : 'Dark'}</span>
               </button>
 
               {isHomePage && (
