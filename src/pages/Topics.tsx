@@ -67,24 +67,9 @@ Acts 3:19 — “Repent… that your sins may be wiped out”</p>
 
 John 8:36 — “If the Son sets you free, you will be free indeed”</p>
                 </div>
+              
                 <div className="flex items-start gap-3">
-                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">6</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Qui officia deserunt mollit anim id est laborum et consectetur.</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">7</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Adipiscing elit pellentesque habitant morbi tristique senectus.</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">8</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Netus et malesuada fames ac turpis egestas maecenas pharetra.</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">9</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Convallis posuere morbi leo urna molestie at elementum eu.</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">10</span>
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">Summary:</span>
                   <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Facilisis mauris sit amet massa vitae tortor condimentum lacinia.</p>
                 </div>
               </div>
