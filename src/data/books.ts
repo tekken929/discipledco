@@ -35,14 +35,14 @@ export const books: Book[] = [
         verseReference: "Genesis 6:5"},
       {
         number: 3,
-        title: 'The Covenant: Abraham:',
+        title: 'The Covenant: Abraham',
         chapterRange: '12-25',
         summary: 'God calls Abraham and promises him land, descendants, and blessing for all nations. Abraham\'s faith is tested repeatedly, including the near-sacrifice of Isaac. God establishes an everlasting covenant with Abraham\'s offspring.',
         keyVerse: "I will make you into a great nation, and I will bless you; I will make your name great, and you will be a blessing.",
         verseReference: "Genesis 12:2"},
       {
         number: 4,
-        title: 'Isaac and Jacob',
+        title: 'The Covenant: Isaac and Jacob',
         chapterRange: '26-36',
         summary: 'The covenant continues through Isaac and then Jacob (renamed Israel). Despite family dysfunction and deception, God remains faithful to His promises. Jacob fathers twelve sons who become the twelve tribes of Israel.',
         keyVerse: "Your name will no longer be Jacob, but Israel, because you have struggled with God and with humans and have overcome.",
