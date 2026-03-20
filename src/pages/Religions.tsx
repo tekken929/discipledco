@@ -143,19 +143,6 @@ export function Religions() {
 
           {showTimeline && (
             <div className="space-y-8 mt-8">
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5" />
-                  How to Edit This Timeline
-                </h2>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  This timeline is stored in <code className="bg-white dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono">src/data/timeline.ts</code>
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  Open that file to find detailed instructions on adding new events, editing existing ones, and understanding the different categories and time periods.
-                </p>
-              </div>
-
               <div className="space-y-6">
                 {timelineEvents.map((event, index) => (
                   <div
