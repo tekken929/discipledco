@@ -75,7 +75,7 @@ export const topics: Topic[] = [
     title: 'Lust & Sexual Purity',
     description: 'Overcoming lust and maintaining sexual purity according to Scripture',
     icon: '🛡️',
-    order: 10,
+    order: 9,
     references: [
       {
         book: 'Matthew',
@@ -627,7 +627,7 @@ export const topics: Topic[] = [
     title: 'Faith & Trust',
     description: 'Building faith and trusting in God\'s plan for your life',
     icon: '✨',
-    order: 10,
+    order: 9,
     references: [
       {
         book: 'Hebrews',
