@@ -69,7 +69,7 @@ John 8:36 — “If the Son sets you free, you will be free indeed”</p>
                 </div>
               
                 <div className="flex items-start gap-3">
-                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">Summary:</span>
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">***</span>
                   <p className="text-gray-800 dark:text-gray-200 leading-relaxed">You are saved not by what you do, but by what Jesus has already done.
 When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                 </div>
