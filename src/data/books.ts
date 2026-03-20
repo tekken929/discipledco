@@ -65,7 +65,7 @@ export const books: Book[] = [
     overview: [
       'Exodus tells the dramatic story of Israel\'s liberation from Egyptian slavery and their journey to meet God at Mount Sinai. It reveals God as the great Deliverer who rescues His people through mighty acts of power and establishes them as His covenant nation.',
       'The book contains some of the Bible\'s most well-known moments: the burning bush, the ten plagues, the Passover, the crossing of the Red Sea, the giving of the Ten Commandments, and the construction of the Tabernacle. Through Moses, God demonstrates His power, justice, and desire to dwell among His people.',
-      'Exodus establishes the pattern of redemption that runs throughout Scripture. God hears His people\'s cry, delivers them from bondage, makes a covenant with them, and provides a way for His holy presence to dwell in their midst despite their sin.'
+      'Exodus establishes the pattern of redemption that runs throughout Scripture. God hears His people\'s cry, remembers his covenant with them, delivers them from bondage and provides a way for His holy presence to dwell in their midst despite their sin.'
     ],
     written: 'c. 1445-1405 BC',
     timePeriod: 'c. 1526-1406 BC',
