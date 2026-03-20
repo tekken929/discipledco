@@ -142,7 +142,7 @@ export const topics: Topic[] = [
   {
     id: 'sin',
     title: 'Sin & Repentance',
-    description: 'Understanding sin, forgiveness, and the path to repentance. Salvation is not something you achieve, it’s something you receive. It comes through trusting in who Jesus is and what He has done, not in what you can do.”',
+    description: 'Understanding sin, forgiveness, and the path to repentance. "Salvation is not something you achieve, it’s something you receive. It comes through trusting in who Jesus is and what He has done, not in what you can do.”',
     icon: '🙏',
     order: 1,
     references: [
