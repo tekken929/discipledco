@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Download, Moon, Sun } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDarkMode } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -18,8 +18,17 @@ function AppContent() {
   const isHomePage = location.pathname === '/';
   const [selectedBook, setSelectedBook] = useState<Book>(books[0]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleBookSelect = (book: Book) => {
+    setSelectedBook(book);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -46,7 +55,7 @@ function AppContent() {
                 <BookSelector
                   books={books}
                   selectedBook={selectedBook}
-                  onSelectBook={setSelectedBook}
+                  onSelectBook={handleBookSelect}
                 />
               </div>
             )}
