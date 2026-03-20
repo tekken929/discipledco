@@ -85,7 +85,7 @@ export const books: Book[] = [
         number: 2,
         title: 'The Call and the Plagues',
         chapterRange: '3-13',
-        summary: 'God appears to Moses in the burning bush and commissions him to deliver Israel. Through ten devastating plagues, God judges Egypt for idol worship and demonstrates His supreme power. The final plague brings death but Israel is passed over through the lamb\'s blood.',
+        summary: 'God appears to Moses in the burning bush and commissions him to deliver Israel. Through ten devastating plagues, God judges Egypt for idol worship and demonstrates His supreme power. With each plague, the severity increases until The final plague brings death onto the firstborn of each household. Israel is spared from this plague by sprinkling lamb\'s blood on thier doorpost.',
         keyVerse: "And I will take you as my own people, and I will be your God. Then you will know that I am the LORD your God, who brought you out from under the yoke of the Egyptians.",
         verseReference: "Exodus 6:7"},
       {
