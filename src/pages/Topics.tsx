@@ -56,7 +56,8 @@ Ephesians 2:8–9 — “By grace you have been saved… not by works”</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">4</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Turn (repentance = change of direction)</b><br/>
+Acts 3:19 — “Repent… that your sins may be wiped out”</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">5</span>
