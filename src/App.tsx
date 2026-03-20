@@ -8,6 +8,7 @@ import { BibleVersions } from './pages/BibleVersions';
 import { Religions } from './pages/Religions';
 import { FAQs } from './pages/FAQs';
 import { Topics } from './pages/Topics';
+import { Stories } from './pages/Stories';
 import { BookSelector } from './components/BookSelector';
 import { books } from './data/books';
 import { Book } from './types/book';
@@ -188,6 +189,8 @@ function AppContent() {
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/topics/:topicId" element={<Topics />} />
+          <Route path="/stories" element={<Stories />} />
+          <Route path="/stories/:storyId" element={<Stories />} />
         </Routes>
       </div>
 

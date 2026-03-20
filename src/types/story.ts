@@ -1,6 +1,7 @@
-export interface StoryVerse {
+export interface StoryReference {
+  book: string;
   chapter: number;
-  verses: string;
+  verse: string;
   text: string;
 }
 
@@ -8,8 +9,7 @@ export interface Story {
   id: string;
   title: string;
   summary: string;
-  book: string;
   icon: string;
   order: number;
-  scripture: StoryVerse[];
+  references: StoryReference[];
 }
