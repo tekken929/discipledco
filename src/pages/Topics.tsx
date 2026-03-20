@@ -61,7 +61,11 @@ Acts 3:19 — “Repent… that your sins may be wiped out”</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">5</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Excepteur sint occaecat cupidatat non proident sunt in culpa.</p>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Follow (new life begins)</b><br/>
+
+2 Corinthians 5:17 — “If anyone is in Christ… new creation”
+
+John 8:36 — “If the Son sets you free, you will be free indeed”</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">6</span>
