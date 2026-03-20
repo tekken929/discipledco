@@ -51,7 +51,8 @@ Romans 3:23 — “All have sinned…”
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">3</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Receive grace (not earned)</b><br/>
+Ephesians 2:8–9 — “By grace you have been saved… not by works”</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">4</span>
