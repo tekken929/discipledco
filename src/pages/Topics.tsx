@@ -38,10 +38,11 @@ export function Topics() {
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">1</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b></b>Believe (Trust in Jesus)
-                    John 3:16 — “Whoever believes in him shall not perish but have eternal life”
-
-Romans 10:9 — “If you declare… ‘Jesus is Lord’… you will be saved”</p>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+                    <b>Believe (Trust in Jesus)</b><br />
+                    John 3:16 — "Whoever believes in him shall not perish but have eternal life"<br /><br />
+                    Romans 10:9 — "If you declare… 'Jesus is Lord'… you will be saved"
+                  </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">2</span>
