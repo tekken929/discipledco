@@ -6,6 +6,7 @@ export const topics: Topic[] = [
     title: 'Marriage',
     description: 'Biblical guidance on marriage, commitment, and marital relationships',
     icon: '💑',
+    order: 1,
     references: [
       {
         book: 'Genesis',
@@ -74,6 +75,7 @@ export const topics: Topic[] = [
     title: 'Lust & Sexual Purity',
     description: 'Overcoming lust and maintaining sexual purity according to Scripture',
     icon: '🛡️',
+    order: 2,
     references: [
       {
         book: 'Matthew',
@@ -142,6 +144,7 @@ export const topics: Topic[] = [
     title: 'Sin & Repentance',
     description: 'Understanding sin, forgiveness, and the path to repentance',
     icon: '🙏',
+    order: 3,
     references: [
       {
         book: 'Romans',
@@ -210,6 +213,7 @@ export const topics: Topic[] = [
     title: 'Forgiveness',
     description: 'The importance of forgiving others as God forgives us',
     icon: '🕊️',
+    order: 4,
     references: [
       {
         book: 'Matthew',
@@ -278,6 +282,7 @@ export const topics: Topic[] = [
     title: 'Prayer',
     description: 'How to pray and communicate with God effectively',
     icon: '🙌',
+    order: 5,
     references: [
       {
         book: 'Matthew',
@@ -346,6 +351,7 @@ export const topics: Topic[] = [
     title: 'Love & Compassion',
     description: 'Biblical teachings on love, compassion, and loving others',
     icon: '❤️',
+    order: 6,
     references: [
       {
         book: '1 Corinthians',
@@ -414,6 +420,7 @@ export const topics: Topic[] = [
     title: 'Fear & Anxiety',
     description: 'Finding peace and overcoming fear through faith in God',
     icon: '☮️',
+    order: 7,
     references: [
       {
         book: 'Philippians',
@@ -482,6 +489,7 @@ export const topics: Topic[] = [
     title: 'Wisdom & Discernment',
     description: 'Seeking godly wisdom and making righteous decisions',
     icon: '📖',
+    order: 8,
     references: [
       {
         book: 'James',
@@ -550,6 +558,7 @@ export const topics: Topic[] = [
     title: 'Anger & Patience',
     description: 'Controlling anger and cultivating patience in difficult times',
     icon: '🧘',
+    order: 9,
     references: [
       {
         book: 'Ephesians',
@@ -618,6 +627,7 @@ export const topics: Topic[] = [
     title: 'Faith & Trust',
     description: 'Building faith and trusting in God\'s plan for your life',
     icon: '✨',
+    order: 10,
     references: [
       {
         book: 'Hebrews',

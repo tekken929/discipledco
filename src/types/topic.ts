@@ -11,4 +11,5 @@ export interface Topic {
   description: string;
   icon: string;
   references: BibleReference[];
+  order: number;
 }
