@@ -690,5 +690,695 @@ export const topics: Topic[] = [
         text: 'So that the tested genuineness of your faith—more precious than gold that perishes though it is tested by fire—may be found to result in praise and glory and honor at the revelation of Jesus Christ.'
       }
     ]
+  },
+  {
+    id: 'demons',
+    title: 'Demons & Spiritual Warfare',
+    description: 'Understanding spiritual warfare, demons, and our authority in Christ',
+    icon: '⚔️',
+    order: 11,
+    references: [
+      {
+        book: 'Ephesians',
+        chapter: 6,
+        verse: '12',
+        text: 'For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places.'
+      },
+      {
+        book: '1 Peter',
+        chapter: 5,
+        verse: '8-9',
+        text: 'Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour. Resist him, firm in your faith.'
+      },
+      {
+        book: 'James',
+        chapter: 4,
+        verse: '7',
+        text: 'Submit yourselves therefore to God. Resist the devil, and he will flee from you.'
+      },
+      {
+        book: 'Luke',
+        chapter: 10,
+        verse: '19',
+        text: 'Behold, I have given you authority to tread on serpents and scorpions, and over all the power of the enemy, and nothing shall hurt you.'
+      },
+      {
+        book: '2 Corinthians',
+        chapter: 10,
+        verse: '4-5',
+        text: 'For the weapons of our warfare are not of the flesh but have divine power to destroy strongholds. We destroy arguments and every lofty opinion raised against the knowledge of God.'
+      },
+      {
+        book: '1 John',
+        chapter: 4,
+        verse: '4',
+        text: 'Little children, you are from God and have overcome them, for he who is in you is greater than he who is in the world.'
+      },
+      {
+        book: 'Ephesians',
+        chapter: 6,
+        verse: '16',
+        text: 'In all circumstances take up the shield of faith, with which you can extinguish all the flaming darts of the evil one.'
+      },
+      {
+        book: 'Mark',
+        chapter: 16,
+        verse: '17',
+        text: 'And these signs will accompany those who believe: in my name they will cast out demons.'
+      },
+      {
+        book: 'Colossians',
+        chapter: 2,
+        verse: '15',
+        text: 'He disarmed the rulers and authorities and put them to open shame, by triumphing over them in him.'
+      },
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '37-39',
+        text: 'No, in all these things we are more than conquerors through him who loved us. For I am sure that neither death nor life, nor angels nor rulers, nor things present nor things to come, nor powers, nor height nor depth, nor anything else in all creation, will be able to separate us from the love of God in Christ Jesus our Lord.'
+      }
+    ]
+  },
+  {
+    id: 'possession',
+    title: 'Demonic Possession & Deliverance',
+    description: 'What the Bible teaches about possession and freedom in Christ',
+    icon: '🛡️',
+    order: 12,
+    references: [
+      {
+        book: 'Mark',
+        chapter: 5,
+        verse: '8-13',
+        text: 'For he was saying to him, "Come out of the man, you unclean spirit!" And Jesus asked him, "What is your name?" He replied, "My name is Legion, for we are many." And he begged him earnestly not to send them out of the country.'
+      },
+      {
+        book: 'Luke',
+        chapter: 4,
+        verse: '35-36',
+        text: 'But Jesus rebuked him, saying, "Be silent and come out of him!" And when the demon had thrown him down in their midst, he came out of him, having done him no harm. And they were all amazed.'
+      },
+      {
+        book: 'Acts',
+        chapter: 16,
+        verse: '18',
+        text: 'And this she kept doing for many days. Paul, having become greatly annoyed, turned and said to the spirit, "I command you in the name of Jesus Christ to come out of her." And it came out that very hour.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 12,
+        verse: '43-45',
+        text: 'When the unclean spirit has gone out of a person, it passes through waterless places seeking rest, but finds none. Then it says, "I will return to my house from which I came." And when it comes, it finds the house empty, swept, and put in order.'
+      },
+      {
+        book: 'Mark',
+        chapter: 9,
+        verse: '29',
+        text: 'And he said to them, "This kind cannot be driven out by anything but prayer."'
+      },
+      {
+        book: 'Luke',
+        chapter: 10,
+        verse: '17-20',
+        text: 'The seventy-two returned with joy, saying, "Lord, even the demons are subject to us in your name!" And he said to them, "I saw Satan fall like lightning from heaven. Nevertheless, do not rejoice in this, that the spirits are subject to you, but rejoice that your names are written in heaven."'
+      },
+      {
+        book: 'John',
+        chapter: 8,
+        verse: '36',
+        text: 'So if the Son sets you free, you will be free indeed.'
+      },
+      {
+        book: 'Galatians',
+        chapter: 5,
+        verse: '1',
+        text: 'For freedom Christ has set us free; stand firm therefore, and do not submit again to a yoke of slavery.'
+      },
+      {
+        book: '2 Timothy',
+        chapter: 1,
+        verse: '7',
+        text: 'For God gave us a spirit not of fear but of power and love and self-control.'
+      },
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '15',
+        text: 'For you did not receive the spirit of slavery to fall back into fear, but you have received the Spirit of adoption as sons, by whom we cry, "Abba! Father!"'
+      }
+    ]
+  },
+  {
+    id: 'suffering',
+    title: 'Why God Allows Suffering',
+    description: 'Understanding suffering, trials, and God\'s sovereignty in difficult times',
+    icon: '🙏',
+    order: 13,
+    references: [
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '28',
+        text: 'And we know that for those who love God all things work together for good, for those who are called according to his purpose.'
+      },
+      {
+        book: 'James',
+        chapter: 1,
+        verse: '2-4',
+        text: 'Count it all joy, my brothers, when you meet trials of various kinds, for you know that the testing of your faith produces steadfastness. And let steadfastness have its full effect, that you may be perfect and complete, lacking in nothing.'
+      },
+      {
+        book: '2 Corinthians',
+        chapter: 1,
+        verse: '3-4',
+        text: 'Blessed be the God and Father of our Lord Jesus Christ, the Father of mercies and God of all comfort, who comforts us in all our affliction, so that we may be able to comfort those who are in any affliction.'
+      },
+      {
+        book: '1 Peter',
+        chapter: 1,
+        verse: '6-7',
+        text: 'In this you rejoice, though now for a little while, if necessary, you have been grieved by various trials, so that the tested genuineness of your faith—more precious than gold that perishes though it is tested by fire—may be found to result in praise and glory and honor at the revelation of Jesus Christ.'
+      },
+      {
+        book: 'Job',
+        chapter: 23,
+        verse: '10',
+        text: 'But he knows the way that I take; when he has tried me, I shall come out as gold.'
+      },
+      {
+        book: 'Romans',
+        chapter: 5,
+        verse: '3-5',
+        text: 'Not only that, but we rejoice in our sufferings, knowing that suffering produces endurance, and endurance produces character, and character produces hope, and hope does not put us to shame.'
+      },
+      {
+        book: 'John',
+        chapter: 16,
+        verse: '33',
+        text: 'I have said these things to you, that in me you may have peace. In the world you will have tribulation. But take heart; I have overcome the world.'
+      },
+      {
+        book: 'Psalm',
+        chapter: 34,
+        verse: '18-19',
+        text: 'The Lord is near to the brokenhearted and saves the crushed in spirit. Many are the afflictions of the righteous, but the Lord delivers him out of them all.'
+      },
+      {
+        book: '2 Corinthians',
+        chapter: 4,
+        verse: '17-18',
+        text: 'For this light momentary affliction is preparing for us an eternal weight of glory beyond all comparison, as we look not to the things that are seen but to the things that are unseen.'
+      },
+      {
+        book: 'Hebrews',
+        chapter: 12,
+        verse: '10-11',
+        text: 'For they disciplined us for a short time as it seemed best to them, but he disciplines us for our good, that we may share his holiness. For the moment all discipline seems painful rather than pleasant, but later it yields the peaceful fruit of righteousness.'
+      }
+    ]
+  },
+  {
+    id: 'children-death',
+    title: 'Children & Death',
+    description: 'What happens to children who die and God\'s heart for the innocent',
+    icon: '👶',
+    order: 14,
+    references: [
+      {
+        book: '2 Samuel',
+        chapter: 12,
+        verse: '23',
+        text: 'But now he is dead. Why should I fast? Can I bring him back again? I shall go to him, but he will not return to me.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 18,
+        verse: '10',
+        text: 'See that you do not despise one of these little ones. For I tell you that in heaven their angels always see the face of my Father who is in heaven.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 19,
+        verse: '14',
+        text: 'But Jesus said, "Let the little children come to me and do not hinder them, for to such belongs the kingdom of heaven."'
+      },
+      {
+        book: 'Psalm',
+        chapter: 139,
+        verse: '13-16',
+        text: 'For you formed my inward parts; you knitted me together in my mother\'s womb. I praise you, for I am fearfully and wonderfully made. Wonderful are your works; my soul knows it very well.'
+      },
+      {
+        book: 'Isaiah',
+        chapter: 65,
+        verse: '20',
+        text: 'No more shall there be in it an infant who lives but a few days, or an old man who does not fill out his days.'
+      },
+      {
+        book: 'Mark',
+        chapter: 10,
+        verse: '14-15',
+        text: 'But when Jesus saw it, he was indignant and said to them, "Let the children come to me; do not hinder them, for to such belongs the kingdom of God. Truly, I say to you, whoever does not receive the kingdom of God like a child shall not enter it."'
+      },
+      {
+        book: 'Deuteronomy',
+        chapter: 1,
+        verse: '39',
+        text: 'And as for your little ones, who you said would become a prey, and your children, who today have no knowledge of good or evil, they shall go in there. And to them I will give it, and they shall possess it.'
+      },
+      {
+        book: 'Jeremiah',
+        chapter: 31,
+        verse: '15-17',
+        text: 'Thus says the Lord: "A voice is heard in Ramah, lamentation and bitter weeping. Rachel is weeping for her children; she refuses to be comforted for her children, because they are no more." Thus says the Lord: "Keep your voice from weeping, and your eyes from tears, for there is a reward for your work, declares the Lord, and they shall come back from the land of the enemy."'
+      },
+      {
+        book: 'Revelation',
+        chapter: 21,
+        verse: '4',
+        text: 'He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.'
+      },
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '38-39',
+        text: 'For I am sure that neither death nor life, nor angels nor rulers, nor things present nor things to come, nor powers, nor height nor depth, nor anything else in all creation, will be able to separate us from the love of God in Christ Jesus our Lord.'
+      }
+    ]
+  },
+  {
+    id: 'hell',
+    title: 'Hell & Eternal Judgment',
+    description: 'Biblical teaching on hell, judgment, and eternal separation from God',
+    icon: '🔥',
+    order: 15,
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 25,
+        verse: '41',
+        text: 'Then he will say to those on his left, "Depart from me, you cursed, into the eternal fire prepared for the devil and his angels."'
+      },
+      {
+        book: 'Revelation',
+        chapter: 20,
+        verse: '14-15',
+        text: 'Then Death and Hades were thrown into the lake of fire. This is the second death, the lake of fire. And if anyone\'s name was not found written in the book of life, he was thrown into the lake of fire.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 10,
+        verse: '28',
+        text: 'And do not fear those who kill the body but cannot kill the soul. Rather fear him who can destroy both soul and body in hell.'
+      },
+      {
+        book: 'Luke',
+        chapter: 16,
+        verse: '23-24',
+        text: 'And in Hades, being in torment, he lifted up his eyes and saw Abraham far off and Lazarus at his side. And he called out, "Father Abraham, have mercy on me, and send Lazarus to dip the end of his finger in water and cool my tongue, for I am in anguish in this flame."'
+      },
+      {
+        book: '2 Thessalonians',
+        chapter: 1,
+        verse: '8-9',
+        text: 'In flaming fire, inflicting vengeance on those who do not know God and on those who do not obey the gospel of our Lord Jesus. They will suffer the punishment of eternal destruction, away from the presence of the Lord and from the glory of his might.'
+      },
+      {
+        book: 'Mark',
+        chapter: 9,
+        verse: '43',
+        text: 'And if your hand causes you to sin, cut it off. It is better for you to enter life crippled than with two hands to go to hell, to the unquenchable fire.'
+      },
+      {
+        book: 'Hebrews',
+        chapter: 9,
+        verse: '27',
+        text: 'And just as it is appointed for man to die once, and after that comes judgment.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 13,
+        verse: '49-50',
+        text: 'So it will be at the end of the age. The angels will come out and separate the evil from the righteous and throw them into the fiery furnace. In that place there will be weeping and gnashing of teeth.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 21,
+        verse: '8',
+        text: 'But as for the cowardly, the faithless, the detestable, as for murderers, the sexually immoral, sorcerers, idolaters, and all liars, their portion will be in the lake that burns with fire and sulfur, which is the second death.'
+      },
+      {
+        book: 'Jude',
+        chapter: 1,
+        verse: '7',
+        text: 'Just as Sodom and Gomorrah and the surrounding cities, which likewise indulged in sexual immorality and pursued unnatural desire, serve as an example by undergoing a punishment of eternal fire.'
+      }
+    ]
+  },
+  {
+    id: 'heaven',
+    title: 'Heaven & Eternal Life',
+    description: 'The promise of heaven and eternal life with God',
+    icon: '☁️',
+    order: 16,
+    references: [
+      {
+        book: 'John',
+        chapter: 14,
+        verse: '2-3',
+        text: 'In my Father\'s house are many rooms. If it were not so, would I have told you that I go to prepare a place for you? And if I go and prepare a place for you, I will come again and will take you to myself, that where I am you may be also.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 21,
+        verse: '4',
+        text: 'He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.'
+      },
+      {
+        book: '1 Corinthians',
+        chapter: 2,
+        verse: '9',
+        text: 'But, as it is written, "What no eye has seen, nor ear heard, nor the heart of man imagined, what God has prepared for those who love him."'
+      },
+      {
+        book: 'Philippians',
+        chapter: 3,
+        verse: '20-21',
+        text: 'But our citizenship is in heaven, and from it we await a Savior, the Lord Jesus Christ, who will transform our lowly body to be like his glorious body.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 22,
+        verse: '3-5',
+        text: 'No longer will there be anything accursed, but the throne of God and of the Lamb will be in it, and his servants will worship him. They will see his face, and his name will be on their foreheads. And night will be no more. They will need no light of lamp or sun, for the Lord God will be their light, and they will reign forever and ever.'
+      },
+      {
+        book: 'John',
+        chapter: 3,
+        verse: '16',
+        text: 'For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life.'
+      },
+      {
+        book: '2 Corinthians',
+        chapter: 5,
+        verse: '1',
+        text: 'For we know that if the tent that is our earthly home is destroyed, we have a building from God, a house not made with hands, eternal in the heavens.'
+      },
+      {
+        book: '1 Thessalonians',
+        chapter: 4,
+        verse: '16-17',
+        text: 'For the Lord himself will descend from heaven with a cry of command, with the voice of an archangel, and with the sound of the trumpet of God. And the dead in Christ will rise first. Then we who are alive, who are left, will be caught up together with them in the clouds to meet the Lord in the air, and so we will always be with the Lord.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 7,
+        verse: '16-17',
+        text: 'They shall hunger no more, neither thirst anymore; the sun shall not strike them, nor any scorching heat. For the Lamb in the midst of the throne will be their shepherd, and he will guide them to springs of living water, and God will wipe away every tear from their eyes.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 25,
+        verse: '34',
+        text: 'Then the King will say to those on his right, "Come, you who are blessed by my Father, inherit the kingdom prepared for you from the foundation of the world."'
+      }
+    ]
+  },
+  {
+    id: 'god-sovereignty',
+    title: 'God\'s Sovereignty & Control',
+    description: 'Understanding God\'s ultimate control and what He permits',
+    icon: '👑',
+    order: 17,
+    references: [
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '28',
+        text: 'And we know that for those who love God all things work together for good, for those who are called according to his purpose.'
+      },
+      {
+        book: 'Proverbs',
+        chapter: 19,
+        verse: '21',
+        text: 'Many are the plans in the mind of a man, but it is the purpose of the Lord that will stand.'
+      },
+      {
+        book: 'Isaiah',
+        chapter: 46,
+        verse: '9-10',
+        text: 'Remember the former things of old; for I am God, and there is no other; I am God, and there is none like me, declaring the end from the beginning and from ancient times things not yet done, saying, "My counsel shall stand, and I will accomplish all my purpose."'
+      },
+      {
+        book: 'Job',
+        chapter: 42,
+        verse: '2',
+        text: 'I know that you can do all things, and that no purpose of yours can be thwarted.'
+      },
+      {
+        book: 'Ephesians',
+        chapter: 1,
+        verse: '11',
+        text: 'In him we have obtained an inheritance, having been predestined according to the purpose of him who works all things according to the counsel of his will.'
+      },
+      {
+        book: 'Daniel',
+        chapter: 4,
+        verse: '35',
+        text: 'All the inhabitants of the earth are accounted as nothing, and he does according to his will among the host of heaven and among the inhabitants of the earth; and none can stay his hand or say to him, "What have you done?"'
+      },
+      {
+        book: 'Psalm',
+        chapter: 115,
+        verse: '3',
+        text: 'Our God is in the heavens; he does all that he pleases.'
+      },
+      {
+        book: 'Romans',
+        chapter: 9,
+        verse: '20-21',
+        text: 'But who are you, O man, to answer back to God? Will what is molded say to its molder, "Why have you made me like this?" Has the potter no right over the clay, to make out of the same lump one vessel for honorable use and another for dishonorable use?'
+      },
+      {
+        book: 'Proverbs',
+        chapter: 16,
+        verse: '9',
+        text: 'The heart of man plans his way, but the Lord establishes his steps.'
+      },
+      {
+        book: 'Lamentations',
+        chapter: 3,
+        verse: '37-38',
+        text: 'Who has spoken and it came to pass, unless the Lord has commanded it? Is it not from the mouth of the Most High that good and bad come?'
+      }
+    ]
+  },
+  {
+    id: 'grace',
+    title: 'Grace & Mercy',
+    description: 'Understanding God\'s undeserved favor and compassion toward us',
+    icon: '✝️',
+    order: 18,
+    references: [
+      {
+        book: 'Ephesians',
+        chapter: 2,
+        verse: '8-9',
+        text: 'For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast.'
+      },
+      {
+        book: 'Romans',
+        chapter: 5,
+        verse: '8',
+        text: 'But God shows his love for us in that while we were still sinners, Christ died for us.'
+      },
+      {
+        book: 'Titus',
+        chapter: 3,
+        verse: '5-7',
+        text: 'He saved us, not because of works done by us in righteousness, but according to his own mercy, by the washing of regeneration and renewal of the Holy Spirit, whom he poured out on us richly through Jesus Christ our Savior, so that being justified by his grace we might become heirs according to the hope of eternal life.'
+      },
+      {
+        book: '2 Corinthians',
+        chapter: 12,
+        verse: '9',
+        text: 'But he said to me, "My grace is sufficient for you, for my power is made perfect in weakness." Therefore I will boast all the more gladly of my weaknesses, so that the power of Christ may rest upon me.'
+      },
+      {
+        book: 'Hebrews',
+        chapter: 4,
+        verse: '16',
+        text: 'Let us then with confidence draw near to the throne of grace, that we may receive mercy and find grace to help in time of need.'
+      },
+      {
+        book: '1 Peter',
+        chapter: 5,
+        verse: '10',
+        text: 'And after you have suffered a little while, the God of all grace, who has called you to his eternal glory in Christ, will himself restore, confirm, strengthen, and establish you.'
+      },
+      {
+        book: 'Romans',
+        chapter: 3,
+        verse: '23-24',
+        text: 'For all have sinned and fall short of the glory of God, and are justified by his grace as a gift, through the redemption that is in Christ Jesus.'
+      },
+      {
+        book: 'James',
+        chapter: 4,
+        verse: '6',
+        text: 'But he gives more grace. Therefore it says, "God opposes the proud but gives grace to the humble."'
+      },
+      {
+        book: 'Psalm',
+        chapter: 103,
+        verse: '8-12',
+        text: 'The Lord is merciful and gracious, slow to anger and abounding in steadfast love. He will not always chide, nor will he keep his anger forever. He does not deal with us according to our sins, nor repay us according to our iniquities.'
+      },
+      {
+        book: 'Lamentations',
+        chapter: 3,
+        verse: '22-23',
+        text: 'The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.'
+      }
+    ]
+  },
+  {
+    id: 'holy-spirit',
+    title: 'The Holy Spirit',
+    description: 'Understanding the Holy Spirit, His role, and His work in believers',
+    icon: '🕊️',
+    order: 19,
+    references: [
+      {
+        book: 'John',
+        chapter: 14,
+        verse: '16-17',
+        text: 'And I will ask the Father, and he will give you another Helper, to be with you forever, even the Spirit of truth, whom the world cannot receive, because it neither sees him nor knows him. You know him, for he dwells with you and will be in you.'
+      },
+      {
+        book: 'Acts',
+        chapter: 1,
+        verse: '8',
+        text: 'But you will receive power when the Holy Spirit has come upon you, and you will be my witnesses in Jerusalem and in all Judea and Samaria, and to the end of the earth.'
+      },
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '26',
+        text: 'Likewise the Spirit helps us in our weakness. For we do not know what to pray for as we ought, but the Spirit himself intercedes for us with groanings too deep for words.'
+      },
+      {
+        book: 'Galatians',
+        chapter: 5,
+        verse: '22-23',
+        text: 'But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.'
+      },
+      {
+        book: '1 Corinthians',
+        chapter: 3,
+        verse: '16',
+        text: 'Do you not know that you are God\'s temple and that God\'s Spirit dwells in you?'
+      },
+      {
+        book: 'John',
+        chapter: 16,
+        verse: '13',
+        text: 'When the Spirit of truth comes, he will guide you into all the truth, for he will not speak on his own authority, but whatever he hears he will speak, and he will declare to you the things that are to come.'
+      },
+      {
+        book: 'Ephesians',
+        chapter: 5,
+        verse: '18',
+        text: 'And do not get drunk with wine, for that is debauchery, but be filled with the Spirit.'
+      },
+      {
+        book: 'Romans',
+        chapter: 8,
+        verse: '11',
+        text: 'If the Spirit of him who raised Jesus from the dead dwells in you, he who raised Christ Jesus from the dead will also give life to your mortal bodies through his Spirit who dwells in you.'
+      },
+      {
+        book: 'Acts',
+        chapter: 2,
+        verse: '38',
+        text: 'And Peter said to them, "Repent and be baptized every one of you in the name of Jesus Christ for the forgiveness of your sins, and you will receive the gift of the Holy Spirit."'
+      },
+      {
+        book: 'John',
+        chapter: 14,
+        verse: '26',
+        text: 'But the Helper, the Holy Spirit, whom the Father will send in my name, he will teach you all things and bring to your remembrance all that I have said to you.'
+      }
+    ]
+  },
+  {
+    id: 'end-times',
+    title: 'End Times & Prophecy',
+    description: 'Biblical prophecy about the return of Christ and the end of the age',
+    icon: '⏰',
+    order: 20,
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 24,
+        verse: '36',
+        text: 'But concerning that day and hour no one knows, not even the angels of heaven, nor the Son, but the Father only.'
+      },
+      {
+        book: '1 Thessalonians',
+        chapter: 4,
+        verse: '16-17',
+        text: 'For the Lord himself will descend from heaven with a cry of command, with the voice of an archangel, and with the sound of the trumpet of God. And the dead in Christ will rise first. Then we who are alive, who are left, will be caught up together with them in the clouds to meet the Lord in the air, and so we will always be with the Lord.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 1,
+        verse: '7',
+        text: 'Behold, he is coming with the clouds, and every eye will see him, even those who pierced him, and all tribes of the earth will wail on account of him. Even so. Amen.'
+      },
+      {
+        book: '2 Peter',
+        chapter: 3,
+        verse: '10',
+        text: 'But the day of the Lord will come like a thief, and then the heavens will pass away with a roar, and the heavenly bodies will be burned up and dissolved, and the earth and the works that are done on it will be exposed.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 24,
+        verse: '42-44',
+        text: 'Therefore, stay awake, for you do not know on what day your Lord is coming. But know this, that if the master of the house had known in what part of the night the thief was coming, he would have stayed awake and would not have let his house be broken into. Therefore you also must be ready, for the Son of Man is coming at an hour you do not expect.'
+      },
+      {
+        book: 'Acts',
+        chapter: 1,
+        verse: '11',
+        text: 'And said, "Men of Galilee, why do you stand looking into heaven? This Jesus, who was taken up from you into heaven, will come in the same way as you saw him go into heaven."'
+      },
+      {
+        book: 'Revelation',
+        chapter: 19,
+        verse: '11-16',
+        text: 'Then I saw heaven opened, and behold, a white horse! The one sitting on it is called Faithful and True, and in righteousness he judges and makes war. His eyes are like a flame of fire, and on his head are many diadems.'
+      },
+      {
+        book: 'Daniel',
+        chapter: 12,
+        verse: '2',
+        text: 'And many of those who sleep in the dust of the earth shall awake, some to everlasting life, and some to shame and everlasting contempt.'
+      },
+      {
+        book: 'Mark',
+        chapter: 13,
+        verse: '32-33',
+        text: 'But concerning that day or that hour, no one knows, not even the angels in heaven, nor the Son, but only the Father. Be on guard, keep awake. For you do not know when the time will come.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 22,
+        verse: '12',
+        text: 'Behold, I am coming soon, bringing my recompense with me, to repay each one for what he has done.'
+      }
+    ]
   }
 ];
