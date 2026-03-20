@@ -1,0 +1,105 @@
+import { Link, useParams } from 'react-router-dom';
+import { ArrowLeft, BookOpen } from 'lucide-react';
+import { topics } from '../data/topics';
+
+export function Topics() {
+  const { topicId } = useParams();
+  const selectedTopic = topicId ? topics.find(t => t.id === topicId) : null;
+
+  if (selectedTopic) {
+    return (
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Link
+          to="/topics"
+          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Back to Topics
+        </Link>
+
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 transition-colors">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-5xl">{selectedTopic.icon}</span>
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                {selectedTopic.title}
+              </h1>
+              <p className="text-gray-600 dark:text-gray-300 text-lg">
+                {selectedTopic.description}
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <BookOpen className="w-6 h-6" />
+              Biblical References
+            </h2>
+
+            <div className="space-y-6">
+              {selectedTopic.references.map((ref, index) => (
+                <div
+                  key={index}
+                  className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700 transition-colors hover:shadow-lg"
+                >
+                  <div className="flex items-start gap-3 mb-3">
+                    <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-sm">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
+                        {ref.book} {ref.chapter}:{ref.verse}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12">
+                    "{ref.text}"
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Biblical Topics
+        </h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300">
+          Explore biblical guidance on various life topics with Scripture references
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {topics.map((topic) => (
+          <Link
+            key={topic.id}
+            to={`/topics/${topic.id}`}
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-xl transition-all group"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-4xl group-hover:scale-110 transition-transform">
+                {topic.icon}
+              </span>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                {topic.title}
+              </h2>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {topic.description}
+            </p>
+            <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
+              <span>{topic.references.length} Scripture references</span>
+              <span>→</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
+}

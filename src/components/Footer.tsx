@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, FolderOpen, Facebook, Instagram } from 'lucide-react';
+import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle } from 'lucide-react';
 
 export function Footer() {
   const footerLinks = [
@@ -16,6 +16,12 @@ export function Footer() {
       description: 'How the early Churches split into different groups'
     },
     {
+      to: '/topics',
+      icon: MessageCircle,
+      title: 'Biblical Topics',
+      description: 'Guidance on marriage, sin, relationships & more'
+    },
+    {
       to: '/faqs',
       icon: Users,
       title: 'FAQs',
@@ -26,7 +32,7 @@ export function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12 print:hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {footerLinks.map((link) => {
             const Icon = link.icon;
             return (
