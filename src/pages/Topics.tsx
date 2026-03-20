@@ -45,7 +45,9 @@ export function Topics() {
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">2</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Recognize the problem (sin)</b><br/>
+Romans 3:23 — “All have sinned…”
+<br></br>Romans 6:23 — “The wages of sin is death…”</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">3</span>
