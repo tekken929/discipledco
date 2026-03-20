@@ -6,7 +6,6 @@ import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
 import { Religions } from './pages/Religions';
-import { Timeline } from './pages/Timeline';
 import { FAQs } from './pages/FAQs';
 import { Topics } from './pages/Topics';
 import { BookSelector } from './components/BookSelector';
@@ -186,7 +185,6 @@ function AppContent() {
           <Route path="/" element={<Home selectedBook={selectedBook} />} />
           <Route path="/bible-versions" element={<BibleVersions />} />
           <Route path="/religions" element={<Religions />} />
-          <Route path="/timeline" element={<Timeline />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/topics/:topicId" element={<Topics />} />
