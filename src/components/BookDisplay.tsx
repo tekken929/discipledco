@@ -16,7 +16,7 @@ const sectionColors = [
 
 export function BookDisplay({ book }: BookDisplayProps) {
   return (
-    <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
+    <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
       {/* Header Section */}
       <div className="mb-8">
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{book.name}</h1>

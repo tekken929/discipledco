@@ -11,13 +11,13 @@ export function Topics() {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link
           to="/topics"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors"
+          className="inline-flex items-center gap-2 theme-accent hover:opacity-80 mb-6 transition-colors font-semibold"
         >
           <ArrowLeft className="w-5 h-5" />
           Back to Topics
         </Link>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 transition-colors">
+        <div className="theme-card rounded-2xl shadow-xl p-8 transition-colors">
           <div className="flex items-center gap-4 mb-6">
             <span className="text-5xl">{selectedTopic.icon}</span>
             <div>
@@ -127,7 +127,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
           <Link
             key={topic.id}
             to={`/topics/${topic.id}`}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-xl transition-all group"
+            className="theme-card rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all group hover:scale-105"
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-4xl group-hover:scale-110 transition-transform">

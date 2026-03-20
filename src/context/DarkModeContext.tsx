@@ -1,8 +1,12 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
+export type ColorTheme = 'subtle' | 'happy' | 'blackwhite';
+
 interface DarkModeContextType {
   darkMode: boolean;
   toggleDarkMode: () => void;
+  colorTheme: ColorTheme;
+  setColorTheme: (theme: ColorTheme) => void;
 }
 
 const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
@@ -11,6 +15,11 @@ export function DarkModeProvider({ children }: { children: ReactNode }) {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
     return saved ? JSON.parse(saved) : false;
+  });
+
+  const [colorTheme, setColorThemeState] = useState<ColorTheme>(() => {
+    const saved = localStorage.getItem('colorTheme');
+    return (saved as ColorTheme) || 'subtle';
   });
 
   useEffect(() => {
@@ -22,12 +31,21 @@ export function DarkModeProvider({ children }: { children: ReactNode }) {
     }
   }, [darkMode]);
 
+  useEffect(() => {
+    localStorage.setItem('colorTheme', colorTheme);
+    document.documentElement.setAttribute('data-theme', colorTheme);
+  }, [colorTheme]);
+
   const toggleDarkMode = () => {
     setDarkMode((prev: boolean) => !prev);
   };
 
+  const setColorTheme = (theme: ColorTheme) => {
+    setColorThemeState(theme);
+  };
+
   return (
-    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode, colorTheme, setColorTheme }}>
       {children}
     </DarkModeContext.Provider>
   );
