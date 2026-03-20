@@ -43,19 +43,29 @@ export function Religions() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+          <Link
+            to="/timeline"
+            className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-xl transition-all group hover:scale-105 block"
+          >
             <img
               src="https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=1200"
               alt="Church history"
-              className="w-full h-64 object-cover rounded-lg mb-4"
+              className="w-full h-64 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
             />
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Denominations Today</h3>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center justify-between">
+              Denominations Today
+              <span className="text-lg theme-accent">→</span>
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
               Modern Christianity encompasses Roman Catholicism, Eastern Orthodoxy, and numerous Protestant denominations including
               Lutheran, Reformed, Anglican, Baptist, Methodist, Pentecostal, and many others. Each tradition maintains unique
               theological emphases, liturgical practices, and organizational structures while sharing core beliefs in Christ.
             </p>
-          </div>
+            <div className="theme-primary-button inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold">
+              View Complete Timeline
+              <span>→</span>
+            </div>
+          </Link>
         </div>
       </div>
     </main>
