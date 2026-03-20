@@ -6,7 +6,7 @@ export const topics: Topic[] = [
     title: 'Marriage',
     description: 'Biblical guidance on marriage, commitment, and marital relationships',
     icon: '💑',
-    order: 1,
+    order: 4,
     references: [
       {
         book: 'Genesis',
@@ -75,7 +75,7 @@ export const topics: Topic[] = [
     title: 'Lust & Sexual Purity',
     description: 'Overcoming lust and maintaining sexual purity according to Scripture',
     icon: '🛡️',
-    order: 2,
+    order: 10,
     references: [
       {
         book: 'Matthew',
@@ -144,7 +144,7 @@ export const topics: Topic[] = [
     title: 'Sin & Repentance',
     description: 'Understanding sin, forgiveness, and the path to repentance',
     icon: '🙏',
-    order: 3,
+    order: 1,
     references: [
       {
         book: 'Romans',
@@ -351,7 +351,7 @@ export const topics: Topic[] = [
     title: 'Love & Compassion',
     description: 'Biblical teachings on love, compassion, and loving others',
     icon: '❤️',
-    order: 6,
+    order: 2,
     references: [
       {
         book: '1 Corinthians',
