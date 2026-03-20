@@ -76,16 +76,16 @@ export const books: Book[] = [
     structure: [
       {
         number: 1,
-        title: 'Oppression in Egypt',
+        title: 'Moses Birth',
         chapterRange: '1-2',
-        summary: 'Israel multiplies in Egypt and a new Pharaoh enslaves them. Moses is born, spared from infanticide, raised in Pharaoh\'s household, and flees to Midian after killing an Egyptian. God hears Israel\'s groaning and remembers His covenant.',
+        summary: 'Israel multiplies in Egypt and a new Pharaoh enslaves them. Moses, an Israelite, is born, spared from infanticide, raised in Pharaoh\'s household, and flees to Midian after killing an Egyptian. God hears Israel\'s groaning and remembers His covenant.',
         keyVerse: "The Israelites groaned in their slavery and cried out, and their cry for help because of their slavery went up to God.",
         verseReference: "Exodus 2:23"},
       {
         number: 2,
         title: 'The Call and the Plagues',
         chapterRange: '3-13',
-        summary: 'God appears to Moses in the burning bush and commissions him to deliver Israel. Through ten devastating plagues, God judges Egypt\'s gods and demonstrates His supreme power. The final plague brings death but Israel is passed over through the lamb\'s blood.',
+        summary: 'God appears to Moses in the burning bush and commissions him to deliver Israel. Through ten devastating plagues, God judges Egypt for idol worship and demonstrates His supreme power. The final plague brings death but Israel is passed over through the lamb\'s blood.',
         keyVerse: "And I will take you as my own people, and I will be your God. Then you will know that I am the LORD your God, who brought you out from under the yoke of the Egyptians.",
         verseReference: "Exodus 6:7"},
       {
