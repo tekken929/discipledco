@@ -30,6 +30,56 @@ export function Topics() {
             </div>
           </div>
 
+          {selectedTopic.id === 'sin' && (
+            <div className="mt-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 rounded-2xl p-8 border border-purple-200 dark:border-purple-700 transition-colors">
+              <h2 className="text-2xl font-bold text-purple-900 dark:text-purple-100 mb-4">
+                Key Points About Salvation
+              </h2>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">1</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">2</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">3</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">4</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">5</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Excepteur sint occaecat cupidatat non proident sunt in culpa.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">6</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Qui officia deserunt mollit anim id est laborum et consectetur.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">7</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Adipiscing elit pellentesque habitant morbi tristique senectus.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">8</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Netus et malesuada fames ac turpis egestas maecenas pharetra.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">9</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Convallis posuere morbi leo urna molestie at elementum eu.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="bg-purple-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">10</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">Facilisis mauris sit amet massa vitae tortor condimentum lacinia.</p>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
               <BookOpen className="w-6 h-6" />
