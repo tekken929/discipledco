@@ -78,13 +78,13 @@ I believe truth is not subjective—it is revealed.<br></br>
 I believe in one God, existing as Father, Son, and Holy Spirit.<br></br>
 I believe that Jesus Christ is the only way to God—not one option among many, but the way.<br></br><br></br>
 
-My foundation is Scripture. My focus is clarity.<br></br>
+My foundation is Scripture. My focus is clarity.<br></br><br></br>
 
-If I can help anyone in anyway walk through life’s biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then I've succeeded here.<br></br><br></br>
+If I can help anyone in anyway walk through life’s biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then I've succeeded here.
 
-Not religion for the sake of religion.<br></br>
-Not arguments for the sake of winning.<br></br>
-Just a path toward truth.<br><</br><br></br>
+Not religion for the sake of religion.
+Not arguments for the sake of winning.
+Just a path toward truth.
                I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.  
             </p>
             <p className="text-lg">
