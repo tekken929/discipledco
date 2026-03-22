@@ -54,7 +54,7 @@ export function Welcome() {
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Historical insights</strong> into how Christianity developed and divided</span>
+                <span><strong>Historical insights</strong> into how Christianity and other Religions developed and divided the Church.</span>
               </li>
             </ul>
           </div>
