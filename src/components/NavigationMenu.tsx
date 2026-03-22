@@ -19,7 +19,7 @@ export function NavigationMenu() {
     {
       to: '/bible',
       icon: BookOpen,
-      title: 'Bible Study'
+      title: 'Bible Overview'
     },
     {
       to: '/bible-versions',

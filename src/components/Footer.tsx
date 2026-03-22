@@ -6,7 +6,7 @@ export function Footer() {
     {
       to: '/bible',
       icon: BookOpen,
-      title: 'Bible Study',
+      title: 'Bible Overview',
       description: 'Explore all 66 books of the Bible'
     },
     {
