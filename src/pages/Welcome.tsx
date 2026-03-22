@@ -72,13 +72,13 @@ export function Welcome() {
             <p className="text-lg">
               This isn’t about religion—it’s about truth.<br></br>
 
-I don’t fit neatly into a single denomination. I feel like sometimes that is the wrong thing to search for. I belive I sit somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority.
+I don’t fit neatly into a single denomination. I feel like sometimes that is the wrong thing to search for. <br></br>I belive I sit somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions.  I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. <br></br>
 
 I believe truth is not subjective—it is revealed.
 I believe in one God, existing as Father, Son, and Holy Spirit.
-And I believe that Jesus Christ is the only way to God—not one option among many, but the way.
+And I believe that Jesus Christ is the only way to God—not one option among many, but the way.<br></br>
 
-My foundation is Scripture. My focus is clarity.
+My foundation is Scripture. My focus is clarity.<br></br>
 
 This platform exists to help people walk through life’s biggest questions step by step—without pressure, without confusion, and without relying on blind Church traditions or personal opinion.
 
