@@ -18,7 +18,7 @@ export function Welcome() {
             Welcome to Discipled Co.
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            I want to simply help you understand what the Bible is, how it got here and how this infallable book was put here to guide us.
+            Understand what the Bible is, how to read it, how it got here and how this infallable book was put here to guide us.
           </p>
         </div>
 
