@@ -80,11 +80,11 @@ I believe that Jesus Christ is the only way to God—not one option among many, 
 
 My foundation is Scripture. My focus is clarity.<br></br><br></br>
 
-If I can help anyone in anyway walk through life’s biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then I've succeeded here.
+If I can help anyone in anyway walk through life’s biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then I've succeeded here.<br></br><br></br>
 
 Not religion for the sake of religion.
 Not arguments for the sake of winning.
-Just a path toward truth.
+Just a path toward truth.<br></br><br></br>
                I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.  
             </p>
             <p className="text-lg">
