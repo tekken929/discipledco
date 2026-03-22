@@ -9,11 +9,13 @@ This guide will help you easily edit content across the Discipled Co. website. E
 1. [Editing Biblical Topics](#editing-biblical-topics)
 2. [Editing Books of the Bible](#editing-books-of-the-bible)
 3. [Editing Bible Versions Page](#editing-bible-versions-page)
-4. [Editing Religions Page](#editing-religions-page)
-5. [Editing FAQs Page](#editing-faqs-page)
-6. [Editing Header & Logo](#editing-header--logo)
-7. [Editing Footer & Social Links](#editing-footer--social-links)
-8. [Adding New Pages](#adding-new-pages)
+4. [Editing Timeline](#editing-timeline)
+5. [Editing Religions Page](#editing-religions-page)
+6. [Editing Stories Page](#editing-stories-page)
+7. [Editing FAQs Page](#editing-faqs-page)
+8. [Editing Header & Logo](#editing-header--logo)
+9. [Editing Footer & Social Links](#editing-footer--social-links)
+10. [Adding New Pages](#adding-new-pages)
 
 ---
 
@@ -128,67 +130,191 @@ Each book has this structure:
 
 ### Location: `src/pages/BibleVersions.tsx`
 
-This page explains different Bible translations.
+This page explains different Bible translations with interactive examples showing how Hebrew and Greek words were translated into English.
 
 ### How to Edit:
 
-Look for the `versions` array around line 6. Each version has:
+Find the `versions` array (around line 33). Each version has:
 
 ```typescript
 {
-  name: 'Version Name',
-  abbreviation: 'ESV',
-  description: 'Full description of this translation',
-  strengths: ['Strength 1', 'Strength 2'],
-  bestFor: 'Who this version is best for'
+  id: 'kjv',                        // Unique identifier
+  name: 'King James Version',       // Full name
+  abbreviation: 'KJV',              // Short version
+  year: '1611',                     // Year published
+  translatedBy: 'Who translated it',
+  description: 'Brief overview...',
+  philosophy: 'Translation approach...',
+  colorClass: 'Tailwind gradient colors',
+  borderClass: 'Tailwind border colors',
+  textClass: 'Tailwind text colors',
+  badgeClass: 'Tailwind badge colors',
+  image: 'https://...',             // Ancient Bible/cross image
+  examples: [
+    // Translation examples (see below)
+  ]
 }
 ```
 
-#### To Add a New Version:
+#### To Add a New Bible Version:
 
-Add a new object to the `versions` array:
+1. Choose unique colors for your version (avoid repeating existing colors)
+2. Find an appropriate ancient Bible or cross image from Pexels
+3. Add translation examples showing original Greek/Hebrew
 
 ```typescript
 {
-  name: 'New International Version',
-  abbreviation: 'NIV',
-  description: 'A modern, readable translation...',
-  strengths: [
-    'Easy to read',
-    'Widely used',
-    'Good for new believers'
-  ],
-  bestFor: 'New Christians and casual reading'
+  id: 'msg',
+  name: 'The Message',
+  abbreviation: 'MSG',
+  year: '2002',
+  translatedBy: 'Eugene Peterson',
+  description: 'A contemporary paraphrase...',
+  philosophy: 'Paraphrase (meaning in modern language)',
+  colorClass: 'from-violet-50 to-violet-100 dark:from-violet-900/30 dark:to-violet-800/30',
+  borderClass: 'border-violet-200 dark:border-violet-700',
+  textClass: 'text-violet-900 dark:text-violet-100',
+  badgeClass: 'bg-violet-600 text-white',
+  image: 'https://images.pexels.com/photos/[ID]/pexels-photo-[ID].jpeg?auto=compress&cs=tinysrgb&w=1200',
+  examples: [
+    {
+      original: 'ἀγάπη (agapē)',
+      originalLanguage: 'Greek',
+      meaning: 'Unconditional love...',
+      translation: 'How MSG translates it with verse reference'
+    }
+    // Add 2-3 more examples
+  ]
+}
+```
+
+#### Adding Translation Examples:
+
+Each version should have 3 examples showing:
+- **original**: The Greek or Hebrew word (with transliteration)
+- **originalLanguage**: Either "Greek" or "Hebrew"
+- **meaning**: What the original word means
+- **translation**: How this version translates it (include verse reference)
+
+```typescript
+{
+  original: 'λόγος (logos)',
+  originalLanguage: 'Greek',
+  meaning: 'Word, reason, divine expression - God\'s complete revelation',
+  translation: '"Word" (John 1:1) - "In the beginning was the Word"'
 }
 ```
 
 ---
 
-## 4. Editing Religions Page
+## 4. Editing Timeline
+
+### Location: `src/data/timeline.ts`
+
+This file contains the complete historical timeline showing the development from Creation through Judaism, Catholicism, Protestantism, to modern times. This timeline appears on the **Religions Page**.
+
+### How to Edit:
+
+The timeline has detailed editing instructions at the top of the file. Each event has:
+
+```typescript
+{
+  id: 'event-1',                    // Unique ID
+  year: '1054 AD',                  // Year or approximate date
+  title: 'The Great Schism',        // Event name
+  category: 'catholic',             // Category (see below)
+  description: 'Brief description (1-2 sentences)',
+  details: [
+    'Bullet point 1',
+    'Bullet point 2',
+    'Add 3-5 details'
+  ],
+  relatedLinks: [                   // Optional
+    { title: 'Learn More', url: 'https://example.com' }
+  ]
+}
+```
+
+#### Categories:
+- **creation**: Creation to Abraham
+- **jewish**: Jewish faith development (Abraham to Jesus)
+- **catholic**: Early church and Catholic formation (Jesus to Great Schism)
+- **protestant**: Protestant Reformation onwards
+- **modern**: 20th century to present
+
+#### To Add a New Timeline Event:
+
+1. Copy an existing event as a template
+2. Change the `id` to a unique value (e.g., 'event-27')
+3. Update all fields with your event information
+4. Choose the correct category
+5. Add it to the `timelineEvents` array in chronological order
+
+```typescript
+{
+  id: 'event-27',
+  year: '1738 AD',
+  title: 'Methodist Revival',
+  category: 'protestant',
+  description: 'John Wesley begins the Methodist movement emphasizing personal holiness.',
+  details: [
+    'Wesley experiences conversion at Aldersgate',
+    'Emphasis on personal holiness and social reform',
+    'Open-air preaching reaches common people',
+    'Methodical approach to faith leads to name "Methodist"'
+  ]
+}
+```
+
+## 5. Editing Religions Page
 
 ### Location: `src/pages/Religions.tsx`
 
-This page explains how different Christian denominations developed.
+This page explains how different Christian denominations developed and displays the timeline.
 
 ### How to Edit:
 
-1. **Main Content**: Edit the text and paragraphs directly in the JSX (look for the `<div>` sections)
-2. **Timeline Items**: Find the `timelineItems` array to add/edit historical events
-3. **Denominations**: Find the `denominations` array to add/edit denomination information
+1. **Main Content**: Edit the introduction text directly in the JSX
+2. **Timeline**: The timeline is pulled from `src/data/timeline.ts` (see section 4 above)
+3. **Key Differences Section**: Edit the Judaism, Catholicism, and Protestantism comparison sections
 
-#### Example - Adding a Timeline Event:
-
-```typescript
-{
-  year: '1517',
-  event: 'Event Name',
-  description: 'What happened and why it matters'
-}
-```
+The timeline automatically displays all events from `timeline.ts` with interactive styling based on category.
 
 ---
 
-## 5. Editing FAQs Page
+## 6. Editing Stories Page
+
+### Location: `src/data/stories.ts`
+
+This file contains Bible stories organized by testament. Each story includes the narrative and key verses.
+
+### How to Edit:
+
+Find the `stories` array and add/edit stories:
+
+```typescript
+{
+  id: 'unique-id',
+  title: 'Story Title',
+  testament: 'Old Testament',       // or 'New Testament'
+  book: 'Book Name',
+  chapter: 1,
+  summary: 'Brief summary of the story',
+  keyVerses: [
+    {
+      reference: 'Genesis 1:1',
+      text: 'Full verse text here'
+    }
+  ],
+  lessons: [
+    'Lesson 1',
+    'Lesson 2',
+    'Lesson 3'
+  ]
+}
+```
+
+## 7. Editing FAQs Page
 
 ### Location: `src/pages/FAQs.tsx`
 
@@ -214,7 +340,7 @@ Find the `faqs` array and add/edit questions:
 
 ---
 
-## 6. Editing Header & Logo
+## 8. Editing Header & Logo
 
 ### Location: `src/App.tsx`
 
@@ -250,7 +376,7 @@ Replace the text with your new subtitle.
 
 ---
 
-## 7. Editing Footer & Social Links
+## 9. Editing Footer & Social Links
 
 ### Location: `src/components/Footer.tsx`
 
@@ -287,7 +413,7 @@ Find this line (around line 82):
 
 ---
 
-## 8. Adding New Pages
+## 10. Adding New Pages
 
 ### Step 1: Create a New Page File
 
@@ -346,8 +472,10 @@ In `src/components/Footer.tsx`, add to `footerLinks` array:
 |-------------|---------------|
 | Biblical Topics & Verses | `src/data/topics.ts` |
 | Books of the Bible | `src/data/books.ts` |
-| Bible Versions | `src/pages/BibleVersions.tsx` |
-| Religions History | `src/pages/Religions.tsx` |
+| Bible Versions & Translations | `src/pages/BibleVersions.tsx` |
+| Historical Timeline Events | `src/data/timeline.ts` |
+| Religions Page Content | `src/pages/Religions.tsx` |
+| Bible Stories | `src/data/stories.ts` |
 | FAQs | `src/pages/FAQs.tsx` |
 | Header & Logo | `src/App.tsx` |
 | Footer & Social Links | `src/components/Footer.tsx` |
