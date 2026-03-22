@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { BookOpen, X } from 'lucide-react';
 
 interface TranslationExample {
   original: string;
@@ -25,7 +25,7 @@ interface BibleVersion {
 }
 
 export function BibleVersions() {
-  const [expandedVersion, setExpandedVersion] = useState<string | null>(null);
+  const [selectedVersion, setSelectedVersion] = useState<BibleVersion | null>(null);
 
   const versions: BibleVersion[] = [
     {
@@ -234,156 +234,142 @@ export function BibleVersions() {
     }
   ];
 
-  const toggleVersion = (id: string) => {
-    setExpandedVersion(expandedVersion === id ? null : id);
-  };
-
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">Bible Versions</h1>
+    <>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">Bible Versions</h1>
 
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Which one should I use?</h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-              Understanding the different Bible translations can help you choose the version that best suits your study needs.
-              Each translation has unique characteristics, from word-for-word accuracy to thought-for-thought readability.
-            </p>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Click on any translation below to see detailed examples of how the original Hebrew and Greek texts were translated into English.
-            </p>
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Which one should I use?</h2>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                Understanding the different Bible translations can help you choose the version that best suits your study needs.
+                Each translation has unique characteristics, from word-for-word accuracy to thought-for-thought readability.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Click on any translation below to see detailed examples of how the original Hebrew and Greek texts were translated into English.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {versions.map((version) => (
+                <button
+                  key={version.id}
+                  onClick={() => setSelectedVersion(version)}
+                  className={`bg-gradient-to-br ${version.colorClass} rounded-xl p-6 border-2 ${version.borderClass} hover:shadow-xl transition-all text-left group hover:scale-105 relative overflow-hidden`}
+                >
+                  <img
+                    src={version.image}
+                    alt={version.name}
+                    className="w-full h-48 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
+                  />
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className={`text-xl font-bold ${version.textClass}`}>
+                      {version.abbreviation}
+                    </h3>
+                    <span className={`${version.badgeClass} px-3 py-1 rounded-full text-xs font-bold`}>
+                      {version.year}
+                    </span>
+                  </div>
+                  <h4 className={`text-lg font-semibold ${version.textClass} mb-3`}>{version.name}</h4>
+                  <p className={`text-sm ${version.textClass} opacity-90 mb-3`}>
+                    {version.description}
+                  </p>
+                  <div className={`inline-flex items-center gap-2 ${version.badgeClass} px-4 py-2 rounded-lg text-sm font-semibold`}>
+                    View Translation Examples
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
+        </div>
+      </main>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {versions.map((version) => (
-              <button
-                key={version.id}
-                onClick={() => toggleVersion(version.id)}
-                className={`bg-gradient-to-br ${version.colorClass} rounded-xl p-6 border-2 ${version.borderClass} hover:shadow-xl transition-all text-left group hover:scale-105 relative overflow-hidden`}
-              >
-                <img
-                  src={version.image}
-                  alt={version.name}
-                  className="w-full h-48 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
-                />
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className={`text-xl font-bold ${version.textClass}`}>
-                    {version.abbreviation}
+      {selectedVersion && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className={`bg-gradient-to-br ${selectedVersion.colorClass} rounded-2xl p-8 border-2 ${selectedVersion.borderClass} shadow-2xl`}>
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <h2 className={`text-3xl font-bold ${selectedVersion.textClass} mb-2`}>
+                    {selectedVersion.name} ({selectedVersion.abbreviation})
+                  </h2>
+                  <p className={`text-lg ${selectedVersion.textClass} opacity-90`}>
+                    Translated: {selectedVersion.year}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedVersion(null)}
+                  className={`${selectedVersion.badgeClass} p-2 rounded-full hover:opacity-80 transition-opacity`}
+                  aria-label="Close"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <div className="bg-white/50 dark:bg-gray-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                  <h3 className={`text-xl font-bold ${selectedVersion.textClass} mb-2 flex items-center gap-2`}>
+                    <BookOpen className="w-5 h-5" />
+                    Translated By
                   </h3>
-                  <span className={`${version.badgeClass} px-3 py-1 rounded-full text-xs font-bold`}>
-                    {version.year}
-                  </span>
+                  <p className="text-gray-800 dark:text-gray-200">{selectedVersion.translatedBy}</p>
                 </div>
-                <h4 className={`text-lg font-semibold ${version.textClass} mb-3`}>{version.name}</h4>
-                <p className={`text-sm ${version.textClass} opacity-90 mb-3`}>
-                  {version.description}
-                </p>
-                <div className={`inline-flex items-center gap-2 ${version.badgeClass} px-4 py-2 rounded-lg text-sm font-semibold`}>
-                  {expandedVersion === version.id ? (
-                    <>
-                      Hide Details <ChevronUp className="w-4 h-4" />
-                    </>
-                  ) : (
-                    <>
-                      View Translation Examples <ChevronDown className="w-4 h-4" />
-                    </>
-                  )}
-                </div>
-              </button>
-            ))}
-          </div>
 
-          {expandedVersion && (
-            <div className="mt-8 animate-in fade-in duration-300">
-              {versions
-                .filter((v) => v.id === expandedVersion)
-                .map((version) => (
-                  <div
-                    key={version.id}
-                    className={`bg-gradient-to-br ${version.colorClass} rounded-2xl p-8 border-2 ${version.borderClass} shadow-2xl`}
-                  >
-                    <div className="flex items-start justify-between mb-6">
-                      <div>
-                        <h2 className={`text-3xl font-bold ${version.textClass} mb-2`}>
-                          {version.name} ({version.abbreviation})
-                        </h2>
-                        <p className={`text-lg ${version.textClass} opacity-90`}>
-                          Translated: {version.year}
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => setExpandedVersion(null)}
-                        className={`${version.badgeClass} p-2 rounded-full hover:opacity-80 transition-opacity`}
+                <div className="bg-white/50 dark:bg-gray-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                  <h3 className={`text-xl font-bold ${selectedVersion.textClass} mb-2`}>
+                    Translation Philosophy
+                  </h3>
+                  <p className="text-gray-800 dark:text-gray-200">{selectedVersion.philosophy}</p>
+                </div>
+
+                <div>
+                  <h3 className={`text-2xl font-bold ${selectedVersion.textClass} mb-4`}>
+                    Translation Examples
+                  </h3>
+                  <p className="text-gray-800 dark:text-gray-200 mb-6">
+                    See how the original Hebrew and Greek words were translated into English:
+                  </p>
+                  <div className="space-y-4">
+                    {selectedVersion.examples.map((example, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white dark:bg-gray-900 rounded-xl p-6 border-2 border-gray-300 dark:border-gray-700 shadow-lg"
                       >
-                        <ChevronUp className="w-6 h-6" />
-                      </button>
-                    </div>
-
-                    <div className="space-y-6">
-                      <div className="bg-white/50 dark:bg-gray-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                        <h3 className={`text-xl font-bold ${version.textClass} mb-2 flex items-center gap-2`}>
-                          <BookOpen className="w-5 h-5" />
-                          Translated By
-                        </h3>
-                        <p className="text-gray-800 dark:text-gray-200">{version.translatedBy}</p>
-                      </div>
-
-                      <div className="bg-white/50 dark:bg-gray-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                        <h3 className={`text-xl font-bold ${version.textClass} mb-2`}>
-                          Translation Philosophy
-                        </h3>
-                        <p className="text-gray-800 dark:text-gray-200">{version.philosophy}</p>
-                      </div>
-
-                      <div>
-                        <h3 className={`text-2xl font-bold ${version.textClass} mb-4`}>
-                          Translation Examples
-                        </h3>
-                        <p className="text-gray-800 dark:text-gray-200 mb-6">
-                          See how the original Hebrew and Greek words were translated into English:
-                        </p>
-                        <div className="space-y-4">
-                          {version.examples.map((example, idx) => (
-                            <div
-                              key={idx}
-                              className="bg-white dark:bg-gray-900 rounded-xl p-6 border-2 border-gray-300 dark:border-gray-700 shadow-lg"
-                            >
-                              <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                  <h4 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
-                                    Original {example.originalLanguage}
-                                  </h4>
-                                  <p className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                                    {example.original}
-                                  </p>
-                                  <h5 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
-                                    Meaning
-                                  </h5>
-                                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    {example.meaning}
-                                  </p>
-                                </div>
-                                <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-6">
-                                  <h4 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
-                                    {version.abbreviation} Translation
-                                  </h4>
-                                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed text-lg">
-                                    {example.translation}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h4 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
+                              Original {example.originalLanguage}
+                            </h4>
+                            <p className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                              {example.original}
+                            </p>
+                            <h5 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
+                              Meaning
+                            </h5>
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                              {example.meaning}
+                            </p>
+                          </div>
+                          <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-6">
+                            <h4 className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2">
+                              {selectedVersion.abbreviation} Translation
+                            </h4>
+                            <p className="text-gray-800 dark:text-gray-200 leading-relaxed text-lg">
+                              {example.translation}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
-      </div>
-    </main>
+      )}
+    </>
   );
 }
