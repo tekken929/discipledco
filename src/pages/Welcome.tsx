@@ -70,14 +70,10 @@ export function Welcome() {
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-              We are a team of dedicated believers committed to making the Bible accessible and understandable
-              for everyone. Our mission is to break down complex theological concepts into clear, digestible content
-              that empowers you to study Scripture confidently.
+              There isn't a conspiricy or big money company behind this.  I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.  
             </p>
             <p className="text-lg">
-              With backgrounds in theology, education, and technology, we've come together to create a resource
-              that serves both new believers taking their first steps in faith and seasoned Christians seeking
-              deeper understanding.
+              I started this while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others.
             </p>
           </div>
         </div>
