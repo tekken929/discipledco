@@ -125,8 +125,8 @@ Just a path toward truth.<br></br><br></br>
               </div>
             </div>
             <p className="text-lg mt-6">
-              You can't change these things to suit your desires. I want to present Biblical truth with love, clarity, and grace, helping you break free
-              from the distractions of this world and grow closer to God through His Word.
+              You can't change these things to suit your desires or simply ommit things you don't like. The Bible presents hard truths that we all need to accept. However, it shows us how to do it with love, clarity, and grace, helping you break free
+              from the distractions of the evil forces of this world and grow closer to God through His Word.
             </p>
           </div>
         </div>
