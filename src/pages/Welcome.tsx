@@ -99,12 +99,12 @@ Just a path toward truth.<br></br><br></br>
             <div className="theme-primary-button p-3 rounded-xl">
               <Heart className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">What We Believe</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">What I Believe</h2>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
               We believe the Bible is the inspired Word of God, containing everything we need for faith and life.
-              Our core beliefs include:
+              At the core:
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-white/50 dark:bg-gray-900/30 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
