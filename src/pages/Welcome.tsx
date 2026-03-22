@@ -70,7 +70,7 @@ export function Welcome() {
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-              This isn’t about religion—it’s about truth.
+              This isn’t about religion—it’s about truth.</p>
 
 I don’t fit neatly into a single denomination. I feel like sometimes that is the wrong thing to search for. I belive I sit somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority.
 
