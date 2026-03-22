@@ -70,7 +70,22 @@ export function Welcome() {
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-              There isn't a conspiricy or big money company behind this.  I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.  
+              This isn’t about religion—it’s about truth.
+
+I don’t fit neatly into a single denomination. I feel like sometimes that is the wrong thing to search for. I belive I sit somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority.
+
+I believe truth is not subjective—it is revealed.
+I believe in one God, existing as Father, Son, and Holy Spirit.
+And I believe that Jesus Christ is the only way to God—not one option among many, but the way.
+
+My foundation is Scripture. My focus is clarity.
+
+This platform exists to help people walk through life’s biggest questions step by step—without pressure, without confusion, and without relying on blind Church traditions or personal opinion. I want them to come to this conclusion for themselves. 
+
+Not religion for the sake of religion.
+Not arguments for the sake of winning.
+Just a path toward truth.
+               I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.  
             </p>
             <p className="text-lg">
               I started this while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others.
