@@ -18,7 +18,7 @@ export function Welcome() {
             Welcome to Discipled Co.
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            A page made simply to help understand what the Bible is, how it got here and how this infallable book was put here to guide us.
+            I want to simply help you understand what the Bible is, how it got here and how this infallable book was put here to guide us.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ export function Welcome() {
             <div className="theme-primary-button p-3 rounded-xl">
               <Target className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">What We Offer</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">What you will find here:</h2>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
@@ -66,7 +66,7 @@ export function Welcome() {
             <div className="theme-primary-button p-3 rounded-xl">
               <Users className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Who We Are</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Who made this page?</h2>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
@@ -80,11 +80,11 @@ I believe that Jesus Christ is the only way to God—not one option among many, 
 
 My foundation is Scripture. My focus is clarity.<br></br>
 
-This platform exists to help people walk through life’s biggest questions step by step—without pressure, without confusion, and without relying on blind Church traditions or personal opinion.
+If I can help anyone in anyway walk through life’s biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then I've succeeded here.<br></br><br></br>
 
-Not religion for the sake of religion.
-Not arguments for the sake of winning.
-Just a path toward truth.
+Not religion for the sake of religion.<br></br>
+Not arguments for the sake of winning.<br></br>
+Just a path toward truth.<br><</br><br></br>
                I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.  
             </p>
             <p className="text-lg">
