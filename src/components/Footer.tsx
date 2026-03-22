@@ -4,6 +4,12 @@ import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book }
 export function Footer() {
   const footerLinks = [
     {
+      to: '/bible',
+      icon: BookOpen,
+      title: 'Bible Study',
+      description: 'Explore all 66 books of the Bible'
+    },
+    {
       to: '/bible-versions',
       icon: BookOpen,
       title: 'Bible Versions',
@@ -38,7 +44,7 @@ export function Footer() {
   return (
     <footer className="theme-card border-t border-gray-200 dark:border-gray-700 mt-12 print:hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
           {footerLinks.map((link) => {
             const Icon = link.icon;
             return (

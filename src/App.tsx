@@ -3,6 +3,8 @@ import { Download, Moon, Sun, Palette } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
+import { NavigationMenu } from './components/NavigationMenu';
+import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
 import { Religions } from './pages/Religions';
@@ -16,7 +18,7 @@ import { Book } from './types/book';
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isBiblePage = location.pathname === '/bible';
   const [selectedBook, setSelectedBook] = useState<Book>(books[0]);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
 
@@ -72,18 +74,8 @@ function AppContent() {
               </div>
             </Link>
 
-            {isHomePage && (
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Books of the Bible</label>
-                <BookSelector
-                  books={books}
-                  selectedBook={selectedBook}
-                  onSelectBook={handleBookSelect}
-                />
-              </div>
-            )}
-
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <NavigationMenu />
               <div className="relative">
                 <button
                   onClick={(e) => {
@@ -166,7 +158,7 @@ function AppContent() {
                 <span className="hidden sm:inline">{darkMode ? 'Light' : 'Dark'}</span>
               </button>
 
-              {isHomePage && (
+              {isBiblePage && (
                 <button
                   onClick={handlePrint}
                   className="flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
@@ -183,7 +175,8 @@ function AppContent() {
       {/* Main Content */}
       <div className="flex-1">
         <Routes>
-          <Route path="/" element={<Home selectedBook={selectedBook} />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/bible" element={<Home selectedBook={selectedBook} />} />
           <Route path="/bible-versions" element={<BibleVersions />} />
           <Route path="/religions" element={<Religions />} />
           <Route path="/faqs" element={<FAQs />} />
