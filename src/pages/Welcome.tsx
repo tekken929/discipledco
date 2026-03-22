@@ -103,7 +103,7 @@ Just a path toward truth.<br></br><br></br>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-              We believe the Bible is the inspired Word of God, containing everything we need for faith and life.
+              I believe the Bible is the inspired Word of God, containing everything we need for faith and life.
               At the core:
             </p>
             <div className="grid md:grid-cols-2 gap-4">
