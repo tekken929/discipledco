@@ -16,12 +16,6 @@ export function Footer() {
       description: 'Which one should I use?'
     },
     {
-      to: '/religions',
-      icon: FolderOpen,
-      title: 'Religions',
-      description: 'How the early Churches split into different groups'
-    },
-    {
       to: '/topics',
       icon: MessageCircle,
       title: 'Biblical Topics',
@@ -32,6 +26,12 @@ export function Footer() {
       icon: Book,
       title: 'Bible Stories',
       description: 'Ten popular stories from Scripture'
+    },
+    {
+      to: '/religions',
+      icon: FolderOpen,
+      title: 'Religions',
+      description: 'How the early Churches split into different groups'
     },
     {
       to: '/faqs',

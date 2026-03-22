@@ -72,6 +72,7 @@ export function NavigationMenu() {
                 <Link
                   key={link.to}
                   to={link.to}
+                  onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                     isActive
                       ? 'bg-gradient-to-r theme-primary text-white'
