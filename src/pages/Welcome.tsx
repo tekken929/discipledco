@@ -134,7 +134,7 @@ Just a path toward truth.<br></br><br></br>
         {/* Call to Action */}
         <div className="theme-card rounded-2xl shadow-xl p-8 text-center transition-colors">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-Checkout this Bible overview:          </h2>
+Bible overview:          </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
             
           </p>
