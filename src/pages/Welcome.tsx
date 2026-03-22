@@ -66,7 +66,7 @@ export function Welcome() {
         {/* Call to Action */}
         <div className="theme-card rounded-2xl shadow-xl p-8 text-center transition-colors">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Bible overview:
+            Next Steps:
           </h2>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <Link
@@ -74,7 +74,7 @@ export function Welcome() {
               className="inline-flex items-center gap-2 theme-primary-button text-white font-semibold px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg text-lg"
             >
               <BookOpen className="w-6 h-6" />
-              Explore the Bible
+              Bible Overview
             </Link>
             <button
               onClick={() => setShowWhoMadeThis(true)}
