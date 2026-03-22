@@ -122,7 +122,7 @@ export const timelineEvents: TimelineEvent[] = [
       'God calls Abram (later Abraham) to leave his homeland',
       'God promises Abraham descendants as numerous as the stars',
       'The covenant is sealed through circumcision',
-      'Abraham becomes the father of faith for Jews, Christians, and Muslims'
+      'Abraham becomes the father of faith for Jews and Christians'
     ]
   },
   {
