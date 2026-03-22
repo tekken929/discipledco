@@ -32,8 +32,8 @@ export function Welcome() {
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-              Discipled Co. is designed to help believers and seekers alike navigate the depths of Scripture
-              with clarity and confidence. We provide:
+             Nnavigate the depths of Scripture
+              with clarity and confidence. 
             </p>
             <ul className="space-y-3 ml-6">
               <li className="flex items-start gap-3">
