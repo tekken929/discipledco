@@ -35,7 +35,7 @@ export function BibleVersions() {
       year: '1611',
       translatedBy: 'The King James Version was created in 1611 using a word-for-word translation philosophy, aiming for both accuracy and beauty. It was translated by teams of scholars using the best manuscripts available at the time, and it became one of the most influential Bible translations in history.',
       description: 'The classic English translation known for its majestic, poetic language and historical significance in English-speaking Christianity.',
-      philosophy: 'Formal equivalence (word-for-word translation from Hebrew, Aramaic, and Greek texts)',
+      philosophy: 'Its translation philosophy centered on formal equivalence—a “word-for-word” approach—aiming to stay as close as possible to the structure and meaning of the original languages. At the same time, it was intentionally written with literary beauty and rhythm, designed to be read aloud, memorized, and carried into worship.  The translators used the best manuscripts available at the time, including the Hebrew Masoretic Text and the Greek Textus Receptus, while also building upon earlier English translations like Tyndale’s work. Their process involved multiple layers of review, ensuring a high level of precision and accountability. While later discoveries of older manuscripts have led to newer translations, the KJV remains one of the most influential and enduring Bible translations—valued for its faithfulness, structure, and unmatched poetic clarity.',
       colorClass: 'from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30',
       borderClass: 'border-amber-200 dark:border-amber-700',
       textClass: 'text-amber-900 dark:text-amber-100',
