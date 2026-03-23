@@ -33,7 +33,7 @@ export function BibleVersions() {
       name: 'King James Version',
       abbreviation: 'KJV',
       year: '1611',
-      translatedBy: 'Church of England scholars commissioned by King James I',
+      translatedBy: 'The King James Version was created in 1611 using a word-for-word translation philosophy, aiming for both accuracy and beauty. It was translated by teams of scholars using the best manuscripts available at the time, and it became one of the most influential Bible translations in history.',
       description: 'The classic English translation known for its majestic, poetic language and historical significance in English-speaking Christianity.',
       philosophy: 'Formal equivalence (word-for-word translation from Hebrew, Aramaic, and Greek texts)',
       colorClass: 'from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30',
