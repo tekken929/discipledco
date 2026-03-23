@@ -247,15 +247,7 @@ export function BibleVersions() {
                 Some Bibles prioritize the exact words.
 Others prioritize the meaning behind them.
 The difference isn’t about right or wrong—it’s about how directly the translation reflects the original text versus how clearly it communicates it in modern language.
-
-                | Type            | Focus              | Readability | Accuracy Style | Examples    |
-| --------------- | ------------------ | ----------- | -------------- | ----------- |
-| Strict Formal   | Exact words        | Lower       | Very high      | NASB        |
-| Moderate Formal | Words + clarity    | Medium      | High           | ESV, RSV    |
-| Dynamic         | Meaning            | High        | Balanced       | NIV         |
-| Very Dynamic    | Meaning simplified | Very high   | Less precise   | NLT         |
-| Paraphrase      | Explanation        | Easiest     | Interpretive   | The Message |
-
+                Bible translations generally fall along a spectrum: strict formal (word-for-word) like NASB focuses on exact wording but is harder to read; moderate formal like ESV and RSV balances accuracy with some readability; dynamic (thought-for-thought) like NIV prioritizes meaning and clarity in modern language; very dynamic like NLT simplifies ideas even more for easy understanding; and paraphrase like The Message re-expresses the text in highly interpretive, conversational language.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Click on any translation below to see detailed examples of how the original Hebrew and Greek texts were translated into English.
