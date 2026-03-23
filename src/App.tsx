@@ -93,7 +93,7 @@ function AppContent() {
               />
               <div>
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">Discipled Co.</h1>
-                <p className="text-gray-600 dark:text-gray-300 text-xs">Biblical Guidance & Study</p>
+                <p className="text-gray-600 dark:text-gray-300 text-xs">Luke 9:23</p>
               </div>
             </Link>
 
