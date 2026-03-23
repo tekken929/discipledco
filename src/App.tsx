@@ -209,13 +209,13 @@ function AppContent() {
       {/* Verse Banner - Not Sticky */}
       <div className="theme-card border-b border-gray-200 dark:border-gray-700 print:hidden transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center justify-center gap-3">
-            <p className="text-gray-600 dark:text-gray-300 text-sm truncate max-w-2xl">
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-gray-600 dark:text-gray-300 text-sm text-center max-w-3xl line-clamp-2">
               {currentVerse.reference}, "{currentVerse.text}"
             </p>
             <button
               onClick={handleNewVerse}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r theme-primary text-white text-xs font-semibold rounded-full hover:opacity-90 transition-all shadow-sm hover:shadow-md whitespace-nowrap flex-shrink-0"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r theme-primary text-white text-xs font-semibold rounded-full hover:opacity-90 transition-all shadow-sm hover:shadow-md"
               aria-label="Get new verse"
             >
               <Sparkles className="w-3.5 h-3.5" />
