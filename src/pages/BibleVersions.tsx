@@ -244,8 +244,9 @@ export function BibleVersions() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Which one should I use?</h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Understanding the different Bible translations can help you choose the version that best suits your study needs.
-                Each translation has unique characteristics, from word-for-word accuracy to thought-for-thought readability.
+                Some Bibles prioritize the exact words.
+Others prioritize the meaning behind them.
+The difference isn’t about right or wrong—it’s about how directly the translation reflects the original text versus how clearly it communicates it in modern language.
               </p>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Click on any translation below to see detailed examples of how the original Hebrew and Greek texts were translated into English.
