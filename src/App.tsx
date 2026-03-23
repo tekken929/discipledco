@@ -93,7 +93,7 @@ function AppContent() {
               />
               <div>
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">Discipled Co.</h1>
-                <p className="text-gray-600 dark:text-gray-300 text-xs">Luke 9:23</p>
+                <p className="text-gray-600 dark:text-gray-300 text-xs">Luke 9:23, “Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.”</p>
               </div>
             </Link>
 
