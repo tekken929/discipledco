@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Download, Moon, Sun, Palette } from 'lucide-react';
+import { Download, Moon, Sun, Palette, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
@@ -15,6 +15,7 @@ import { Stories } from './pages/Stories';
 import { BookSelector } from './components/BookSelector';
 import { books } from './data/books';
 import { Book } from './types/book';
+import { getRandomVerse, Verse } from './data/verses';
 
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
@@ -25,10 +26,15 @@ function AppContent() {
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('onboardingCompleted') === 'true';
   });
+  const [currentVerse, setCurrentVerse] = useState<Verse>(() => getRandomVerse());
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  const handleNewVerse = () => {
+    setCurrentVerse(getRandomVerse());
+  };
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -203,9 +209,19 @@ function AppContent() {
       {/* Verse Banner - Not Sticky */}
       <div className="theme-card border-b border-gray-200 dark:border-gray-700 print:hidden transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <p className="text-gray-600 dark:text-gray-300 text-sm text-center">
-            Luke 9:23, "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
-          </p>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <p className="text-gray-600 dark:text-gray-300 text-sm text-center">
+              {currentVerse.reference}, "{currentVerse.text}"
+            </p>
+            <button
+              onClick={handleNewVerse}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r theme-primary text-white text-xs font-semibold rounded-full hover:opacity-90 transition-all shadow-sm hover:shadow-md"
+              aria-label="Get new verse"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              new verse
+            </button>
+          </div>
         </div>
       </div>
 
