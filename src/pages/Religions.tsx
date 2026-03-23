@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Calendar, BookOpen, Cross, Star, ChevronDown, ChevronUp } from 'lucide-react';
 import { timelineEvents } from '../data/timeline';
+import { DenominationTree } from '../components/DenominationTree';
 
 export function Religions() {
   const [showTimeline, setShowTimeline] = useState(false);
@@ -117,26 +118,32 @@ export function Religions() {
             </div>
           </div>
 
+          <div className="theme-card rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 shadow-xl">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+              Denominations Today
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+              Modern Christianity encompasses Roman Catholicism, Eastern Orthodoxy, and numerous Protestant denominations.
+              Click on the bubbles below to explore how Christianity branched into different traditions over time.
+            </p>
+
+            <DenominationTree />
+          </div>
+
           <button
             onClick={() => setShowTimeline(!showTimeline)}
             className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-xl transition-all group hover:scale-105 block w-full text-left"
           >
-            <img
-              src="https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Church history"
-              className="w-full h-64 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
-            />
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center justify-between">
-              Denominations Today
+              Complete Historical Timeline
               {showTimeline ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
             </h3>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
-              Modern Christianity encompasses Roman Catholicism, Eastern Orthodoxy, and numerous Protestant denominations including
-              Lutheran, Reformed, Anglican, Baptist, Methodist, Pentecostal, and many others. Each tradition maintains unique
-              theological emphases, liturgical practices, and organizational structures while sharing core beliefs in Christ.
+              View the complete chronological timeline from Creation to modern day, including key events in Jewish,
+              Catholic, Orthodox, and Protestant history.
             </p>
             <div className="theme-primary-button inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold">
-              {showTimeline ? 'Hide' : 'View'} Complete Timeline
+              {showTimeline ? 'Hide' : 'View'} Timeline
               {showTimeline ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </div>
           </button>
