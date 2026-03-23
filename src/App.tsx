@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
 import { NavigationMenu } from './components/NavigationMenu';
+import { OnboardingQuestions } from './components/OnboardingQuestions';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
@@ -21,6 +22,9 @@ function AppContent() {
   const isBiblePage = location.pathname === '/bible';
   const [selectedBook, setSelectedBook] = useState<Book>(books[0]);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
+    return localStorage.getItem('onboardingCompleted') === 'true';
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,6 +59,25 @@ function AppContent() {
     setColorTheme(theme);
     setShowThemeMenu(false);
   };
+
+  const handleOnboardingComplete = () => {
+    localStorage.setItem('onboardingCompleted', 'true');
+    setHasCompletedOnboarding(true);
+  };
+
+  const handleOnboardingSkip = () => {
+    localStorage.setItem('onboardingCompleted', 'true');
+    setHasCompletedOnboarding(true);
+  };
+
+  if (!hasCompletedOnboarding) {
+    return (
+      <OnboardingQuestions
+        onComplete={handleOnboardingComplete}
+        onSkip={handleOnboardingSkip}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen theme-background transition-colors flex flex-col">

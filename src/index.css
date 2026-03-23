@@ -39,6 +39,18 @@
   [data-theme="subtle"] .theme-primary-button {
     @apply bg-gradient-to-r from-blue-600 to-slate-700 hover:from-blue-700 hover:to-slate-800 text-white;
   }
+  [data-theme="subtle"] .theme-primary-bg {
+    @apply bg-gradient-to-r from-blue-600 to-slate-700;
+  }
+  [data-theme="subtle"] .theme-primary-bg-light {
+    @apply bg-blue-50;
+  }
+  [data-theme="subtle"].dark .theme-primary-bg-light {
+    @apply bg-blue-950/30;
+  }
+  [data-theme="subtle"] .theme-primary-border {
+    @apply border-blue-600;
+  }
   [data-theme="subtle"] .theme-accent {
     @apply text-blue-700;
   }
@@ -62,6 +74,18 @@
   [data-theme="happy"] .theme-primary-button {
     @apply bg-gradient-to-r from-amber-500 via-orange-500 to-teal-600 hover:from-amber-600 hover:via-orange-600 hover:to-teal-700 text-white;
   }
+  [data-theme="happy"] .theme-primary-bg {
+    @apply bg-gradient-to-r from-amber-500 via-orange-500 to-teal-600;
+  }
+  [data-theme="happy"] .theme-primary-bg-light {
+    @apply bg-amber-50;
+  }
+  [data-theme="happy"].dark .theme-primary-bg-light {
+    @apply bg-orange-950/30;
+  }
+  [data-theme="happy"] .theme-primary-border {
+    @apply border-orange-500;
+  }
   [data-theme="happy"] .theme-accent {
     @apply text-orange-600;
   }
@@ -84,6 +108,18 @@
   }
   [data-theme="blackwhite"] .theme-primary-button {
     @apply bg-gradient-to-r from-gray-700 via-gray-800 to-black hover:from-gray-800 hover:via-gray-900 hover:to-gray-950 text-white;
+  }
+  [data-theme="blackwhite"] .theme-primary-bg {
+    @apply bg-gradient-to-r from-gray-700 via-gray-800 to-black;
+  }
+  [data-theme="blackwhite"] .theme-primary-bg-light {
+    @apply bg-gray-100;
+  }
+  [data-theme="blackwhite"].dark .theme-primary-bg-light {
+    @apply bg-gray-900/30;
+  }
+  [data-theme="blackwhite"] .theme-primary-border {
+    @apply border-gray-800;
   }
   [data-theme="blackwhite"] .theme-accent {
     @apply text-gray-900;
