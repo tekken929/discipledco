@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, HelpCircle, Home } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Home, Palette, Moon, Sun } from 'lucide-react';
+import { ColorTheme } from '../context/DarkModeContext';
 
-export function NavigationMenu() {
+interface NavigationMenuProps {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+  colorTheme: ColorTheme;
+  onThemeChange: (theme: ColorTheme) => void;
+}
+
+export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeChange }: NavigationMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showThemeMenu, setShowThemeMenu] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setIsOpen(false);
+    setShowThemeMenu(false);
   }, [location.pathname]);
 
   const navigationLinks = [
@@ -85,6 +95,94 @@ export function NavigationMenu() {
               );
             })}
           </nav>
+
+          <div className="border-t border-gray-200 dark:border-gray-700 py-2">
+            <div className="px-2">
+              <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">Settings</p>
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowThemeMenu(!showThemeMenu);
+              }}
+              className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <Palette className="w-5 h-5" />
+                <span className="font-medium">Theme</span>
+              </div>
+              <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">{colorTheme}</span>
+            </button>
+
+            {showThemeMenu && (
+              <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 space-y-1">
+                <button
+                  onClick={() => {
+                    onThemeChange('subtle');
+                    setShowThemeMenu(false);
+                  }}
+                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
+                    colorTheme === 'subtle' ? 'bg-slate-200 dark:bg-slate-700' : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-slate-400 to-blue-500"></div>
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-slate-600"></div>
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">Subtle</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => {
+                    onThemeChange('happy');
+                    setShowThemeMenu(false);
+                  }}
+                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
+                    colorTheme === 'happy' ? 'bg-amber-200 dark:bg-orange-900' : 'hover:bg-amber-50 dark:hover:bg-orange-950'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-amber-400 to-orange-500"></div>
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-orange-400 to-teal-500"></div>
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">Happy</span>
+                  </div>
+                </button>
+                <button
+                  onClick={() => {
+                    onThemeChange('blackwhite');
+                    setShowThemeMenu(false);
+                  }}
+                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
+                    colorTheme === 'blackwhite' ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-900'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1">
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-400"></div>
+                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-white to-gray-300 border border-gray-400"></div>
+                    </div>
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">B&W</span>
+                  </div>
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={() => {
+                toggleDarkMode();
+              }}
+              className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                <span className="font-medium">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+              </div>
+            </button>
+          </div>
         </div>
       )}
     </div>

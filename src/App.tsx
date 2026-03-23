@@ -81,10 +81,10 @@ function AppContent() {
 
   return (
     <div className="min-h-screen theme-background transition-colors flex flex-col">
-      {/* Header */}
+      {/* Header - Sticky */}
       <header className="theme-card shadow-lg print:hidden transition-colors sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img
                 src="https://images.pexels.com/photos/6120234/pexels-photo-6120234.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
@@ -93,23 +93,31 @@ function AppContent() {
               />
               <div>
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">Discipled Co.</h1>
-                <p className="text-gray-600 dark:text-gray-300 text-xs">Luke 9:23, “Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.”</p>
               </div>
             </Link>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <NavigationMenu />
-              <div className="relative">
+            <div className="flex items-center gap-3">
+              {isBiblePage && (
+                <button
+                  onClick={handlePrint}
+                  className="hidden md:flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+                >
+                  <Download className="w-5 h-5" />
+                  Download PDF
+                </button>
+              )}
+
+              <div className="hidden lg:block relative">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowThemeMenu(!showThemeMenu);
                   }}
-                  className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
+                  className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
                   aria-label="Change color theme"
                 >
                   <Palette className="w-5 h-5" />
-                  <span className="hidden sm:inline">Theme</span>
+                  <span>Theme</span>
                 </button>
 
                 {showThemeMenu && (
@@ -174,26 +182,32 @@ function AppContent() {
 
               <button
                 onClick={toggleDarkMode}
-                className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+                className="hidden lg:flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                <span className="hidden sm:inline">{darkMode ? 'Light' : 'Dark'}</span>
+                <span>{darkMode ? 'Light' : 'Dark'}</span>
               </button>
 
-              {isBiblePage && (
-                <button
-                  onClick={handlePrint}
-                  className="flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
-                >
-                  <Download className="w-5 h-5" />
-                  Download PDF
-                </button>
-              )}
+              <NavigationMenu
+                darkMode={darkMode}
+                toggleDarkMode={toggleDarkMode}
+                colorTheme={colorTheme}
+                onThemeChange={handleThemeChange}
+              />
             </div>
           </div>
         </div>
       </header>
+
+      {/* Verse Banner - Not Sticky */}
+      <div className="theme-card border-b border-gray-200 dark:border-gray-700 print:hidden transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <p className="text-gray-600 dark:text-gray-300 text-sm text-center">
+            Luke 9:23, "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
+          </p>
+        </div>
+      </div>
 
       {/* Main Content */}
       <div className="flex-1">
