@@ -119,25 +119,25 @@ export function Footer() {
       >
         <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
           <p className="text-lg">
-            This isn't about religion—it's about truth.<br></br>
+            This isn't necessarily about religion—it's about truth.<br></br>
 
-I don't fit neatly into a single denomination. I feel like sometimes that is the wrong thing to search for. <br></br><br></br>I belive I sit somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions.  I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. <br></br><br></br>
+Sometimes we don't fit neatly into a single denomination. Sometimes labels are too much. I feel like sometimes that is the wrong thing to search for, especially if you are just beginning. <br></br><br></br>I fall somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions.  I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. I also realize that it is hard to fully support something, if part of it is broken or mis-represented.<br></br><br></br>
 I believe in 'Sola Scriptura'<br></br>
 I believe truth is not subjective—it is revealed.<br></br>
 I believe in one God, existing as Father, Son, and Holy Spirit.<br></br>
 I believe that Jesus Christ is the only way to God—not one option among many, but the way.<br></br><br></br>
 
-My foundation is Scripture. My focus is clarity.<br></br><br></br>
+My foundation is the Scripture.<br></br><br></br>
 
-If I can help anyone in anyway walk through life's biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then I\'ve succeeded here.<br></br><br></br>
+If we can help anyone walk through life's biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then we have succeeded.<br></br><br></br>
 
 Not religion for the sake of religion.
 Not arguments for the sake of winning.
 Just a path toward truth.<br></br><br></br>
-            I am simply one man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.
+            I am simply a man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.
           </p>
           <p className="text-lg">
-            I started this while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others.
+            I started this website while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others.  My goal is to represent what being a Christian means in full truth as I know it from the teachings of the Holy Bible.  
           </p>
         </div>
       </Modal>
