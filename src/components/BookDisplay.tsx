@@ -19,12 +19,7 @@ export function BookDisplay({ book }: BookDisplayProps) {
     <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
       {/* Header Section */}
       <div className="mb-8">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3">{book.name}</h1>
-
-        {/* Key Verse - Luke reference */}
-        <p className="text-gray-600 dark:text-gray-400 text-lg italic mb-6">
-          Luke 1:3-4, "Therefore, since I myself have carefully investigated everything from the beginning, I too decided to write an orderly account for you, most excellent Theophilus, so that you may know the certainty of the things you have been taught."
-        </p>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{book.name}</h1>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
