@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book } from 'lucide-react';
+import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck } from 'lucide-react';
 import { Modal } from './Modal';
 import { useState } from 'react';
 
@@ -100,15 +100,48 @@ export function Footer() {
               </svg>
             </a>
           </div>
-          <p className="text-center text-gray-600 dark:text-gray-300 text-sm">
-            © 2026 Discipled Co. | Clear, structured overviews of the Bible and how to break free from this world.
-            {' '}<button
-              onClick={() => setShowWhoMadeThis(true)}
-              className="underline hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              Who made this?
-            </button>
-          </p>
+
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+              © 2026 Discipled Co. | Clear, structured overviews of the Bible and how to break free from this world.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => setShowWhoMadeThis(true)}
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Who made this?
+              </button>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/music"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Music
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/preaching"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Preaching
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/books"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Books
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/church-mentors"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Church Mentors
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 

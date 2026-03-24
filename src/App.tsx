@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Download, Moon, Sun, Palette } from 'lucide-react';
+import { Moon, Sun, Palette } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { Footer } from './components/Footer';
@@ -12,14 +12,16 @@ import { Religions } from './pages/Religions';
 import { FAQs } from './pages/FAQs';
 import { Topics } from './pages/Topics';
 import { Stories } from './pages/Stories';
-import { BookSelector } from './components/BookSelector';
+import { Music } from './pages/Music';
+import { Preaching } from './pages/Preaching';
+import { Books } from './pages/Books';
+import { ChurchMentors } from './pages/ChurchMentors';
 import { books } from './data/books';
 import { Book } from './types/book';
 
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
   const location = useLocation();
-  const isBiblePage = location.pathname === '/bible';
   const [selectedBook, setSelectedBook] = useState<Book>(books[0]);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
@@ -45,15 +47,6 @@ function AppContent() {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [showThemeMenu]);
-
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const handleBookSelect = (book: Book) => {
-    setSelectedBook(book);
-    window.scrollTo(0, 0);
-  };
 
   const handleThemeChange = (theme: ColorTheme) => {
     setColorTheme(theme);
@@ -98,16 +91,6 @@ function AppContent() {
             </Link>
 
             <div className="flex items-center gap-3">
-              {isBiblePage && (
-                <button
-                  onClick={handlePrint}
-                  className="hidden md:flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
-                >
-                  <Download className="w-5 h-5" />
-                  Download PDF
-                </button>
-              )}
-
               <div className="hidden lg:block relative">
                 <button
                   onClick={(e) => {
@@ -213,6 +196,10 @@ function AppContent() {
           <Route path="/topics/:topicId" element={<Topics />} />
           <Route path="/stories" element={<Stories />} />
           <Route path="/stories/:storyId" element={<Stories />} />
+          <Route path="/music" element={<Music />} />
+          <Route path="/preaching" element={<Preaching />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/church-mentors" element={<ChurchMentors />} />
         </Routes>
       </div>
 

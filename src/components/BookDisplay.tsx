@@ -1,5 +1,5 @@
 import { Book } from '../types/book';
-import { BookOpen, Calendar, Clock, User, BookMarked } from 'lucide-react';
+import { BookOpen, Calendar, Clock, User, BookMarked, Download } from 'lucide-react';
 
 interface BookDisplayProps {
   book: Book;
@@ -15,11 +15,25 @@ const sectionColors = [
 ];
 
 export function BookDisplay({ book }: BookDisplayProps) {
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
       {/* Header Section */}
       <div className="mb-8">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{book.name}</h1>
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">{book.name}</h1>
+          <button
+            onClick={handlePrint}
+            className="flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg flex-shrink-0"
+          >
+            <Download className="w-5 h-5" />
+            <span className="hidden sm:inline">Download PDF</span>
+            <span className="sm:hidden">PDF</span>
+          </button>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
