@@ -42,7 +42,7 @@ export function Welcome() {
             Welcome to Discipled Co.
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            What is the Bible? Where did it come from? How can we trust anything?
+            What is the Bible? Where did it come from? How can we trust it?
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export function Welcome() {
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-             Nnavigate the depths of Scripture
+             Nnavigate the Bible
               with clarity and confidence. 
             </p>
             <ul className="space-y-3 ml-6">
@@ -66,7 +66,7 @@ export function Welcome() {
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Bible translation guides</strong> to help you understand the differences between versions</span>
+                <span><strong>Bible translation guides</strong> to help you understand the differences between translations and versions</span>
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
@@ -78,7 +78,7 @@ export function Welcome() {
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Historical insights</strong> into how Christianity and other Religions developed and divided the Church.</span>
+                <span><strong>Historical insights</strong> into how Christianity and other Religions developed and how different Churches emerged.</span>
               </li>
             </ul>
           </div>
