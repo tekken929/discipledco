@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Upload, Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon, X } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -24,9 +24,6 @@ export function Music() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
-  const [showUpload, setShowUpload] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -50,66 +47,6 @@ export function Music() {
     }
   };
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (!files || files.length === 0) return;
-
-    setUploading(true);
-    setUploadProgress(0);
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (!file.type.includes('audio')) {
-        alert(`${file.name} is not an audio file`);
-        continue;
-      }
-
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = `tracks/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('music')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        console.error('Upload error:', uploadError);
-        alert(`Failed to upload ${file.name}`);
-        continue;
-      }
-
-      const { data: urlData } = supabase.storage
-        .from('music')
-        .getPublicUrl(filePath);
-
-      const audio = new Audio(URL.createObjectURL(file));
-      audio.addEventListener('loadedmetadata', async () => {
-        const trackTitle = file.name.replace(/\.[^/.]+$/, '');
-
-        const { error: dbError } = await supabase
-          .from('music_tracks')
-          .insert({
-            title: trackTitle,
-            artist: 'Unknown Artist',
-            file_path: filePath,
-            file_url: urlData.publicUrl,
-            duration: Math.floor(audio.duration)
-          });
-
-        if (dbError) {
-          console.error('Database error:', dbError);
-        }
-
-        setUploadProgress(((i + 1) / files.length) * 100);
-      });
-    }
-
-    setTimeout(() => {
-      setUploading(false);
-      setUploadProgress(0);
-      setShowUpload(false);
-      loadTracks();
-    }, 1000);
-  };
 
   const playTrack = (track: MusicTrack) => {
     if (currentTrack?.id === track.id) {
@@ -176,71 +113,10 @@ export function Music() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">Music Jukebox</h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400">Worship songs and Christian music</p>
-          </div>
-          <button
-            onClick={() => setShowUpload(true)}
-            className="flex items-center gap-2 theme-primary-button text-white font-semibold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg"
-          >
-            <Upload className="w-5 h-5" />
-            Upload Songs
-          </button>
+        <div className="mb-8">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">Music Jukebox</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400">Worship songs and Christian music</p>
         </div>
-
-        {showUpload && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="theme-card rounded-2xl shadow-2xl p-8 max-w-md w-full">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Upload Music</h2>
-                <button
-                  onClick={() => setShowUpload(false)}
-                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
-                <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Select MP3 files to upload
-                </p>
-                <input
-                  type="file"
-                  accept="audio/*"
-                  multiple
-                  onChange={handleFileUpload}
-                  className="hidden"
-                  id="file-upload"
-                  disabled={uploading}
-                />
-                <label
-                  htmlFor="file-upload"
-                  className="cursor-pointer theme-primary-button text-white font-semibold px-6 py-3 rounded-lg inline-block transition-all shadow-md hover:shadow-lg"
-                >
-                  Choose Files
-                </label>
-              </div>
-
-              {uploading && (
-                <div className="mt-4">
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div
-                      className="theme-primary-button h-2 rounded-full transition-all"
-                      style={{ width: `${uploadProgress}%` }}
-                    />
-                  </div>
-                  <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    Uploading... {Math.round(uploadProgress)}%
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
 
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Playlist</h2>
