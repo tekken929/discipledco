@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon, Upload } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -24,7 +24,9 @@ export function Music() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
+  const [uploading, setUploading] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     loadTracks();
@@ -81,6 +83,56 @@ export function Music() {
     }
 
     loadTracks();
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    setUploading(true);
+
+    for (const file of Array.from(files)) {
+      if (!file.type.startsWith('audio/')) continue;
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = `music/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('music')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        console.error('Upload error:', uploadError);
+        continue;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from('music')
+        .getPublicUrl(filePath);
+
+      const audio = new Audio();
+      audio.src = urlData.publicUrl;
+
+      audio.addEventListener('loadedmetadata', async () => {
+        const trackName = file.name.replace(/\.[^/.]+$/, '');
+
+        await supabase.from('music_tracks').insert({
+          title: trackName,
+          artist: 'Unknown Artist',
+          file_path: filePath,
+          file_url: urlData.publicUrl,
+          duration: Math.floor(audio.duration),
+          play_count: 0
+        });
+
+        loadTracks();
+      });
+    }
+
+    setUploading(false);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const playNext = () => {
@@ -168,6 +220,27 @@ export function Music() {
               ))}
             </div>
           )}
+
+          <div className="relative mt-4">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="audio/*"
+              multiple
+              onChange={handleFileUpload}
+              className="hidden"
+              id="music-upload"
+            />
+            <label
+              htmlFor="music-upload"
+              className={`absolute bottom-0 right-0 p-2 rounded-lg transition-all cursor-pointer
+                ${uploading ? 'opacity-50 cursor-not-allowed' : 'opacity-20 hover:opacity-40'}
+                text-gray-400 dark:text-gray-600`}
+              title="Upload music"
+            >
+              <Upload className="w-4 h-4" />
+            </label>
+          </div>
         </div>
 
         {currentTrack && (
