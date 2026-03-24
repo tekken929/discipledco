@@ -17,6 +17,7 @@ import { Stories } from './pages/Stories';
 import { Music } from './pages/Music';
 import { Preaching } from './pages/Preaching';
 import { Books } from './pages/Books';
+import BookReader from './pages/BookReader';
 import { ChurchMentors } from './pages/ChurchMentors';
 import { books } from './data/books';
 import { Book } from './types/book';
@@ -201,6 +202,7 @@ function AppContent() {
           <Route path="/music" element={<Music />} />
           <Route path="/preaching" element={<Preaching />} />
           <Route path="/books" element={<Books />} />
+          <Route path="/books/:bookId" element={<BookReader />} />
           <Route path="/church-mentors" element={<ChurchMentors />} />
         </Routes>
       </div>
