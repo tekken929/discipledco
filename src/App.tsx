@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { Moon, Sun, Palette } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
+import { MusicPlayerProvider } from './context/MusicPlayerContext';
 import { Footer } from './components/Footer';
 import { NavigationMenu } from './components/NavigationMenu';
 import { OnboardingQuestions } from './components/OnboardingQuestions';
+import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
@@ -205,6 +207,9 @@ function AppContent() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Music Player */}
+      <FloatingMusicPlayer />
     </div>
   );
 }
@@ -212,7 +217,9 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <MusicPlayerProvider>
+        <AppContent />
+      </MusicPlayerProvider>
     </Router>
   );
 }
