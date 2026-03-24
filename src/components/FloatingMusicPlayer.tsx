@@ -48,19 +48,22 @@ export function FloatingMusicPlayer() {
     <div className="fixed bottom-4 right-4 z-50 w-80 md:w-96">
       <div className="theme-card border-2 rounded-2xl shadow-2xl p-4 backdrop-blur-sm">
         <div className="flex items-center justify-between mb-3">
-          <button
-            onClick={() => navigate('/music')}
-            className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
-            title="Go to Music page"
-          >
-            <Maximize2 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-          </button>
-          <button
-            onClick={() => setIsMinimized(true)}
-            className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
-          >
-            <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-          </button>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">Music JukeBox</h2>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => navigate('/music')}
+              className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              title="Go to Music page"
+            >
+              <Maximize2 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            </button>
+            <button
+              onClick={() => setIsMinimized(true)}
+              className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            >
+              <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            </button>
+          </div>
         </div>
 
         <div className="mb-3">

@@ -1,7 +1,31 @@
-import { BookOpen, Target } from 'lucide-react';
+import { BookOpen, Target, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useMusicPlayer } from '../context/MusicPlayerContext';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export function Welcome() {
+  const { setTracks, playTrack } = useMusicPlayer();
+
+  useEffect(() => {
+    const loadAndPlayMusic = async () => {
+      const { data, error } = await supabase
+        .from('music_tracks')
+        .select('*')
+        .order('uploaded_at', { ascending: false });
+
+      if (!error && data && data.length > 0) {
+        setTracks(data);
+        playTrack(data[0]);
+      }
+    };
+
+    loadAndPlayMusic();
+  }, []);
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-4xl mx-auto">
@@ -58,6 +82,26 @@ export function Welcome() {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Music Section */}
+        <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 mb-8 transition-colors">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="theme-primary-button p-3 rounded-xl">
+              <Music className="w-8 h-8" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Music JukeBox</h2>
+          </div>
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+            Enjoy worship music and Christian songs while you explore. The music player will continue playing as you navigate through the site.
+          </p>
+          <Link
+            to="/music"
+            className="inline-flex items-center gap-2 theme-primary-button text-white font-semibold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg"
+          >
+            <Music className="w-5 h-5" />
+            View Full Playlist
+          </Link>
         </div>
 
         {/* Call to Action */}
