@@ -19,7 +19,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 print:px-0 print:py-0">
       <div className="mb-6 flex flex-col sm:flex-row items-center justify-center gap-3 theme-card rounded-xl p-4 shadow-md print:hidden transition-colors">
-        <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Books of the Bible</label>
+        <label className="text-sm font-semibold text-gray-900 dark:text-gray-100">Books of the Bible</label>
         <BookSelector
           books={books}
           selectedBook={selectedBook}

@@ -36,48 +36,48 @@ export function FloatingMusicPlayer() {
       <div className="fixed bottom-4 right-4 z-50">
         <button
           onClick={() => setIsMinimized(false)}
-          className="theme-primary-button text-white p-4 rounded-full shadow-2xl hover:shadow-xl transition-all"
+          className="theme-primary-button text-white p-3 rounded-full shadow-2xl hover:shadow-xl transition-all"
         >
-          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
         </button>
       </div>
     );
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-80 md:w-96">
-      <div className="theme-card border-2 rounded-2xl shadow-2xl p-4 backdrop-blur-sm">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white">Music JukeBox</h2>
-          <div className="flex items-center gap-1">
+    <div className="fixed bottom-4 right-4 z-50 w-64 md:w-72">
+      <div className="theme-card border-2 rounded-xl shadow-2xl p-3 backdrop-blur-sm">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-sm font-bold text-gray-900 dark:text-white">Music JukeBox</h2>
+          <div className="flex items-center gap-0.5">
             <button
               onClick={() => navigate('/music')}
-              className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors"
               title="Go to Music page"
             >
-              <Maximize2 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              <Maximize2 className="w-3.5 h-3.5 text-gray-700 dark:text-gray-300" />
             </button>
             <button
               onClick={() => setIsMinimized(true)}
-              className="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors"
             >
-              <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              <X className="w-3.5 h-3.5 text-gray-700 dark:text-gray-300" />
             </button>
           </div>
         </div>
 
-        <div className="mb-3">
-          <h3 className="text-sm font-bold text-gray-900 dark:text-white truncate">
+        <div className="mb-2">
+          <h3 className="text-xs font-semibold text-gray-900 dark:text-white truncate">
             {currentTrack.title}
           </h3>
-          <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
+          <p className="text-xs text-gray-700 dark:text-gray-300 truncate">
             {currentTrack.artist}
           </p>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-2">
           <div
-            className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer group"
+            className="h-1 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer group"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const x = e.clientX - rect.left;
@@ -86,47 +86,47 @@ export function FloatingMusicPlayer() {
             }}
           >
             <div
-              className="h-full theme-primary-button rounded-full transition-all group-hover:h-2"
+              className="h-full theme-primary-button rounded-full transition-all group-hover:h-1.5"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300 mt-0.5">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <button
               onClick={playPrevious}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+              className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all text-gray-700 dark:text-gray-300"
             >
-              <SkipBack className="w-4 h-4" />
+              <SkipBack className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={togglePlayPause}
-              className="p-2.5 rounded-full theme-primary-button text-white hover:shadow-lg transition-all"
+              className="p-2 rounded-full theme-primary-button text-white hover:shadow-lg transition-all"
             >
-              {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
             </button>
             <button
               onClick={playNext}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+              className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all text-gray-700 dark:text-gray-300"
             >
-              <SkipForward className="w-4 h-4" />
+              <SkipForward className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="relative">
             <button
               onClick={() => setShowVolumeSlider(!showVolumeSlider)}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+              className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all text-gray-700 dark:text-gray-300"
             >
-              <Volume2 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              <Volume2 className="w-3.5 h-3.5" />
             </button>
             {showVolumeSlider && (
-              <div className="absolute bottom-full right-0 mb-2 p-3 theme-card border rounded-lg shadow-xl">
+              <div className="absolute bottom-full right-0 mb-2 p-2 theme-card border-2 rounded-lg shadow-xl">
                 <input
                   type="range"
                   min="0"
@@ -134,7 +134,7 @@ export function FloatingMusicPlayer() {
                   step="0.01"
                   value={volume}
                   onChange={(e) => setVolume(parseFloat(e.target.value))}
-                  className="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                  className="w-20 h-1 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer"
                   style={{ writingMode: 'horizontal-tb' }}
                 />
               </div>

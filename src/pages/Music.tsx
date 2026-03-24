@@ -202,7 +202,7 @@ export function Music() {
       <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
         <div className="mb-8">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">Music Jukebox</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">Worship songs and Christian music</p>
+          <p className="text-lg text-gray-700 dark:text-gray-200">Worship songs and Christian music</p>
         </div>
 
         <div className="mb-6">
@@ -384,8 +384,8 @@ export function Music() {
           </h2>
           {globalTracks.length === 0 ? (
             <div className="text-center py-12">
-              <MusicIcon className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-              <p className="text-gray-600 dark:text-gray-400 mb-4">No songs yet. Upload some music to get started!</p>
+              <MusicIcon className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-500" />
+              <p className="text-gray-700 dark:text-gray-200 mb-4">No songs yet. Upload some music to get started!</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -411,7 +411,7 @@ export function Music() {
                   <div className="flex-1 min-w-0" onClick={() => handlePlayTrack(track)}>
                     <h3 className="font-semibold truncate">{track.title}</h3>
                     <p className={`text-sm truncate ${
-                      currentTrack?.id === track.id ? 'text-white opacity-90' : 'text-gray-600 dark:text-gray-400'
+                      currentTrack?.id === track.id ? 'text-white opacity-90' : 'text-gray-700 dark:text-gray-200'
                     }`}>
                       {track.artist} • {formatTime(track.duration)} • {track.play_count} plays
                     </p>

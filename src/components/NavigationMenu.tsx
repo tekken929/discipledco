@@ -85,8 +85,8 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                     isActive
-                      ? 'bg-gradient-to-r theme-primary text-white'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white'
+                      ? 'theme-primary-button text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
                   }`}
                 >
                   <Icon className="w-5 h-5" />

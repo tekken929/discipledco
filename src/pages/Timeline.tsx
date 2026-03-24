@@ -75,7 +75,7 @@ export function Timeline() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Link
         to="/religions"
-        className="inline-flex items-center gap-2 theme-accent hover:opacity-80 mb-6 transition-colors font-semibold"
+        className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
       >
         <ArrowLeft className="w-5 h-5" />
         Back to Religions

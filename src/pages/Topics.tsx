@@ -11,7 +11,7 @@ export function Topics() {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link
           to="/topics"
-          className="inline-flex items-center gap-2 theme-accent hover:opacity-80 mb-6 transition-colors font-semibold"
+          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
         >
           <ArrowLeft className="w-5 h-5" />
           Back to Topics
@@ -137,10 +137,10 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                 {topic.title}
               </h2>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-700 dark:text-gray-200 mb-4">
               {topic.description}
             </p>
-            <div className="flex items-center justify-between text-sm theme-accent font-semibold">
+            <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
               <span>{topic.references.length} Scripture references</span>
               <span>→</span>
             </div>
