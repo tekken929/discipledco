@@ -7,8 +7,8 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const UPLOAD_PASSWORD = 'jukebox2024';
-const DELETE_PASSWORD = 'deletesong2024';
+const UPLOAD_PASSWORD = import.meta.env.VITE_MUSIC_UPLOAD_PASSWORD;
+const DELETE_PASSWORD = import.meta.env.VITE_MUSIC_DELETE_PASSWORD;
 
 interface UploadStatus {
   fileName: string;
@@ -26,6 +26,8 @@ export function Music() {
   const [deletePasswordInput, setDeletePasswordInput] = useState('');
   const [deletePasswordError, setDeletePasswordError] = useState('');
   const [trackToDelete, setTrackToDelete] = useState<typeof globalTracks[0] | null>(null);
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -51,13 +53,32 @@ export function Music() {
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isLocked) {
+      setPasswordError('Too many failed attempts. Please try again later.');
+      return;
+    }
+
     if (passwordInput === UPLOAD_PASSWORD) {
       setShowPasswordModal(false);
       setPasswordInput('');
       setPasswordError('');
+      setFailedAttempts(0);
       fileInputRef.current?.click();
     } else {
-      setPasswordError('Incorrect password');
+      const newAttempts = failedAttempts + 1;
+      setFailedAttempts(newAttempts);
+
+      if (newAttempts >= 5) {
+        setIsLocked(true);
+        setPasswordError('Too many failed attempts. Locked for 5 minutes.');
+        setTimeout(() => {
+          setIsLocked(false);
+          setFailedAttempts(0);
+        }, 5 * 60 * 1000);
+      } else {
+        setPasswordError(`Incorrect password (${newAttempts}/5 attempts)`);
+      }
       setPasswordInput('');
     }
   };
@@ -81,6 +102,12 @@ export function Music() {
 
   const handleDeletePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isLocked) {
+      setDeletePasswordError('Too many failed attempts. Please try again later.');
+      return;
+    }
+
     if (deletePasswordInput === DELETE_PASSWORD) {
       if (trackToDelete) {
         await supabase.storage.from('music').remove([trackToDelete.file_path]);
@@ -91,8 +118,21 @@ export function Music() {
       setDeletePasswordInput('');
       setDeletePasswordError('');
       setTrackToDelete(null);
+      setFailedAttempts(0);
     } else {
-      setDeletePasswordError('Incorrect password');
+      const newAttempts = failedAttempts + 1;
+      setFailedAttempts(newAttempts);
+
+      if (newAttempts >= 5) {
+        setIsLocked(true);
+        setDeletePasswordError('Too many failed attempts. Locked for 5 minutes.');
+        setTimeout(() => {
+          setIsLocked(false);
+          setFailedAttempts(0);
+        }, 5 * 60 * 1000);
+      } else {
+        setDeletePasswordError(`Incorrect password (${newAttempts}/5 attempts)`);
+      }
       setDeletePasswordInput('');
     }
   };
@@ -119,7 +159,10 @@ export function Music() {
       }
 
       try {
-        const fileName = `${Date.now()}-${file.name}`;
+        const sanitizedFileName = file.name
+          .replace(/[^a-zA-Z0-9._-]/g, '_')
+          .substring(0, 200);
+        const fileName = `${Date.now()}-${sanitizedFileName}`;
         const filePath = fileName;
 
         const { error: uploadError } = await supabase.storage
@@ -144,10 +187,13 @@ export function Music() {
         await new Promise<void>((resolve, reject) => {
           audio.addEventListener('loadedmetadata', async () => {
             try {
-              const trackName = file.name.replace(/\.[^/.]+$/, '');
+              const trackName = file.name
+                .replace(/\.[^/.]+$/, '')
+                .replace(/[<>'"]/g, '')
+                .substring(0, 255);
 
               const { error: insertError } = await supabase.from('music_tracks').insert({
-                title: trackName,
+                title: trackName || 'Untitled',
                 artist: 'Unknown Artist',
                 file_path: filePath,
                 file_url: urlData.publicUrl,
