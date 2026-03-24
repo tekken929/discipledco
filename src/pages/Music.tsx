@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon, Upload } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon, Upload, Loader } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -17,6 +17,12 @@ interface MusicTrack {
   uploaded_at: string;
 }
 
+interface UploadStatus {
+  fileName: string;
+  progress: 'uploading' | 'processing' | 'complete' | 'error';
+  error?: string;
+}
+
 export function Music() {
   const [tracks, setTracks] = useState<MusicTrack[]>([]);
   const [currentTrack, setCurrentTrack] = useState<MusicTrack | null>(null);
@@ -24,7 +30,7 @@ export function Music() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
-  const [uploading, setUploading] = useState(false);
+  const [uploadStatuses, setUploadStatuses] = useState<UploadStatus[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -89,50 +95,94 @@ export function Music() {
     const files = event.target.files;
     if (!files || files.length === 0) return;
 
-    setUploading(true);
+    const fileArray = Array.from(files);
+    const initialStatuses: UploadStatus[] = fileArray.map(file => ({
+      fileName: file.name,
+      progress: 'uploading'
+    }));
+    setUploadStatuses(initialStatuses);
 
-    for (const file of Array.from(files)) {
-      if (!file.type.startsWith('audio/')) continue;
+    for (let i = 0; i < fileArray.length; i++) {
+      const file = fileArray[i];
 
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = `music/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('music')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        console.error('Upload error:', uploadError);
+      if (!file.type.startsWith('audio/')) {
+        setUploadStatuses(prev => prev.map((status, idx) =>
+          idx === i ? { ...status, progress: 'error', error: 'Not an audio file' } : status
+        ));
         continue;
       }
 
-      const { data: urlData } = supabase.storage
-        .from('music')
-        .getPublicUrl(filePath);
+      try {
+        const fileName = `${Date.now()}-${file.name}`;
+        const filePath = fileName;
 
-      const audio = new Audio();
-      audio.src = urlData.publicUrl;
+        const { error: uploadError } = await supabase.storage
+          .from('music')
+          .upload(filePath, file);
 
-      audio.addEventListener('loadedmetadata', async () => {
-        const trackName = file.name.replace(/\.[^/.]+$/, '');
+        if (uploadError) {
+          throw new Error(uploadError.message);
+        }
 
-        await supabase.from('music_tracks').insert({
-          title: trackName,
-          artist: 'Unknown Artist',
-          file_path: filePath,
-          file_url: urlData.publicUrl,
-          duration: Math.floor(audio.duration),
-          play_count: 0
+        setUploadStatuses(prev => prev.map((status, idx) =>
+          idx === i ? { ...status, progress: 'processing' } : status
+        ));
+
+        const { data: urlData } = supabase.storage
+          .from('music')
+          .getPublicUrl(filePath);
+
+        const audio = new Audio();
+        audio.src = urlData.publicUrl;
+
+        await new Promise<void>((resolve, reject) => {
+          audio.addEventListener('loadedmetadata', async () => {
+            try {
+              const trackName = file.name.replace(/\.[^/.]+$/, '');
+
+              const { error: insertError } = await supabase.from('music_tracks').insert({
+                title: trackName,
+                artist: 'Unknown Artist',
+                file_path: filePath,
+                file_url: urlData.publicUrl,
+                duration: Math.floor(audio.duration),
+                play_count: 0
+              });
+
+              if (insertError) {
+                throw new Error(insertError.message);
+              }
+
+              setUploadStatuses(prev => prev.map((status, idx) =>
+                idx === i ? { ...status, progress: 'complete' } : status
+              ));
+
+              await loadTracks();
+              resolve();
+            } catch (error) {
+              reject(error);
+            }
+          });
+
+          audio.addEventListener('error', () => {
+            reject(new Error('Failed to load audio metadata'));
+          });
+
+          setTimeout(() => reject(new Error('Timeout loading metadata')), 10000);
         });
-
-        loadTracks();
-      });
+      } catch (error) {
+        setUploadStatuses(prev => prev.map((status, idx) =>
+          idx === i ? { ...status, progress: 'error', error: error instanceof Error ? error.message : 'Upload failed' } : status
+        ));
+      }
     }
 
-    setUploading(false);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
+    setTimeout(() => {
+      setUploadStatuses([]);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }, 3000);
   };
 
   const playNext = () => {
@@ -170,8 +220,52 @@ export function Music() {
           <p className="text-lg text-gray-600 dark:text-gray-400">Worship songs and Christian music</p>
         </div>
 
+        <div className="mb-6">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="audio/*"
+            multiple
+            onChange={handleFileUpload}
+            className="hidden"
+            id="music-upload"
+          />
+          <label
+            htmlFor="music-upload"
+            className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button text-white rounded-lg hover:shadow-lg transition-all cursor-pointer"
+          >
+            <Upload className="w-5 h-5" />
+            Upload Music
+          </label>
+        </div>
+
+        {uploadStatuses.length > 0 && (
+          <div className="mb-6 space-y-2">
+            {uploadStatuses.map((status, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-3 p-3 theme-card rounded-lg border"
+              >
+                {status.progress === 'uploading' && <Loader className="w-4 h-4 animate-spin text-blue-600" />}
+                {status.progress === 'processing' && <Loader className="w-4 h-4 animate-spin text-yellow-600" />}
+                {status.progress === 'complete' && <Play className="w-4 h-4 text-green-600" />}
+                {status.progress === 'error' && <Trash2 className="w-4 h-4 text-red-600" />}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{status.fileName}</p>
+                  {status.progress === 'uploading' && <p className="text-xs text-blue-600">Uploading...</p>}
+                  {status.progress === 'processing' && <p className="text-xs text-yellow-600">Processing...</p>}
+                  {status.progress === 'complete' && <p className="text-xs text-green-600">Complete!</p>}
+                  {status.progress === 'error' && <p className="text-xs text-red-600">{status.error}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Playlist</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Playlist ({tracks.length} {tracks.length === 1 ? 'song' : 'songs'})
+          </h2>
           {tracks.length === 0 ? (
             <div className="text-center py-12">
               <MusicIcon className="w-16 h-16 mx-auto mb-4 text-gray-400" />
@@ -220,27 +314,6 @@ export function Music() {
               ))}
             </div>
           )}
-
-          <div className="relative mt-4">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="audio/*"
-              multiple
-              onChange={handleFileUpload}
-              className="hidden"
-              id="music-upload"
-            />
-            <label
-              htmlFor="music-upload"
-              className={`absolute bottom-0 right-0 p-2 rounded-lg transition-all cursor-pointer
-                ${uploading ? 'opacity-50 cursor-not-allowed' : 'opacity-20 hover:opacity-40'}
-                text-gray-400 dark:text-gray-600`}
-              title="Upload music"
-            >
-              <Upload className="w-4 h-4" />
-            </label>
-          </div>
         </div>
 
         {currentTrack && (
