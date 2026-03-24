@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, X, BookOpen } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -31,10 +31,6 @@ export default function BookReader() {
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipDirection, setFlipDirection] = useState<'next' | 'prev' | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragAmount, setDragAmount] = useState(0);
-  const dragStartRef = useRef<{ x: number; y: number } | null>(null);
-  const pageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (bookId) {
@@ -96,51 +92,6 @@ export default function BookReader() {
     }
   };
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isFlipping) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const cornerSize = 100;
-    const isBottomRightCorner =
-      x > rect.width - cornerSize &&
-      y > rect.height - cornerSize;
-
-    if (isBottomRightCorner && currentPage < pages.length - 2) {
-      setIsDragging(true);
-      dragStartRef.current = { x: e.clientX, y: e.clientY };
-      e.preventDefault();
-    }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !dragStartRef.current) return;
-
-    const deltaX = dragStartRef.current.x - e.clientX;
-    const amount = Math.max(0, Math.min(100, (deltaX / 400) * 100));
-    setDragAmount(amount);
-  };
-
-  const handleMouseUp = () => {
-    if (!isDragging) return;
-
-    if (dragAmount > 50) {
-      handleNextPage();
-    }
-
-    setIsDragging(false);
-    setDragAmount(0);
-    dragStartRef.current = null;
-  };
-
-  const handleMouseLeave = () => {
-    if (isDragging) {
-      handleMouseUp();
-    }
-  };
-
   const leftPage = pages[currentPage];
   const rightPage = pages[currentPage + 1];
 
@@ -196,14 +147,11 @@ export default function BookReader() {
         <div className="relative flex justify-center items-center min-h-[600px]">
           {/* Open Book */}
           <div
-            className={`relative flex shadow-2xl ${isFlipping || isDragging ? 'select-none' : ''}`}
+            className={`relative flex shadow-2xl ${isFlipping ? 'select-none' : ''}`}
             style={{
               transform: 'rotateX(2deg)',
               transformStyle: 'preserve-3d',
             }}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
           >
             {/* Left Page */}
             <div
@@ -240,20 +188,14 @@ export default function BookReader() {
               )}
             </div>
 
-            {/* Right Page with Draggable Corner */}
+            {/* Right Page */}
             <div
-              ref={pageRef}
-              className={`relative w-[400px] h-[600px] p-8 ${
+              className={`w-[400px] h-[600px] p-8 ${
                 isDarkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-900'
-              } overflow-hidden`}
+              } transition-transform duration-600 overflow-hidden`}
               style={{
                 transformOrigin: 'left center',
-                transform: isDragging
-                  ? `rotateY(${dragAmount * 1.8}deg)`
-                  : flipDirection === 'next'
-                  ? 'rotateY(180deg)'
-                  : 'rotateY(0deg)',
-                transition: isDragging ? 'none' : 'transform 0.6s ease',
+                transform: flipDirection === 'next' ? 'rotateY(180deg)' : 'rotateY(0deg)',
                 boxShadow: '5px 5px 20px rgba(0,0,0,0.2)',
               }}
             >
@@ -269,32 +211,6 @@ export default function BookReader() {
               ) : (
                 <div className="h-full flex items-center justify-center opacity-50">
                   <p className="text-lg">End of book</p>
-                </div>
-              )}
-
-              {/* Interactive Corner Curl */}
-              {rightPage && currentPage < pages.length - 2 && !isFlipping && (
-                <div
-                  className="absolute bottom-0 right-0 w-24 h-24 cursor-grab active:cursor-grabbing"
-                  onMouseDown={handleMouseDown}
-                  style={{
-                    background: isDragging
-                      ? `linear-gradient(135deg, transparent 50%, ${isDarkMode ? 'rgba(100, 100, 100, 0.3)' : 'rgba(200, 200, 200, 0.3)'} 50%)`
-                      : 'transparent',
-                    transition: 'background 0.2s ease',
-                  }}
-                >
-                  {/* Visual corner indicator */}
-                  <div
-                    className={`absolute bottom-0 right-0 transition-opacity ${isDragging ? 'opacity-0' : 'opacity-100 hover:opacity-70'}`}
-                    style={{
-                      width: 0,
-                      height: 0,
-                      borderStyle: 'solid',
-                      borderWidth: '0 0 40px 40px',
-                      borderColor: `transparent transparent ${isDarkMode ? '#555' : '#ddd'} transparent`,
-                    }}
-                  />
                 </div>
               )}
             </div>
