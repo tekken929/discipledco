@@ -19,9 +19,14 @@ export function BookDisplay({ book }: BookDisplayProps) {
     <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
       {/* Header Section */}
       <div className="mb-8">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{book.name}</h1>
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3">{book.name}</h1>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {/* Key Verse - Luke reference */}
+        <p className="text-gray-600 dark:text-gray-400 text-lg italic mb-6">
+          Luke 1:3-4, "Therefore, since I myself have carefully investigated everything from the beginning, I too decided to write an orderly account for you, most excellent Theophilus, so that you may know the certainty of the things you have been taught."
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
             <div className="text-sm font-medium text-blue-700 dark:text-blue-300 mb-1">Book Order</div>
             <div className="text-3xl font-bold text-blue-900 dark:text-blue-100">#{book.order}</div>
@@ -37,67 +42,48 @@ export function BookDisplay({ book }: BookDisplayProps) {
             <div className="text-lg font-bold text-orange-900 dark:text-orange-100">{book.type}</div>
           </div>
         </div>
-      </div>
 
-      {/* Overview and Metadata Grid */}
-      <div className="grid md:grid-cols-3 gap-8 mb-10">
-        {/* Overview Section */}
-        <div className="md:col-span-2">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <BookOpen className="w-6 h-6" />
-            Overview
-          </h2>
-          <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            {book.overview.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+        {/* Detail Bubbles - Three Column Layout */}
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+            <div className="flex items-start gap-3 mb-2">
+              <Calendar className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
+              <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">Written</div>
+            </div>
+            <div className="text-gray-900 dark:text-white font-medium mb-2">{book.written}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">Date or period when this book was composed.</p>
+          </div>
+
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+            <div className="flex items-start gap-3 mb-2">
+              <Clock className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
+              <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">Time Period</div>
+            </div>
+            <div className="text-gray-900 dark:text-white font-medium mb-2">{book.timePeriod}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">Historical timeframe covered by the book's events.</p>
+          </div>
+
+          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+            <div className="flex items-start gap-3 mb-2">
+              <User className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
+              <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">Author</div>
+            </div>
+            <div className="text-gray-900 dark:text-white font-medium mb-2">{book.author}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{book.authorDescription}</p>
           </div>
         </div>
+      </div>
 
-        {/* Metadata Section */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Details</h2>
-
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3">
-              <Calendar className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div>
-                <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Written</div>
-                <div className="text-gray-900 dark:text-white font-medium">{book.written}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3">
-              <Clock className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div>
-                <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Time Period</div>
-                <div className="text-gray-900 dark:text-white font-medium">{book.timePeriod}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3">
-              <User className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div>
-                <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Author</div>
-                <div className="text-gray-900 dark:text-white font-medium mb-2">{book.author}</div>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{book.authorDescription}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3">
-              <BookMarked className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div>
-                <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">Version</div>
-                <div className="text-gray-900 dark:text-white font-medium">{book.bibleVersion}</div>
-              </div>
-            </div>
-          </div>
+      {/* Overview Section */}
+      <div className="mb-10">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+          <BookOpen className="w-6 h-6" />
+          Overview
+        </h2>
+        <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          {book.overview.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
         </div>
       </div>
 
