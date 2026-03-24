@@ -514,6 +514,104 @@ If you want to limit who can upload music, edit the database policies in Supabas
 
 ---
 
+## 12. Managing the Book Library
+
+### Overview
+
+The Book Library system allows you to create beautiful, interactive books with realistic page-turning animations. Books are stored in the Supabase database with their pages.
+
+### Quick Start - Adding a New Book
+
+1. **Insert the book record:**
+```sql
+INSERT INTO books (title, author, description, category, order_index, total_pages, cover_image_url)
+VALUES (
+  'Your Book Title',
+  'Author Name',
+  'A brief description of what this book is about.',
+  'Study Guide',
+  1,
+  10,
+  'https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg?auto=compress&cs=tinysrgb&w=800'
+)
+RETURNING id;
+```
+
+2. **Copy the returned book ID and add pages:**
+```sql
+INSERT INTO book_pages (book_id, page_number, content) VALUES
+('YOUR_BOOK_ID_HERE', 1, 'First page content here...'),
+('YOUR_BOOK_ID_HERE', 2, 'Second page content here...'),
+('YOUR_BOOK_ID_HERE', 3, 'Third page content here...');
+```
+
+### Editing Existing Books
+
+**Update book details:**
+```sql
+UPDATE books
+SET title = 'New Title',
+    author = 'New Author',
+    description = 'New description'
+WHERE id = 'YOUR_BOOK_ID';
+```
+
+**Update a specific page:**
+```sql
+UPDATE book_pages
+SET content = 'Updated content here...'
+WHERE book_id = 'YOUR_BOOK_ID' AND page_number = 1;
+```
+
+**Delete a book (and all its pages):**
+```sql
+DELETE FROM books WHERE id = 'YOUR_BOOK_ID';
+```
+
+### Tips for Great Book Content
+
+- **Page Length**: Keep content to 200-300 words per page for best readability
+- **No Scrolling**: Content automatically fits the page without scrolling
+- **Line Breaks**: Use natural line breaks - they'll display correctly
+- **Page Numbers**: Start from 1 and increment sequentially
+- **Categories**: Use categories like "Study Guide", "Devotional", "Old Testament", "New Testament"
+
+### Interactive Features
+
+The book reader includes:
+- **Page Turning**: Smooth animations when clicking next/previous
+- **Drag to Turn**: Grab the bottom-right corner of the right page and drag left to turn pages
+- **Dark Mode**: Full dark mode support
+- **Category Filtering**: Filter books by category on the library page
+
+### Finding Book IDs
+
+```sql
+SELECT id, title, author FROM books ORDER BY order_index;
+```
+
+### Database Tables
+
+**books table:**
+- `id` - Unique identifier (UUID)
+- `title` - Book title
+- `author` - Author name
+- `description` - Brief description
+- `cover_image_url` - Cover image URL (optional)
+- `total_pages` - Total number of pages
+- `category` - Category for filtering
+- `order_index` - Display order (lower numbers first)
+- `created_at` - Creation timestamp
+
+**book_pages table:**
+- `id` - Unique identifier (UUID)
+- `book_id` - References the parent book
+- `page_number` - Page number (1, 2, 3, etc.)
+- `content` - The actual page content
+- `created_at` - Creation timestamp
+
+---
+
 ## Quick Reference: File Locations
 
 | What to Edit | File Location |
