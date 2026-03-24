@@ -466,6 +466,54 @@ In `src/components/Footer.tsx`, add to `footerLinks` array:
 
 ---
 
+## 11. Managing the Music Jukebox
+
+### Location: `src/pages/Music.tsx`
+
+The Music page is a fully functional jukebox for uploading and playing MP3 files. All music files are stored in Supabase Storage and track information is stored in the database.
+
+### How to Upload Music:
+
+1. Navigate to the Music page at `/music`
+2. Click the "Upload Songs" button in the top-right corner
+3. Select one or more MP3 files from your computer
+4. The files will upload automatically and appear in the playlist
+
+### Features:
+
+- **Upload**: Add multiple MP3 files at once
+- **Playlist**: See all uploaded songs with title, artist, duration, and play count
+- **Player Controls**: Play, pause, skip forward/backward, adjust volume
+- **Progress Bar**: See and control playback position
+- **Delete**: Remove songs you no longer want (trash icon on each track)
+- **Auto-play Next**: Automatically plays the next song when current one ends
+
+### Editing Song Information:
+
+Song information is stored in the Supabase database. To manually edit:
+
+1. The title is automatically extracted from the filename (without extension)
+2. Artist defaults to "Unknown Artist"
+3. Duration is automatically detected from the audio file
+4. Play count increases each time a song is played
+
+### Technical Details:
+
+- **Database Table**: `music_tracks` stores all song metadata
+- **Storage Bucket**: `music` bucket stores the actual MP3 files
+- **Supported Formats**: MP3, WAV, OGG, and other browser-supported audio formats
+- **Public Access**: All uploaded music is publicly accessible (no authentication required)
+
+### To Restrict Upload Access:
+
+If you want to limit who can upload music, edit the database policies in Supabase:
+
+1. Go to your Supabase dashboard
+2. Navigate to Authentication & Policies
+3. Edit the "Anyone can upload music tracks" policy to require authentication
+
+---
+
 ## Quick Reference: File Locations
 
 | What to Edit | File Location |
@@ -481,6 +529,7 @@ In `src/components/Footer.tsx`, add to `footerLinks` array:
 | Footer & Social Links | `src/components/Footer.tsx` |
 | Home Page | `src/pages/Home.tsx` |
 | Topics Page | `src/pages/Topics.tsx` |
+| Music Jukebox | `src/pages/Music.tsx` |
 
 ---
 
