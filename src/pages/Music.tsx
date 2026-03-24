@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon, Upload, Loader } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Volume2, Trash2, Music as MusicIcon, Upload, Loader, Lock, X } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const UPLOAD_PASSWORD = 'jukebox2024';
 
 interface MusicTrack {
   id: string;
@@ -31,6 +33,9 @@ export function Music() {
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [uploadStatuses, setUploadStatuses] = useState<UploadStatus[]>([]);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const audioRef = useRef<HTMLAudioElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -52,6 +57,25 @@ export function Music() {
 
     if (!error && data) {
       setTracks(data);
+    }
+  };
+
+  const handleUploadButtonClick = () => {
+    setShowPasswordModal(true);
+    setPasswordInput('');
+    setPasswordError('');
+  };
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passwordInput === UPLOAD_PASSWORD) {
+      setShowPasswordModal(false);
+      setPasswordInput('');
+      setPasswordError('');
+      fileInputRef.current?.click();
+    } else {
+      setPasswordError('Incorrect password');
+      setPasswordInput('');
     }
   };
 
@@ -230,14 +254,77 @@ export function Music() {
             className="hidden"
             id="music-upload"
           />
-          <label
-            htmlFor="music-upload"
-            className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button text-white rounded-lg hover:shadow-lg transition-all cursor-pointer"
+          <button
+            onClick={handleUploadButtonClick}
+            className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button text-white rounded-lg hover:shadow-lg transition-all"
           >
+            <Lock className="w-5 h-5" />
             <Upload className="w-5 h-5" />
             Upload Music
-          </label>
+          </button>
         </div>
+
+        {showPasswordModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="theme-card rounded-2xl shadow-2xl p-8 max-w-md w-full">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Enter Password</h2>
+                <button
+                  onClick={() => {
+                    setShowPasswordModal(false);
+                    setPasswordInput('');
+                    setPasswordError('');
+                  }}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+                </button>
+              </div>
+
+              <form onSubmit={handlePasswordSubmit}>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Password required to upload music
+                  </label>
+                  <input
+                    type="password"
+                    value={passwordInput}
+                    onChange={(e) => {
+                      setPasswordInput(e.target.value);
+                      setPasswordError('');
+                    }}
+                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-blue-500 focus:outline-none transition-colors"
+                    placeholder="Enter password"
+                    autoFocus
+                  />
+                  {passwordError && (
+                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">{passwordError}</p>
+                  )}
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowPasswordModal(false);
+                      setPasswordInput('');
+                      setPasswordError('');
+                    }}
+                    className="flex-1 px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 px-6 py-3 theme-primary-button text-white rounded-lg hover:shadow-lg transition-all"
+                  >
+                    Unlock
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {uploadStatuses.length > 0 && (
           <div className="mb-6 space-y-2">
