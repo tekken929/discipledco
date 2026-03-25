@@ -39,7 +39,7 @@ export function Welcome() {
             />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-            Welcome to The Disciple Co.
+           The Disciple Co.
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
             What is the Bible? Where did it come from? How can we trust it?
