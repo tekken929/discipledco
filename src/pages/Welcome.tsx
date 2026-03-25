@@ -41,9 +41,7 @@ export function Welcome() {
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
            The Disciple Co.
           </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            What is the Bible? Where did it come from? How can we trust it? Where did Churches come from? Why are there so many Religions? What does God say about sin? How can I assure I go to Heaven?
-          </p>
+         
           <p className="text-sm text-gray-600 dark:text-gray-400 italic">
             Genesis 6:5 (NIV), "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
           </p>
