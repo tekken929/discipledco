@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle for light mode -->
+  <circle cx="100" cy="100" r="95" fill="#ffffff" stroke="#e5e7eb" stroke-width="3"/>
+
+  <!-- Open Bible pages -->
+  <path d="M 60 80 L 60 140 L 95 135 L 95 75 Z" fill="#f9fafb" stroke="#d1d5db" stroke-width="2"/>
+  <path d="M 105 75 L 105 135 L 140 140 L 140 80 Z" fill="#f9fafb" stroke="#d1d5db" stroke-width="2"/>
+
+  <!-- Bible spine -->
+  <rect x="97" y="75" width="6" height="65" fill="#2563eb"/>
+
+  <!-- Cross on left page -->
+  <line x1="77.5" y1="95" x2="77.5" y2="115" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+  <line x1="68" y1="105" x2="87" y2="105" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Text lines on right page -->
+  <line x1="115" y1="90" x2="130" y2="90" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+  <line x1="115" y1="100" x2="130" y2="100" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+  <line x1="115" y1="110" x2="130" y2="110" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+  <line x1="115" y1="120" x2="125" y2="120" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Decorative rays from center -->
+  <g opacity="0.4">
+    <line x1="100" y1="60" x2="100" y2="45" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    <line x1="130" y1="70" x2="140" y2="60" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+    <line x1="70" y1="70" x2="60" y2="60" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Company name arc (top) -->
+  <path id="topArc" d="M 40 100 A 60 60 0 0 1 160 100" fill="none"/>
+  <text fill="#1f2937" font-family="Arial, sans-serif" font-size="18" font-weight="bold" letter-spacing="2">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+      DISCIPLED
+    </textPath>
+  </text>
+
+  <!-- Company tagline arc (bottom) -->
+  <path id="bottomArc" d="M 160 100 A 60 60 0 0 1 40 100" fill="none"/>
+  <text fill="#4b5563" font-family="Arial, sans-serif" font-size="12" font-weight="normal" letter-spacing="1">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+      Truth in Scripture
+    </textPath>
+  </text>
+</svg>
