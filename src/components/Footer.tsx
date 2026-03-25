@@ -124,7 +124,7 @@ export function Footer() {
                 to="/preaching"
                 className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
               >
-                Preaching
+                Wisdom
               </Link>
               <span className="text-gray-400">|</span>
               <Link
@@ -138,7 +138,7 @@ export function Footer() {
                 to="/church-mentors"
                 className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
               >
-                Church Mentors
+                Mentors
               </Link>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Home, Palette, Moon, Sun } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 
 interface NavigationMenuProps {
@@ -21,11 +21,6 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
   }, [location.pathname]);
 
   const navigationLinks = [
-    {
-      to: '/',
-      icon: Home,
-      title: 'Welcome'
-    },
     {
       to: '/bible',
       icon: BookOpen,
@@ -55,6 +50,29 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
       to: '/faqs',
       icon: Users,
       title: 'FAQs'
+    }
+  ];
+
+  const resourceLinks = [
+    {
+      to: '/music',
+      icon: Music,
+      title: 'Music'
+    },
+    {
+      to: '/preaching',
+      icon: Mic,
+      title: 'Wisdom'
+    },
+    {
+      to: '/books',
+      icon: BookText,
+      title: 'Books'
+    },
+    {
+      to: '/church-mentors',
+      icon: UserCheck,
+      title: 'Mentors'
     }
   ];
 
@@ -95,6 +113,33 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
               );
             })}
           </nav>
+
+          <div className="border-t border-gray-200 dark:border-gray-700 py-2">
+            <div className="px-2">
+              <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">Resources</p>
+            </div>
+            <nav>
+              {resourceLinks.map((link) => {
+                const Icon = link.icon;
+                const isActive = location.pathname === link.to;
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 transition-colors ${
+                      isActive
+                        ? 'theme-primary-button text-white'
+                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="font-medium">{link.title}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
 
           <div className="border-t border-gray-200 dark:border-gray-700 py-2">
             <div className="px-2">
