@@ -83,7 +83,7 @@ function AppContent() {
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img
-                src="https://images.pexels.com/photos/6120234/pexels-photo-6120234.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+                src="https://www.pexels.com/photo/low-angle-photo-of-concrete-cross-under-clouds-208315/?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
                 alt="Cross Logo"
                 className="w-12 h-12 rounded-xl object-cover shadow-md"
               />
