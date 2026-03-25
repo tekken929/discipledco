@@ -62,23 +62,23 @@ export function Welcome() {
             <ul className="space-y-3 ml-6">
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Clear, structured overviews</strong> of all 66 books of the Bible with chapter summaries</span>
+                <span><strong>Bible Overviews</strong> of all 66 books of the Bible with chapter summaries and timelines</span>
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Bible translation guides</strong> to help you understand the differences between translations and versions</span>
+                <span><strong>Bible Version/Translation guides</strong> to help you understand the differences between translations and versions</span>
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Biblical topics</strong> covering marriage, relationships, sin, salvation, and more</span>
+                <span><strong>Biblical Topics</strong> covering marriage, relationships, sin, salvation, and more</span>
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Popular Bible stories</strong> with context and meaning</span>
+                <span><strong>Bible stories</strong> with context and meaning</span>
               </li>
               <li className="flex items-start gap-3">
                 <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Historical insights</strong> into how Christianity and other Religions developed and how different Churches emerged.</span>
+                <span><strong>Religion insights</strong> into how Christianity and other Religions developed and how different Churches emerged.</span>
               </li>
             </ul>
           </div>
