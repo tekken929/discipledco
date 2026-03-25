@@ -33,7 +33,7 @@ export function Welcome() {
         <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 mb-8 text-center transition-colors">
           <div className="flex justify-center mb-6">
             <img
-              src="https://images.pexels.com/photos/6120234/pexels-photo-6120234.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
+              src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
               alt="Discipled Co."
               className="w-32 h-32 rounded-2xl object-cover shadow-lg"
             />
