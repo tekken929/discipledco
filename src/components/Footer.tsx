@@ -103,7 +103,7 @@ export function Footer() {
 
           <div className="text-center">
             <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
-              © 2026 Discipled Co. | Clear, structured overviews of the Bible and how to break free from this world.
+              © 2026 The Disciple Co. | Clear, structured overviews of the Bible and how to break free from this world.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
