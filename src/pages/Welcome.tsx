@@ -42,7 +42,7 @@ export function Welcome() {
            The Disciple Co.
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            What is the Bible? Where did it come from? How can we trust it?
+            What is the Bible? Where did it come from? How can we trust it? Where did Churches come from? Why are there so many Religions? What does God say about sin? How can I assure I go to Heaven?
           </p>
         </div>
 
