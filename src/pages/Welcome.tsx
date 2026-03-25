@@ -53,7 +53,7 @@ export function Welcome() {
             <div className="theme-primary-button p-3 rounded-xl">
               <Target className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">What you will find here:</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Start here:</h2>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
