@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 
 interface NavigationMenuProps {
@@ -73,6 +73,11 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
       to: '/church-mentors',
       icon: UserCheck,
       title: 'Mentors'
+    },
+    {
+      to: '/podcasts',
+      icon: Radio,
+      title: 'Podcasts'
     }
   ];
 

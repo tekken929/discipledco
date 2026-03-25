@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck } from 'lucide-react';
+import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio } from 'lucide-react';
 import { Modal } from './Modal';
 import { useState } from 'react';
 
@@ -139,6 +139,13 @@ export function Footer() {
                 className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
               >
                 Mentors
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/podcasts"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Podcasts
               </Link>
             </div>
           </div>

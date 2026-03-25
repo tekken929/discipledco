@@ -19,6 +19,7 @@ import { Preaching } from './pages/Preaching';
 import { Books } from './pages/Books';
 import BookReader from './pages/BookReader';
 import { ChurchMentors } from './pages/ChurchMentors';
+import { Podcasts } from './pages/Podcasts';
 import { books } from './data/books';
 import { Book } from './types/book';
 
@@ -204,6 +205,7 @@ function AppContent() {
           <Route path="/books" element={<Books />} />
           <Route path="/books/:bookId" element={<BookReader />} />
           <Route path="/church-mentors" element={<ChurchMentors />} />
+          <Route path="/podcasts" element={<Podcasts />} />
         </Routes>
       </div>
 
