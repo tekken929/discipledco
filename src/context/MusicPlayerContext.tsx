@@ -48,9 +48,11 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (currentTrack && audioRef.current) {
       audioRef.current.src = currentTrack.file_url;
-      audioRef.current.play();
+      if (isPlaying) {
+        audioRef.current.play();
+      }
     }
-  }, [currentTrack]);
+  }, [currentTrack, isPlaying]);
 
   const playTrack = (track: MusicTrack) => {
     if (currentTrack?.id === track.id) {

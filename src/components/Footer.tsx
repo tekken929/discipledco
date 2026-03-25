@@ -150,27 +150,48 @@ export function Footer() {
         onClose={() => setShowWhoMadeThis(false)}
         title="Who made this page?"
       >
-        <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-          <p className="text-lg">
-            This isn't necessarily about religion—it's about truth.<br></br>
+        <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="p-4 theme-card border-2 rounded-lg">
+            <p className="text-lg">
+              <span className="font-bold text-gray-900 dark:text-white">This isn't necessarily about religion—it's about truth.</span>
+            </p>
+          </div>
 
-Sometimes we don't fit neatly into a single denomination. Sometimes labels are too much. I feel like sometimes that is the wrong thing to search for, especially if you are just beginning. <br></br><br></br>I fall somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions.  I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. I also realize that it is hard to fully support something, if part of it is broken or mis-represented.<br></br><br></br>
-I believe in 'Sola Scriptura'<br></br>
-I believe truth is not subjective—it is revealed.<br></br>
-I believe in one God, existing as Father, Son, and Holy Spirit.<br></br>
-I believe that Jesus Christ is the only way to God—not one option among many, but the way.<br></br><br></br>
+          <p className="text-base">
+            Sometimes we don't fit neatly into a single denomination. Sometimes labels are too much. I feel like sometimes that is the wrong thing to search for, especially if you are just beginning.
+          </p>
 
-My foundation is the Scripture.<br></br><br></br>
+          <p className="text-base">
+            I fall somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions. I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. I also realize that it is hard to fully support something, if part of it is broken or mis-represented.
+          </p>
 
-If we can help anyone walk through life's biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then we have succeeded.<br></br><br></br>
+          <div className="p-4 theme-card border-2 rounded-lg space-y-2">
+            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe in 'Sola Scriptura'</span></p>
+            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe truth is not subjective—it is revealed.</span></p>
+            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe in one God, existing as Father, Son, and Holy Spirit.</span></p>
+            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe that Jesus Christ is the only way to God—not one option among many, but the way.</span></p>
+          </div>
 
-Not religion for the sake of religion.
-Not arguments for the sake of winning.
-Just a path toward truth.<br></br><br></br>
+          <p className="text-base">
+            <span className="font-bold text-gray-900 dark:text-white">My foundation is the Scripture.</span>
+          </p>
+
+          <p className="text-base">
+            If we can help anyone walk through life's biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then we have succeeded.
+          </p>
+
+          <div className="p-4 theme-card border-2 rounded-lg space-y-1">
+            <p className="text-base font-semibold text-gray-900 dark:text-white">Not religion for the sake of religion.</p>
+            <p className="text-base font-semibold text-gray-900 dark:text-white">Not arguments for the sake of winning.</p>
+            <p className="text-base font-semibold text-gray-900 dark:text-white">Just a path toward truth.</p>
+          </div>
+
+          <p className="text-base">
             I am simply a man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.
           </p>
-          <p className="text-lg">
-            I started this website while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others.  My goal is to represent what being a Christian means in full truth as I know it from the teachings of the Holy Bible.  
+
+          <p className="text-base italic">
+            I started this website while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others. My goal is to represent what being a Christian means in full truth as I know it from the teachings of the Holy Bible.
           </p>
         </div>
       </Modal>
