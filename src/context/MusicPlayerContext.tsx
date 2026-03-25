@@ -46,20 +46,22 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   }, [volume]);
 
   useEffect(() => {
-    if (currentTrack && audioRef.current) {
-      audioRef.current.src = currentTrack.file_url;
-      if (isPlaying) {
-        audioRef.current.play();
-      }
+    if (isPlaying && audioRef.current && audioRef.current.src) {
+      audioRef.current.play();
+    } else if (!isPlaying && audioRef.current) {
+      audioRef.current.pause();
     }
-  }, [currentTrack, isPlaying]);
+  }, [isPlaying]);
 
   const playTrack = (track: MusicTrack) => {
     if (currentTrack?.id === track.id) {
       togglePlayPause();
     } else {
       setCurrentTrack(track);
-      setIsPlaying(true);
+      if (audioRef.current) {
+        audioRef.current.src = track.file_url;
+      }
+      setIsPlaying(false);
     }
   };
 
@@ -78,7 +80,11 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   const playNext = () => {
     const currentIndex = tracks.findIndex(t => t.id === currentTrack?.id);
     if (currentIndex < tracks.length - 1) {
-      setCurrentTrack(tracks[currentIndex + 1]);
+      const nextTrack = tracks[currentIndex + 1];
+      setCurrentTrack(nextTrack);
+      if (audioRef.current) {
+        audioRef.current.src = nextTrack.file_url;
+      }
       setIsPlaying(true);
     }
   };
@@ -86,7 +92,11 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   const playPrevious = () => {
     const currentIndex = tracks.findIndex(t => t.id === currentTrack?.id);
     if (currentIndex > 0) {
-      setCurrentTrack(tracks[currentIndex - 1]);
+      const prevTrack = tracks[currentIndex - 1];
+      setCurrentTrack(prevTrack);
+      if (audioRef.current) {
+        audioRef.current.src = prevTrack.file_url;
+      }
       setIsPlaying(true);
     }
   };
