@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio } from 'lucide-react';
 import { Modal } from './Modal';
 import { useState } from 'react';
+import { AdminPortal } from '../pages/AdminPortal';
 
 export function Footer() {
   const [showWhoMadeThis, setShowWhoMadeThis] = useState(false);
+  const [showAdminPortal, setShowAdminPortal] = useState(false);
   const footerLinks = [
     {
       to: '/bible',
@@ -147,10 +149,21 @@ export function Footer() {
               >
                 Podcasts
               </Link>
+              <span className="text-gray-400">|</span>
+              <button
+                onClick={() => setShowAdminPortal(true)}
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-xs text-gray-500 dark:text-gray-400"
+              >
+                admin
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {showAdminPortal && (
+        <AdminPortal onClose={() => setShowAdminPortal(false)} />
+      )}
 
       <Modal
         isOpen={showWhoMadeThis}

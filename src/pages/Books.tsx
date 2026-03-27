@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Plus } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useDarkMode } from '../context/DarkModeContext';
-import { BookUpload } from '../components/BookUpload';
 
 interface Book {
   id: string;
@@ -22,7 +21,6 @@ export function Books() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [showUploadModal, setShowUploadModal] = useState(false);
 
   useEffect(() => {
     loadBooks();
@@ -50,20 +48,11 @@ export function Books() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">Library</h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
-              Explore our collection of spiritual books and resources
-            </p>
-          </div>
-          <button
-            onClick={() => setShowUploadModal(true)}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg"
-          >
-            <Plus className="w-5 h-5" />
-            Upload Book
-          </button>
+        <div className="mb-8">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">Library</h1>
+          <p className="text-lg text-gray-700 dark:text-gray-300">
+            Explore our collection of spiritual books and resources
+          </p>
         </div>
 
         {/* Category Filter */}
@@ -147,16 +136,6 @@ export function Books() {
           </div>
         )}
       </div>
-
-      {showUploadModal && (
-        <BookUpload
-          onClose={() => setShowUploadModal(false)}
-          onUploadComplete={() => {
-            loadBooks();
-            setShowUploadModal(false);
-          }}
-        />
-      )}
     </main>
   );
 }
