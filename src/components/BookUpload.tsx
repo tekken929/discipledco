@@ -277,6 +277,14 @@ export function BookUpload({ onClose, onUploadComplete }: BookUploadProps) {
               <li>Or the book will be auto-split into ~500 word pages</li>
               <li>Plain text format works best</li>
             </ul>
+            <p className="font-medium mt-4 mb-2">Formatting Support:</p>
+            <ul className="list-disc list-inside space-y-1 text-xs">
+              <li># Title - Creates a large heading</li>
+              <li>## Subtitle - Creates a medium heading</li>
+              <li>**bold text** - Makes text bold</li>
+              <li>*italic text* - Makes text italic</li>
+              <li>Empty line creates a paragraph break</li>
+            </ul>
           </div>
         </div>
       </div>

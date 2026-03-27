@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, X, BookOpen } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useDarkMode } from '../context/DarkModeContext';
+import { ContentFormatter } from '../components/ContentFormatter';
 
 interface Book {
   id: string;
@@ -166,8 +167,8 @@ export default function BookReader() {
             >
               {leftPage ? (
                 <div className="h-full flex flex-col">
-                  <div className="flex-1 overflow-hidden">
-                    <div className="whitespace-pre-wrap leading-relaxed text-sm">{leftPage.content}</div>
+                  <div className="flex-1 overflow-y-auto overflow-x-hidden">
+                    <ContentFormatter content={leftPage.content} className="text-sm" />
                   </div>
                   <div className={`mt-4 text-center text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                     {leftPage.page_number}
@@ -201,8 +202,8 @@ export default function BookReader() {
             >
               {rightPage ? (
                 <div className="h-full flex flex-col">
-                  <div className="flex-1 overflow-hidden">
-                    <div className="whitespace-pre-wrap leading-relaxed text-sm">{rightPage.content}</div>
+                  <div className="flex-1 overflow-y-auto overflow-x-hidden">
+                    <ContentFormatter content={rightPage.content} className="text-sm" />
                   </div>
                   <div className={`mt-4 text-center text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                     {rightPage.page_number}
