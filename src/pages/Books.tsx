@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Plus } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useDarkMode } from '../context/DarkModeContext';
+import { BookUpload } from '../components/BookUpload';
 
 interface Book {
   id: string;
@@ -21,6 +22,7 @@ export function Books() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [showUploadModal, setShowUploadModal] = useState(false);
 
   useEffect(() => {
     loadBooks();
@@ -55,6 +57,13 @@ export function Books() {
               Explore our collection of spiritual books and resources
             </p>
           </div>
+          <button
+            onClick={() => setShowUploadModal(true)}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg"
+          >
+            <Plus className="w-5 h-5" />
+            Upload Book
+          </button>
         </div>
 
         {/* Category Filter */}
@@ -138,6 +147,16 @@ export function Books() {
           </div>
         )}
       </div>
+
+      {showUploadModal && (
+        <BookUpload
+          onClose={() => setShowUploadModal(false)}
+          onUploadComplete={() => {
+            loadBooks();
+            setShowUploadModal(false);
+          }}
+        />
+      )}
     </main>
   );
 }
