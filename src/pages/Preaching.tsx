@@ -31,10 +31,10 @@ const sermons: Sermon[] = [
     id: 'anthony-mitchell',
     preacher: 'Philip Anthony Mitchell',
     title: 'You Are Anointed for This',
-    videoId: '0zaCUBTT8tU',
+    videoId: 'WElQZ2EoJmY',
     description: 'A powerful sermon from 2819 Church in Atlanta on recognizing and walking in the anointing God has placed on your life for His purposes.',
     socials: {
-      instagram: 'https://www.instagram.com/philipamitchell',
+      instagram: 'https://www.instagram.com/philipamitchell/',
       facebook: 'https://www.facebook.com/philipanthonymitchell',
       tiktok: 'https://www.tiktok.com/@philipanthonymitchell'
     }
