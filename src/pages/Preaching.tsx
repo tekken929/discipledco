@@ -46,9 +46,9 @@ const sermons: Sermon[] = [
     videoId: '5MM7KrmPL_g',
     description: 'Bishop T.D. Jakes delivers a transformative message about freedom, healing, and restoration from Luke 13:10-17. A powerful word for anyone seeking spiritual breakthrough and liberation.',
     socials: {
-      instagram: 'https://www.instagram.com/bishopjakes',
+      instagram: 'https://www.instagram.com/bishopjakes/',
       facebook: 'https://www.facebook.com/BishopTdJakes',
-      tiktok: 'https://www.tiktok.com/@bishoptdjakes'
+      tiktok: 'https://www.tiktok.com/@bishopjakes'
     }
   }
 ];
