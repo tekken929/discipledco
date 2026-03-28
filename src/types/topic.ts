@@ -3,6 +3,7 @@ export interface BibleReference {
   chapter: number;
   verse: string;
   text: string;
+  summary?: string;
 }
 
 export interface Topic {

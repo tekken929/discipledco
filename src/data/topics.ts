@@ -2,6 +2,86 @@ import { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 'forbidden-practices',
+    title: 'Forbidden Practices',
+    description: 'God strictly forbids all forms of occult practices, divination, witchcraft, and communication with the dead. These practices open doors to demonic influence and are an abomination to the Lord.',
+    shortDescription: 'Scripture explicitly forbids all occult practices including divination, sorcery, witchcraft, and necromancy. God calls His people to seek Him alone for guidance and truth.',
+    icon: '⛔',
+    order: 0,
+    references: [
+      {
+        book: 'Deuteronomy',
+        chapter: 18,
+        verse: '10-12',
+        text: 'There shall not be found among you anyone who burns his son or his daughter as an offering, anyone who practices divination or tells fortunes or interprets omens, or a sorcerer or a charmer or a medium or a necromancer or one who inquires of the dead, for whoever does these things is an abomination to the Lord.',
+        summary: 'God explicitly prohibits all forms of occult practice including child sacrifice, fortune-telling, witchcraft, mediums, and attempting to contact the dead. These practices are detestable to God.'
+      },
+      {
+        book: 'Leviticus',
+        chapter: 19,
+        verse: '31',
+        text: 'Do not turn to mediums or necromancers; do not seek them out, and so make yourselves unclean by them: I am the Lord your God.',
+        summary: 'Believers are commanded not to consult mediums or spiritists. Such practices defile a person spiritually and violate loyalty to God alone.'
+      },
+      {
+        book: 'Leviticus',
+        chapter: 20,
+        verse: '6',
+        text: 'If a person turns to mediums and necromancers, whoring after them, I will set my face against that person and will cut him off from among his people.',
+        summary: 'God considers consulting mediums and spiritists as spiritual adultery. Those who practice such things face severe judgment and separation from God\'s people.'
+      },
+      {
+        book: 'Isaiah',
+        chapter: 8,
+        verse: '19',
+        text: 'And when they say to you, "Inquire of the mediums and the necromancers who chirp and mutter," should not a people inquire of their God? Should they inquire of the dead on behalf of the living?',
+        summary: 'When facing uncertainty, God\'s people should seek Him directly rather than turning to mediums or the dead. True guidance comes from the living God, not spiritual counterfeits.'
+      },
+      {
+        book: 'Galatians',
+        chapter: 5,
+        verse: '19-21',
+        text: 'Now the works of the flesh are evident: sexual immorality, impurity, sensuality, idolatry, sorcery, enmity, strife, jealousy, fits of anger, rivalries, dissensions, divisions, envy, drunkenness, orgies, and things like these. I warn you, as I warned you before, that those who do such things will not inherit the kingdom of God.',
+        summary: 'Sorcery and occult practices are listed among the works of the flesh that prevent inheritance of God\'s kingdom. These practices are incompatible with faith in Christ.'
+      },
+      {
+        book: 'Acts',
+        chapter: 19,
+        verse: '18-19',
+        text: 'Also many of those who were now believers came, confessing and divulging their practices. And a number of those who had practiced magic arts brought their books together and burned them in the sight of all.',
+        summary: 'When people truly turn to Christ, they renounce and destroy all occult materials and practices. Genuine conversion requires complete separation from these forbidden activities.'
+      },
+      {
+        book: 'Revelation',
+        chapter: 21,
+        verse: '8',
+        text: 'But as for the cowardly, the faithless, the detestable, as for murderers, the sexually immoral, sorcerers, idolaters, and all liars, their portion will be in the lake that burns with fire and sulfur, which is the second death.',
+        summary: 'Those who practice sorcery and refuse to repent will face eternal judgment. The lake of fire awaits all who persist in these forbidden practices.'
+      },
+      {
+        book: '1 Samuel',
+        chapter: 28,
+        verse: '7-19',
+        text: 'Then Saul said to his servants, "Seek out for me a woman who is a medium, that I may go to her and inquire of her." And his servants said to him, "Behold, there is a medium at En-dor."',
+        summary: 'King Saul\'s consultation with a medium at Endor demonstrates the spiritual danger and foolishness of seeking guidance from the occult. This disobedience led to his downfall and death.'
+      },
+      {
+        book: '2 Kings',
+        chapter: 21,
+        verse: '6',
+        text: 'And he burned his son as an offering and used fortune-telling and omens and dealt with mediums and with necromancers. He did much evil in the sight of the Lord, provoking him to anger.',
+        summary: 'King Manasseh\'s involvement in occult practices including child sacrifice, divination, and mediums is described as great evil that provoked God\'s anger and brought judgment on Judah.'
+      },
+      {
+        book: 'Exodus',
+        chapter: 22,
+        verse: '18',
+        text: 'You shall not permit a sorceress to live.',
+        summary: 'Under Old Testament law, practicing witchcraft carried the death penalty, demonstrating God\'s absolute intolerance for occult practices among His people.'
+      }
+    ]
+  },
+  {
     id: 'marriage',
     title: 'Marriage',
     description: 'Biblical guidance on marriage, commitment, and marital relationships',

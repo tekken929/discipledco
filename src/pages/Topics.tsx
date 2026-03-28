@@ -99,9 +99,16 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                       </h3>
                     </div>
                   </div>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12">
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12 mb-3">
                     "{ref.text}"
                   </p>
+                  {ref.summary && (
+                    <div className="pl-12 pt-3 border-t border-blue-300 dark:border-blue-600">
+                      <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
+                        {ref.summary}
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -110,6 +117,9 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
       </main>
     );
   }
+
+  const featuredTopic = topics.find(t => t.id === 'forbidden-practices');
+  const regularTopics = topics.filter(t => t.id !== 'forbidden-practices');
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -122,8 +132,33 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
         </p>
       </div>
 
+      {featuredTopic && (
+        <Link
+          to={`/topics/${featuredTopic.id}`}
+          className="block mb-8 theme-card rounded-2xl p-8 border-4 border-red-500 dark:border-red-600 hover:shadow-2xl transition-all group hover:scale-[1.02]"
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-6xl group-hover:scale-110 transition-transform">
+              {featuredTopic.icon}
+            </span>
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                {featuredTopic.title}
+              </h2>
+              <p className="text-lg text-gray-700 dark:text-gray-200">
+                {featuredTopic.shortDescription}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center justify-between text-base text-red-600 dark:text-red-400 font-bold">
+            <span>{featuredTopic.references.length} Scripture references</span>
+            <span>→</span>
+          </div>
+        </Link>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {topics.sort((a, b) => a.order - b.order).map((topic) => (
+        {regularTopics.sort((a, b) => a.order - b.order).map((topic) => (
           <Link
             key={topic.id}
             to={`/topics/${topic.id}`}
