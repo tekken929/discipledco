@@ -24,7 +24,7 @@ export function Stories() {
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
                 {selectedStory.title}
               </h1>
-              <p className="text-gray-600 dark:text-gray-300 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 text-lg whitespace-pre-line">
                 {selectedStory.summary}
               </p>
             </div>
@@ -90,7 +90,7 @@ export function Stories() {
                 {story.title}
               </h2>
             </div>
-            <p className="text-gray-700 dark:text-gray-200 mb-4">
+            <p className="text-gray-700 dark:text-gray-200 mb-4 whitespace-pre-line">
               {story.summary}
             </p>
             <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
