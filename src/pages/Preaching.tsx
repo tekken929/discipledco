@@ -24,7 +24,7 @@ const sermons: Sermon[] = [
     socials: {
       instagram: 'https://www.instagram.com/wesley_huff/',
       facebook: 'https://www.facebook.com/WesLivingstoneHuff',
-      tiktok: 'https://www.tiktok.com/@huff.wes'
+      tiktok: 'https://www.tiktok.com/@wesley__huff'
     }
   },
   {
