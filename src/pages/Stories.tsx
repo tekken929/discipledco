@@ -90,8 +90,8 @@ export function Stories() {
                 {story.title}
               </h2>
             </div>
-            <p className="text-gray-700 dark:text-gray-200 mb-4 whitespace-pre-line">
-              {story.summary}
+            <p className="text-gray-700 dark:text-gray-200 mb-4">
+              {story.shortSummary}
             </p>
             <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
               <span>{story.references.length} Scripture references</span>

@@ -10,6 +10,7 @@ export const stories: Story[] = [
 God speaks, and what is formed reflects purpose rather than chance. Light, land, life, and humanity all come into being through His word, establishing not only the world itself, but the structure within it.
 Humanity is placed within that order with meaning and responsibility, not as an afterthought, but as part of what was designed from the start.
 This account sets a foundation—that what exists is not random, and that God's word carries both authority and direction.`,
+    shortSummary: 'God speaks the world into existence with intentional design. Light, land, and life emerge through His word, establishing order and purpose from the very beginning.',
     references: [
       {
         book: 'Genesis',
@@ -37,6 +38,7 @@ This account sets a foundation—that what exists is not random, and that God's 
     icon: '🚢',
     order: 2,
     summary: 'In the days of Noah, the direction of humanity had shifted far from what was right. What had been created with intention had become shaped by continual corruption, and the result was judgment through the flood. Yet even in that, there is a balance of justice and mercy. Noah is described as one who walked faithfully with God, and through him, life is preserved. The ark becomes both a place of refuge and a sign of obedience—something built in trust before the outcome could be seen. This account reflects not only the seriousness of drift, but the steadiness of God in preserving what He intends.',
+    shortSummary: 'Noah walks faithfully with God in a corrupt world. Through the ark, God brings judgment on wickedness while preserving life through one righteous man.',
     references: [
       {
         book: 'Genesis',
@@ -67,6 +69,7 @@ This account sets a foundation—that what exists is not random, and that God's 
 When God instructs Abraham to offer Isaac as a sacrifice, the command seems to stand against everything that had been spoken before.
 Yet Abraham obeys, moving forward not with explanations, but with trust that extends beyond what he can see or reconcile.
 At the critical moment, God provides, and what is revealed is not cruelty, but a test that exposes the depth of Abraham's faith and foreshadows a greater sacrifice to come.`,
+    shortSummary: 'God tests Abraham by asking him to sacrifice Isaac. Abraham obeys in faith, and God provides at the critical moment, revealing the depth of true trust.',
     references: [
       {
         book: 'Genesis',
@@ -97,6 +100,7 @@ At the critical moment, God provides, and what is revealed is not cruelty, but a
 Moses, a man with a complicated past, is called to be the instrument of their deliverance—not because of his eloquence or strength, but because God chooses to work through him.
 Through signs, plagues, and the parting of the sea, what becomes clear is that freedom comes not by human power, but by God's intervention.
 The exodus is both a rescue and a formation—a people being brought out of slavery and into relationship with the One who delivered them.`,
+    shortSummary: 'God calls Moses to lead the Israelites out of Egyptian slavery. Through plagues and the parting of the sea, God delivers His people into freedom.',
     references: [
       {
         book: 'Exodus',
@@ -127,6 +131,7 @@ The exodus is both a rescue and a formation—a people being brought out of slav
 David, a shepherd sent to bring food to his brothers, saw the situation differently—not as an impossible challenge, but as an affront to the living God.
 What he carried was not the armor of a soldier, but confidence rooted in past faithfulness—lions and bears defeated in the fields while protecting his father's sheep.
 With a sling and a stone, David demonstrates that victory belongs not to the heavily armed, but to those who trust in God's name and power.`,
+    shortSummary: 'Young shepherd David faces the giant Goliath with faith instead of armor. With a sling and stone, he shows that victory belongs to those who trust God.',
     references: [
       {
         book: '1 Samuel',
@@ -151,6 +156,7 @@ With a sling and a stone, David demonstrates that victory belongs not to the hea
 When a decree was crafted to trap him, Daniel faced a choice: compromise his practice of prayer or face death.
 He chose faithfulness, continuing to pray openly as he had always done, fully aware of the consequences.
 What follows is not escape from the den, but preservation within it—God shuts the mouths of lions, and what was meant to destroy Daniel instead displays God's sovereignty and vindication of those who remain faithful.`,
+    shortSummary: 'Daniel refuses to compromise his faith despite a deadly decree. God protects him in the lions\' den, vindicating those who remain faithful.',
     references: [
       {
         book: 'Daniel',
@@ -175,6 +181,7 @@ What follows is not escape from the den, but preservation within it—God shuts 
 His attempt to escape God's calling led him into a storm and eventually into the belly of a great fish, where he had nothing left but prayer.
 After three days, Jonah is given a second chance, and this time he obeys—proclaiming God's message to Nineveh.
 What unfolds reveals not only Jonah's resistance, but God's compassion for those who repent, even when it challenges the prophet's own sense of justice.`,
+    shortSummary: 'Jonah flees from God\'s call but is swallowed by a great fish. Given a second chance, he obeys and witnesses God\'s compassion on Nineveh.',
     references: [
       {
         book: 'Jonah',
@@ -205,6 +212,7 @@ What unfolds reveals not only Jonah's resistance, but God's compassion for those
 The King of Kings enters the world not in a palace, but in a manger, announced not to rulers, but to shepherds in the fields.
 What begins in obscurity carries the weight of heaven's plan—God Himself taking on flesh to dwell among humanity.
 This birth is both an arrival and an invitation, the Word made flesh, bringing light into a world that had been waiting in darkness.`,
+    shortSummary: 'Jesus is born in Bethlehem in humble circumstances, fulfilling ancient prophecy. The King of Kings enters the world as God made flesh.',
     references: [
       {
         book: 'Luke',
@@ -235,6 +243,7 @@ This birth is both an arrival and an invitation, the Word made flesh, bringing l
 In his lowest moment, he remembers his father's house and decides to return, not as a son, but hoping only to be treated as a servant.
 Yet while he is still far off, the father sees him, runs to him, and embraces him with a love that has been waiting and watching.
 This parable captures the heart of the gospel—repentance met with extravagant grace, and a Father who celebrates the return of what was lost.`,
+    shortSummary: 'A wayward son squanders his inheritance and returns home broken. His father runs to embrace him, demonstrating God\'s extravagant grace and love.',
     references: [
       {
         book: 'Luke',
@@ -259,6 +268,7 @@ This parable captures the heart of the gospel—repentance met with extravagant 
 But on the third day, women arrive at the tomb to find it empty, and an angel declares what seemed impossible: "He is not here; He has risen."
 What follows are appearances to His disciples, physical proof that death has been defeated, and the old covenant fulfilled in the new.
 The resurrection is the cornerstone of Christian faith—validating Jesus' claims, securing forgiveness, and offering the certainty of eternal life to all who believe.`,
+    shortSummary: 'Jesus rises from the dead on the third day, conquering death. The empty tomb and His appearances validate His claims and secure eternal life for believers.',
     references: [
       {
         book: 'Matthew',

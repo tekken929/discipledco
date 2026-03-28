@@ -9,6 +9,7 @@ export interface Story {
   id: string;
   title: string;
   summary: string;
+  shortSummary: string;
   icon: string;
   order: number;
   references: StoryReference[];
