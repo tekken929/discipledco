@@ -138,7 +138,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
               </h2>
             </div>
             <p className="text-gray-700 dark:text-gray-200 mb-4">
-              {topic.description}
+              {topic.shortDescription}
             </p>
             <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
               <span>{topic.references.length} Scripture references</span>

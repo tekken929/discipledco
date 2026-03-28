@@ -5,6 +5,7 @@ export const topics: Topic[] = [
     id: 'marriage',
     title: 'Marriage',
     description: 'Biblical guidance on marriage, commitment, and marital relationships',
+    shortDescription: 'God designed marriage as a sacred covenant between one man and one woman. Biblical principles guide husbands and wives in mutual love, respect, and commitment.',
     icon: '💑',
     order: 3,
     references: [
@@ -74,6 +75,7 @@ export const topics: Topic[] = [
     id: 'lust',
     title: 'Lust & Sexual Purity',
     description: 'Overcoming lust and maintaining sexual purity according to Scripture',
+    shortDescription: 'Scripture calls believers to flee sexual immorality and pursue purity. Your body is a temple of the Holy Spirit, meant to glorify God in holiness and honor.',
     icon: '🛡️',
     order: 10,
     references: [
@@ -142,7 +144,8 @@ export const topics: Topic[] = [
   {
     id: 'sin',
     title: 'Sin & Repentance',
-    description: 'Understanding sin, forgiveness, and the path to repentance. "Salvation is not something you achieve, it’s something you receive. It comes through trusting in who Jesus is and what He has done, not in what you can do.”',
+    description: 'Understanding sin, forgiveness, and the path to repentance. "Salvation is not something you achieve, it\'s something you receive. It comes through trusting in who Jesus is and what He has done, not in what you can do."',
+    shortDescription: 'All have sinned and fall short of God\'s glory. Through confession, repentance, and faith in Jesus Christ, God offers forgiveness and restoration to all who come to Him.',
     icon: '🙏',
     order: 1,
     references: [
@@ -212,6 +215,7 @@ export const topics: Topic[] = [
     id: 'forgiveness',
     title: 'Forgiveness',
     description: 'The importance of forgiving others as God forgives us',
+    shortDescription: 'As God forgives us through Christ, we are called to forgive others. Releasing resentment frees us and reflects God\'s merciful character to the world.',
     icon: '🕊️',
     order: 4,
     references: [
@@ -281,6 +285,7 @@ export const topics: Topic[] = [
     id: 'prayer',
     title: 'Prayer',
     description: 'How to pray and communicate with God effectively',
+    shortDescription: 'Prayer is direct communication with God. Bring your requests, thanksgiving, and confession to Him with confidence, knowing He hears and answers according to His will.',
     icon: '🙌',
     order: 5,
     references: [
@@ -350,6 +355,7 @@ export const topics: Topic[] = [
     id: 'love',
     title: 'Love & Compassion',
     description: 'Biblical teachings on love, compassion, and loving others',
+    shortDescription: 'Love God with all your heart and love your neighbor as yourself. True love is patient, kind, and selfless, reflecting God\'s love for us.',
     icon: '❤️',
     order: 2,
     references: [
@@ -419,6 +425,7 @@ export const topics: Topic[] = [
     id: 'fear-anxiety',
     title: 'Fear & Anxiety',
     description: 'Finding peace and overcoming fear through faith in God',
+    shortDescription: 'God has not given us a spirit of fear. Cast your anxieties on Him, trust in His presence, and find peace that surpasses all understanding.',
     icon: '☮️',
     order: 6,
     references: [
@@ -488,6 +495,7 @@ export const topics: Topic[] = [
     id: 'wisdom',
     title: 'Wisdom & Discernment',
     description: 'Seeking godly wisdom and making righteous decisions',
+    shortDescription: 'The fear of the Lord is the beginning of wisdom. Ask God for wisdom and He will give generously, guiding your path and decisions.',
     icon: '📖',
     order: 7,
     references: [
@@ -557,6 +565,7 @@ export const topics: Topic[] = [
     id: 'anger',
     title: 'Anger & Patience',
     description: 'Controlling anger and cultivating patience in difficult times',
+    shortDescription: 'Be slow to anger and quick to listen. A soft answer turns away wrath, and patience demonstrates godly understanding and self-control.',
     icon: '🧘',
     order: 9,
     references: [
@@ -626,6 +635,7 @@ export const topics: Topic[] = [
     id: 'faith',
     title: 'Faith & Trust',
     description: 'Building faith and trusting in God\'s plan for your life',
+    shortDescription: 'Faith is confidence in what we hope for and assurance about what we cannot see. Trust God completely and walk by faith, not by sight.',
     icon: '✨',
     order: 8,
     references: [
@@ -695,6 +705,7 @@ export const topics: Topic[] = [
     id: 'demons',
     title: 'Demons & Spiritual Warfare',
     description: 'Understanding spiritual warfare, demons, and our authority in Christ',
+    shortDescription: 'Our battle is spiritual, not physical. Put on the armor of God, resist the devil, and stand firm in faith knowing Christ has already won the victory.',
     icon: '⚔️',
     order: 11,
     references: [
@@ -764,6 +775,7 @@ export const topics: Topic[] = [
     id: 'possession',
     title: 'Demonic Possession & Deliverance',
     description: 'What the Bible teaches about possession and freedom in Christ',
+    shortDescription: 'Jesus has authority over all demonic forces. Through His name and power, believers can find complete freedom and deliverance from spiritual oppression.',
     icon: '🛡️',
     order: 12,
     references: [
@@ -833,6 +845,7 @@ export const topics: Topic[] = [
     id: 'suffering',
     title: 'Why God Allows Suffering',
     description: 'Understanding suffering, trials, and God\'s sovereignty in difficult times',
+    shortDescription: 'God works all things together for good for those who love Him. Trials produce endurance, character, and hope, refining our faith like gold.',
     icon: '🙏',
     order: 13,
     references: [
@@ -902,6 +915,7 @@ export const topics: Topic[] = [
     id: 'children-death',
     title: 'Children & Death',
     description: 'What happens to children who die and God\'s heart for the innocent',
+    shortDescription: 'Scripture reveals God\'s special love for children. The kingdom of heaven belongs to such as these, offering comfort and hope to grieving hearts.',
     icon: '👶',
     order: 14,
     references: [
@@ -971,6 +985,7 @@ export const topics: Topic[] = [
     id: 'hell',
     title: 'Hell & Eternal Judgment',
     description: 'Biblical teaching on hell, judgment, and eternal separation from God',
+    shortDescription: 'Hell is the eternal consequence of rejecting God. Scripture warns of judgment but offers salvation through faith in Jesus Christ to all who believe.',
     icon: '🔥',
     order: 15,
     references: [
@@ -1040,6 +1055,7 @@ export const topics: Topic[] = [
     id: 'heaven',
     title: 'Heaven & Eternal Life',
     description: 'The promise of heaven and eternal life with God',
+    shortDescription: 'Heaven is our eternal home prepared by Jesus. No more tears, death, or pain await believers who will dwell with God forever in perfect joy.',
     icon: '☁️',
     order: 16,
     references: [
@@ -1109,6 +1125,7 @@ export const topics: Topic[] = [
     id: 'god-sovereignty',
     title: 'God\'s Sovereignty & Control',
     description: 'Understanding God\'s ultimate control and what He permits',
+    shortDescription: 'God is sovereign over all creation. His purposes will stand, His plans cannot be thwarted, and He works all things according to His perfect will.',
     icon: '👑',
     order: 17,
     references: [
@@ -1178,6 +1195,7 @@ export const topics: Topic[] = [
     id: 'grace',
     title: 'Grace & Mercy',
     description: 'Understanding God\'s undeserved favor and compassion toward us',
+    shortDescription: 'Salvation comes by grace through faith, not by works. God\'s undeserved favor and mercy are freely given to all who believe in Jesus Christ.',
     icon: '✝️',
     order: 18,
     references: [
@@ -1247,6 +1265,7 @@ export const topics: Topic[] = [
     id: 'holy-spirit',
     title: 'The Holy Spirit',
     description: 'Understanding the Holy Spirit, His role, and His work in believers',
+    shortDescription: 'The Holy Spirit is our Helper, dwelling within believers. He guides into truth, empowers for service, and produces spiritual fruit in our lives.',
     icon: '🕊️',
     order: 19,
     references: [
@@ -1316,6 +1335,7 @@ export const topics: Topic[] = [
     id: 'end-times',
     title: 'End Times & Prophecy',
     description: 'Biblical prophecy about the return of Christ and the end of the age',
+    shortDescription: 'Christ will return unexpectedly like a thief in the night. Stay awake, be ready, and live faithfully as we await His glorious second coming.',
     icon: '⏰',
     order: 20,
     references: [
