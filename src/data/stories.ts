@@ -6,7 +6,7 @@ export const stories: Story[] = [
     title: 'Creation',
     icon: '🌍',
     order: 1,
-    summary: 'God creates the heavens, earth, and humanity',
+    summary: 'In creation, Scripture presents a beginning that is both intentional and ordered. God speaks, and what is formed reflects purpose rather than chance. Light, land, life, and humanity all come into being through His word, establishing not only the world itself, but the structure within it. Humanity is placed within that order with meaning and responsibility, not as an afterthought, but as part of what was designed from the start. This account sets a foundation—that what exists is not random, and that God’s word carries both authority and direction.',
     references: [
       {
         book: 'Genesis',
