@@ -23,7 +23,7 @@ const sermons: Sermon[] = [
     description: 'Wesley Huff shares practical strategies for Christians to talk about their faith with others, combining real world experience and Biblical teachings on engaging in meaningful conversations about faith in Jesus.',
     socials: {
       instagram: 'https://www.instagram.com/huff.wes',
-      facebook: 'https://www.facebook.com/wesleyhuffapologetics',
+      facebook: 'https://www.facebook.com/WesLivingstoneHuff',
       tiktok: 'https://www.tiktok.com/@huff.wes'
     }
   },
