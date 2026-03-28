@@ -36,7 +36,9 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'Noah and the Ark',
     icon: '🚢',
     order: 2,
-    summary: 'God saves Noah and his family from the great flood',
+    summary: 'In the days of Noah, the direction of humanity had shifted far from what was right. 
+      'What had been created with intention had become shaped by continual corruption, and the result was judgment through the flood. Yet even in that, there is a balance of justice and mercy. Noah is described as one who walked faithfully with God, and through him, life is preserved. 
+  'The ark becomes both a place of refuge and a sign of obedience—something built in trust before the outcome could be seen. This account reflects not only the seriousness of drift, but the steadiness of God in preserving what He intends.',
     references: [
       {
         book: 'Genesis',
