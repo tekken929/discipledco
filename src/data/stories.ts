@@ -63,7 +63,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'Abraham and Isaac',
     icon: '⛰️',
     order: 3,
-    summary: 'God tests Abraham\'s faith by asking him to sacrifice his son',
+    summary: `Abraham had been given a promise—descendants as numerous as the stars—but that promise rested in Isaac, the son of his old age.
+When God instructs Abraham to offer Isaac as a sacrifice, the command seems to stand against everything that had been spoken before.
+Yet Abraham obeys, moving forward not with explanations, but with trust that extends beyond what he can see or reconcile.
+At the critical moment, God provides, and what is revealed is not cruelty, but a test that exposes the depth of Abraham's faith and foreshadows a greater sacrifice to come.`,
     references: [
       {
         book: 'Genesis',
@@ -90,7 +93,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'Moses and the Exodus',
     icon: '🌊',
     order: 4,
-    summary: 'Moses leads the Israelites out of slavery in Egypt',
+    summary: `The Israelites had been in bondage for generations, and their cry reached God, who remembered His covenant.
+Moses, a man with a complicated past, is called to be the instrument of their deliverance—not because of his eloquence or strength, but because God chooses to work through him.
+Through signs, plagues, and the parting of the sea, what becomes clear is that freedom comes not by human power, but by God's intervention.
+The exodus is both a rescue and a formation—a people being brought out of slavery and into relationship with the One who delivered them.`,
     references: [
       {
         book: 'Exodus',
@@ -117,7 +123,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'David and Goliath',
     icon: '⚔️',
     order: 5,
-    summary: 'Young David defeats the giant Goliath with faith in God',
+    summary: `When Israel faced the Philistines, fear gripped the army as Goliath's taunts went unanswered day after day.
+David, a shepherd sent to bring food to his brothers, saw the situation differently—not as an impossible challenge, but as an affront to the living God.
+What he carried was not the armor of a soldier, but confidence rooted in past faithfulness—lions and bears defeated in the fields while protecting his father's sheep.
+With a sling and a stone, David demonstrates that victory belongs not to the heavily armed, but to those who trust in God's name and power.`,
     references: [
       {
         book: '1 Samuel',
@@ -138,7 +147,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'Daniel in the Lions\' Den',
     icon: '🦁',
     order: 6,
-    summary: 'God protects Daniel from hungry lions',
+    summary: `Daniel served in a foreign empire with integrity that stood out, and that distinction became a target.
+When a decree was crafted to trap him, Daniel faced a choice: compromise his practice of prayer or face death.
+He chose faithfulness, continuing to pray openly as he had always done, fully aware of the consequences.
+What follows is not escape from the den, but preservation within it—God shuts the mouths of lions, and what was meant to destroy Daniel instead displays God's sovereignty and vindication of those who remain faithful.`,
     references: [
       {
         book: 'Daniel',
@@ -159,7 +171,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'Jonah and the Whale',
     icon: '🐋',
     order: 7,
-    summary: 'Jonah learns obedience after being swallowed by a great fish',
+    summary: `Jonah was called to preach to Nineveh, a city known for its wickedness, but instead of going, he fled in the opposite direction.
+His attempt to escape God's calling led him into a storm and eventually into the belly of a great fish, where he had nothing left but prayer.
+After three days, Jonah is given a second chance, and this time he obeys—proclaiming God's message to Nineveh.
+What unfolds reveals not only Jonah's resistance, but God's compassion for those who repent, even when it challenges the prophet's own sense of justice.`,
     references: [
       {
         book: 'Jonah',
@@ -186,7 +201,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'The Birth of Jesus',
     icon: '⭐',
     order: 8,
-    summary: 'Jesus is born in Bethlehem to fulfill prophecy',
+    summary: `Centuries of prophecy converge in Bethlehem, where a young woman gives birth in the humblest of circumstances.
+The King of Kings enters the world not in a palace, but in a manger, announced not to rulers, but to shepherds in the fields.
+What begins in obscurity carries the weight of heaven's plan—God Himself taking on flesh to dwell among humanity.
+This birth is both an arrival and an invitation, the Word made flesh, bringing light into a world that had been waiting in darkness.`,
     references: [
       {
         book: 'Luke',
@@ -213,7 +231,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'The Prodigal Son',
     icon: '🏠',
     order: 9,
-    summary: 'A father\'s unconditional love for his wayward son',
+    summary: `A son demands his inheritance early, leaves home, and squanders everything in reckless living until he finds himself destitute and desperate.
+In his lowest moment, he remembers his father's house and decides to return, not as a son, but hoping only to be treated as a servant.
+Yet while he is still far off, the father sees him, runs to him, and embraces him with a love that has been waiting and watching.
+This parable captures the heart of the gospel—repentance met with extravagant grace, and a Father who celebrates the return of what was lost.`,
     references: [
       {
         book: 'Luke',
@@ -234,7 +255,10 @@ This account sets a foundation—that what exists is not random, and that God's 
     title: 'The Resurrection',
     icon: '✝️',
     order: 10,
-    summary: 'Jesus rises from the dead, conquering sin and death',
+    summary: `After the crucifixion, Jesus' body is laid in a tomb, sealed, and guarded, and His followers are left in despair, believing everything has ended.
+But on the third day, women arrive at the tomb to find it empty, and an angel declares what seemed impossible: "He is not here; He has risen."
+What follows are appearances to His disciples, physical proof that death has been defeated, and the old covenant fulfilled in the new.
+The resurrection is the cornerstone of Christian faith—validating Jesus' claims, securing forgiveness, and offering the certainty of eternal life to all who believe.`,
     references: [
       {
         book: 'Matthew',
