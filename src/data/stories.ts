@@ -3,10 +3,10 @@ import { Story } from '../types/story';
 export const stories: Story[] = [
   {
     id: 'creation',
-    title: 'The Creation',
+    title: 'Creation',
     icon: '🌍',
     order: 1,
-    summary: 'God creates the heavens, earth, and humanity in six days',
+    summary: 'God creates the heavens, earth, and humanity',
     references: [
       {
         book: 'Genesis',
