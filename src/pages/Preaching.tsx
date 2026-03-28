@@ -61,7 +61,7 @@ export function Preaching() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-8">
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-          Preaching
+          Wisdom
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300">
           Sermons and biblical teaching to strengthen your faith
