@@ -19,7 +19,7 @@ const sermons: Sermon[] = [
     id: 'wes-huff',
     preacher: 'Wes Huff',
     title: 'How to Talk About Jesus Without Sounding Like an Idiot',
-    videoId: 'NxzVW0L5QJs',
+    videoId: 'P4d23yKp5QU',
     description: 'Wesley Huff shares practical strategies for Christians to talk about their faith with others, combining real world experience and Biblical teachings on engaging in meaningful conversations about faith in Jesus.',
     socials: {
       instagram: 'https://www.instagram.com/huff.wes',
