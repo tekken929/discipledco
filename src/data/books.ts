@@ -2145,7 +2145,7 @@ export const books: Book[] = [
     author: 'Matthew',
     testament: 'New Testament' as const,
     authorDescription: "Tax collector called by Jesus to be one of the twelve apostles. Wrote primarily to Jewish readers to prove Jesus is the Messiah.",
-    imageUrl: 'public/images/matthew.jpg',
+    imageUrl: '/images/bible-books/matthew.jpg',
     bibleVersion: 'NIV',
     structure: [
       {
