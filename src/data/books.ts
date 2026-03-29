@@ -18,6 +18,7 @@ export const books: Book[] = [
     testament: 'Old Testament' as const,
     authorDescription: "Prophet and lawgiver who led Israel out of Egypt. Received the Law on Mount Sinai and wrote the first five books of the Bible.",
     bibleVersion: 'NIV',
+    imageUrl: 'https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,
@@ -73,6 +74,7 @@ export const books: Book[] = [
     testament: 'Old Testament' as const,
     authorDescription: "Prophet and lawgiver who led Israel out of Egypt. Received the Law on Mount Sinai and wrote the first five books of the Bible.",
     bibleVersion: 'NIV',
+    imageUrl: 'https://images.pexels.com/photos/3184428/pexels-photo-3184428.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,
@@ -1079,6 +1081,7 @@ export const books: Book[] = [
     testament: 'Old Testament' as const,
     authorDescription: "Multiple authors including King David, Asaph the worship leader, the Sons of Korah, and other temple musicians. These psalms span centuries of Israel's worship.",
     bibleVersion: 'NIV',
+    imageUrl: 'https://images.pexels.com/photos/1112081/pexels-photo-1112081.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,
@@ -1134,6 +1137,7 @@ export const books: Book[] = [
     testament: 'Old Testament' as const,
     authorDescription: "Primarily King Solomon known for his wisdom, with contributions from Agur and King Lemuel. These proverbs teach practical wisdom for daily living.",
     bibleVersion: 'NIV',
+    imageUrl: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,
@@ -2131,8 +2135,8 @@ export const books: Book[] = [
     chapters: 28,
     type: 'Gospel',
     overview: [
-      'Matthew is believed to be the earliest Gospel and Focuses heavily on Jesus’ actions and the final week.',
-      'Likely tied to Peter’s eyewitness testimony. Matthew presents Jesus as the promised Messiah and King of Israel, the fulfillment of Old Testament prophecy. Written primarily for a Jewish audience, the gospel demonstrates Jesus\' credentials through genealogy, miracles, and teaching. It emphasizes that Jesus is the new Moses, delivering a new law from a mountain and establishing a new covenant.',
+      'Matthew is believed to be the earliest Gospel and Focuses heavily on Jesus\' actions and the final week.',
+      'Likely tied to Peter\'s eyewitness testimony. Matthew presents Jesus as the promised Messiah and King of Israel, the fulfillment of Old Testament prophecy. Written primarily for a Jewish audience, the gospel demonstrates Jesus\' credentials through genealogy, miracles, and teaching. It emphasizes that Jesus is the new Moses, delivering a new law from a mountain and establishing a new covenant.',
       'The book is carefully structured around five major teaching sections, echoing the five books of Moses. Jesus\' Sermon on the Mount outlines kingdom ethics that turn worldly values upside down. Throughout, Matthew shows how Jesus fulfills Scripture: born of a virgin in Bethlehem, called out of Egypt, announcing the kingdom, performing messianic signs, and ultimately dying and rising as prophesied.',
       'Matthew concludes with Jesus\' Great Commission to make disciples of all nations. Though Israel\'s leaders rejected their King, His kingdom continues advancing through His followers who obey His teachings. The gospel emphasizes that Jesus has all authority in heaven and earth and promises to be with His people always, until the end of the age.'
     ],
@@ -2141,6 +2145,7 @@ export const books: Book[] = [
     author: 'Matthew',
     testament: 'New Testament' as const,
     authorDescription: "Tax collector called by Jesus to be one of the twelve apostles. Wrote primarily to Jewish readers to prove Jesus is the Messiah.",
+    imageUrl: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
     bibleVersion: 'NIV',
     structure: [
       {
@@ -2317,6 +2322,7 @@ export const books: Book[] = [
     testament: 'New Testament' as const,
     authorDescription: "Fisherman, son of Zebedee, and one of Jesus' closest disciples. Called the beloved disciple, he wrote extensively about love and eternal life.",
     bibleVersion: 'NIV',
+    imageUrl: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,
@@ -2434,6 +2440,7 @@ export const books: Book[] = [
     testament: 'New Testament' as const,
     authorDescription: "Former Pharisee dramatically converted on the road to Damascus. Became the apostle to the Gentiles and wrote much of the New Testament.",
     bibleVersion: 'NIV',
+    imageUrl: 'https://images.pexels.com/photos/3184428/pexels-photo-3184428.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,

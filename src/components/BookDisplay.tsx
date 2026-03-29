@@ -83,6 +83,17 @@ export function BookDisplay({ book }: BookDisplayProps) {
         </div>
       </div>
 
+      {/* Book Image */}
+      {book.imageUrl && (
+        <div className="mb-8 flex justify-center">
+          <img
+            src={book.imageUrl}
+            alt={`${book.name} manuscript`}
+            className="rounded-lg shadow-lg max-w-md w-full h-auto object-cover border-2 border-gray-200 dark:border-gray-600"
+          />
+        </div>
+      )}
+
       {/* Overview Section */}
       <div className="mb-10">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">

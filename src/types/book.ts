@@ -20,5 +20,6 @@ export interface Book {
   author: string;
   authorDescription: string;
   bibleVersion: string;
+  imageUrl?: string;
   structure: BookSection[];
 }
