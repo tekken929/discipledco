@@ -83,27 +83,28 @@ export function BookDisplay({ book }: BookDisplayProps) {
         </div>
       </div>
 
-      {/* Book Image */}
-      {book.imageUrl && (
-        <div className="mb-8 flex justify-center">
-          <img
-            src={book.imageUrl}
-            alt={`${book.name} manuscript`}
-            className="rounded-lg shadow-lg max-w-md w-full h-auto object-cover border-2 border-gray-200 dark:border-gray-600"
-          />
-        </div>
-      )}
-
       {/* Overview Section */}
       <div className="mb-10">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <BookOpen className="w-6 h-6" />
           Overview
         </h2>
-        <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-          {book.overview.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="md:w-2/3 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            {book.overview.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+          {book.imageUrl && (
+            <div className="md:w-1/3 flex-shrink-0">
+              <img
+                src={book.imageUrl}
+                alt={`${book.name} manuscript`}
+                className="rounded-lg shadow-lg w-full h-auto object-cover border-2 border-gray-200 dark:border-gray-600"
+                style={{ maxHeight: '500px' }}
+              />
+            </div>
+          )}
         </div>
       </div>
 
