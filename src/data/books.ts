@@ -2135,7 +2135,7 @@ export const books: Book[] = [
       'The book is carefully structured around five major teaching sections, echoing the five books of Moses. Jesus\' Sermon on the Mount outlines kingdom ethics that turn worldly values upside down. Throughout, Matthew shows how Jesus fulfills Scripture: born of a virgin in Bethlehem, called out of Egypt, announcing the kingdom, performing messianic signs, and ultimately dying and rising as prophesied.',
       'Matthew concludes with Jesus\' Great Commission to make disciples of all nations. Though Israel\'s leaders rejected their King, His kingdom continues advancing through His followers who obey His teachings. The gospel emphasizes that Jesus has all authority in heaven and earth and promises to be with His people always, until the end of the age.'
     ],
-    written: 'c. 50-70 AD',
+    written: 'c. 55-65 AD',
     timePeriod: 'c. 5 BC - 30 AD',
     author: 'Matthew',
     testament: 'New Testament' as const,
@@ -2197,8 +2197,8 @@ export const books: Book[] = [
       'A central theme is the nature of discipleship: following Jesus means taking up one\'s cross and losing one\'s life to save it. The disciples consistently misunderstand Jesus\' mission, expecting a conquering king rather than a suffering servant. Peter\'s confession marks a turning point where Jesus clearly predicts His death and resurrection three times.',
       'Mark emphasizes the "messianic secret"—Jesus repeatedly tells people not to reveal His identity, yet demons recognize Him immediately. The gospel climaxes with Jesus\' death, where a Roman centurion declares, "Surely this man was the Son of God!" Mark shows that Jesus\' identity is fully revealed through His sacrificial death, not merely His miracles.'
     ],
-    written: 'c. 50-70 AD',
-    timePeriod: 'c. 27-30 AD',
+    written: 'c. 60-70 AD',
+    timePeriod: 'c. 5 BC - 30 AD',
     author: 'John Mark',
     testament: 'New Testament' as const,
     authorDescription: "Companion of Peter and later of Paul. Wrote the earliest Gospel with emphasis on Jesus' actions and servanthood.",
@@ -2254,7 +2254,7 @@ export const books: Book[] = [
       'Luke alone records parables like the Good Samaritan, Prodigal Son, and Rich Man and Lazarus, highlighting God\'s love for the outcast and warning against wealth and self-righteousness. The birth narrative is fuller than other gospels, including Mary\'s Magnificat and the angels\' announcement to shepherds. Women play prominent roles throughout.',
       'The gospel emphasizes Jesus\' journey to Jerusalem, where He will accomplish the exodus predicted by Moses and the prophets. Luke shows Jesus as the universal Savior whose message extends beyond Israel to all nations. The book ends with resurrection appearances and Jesus\' ascension, promising the Holy Spirit and commissioning witnesses to all nations.'
     ],
-    written: 'c. 60-80 AD',
+    written: 'c. 60-62 AD',
     timePeriod: 'c. 5 BC - 30 AD',
     author: 'Luke',
     testament: 'New Testament' as const,
@@ -2310,8 +2310,8 @@ export const books: Book[] = [
       'The book opens with the magnificent prologue: "In the beginning was the Word, and the Word was with God, and the Word was God." John connects Jesus to creation, light, and life. Throughout, Jesus makes stunning "I am" statements claiming deity: I am the bread of life, light of the world, good shepherd, resurrection and life, way truth and life, true vine.',
       'John\'s gospel is deeply personal, emphasizing the love relationship between Father, Son, and believers. The extended Upper Room discourse reveals Jesus\' heart for His followers and promises the Holy Spirit as Comforter. John concludes that these things are written that readers may believe Jesus is the Christ and have life in His name.'
     ],
-    written: 'c. 85-95 AD',
-    timePeriod: 'c. 27-30 AD',
+    written: 'c. 70-90 AD',
+    timePeriod: 'c. 5 BC - 30 AD',
     author: 'John',
     testament: 'New Testament' as const,
     authorDescription: "Fisherman, son of Zebedee, and one of Jesus' closest disciples. Called the beloved disciple, he wrote extensively about love and eternal life.",
