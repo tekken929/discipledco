@@ -1,10 +1,9 @@
 import { BookDisplay } from '../components/BookDisplay';
-import { BookSelector } from '../components/BookSelector';
 import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
-import { BookOpen, Sparkles } from 'lucide-react';
+import { BookOpen, ChevronDown } from 'lucide-react';
 
 interface HomeProps {
   selectedBook: Book;
@@ -16,46 +15,19 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
   const { ref: selectorRef, isVisible: selectorVisible } = useScrollAnimation();
   const parallaxOffset = useParallax(0.3);
 
-  const handleBookSelect = (book: Book) => {
-    setSelectedBook(book);
-    window.scrollTo(0, 0);
+  const oldTestamentBooks = books.filter(b => b.testament === 'Old Testament');
+  const newTestamentBooks = books.filter(b => b.testament === 'New Testament');
+
+  const handleBookSelect = (bookId: string) => {
+    const book = books.find(b => b.id === bookId);
+    if (book) {
+      setSelectedBook(book);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
     <>
-      {/* CINEMATIC HERO SECTION */}
-      <section ref={heroRef} className="cinematic-hero print:hidden">
-        <div className="cinematic-hero-bg" style={{ transform: `translateY(${parallaxOffset}px)` }} />
-        <div className="cinematic-hero-overlay" />
-
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <div className={`fade-in ${heroVisible ? 'visible' : ''}`}>
-            <div className="flex items-center justify-center mb-6">
-              <BookOpen className="w-16 h-16 text-white opacity-90" />
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 hero-title-glow">
-              Journey Through Scripture
-            </h1>
-          </div>
-
-          <div className={`fade-in fade-in-delayed ${heroVisible ? 'visible' : ''}`}>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 mx-auto leading-relaxed max-w-4xl">
-              The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
-            </p>
-          </div>
-
-          <div className={`fade-in fade-in-delayed-2 ${heroVisible ? 'visible' : ''}`}>
-            <button
-              onClick={() => document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-cinematic inline-flex items-center gap-2 px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-full text-lg font-semibold border-2 border-white/30"
-            >
-              <Sparkles className="w-5 h-5" />
-              Begin Your Journey
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION DIVIDER */}
       <div className="section-divider print:hidden" />
 
@@ -64,19 +36,69 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         <div
           id="book-selector"
           ref={selectorRef}
-          className={`mb-12 flex flex-col sm:flex-row items-center justify-center gap-3 theme-card rounded-xl p-6 shadow-lg print:hidden transition-all duration-500 card-cinematic ${
+          className={`mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden transition-all duration-500 card-cinematic ${
             selectorVisible ? 'fade-in visible' : 'fade-in'
           }`}
         >
-          <label className="text-sm font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-            <BookOpen className="w-5 h-5" />
-            Books of the Bible
-          </label>
-          <BookSelector
-            books={books}
-            selectedBook={selectedBook}
-            onSelectBook={handleBookSelect}
-          />
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-4">
+              <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Journey Through Scripture
+            </h1>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Old Testament Dropdown */}
+            <div className="space-y-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Old Testament</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                The Old Testament contains 39 books covering creation, law, history, poetry, and prophecy. It reveals God's covenant with Israel and His promises of a coming Messiah.
+              </p>
+              <div className="relative">
+                <select
+                  value={selectedBook.testament === 'Old Testament' ? selectedBook.id : ''}
+                  onChange={(e) => handleBookSelect(e.target.value)}
+                  className="appearance-none w-full bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <option value="">Select a book...</option>
+                  {oldTestamentBooks.map((book) => (
+                    <option key={book.id} value={book.id}>
+                      {book.order}. {book.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 dark:text-gray-300 pointer-events-none" />
+              </div>
+            </div>
+
+            {/* New Testament Dropdown */}
+            <div className="space-y-3">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">New Testament</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                The New Testament contains 27 books including the Gospels, Acts, letters to early churches, and Revelation. It tells of Jesus Christ's life, death, and resurrection.
+              </p>
+              <div className="relative">
+                <select
+                  value={selectedBook.testament === 'New Testament' ? selectedBook.id : ''}
+                  onChange={(e) => handleBookSelect(e.target.value)}
+                  className="appearance-none w-full bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <option value="">Select a book...</option>
+                  {newTestamentBooks.map((book) => (
+                    <option key={book.id} value={book.id}>
+                      {book.order}. {book.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 dark:text-gray-300 pointer-events-none" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="spacing-section">

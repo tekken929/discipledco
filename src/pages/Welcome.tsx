@@ -1,4 +1,4 @@
-import { BookOpen, Target, Music } from 'lucide-react';
+import { BookOpen, Target, Music, Book, Users, MessageCircle, Church } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
@@ -57,36 +57,66 @@ export function Welcome() {
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
-             Nnavigate the Bible
-              with clarity and confidence. 
+              Navigate the Bible with clarity and confidence.
             </p>
-            <ul className="space-y-3 ml-6">
-              <li className="flex items-start gap-3">
-                <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Bible Overviews</strong> of all 66 books of the Bible with chapter summaries and timelines</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Bible Version/Translation guides</strong> to help you understand the differences between translations and versions</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Biblical Topics</strong> covering marriage, relationships, sin, salvation, and more</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Bible stories</strong> with context and meaning</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <BookOpen className="w-6 h-6 theme-accent flex-shrink-0 mt-1" />
-                <span><strong>Religion insights</strong> into how Christianity and other Religions developed and how different Churches emerged.</span>
-              </li>
-            </ul>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <Link
+                to="/bible"
+                className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700"
+              >
+                <BookOpen className="w-4 h-4" />
+                Bible Overviews
+              </Link>
+              <Link
+                to="/bible-versions"
+                className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700"
+              >
+                <Book className="w-4 h-4" />
+                Bible Versions
+              </Link>
+              <Link
+                to="/topics"
+                className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Biblical Topics
+              </Link>
+              <Link
+                to="/stories"
+                className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700"
+              >
+                <BookOpen className="w-4 h-4" />
+                Bible Stories
+              </Link>
+              <Link
+                to="/religions"
+                className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700"
+              >
+                <Church className="w-4 h-4" />
+                Religion Insights
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="theme-card rounded-2xl shadow-xl p-8 text-center mb-8 transition-colors">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Next Steps:
+          </h2>
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <Link
+              to="/bible"
+              className="inline-flex items-center gap-2 theme-primary-button text-white font-semibold px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg text-lg"
+            >
+              <BookOpen className="w-6 h-6" />
+              Bible Overview
+            </Link>
           </div>
         </div>
 
         {/* Music Section */}
-        <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 mb-8 transition-colors">
+        <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
           <div className="flex items-center gap-3 mb-6">
             <div className="theme-primary-button p-3 rounded-xl">
               <Music className="w-8 h-8" />
@@ -103,22 +133,6 @@ export function Welcome() {
             <Music className="w-5 h-5" />
             View Full Playlist
           </Link>
-        </div>
-
-        {/* Call to Action */}
-        <div className="theme-card rounded-2xl shadow-xl p-8 text-center transition-colors">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Next Steps:
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4 mt-6">
-            <Link
-              to="/bible"
-              className="inline-flex items-center gap-2 theme-primary-button text-white font-semibold px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg text-lg"
-            >
-              <BookOpen className="w-6 h-6" />
-              Bible Overview
-            </Link>
-          </div>
         </div>
 
       </div>
