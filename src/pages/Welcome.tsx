@@ -39,7 +39,7 @@ export function Welcome() {
             />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-           The Disciple Co.
+           Bible Overview
           </h1>
          
           <p className="text-sm text-gray-600 dark:text-gray-400 italic">
@@ -60,67 +60,67 @@ export function Welcome() {
               Navigate the Bible with clarity and confidence.
             </p>
             <div className="space-y-4">
-              <div className="flex items-start gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
                 <Link
                   to="/bible"
-                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700 flex-shrink-0"
+                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700"
                 >
                   <BookOpen className="w-4 h-4" />
                   Bible Overviews
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
                   Explore all 66 books of the Bible with chapter summaries and timelines
                 </p>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
                 <Link
                   to="/bible-versions"
-                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700 flex-shrink-0"
+                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700"
                 >
                   <Book className="w-4 h-4" />
                   Bible Versions
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
                   Understand the differences between translations and versions
                 </p>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
                 <Link
                   to="/topics"
-                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700 flex-shrink-0"
+                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Biblical Topics
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
                   Discover topics covering marriage, relationships, sin, salvation, and more
                 </p>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
                 <Link
                   to="/stories"
-                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700 flex-shrink-0"
+                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700"
                 >
                   <BookOpen className="w-4 h-4" />
                   Bible Stories
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
                   Read Bible stories with context and meaning
                 </p>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
                 <Link
                   to="/religions"
-                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700 flex-shrink-0"
+                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700"
                 >
                   <Church className="w-4 h-4" />
                   Religion Insights
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
                   Learn how Christianity and other religions developed and how different churches emerged
                 </p>
               </div>

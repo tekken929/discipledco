@@ -19,7 +19,7 @@ export function DarkModeProvider({ children }: { children: ReactNode }) {
 
   const [colorTheme, setColorThemeState] = useState<ColorTheme>(() => {
     const saved = localStorage.getItem('colorTheme');
-    return (saved as ColorTheme) || 'happy';
+    return (saved as ColorTheme) || 'subtle';
   });
 
   useEffect(() => {
