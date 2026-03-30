@@ -1,8 +1,34 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, BookOpen, Cross, Star } from 'lucide-react';
 import { timelineEvents, timelineSections } from '../data/timeline';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useEffect, useState } from 'react';
 
 export function Timeline() {
+  const [activeEventIndex, setActiveEventIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowCenter = window.innerHeight / 2;
+
+      timelineEvents.forEach((_, index) => {
+        const element = document.getElementById(`timeline-event-${index}`);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementCenter = rect.top + rect.height / 2;
+
+          if (Math.abs(elementCenter - windowCenter) < 200) {
+            setActiveEventIndex(index);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'creation':
@@ -72,21 +98,21 @@ export function Timeline() {
   };
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 spacing-section">
       <Link
         to="/religions"
-        className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
+        className="link-cinematic inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-12 transition-colors font-semibold"
       >
         <ArrowLeft className="w-5 h-5" />
         Back to Religions
       </Link>
 
-      <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          Faith Timeline
+      <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors mb-16 card-cinematic">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          The Journey of Faith
         </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
-          A comprehensive journey from creation through the development of Judaism, Christianity, Catholicism, and Protestantism
+        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+          A cinematic journey from creation through the development of Judaism, Christianity, Catholicism, and Protestantism
         </p>
 
         <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl p-6 border border-blue-200 dark:border-blue-800 mb-8">
@@ -116,17 +142,32 @@ export function Timeline() {
         </div>
       </div>
 
-      <div className="space-y-6">
-        {timelineEvents.map((event, index) => (
-          <div
-            key={event.id}
-            className="relative"
-          >
-            {index !== timelineEvents.length - 1 && (
-              <div className="absolute left-8 top-24 bottom-0 w-1 bg-gradient-to-b from-gray-300 to-gray-200 dark:from-gray-700 dark:to-gray-800 transform translate-y-2"></div>
-            )}
+      {/* TIMELINE PATH - CINEMATIC JOURNEY */}
+      <div className="relative space-y-12 md:space-y-16">
+        {/* The Path */}
+        <div className="hidden md:block timeline-path" style={{ height: `${timelineEvents.length * 400}px` }}>
+          <div className="timeline-dot" style={{
+            top: activeEventIndex !== null ? `${(activeEventIndex / timelineEvents.length) * 100}%` : '0%'
+          }} />
+        </div>
 
-            <div className={`bg-gradient-to-br ${getCategoryColor(event.category)} rounded-2xl border-2 shadow-lg hover:shadow-xl transition-all p-6 md:p-8 relative`}>
+        {timelineEvents.map((event, index) => {
+          const isActive = activeEventIndex === index;
+          const isPassed = activeEventIndex !== null && index < activeEventIndex;
+          const eventClass = isActive ? 'active' : isPassed ? 'passed' : '';
+
+          return (
+            <div
+              key={event.id}
+              id={`timeline-event-${index}`}
+              className={`timeline-item ${eventClass} cinematic-section ${
+                event.category === 'creation' ? 'theme-creation' :
+                event.category === 'jewish' && event.year.includes('Fall') ? 'theme-fall' :
+                event.category === 'catholic' ? 'theme-jesus' :
+                event.category === 'modern' ? 'theme-new-creation' : ''
+              }`}
+            >
+              <div className={`bg-gradient-to-br ${getCategoryColor(event.category)} rounded-2xl border-2 shadow-xl hover:shadow-2xl transition-all duration-500 p-6 md:p-8 relative card-cinematic cinematic-image`}>
               <div className="flex items-start gap-4 mb-4">
                 <div className={`${getCategoryBadgeColor(event.category)} p-3 rounded-full shadow-md flex-shrink-0 relative z-10`}>
                   {getCategoryIcon(event.category)}
@@ -175,10 +216,14 @@ export function Timeline() {
                   )}
                 </div>
               </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      {/* SECTION DIVIDER */}
+      <div className="section-divider my-16" />
 
       <div className="mt-12 theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">

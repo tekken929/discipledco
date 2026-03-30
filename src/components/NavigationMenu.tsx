@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
+import { useNavbarScroll } from '../hooks/useScrollAnimation';
 
 interface NavigationMenuProps {
   darkMode: boolean;
@@ -14,6 +15,7 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
   const [isOpen, setIsOpen] = useState(false);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const location = useLocation();
+  const isScrolled = useNavbarScroll(100);
 
   useEffect(() => {
     setIsOpen(false);
@@ -85,7 +87,9 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+        className={`btn-cinematic flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg ${
+          isScrolled ? 'shadow-xl' : ''
+        }`}
         aria-label="Navigation menu"
       >
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -106,10 +110,10 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                   key={link.to}
                   to={link.to}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
                     isActive
-                      ? 'theme-primary-button text-white'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
+                      ? 'theme-primary-button text-white nav-link-active'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
@@ -132,10 +136,10 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                     key={link.to}
                     to={link.to}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
                       isActive
-                        ? 'theme-primary-button text-white'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
+                        ? 'theme-primary-button text-white nav-link-active'
+                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
                     }`}
                   >
                     <Icon className="w-5 h-5" />

@@ -20,8 +20,10 @@ import { Books } from './pages/Books';
 import BookReader from './pages/BookReader';
 import { ChurchMentors } from './pages/ChurchMentors';
 import { Podcasts } from './pages/Podcasts';
+import { Timeline } from './pages/Timeline';
 import { books } from './data/books';
 import { Book } from './types/book';
+import { useNavbarScroll } from './hooks/useScrollAnimation';
 
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
@@ -31,6 +33,7 @@ function AppContent() {
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
     return localStorage.getItem('onboardingCompleted') === 'true';
   });
+  const isScrolled = useNavbarScroll(100);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -78,11 +81,14 @@ function AppContent() {
 
   return (
     <div className="min-h-screen theme-background transition-colors flex flex-col">
-      {/* Header - Sticky */}
-      <header className="theme-card shadow-lg print:hidden transition-colors sticky top-0 z-50">
+      {/* Grain Overlay */}
+      <div className="grain-overlay" />
+
+      {/* Header - Sticky with Cinematic Blur */}
+      <header className={`navbar-cinematic ${isScrolled ? 'scrolled' : ''} theme-card shadow-lg print:hidden transition-all sticky top-0 z-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
-            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
               <img
                 src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
                 alt="Cross Logo"
@@ -101,7 +107,7 @@ function AppContent() {
                     e.stopPropagation();
                     setShowThemeMenu(!showThemeMenu);
                   }}
-                  className="flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+                  className="btn-cinematic flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
                   aria-label="Change color theme"
                 >
                   <Palette className="w-5 h-5" />
@@ -170,7 +176,7 @@ function AppContent() {
 
               <button
                 onClick={toggleDarkMode}
-                className="hidden lg:flex items-center justify-center gap-2 theme-card border-2 hover:opacity-80 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+                className="btn-cinematic hidden lg:flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -206,6 +212,7 @@ function AppContent() {
           <Route path="/books/:bookId" element={<BookReader />} />
           <Route path="/church-mentors" element={<ChurchMentors />} />
           <Route path="/podcasts" element={<Podcasts />} />
+          <Route path="/timeline" element={<Timeline />} />
         </Routes>
       </div>
 
