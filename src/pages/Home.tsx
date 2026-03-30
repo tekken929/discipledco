@@ -39,8 +39,8 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
 
           <div className={`fade-in fade-in-delayed ${heroVisible ? 'visible' : ''}`}>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 mx-auto leading-relaxed">
-              Explore the timeless wisdom and profound stories that have shaped faith for millennia
+            <p className="text-xl md:text-2xl text-white/90 mb-8 mx-auto leading-relaxed max-w-4xl">
+              The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
             </p>
           </div>
 

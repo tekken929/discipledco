@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Book } from '../types/book';
-import { BookOpen, Calendar, Clock, User, BookMarked, Download } from 'lucide-react';
+import { BookOpen, Calendar, Clock, User, BookMarked, Download, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface BookDisplayProps {
   book: Book;
@@ -15,8 +16,20 @@ const sectionColors = [
 ];
 
 export function BookDisplay({ book }: BookDisplayProps) {
+  const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
+
   const handlePrint = () => {
     window.print();
+  };
+
+  const toggleSection = (sectionNumber: number) => {
+    const newExpanded = new Set(expandedSections);
+    if (newExpanded.has(sectionNumber)) {
+      newExpanded.delete(sectionNumber);
+    } else {
+      newExpanded.add(sectionNumber);
+    }
+    setExpandedSections(newExpanded);
   };
 
   return (
@@ -48,37 +61,25 @@ export function BookDisplay({ book }: BookDisplayProps) {
 
           <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 rounded-xl p-4 border border-orange-200 dark:border-orange-700 col-span-2 md:col-span-1">
             <div className="text-sm font-medium text-orange-700 dark:text-orange-300 mb-1">Type</div>
-            <div className="text-lg font-bold text-orange-900 dark:text-orange-100">{book.type}</div>
+            <div className="text-3xl font-bold text-orange-900 dark:text-orange-100">{book.type}</div>
           </div>
         </div>
 
         {/* Detail Bubbles - Three Column Layout */}
-        <div className="grid md:grid-cols-3 gap-4">
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3 mb-2">
-              <Calendar className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">Written</div>
-            </div>
-            <div className="text-gray-900 dark:text-white font-medium mb-2">{book.written}</div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">Date or period when this book was composed.</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-xl p-4 border border-purple-200 dark:border-purple-700 col-span-2 md:col-span-1">
+            <div className="text-sm font-medium text-purple-700 dark:text-purple-300 mb-1">Written</div>
+            <div className="text-3xl font-bold text-purple-900 dark:text-purple-100">{book.written}</div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3 mb-2">
-              <Clock className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">Time Period</div>
-            </div>
-            <div className="text-gray-900 dark:text-white font-medium mb-2">{book.timePeriod}</div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">Historical timeframe covered by the book's events.</p>
+          <div className="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900 dark:to-teal-800 rounded-xl p-4 border border-teal-200 dark:border-teal-700 col-span-2 md:col-span-1">
+            <div className="text-sm font-medium text-teal-700 dark:text-teal-300 mb-1">Time Period</div>
+            <div className="text-3xl font-bold text-teal-900 dark:text-teal-100">{book.timePeriod}</div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-            <div className="flex items-start gap-3 mb-2">
-              <User className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-1 flex-shrink-0" />
-              <div className="text-sm font-semibold text-gray-600 dark:text-gray-400">Author</div>
-            </div>
-            <div className="text-gray-900 dark:text-white font-medium mb-2">{book.author}</div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{book.authorDescription}</p>
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-900 dark:to-rose-800 rounded-xl p-4 border border-rose-200 dark:border-rose-700 col-span-2 md:col-span-1">
+            <div className="text-sm font-medium text-rose-700 dark:text-rose-300 mb-1">Author</div>
+            <div className="text-3xl font-bold text-rose-900 dark:text-rose-100">{book.author}</div>
           </div>
         </div>
       </div>
@@ -108,46 +109,66 @@ export function BookDisplay({ book }: BookDisplayProps) {
         </div>
       </div>
 
-      {/* Structure Section */}
+      {/* Content Section */}
       <div>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Structure</h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Content</h2>
 
         <div className="grid gap-4">
-          {book.structure.map((section) => (
-            <div
-              key={section.number}
-              className="bg-white dark:bg-gray-700 rounded-xl border-2 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-              style={{ borderColor: sectionColors[section.number - 1] }}
-            >
+          {book.structure.map((section) => {
+            const isExpanded = expandedSections.has(section.number);
+            return (
               <div
-                className="h-2"
-                style={{ backgroundColor: sectionColors[section.number - 1] }}
-              />
-              <div className="p-6">
-                <div className="flex items-start gap-4">
-                  <div
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl font-bold"
-                    style={{ backgroundColor: sectionColors[section.number - 1] }}
-                  >
-                    {section.number}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{section.title}</h3>
-                      <span className="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full text-sm font-semibold">
-                        Chapters {section.chapterRange}
-                      </span>
+                key={section.number}
+                className="bg-white dark:bg-gray-700 rounded-xl border-2 shadow-sm hover:shadow-md transition-all overflow-hidden"
+                style={{ borderColor: sectionColors[section.number - 1] }}
+              >
+                <div
+                  className="h-2"
+                  style={{ backgroundColor: sectionColors[section.number - 1] }}
+                />
+                <button
+                  onClick={() => toggleSection(section.number)}
+                  className="w-full p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600/50 transition-colors"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div
+                        className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl font-bold"
+                        style={{ backgroundColor: sectionColors[section.number - 1] }}
+                      >
+                        {section.number}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white">{section.title}</h3>
+                          <span className="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full text-sm font-semibold">
+                            Ch. {section.chapterRange}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">{section.summary}</p>
-                    <div className="bg-gray-50 dark:bg-gray-600 rounded-lg p-3 border-l-4" style={{ borderColor: sectionColors[section.number - 1] }}>
-                      <p className="text-sm italic text-gray-700 dark:text-gray-200 mb-1">"{section.keyVerse}"</p>
-                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400">— {section.verseReference}</p>
+                    {isExpanded ? (
+                      <ChevronUp className="w-6 h-6 text-gray-500 dark:text-gray-400 flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-6 h-6 text-gray-500 dark:text-gray-400 flex-shrink-0" />
+                    )}
+                  </div>
+                </button>
+
+                {isExpanded && (
+                  <div className="px-6 pb-6 pt-0">
+                    <div className="pl-16">
+                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">{section.summary}</p>
+                      <div className="bg-gray-50 dark:bg-gray-600 rounded-lg p-3 border-l-4" style={{ borderColor: sectionColors[section.number - 1] }}>
+                        <p className="text-sm italic text-gray-700 dark:text-gray-200 mb-1">"{section.keyVerse}"</p>
+                        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400">— {section.verseReference}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
