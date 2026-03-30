@@ -56,62 +56,75 @@ export function Welcome() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Start here:</h2>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            <p className="text-lg">
+            <p className="text-lg mb-6">
               Navigate the Bible with clarity and confidence.
             </p>
-            <div className="flex flex-wrap gap-3 mt-4">
-              <Link
-                to="/bible"
-                className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700"
-              >
-                <BookOpen className="w-4 h-4" />
-                Bible Overviews
-              </Link>
-              <Link
-                to="/bible-versions"
-                className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700"
-              >
-                <Book className="w-4 h-4" />
-                Bible Versions
-              </Link>
-              <Link
-                to="/topics"
-                className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700"
-              >
-                <MessageCircle className="w-4 h-4" />
-                Biblical Topics
-              </Link>
-              <Link
-                to="/stories"
-                className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700"
-              >
-                <BookOpen className="w-4 h-4" />
-                Bible Stories
-              </Link>
-              <Link
-                to="/religions"
-                className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700"
-              >
-                <Church className="w-4 h-4" />
-                Religion Insights
-              </Link>
-            </div>
-          </div>
-        </div>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <Link
+                  to="/bible"
+                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700 flex-shrink-0"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  Bible Overviews
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                  Explore all 66 books of the Bible with chapter summaries and timelines
+                </p>
+              </div>
 
-        {/* Call to Action */}
-        <div className="theme-card rounded-2xl shadow-xl p-8 text-center mb-8 transition-colors">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Next Steps:
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4 mt-6">
-            <Link
-              to="/bible"
-              className="inline-flex items-center gap-2 theme-primary-button text-white font-semibold px-8 py-3 rounded-lg transition-all shadow-md hover:shadow-lg text-lg"
-            >
-              <BookOpen className="w-6 h-6" />
-              Bible Overview
-            </Link>
+              <div className="flex items-start gap-4">
+                <Link
+                  to="/bible-versions"
+                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700 flex-shrink-0"
+                >
+                  <Book className="w-4 h-4" />
+                  Bible Versions
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                  Understand the differences between translations and versions
+                </p>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Link
+                  to="/topics"
+                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700 flex-shrink-0"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Biblical Topics
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                  Discover topics covering marriage, relationships, sin, salvation, and more
+                </p>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Link
+                  to="/stories"
+                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700 flex-shrink-0"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  Bible Stories
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                  Read Bible stories with context and meaning
+                </p>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Link
+                  to="/religions"
+                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700 flex-shrink-0"
+                >
+                  <Church className="w-4 h-4" />
+                  Religion Insights
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 pt-2">
+                  Learn how Christianity and other religions developed and how different churches emerged
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
