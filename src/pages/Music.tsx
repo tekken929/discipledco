@@ -80,9 +80,11 @@ export function Music() {
                     )}
                   </button>
                   <div className="flex-1 min-w-0" onClick={() => handlePlayTrack(track)}>
-                    <h3 className="font-semibold truncate">{track.title}</h3>
+                    <h3 className={`font-semibold truncate ${
+                      currentTrack?.id === track.id ? 'text-white' : 'text-gray-900 dark:text-white'
+                    }`}>{track.title}</h3>
                     <p className={`text-sm truncate ${
-                      currentTrack?.id === track.id ? 'text-white opacity-90' : 'text-gray-700 dark:text-gray-200'
+                      currentTrack?.id === track.id ? 'text-white opacity-90' : 'text-gray-700 dark:text-gray-300'
                     }`}>
                       {track.artist} • {formatTime(track.duration)} • {track.play_count} plays
                     </p>

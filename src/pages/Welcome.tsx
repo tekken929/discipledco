@@ -39,7 +39,7 @@ export function Welcome() {
             />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-           Bible Overview
+           The Disciple Co.
           </h1>
          
           <p className="text-sm text-gray-600 dark:text-gray-400 italic">
