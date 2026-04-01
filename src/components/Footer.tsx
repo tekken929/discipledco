@@ -111,11 +111,11 @@ export function Footer() {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="theme-card border-2 p-3 rounded-lg transition-all hover:scale-110 bg-gradient-to-r from-orange-500 to-red-500"
+              className="theme-card border-2 p-3 rounded-lg transition-all hover:scale-110"
               aria-label="Support on Patreon"
               title="Support on Patreon"
             >
-              <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-6 h-6 theme-accent" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.386.524c-4.764 0-8.64 3.876-8.64 8.64 0 4.75 3.876 8.613 8.64 8.613 4.75 0 8.614-3.864 8.614-8.613C24 4.4 20.136.524 15.386.524M.003 23.537h4.22V.524H.003"/>
               </svg>
             </a>
