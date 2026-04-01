@@ -1,5 +1,6 @@
-import { Users, ScrollText, Book, Calendar } from 'lucide-react';
+import { Users, ScrollText, Book, Calendar, ArrowLeft } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
 
 export function BibleAuthors() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -9,6 +10,17 @@ export function BibleAuthors() {
 
   return (
     <div className="min-h-screen">
+      {/* Back to Bible Overview Bubble */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors shadow-lg hover:scale-105"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Bible Overview</span>
+        </Link>
+      </div>
+
       {/* Hero Section */}
       <div
         ref={headerRef}
@@ -526,9 +538,8 @@ export function BibleAuthors() {
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Core Theme:</h3>
-            <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed italic">
-              What you consistently return to—truth, belief, attention—forms who you become.
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              The Bible is God's love letter to humanity—a timeless guide that reveals His character, His boundless love for us, and His plan for our lives. Through its pages, you'll discover profound wisdom for daily living, comfort in times of trouble, hope for the future, and the transformative power of grace. It teaches us how to love well, live purposefully, and find our true identity in Christ. Whether you're seeking answers to life's biggest questions, longing for peace, or desiring to grow spiritually, the Bible offers truth that transforms hearts, renews minds, and brings genuine freedom. At its core, Scripture shows us that we are deeply loved, created with purpose, and invited into a relationship with the God who made us.
             </p>
           </div>
         </div>

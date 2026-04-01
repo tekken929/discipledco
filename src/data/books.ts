@@ -212,8 +212,8 @@ export const books: Book[] = [
         title: 'Journey Begins, Complaints Begin',
         chapterRange: '11-12',
         summary: 'Israel departs from Sinai but immediately begins complaining about hardships, food, and leadership. God provides quail but also judgment. Even Miriam and Aaron challenge Moses\' authority. God\'s patience is tested by the people\'s constant ingratitude and rebellion.',
-        keyVerse: "How long will this wicked community grumble against me? I have heard the complaints of these grumbling Israelites.",
-        verseReference: "Numbers 14:27"},
+        keyVerse: "Now the people complained about their hardships in the hearing of the LORD, and when he heard them his anger was aroused.",
+        verseReference: "Numbers 11:1"},
       {
         number: 3,
         title: 'Rebellion at Kadesh',
@@ -226,23 +226,23 @@ export const books: Book[] = [
         title: 'Wilderness Wanderings',
         chapterRange: '15-19',
         summary: 'Years of wilderness wandering include further rebellions: Korah\'s challenge to Moses, complaints about leadership, and continued testing. God provides laws, affirms Aaron\'s priesthood through the budding staff, and institutes the red heifer ceremony for purification.',
-        keyVerse: "But if you fail to do this, you will be sinning against the LORD; and you may be sure that your sin will find you out.",
-        verseReference: "Numbers 32:23"},
+        keyVerse: "The LORD said to Moses and Aaron, 'Because you did not trust in me enough to honor me as holy in the sight of the Israelites, you will not bring this community into the land I give them.'",
+        verseReference: "Numbers 16:3"},
       {
         number: 5,
         title: 'The Journey Continues',
         chapterRange: '20-25',
         summary: 'Miriam and Aaron die. Moses strikes the rock in anger, forfeiting his entry to Canaan. Israel defeats Arad, but complains again and faces judgment by serpents. The bronze serpent brings healing. Balaam is hired to curse Israel but can only bless them.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "How beautiful are your tents, Jacob, your dwelling places, Israel!",
+        verseReference: "Numbers 24:5"
       },
       {
         number: 6,
         title: 'New Generation Prepared',
         chapterRange: '26-36',
         summary: 'A second census counts the new generation ready for conquest. Joshua is commissioned as Moses\' successor. Laws for offerings, vows, and inheritance are given. Israel defeats Midian. Two and a half tribes settle east of the Jordan. The stage is set for entering Canaan.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "But Joshua son of Nun and Caleb son of Jephunneh, who were among those who explored the land, lived on.",
+        verseReference: "Numbers 26:65"},
     ]
   },
   {
@@ -303,8 +303,8 @@ export const books: Book[] = [
         title: 'Moses\' Farewell and Death',
         chapterRange: '31-34',
         summary: 'Moses commissions Joshua as Israel\'s new leader and teaches the people a song that will testify against them. He blesses the tribes individually. God shows Moses the Promised Land from Mount Nebo, where Moses dies. No prophet like Moses has arisen since.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Since then, no prophet has risen in Israel like Moses, whom the LORD knew face to face.",
+        verseReference: "Deuteronomy 34:10"},
     ]
   },
   {
@@ -344,23 +344,23 @@ export const books: Book[] = [
         title: 'Southern and Northern Campaigns',
         chapterRange: '9-12',
         summary: 'The Gibeonites deceive Israel into a treaty. When five kings attack Gibeon, God fights for Israel with hailstones and extended daylight. Joshua conquers the southern cities, then defeats the northern coalition. Thirty-one kings are defeated in total.',
-        keyVerse: "But if serving the LORD seems undesirable to you, then choose for yourselves this day whom you will serve. But as for me and my household, we will serve the LORD.",
-        verseReference: "Joshua 24:15"},
+        keyVerse: "The sun stopped in the middle of the sky and delayed going down about a full day.",
+        verseReference: "Joshua 10:13"},
       {
         number: 4,
         title: 'Dividing the Land',
         chapterRange: '13-21',
         summary: 'God tells Joshua to divide the land even though conquest is incomplete. Detailed boundaries are established for each tribe. Caleb receives Hebron as promised. Cities of refuge and Levitical cities are designated. The eastern tribes build an altar, nearly causing civil war.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Now give me this hill country that the LORD promised me that day.",
+        verseReference: "Joshua 14:12"
       },
       {
         number: 5,
         title: 'Joshua\'s Farewell',
         chapterRange: '22-24',
         summary: 'Joshua assembles Israel and recounts God\'s faithfulness from Abraham to the present. He challenges them to choose whom they will serve. The people pledge loyalty to God. Joshua dies at 110 and is buried. The book ends with Israel serving the Lord.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "But if serving the LORD seems undesirable to you, then choose for yourselves this day whom you will serve. But as for me and my household, we will serve the LORD.",
+        verseReference: "Joshua 24:15"},
     ]
   },
   {
@@ -407,23 +407,23 @@ export const books: Book[] = [
         title: 'Jephthah and Minor Judges',
         chapterRange: '10-12',
         summary: 'Israel again turns to idolatry. Jephthah, an outcast, leads Israel to defeat Ammon but makes a tragic vow. Civil war nearly destroys Benjamin. The minor judges Tola, Jair, Ibzan, Elon, and Abdon are briefly mentioned.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "And Jephthah made a vow to the LORD: 'If you give the Ammonites into my hands, whatever comes out of the door of my house to meet me when I return in triumph from the Ammonites will be the LORD's, and I will sacrifice it as a burnt offering.'",
+        verseReference: "Judges 11:30-31"
       },
       {
         number: 5,
         title: 'Samson',
         chapterRange: '13-16',
         summary: 'Samson is born as a Nazirite to deliver Israel from the Philistines. Despite supernatural strength, Samson is morally weak, pursuing forbidden relationships. Delilah betrays him to the Philistines. Blinded and imprisoned, Samson\'s final act brings down their temple, killing thousands.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Then Samson prayed to the LORD, 'Sovereign LORD, remember me. Please, God, strengthen me just once more, and let me with one blow get revenge on the Philistines for my two eyes.'",
+        verseReference: "Judges 16:28"},
       {
         number: 6,
         title: 'Moral Chaos',
         chapterRange: '17-21',
         summary: 'Two disturbing accounts show Israel\'s moral decay: Micah\'s idolatry and the Danites\' violence, and the horrific rape and murder of a Levite\'s concubine leading to civil war against Benjamin. The refrain repeats: "Everyone did as they saw fit."',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "In those days Israel had no king; everyone did as they saw fit.",
+        verseReference: "Judges 21:25"},
     ]
   },
   {
@@ -463,15 +463,15 @@ export const books: Book[] = [
         title: 'A Bold Request',
         chapterRange: '3',
         summary: 'Following Naomi\'s instructions, Ruth approaches Boaz at the threshing floor and asks him to spread his garment over her, requesting him to act as kinsman-redeemer. Boaz praises her character and agrees, though there is a closer relative who has first rights.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "The LORD bless you, my daughter. This kindness is greater than that which you showed earlier: You have not run after the younger men, whether rich or poor.",
+        verseReference: "Ruth 3:10"},
       {
         number: 4,
         title: 'Redemption and Blessing',
         chapterRange: '4',
         summary: 'At the city gate, Boaz arranges for the closer relative to decline his right to redeem. Boaz marries Ruth, redeeming Naomi\'s family line. Ruth bears a son, Obed, who becomes the grandfather of David. The book ends with a genealogy connecting Ruth to David and, ultimately, to Christ.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Then the women said to Naomi: 'Praise be to the LORD, who this day has not left you without a guardian-redeemer.'",
+        verseReference: "Ruth 4:14"},
     ]
   },
   {
@@ -497,43 +497,43 @@ export const books: Book[] = [
         title: 'Samuel: Prophet and Judge',
         chapterRange: '1-7',
         summary: 'Hannah prays for a son and dedicates Samuel to the Lord. Eli\'s wicked sons abuse their priestly role. God calls young Samuel. The ark is captured by Philistines but brings them plagues, so they return it. Samuel leads Israel to victory and judges them faithfully.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "For this child I prayed, and the LORD has granted me what I asked of him.",
+        verseReference: "1 Samuel 1:27"},
       {
         number: 2,
         title: 'Israel Demands a King',
         chapterRange: '8-12',
         summary: 'Israel rejects Samuel\'s sons and demands a king. God tells Samuel their request is ultimately a rejection of Him. Saul is chosen, defeats the Ammonites, and is publicly confirmed as king. Samuel reviews Israel\'s history and warns them about serving God faithfully under monarchy.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "But when you saw that Nahash king of the Ammonites was moving against you, you said to me, 'No, we want a king to rule over us'—even though the LORD your God was your king.",
+        verseReference: "1 Samuel 12:12"},
       {
         number: 3,
         title: 'Saul\'s Reign and Rejection',
         chapterRange: '13-15',
         summary: 'Saul offers unauthorized sacrifice, showing impatience and presumption. Jonathan displays great faith in attacking the Philistines. Saul makes foolish vows. When Saul disobeys God\'s command regarding the Amalekites, Samuel announces God has rejected him as king. Obedience is better than sacrifice.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Does the LORD delight in burnt offerings and sacrifices as much as in obeying the LORD? To obey is better than sacrifice, and to heed is better than the fat of rams.",
+        verseReference: "1 Samuel 15:22"},
       {
         number: 4,
         title: 'David Rises, Saul Falls',
         chapterRange: '16-20',
         summary: 'Samuel anoints David, a shepherd boy. David defeats Goliath in faith. Jonathan and David form a covenant friendship. Saul grows jealous as David succeeds militarily. Saul repeatedly tries to kill David. Jonathan protects David, and David flees from Saul\'s court.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "The LORD who rescued me from the paw of the lion and the paw of the bear will rescue me from the hand of this Philistine.",
+        verseReference: "1 Samuel 17:37"},
       {
         number: 5,
         title: 'David as Fugitive',
         chapterRange: '21-26',
         summary: 'David gathers followers while fleeing from Saul. He spares Saul\'s life twice, showing mercy and respect for God\'s anointed. Nabal refuses David\'s request, but his wife Abigail wisely prevents bloodshed and later becomes David\'s wife. David continues to trust God rather than take revenge.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "The LORD forbid that I should do such a thing to my master, the LORD's anointed, or lay my hand on him; for he is the anointed of the LORD.",
+        verseReference: "1 Samuel 24:6"},
       {
         number: 6,
         title: 'Saul\'s Final Days',
         chapterRange: '27-31',
         summary: 'David seeks refuge among the Philistines. Saul consults a medium at Endor in desperation and is told of his coming death. The Philistines battle Israel. Saul\'s sons die, and Saul falls on his own sword. A tragic end for the rejected king.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Saul said to his armor-bearer, 'Draw your sword and run me through, or these uncircumcised fellows will come and run me through and abuse me.' But his armor-bearer was terrified and would not do it; so Saul took his own sword and fell on it.",
+        verseReference: "1 Samuel 31:4"},
     ]
   },
   {
@@ -559,43 +559,43 @@ export const books: Book[] = [
         title: 'David Becomes King of Judah',
         chapterRange: '1-4',
         summary: 'David mourns Saul and Jonathan. He is anointed king of Judah in Hebron. Civil war erupts between David\'s supporters and Saul\'s son Ish-Bosheth. After Abner and Ish-Bosheth are murdered, the way opens for David to rule all Israel.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "How the mighty have fallen! The weapons of war have perished!",
+        verseReference: "2 Samuel 1:27"},
       {
         number: 2,
         title: 'David\'s Triumphs',
         chapterRange: '5-10',
         summary: 'All Israel anoints David king. He captures Jerusalem, making it his capital. The ark is brought to Jerusalem with great celebration. God makes a covenant with David, promising an everlasting kingdom. David defeats surrounding nations, expanding and securing Israel\'s borders.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Your house and your kingdom will endure forever before me; your throne will be established forever.",
+        verseReference: "2 Samuel 7:16"},
       {
         number: 3,
         title: 'David\'s Sin and Nathan\'s Confrontation',
         chapterRange: '11-12',
         summary: 'David commits adultery with Bathsheba and arranges her husband Uriah\'s death. Nathan confronts David with a parable. David repents genuinely, but consequences follow: the child dies. Yet God\'s grace is evident as Bathsheba later bears Solomon, the heir to the throne.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Then David said to Nathan, 'I have sinned against the LORD.' Nathan replied, 'The LORD has taken away your sin. You are not going to die.'",
+        verseReference: "2 Samuel 12:13"},
       {
         number: 4,
         title: 'Family Tragedy',
         chapterRange: '13-18',
         summary: 'Amnon rapes his half-sister Tamar. Absalom avenges her by killing Amnon, then flees. Joab arranges Absalom\'s return, but father and son remain estranged. Absalom rebels and usurps the throne. David flees Jerusalem. Absalom dies in battle despite David\'s orders to spare him.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "The king was shaken. He went up to the room over the gateway and wept. As he went, he said: 'O my son Absalom! My son, my son Absalom! If only I had died instead of you—O Absalom, my son, my son!'",
+        verseReference: "2 Samuel 18:33"},
       {
         number: 5,
         title: 'David Restored',
         chapterRange: '19-20',
         summary: 'David mourns Absalom excessively until Joab rebukes him. David returns to Jerusalem amid political tension. Sheba leads another brief rebellion but is quickly defeated. David\'s kingdom is restored, though relationships remain fractured from the preceding turmoil.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "You have covered with shame all your men, who have just saved your life and the lives of your sons and daughters and the lives of your wives and concubines.",
+        verseReference: "2 Samuel 19:5"},
       {
         number: 6,
         title: 'Appendix: Various Events',
         chapterRange: '21-24',
         summary: 'This section includes various events from David\'s reign: famine resolved, battles with Philistines, David\'s songs of praise, a list of his mighty warriors, and the census that brings plague. Despite David\'s sins, his heart for God shines through in his worship.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "The LORD is my rock, my fortress and my deliverer; my God is my rock, in whom I take refuge, my shield and the horn of my salvation.",
+        verseReference: "2 Samuel 22:2-3"},
     ]
   },
   {
@@ -621,44 +621,44 @@ export const books: Book[] = [
         title: 'Solomon\'s Rise',
         chapterRange: '1-4',
         summary: 'David\'s final days are marked by palace intrigue. Adonijah tries to seize the throne, but Nathan and Bathsheba intervene. David names Solomon as his successor. Solomon consolidates power, removes threats, and displays wisdom. His kingdom is firmly established with efficient administration.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "So give your servant a discerning heart to govern your people and to distinguish between right and wrong.",
+        verseReference: "1 Kings 3:9"},
       {
         number: 2,
         title: 'Solomon\'s Glory',
         chapterRange: '5-10',
         summary: 'God grants Solomon wisdom, and he builds the magnificent temple. At the dedication, God\'s glory fills the temple. Solomon\'s wisdom, wealth, and fame spread internationally. The Queen of Sheba visits and is amazed. Israel reaches its peak of prosperity and influence.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "When the priests withdrew from the Holy Place, the cloud filled the temple of the LORD. And the priests could not perform their service because of the cloud, for the glory of the LORD filled his temple.",
+        verseReference: "1 Kings 8:10-11"},
       {
         number: 3,
         title: 'Solomon\'s Fall',
         chapterRange: '11',
         summary: 'Solomon\'s many foreign wives turn his heart toward their gods. He builds high places for idols and compromises his devotion to God. God announces the kingdom will be torn from Solomon\'s son, though one tribe will remain for David\'s sake. Adversaries rise against Solomon.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "As Solomon grew old, his wives turned his heart after other gods, and his heart was not fully devoted to the LORD his God, as the heart of David his father had been.",
+        verseReference: "1 Kings 11:4"},
       {
         number: 4,
         title: 'The Kingdom Divides',
         chapterRange: '12-14',
         summary: 'Rehoboam foolishly refuses to lighten the people\'s burden. Ten tribes rebel and make Jeroboam king of Israel. Jeroboam establishes false worship centers with golden calves to keep people from Jerusalem. Both kingdoms begin patterns of idolatry and apostasy despite prophetic warnings.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "So the king asked advice, made two calves of gold, and said to the people, 'It is too much for you to go up to Jerusalem. Here are your gods, Israel, who brought you up out of Egypt.'",
+        verseReference: "1 Kings 12:28"},
       {
         number: 5,
         title: 'Elijah Emerges',
         chapterRange: '15-19',
         summary: 'Various kings rule both kingdoms, mostly doing evil. Ahab marries Jezebel and promotes Baal worship. Elijah appears and announces drought. God sustains Elijah through a widow. Elijah confronts the prophets of Baal on Mount Carmel. Fire falls from heaven, but Jezebel threatens Elijah.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Then the fire of the LORD fell and burned up the sacrifice, the wood, the stones and the soil, and also licked up the water in the trench.",
+        verseReference: "1 Kings 18:38"
       },
       {
         number: 6,
         title: 'Ahab\'s Final Days',
         chapterRange: '20-22',
         summary: 'Ahab defeats Syria but disobeys God by sparing their king. Ahab covets Naboth\'s vineyard; Jezebel arranges Naboth\'s murder. Elijah pronounces judgment on Ahab\'s house. Ahab shows temporary repentance. He dies in battle, fulfilling prophecy. Jehoshaphat rules Judah; Ahaziah succeeds Ahab in Israel.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "So the king died and was brought to Samaria, and they buried him there. They washed the chariot at a pool in Samaria (where the prostitutes bathed), and the dogs licked up his blood, as the word of the LORD had declared.",
+        verseReference: "1 Kings 22:37-38"},
     ]
   },
   {
@@ -684,43 +684,43 @@ export const books: Book[] = [
         title: 'Elijah\'s Final Days',
         chapterRange: '1-2',
         summary: 'Ahaziah seeks Baal after an injury; Elijah pronounces his death. Elijah mentors Elisha as his successor. Elijah is taken up to heaven in a whirlwind and chariot of fire. Elisha receives a double portion of Elijah\'s spirit and begins his ministry with miracles.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "As they were walking along and talking together, suddenly a chariot of fire and horses of fire appeared and separated the two of them, and Elijah went up to heaven in a whirlwind.",
+        verseReference: "2 Kings 2:11"},
       {
         number: 2,
         title: 'Elisha\'s Ministry',
         chapterRange: '3-8',
         summary: 'Elisha performs many miracles: multiplying oil, raising a dead boy, purifying poisoned food, feeding a hundred men, healing Naaman of leprosy, making an axe head float, and blinding Syrian raiders. His ministry demonstrates God\'s power and compassion for both Israelites and foreigners.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "So Naaman went down and dipped himself in the Jordan seven times, as the man of God had told him, and his flesh was restored and became clean like that of a young boy.",
+        verseReference: "2 Kings 5:14"},
       {
         number: 3,
         title: 'Jehu\'s Revolution',
         chapterRange: '9-10',
         summary: 'Elisha\'s servant anoints Jehu king of Israel. Jehu violently fulfills prophecies against Ahab\'s house, killing Joram and Jezebel (thrown from a window as predicted). He also kills Ahaziah of Judah and exterminates Baal worship from Israel, though he maintains Jeroboam\'s golden calf worship.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "When Jezebel heard about it, she painted her eyes, arranged her hair and looked out of a window. As Jehu entered the gate, she asked, 'Have you come in peace, you Zimri, you murderer of your master?'",
+        verseReference: "2 Kings 9:30-31"},
       {
         number: 4,
         title: 'Decline and Fall of Israel',
         chapterRange: '11-17',
         summary: 'Both kingdoms experience succession of mostly evil kings. Athaliah usurps Judah\'s throne but is overthrown; young Joash is crowned. Despite occasional reforms, both kingdoms persist in idolatry. Israel faces Assyrian invasion. After a final rebellion, Samaria falls. Israel is exiled and resettled with foreigners.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "All this took place because the Israelites had sinned against the LORD their God, who had brought them up out of Egypt from under the power of Pharaoh king of Egypt.",
+        verseReference: "2 Kings 17:7"},
       {
         number: 5,
         title: 'Judah Survives Temporarily',
         chapterRange: '18-23',
         summary: 'Hezekiah brings genuine reform and trusts God when Assyria threatens Jerusalem. God miraculously delivers the city. Hezekiah\'s son Manasseh is extremely wicked. Young Josiah brings sweeping reforms when the Book of the Law is rediscovered, but it\'s too late to avert judgment.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Hezekiah trusted in the LORD, the God of Israel. There was no one like him among all the kings of Judah, either before him or after him.",
+        verseReference: "2 Kings 18:5"},
       {
         number: 6,
         title: 'Fall of Jerusalem',
         chapterRange: '24-25',
         summary: 'After Josiah\'s death, Judah\'s final kings are weak. Babylon invades multiple times. Zedekiah rebels, prompting Nebuchadnezzar to destroy Jerusalem and the temple. The people are exiled to Babylon. The book ends in exile but hints at hope through showing mercy to David\'s descendant Jehoiachin.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "So Judah went into captivity, away from her land.",
+        verseReference: "2 Kings 25:21"},
     ]
   },
   {
@@ -746,44 +746,44 @@ export const books: Book[] = [
         title: 'Genealogies: From Adam to David',
         chapterRange: '1-9',
         summary: 'Extensive genealogies trace Israel\'s lineage from Adam through the patriarchs, twelve tribes, and royal line to David. Special attention is given to Judah, Levi, and Benjamin. The lists establish the continuity of God\'s covenant people and the legitimacy of the restored community after exile.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "The sons of Judah: Perez, Hezron, Karmi, Hur and Shobal.",
+        verseReference: "1 Chronicles 4:1"},
       {
         number: 2,
         title: 'Saul\'s Failure and Death',
         chapterRange: '10',
         summary: 'The narrative proper begins with Saul\'s death. The Philistines defeat Israel on Mount Gilboa. Saul and his sons die in battle. The Chronicler explicitly states Saul died for his unfaithfulness—consulting a medium and not seeking the Lord. This sets up David\'s contrasting faithfulness.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Saul died because he was unfaithful to the LORD; he did not keep the word of the LORD and even consulted a medium for guidance.",
+        verseReference: "1 Chronicles 10:13"},
       {
         number: 3,
         title: 'David Established as King',
         chapterRange: '11-16',
         summary: 'All Israel anoints David king. He captures Jerusalem. His mighty warriors are listed. The ark is brought to Jerusalem with celebration and worship. David appoints Levites for continual ministry before the ark. Psalms of thanksgiving are included. David\'s concern is establishing proper worship.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "All Israel came together to David at Hebron and said, 'We are your own flesh and blood.'",
+        verseReference: "1 Chronicles 11:1"},
       {
         number: 4,
         title: 'God\'s Covenant with David',
         chapterRange: '17',
         summary: 'David desires to build a temple, but God says his son will build it. Instead, God makes an eternal covenant with David, promising his throne will be established forever. David responds with humble worship and thanksgiving. This covenant is central to Chronicles and points toward the Messiah.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "I will set him over my house and my kingdom forever; his throne will be established forever.",
+        verseReference: "1 Chronicles 17:14"
       },
       {
         number: 5,
         title: 'David\'s Victories',
         chapterRange: '18-20',
         summary: 'David defeats surrounding nations—Philistines, Moabites, Arameans, Edomites, and Ammonites. His kingdom is established and expanded. David\'s officials are listed. Unlike Samuel, Chronicles omits David\'s sin with Bathsheba, focusing on the positive aspects of his reign and God\'s blessing through obedience.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "The LORD gave David victory everywhere he went.",
+        verseReference: "1 Chronicles 18:6"},
       {
         number: 6,
         title: 'Preparing for the Temple',
         chapterRange: '21-29',
         summary: 'David numbers Israel and faces plague, but buys the threshing floor where the temple will stand. He makes extensive preparations: gathering materials, organizing Levites, priests, musicians, and gatekeepers. David charges Solomon to build the temple. The people give generously. David praises God and dies.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Yours, LORD, is the greatness and the power and the glory and the majesty and the splendor, for everything in heaven and earth is yours.",
+        verseReference: "1 Chronicles 29:11"
       }
     ]
   },
@@ -810,43 +810,43 @@ export const books: Book[] = [
         title: 'Solomon\'s Glory',
         chapterRange: '1-9',
         summary: 'Solomon asks for wisdom and receives it abundantly along with wealth and honor. He builds the magnificent temple following David\'s plans. At the dedication, God\'s glory fills the temple. Solomon offers sacrifices and prays. God appears, promising blessing for obedience. The Queen of Sheba visits, amazed at Solomon\'s wisdom.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "When Solomon finished praying, fire came down from heaven and consumed the burnt offering and the sacrifices, and the glory of the LORD filled the temple.",
+        verseReference: "2 Chronicles 7:1"},
       {
         number: 2,
         title: 'The Kingdom Divides',
         chapterRange: '10-12',
         summary: 'Rehoboam foolishly refuses to lighten the people\'s burden, causing ten tribes to rebel. Rehoboam is forbidden to fight them. He fortifies Judah and initially follows God, receiving defecting priests and Levites from Israel. Later he abandons God\'s law, and Egypt invades, but Rehoboam humbles himself.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Because you have humbled yourselves before me, I will give you some deliverance. My wrath will not be poured out on Jerusalem through Shishak.",
+        verseReference: "2 Chronicles 12:7"},
       {
         number: 3,
         title: 'Judah\'s Early Kings',
         chapterRange: '13-20',
         summary: 'Abijah defeats Israel, trusting God. Asa brings reform and experiences victory, but later relies on Syria instead of God. Jehoshaphat strengthens Judah and teaches God\'s law but foolishly allies with Ahab. Despite mistakes, when Jehoshaphat seeks God against overwhelming odds, God delivers miraculously.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "You will not have to fight this battle. Take up your positions; stand firm and see the deliverance the LORD will give you, Judah and Jerusalem.",
+        verseReference: "2 Chronicles 20:17"},
       {
         number: 4,
         title: 'From Revival to Apostasy',
         chapterRange: '21-28',
         summary: 'Jehoram and Ahaziah are wicked, influenced by Ahab\'s family. Athaliah usurps the throne but is overthrown. Young Joash repairs the temple but later turns from God. Amaziah starts well but ends badly. Uzziah prospers when he seeks God but becomes proud. Ahaz is extremely wicked, provoking God\'s fierce anger.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "But after Uzziah became powerful, his pride led to his downfall. He was unfaithful to the LORD his God, and entered the temple of the LORD to burn incense on the altar of incense.",
+        verseReference: "2 Chronicles 26:16"},
       {
         number: 5,
         title: 'Reform and Near Disaster',
         chapterRange: '29-32',
         summary: 'Hezekiah brings sweeping reform: cleanses the temple, reinstitutes Passover, and destroys idols throughout the land. When Assyria invades, Hezekiah trusts God and Jerusalem is miraculously delivered. Later Hezekiah shows pride but repents. He experiences both God\'s blessing and discipline.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Be strong and courageous. Do not be afraid or discouraged because of the king of Assyria and the vast army with him, for there is a greater power with us than with him.",
+        verseReference: "2 Chronicles 32:7"},
       {
         number: 6,
         title: 'Final Kings and Exile',
         chapterRange: '33-36',
         summary: 'Manasseh is extremely wicked but repents in exile and is restored. Josiah brings passionate reform when the Law is rediscovered, but is killed in battle. Judah\'s final kings are weak. Despite prophetic warnings, the people mock God\'s messengers. Babylon destroys Jerusalem and the temple. Cyrus\'s decree offers hope for return.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "This is what Cyrus king of Persia says: 'The LORD, the God of heaven, has given me all the kingdoms of the earth and he has appointed me to build a temple for him at Jerusalem in Judah. Any of his people among you may go up, and may the LORD their God be with them.'",
+        verseReference: "2 Chronicles 36:23"},
     ]
   },
   {
@@ -886,22 +886,22 @@ export const books: Book[] = [
         title: 'Opposition and Delay',
         chapterRange: '4-6',
         summary: 'Enemies offer to help but are refused, so they oppose the work. They intimidate the people and send accusations to Persian kings. Work stops for years. Prophets Haggai and Zechariah urge resumption. King Darius investigates, finds Cyrus\'s decree, and orders work to continue. The temple is completed and dedicated.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Now Haggai the prophet and Zechariah the prophet, a descendant of Iddo, prophesied to the Jews in Judah and Jerusalem in the name of the God of Israel, who was over them.",
+        verseReference: "Ezra 5:1"},
       {
         number: 4,
         title: 'Ezra\'s Return',
         chapterRange: '7-8',
         summary: 'Nearly 60 years after the temple\'s completion, Ezra the priest leads another group back to Jerusalem, commissioned by King Artaxerxes to teach God\'s law. Ezra fasts and prays for protection on the journey. God\'s hand is upon them, and they arrive safely with generous provisions from the king.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "For Ezra had devoted himself to the study and observance of the Law of the LORD, and to teaching its decrees and laws in Israel.",
+        verseReference: "Ezra 7:10"},
       {
         number: 5,
         title: 'Dealing with Intermarriage',
         chapterRange: '9-10',
         summary: 'Ezra discovers many, including leaders, have married pagan women and adopted their practices. Overwhelmed, he prays and confesses the sin. The people gather, weeping. They covenant to put away foreign wives to restore holiness. Though painful, the community chooses obedience to God\'s covenant over cultural compromise.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "When I heard this, I tore my tunic and cloak, pulled hair from my head and beard and sat down appalled.",
+        verseReference: "Ezra 9:3"},
     ]
   },
   {
@@ -948,16 +948,16 @@ export const books: Book[] = [
         title: 'Resettling Jerusalem',
         chapterRange: '11-12',
         summary: 'Leaders settle in Jerusalem; lots are cast for others to move into the city. Lists record those who resettled. The wall is dedicated with celebration, thanksgiving, and two large choirs processing around the walls. Priests and Levites are organized for temple service. Joy is heard far away.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "The sound of rejoicing in Jerusalem could be heard far away.",
+        verseReference: "Nehemiah 12:43"
       },
       {
         number: 5,
         title: 'Nehemiah\'s Final Reforms',
         chapterRange: '13',
         summary: 'Nehemiah returns to Persia, then comes back to find compromise: temple rooms misused, Levites unsupported, Sabbath violated, and intermarriage renewed. He confronts each issue forcefully, cleansing the temple, restoring proper worship, enforcing Sabbath, and dealing with mixed marriages. He prays for God to remember his efforts.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Remember me with favor, my God, for all I have done for these people.",
+        verseReference: "Nehemiah 13:31"
       }
     ]
   },
@@ -1005,8 +1005,8 @@ export const books: Book[] = [
         title: 'The Jews Are Saved',
         chapterRange: '8-10',
         summary: 'The king gives Haman\'s estate to Esther and Mordecai. Since Persian law prevents revoking the death edict, a new decree allows Jews to defend themselves. On the appointed day, Jews defeat their enemies. The Feast of Purim is established to commemorate their deliverance. Mordecai becomes second in the kingdom.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "For the Jews it was a time of happiness and joy, gladness and honor.",
+        verseReference: "Esther 8:16"},
     ]
   },
   {
@@ -1165,15 +1165,15 @@ export const books: Book[] = [
         title: 'More of Solomon\'s Proverbs',
         chapterRange: '25-29',
         summary: 'Hezekiah\'s men compiled this additional collection of Solomon\'s proverbs. Topics continue from earlier sections: appropriate speech, relationships with neighbors and rulers, the dangers of pride, dealing with fools, laziness, family dynamics, and justice. These proverbs use vivid metaphors and comparisons to teach wisdom principles.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "It is the glory of God to conceal a matter; to search out a matter is the glory of kings.",
+        verseReference: "Proverbs 25:2"},
       {
         number: 5,
         title: 'Words of Agur and Lemuel',
         chapterRange: '30-31',
         summary: 'Agur confesses his limitations and poses numerical sayings. Lemuel records his mother\'s instruction for a king: avoid excess and defend the vulnerable. The book concludes with the famous acrostic poem describing the excellent wife: capable, industrious, wise, generous, and God-fearing. "She is worth far more than rubies."',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Charm is deceptive, and beauty is fleeting; but a woman who fears the LORD is to be praised.",
+        verseReference: "Proverbs 31:30"},
     ]
   },
   {
@@ -1220,16 +1220,16 @@ export const books: Book[] = [
         title: 'Life\'s Uncertainties',
         chapterRange: '11-12:8',
         summary: 'The Teacher counsels action despite uncertainty: invest broadly, work diligently. Youth should rejoice but remember they will face judgment. Remember your Creator before old age comes. Using extended metaphors, he describes aging and death. His conclusion: "Meaningless! Everything is meaningless!" The cycle of life continues without ultimate earthly purpose.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Remember your Creator in the days of your youth, before the days of trouble come and the years approach when you will say, 'I find no pleasure in them.'",
+        verseReference: "Ecclesiastes 12:1"
       },
       {
         number: 5,
         title: 'The Conclusion',
         chapterRange: '12:9-14',
         summary: 'The epilogue summarizes the Teacher\'s work and wisdom. After exploring every avenue, the final verdict is clear: "Fear God and keep his commandments, for this is the duty of all mankind. For God will bring every deed into judgment, including every hidden thing." Meaning is found in relationship with God.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Now all has been heard; here is the conclusion of the matter: Fear God and keep his commandments, for this is the duty of all mankind.",
+        verseReference: "Ecclesiastes 12:13"},
     ]
   },
   {
@@ -1255,23 +1255,23 @@ export const books: Book[] = [
         title: 'Courtship and Attraction',
         chapterRange: '1-3',
         summary: 'The lovers express mutual admiration and desire. She describes herself humbly but he praises her beauty extravagantly. They long for each other and celebrate their love. The bride searches for her beloved and finds him. The "daughters of Jerusalem" are warned not to awaken love before its proper time.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "I charge you, daughters of Jerusalem, by the gazelles and by the does of the field: Do not arouse or awaken love until it so desires.",
+        verseReference: "Song of Solomon 2:7"
       },
       {
         number: 2,
         title: 'The Wedding and Consummation',
         chapterRange: '4-5',
         summary: 'The groom praises his bride\'s beauty with elaborate metaphors. He speaks of entering his "garden," a euphemism for consummation. She invites him to his garden. After their union, she dreams of losing him but finds him again. The friends praise the lovers. This section celebrates marital intimacy as beautiful and good.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "You are a garden locked up, my sister, my bride; you are a spring enclosed, a sealed fountain.",
+        verseReference: "Song of Solomon 4:12"},
       {
         number: 3,
         title: 'Mutual Delight',
         chapterRange: '6-8',
         summary: 'The lovers continue expressing admiration and desire. He praises her beauty as unique among women. She responds with affection. The relationship is described as exclusive, permanent, and passionate: "Many waters cannot quench love." The book closes affirming love\'s power and value, requesting faithfulness and devoted attention.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Place me like a seal over your heart, like a seal on your arm; for love is as strong as death, its jealousy unyielding as the grave.",
+        verseReference: "Song of Solomon 8:6"},
     ]
   },
   {
@@ -1332,8 +1332,8 @@ export const books: Book[] = [
         title: 'Future Glory',
         chapterRange: '56-66',
         summary: 'Isaiah envisions ultimate restoration: foreigners and outcasts welcomed, the Redeemer coming to Zion, the Spirit anointing one to bring good news to the poor. God will create new heavens and a new earth where righteousness dwells. All nations will worship God. The book ends with both eternal joy for the faithful and judgment for rebels.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "See, I will create new heavens and a new earth. The former things will not be remembered, nor will they come to mind.",
+        verseReference: "Isaiah 65:17"
       }
     ]
   },
@@ -1388,15 +1388,15 @@ export const books: Book[] = [
         title: 'Jerusalem\'s Fall Approaches',
         chapterRange: '34-45',
         summary: 'Jeremiah warns Zedekiah repeatedly. The king imprisons him. Jeremiah buys a field as a sign of future restoration. When Babylon besieges Jerusalem, Zedekiah seeks advice but disobeys. The city falls; the temple is destroyed. Jeremiah is released by the Babylonians. Some Jews flee to Egypt, taking Jeremiah with them against his will.',
-        keyVerse: "Because of the LORD's great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
-        verseReference: "Jeremiah 3:22-23"},
+        keyVerse: "This is what the LORD says: As I have brought all this great calamity on this people, so I will give them all the prosperity I have promised them.",
+        verseReference: "Jeremiah 32:42"},
       {
         number: 6,
         title: 'Oracles and Historical Appendix',
         chapterRange: '46-52',
         summary: 'Jeremiah prophesies judgment against surrounding nations: Egypt, Philistia, Moab, Ammon, Edom, Damascus, Kedar, Elam, and especially Babylon itself. Though God uses Babylon as His instrument, they too will face judgment. Chapter 52 provides historical details of Jerusalem\'s fall, paralleling 2 Kings, confirming Jeremiah\'s prophecies came true.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Babylon will suddenly fall and be broken. Wail over her! Get balm for her pain; perhaps she can be healed.",
+        verseReference: "Jeremiah 51:8"},
     ]
   },
   {
@@ -1443,15 +1443,15 @@ export const books: Book[] = [
         title: 'Then and Now',
         chapterRange: '4',
         summary: 'The poet contrasts Jerusalem\'s past glory with present degradation. Precious children now rummage through garbage. Those who ate delicacies starve in streets. Prophets and priests are guilty. Allies have failed. Yet the punishment will end; Zion\'s sin is paid for. Meanwhile, Edom will face judgment for their cruelty during Jerusalem\'s fall.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "How the gold has lost its luster, the fine gold become dull! The sacred gems are scattered at every street corner.",
+        verseReference: "Lamentations 4:1"},
       {
         number: 5,
         title: 'Corporate Prayer for Restoration',
         chapterRange: '5',
         summary: 'The book concludes with a communal prayer recounting their humiliation and suffering under foreign rule. "Joy is gone from our hearts; our dancing has turned to mourning." They confess ancestral and personal sin. The prayer ends with appeal: "Restore us to yourself, LORD... renew our days as of old" unless God has utterly rejected them.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Restore us to yourself, LORD, that we may return; renew our days as of old.",
+        verseReference: "Lamentations 5:21"
       }
     ]
   },
@@ -1595,15 +1595,15 @@ export const books: Book[] = [
         title: 'Judgment and Love',
         chapterRange: '8-11',
         summary: 'Israel has broken the covenant and will reap judgment—exile to Assyria. They plant wind and reap whirlwind. Yet God\'s heart breaks over Israel: "How can I give you up, Ephraim? My heart recoils within me." God\'s compassion grows warm. Though judgment must come, His love ultimately prevails. He cannot abandon His people permanently.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "They sow the wind and reap the whirlwind. The stalk has no head; it will produce no flour.",
+        verseReference: "Hosea 8:7"},
       {
         number: 4,
         title: 'Return and Restoration',
         chapterRange: '12-14',
         summary: 'God appeals through Jacob\'s example and past deliverances. Israel must return to God with confession, forsaking idols and foreign alliances. The book ends with God\'s beautiful promise of healing and restoration: "I will heal their waywardness and love them freely." The final verse asks: who is wise? Let them understand God\'s ways are right; the righteous walk in them.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Who is wise? Let them realize these things. Who is discerning? Let them understand. The ways of the LORD are right; the righteous walk in them, but the rebellious stumble in them.",
+        verseReference: "Hosea 14:9"},
     ]
   },
   {
@@ -1643,15 +1643,15 @@ export const books: Book[] = [
         title: 'Promise of Restoration',
         chapterRange: '2:18-32',
         summary: 'God responds to His people\'s repentance with mercy. He will drive away the northern army and restore the years the locusts have eaten. He promises abundant harvests and His presence among them. Then comes the stunning promise: God will pour out His Spirit on all people, not just leaders. Sons, daughters, young, old, servants—all will prophesy.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "I will repay you for the years the locusts have eaten—the great locust and the young locust, the other locusts and the locust swarm—my great army that I sent among you.",
+        verseReference: "Joel 2:25"},
       {
         number: 4,
         title: 'Judgment on the Nations',
         chapterRange: '3:1-21',
         summary: 'God will judge the nations that scattered His people and divided His land. He calls them to the Valley of Jehoshaphat for judgment. While nations face God\'s wrath, Judah and Jerusalem will be secure. A fountain will flow from the LORD\'s house. God will dwell in Zion forever, vindicating His people and punishing their oppressors.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Then you will know that I, the LORD your God, dwell in Zion, my holy hill. Jerusalem will be holy; never again will foreigners invade her.",
+        verseReference: "Joel 3:17"},
     ]
   },
   {
@@ -1698,15 +1698,15 @@ export const books: Book[] = [
         title: 'Five Visions',
         chapterRange: '7:1-9:10',
         summary: 'Amos sees five visions: locusts, fire, a plumb line, ripe fruit, and the Lord at the altar. The first two judgments are averted by Amos\' intercession, but the third is final—God will spare them no longer. Amaziah the priest tells Amos to leave. Amos responds that he\'s just a shepherd, but God called him. The sinful kingdom will be destroyed.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Then the LORD said, 'Look, I am setting a plumb line among my people Israel; I will spare them no longer.'",
+        verseReference: "Amos 7:8"},
       {
         number: 5,
         title: 'Future Restoration',
         chapterRange: '9:11-15',
         summary: 'After overwhelming judgment, the book ends with hope. God will restore David\'s fallen tent and rebuild its ruins. Israel will return from exile and rebuild cities, plant vineyards, and never be uprooted again. This promise extends beyond Israel\'s return from exile to ultimate restoration through the Messiah, as quoted in Acts 15.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "In that day I will restore David's fallen shelter—I will repair its broken walls and restore its ruins—and will rebuild it as it used to be.",
+        verseReference: "Amos 9:11"},
     ]
   },
   {
@@ -1739,15 +1739,15 @@ export const books: Book[] = [
         title: 'Edom\'s Sin Against Judah',
         chapterRange: '10-14',
         summary: 'Edom\'s specific crimes are detailed: standing aloof when foreigners attacked Jerusalem, gloating over Judah\'s disaster, looting their wealth, cutting down refugees trying to escape. They should have helped their brother nation instead of joining the attackers. Violence against Jacob will bring shame and destruction to Esau\'s descendants forever.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Because of the violence against your brother Jacob, you will be covered with shame; you will be destroyed forever.",
+        verseReference: "Obadiah 1:10"},
       {
         number: 3,
         title: 'The Day of the LORD',
         chapterRange: '15-21',
         summary: 'The day of the LORD is near for all nations. As Edom did, so it will be done to them—their deeds will return on their own heads. While nations drink God\'s judgment, Zion will be delivered and become holy. The house of Jacob will possess their inheritance. Fire will consume Esau. The kingdom will be the LORD\'s.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "And the kingdom will be the LORD's.",
+        verseReference: "Obadiah 1:21"},
     ]
   },
   {
@@ -1794,8 +1794,8 @@ export const books: Book[] = [
         title: 'Jonah\'s Anger',
         chapterRange: '4',
         summary: 'Jonah becomes furious that God spared Nineveh. This is why he fled initially—he knew God was gracious and compassionate. He\'d rather die than see his enemies spared. God provides a plant for shade, then sends a worm to destroy it. Jonah is angry about the plant. God asks: if you care about a plant, shouldn\'t I care about 120,000 people?',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "He prayed to the LORD, 'Isn't this what I said, LORD, when I was still at home? That is what I tried to forestall by fleeing to Tarshish. I knew that you are a gracious and compassionate God, slow to anger and abounding in love, a God who relents from sending calamity.'",
+        verseReference: "Jonah 4:2"},
     ]
   },
   {
@@ -1835,15 +1835,15 @@ export const books: Book[] = [
         title: 'Future Glory and Messiah',
         chapterRange: '4-5',
         summary: 'Despite present judgment, future glory awaits. The temple mountain will be exalted; nations will stream to it. God will teach His ways. Swords will become plowshares. But first comes exile. From Bethlehem, insignificant among Judah\'s clans, will come a ruler—the Messiah who will shepherd Israel and be their peace. A remnant will be saved.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "He will stand and shepherd his flock in the strength of the LORD, in the majesty of the name of the LORD his God. And they will live securely, for then his greatness will reach to the ends of the earth.",
+        verseReference: "Micah 5:4"},
       {
         number: 4,
         title: 'God\'s Case and Compassion',
         chapterRange: '6-7',
         summary: 'God brings His case against Israel, reminding them of His past faithfulness. What does God require? "To act justly and to love mercy and to walk humbly with your God." Not sacrifice, but justice and humility. Though society is corrupt and faithful people scarce, Micah will watch in hope. God will forgive sin and cast it into the sea. Who is a God like Him, delighting in mercy?',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Who is a God like you, who pardons sin and forgives the transgression of the remnant of his inheritance? You do not stay angry forever but delight to show mercy.",
+        verseReference: "Micah 7:18"
       }
     ]
   },
@@ -1884,8 +1884,8 @@ export const books: Book[] = [
         title: 'Nineveh\'s Wickedness and Shame',
         chapterRange: '3',
         summary: 'Woe to the city of blood, full of lies and plunder. Nineveh is like a prostitute whose witchcraft enslaved nations. God will expose her shame to all. Just as Nineveh celebrated Thebes\' fall, now all who hear of Nineveh\'s collapse will applaud. Who has not felt their endless cruelty? Their wound is fatal; there is no healing.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Everyone who hears the news about you claps their hands at your fall, for who has not felt your endless cruelty?",
+        verseReference: "Nahum 3:19"},
     ]
   },
   {
@@ -2007,15 +2007,15 @@ export const books: Book[] = [
         title: 'Blessings Promised',
         chapterRange: '2:10-19',
         summary: 'God teaches through a priestly ruling: defilement is more contagious than holiness. So Israel\'s past disobedience defiled their offerings. But from this day forward, since they have resumed building, God will bless them. Though seed is still in the barn and vines have not yet produced, from this day God will bless. Priorities determine outcomes.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "'From this day on I will bless you.'",
+        verseReference: "Haggai 2:19"},
       {
         number: 4,
         title: 'Zerubbabel Chosen',
         chapterRange: '2:20-23',
         summary: 'God promises to shake the heavens and earth, overthrowing kingdoms. On that day, He will take Zerubbabel, His servant, and make him like a signet ring, for He has chosen him. This promise points beyond Zerubbabel to the Messiah from David\'s line who will reign forever. God remains faithful to His covenant promises.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "'On that day,' declares the LORD Almighty, 'I will take you, my servant Zerubbabel son of Shealtiel,' declares the LORD, 'and I will make you like my signet ring, for I have chosen you,' declares the LORD Almighty.",
+        verseReference: "Haggai 2:23"},
     ]
   },
   {
@@ -2103,29 +2103,29 @@ export const books: Book[] = [
         title: 'Faithless Marriages',
         chapterRange: '2:10-16',
         summary: 'Judah has broken faith by marrying foreign women who worship other gods. Men divorce their wives to marry younger women. God declares He hates divorce because it does violence to one\'s partner. They cover the LORD\'s altar with tears and weeping because He no longer accepts their offerings. Guard yourselves in your spirit; do not break faith.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "'The man who hates and divorces his wife,' says the LORD, the God of Israel, 'does violence to the one he should protect,' says the LORD Almighty.",
+        verseReference: "Malachi 2:16"},
       {
         number: 4,
         title: 'Where is the God of Justice?',
         chapterRange: '2:17-3:5',
         summary: 'The people weary God by saying, "Where is the God of justice?" God responds: The messenger will prepare the way before Me. Then the Lord will suddenly come to His temple—the messenger of the covenant you desire. He will be like refiner\'s fire, purifying the Levites. Then the LORD will judge sorcerers, adulterers, perjurers, and those who oppress workers and the vulnerable.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "'See, I will send my messenger, who will prepare the way before me. Then suddenly the Lord you are seeking will come to his temple; the messenger of the covenant, whom you desire, will come,' says the LORD Almighty.",
+        verseReference: "Malachi 3:1"},
       {
         number: 5,
         title: 'Robbing God',
         chapterRange: '3:6-12',
         summary: 'God charges: "You rob me in tithes and offerings." Bring the whole tithe to the storehouse so there will be food in God\'s house. Test Him in this, and see if He won\'t throw open heaven\'s floodgates and pour out blessing. He will prevent pests from destroying crops. All nations will call you blessed, for your land will be delightful.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this,' says the LORD Almighty, 'and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it.'",
+        verseReference: "Malachi 3:10"},
       {
         number: 6,
         title: 'The Day of the LORD',
         chapterRange: '3:13-4:6',
         summary: 'Arrogant people say it\'s futile to serve God. But those who fear the LORD speak together, and God listens. They will be His treasured possession. The day is coming that will burn like a furnace—the arrogant and evildoers will be stubble. But for those who revere God\'s name, the sun of righteousness will rise with healing. Elijah will come before the great day, turning hearts to prevent a curse.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "'Surely the day is coming; it will burn like a furnace. All the arrogant and every evildoer will be stubble, and the day that is coming will set them on fire,' says the LORD Almighty.",
+        verseReference: "Malachi 4:1"},
     ]
   },
   {
@@ -2236,16 +2236,16 @@ export const books: Book[] = [
         title: 'Passion Week',
         chapterRange: '11-15',
         summary: 'Jesus enters Jerusalem triumphantly. He cleanses the temple, curses a fig tree, and teaches with authority. Religious leaders challenge Him but are confounded. He shares the Last Supper, predicts His betrayal, and prays in Gethsemane. Judas betrays Him; Peter denies Him. Jesus is tried, mocked, crucified, and buried. The curtain of the temple tears in two.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "And when the centurion, who stood there in front of Jesus, saw how he died, he said, 'Surely this man was the Son of God!'",
+        verseReference: "Mark 15:39"
       },
       {
         number: 5,
         title: 'Resurrection',
         chapterRange: '16',
         summary: 'Women discover the empty tomb. A young man in white tells them Jesus has risen and will meet disciples in Galilee. The women flee in fear and say nothing. In the longer ending, Jesus appears to Mary Magdalene, two disciples, and the eleven. He commissions them to preach the gospel to all creation. He ascends to heaven and the disciples go out preaching everywhere.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Don't be alarmed,' he said. 'You are looking for Jesus the Nazarene, who was crucified. He has risen! He is not here. See the place where they laid him.'",
+        verseReference: "Mark 16:6"
       }
     ]
   },
@@ -2300,8 +2300,8 @@ export const books: Book[] = [
         title: 'Passion and Resurrection',
         chapterRange: '22-24',
         summary: 'Jesus shares the Last Supper, establishing the new covenant. He prays in Gethsemane, is betrayed, arrested, and denied by Peter. He is tried, mocked, and crucified between two criminals. One thief repents and Jesus promises him paradise. Jesus dies, is buried, and rises. He appears to disciples, explains Scripture, and ascends, blessing them. They worship with great joy.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Jesus answered him, 'Truly I tell you, today you will be with me in paradise.'",
+        verseReference: "Luke 23:43"
       }
     ]
   },
@@ -2482,8 +2482,8 @@ export const books: Book[] = [
         title: 'Personal Greetings',
         chapterRange: '16',
         summary: 'Paul commends Phoebe and greets numerous believers by name, commending their service and faithfulness. He warns against those who cause divisions contrary to apostolic teaching. He includes greetings from coworkers. The letter concludes with a magnificent doxology praising God who is able to establish believers through the gospel, now revealed and made known to all nations for obedience of faith.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Now to him who is able to establish you in accordance with my gospel, the message I proclaim about Jesus Christ, in keeping with the revelation of the mystery hidden for long ages past.",
+        verseReference: "Romans 16:25"
       }
     ]
   },
@@ -2510,43 +2510,43 @@ export const books: Book[] = [
         title: 'Divisions and Wisdom',
         chapterRange: '1-4',
         summary: 'Paul confronts divisions: some follow Paul, others Apollos, others Peter. This is worldly. Christ is not divided. God\'s wisdom contradicts worldly wisdom—He chose the cross, which seems foolish but is God\'s power. Leaders are merely servants. Don\'t boast in men. Paul warns against pride and appeals to imitate him. He will come with love or with a rod, depending on their response.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "For the message of the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God.",
+        verseReference: "1 Corinthians 1:18"},
       {
         number: 2,
         title: 'Moral Disorders',
         chapterRange: '5-7',
         summary: 'A man is sleeping with his father\'s wife, and the church is proud rather than mourning. Expel the immoral person. Don\'t take believers to secular courts. Sexual immorality is especially serious because bodies are temples of the Holy Spirit. Regarding marriage: it\'s good but also good to marry. Don\'t seek divorce, but if an unbeliever leaves, let them go. Remain in your calling.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God? You are not your own.",
+        verseReference: "1 Corinthians 6:19"},
       {
         number: 3,
         title: 'Christian Freedom',
         chapterRange: '8-11',
         summary: 'Knowledge about idol food can cause weaker believers to stumble. Love builds up. Paul forfeits rights for the gospel\'s sake. Israel\'s wilderness failures warn against presumption. All things are lawful but not beneficial. Do everything for God\'s glory. In worship, maintain proper order: head coverings reflect creation order. The Lord\'s Supper is being abused; some are drunk while others go hungry. Examine yourselves.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+        verseReference: "1 Corinthians 10:31"},
       {
         number: 4,
         title: 'Spiritual Gifts and Love',
         chapterRange: '12-14',
         summary: 'The Spirit distributes various gifts for the common good. The body has many parts but is one. Pursue love above all. Without love, spectacular gifts are worthless. Love is patient, kind, not envious or boastful, doesn\'t dishonor others, keeps no record of wrongs. Prophecy is greater than tongues because it builds up the church. Everything should be done decently and in order.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "And now these three remain: faith, hope and love. But the greatest of these is love.",
+        verseReference: "1 Corinthians 13:13"},
       {
         number: 5,
         title: 'Resurrection',
         chapterRange: '15',
         summary: 'Christ died for sins, was buried, and rose on the third day according to Scripture. He appeared to many witnesses. If Christ isn\'t raised, faith is futile and we are still in our sins. But He is raised, the firstfruits of those who have fallen asleep. Death came through Adam; resurrection through Christ. Our bodies will be raised imperishable, glorious, powerful, and spiritual. Death is swallowed up in victory.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "But Christ has indeed been raised from the dead, the firstfruits of those who have fallen asleep.",
+        verseReference: "1 Corinthians 15:20"},
       {
         number: 6,
         title: 'Final Instructions',
         chapterRange: '16',
         summary: 'Paul gives instructions about the collection for Jerusalem believers. He outlines his travel plans and commends Timothy. He urges them to submit to Stephanas and others who serve. Various greetings are included. He warns: if anyone doesn\'t love the Lord, let him be accursed. "Maranatha"—Our Lord, come! The letter ends with Paul\'s customary greeting in his own hand and expression of love.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Be on your guard; stand firm in the faith; be courageous; be strong.",
+        verseReference: "1 Corinthians 16:13"},
     ]
   },
   {
@@ -2572,36 +2572,36 @@ export const books: Book[] = [
         title: 'God of All Comfort',
         chapterRange: '1-2',
         summary: 'Paul opens by praising God who comforts us in troubles so we can comfort others. He defends his changed travel plans—not fickleness but sparing them another painful visit. He urges forgiveness and comfort for a repentant offender so Satan doesn\'t take advantage. Paul was restless until finding Titus with good news from Corinth. He thanks God who always leads us in triumph in Christ.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+        verseReference: "2 Corinthians 1:3-4"},
       {
         number: 2,
         title: 'Glory of the New Covenant',
         chapterRange: '3-5',
         summary: 'Believers are living letters written by the Spirit. The new covenant is glorious, surpassing the old covenant which faded. We are being transformed from glory to glory. Though outwardly wasting away, inwardly we are renewed daily. Momentary troubles achieve eternal glory. We walk by faith, not sight. We are ambassadors for Christ, imploring: be reconciled to God. He made Him who knew no sin to be sin so we might become God\'s righteousness.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+        verseReference: "2 Corinthians 5:17"},
       {
         number: 3,
         title: 'Appeals and Warnings',
         chapterRange: '6-7',
         summary: 'Paul appeals: don\'t receive God\'s grace in vain. His ministry has endured hardships yet demonstrates God\'s power. He opens his heart, asking them to reciprocate. Don\'t be unequally yoked with unbelievers. Paul rejoices at Titus\'s report of their repentance. Godly sorrow produces repentance; worldly sorrow brings death. Their earnestness, longing, and zeal have comforted him. His confidence in them is fully restored.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.",
+        verseReference: "2 Corinthians 7:10"},
       {
         number: 4,
         title: 'Generosity Encouraged',
         chapterRange: '8-9',
         summary: 'Paul encourages generous giving for Jerusalem believers, citing the Macedonians\' example and Christ who became poor so we might become rich. Give as you purposed, not reluctantly. God loves a cheerful giver and will supply all needs. Generous sowing brings generous reaping. This service supplies saints\' needs and produces thanksgiving to God. Thanks be to God for His indescribable gift!',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
+        verseReference: "2 Corinthians 9:7"},
       {
         number: 5,
         title: 'Paul\'s Defense',
         chapterRange: '10-13',
         summary: 'Paul defends his authority against opponents who boast in appearance. He reluctantly engages in "foolish" boasting, listing his credentials, sufferings, and revelations. His thorn in the flesh teaches that God\'s grace is sufficient and power is perfected in weakness. He will boast in weaknesses so Christ\'s power may rest on him. He fears finding them unchanged at his next visit. Examine yourselves. The grace, love, and fellowship of the Trinity be with you.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ's power may rest on me.",
+        verseReference: "2 Corinthians 12:9"},
     ]
   },
   {
@@ -2682,15 +2682,15 @@ export const books: Book[] = [
         title: 'Walk as Children of Light',
         chapterRange: '4:17-5:21',
         summary: 'Don\'t walk like Gentiles in futile thinking. Put off the old self corrupted by deceitful desires. Put on the new self created in righteousness and holiness. Speak truth, don\'t sin in anger, work honestly, speak what builds up. Don\'t grieve the Spirit. Be kind, compassionate, forgiving. Imitate God as beloved children. Walk in love. Avoid sexual immorality and greed. Be filled with the Spirit, addressing one another in psalms and hymns.',
-        keyVerse: "Put on the full armor of God, so that you can take your stand against the devil's schemes.",
-        verseReference: "Ephesians 6:11"},
+        keyVerse: "Follow God's example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us.",
+        verseReference: "Ephesians 5:1-2"},
       {
         number: 4,
         title: 'Household Code and Armor',
         chapterRange: '5:22-6:24',
         summary: 'Wives submit to husbands as to the Lord; husbands love wives as Christ loved the church. This mystery is profound, pointing to Christ and the church. Children obey parents; fathers don\'t provoke children. Slaves obey earthly masters; masters treat slaves justly. Be strong in the Lord. Put on God\'s armor to stand against schemes of the devil. Our struggle is against spiritual forces. Stand firm with truth, righteousness, gospel, faith, salvation, the Spirit, and prayer.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Put on the full armor of God, so that you can take your stand against the devil's schemes.",
+        verseReference: "Ephesians 6:11"},
     ]
   },
   {
@@ -2730,15 +2730,15 @@ export const books: Book[] = [
         title: 'Knowing Christ',
         chapterRange: '3',
         summary: 'Rejoice in the Lord! Beware of dogs, evil workers, the mutilation party. Paul had every human credential but counts them as loss for the sake of knowing Christ. Righteousness comes through faith, not law. He wants to know Christ, the power of His resurrection, and the fellowship of His sufferings. Forgetting what\'s behind, he presses on toward the goal. Our citizenship is in heaven. He will transform our lowly bodies to be like His glorious body.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "But whatever were gains to me I now consider loss for the sake of Christ.",
+        verseReference: "Philippians 3:7"},
       {
         number: 4,
         title: 'Final Exhortations',
         chapterRange: '4',
         summary: 'Stand firm in the Lord. Euodia and Syntyche should agree. Rejoice always! Let your gentleness be known. Don\'t be anxious; pray with thanksgiving. God\'s peace will guard your hearts. Think on what is true, honorable, just, pure, lovely, and commendable. Paul has learned the secret of contentment: I can do all things through Christ who strengthens me. God will supply every need. Paul thanks them for their generous gift.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "I can do all this through him who gives me strength.",
+        verseReference: "Philippians 4:13"},
     ]
   },
   {
@@ -2805,29 +2805,29 @@ export const books: Book[] = [
         title: 'Thanksgiving and Remembrance',
         chapterRange: '1-3',
         summary: 'Paul thanks God for the Thessalonians\' faith, love, and hope. They received the word with joy despite affliction, becoming imitators and examples. Their faith is known everywhere. Paul recalls his ministry among them: he came in power, not empty words. He wasn\'t seeking praise but cared for them like a nursing mother. Unable to return, he sent Timothy. Timothy\'s good report about their faith and love greatly encouraged Paul despite his own afflictions.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "We always thank God for all of you and continually mention you in our prayers.",
+        verseReference: "1 Thessalonians 1:2"},
       {
         number: 2,
         title: 'Living to Please God',
         chapterRange: '4:1-12',
         summary: 'Paul urges them to excel more in living to please God. This is God\'s will: your sanctification. Abstain from sexual immorality. Control your body in holiness and honor. God called us to holiness, not impurity. Regarding brotherly love, you don\'t need instruction because God taught you. Nevertheless, excel still more. Aspire to live quietly, mind your own business, and work with your hands so your conduct wins outsiders\' respect and you depend on no one.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "It is God's will that you should be sanctified: that you should avoid sexual immorality.",
+        verseReference: "1 Thessalonians 4:3"},
       {
         number: 3,
         title: 'The Lord\'s Return',
         chapterRange: '4:13-5:11',
         summary: 'Don\'t grieve like those without hope. The dead in Christ will rise first; then we who are alive will be caught up together to meet the Lord in the air. Encourage one another with these words. Regarding times and seasons, the day will come like a thief. While they say "peace and safety," sudden destruction comes. You\'re not in darkness. You\'re sons of light and day. Stay alert and sober. God didn\'t appoint us for wrath but obtaining salvation. Encourage and build up one another.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "For the Lord himself will come down from heaven, with a loud command, with the voice of the archangel and with the trumpet call of God, and the dead in Christ will rise first.",
+        verseReference: "1 Thessalonians 4:16"},
       {
         number: 4,
         title: 'Final Instructions',
         chapterRange: '5:12-28',
         summary: 'Respect those who labor among you and are over you in the Lord. Live peacefully with each other. Admonish the idle, encourage the fainthearted, help the weak, be patient with everyone. Don\'t repay evil for evil. Rejoice always, pray without ceasing, give thanks in everything. Don\'t quench the Spirit or despise prophecies. Test everything; hold fast what is good. May the God of peace sanctify you completely. He who calls you is faithful; He will do it.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Rejoice always, pray continually, give thanks in all circumstances; for this is God's will for you in Christ Jesus.",
+        verseReference: "1 Thessalonians 5:16-18"},
     ]
   },
   {
@@ -2853,22 +2853,22 @@ export const books: Book[] = [
         title: 'God\'s Righteous Judgment',
         chapterRange: '1',
         summary: 'Paul thanks God for the Thessalonians\' growing faith and increasing love despite persecutions and afflictions. This is evidence of God\'s righteous judgment: you\'re considered worthy of God\'s kingdom for which you suffer. God will repay affliction to those who afflict you and give relief to you who are afflicted when the Lord Jesus is revealed from heaven with mighty angels in flaming fire, inflicting vengeance on those who don\'t know God or obey the gospel. They will suffer eternal destruction.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "We ought always to thank God for you, brothers and sisters, and rightly so, because your faith is growing more and more, and the love all of you have for one another is increasing.",
+        verseReference: "2 Thessalonians 1:3"},
       {
         number: 2,
         title: 'The Day of the Lord',
         chapterRange: '2',
         summary: 'Don\'t be quickly shaken or alarmed by claims that the day of the Lord has come. It won\'t come until the rebellion occurs and the man of lawlessness is revealed, the son of destruction who exalts himself above every god. The mystery of lawlessness is already at work, but he who restrains will do so until removed. Then the lawless one will be revealed, whom the Lord Jesus will destroy with the breath of His mouth. Stand firm; hold to traditions taught. May the Lord direct your hearts to God\'s love and Christ\'s perseverance.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Don't let anyone deceive you in any way, for that day will not come until the rebellion occurs and the man of lawlessness is revealed, the man doomed to destruction.",
+        verseReference: "2 Thessalonians 2:3"},
       {
         number: 3,
         title: 'Warning Against Idleness',
         chapterRange: '3',
         summary: 'Pray that the Lord\'s word may speed ahead and be honored, and that we may be delivered from wicked men. The Lord is faithful; He will strengthen and protect you from the evil one. Keep away from brothers walking in idleness, not according to the tradition received. We worked night and day, not being burdensome, to give you an example. If anyone is not willing to work, let him not eat. Some walk in idleness, being busybodies. Do your own work. Don\'t grow weary in doing good.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "For even when we were with you, we gave you this rule: 'The one who is unwilling to work shall not eat.'",
+        verseReference: "2 Thessalonians 3:10"},
     ]
   },
   {
@@ -2894,31 +2894,31 @@ export const books: Book[] = [
         title: 'Warning Against False Teaching',
         chapterRange: '1',
         summary: 'Paul urges Timothy to remain in Ephesus and charge certain people not to teach different doctrine or occupy themselves with myths and genealogies. The aim of this charge is love from a pure heart, good conscience, and sincere faith. Some have wandered into vain discussion, desiring to be teachers of the law without understanding. The law is good if used lawfully. Christ came to save sinners, of whom Paul is foremost. This charge: wage good warfare, holding faith and good conscience.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Here is a trustworthy saying that deserves full acceptance: Christ Jesus came into the world to save sinners—of whom I am the worst.",
+        verseReference: "1 Timothy 1:15"
       },
       {
         number: 2,
         title: 'Instructions for Worship',
         chapterRange: '2-3',
         summary: 'Prayers should be made for all people, including kings and authorities, that we may lead peaceful lives. This is good; God desires all to be saved. There is one mediator: the man Christ Jesus. Women should adorn themselves modestly, learning quietly with submission. Overseers must be above reproach, sober-minded, self-controlled, hospitable, able to teach, managing their households well. Deacons must be dignified, not double-tongued, not greedy. Test them first. The church is the pillar of truth.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "For there is one God and one mediator between God and mankind, the man Christ Jesus.",
+        verseReference: "1 Timothy 2:5"
       },
       {
         number: 3,
         title: 'Instructions About Various Groups',
         chapterRange: '4-5',
         summary: 'In later times some will depart from the faith, following deceitful spirits. Have nothing to do with irreverent myths. Train yourself for godliness. Command and teach these things. Don\'t let anyone despise your youth. Give attention to public reading, exhortation, and teaching. Don\'t neglect your gift. Practice these things. Honor older members appropriately. Enroll widows who meet criteria. Provide for relatives. Elders who lead well deserve double honor. Don\'t admit charges against an elder without witnesses.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Don't let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity.",
+        verseReference: "1 Timothy 4:12"},
       {
         number: 4,
         title: 'Final Charges',
         chapterRange: '6',
         summary: 'Slaves should honor masters so God\'s name is not reviled. Teach sound words. Some imagine godliness is a means of gain. But godliness with contentment is great gain. The love of money is a root of all kinds of evils. Pursue righteousness, godliness, faith, love, steadfastness, gentleness. Fight the good fight of faith. Charge the rich not to be haughty or trust in uncertain riches, but to do good and be generous. Guard the deposit entrusted to you.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "But godliness with contentment is great gain.",
+        verseReference: "1 Timothy 6:6"},
     ]
   },
   {
@@ -2944,30 +2944,30 @@ export const books: Book[] = [
         title: 'Thanksgiving and Encouragement',
         chapterRange: '1',
         summary: 'Paul thanks God for Timothy\'s sincere faith, inherited from his grandmother Lois and mother Eunice. Timothy should fan into flame the gift God gave him. God didn\'t give a spirit of fear but of power, love, and self-control. Don\'t be ashamed of the testimony about our Lord or of Paul, His prisoner. Join in suffering for the gospel by God\'s power. He saved and called us by His grace, now revealed through Jesus. Paul was appointed a herald; that\'s why he suffers. Guard the good deposit through the Holy Spirit.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+        verseReference: "2 Timothy 1:7"},
       {
         number: 2,
         title: 'Faithful Service',
         chapterRange: '2',
         summary: 'Be strong in grace. What you heard from Paul in the presence of witnesses, entrust to faithful men who can teach others. Share in suffering like a good soldier. An athlete isn\'t crowned unless competing according to rules. The hardworking farmer should be first to share the crops. Remember Jesus Christ, risen from the dead. Paul endures everything for the elect. This saying is trustworthy: if we died with Him, we\'ll live with Him. Remind them of these things. Rightly handle the word of truth. Avoid irreverent babble.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Do your best to present yourself to God as one approved, a worker who does not need to be ashamed and who correctly handles the word of truth.",
+        verseReference: "2 Timothy 2:15"},
       {
         number: 3,
         title: 'Last Days and Scripture',
         chapterRange: '3',
         summary: 'In the last days difficult times will come. People will be lovers of self, lovers of money, proud, arrogant, abusive, disobedient, ungrateful, unholy, heartless, unappeasable, slanderous, without self-control, brutal, not loving good, treacherous, reckless, swollen with conceit, lovers of pleasure rather than lovers of God, having the appearance of godliness but denying its power. All Scripture is breathed out by God and profitable for teaching, reproof, correction, and training in righteousness, that the man of God may be complete.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.",
+        verseReference: "2 Timothy 3:16"
       },
       {
         number: 4,
         title: 'Paul\'s Final Charge',
         chapterRange: '4',
         summary: 'In the presence of God and Christ Jesus, Paul charges Timothy: preach the word; be ready in season and out of season; reprove, rebuke, and exhort with complete patience and teaching. The time is coming when people won\'t endure sound teaching but will accumulate teachers to suit their own passions. Always be sober-minded, endure suffering, do the work of an evangelist. Paul is being poured out as a drink offering. He has fought the good fight, finished the race, and kept the faith. A crown awaits him and all who love Christ\'s appearing.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "I have fought the good fight, I have finished the race, I have kept the faith.",
+        verseReference: "2 Timothy 4:7"},
     ]
   },
   {
@@ -3007,8 +3007,8 @@ export const books: Book[] = [
         title: 'Justified by Grace',
         chapterRange: '3',
         summary: 'Remind them to be submissive to rulers and authorities, to be obedient, ready for every good work, to speak evil of no one, to avoid quarreling, to be gentle, showing perfect courtesy toward everyone. We were foolish, disobedient, led astray, slaves to passions and pleasures. But God\'s goodness and loving kindness appeared. He saved us not because of works but according to His mercy, by the washing of regeneration and renewal of the Holy Spirit. Being justified by grace, we became heirs of eternal life. Avoid foolish controversies, genealogies, dissensions, and quarrels about the law.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "He saved us, not because of righteous things we had done, but because of his mercy.",
+        verseReference: "Titus 3:5"},
     ]
   },
   {
@@ -3041,15 +3041,15 @@ export const books: Book[] = [
         title: 'Paul\'s Appeal',
         chapterRange: '8-16',
         summary: 'Though Paul has boldness in Christ to command what is required, he prefers to appeal on the basis of love. As an old man and prisoner, he appeals for his child Onesimus, whom he fathered in prison. Formerly useless to Philemon, Onesimus is now useful both to Paul and Philemon. Paul is sending him back. He would have liked to keep him, but wouldn\'t do anything without Philemon\'s consent. Perhaps Onesimus was separated for a time so Philemon might have him back forever, no longer as a slave but as a beloved brother.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Perhaps the reason he was separated from you for a little while was that you might have him back forever—no longer as a slave, but better than a slave, as a dear brother.",
+        verseReference: "Philemon 1:15-16"},
       {
         number: 3,
         title: 'Final Request',
         chapterRange: '17-25',
         summary: 'If Philemon considers Paul a partner, receive Onesimus as he would receive Paul. If Onesimus owes anything, charge it to Paul\'s account. Paul writes this with his own hand: "I will repay it"—not to mention that Philemon owes Paul his very self. Refresh Paul\'s heart in Christ. Confident of Philemon\'s obedience, Paul writes knowing Philemon will do even more than he asks. Also, prepare a guest room; Paul hopes to be restored to them through their prayers. Greetings from fellow workers.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "So if you consider me a partner, welcome him as you would welcome me.",
+        verseReference: "Philemon 1:17"},
     ]
   },
   {
@@ -3103,8 +3103,8 @@ export const books: Book[] = [
         title: 'Final Exhortations',
         chapterRange: '13',
         summary: 'Let brotherly love continue. Show hospitality. Remember prisoners and the mistreated. Keep the marriage bed pure. Keep your life free from the love of money. Jesus Christ is the same yesterday, today, and forever. Don\'t be led away by diverse teachings. We have an altar from which those serving the tent have no right to eat. Jesus suffered outside the gate. Let us go to Him outside the camp, bearing His reproach. Through Jesus, continually offer a sacrifice of praise. Do good and share. Obey your leaders. Pray for us.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Jesus Christ is the same yesterday and today and forever.",
+        verseReference: "Hebrews 13:8"},
     ]
   },
   {
@@ -3151,15 +3151,15 @@ export const books: Book[] = [
         title: 'Submit to God',
         chapterRange: '4-5:6',
         summary: 'What causes quarrels among you? Your passions that wage war within. You desire and do not have, so you murder. You covet and cannot obtain, so you fight. You ask and do not receive because you ask wrongly. Friendship with the world is enmity with God. Submit to God. Resist the devil and he will flee. Draw near to God and He will draw near to you. Don\'t speak evil against one another. Don\'t boast about tomorrow; you\'re a mist that appears briefly then vanishes. Come now, you rich, weep and howl for the miseries coming upon you. You have fattened your hearts in a day of slaughter.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Come near to God and he will come near to you.",
+        verseReference: "James 4:8"},
       {
         number: 5,
         title: 'Patience and Prayer',
         chapterRange: '5:7-20',
         summary: 'Be patient until the Lord\'s coming. Establish your hearts, for the coming of the Lord is at hand. Don\'t grumble against one another. The prophets are an example of suffering and patience. You have heard of Job\'s steadfastness and have seen the Lord\'s purpose. Is anyone among you suffering? Let him pray. Is anyone cheerful? Let him sing praise. Is anyone sick? Let him call for the elders of the church, and let them pray over him, anointing him with oil. Prayer offered in faith will save the one who is sick. Whoever brings back a sinner from his wandering will save his soul from death and will cover a multitude of sins.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "The prayer of a righteous person is powerful and effective.",
+        verseReference: "James 5:16"},
     ]
   },
   {
@@ -3185,30 +3185,30 @@ export const books: Book[] = [
         title: 'Living Hope',
         chapterRange: '1:1-2:10',
         summary: 'Blessed be God who has caused us to be born again to a living hope through Jesus Christ\'s resurrection, to an inheritance imperishable, undefiled, and unfading, kept in heaven for you. You rejoice, though now for a little while you may have to suffer various trials. The tested genuineness of your faith results in praise and glory at Jesus\' revelation. Be holy in all your conduct. You were ransomed not with perishable things but with the precious blood of Christ. You are being built into a spiritual house. You are a chosen race, a royal priesthood, a holy nation, God\'s own people.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "Praise be to the God and Father of our Lord Jesus Christ! In his great mercy he has given us new birth into a living hope through the resurrection of Jesus Christ from the dead.",
+        verseReference: "1 Peter 1:3"},
       {
         number: 2,
         title: 'Submission and Example',
         chapterRange: '2:11-3:12',
         summary: 'Abstain from passions of the flesh. Keep your conduct honorable among the Gentiles. Be subject to every human institution. Servants, be subject to your masters with all respect. Christ suffered for you, leaving an example. He bore our sins in His body so we might die to sin and live to righteousness. Wives, be subject to your husbands so they may be won without a word by your conduct. Husbands, live with your wives in an understanding way, showing honor. Have unity of mind, sympathy, brotherly love. Do not repay evil for evil but bless.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness; by his wounds you have been healed.",
+        verseReference: "1 Peter 2:24"
       },
       {
         number: 3,
         title: 'Suffering for Righteousness',
         chapterRange: '3:13-4:19',
         summary: 'Who will harm you if you are zealous for good? Even if you suffer for righteousness\' sake, you are blessed. Have no fear; honor Christ as Lord in your hearts, always being prepared to make a defense for the hope in you. Christ suffered for sins once for all, the righteous for the unrighteous. Do not be surprised at the fiery trial. Rejoice insofar as you share Christ\'s sufferings. If you are insulted for Christ\'s name, you are blessed. Let those who suffer according to God\'s will entrust their souls to a faithful Creator while doing good.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "But in your hearts revere Christ as Lord. Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have.",
+        verseReference: "1 Peter 3:15"},
       {
         number: 4,
         title: 'Final Exhortations',
         chapterRange: '5',
         summary: 'Elders, shepherd the flock not under compulsion but willingly, not for shameful gain but eagerly. Don\'t dominate but be examples. When the chief Shepherd appears, you will receive the unfading crown of glory. Likewise, younger men, be subject to elders. Clothe yourselves with humility. Humble yourselves under God\'s mighty hand. Cast all your anxieties on Him because He cares for you. Be sober-minded; be watchful. Your adversary the devil prowls like a roaring lion. Resist him, firm in your faith. After you have suffered a little while, the God of all grace will restore, confirm, strengthen, and establish you.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "Cast all your anxiety on him because he cares for you.",
+        verseReference: "1 Peter 5:7"},
     ]
   },
   {
@@ -3234,22 +3234,22 @@ export const books: Book[] = [
         title: 'Growth in Faith',
         chapterRange: '1',
         summary: 'God\'s divine power has granted us all things pertaining to life and godliness. Make every effort to supplement your faith with virtue, virtue with knowledge, knowledge with self-control, self-control with steadfastness, steadfastness with godliness, godliness with brotherly affection, and brotherly affection with love. If these qualities are yours and are increasing, they keep you from being ineffective or unfruitful. Peter intends to remind them of these things. He was an eyewitness of Christ\'s majesty. No prophecy was ever produced by human will; men spoke from God as they were carried along by the Holy Spirit.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "His divine power has given us everything we need for a godly life through our knowledge of him who called us by his own glory and goodness.",
+        verseReference: "2 Peter 1:3"},
       {
         number: 2,
         title: 'False Teachers',
         chapterRange: '2',
         summary: 'False prophets arose among the people, and false teachers will arise among you, secretly bringing in destructive heresies. Many will follow their sensuality, and the way of truth will be blasphemed. In their greed they will exploit you with false words. God didn\'t spare angels when they sinned, the ancient world, or Sodom and Gomorrah. The Lord knows how to rescue the godly from trials and keep the unrighteous under punishment. These false teachers promise freedom while they themselves are slaves of corruption. After escaping the world\'s defilements, they are again entangled; their last state is worse than the first.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "But there were also false prophets among the people, just as there will be false teachers among you.",
+        verseReference: "2 Peter 2:1"},
       {
         number: 3,
         title: 'The Day of the Lord',
         chapterRange: '3',
         summary: 'Scoffers will come saying, "Where is the promise of His coming?" They deliberately overlook that God\'s word brought judgment by water and will bring judgment by fire. The Lord is not slow concerning His promise. He is patient, not wishing any to perish but all to reach repentance. The day of the Lord will come like a thief. The heavens will pass away with a roar; the elements will be burned up and dissolved. Since all these things are thus to be dissolved, what sort of people ought you to be in lives of holiness and godliness? Be diligent to be found by Him without spot or blemish. Grow in the grace and knowledge of our Lord Jesus Christ.',
-        keyVerse: "The LORD is faithful to all his promises and loving toward all he has made.",
-        verseReference: "Psalm 145:13"},
+        keyVerse: "But grow in the grace and knowledge of our Lord and Savior Jesus Christ. To him be glory both now and forever! Amen.",
+        verseReference: "2 Peter 3:18"},
     ]
   },
   {
@@ -3275,29 +3275,29 @@ export const books: Book[] = [
         title: 'Fellowship and Light',
         chapterRange: '1-2',
         summary: 'That which was from the beginning, which we have heard and seen, we proclaim to you—eternal life that was with the Father and was made manifest. We proclaim so you may have fellowship with us, and our fellowship is with the Father and His Son. God is light; in Him is no darkness at all. If we say we have fellowship with Him while walking in darkness, we lie. If we walk in the light as He is in the light, we have fellowship with one another and Jesus\' blood cleanses us from all sin. If we confess our sins, He is faithful and just to forgive. John writes so you may not sin, but if anyone sins, we have an advocate—Jesus Christ the righteous. Whoever keeps His word, in him the love of God is perfected.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+        verseReference: "1 John 1:9"},
       {
         number: 2,
         title: 'Love and Obedience',
         chapterRange: '2:7-3:24',
         summary: 'The commandment is to love one another. Whoever loves his brother abides in the light. Don\'t love the world or the things in the world. Many antichrists have come, denying the Father and Son. Let what you heard from the beginning abide in you. Everyone who has been born of God does not keep on sinning, because God\'s seed abides in him. By this it is evident who are children of God and who are children of the devil: whoever does not practice righteousness is not of God, nor is the one who does not love his brother. We should love one another—not like Cain. We know we have passed from death to life because we love the brothers. Jesus laid down His life for us; we ought to lay down our lives for the brothers.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "This is how we know what love is: Jesus Christ laid down his life for us. And we ought to lay down our lives for our brothers and sisters.",
+        verseReference: "1 John 3:16"},
       {
         number: 3,
         title: 'Test the Spirits',
         chapterRange: '4',
         summary: 'Beloved, do not believe every spirit, but test the spirits to see whether they are from God. Every spirit that confesses Jesus Christ has come in the flesh is from God. Every spirit that does not confess Jesus is not from God; this is the spirit of the antichrist. Little children, you are from God and have overcome them, for He who is in you is greater than he who is in the world. Beloved, let us love one another, for love is from God. God is love. God\'s love was made manifest among us in sending His Son as a propitiation for our sins. If God so loved us, we also ought to love one another. There is no fear in love, but perfect love casts out fear.',
-        keyVerse: "I can do all this through him who gives me strength.",
-        verseReference: "Philippians 4:13"},
+        keyVerse: "God is love. Whoever lives in love lives in God, and God in them.",
+        verseReference: "1 John 4:16"},
       {
         number: 4,
         title: 'Assurance and Testimony',
         chapterRange: '5',
         summary: 'Everyone who believes Jesus is the Christ has been born of God. Whoever loves the Father loves the child born of Him. This is the love of God: that we keep His commandments. Everyone who has been born of God overcomes the world. This is the victory that has overcome the world—our faith. Who is it that overcomes the world except the one who believes Jesus is the Son of God? The testimony is this: God gave us eternal life, and this life is in His Son. I write these things to you who believe in the name of the Son of God, that you may know that you have eternal life. If we ask anything according to His will, He hears us.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life.",
+        verseReference: "1 John 5:13"
       }
     ]
   },
@@ -3324,16 +3324,16 @@ export const books: Book[] = [
         title: 'Walk in Love and Truth',
         chapterRange: '1-6',
         summary: 'The elder to the elect lady and her children, whom I love in truth—not only I but also all who know the truth—because of the truth that abides in us. Grace, mercy, and peace will be with us from God the Father and from Jesus Christ. I rejoiced greatly to find some of your children walking in the truth. Now I ask you, dear lady, that we love one another. And this is love, that we walk according to His commandments. This is the commandment, just as you have heard from the beginning, so that you should walk in it.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "And this is love: that we walk in obedience to his commands. As you have heard from the beginning, his command is that you walk in love.",
+        verseReference: "2 John 1:6"
       },
       {
         number: 2,
         title: 'Beware of Deceivers',
         chapterRange: '7-13',
         summary: 'Many deceivers have gone out into the world, those who do not confess the coming of Jesus Christ in the flesh. Such a one is the deceiver and the antichrist. Watch yourselves, so that you may not lose what we have worked for, but may win a full reward. Everyone who goes on ahead and does not abide in the teaching of Christ does not have God. Whoever abides in the teaching has both the Father and the Son. If anyone comes to you and does not bring this teaching, do not receive him into your house or give him any greeting, for whoever greets him takes part in his wicked works. Though I have much to write to you, I would rather not use paper and ink. I hope to come to you and talk face to face. The children of your elect sister greet you.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "It has given me great joy to find some of your children walking in the truth, just as the Father commanded us.",
+        verseReference: "2 John 1:4"
       }
     ]
   },
@@ -3360,16 +3360,16 @@ export const books: Book[] = [
         title: 'Commendation of Gaius',
         chapterRange: '1-8',
         summary: 'The elder to the beloved Gaius, whom I love in truth. Beloved, I pray that all may go well with you and that you may be in good health, as it goes well with your soul. I rejoiced greatly when the brothers came and testified to your truth, as indeed you are walking in the truth. I have no greater joy than to hear that my children are walking in the truth. Beloved, it is a faithful thing you do in all your efforts for these brothers, strangers as they are. They have testified to your love before the church. By sending them on their journey in a manner worthy of God, you will do well. We ought to support people like these, that we may be fellow workers for the truth.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "I have no greater joy than to hear that my children are walking in the truth.",
+        verseReference: "3 John 1:4"
       },
       {
         number: 2,
         title: 'Diotrephes and Demetrius',
         chapterRange: '9-14',
         summary: 'I have written something to the church, but Diotrephes, who likes to put himself first, does not acknowledge our authority. So if I come, I will bring up what he is doing, talking wicked nonsense against us. And not content with that, he refuses to welcome the brothers, and also stops those who want to and puts them out of the church. Beloved, do not imitate evil but imitate good. Whoever does good is from God; whoever does evil has not seen God. Demetrius has received a good testimony from everyone, and from the truth itself. I had much to write to you, but I would rather not write with pen and ink. I hope to see you soon, and we will talk face to face. Peace to you. The friends greet you. Greet the friends, each by name.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "Dear friend, do not imitate what is evil but what is good. Anyone who does what is good is from God.",
+        verseReference: "3 John 1:11"
       }
     ]
   },
@@ -3403,16 +3403,16 @@ export const books: Book[] = [
         title: 'Examples of Judgment',
         chapterRange: '5-16',
         summary: 'Now I want to remind you that Jesus saved a people out of Egypt but afterward destroyed those who did not believe. The angels who did not stay within their own position of authority He has kept in eternal chains. Sodom and Gomorrah serve as an example by undergoing a punishment of eternal fire. Yet in like manner these people also defile the flesh, reject authority, and blaspheme the glorious ones. But these people blaspheme all that they do not understand. They are destroyed by what they know instinctively like unreasoning animals. Woe to them! They are waterless clouds, fruitless trees, wild waves, wandering stars. To them has been reserved the gloom of utter darkness forever.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.",
+        verseReference: "Jude 1:7"
       },
       {
         number: 3,
         title: 'Encouragement and Doxology',
         chapterRange: '17-25',
         summary: 'But you must remember the predictions of the apostles: in the last time there will be scoffers, following their own ungodly passions. It is these who cause divisions, worldly people, devoid of the Spirit. But you, beloved, build yourselves up in your most holy faith. Pray in the Holy Spirit. Keep yourselves in the love of God, waiting for the mercy of our Lord Jesus Christ. Have mercy on those who doubt; save others by snatching them out of the fire. Now to Him who is able to keep you from stumbling and to present you blameless before the presence of His glory with great joy, to the only God, our Savior, through Jesus Christ our Lord, be glory, majesty, dominion, and authority, before all time and now and forever. Amen.',
-        keyVerse: "Trust in the LORD with all your heart and lean not on your own understanding.",
-        verseReference: "Proverbs 3:5"
+        keyVerse: "To him who is able to keep you from stumbling and to present you before his glorious presence without fault and with great joy.",
+        verseReference: "Jude 1:24"
       }
     ]
   },
