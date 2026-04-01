@@ -289,5 +289,226 @@ The resurrection is the cornerstone of Christian faith—validating Jesus' claim
         text: 'For what I received I passed on to you as of first importance: that Christ died for our sins according to the Scriptures, that he was buried, that he was raised on the third day according to the Scriptures.'
       }
     ]
+  },
+  {
+    id: 'good-samaritan',
+    title: 'The Good Samaritan',
+    icon: '🤝',
+    order: 11,
+    summary: `A man is beaten, robbed, and left half-dead on the road to Jericho. Two religious leaders—a priest and a Levite—see him and pass by on the other side, avoiding involvement.
+Then a Samaritan, someone typically despised by Jews, stops, bandages the man's wounds, takes him to an inn, and pays for his care.
+Jesus tells this parable to answer the question "Who is my neighbor?" and the answer challenges every assumption about religious duty versus genuine compassion.
+Real love isn't shown through religious position or cultural identity, but through practical mercy extended to anyone in need, even strangers or enemies.`,
+    shortSummary: 'A Samaritan shows mercy to a beaten traveler ignored by religious leaders. Jesus reveals that true neighborly love transcends cultural boundaries.',
+    references: [
+      {
+        book: 'Luke',
+        chapter: 10,
+        verse: '33-34',
+        text: 'But a Samaritan, as he traveled, came where the man was; and when he saw him, he took pity on him. He went to him and bandaged his wounds, pouring on oil and wine. Then he put the man on his own donkey, brought him to an inn and took care of him.'
+      },
+      {
+        book: 'Luke',
+        chapter: 10,
+        verse: '36-37',
+        text: 'Which of these three do you think was a neighbor to the man who fell into the hands of robbers? The expert in the law replied, "The one who had mercy on him." Jesus told him, "Go and do likewise."'
+      }
+    ]
+  },
+  {
+    id: 'sower',
+    title: 'The Parable of the Sower',
+    icon: '🌱',
+    order: 12,
+    summary: `A farmer scatters seed, and it falls on four types of ground: the path, rocky soil, thorns, and good soil. Each represents how people receive God's word.
+Some hear it but never understand—the enemy snatches it away immediately. Others receive it with joy but have no root, falling away when trouble comes.
+Still others hear, but the worries of life and the deceitfulness of wealth choke it out, making it unfruitful.
+But the seed on good soil represents those who hear, understand, and produce a harvest—thirty, sixty, or even a hundred times what was sown.
+This parable reveals that spiritual fruitfulness depends not just on hearing God's word, but on the condition of the heart that receives it.`,
+    shortSummary: 'A farmer scatters seed on different soils, representing how people receive God\'s word. Only good soil produces lasting fruit.',
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 13,
+        verse: '8',
+        text: 'Still other seed fell on good soil, where it produced a crop—a hundred, sixty or thirty times what was sown.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 13,
+        verse: '23',
+        text: 'But the seed falling on good soil refers to someone who hears the word and understands it. This is the one who produces a crop, yielding a hundred, sixty or thirty times what was sown.'
+      }
+    ]
+  },
+  {
+    id: 'lost-sheep',
+    title: 'The Lost Sheep',
+    icon: '🐑',
+    order: 13,
+    summary: `A shepherd has a hundred sheep, and when one wanders off, he doesn't calculate that ninety-nine percent is acceptable—he leaves the ninety-nine and searches for the one that is lost.
+When he finds it, he joyfully carries it home on his shoulders and calls his friends to celebrate.
+Jesus uses this image to show God's heart for those who have strayed. Each person matters infinitely, and heaven itself rejoices over one sinner who repents.
+This isn't about statistics or efficiency; it's about the intrinsic value of every individual soul and God's relentless pursuit of those who are lost.`,
+    shortSummary: 'A shepherd leaves ninety-nine sheep to find one that is lost. God pursues each person with relentless love and rejoices at their return.',
+    references: [
+      {
+        book: 'Luke',
+        chapter: 15,
+        verse: '4-6',
+        text: 'Suppose one of you has a hundred sheep and loses one of them. Doesn\'t he leave the ninety-nine in the open country and go after the lost sheep until he finds it? And when he finds it, he joyfully puts it on his shoulders and goes home. Then he calls his friends and neighbors together and says, "Rejoice with me; I have found my lost sheep."'
+      },
+      {
+        book: 'Luke',
+        chapter: 15,
+        verse: '7',
+        text: 'I tell you that in the same way there will be more rejoicing in heaven over one sinner who repents than over ninety-nine righteous persons who do not need to repent.'
+      }
+    ]
+  },
+  {
+    id: 'talents',
+    title: 'The Parable of the Talents',
+    icon: '💰',
+    order: 14,
+    summary: `A master entrusts his servants with different amounts of money before going on a journey. Two servants invest what they've been given and double it, while the third, driven by fear, buries his talent in the ground.
+When the master returns, he praises those who took risks and were faithful with what they had. But the one who did nothing out of fear loses even what he was given.
+This parable challenges the idea of playing it safe with what God entrusts to us. Faithfulness isn't passive preservation—it's active stewardship.
+God gives different gifts, opportunities, and resources to each person, and He expects us to use them, not hide them. The issue isn't how much you start with, but what you do with what you've been given.`,
+    shortSummary: 'Servants receive different amounts to manage. Those who invest and multiply are rewarded; the one who hides his talent in fear loses it all.',
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 25,
+        verse: '21',
+        text: 'His master replied, "Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master\'s happiness!"'
+      },
+      {
+        book: 'Matthew',
+        chapter: 25,
+        verse: '28-29',
+        text: 'So take the bag of gold from him and give it to the one who has ten bags. For whoever has will be given more, and they will have an abundance. Whoever does not have, even what they have will be taken from them.'
+      }
+    ]
+  },
+  {
+    id: 'pearl',
+    title: 'The Pearl of Great Price',
+    icon: '💎',
+    order: 15,
+    summary: `A merchant searching for fine pearls discovers one of such extraordinary value that he sells everything he owns to buy it.
+This brief parable captures the radical response required by the kingdom of God. It's not about adding Jesus to your existing life—it's about recognizing that He is worth more than everything else combined.
+The merchant doesn't hesitate or negotiate. He doesn't try to keep half of what he has. He sees the value and acts decisively.
+This is what it means to truly follow Christ: recognizing that knowing Him, being in relationship with Him, and being part of His kingdom is worth any sacrifice. Everything else becomes secondary when you understand what you've found.`,
+    shortSummary: 'A merchant finds a pearl so valuable he sells everything to buy it. The kingdom of God is worth more than all we possess.',
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 13,
+        verse: '45-46',
+        text: 'Again, the kingdom of heaven is like a merchant looking for fine pearls. When he found one of great value, he went away and sold everything he had and bought it.'
+      }
+    ]
+  },
+  {
+    id: 'wheat-tares',
+    title: 'The Wheat and the Tares',
+    icon: '🌾',
+    order: 16,
+    summary: `A farmer plants good seed in his field, but while everyone sleeps, an enemy sows weeds among the wheat. As they grow together, the servants want to pull up the weeds immediately.
+But the master says to wait until harvest, because removing the weeds prematurely might uproot the wheat as well. At harvest time, they will be separated—the wheat gathered into the barn, the weeds bundled and burned.
+This parable addresses a reality that troubles many: why does God allow evil to exist alongside good? Why doesn't He intervene immediately?
+Jesus explains that judgment will come, but not yet. There is a time appointed for separation, and until then, both grow together. Our job is not to be the judge, but to remain faithful, knowing that God will bring justice at the right time.`,
+    shortSummary: 'Good wheat and enemy-sown weeds grow together until harvest. God allows both to coexist now, but separation and judgment will come.',
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 13,
+        verse: '29-30',
+        text: 'No, he answered, because while you are pulling the weeds, you may uproot the wheat with them. Let both grow together until the harvest. At that time I will tell the harvesters: First collect the weeds and tie them in bundles to be burned; then gather the wheat and bring it into my barn.'
+      },
+      {
+        book: 'Matthew',
+        chapter: 13,
+        verse: '40-43',
+        text: 'As the weeds are pulled up and burned in the fire, so it will be at the end of the age. The Son of Man will send out his angels, and they will weed out of his kingdom everything that causes sin and all who do evil... Then the righteous will shine like the sun in the kingdom of their Father.'
+      }
+    ]
+  },
+  {
+    id: 'pharisee-tax-collector',
+    title: 'The Pharisee and the Tax Collector',
+    icon: '🙏',
+    order: 17,
+    summary: `Two men go to the temple to pray. The Pharisee stands and prays about himself—thanking God that he's not like other people, listing his religious achievements, and comparing himself favorably to the tax collector nearby.
+The tax collector, standing at a distance, won't even look up to heaven. He beats his breast and simply says, "God, have mercy on me, a sinner."
+Jesus declares that the tax collector, not the Pharisee, went home justified before God. Those who exalt themselves will be humbled, but those who humble themselves will be exalted.
+This parable cuts at the heart of self-righteousness. It's not about how good you appear or how much you've done—it's about recognizing your need for God's mercy. True righteousness begins with honest humility, not prideful comparison.`,
+    shortSummary: 'A self-righteous Pharisee and a humble tax collector pray. God justifies the one who admits his need for mercy, not the one boasting in himself.',
+    references: [
+      {
+        book: 'Luke',
+        chapter: 18,
+        verse: '13-14',
+        text: 'But the tax collector stood at a distance. He would not even look up to heaven, but beat his breast and said, "God, have mercy on me, a sinner." I tell you that this man, rather than the other, went home justified before God. For all those who exalt themselves will be humbled, and those who humble themselves will be exalted.'
+      }
+    ]
+  },
+  {
+    id: 'rich-fool',
+    title: 'The Rich Fool',
+    icon: '🏦',
+    order: 18,
+    summary: `A successful farmer has such abundant crops that his barns can't hold them all. Instead of considering others or acknowledging God, he makes a plan centered entirely on himself.
+He'll tear down his barns, build bigger ones, store everything, and then tell his soul, "You have plenty of grain laid up for many years. Take life easy; eat, drink and be merry."
+But that very night, God says to him, "You fool! This very night your life will be demanded from you. Then who will get what you have prepared for yourself?"
+This parable exposes the illusion of security found in wealth and the danger of living for yourself. You can gain the whole world and still be utterly unprepared for eternity. True richness is measured not by what you accumulate, but by your relationship with God.`,
+    shortSummary: 'A rich man hoards his wealth for himself, planning years of ease. God calls him a fool, for that night his life ends.',
+    references: [
+      {
+        book: 'Luke',
+        chapter: 12,
+        verse: '19-21',
+        text: 'And I\'ll say to myself, "You have plenty of grain laid up for many years. Take life easy; eat, drink and be merry." But God said to him, "You fool! This very night your life will be demanded from you. Then who will get what you have prepared for yourself?" This is how it will be with whoever stores up things for themselves but is not rich toward God.'
+      }
+    ]
+  },
+  {
+    id: 'ten-virgins',
+    title: 'The Ten Virgins',
+    icon: '🕯️',
+    order: 19,
+    summary: `Ten young women are waiting for the bridegroom to arrive for a wedding feast. Five are wise and bring extra oil for their lamps; five are foolish and bring no reserve.
+When the bridegroom delays, they all fall asleep. At midnight, the cry comes: "He's here!" The wise light their lamps and enter the feast, but the foolish find their lamps going out.
+They rush to buy oil, but while they're gone, the door is shut. When they return and knock, the bridegroom says, "I don't know you."
+This parable is about preparedness for Christ's return. It's not enough to look ready or to start well—you must actually be ready, with genuine faith that endures. The door of opportunity won't stay open forever. Be prepared, because you don't know the day or the hour.`,
+    shortSummary: 'Ten virgins await the bridegroom; only five bring enough oil. Those unprepared miss the feast when he arrives unexpectedly.',
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 25,
+        verse: '10-13',
+        text: 'But while they were on their way to buy the oil, the bridegroom arrived. The virgins who were ready went in with him to the wedding banquet. And the door was shut. Later the others also came. "Lord, Lord," they said, "open the door for us!" But he replied, "Truly I tell you, I don\'t know you." Therefore keep watch, because you do not know the day or the hour.'
+      }
+    ]
+  },
+  {
+    id: 'unforgiving-servant',
+    title: 'The Unforgiving Servant',
+    icon: '⚖️',
+    order: 20,
+    summary: `A servant owes his king an astronomical debt—millions of dollars in today's terms, an amount he could never repay. He begs for mercy, and the king, moved with compassion, cancels the entire debt.
+That same servant then finds a fellow servant who owes him a tiny fraction of what he was forgiven—maybe a few months' wages. When the man begs for patience, the first servant refuses and has him thrown into prison.
+When the king hears about this, he is furious. "Shouldn't you have had mercy on your fellow servant just as I had on you?" He reinstates the original debt and hands the unforgiving servant over to the jailers.
+This parable reveals the inseparable link between receiving forgiveness and extending it. Those who truly grasp the magnitude of what they've been forgiven cannot withhold forgiveness from others. To refuse to forgive is to show you don't understand what you've received.`,
+    shortSummary: 'A servant forgiven a massive debt refuses to forgive a small one. His master reinstates his debt, showing forgiveness must be given as it was received.',
+    references: [
+      {
+        book: 'Matthew',
+        chapter: 18,
+        verse: '32-35',
+        text: 'Then the master called the servant in. "You wicked servant," he said, "I canceled all that debt of yours because you begged me to. Shouldn\'t you have had mercy on your fellow servant just as I had on you?" In anger his master handed him over to the jailers to be tortured, until he should pay back all he owed. This is how my heavenly Father will treat each of you unless you forgive your brother or sister from your heart.'
+      }
+    ]
   }
 ];
