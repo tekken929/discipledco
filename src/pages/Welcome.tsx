@@ -137,7 +137,7 @@ export function Welcome() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Music JukeBox</h2>
           </div>
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            Enjoy music and songs while you explore. The music player will continue playing as you navigate through the site. All of these songs are originals and come from the Book of Psalms.
+            Enjoy music and songs while you explore. The music player will continue playing as you navigate through the site. A pop up in the bottom right corner controls the music. All of these songs are originals and come from the Book of Psalms.
           </p>
           <Link
             to="/music"
