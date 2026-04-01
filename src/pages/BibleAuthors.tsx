@@ -539,7 +539,7 @@ export function BibleAuthors() {
 
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              The Bible is God's love letter to humanity—a timeless guide that reveals His character, His boundless love for us, and His plan for our lives. Through its pages, you'll discover profound wisdom for daily living, comfort in times of trouble, hope for the future, and the transformative power of grace. It teaches us how to love well, live purposefully, and find our true identity in Christ. Whether you're seeking answers to life's biggest questions, longing for peace, or desiring to grow spiritually, the Bible offers truth that transforms hearts, renews minds, and brings genuine freedom. At its core, Scripture shows us that we are deeply loved, created with purpose, and invited into a relationship with the God who made us.
+              The Bible is God's timeless guide to ALL HUMANS, that reveals His character, His boundless love for us, and His plan for our lives. Through its pages, you'll discover profound wisdom for daily living, comfort in times of trouble, hope for the future, and the transformative power of grace. It teaches us how to love well, live purposefully, and find our true identity in Christ. Whether you're seeking answers to life's biggest questions, longing for peace, or desiring to grow spiritually, the Bible offers truth that transforms hearts, renews minds, and brings genuine freedom. At its core, Scripture shows us that we are deeply loved, created with purpose, and invited into a relationship with the God who made us.
             </p>
           </div>
         </div>
