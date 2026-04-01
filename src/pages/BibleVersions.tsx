@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { BookOpen, X } from 'lucide-react';
-import { StickyNav } from '../components/StickyNav';
+import { BookOpen, X, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface TranslationExample {
   original: string;
@@ -238,7 +238,15 @@ export function BibleVersions() {
   return (
     <>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <StickyNav />
+        <div className="mb-6">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 dark:bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 transition-all shadow-md hover:scale-105"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span>Back to Bible Overviews</span>
+          </Link>
+        </div>
         <div className="max-w-6xl mx-auto theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-8">Bible Versions</h1>
 

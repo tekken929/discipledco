@@ -1,6 +1,6 @@
-import { Users, ScrollText, Book, Calendar } from 'lucide-react';
+import { Users, ScrollText, Book, Calendar, ArrowLeft } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { StickyNav } from '../components/StickyNav';
+import { Link } from 'react-router-dom';
 
 export function BibleAuthors() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -10,7 +10,15 @@ export function BibleAuthors() {
 
   return (
     <div className="min-h-screen">
-      <StickyNav />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 dark:bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 transition-all shadow-md hover:scale-105"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back to Bible Overviews</span>
+        </Link>
+      </div>
 
       {/* Hero Section */}
       <div

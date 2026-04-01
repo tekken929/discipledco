@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Play, Pause, Music as MusicIcon } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
-import { StickyNav } from '../components/StickyNav';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -44,7 +43,6 @@ export function Music() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <StickyNav />
       <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
         <div className="mb-8">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">Music Jukebox</h1>
