@@ -250,7 +250,7 @@ export function ChristianHolidays() {
 
         <div className="mb-12">
           <img
-            src="https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            src="/images/origin1.jpg"
             alt="Empty Tomb - Resurrection"
             className="w-full max-w-3xl h-96 object-cover rounded-2xl shadow-2xl mx-auto"
           />
