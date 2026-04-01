@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, X, BookOpen } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useDarkMode } from '../context/DarkModeContext';
 import { ContentFormatter } from '../components/ContentFormatter';
+import { StickyNav } from '../components/StickyNav';
 
 interface Book {
   id: string;
@@ -125,6 +126,7 @@ export default function BookReader() {
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-amber-100 via-orange-50 to-amber-100'} py-8 px-4`}>
+      <StickyNav />
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8 flex items-center justify-between">
         <div>

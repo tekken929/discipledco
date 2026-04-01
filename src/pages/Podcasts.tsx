@@ -1,4 +1,5 @@
 import { Radio } from 'lucide-react';
+import { StickyNav } from '../components/StickyNav';
 
 export function Podcasts() {
   const topPodcasts = [
@@ -21,6 +22,7 @@ export function Podcasts() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <StickyNav />
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Radio className="w-12 h-12 theme-accent" />

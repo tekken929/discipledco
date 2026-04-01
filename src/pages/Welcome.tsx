@@ -60,10 +60,10 @@ export function Welcome() {
               Navigate the Bible with clarity and confidence.
             </p>
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 items-start">
                 <Link
                   to="/bible"
-                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700"
+                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700 w-full justify-center"
                 >
                   <BookOpen className="w-4 h-4" />
                   Bible Overviews
@@ -73,10 +73,10 @@ export function Welcome() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 items-start">
                 <Link
                   to="/bible-versions"
-                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700"
+                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700 w-full justify-center"
                 >
                   <Book className="w-4 h-4" />
                   Bible Versions
@@ -86,10 +86,10 @@ export function Welcome() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 items-start">
                 <Link
                   to="/topics"
-                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700"
+                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700 w-full justify-center"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Biblical Topics
@@ -99,10 +99,10 @@ export function Welcome() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 items-start">
                 <Link
                   to="/stories"
-                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700"
+                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700 w-full justify-center"
                 >
                   <BookOpen className="w-4 h-4" />
                   Bible Stories
@@ -112,10 +112,10 @@ export function Welcome() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 items-start">
                 <Link
                   to="/religions"
-                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700"
+                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700 w-full justify-center"
                 >
                   <Church className="w-4 h-4" />
                   Religion Insights

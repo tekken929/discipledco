@@ -4,6 +4,7 @@ import { useDarkMode } from '../context/DarkModeContext';
 import { BookUpload } from '../components/BookUpload';
 import { createClient } from '@supabase/supabase-js';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
+import { StickyNav } from '../components/StickyNav';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -235,6 +236,7 @@ export function AdminPortal({ onClose }: AdminPortalProps) {
   if (!isAuthenticated) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <StickyNav />
         <div className={`rounded-2xl shadow-2xl max-w-md w-full ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         }`}>
@@ -288,6 +290,7 @@ export function AdminPortal({ onClose }: AdminPortalProps) {
   if (viewMode === 'music') {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <StickyNav />
         <div className={`rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
         }`}>
@@ -401,6 +404,7 @@ export function AdminPortal({ onClose }: AdminPortalProps) {
   if (viewMode === 'books') {
     return (
       <>
+        <StickyNav />
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className={`rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${
             isDarkMode ? 'bg-gray-800' : 'bg-white'
@@ -485,6 +489,7 @@ export function AdminPortal({ onClose }: AdminPortalProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <StickyNav />
       <div className={`rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${
         isDarkMode ? 'bg-gray-800' : 'bg-white'
       }`}>

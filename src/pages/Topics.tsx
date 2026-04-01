@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { topics } from '../data/topics';
+import { StickyNav } from '../components/StickyNav';
 
 export function Topics() {
   const { topicId } = useParams();
@@ -9,6 +10,7 @@ export function Topics() {
   if (selectedTopic) {
     return (
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <StickyNav />
         <Link
           to="/topics"
           className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
@@ -123,6 +125,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <StickyNav />
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Biblical Topics

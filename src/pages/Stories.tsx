@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { stories } from '../data/stories';
+import { StickyNav } from '../components/StickyNav';
 
 export function Stories() {
   const { storyId } = useParams();
@@ -9,6 +10,7 @@ export function Stories() {
   if (selectedStory) {
     return (
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <StickyNav />
         <Link
           to="/stories"
           className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
@@ -66,6 +68,7 @@ export function Stories() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <StickyNav />
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Popular Bible Stories

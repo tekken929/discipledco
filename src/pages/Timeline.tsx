@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, BookOpen, Cross, Star } from 'lucide-react';
 import { timelineEvents, timelineSections } from '../data/timeline';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useEffect, useState } from 'react';
+import { StickyNav } from '../components/StickyNav';
 
 export function Timeline() {
   const [activeEventIndex, setActiveEventIndex] = useState<number | null>(null);
@@ -99,6 +100,7 @@ export function Timeline() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 spacing-section">
+      <StickyNav />
       <Link
         to="/religions"
         className="link-cinematic inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-12 transition-colors font-semibold"
