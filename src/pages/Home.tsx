@@ -47,7 +47,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Journey Through Scripture
+              Bible Overview
             </h1>
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
@@ -103,28 +103,32 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
         </div>
 
-        {/* Bible Authors & Evidence - Large Clickable Bubble */}
+        {/* Bible Authors & Evidence - Clickable Bubble */}
         <Link
           to="/bible-authors"
           ref={authorsRef}
-          className={`block mb-12 theme-card rounded-2xl p-10 md:p-14 shadow-2xl print:hidden transition-all duration-500 card-cinematic hover:scale-105 hover:shadow-3xl group cursor-pointer border-4 border-blue-500/30 hover:border-blue-500 ${
+          className={`block mb-12 theme-card rounded-2xl p-6 shadow-2xl print:hidden transition-all duration-500 card-cinematic hover:scale-105 hover:shadow-3xl group cursor-pointer border-4 border-blue-500/30 hover:border-blue-500 ${
             authorsVisible ? 'fade-in visible' : 'fade-in'
           }`}
         >
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-6 relative">
-              <Users className="w-20 h-20 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
-              <MousePointerClick className="w-8 h-8 text-blue-500 absolute -top-2 -right-2 animate-pulse" />
+          <div className="flex items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <Users className="w-10 h-10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
+                <MousePointerClick className="w-5 h-5 text-blue-500 absolute -top-1 -right-1 animate-pulse" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  Bible Authors & Evidence
+                </h2>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Discover the ~40 authors who wrote Scripture over 1,500 years. Click to explore detailed timelines and historical evidence.
+                </p>
+              </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              Bible Authors & Evidence
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">
-              Discover the ~40 authors who wrote Scripture over 1,500 years—from Moses to the Apostles. Explore detailed timelines, historical context, and the remarkable evidence behind the Bible's authenticity.
-            </p>
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-bold text-lg group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg">
-              <span>Click to Explore</span>
-              <MousePointerClick className="w-5 h-5" />
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold text-sm group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg whitespace-nowrap">
+              <span>Explore</span>
+              <MousePointerClick className="w-4 h-4" />
             </div>
           </div>
         </Link>
