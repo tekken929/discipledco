@@ -93,26 +93,26 @@ export function Religions() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-xl p-6 border-2 border-blue-200 dark:border-blue-700 flex flex-col h-full hover:shadow-xl transition-all hover:scale-105">
               <img
                 src="https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Ancient church"
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
-              <h3 className="text-xl font-bold text-blue-900 dark:text-blue-100 mb-2">The Great Schism (1054)</h3>
-              <p className="text-blue-800 dark:text-blue-200">
+              <h3 className="text-xl font-bold text-blue-900 dark:text-blue-100 mb-3">The Great Schism (1054)</h3>
+              <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
                 The split between Eastern Orthodoxy and Roman Catholicism over theological and political differences that had been brewing for centuries.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-xl p-6 border border-green-200 dark:border-green-700">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-xl p-6 border-2 border-green-200 dark:border-green-700 flex flex-col h-full hover:shadow-xl transition-all hover:scale-105">
               <img
                 src="https://images.pexels.com/photos/159751/book-address-book-learning-learn-159751.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Reformation"
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
-              <h3 className="text-xl font-bold text-green-900 dark:text-green-100 mb-2">Protestant Reformation (1517)</h3>
-              <p className="text-green-800 dark:text-green-200">
+              <h3 className="text-xl font-bold text-green-900 dark:text-green-100 mb-3">Protestant Reformation (1517)</h3>
+              <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
                 Martin Luther's 95 Theses sparked a movement that challenged papal authority and emphasized Scripture alone, faith alone, and grace alone.
               </p>
             </div>

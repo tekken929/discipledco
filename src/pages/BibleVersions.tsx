@@ -259,7 +259,7 @@ The difference isn’t about right or wrong—it’s about how directly the tran
                 <button
                   key={version.id}
                   onClick={() => setSelectedVersion(version)}
-                  className={`bg-gradient-to-br ${version.colorClass} rounded-xl p-6 border-2 ${version.borderClass} hover:shadow-xl transition-all text-left group hover:scale-105 relative overflow-hidden`}
+                  className={`bg-gradient-to-br ${version.colorClass} rounded-xl p-6 border-2 ${version.borderClass} hover:shadow-xl transition-all text-left group hover:scale-105 relative overflow-hidden flex flex-col h-full`}
                 >
                   <img
                     src={version.image}
@@ -275,10 +275,10 @@ The difference isn’t about right or wrong—it’s about how directly the tran
                     </span>
                   </div>
                   <h4 className={`text-lg font-semibold ${version.textClass} mb-3`}>{version.name}</h4>
-                  <p className={`text-sm ${version.textClass} opacity-90 mb-3`}>
+                  <p className={`text-sm ${version.textClass} opacity-90 mb-4 flex-grow`}>
                     {version.description}
                   </p>
-                  <div className={`inline-flex items-center gap-2 ${version.badgeClass} px-4 py-2 rounded-lg text-sm font-semibold`}>
+                  <div className={`inline-flex items-center gap-2 ${version.badgeClass} px-4 py-2 rounded-lg text-sm font-semibold mt-auto`}>
                     View Translation Examples
                   </div>
                 </button>

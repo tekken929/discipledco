@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio } from 'lucide-react';
+import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, DollarSign } from 'lucide-react';
 import { Modal } from './Modal';
 import { useState } from 'react';
 import { AdminPortal } from '../pages/AdminPortal';
@@ -12,13 +12,13 @@ export function Footer() {
       to: '/bible',
       icon: BookOpen,
       title: 'Bible Overview',
-      description: 'Explore all 66 books of the Bible'
+      description: 'Book order, chapters, and summaries of all 66 books'
     },
     {
       to: '/bible-versions',
       icon: BookOpen,
       title: 'Bible Versions',
-      description: 'Which one should I use?'
+      description: 'Translation philosophy and which one to use'
     },
     {
       to: '/topics',
@@ -30,41 +30,47 @@ export function Footer() {
       to: '/stories',
       icon: Book,
       title: 'Bible Stories',
-      description: 'Ten popular stories from Scripture'
+      description: 'Popular stories from Scripture with summaries'
     },
     {
       to: '/religions',
       icon: FolderOpen,
       title: 'Religions',
-      description: 'How the early Churches split into different groups'
+      description: 'How the early Churches split into denominations'
+    },
+    {
+      to: '/christian-holidays',
+      icon: Calendar,
+      title: 'Holiday Origins',
+      description: 'True origins of Easter, Christmas & more'
     },
     {
       to: '/faqs',
       icon: Users,
       title: 'FAQs',
-      description: 'Some of your common questions answered.'
+      description: 'Common questions about faith answered'
     }
   ];
 
   return (
     <footer className="theme-card border-t border-gray-200 dark:border-gray-700 mt-12 print:hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-6">
           {footerLinks.map((link) => {
             const Icon = link.icon;
             return (
               <Link
                 key={link.to}
                 to={link.to}
-                className="theme-card border-2 rounded-xl p-4 hover:shadow-lg transition-all group hover:scale-105"
+                className="theme-card border-2 rounded-xl p-6 hover:shadow-lg transition-all group hover:scale-105 flex flex-col h-full"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="theme-primary-button p-2 rounded-lg group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5" />
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="theme-primary-button p-2 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <div className="text-xl font-bold text-gray-900 dark:text-white">{link.title}</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">{link.title}</h3>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">{link.description}</div>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{link.description}</p>
               </Link>
             );
           })}
@@ -100,6 +106,16 @@ export function Footer() {
               <svg className="w-6 h-6 theme-accent" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
               </svg>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="theme-card border-2 p-3 rounded-lg transition-all hover:scale-110 bg-gradient-to-r from-orange-500 to-red-500"
+              aria-label="Support on Patreon"
+              title="Support on Patreon"
+            >
+              <DollarSign className="w-6 h-6 text-white" />
             </a>
           </div>
 

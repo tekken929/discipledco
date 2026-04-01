@@ -22,6 +22,7 @@ import { ChurchMentors } from './pages/ChurchMentors';
 import { Podcasts } from './pages/Podcasts';
 import { Timeline } from './pages/Timeline';
 import { BibleAuthors } from './pages/BibleAuthors';
+import { ChristianHolidays } from './pages/ChristianHolidays';
 import { books } from './data/books';
 import { Book } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -215,6 +216,7 @@ function AppContent() {
           <Route path="/podcasts" element={<Podcasts />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/bible-authors" element={<BibleAuthors />} />
+          <Route path="/christian-holidays" element={<ChristianHolidays />} />
         </Routes>
       </div>
 
