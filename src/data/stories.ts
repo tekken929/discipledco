@@ -367,54 +367,10 @@ This isn't about statistics or efficiency; it's about the intrinsic value of eve
     ]
   },
   {
-    id: 'talents',
-    title: 'The Parable of the Talents',
-    icon: '💰',
-    order: 14,
-    summary: `A master entrusts his servants with different amounts of money before going on a journey. Two servants invest what they've been given and double it, while the third, driven by fear, buries his talent in the ground.
-When the master returns, he praises those who took risks and were faithful with what they had. But the one who did nothing out of fear loses even what he was given.
-This parable challenges the idea of playing it safe with what God entrusts to us. Faithfulness isn't passive preservation—it's active stewardship.
-God gives different gifts, opportunities, and resources to each person, and He expects us to use them, not hide them. The issue isn't how much you start with, but what you do with what you've been given.`,
-    shortSummary: 'Servants receive different amounts to manage. Those who invest and multiply are rewarded; the one who hides his talent in fear loses it all.',
-    references: [
-      {
-        book: 'Matthew',
-        chapter: 25,
-        verse: '21',
-        text: 'His master replied, "Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master\'s happiness!"'
-      },
-      {
-        book: 'Matthew',
-        chapter: 25,
-        verse: '28-29',
-        text: 'So take the bag of gold from him and give it to the one who has ten bags. For whoever has will be given more, and they will have an abundance. Whoever does not have, even what they have will be taken from them.'
-      }
-    ]
-  },
-  {
-    id: 'pearl',
-    title: 'The Pearl of Great Price',
-    icon: '💎',
-    order: 15,
-    summary: `A merchant searching for fine pearls discovers one of such extraordinary value that he sells everything he owns to buy it.
-This brief parable captures the radical response required by the kingdom of God. It's not about adding Jesus to your existing life—it's about recognizing that He is worth more than everything else combined.
-The merchant doesn't hesitate or negotiate. He doesn't try to keep half of what he has. He sees the value and acts decisively.
-This is what it means to truly follow Christ: recognizing that knowing Him, being in relationship with Him, and being part of His kingdom is worth any sacrifice. Everything else becomes secondary when you understand what you've found.`,
-    shortSummary: 'A merchant finds a pearl so valuable he sells everything to buy it. The kingdom of God is worth more than all we possess.',
-    references: [
-      {
-        book: 'Matthew',
-        chapter: 13,
-        verse: '45-46',
-        text: 'Again, the kingdom of heaven is like a merchant looking for fine pearls. When he found one of great value, he went away and sold everything he had and bought it.'
-      }
-    ]
-  },
-  {
     id: 'wheat-tares',
     title: 'The Wheat and the Tares',
     icon: '🌾',
-    order: 16,
+    order: 14,
     summary: `A farmer plants good seed in his field, but while everyone sleeps, an enemy sows weeds among the wheat. As they grow together, the servants want to pull up the weeds immediately.
 But the master says to wait until harvest, because removing the weeds prematurely might uproot the wheat as well. At harvest time, they will be separated—the wheat gathered into the barn, the weeds bundled and burned.
 This parable addresses a reality that troubles many: why does God allow evil to exist alongside good? Why doesn't He intervene immediately?
@@ -436,67 +392,10 @@ Jesus explains that judgment will come, but not yet. There is a time appointed f
     ]
   },
   {
-    id: 'pharisee-tax-collector',
-    title: 'The Pharisee and the Tax Collector',
-    icon: '🙏',
-    order: 17,
-    summary: `Two men go to the temple to pray. The Pharisee stands and prays about himself—thanking God that he's not like other people, listing his religious achievements, and comparing himself favorably to the tax collector nearby.
-The tax collector, standing at a distance, won't even look up to heaven. He beats his breast and simply says, "God, have mercy on me, a sinner."
-Jesus declares that the tax collector, not the Pharisee, went home justified before God. Those who exalt themselves will be humbled, but those who humble themselves will be exalted.
-This parable cuts at the heart of self-righteousness. It's not about how good you appear or how much you've done—it's about recognizing your need for God's mercy. True righteousness begins with honest humility, not prideful comparison.`,
-    shortSummary: 'A self-righteous Pharisee and a humble tax collector pray. God justifies the one who admits his need for mercy, not the one boasting in himself.',
-    references: [
-      {
-        book: 'Luke',
-        chapter: 18,
-        verse: '13-14',
-        text: 'But the tax collector stood at a distance. He would not even look up to heaven, but beat his breast and said, "God, have mercy on me, a sinner." I tell you that this man, rather than the other, went home justified before God. For all those who exalt themselves will be humbled, and those who humble themselves will be exalted.'
-      }
-    ]
-  },
-  {
-    id: 'rich-fool',
-    title: 'The Rich Fool',
-    icon: '🏦',
-    order: 18,
-    summary: `A successful farmer has such abundant crops that his barns can't hold them all. Instead of considering others or acknowledging God, he makes a plan centered entirely on himself.
-He'll tear down his barns, build bigger ones, store everything, and then tell his soul, "You have plenty of grain laid up for many years. Take life easy; eat, drink and be merry."
-But that very night, God says to him, "You fool! This very night your life will be demanded from you. Then who will get what you have prepared for yourself?"
-This parable exposes the illusion of security found in wealth and the danger of living for yourself. You can gain the whole world and still be utterly unprepared for eternity. True richness is measured not by what you accumulate, but by your relationship with God.`,
-    shortSummary: 'A rich man hoards his wealth for himself, planning years of ease. God calls him a fool, for that night his life ends.',
-    references: [
-      {
-        book: 'Luke',
-        chapter: 12,
-        verse: '19-21',
-        text: 'And I\'ll say to myself, "You have plenty of grain laid up for many years. Take life easy; eat, drink and be merry." But God said to him, "You fool! This very night your life will be demanded from you. Then who will get what you have prepared for yourself?" This is how it will be with whoever stores up things for themselves but is not rich toward God.'
-      }
-    ]
-  },
-  {
-    id: 'ten-virgins',
-    title: 'The Ten Virgins',
-    icon: '🕯️',
-    order: 19,
-    summary: `Ten young women are waiting for the bridegroom to arrive for a wedding feast. Five are wise and bring extra oil for their lamps; five are foolish and bring no reserve.
-When the bridegroom delays, they all fall asleep. At midnight, the cry comes: "He's here!" The wise light their lamps and enter the feast, but the foolish find their lamps going out.
-They rush to buy oil, but while they're gone, the door is shut. When they return and knock, the bridegroom says, "I don't know you."
-This parable is about preparedness for Christ's return. It's not enough to look ready or to start well—you must actually be ready, with genuine faith that endures. The door of opportunity won't stay open forever. Be prepared, because you don't know the day or the hour.`,
-    shortSummary: 'Ten virgins await the bridegroom; only five bring enough oil. Those unprepared miss the feast when he arrives unexpectedly.',
-    references: [
-      {
-        book: 'Matthew',
-        chapter: 25,
-        verse: '10-13',
-        text: 'But while they were on their way to buy the oil, the bridegroom arrived. The virgins who were ready went in with him to the wedding banquet. And the door was shut. Later the others also came. "Lord, Lord," they said, "open the door for us!" But he replied, "Truly I tell you, I don\'t know you." Therefore keep watch, because you do not know the day or the hour.'
-      }
-    ]
-  },
-  {
     id: 'unforgiving-servant',
     title: 'The Unforgiving Servant',
     icon: '⚖️',
-    order: 20,
+    order: 15,
     summary: `A servant owes his king an astronomical debt—millions of dollars in today's terms, an amount he could never repay. He begs for mercy, and the king, moved with compassion, cancels the entire debt.
 That same servant then finds a fellow servant who owes him a tiny fraction of what he was forgiven—maybe a few months' wages. When the man begs for patience, the first servant refuses and has him thrown into prison.
 When the king hears about this, he is furious. "Shouldn't you have had mercy on your fellow servant just as I had on you?" He reinstates the original debt and hands the unforgiving servant over to the jailers.
