@@ -9,7 +9,7 @@ export function ChristianHolidays() {
         <div className="flex items-center justify-center py-16">
           <div className="text-center">
             <img
-              src="https://images.pexels.com/photos/3737504/pexels-photo-3737504.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              src="https://images.pexels.com/photos/3854130/pexels-photo-3854130.jpeg?auto=compress&cs=tinysrgb&w=1200"
               alt="Resurrection - Empty Tomb and Cross"
               className="w-full max-w-2xl h-96 object-cover rounded-2xl shadow-2xl mb-8 mx-auto"
             />
