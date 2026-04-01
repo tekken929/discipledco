@@ -3,7 +3,8 @@ import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown } from 'lucide-react';
+import { BookOpen, ChevronDown, Users, MousePointerClick } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface HomeProps {
   selectedBook: Book;
@@ -13,6 +14,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
   const [selectedBook, setSelectedBook] = useState<Book>(initialBook);
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: selectorRef, isVisible: selectorVisible } = useScrollAnimation();
+  const { ref: authorsRef, isVisible: authorsVisible } = useScrollAnimation();
   const parallaxOffset = useParallax(0.3);
 
   const oldTestamentBooks = books.filter(b => b.testament === 'Old Testament');
@@ -100,6 +102,32 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             </div>
           </div>
         </div>
+
+        {/* Bible Authors & Evidence - Large Clickable Bubble */}
+        <Link
+          to="/bible-authors"
+          ref={authorsRef}
+          className={`block mb-12 theme-card rounded-2xl p-10 md:p-14 shadow-2xl print:hidden transition-all duration-500 card-cinematic hover:scale-105 hover:shadow-3xl group cursor-pointer border-4 border-blue-500/30 hover:border-blue-500 ${
+            authorsVisible ? 'fade-in visible' : 'fade-in'
+          }`}
+        >
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-6 relative">
+              <Users className="w-20 h-20 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
+              <MousePointerClick className="w-8 h-8 text-blue-500 absolute -top-2 -right-2 animate-pulse" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              Bible Authors & Evidence
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">
+              Discover the ~40 authors who wrote Scripture over 1,500 years—from Moses to the Apostles. Explore detailed timelines, historical context, and the remarkable evidence behind the Bible's authenticity.
+            </p>
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-bold text-lg group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg">
+              <span>Click to Explore</span>
+              <MousePointerClick className="w-5 h-5" />
+            </div>
+          </div>
+        </Link>
 
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
