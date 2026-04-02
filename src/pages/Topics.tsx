@@ -84,33 +84,47 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
             </h2>
 
             <div className="space-y-6">
-              {selectedTopic.references.map((ref, index) => (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700 transition-colors hover:shadow-lg"
-                >
-                  <div className="flex items-start gap-3 mb-3">
-                    <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-sm">
-                      {index + 1}
-                    </span>
-                    <div>
-                      <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
-                        {ref.book} {ref.chapter}:{ref.verse}
-                      </h3>
+              {selectedTopic.references.map((ref, index) => {
+                const bibleGatewayUrl = `https://www.biblegateway.com/passage/?search=${encodeURIComponent(`${ref.book} ${ref.chapter}:${ref.verse}`)}&version=ESV`;
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700 transition-colors hover:shadow-lg"
+                  >
+                    <div className="flex items-start gap-3 mb-3">
+                      <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-sm">
+                        {index + 1}
+                      </span>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
+                            {ref.book} {ref.chapter}:{ref.verse}
+                          </h3>
+                          <a
+                            href={bibleGatewayUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors"
+                          >
+                            Click for more →
+                          </a>
+                        </div>
+                      </div>
                     </div>
+                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12 mb-3">
+                      "{ref.text}"
+                    </p>
+                    {ref.summary && (
+                      <div className="pl-12 pt-3 border-t border-blue-300 dark:border-blue-600">
+                        <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
+                          {ref.summary}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12 mb-3">
-                    "{ref.text}"
-                  </p>
-                  {ref.summary && (
-                    <div className="pl-12 pt-3 border-t border-blue-300 dark:border-blue-600">
-                      <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
-                        {ref.summary}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

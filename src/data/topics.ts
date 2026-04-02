@@ -7,7 +7,7 @@ export const topics: Topic[] = [
     description: 'God strictly forbids all forms of occult practices, divination, witchcraft, and communication with the dead. These practices open doors to demonic influence and are an abomination to the Lord.',
     shortDescription: 'Scripture explicitly forbids all occult practices including divination, sorcery, witchcraft, and necromancy. God calls His people to seek Him alone for guidance and truth.',
     icon: '⛔',
-    order: 0,
+    order: 1,
     references: [
       {
         book: 'Deuteronomy',
@@ -87,7 +87,7 @@ export const topics: Topic[] = [
     description: 'Biblical guidance on marriage, commitment, and marital relationships',
     shortDescription: 'God designed marriage as a sacred covenant between one man and one woman. Biblical principles guide husbands and wives in mutual love, respect, and commitment.',
     icon: '💑',
-    order: 3,
+    order: 10,
     references: [
       {
         book: 'Genesis',
@@ -157,7 +157,7 @@ export const topics: Topic[] = [
     description: 'Overcoming lust and maintaining sexual purity according to Scripture',
     shortDescription: 'Scripture calls believers to flee sexual immorality and pursue purity. Your body is a temple of the Holy Spirit, meant to glorify God in holiness and honor.',
     icon: '🛡️',
-    order: 10,
+    order: 16,
     references: [
       {
         book: 'Matthew',
@@ -227,7 +227,7 @@ export const topics: Topic[] = [
     description: 'Understanding sin, forgiveness, and the path to repentance. "Salvation is not something you achieve, it\'s something you receive. It comes through trusting in who Jesus is and what He has done, not in what you can do."',
     shortDescription: 'All have sinned and fall short of God\'s glory. Through confession, repentance, and faith in Jesus Christ, God offers forgiveness and restoration to all who come to Him.',
     icon: '🙏',
-    order: 1,
+    order: 2,
     references: [
       {
         book: 'Romans',
@@ -297,7 +297,7 @@ export const topics: Topic[] = [
     description: 'The importance of forgiving others as God forgives us',
     shortDescription: 'As God forgives us through Christ, we are called to forgive others. Releasing resentment frees us and reflects God\'s merciful character to the world.',
     icon: '🕊️',
-    order: 4,
+    order: 6,
     references: [
       {
         book: 'Matthew',
@@ -437,7 +437,7 @@ export const topics: Topic[] = [
     description: 'Biblical teachings on love, compassion, and loving others',
     shortDescription: 'Love God with all your heart and love your neighbor as yourself. True love is patient, kind, and selfless, reflecting God\'s love for us.',
     icon: '❤️',
-    order: 2,
+    order: 3,
     references: [
       {
         book: '1 Corinthians',
@@ -507,7 +507,7 @@ export const topics: Topic[] = [
     description: 'Finding peace and overcoming fear through faith in God',
     shortDescription: 'God has not given us a spirit of fear. Cast your anxieties on Him, trust in His presence, and find peace that surpasses all understanding.',
     icon: '☮️',
-    order: 6,
+    order: 4,
     references: [
       {
         book: 'Philippians',
@@ -577,7 +577,7 @@ export const topics: Topic[] = [
     description: 'Seeking godly wisdom and making righteous decisions',
     shortDescription: 'The fear of the Lord is the beginning of wisdom. Ask God for wisdom and He will give generously, guiding your path and decisions.',
     icon: '📖',
-    order: 7,
+    order: 8,
     references: [
       {
         book: 'James',
@@ -717,7 +717,7 @@ export const topics: Topic[] = [
     description: 'Building faith and trusting in God\'s plan for your life',
     shortDescription: 'Faith is confidence in what we hope for and assurance about what we cannot see. Trust God completely and walk by faith, not by sight.',
     icon: '✨',
-    order: 8,
+    order: 7,
     references: [
       {
         book: 'Hebrews',
@@ -787,7 +787,7 @@ export const topics: Topic[] = [
     description: 'Understanding spiritual warfare, demons, and our authority in Christ',
     shortDescription: 'Our battle is spiritual, not physical. Put on the armor of God, resist the devil, and stand firm in faith knowing Christ has already won the victory.',
     icon: '⚔️',
-    order: 11,
+    order: 17,
     references: [
       {
         book: 'Ephesians',
@@ -857,7 +857,7 @@ export const topics: Topic[] = [
     description: 'What the Bible teaches about possession and freedom in Christ',
     shortDescription: 'Jesus has authority over all demonic forces. Through His name and power, believers can find complete freedom and deliverance from spiritual oppression.',
     icon: '🛡️',
-    order: 12,
+    order: 18,
     references: [
       {
         book: 'Mark',
@@ -927,7 +927,7 @@ export const topics: Topic[] = [
     description: 'Understanding suffering, trials, and God\'s sovereignty in difficult times',
     shortDescription: 'God works all things together for good for those who love Him. Trials produce endurance, character, and hope, refining our faith like gold.',
     icon: '🙏',
-    order: 13,
+    order: 11,
     references: [
       {
         book: 'Romans',
@@ -997,7 +997,7 @@ export const topics: Topic[] = [
     description: 'What happens to children who die and God\'s heart for the innocent',
     shortDescription: 'Scripture reveals God\'s special love for children. The kingdom of heaven belongs to such as these, offering comfort and hope to grieving hearts.',
     icon: '👶',
-    order: 14,
+    order: 12,
     references: [
       {
         book: '2 Samuel',
@@ -1067,7 +1067,7 @@ export const topics: Topic[] = [
     description: 'Biblical teaching on hell, judgment, and eternal separation from God',
     shortDescription: 'Hell is the eternal consequence of rejecting God. Scripture warns of judgment but offers salvation through faith in Jesus Christ to all who believe.',
     icon: '🔥',
-    order: 15,
+    order: 19,
     references: [
       {
         book: 'Matthew',
@@ -1137,7 +1137,7 @@ export const topics: Topic[] = [
     description: 'The promise of heaven and eternal life with God',
     shortDescription: 'Heaven is our eternal home prepared by Jesus. No more tears, death, or pain await believers who will dwell with God forever in perfect joy.',
     icon: '☁️',
-    order: 16,
+    order: 13,
     references: [
       {
         book: 'John',
@@ -1207,7 +1207,7 @@ export const topics: Topic[] = [
     description: 'Understanding God\'s ultimate control and what He permits',
     shortDescription: 'God is sovereign over all creation. His purposes will stand, His plans cannot be thwarted, and He works all things according to His perfect will.',
     icon: '👑',
-    order: 17,
+    order: 14,
     references: [
       {
         book: 'Romans',
@@ -1277,7 +1277,7 @@ export const topics: Topic[] = [
     description: 'Understanding God\'s undeserved favor and compassion toward us',
     shortDescription: 'Salvation comes by grace through faith, not by works. God\'s undeserved favor and mercy are freely given to all who believe in Jesus Christ.',
     icon: '✝️',
-    order: 18,
+    order: 15,
     references: [
       {
         book: 'Ephesians',
@@ -1347,7 +1347,7 @@ export const topics: Topic[] = [
     description: 'Understanding the Holy Spirit, His role, and His work in believers',
     shortDescription: 'The Holy Spirit is our Helper, dwelling within believers. He guides into truth, empowers for service, and produces spiritual fruit in our lives.',
     icon: '🕊️',
-    order: 19,
+    order: 9,
     references: [
       {
         book: 'John',
