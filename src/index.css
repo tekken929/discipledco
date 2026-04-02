@@ -181,3 +181,20 @@
     page-break-after: avoid;
   }
 }
+
+.verse-content p {
+  @apply mb-4 text-gray-800 dark:text-gray-200;
+}
+
+.verse-content .text {
+  @apply text-base leading-relaxed;
+}
+
+.verse-content .chapternum,
+.verse-content .versenum {
+  @apply font-bold text-blue-600 dark:text-blue-400 mr-1;
+}
+
+.verse-content sup {
+  @apply text-xs;
+}

@@ -1,18 +1,14 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { topics } from '../data/topics';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { BibleVerseModal } from '../components/BibleVerseModal';
 
 export function Topics() {
   const { topicId } = useParams();
   const selectedTopic = topicId ? topics.find(t => t.id === topicId) : null;
-
-  useEffect(() => {
-    // Reinitialize BibleGateway links after content loads
-    if (typeof (window as any).BGLinks !== 'undefined') {
-      (window as any).BGLinks.linkVerses();
-    }
-  }, [selectedTopic]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedVerse, setSelectedVerse] = useState('');
 
   if (selectedTopic) {
     return (
@@ -109,9 +105,15 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                           <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
                             {verseReference}
                           </h3>
-                          <span className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors cursor-pointer">
-                            {verseReference}
-                          </span>
+                          <button
+                            onClick={() => {
+                              setSelectedVerse(verseReference);
+                              setModalOpen(true);
+                            }}
+                            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors"
+                          >
+                            Click for more →
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -131,6 +133,12 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
             </div>
           </div>
         </div>
+
+        <BibleVerseModal
+          verseReference={selectedVerse}
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+        />
       </main>
     );
   }
