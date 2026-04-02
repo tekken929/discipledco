@@ -145,8 +145,8 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
   if (!enabled || !showBubble || !currentMessage) return null;
 
   return (
-    <div className="fixed top-24 right-4 z-20 animate-in slide-in-from-right duration-500">
-      <div className="relative">
+    <div className="fixed top-32 right-4 z-10 animate-in slide-in-from-right duration-500 pointer-events-none">
+      <div className="relative pointer-events-auto">
         <button
           onClick={handleBubbleClick}
           className={`relative bg-gradient-to-br ${currentMessage.color} backdrop-blur-sm rounded-2xl p-6 shadow-2xl w-[280px] flex flex-col items-center justify-center text-center hover:scale-105 transition-transform duration-300 cursor-pointer border-4 border-white/30`}
