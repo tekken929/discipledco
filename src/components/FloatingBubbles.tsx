@@ -146,8 +146,8 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
 
   return (
     <>
-      <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm animate-in fade-in duration-500 pointer-events-none" />
-      <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none animate-in fade-in duration-500">
+      <div className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm animate-in fade-in duration-500 pointer-events-none" />
+      <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none animate-in fade-in duration-500">
         <div className="relative animate-float pointer-events-auto">
           <button
             onClick={handleBubbleClick}
