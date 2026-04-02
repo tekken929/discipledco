@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { useBubbles } from '../context/BubblesContext';
 
 interface Message {
   message: string;
   scripture: string;
-}
-
-interface CollectedBubble extends Message {
-  id: number;
-  color: string;
 }
 
 const encouragingMessages: Message[] = [
@@ -70,130 +65,76 @@ interface FloatingBubblesProps {
 }
 
 export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
-  const [currentBubble, setCurrentBubble] = useState<CollectedBubble | null>(null);
-  const [collectedBubbles, setCollectedBubbles] = useState<CollectedBubble[]>([]);
-  const [availableMessages, setAvailableMessages] = useState<Message[]>([...encouragingMessages]);
-  const [bubbleY, setBubbleY] = useState(200);
-
-  const getRandomLeftPosition = () => {
-    const minY = 200;
-    const maxY = window.innerHeight - 300;
-    return Math.random() * (maxY - minY) + minY;
-  };
-
-  const createBubble = () => {
-    if (availableMessages.length === 0) return;
-
-    const randomIndex = Math.floor(Math.random() * availableMessages.length);
-    const message = availableMessages[randomIndex];
-
-    const bubble: CollectedBubble = {
-      id: Date.now(),
-      message: message.message,
-      scripture: message.scripture,
-      color: colors[Math.floor(Math.random() * colors.length)]
-    };
-
-    setCurrentBubble(bubble);
-    setBubbleY(getRandomLeftPosition());
-  };
-
-  const collectBubble = () => {
-    if (!currentBubble) return;
-
-    setCollectedBubbles(prev => [...prev, currentBubble]);
-    setAvailableMessages(prev =>
-      prev.filter(m => m.message !== currentBubble.message)
-    );
-    setCurrentBubble(null);
-
-    setTimeout(() => {
-      if (enabled && availableMessages.length > 1) {
-        createBubble();
-      }
-    }, 2000);
-  };
-
-  useEffect(() => {
-    if (enabled && !currentBubble && availableMessages.length > 0) {
-      const timer = setTimeout(createBubble, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [enabled, currentBubble, availableMessages]);
+  const { collectedMessages, addCollectedMessage } = useBubbles();
+  const [showBubble, setShowBubble] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState<Message & { color: string } | null>(null);
 
   useEffect(() => {
     if (!enabled) {
-      setCurrentBubble(null);
+      setShowBubble(false);
+      return;
     }
+
+    const collectedMessageTexts = collectedMessages.map(m => m.message);
+    const availableMessages = encouragingMessages.filter(
+      m => !collectedMessageTexts.includes(m.message)
+    );
+
+    if (availableMessages.length === 0) {
+      return;
+    }
+
+    const randomMessage = availableMessages[Math.floor(Math.random() * availableMessages.length)];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    setCurrentMessage({
+      ...randomMessage,
+      color: randomColor
+    });
+
+    const timer = setTimeout(() => {
+      setShowBubble(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, [enabled]);
 
-  if (!enabled) return null;
+  const handleBubbleClick = () => {
+    if (!currentMessage) return;
+
+    addCollectedMessage({
+      id: Date.now(),
+      message: currentMessage.message,
+      scripture: currentMessage.scripture,
+      color: currentMessage.color
+    });
+
+    setShowBubble(false);
+  };
+
+  if (!enabled || !showBubble || !currentMessage) return null;
 
   return (
-    <>
-      {/* Floating Bubble in Left Margin */}
-      {currentBubble && (
-        <div
-          className="fixed z-50 pointer-events-none left-8 hidden xl:block"
-          style={{
-            top: `${bubbleY}px`,
-          }}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-in fade-in duration-500">
+      <div className="relative animate-float">
+        <button
+          onClick={handleBubbleClick}
+          className={`relative bg-gradient-to-br ${currentMessage.color} backdrop-blur-sm rounded-full p-8 shadow-2xl w-[240px] h-[240px] flex flex-col items-center justify-center text-center hover:scale-105 transition-transform duration-300 cursor-pointer`}
         >
-          <div className="relative animate-float pointer-events-auto">
-            <div
-              className={`relative bg-gradient-to-br ${currentBubble.color} backdrop-blur-sm rounded-full p-6 shadow-xl w-[180px] h-[180px] flex flex-col items-center justify-center text-center`}
-            >
-              <button
-                onClick={collectBubble}
-                className="absolute -top-2 -right-2 bg-white rounded-full p-1.5 shadow-md hover:bg-gray-100 transition-colors"
-                aria-label="Collect bubble"
-              >
-                <X className="w-4 h-4 text-gray-700" />
-              </button>
+          <p className="text-white font-bold text-lg mb-3 leading-tight">
+            {currentMessage.message}
+          </p>
+          <p className="text-white/90 text-sm italic">
+            {currentMessage.scripture}
+          </p>
 
-              <p className="text-white font-bold text-sm mb-2 leading-tight">
-                {currentBubble.message}
-              </p>
-              <p className="text-white/90 text-xs italic">
-                {currentBubble.scripture}
-              </p>
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full pointer-events-none" />
+          <div className="absolute bottom-4 text-white/70 text-xs">
+            Click to collect
           </div>
-        </div>
-      )}
+        </button>
 
-      {/* Collected Bubbles - Permanent Display */}
-      {collectedBubbles.length > 0 && (
-        <div className="fixed left-4 top-32 z-40 hidden xl:block max-w-[200px]">
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl p-4 border-2 border-gray-200 dark:border-gray-700">
-            <h3 className="text-sm font-bold text-gray-800 dark:text-white mb-3 text-center">
-              Your Messages
-            </h3>
-            <div className="space-y-2 max-h-[calc(100vh-250px)] overflow-y-auto">
-              {collectedBubbles.map((bubble) => (
-                <div
-                  key={bubble.id}
-                  className={`bg-gradient-to-br ${bubble.color} rounded-xl p-3 shadow-md`}
-                >
-                  <p className="text-white font-semibold text-xs mb-1 leading-tight">
-                    {bubble.message}
-                  </p>
-                  <p className="text-white/90 text-[10px] italic">
-                    {bubble.scripture}
-                  </p>
-                </div>
-              ))}
-            </div>
-            {availableMessages.length === 0 && (
-              <p className="text-center text-xs text-gray-600 dark:text-gray-400 mt-3 italic">
-                All messages collected!
-              </p>
-            )}
-          </div>
-        </div>
-      )}
-    </>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full pointer-events-none" />
+      </div>
+    </div>
   );
 }
