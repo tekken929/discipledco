@@ -145,26 +145,29 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
   if (!enabled || !showBubble || !currentMessage) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm animate-in fade-in duration-500">
-      <div className="relative animate-float">
-        <button
-          onClick={handleBubbleClick}
-          className={`relative bg-gradient-to-br ${currentMessage.color} backdrop-blur-sm rounded-full p-8 shadow-2xl w-[240px] h-[240px] flex flex-col items-center justify-center text-center hover:scale-105 transition-transform duration-300 cursor-pointer`}
-        >
-          <p className="text-white font-bold text-lg mb-3 leading-tight">
-            {currentMessage.message}
-          </p>
-          <p className="text-white/90 text-sm italic">
-            {currentMessage.scripture}
-          </p>
+    <>
+      <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm animate-in fade-in duration-500 pointer-events-none" />
+      <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none animate-in fade-in duration-500">
+        <div className="relative animate-float pointer-events-auto">
+          <button
+            onClick={handleBubbleClick}
+            className={`relative bg-gradient-to-br ${currentMessage.color} backdrop-blur-sm rounded-full p-8 shadow-2xl w-[240px] h-[240px] flex flex-col items-center justify-center text-center hover:scale-105 transition-transform duration-300 cursor-pointer`}
+          >
+            <p className="text-white font-bold text-lg mb-3 leading-tight">
+              {currentMessage.message}
+            </p>
+            <p className="text-white/90 text-sm italic">
+              {currentMessage.scripture}
+            </p>
 
-          <div className="absolute bottom-4 text-white/70 text-xs">
-            Click to collect
-          </div>
-        </button>
+            <div className="absolute bottom-4 text-white/70 text-xs">
+              Click to collect
+            </div>
+          </button>
 
-        <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full pointer-events-none" />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
