@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Upload, X, FileText } from 'lucide-react';
+import { Upload, X, FileText, BookOpen, Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useDarkMode } from '../context/DarkModeContext';
 
@@ -13,6 +13,8 @@ export function BookUpload({ onClose, onUploadComplete }: BookUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState('');
   const [error, setError] = useState('');
+  const [previewPages, setPreviewPages] = useState<string[]>([]);
+  const [showPreview, setShowPreview] = useState(false);
 
   const [bookData, setBookData] = useState({
     title: '',
@@ -25,70 +27,109 @@ export function BookUpload({ onClose, onUploadComplete }: BookUploadProps) {
   const parseTextFile = async (file: File): Promise<string[]> => {
     const text = await file.text();
     const pages: string[] = [];
-    const pageDelimiters = ['[PAGE]', '---PAGE---', '\f'];
 
     let content = text;
-    let foundDelimiter = false;
 
-    for (const delimiter of pageDelimiters) {
-      if (text.includes(delimiter)) {
-        const parts = text.split(delimiter).filter(p => p.trim());
-        pages.push(...parts);
-        foundDelimiter = true;
-        break;
+    if (text.includes('[PAGE]')) {
+      const parts = text.split('[PAGE]').filter(p => p.trim());
+      pages.push(...parts);
+    } else if (text.includes('---PAGE---')) {
+      const parts = text.split('---PAGE---').filter(p => p.trim());
+      pages.push(...parts);
+    } else if (text.includes('\f')) {
+      const parts = text.split('\f').filter(p => p.trim());
+      pages.push(...parts);
+    } else {
+      const paragraphs = text.split(/\n\n+/);
+      let currentPage = '';
+      let wordCount = 0;
+      const wordsPerPage = 400;
+
+      for (const paragraph of paragraphs) {
+        const words = paragraph.trim().split(/\s+/);
+
+        if (wordCount + words.length > wordsPerPage && currentPage) {
+          pages.push(currentPage.trim());
+          currentPage = paragraph + '\n\n';
+          wordCount = words.length;
+        } else {
+          currentPage += paragraph + '\n\n';
+          wordCount += words.length;
+        }
+      }
+
+      if (currentPage.trim()) {
+        pages.push(currentPage.trim());
       }
     }
 
-    if (!foundDelimiter) {
-      const wordsPerPage = 500;
-      const words = text.split(/\s+/);
-
-      for (let i = 0; i < words.length; i += wordsPerPage) {
-        const pageWords = words.slice(i, i + wordsPerPage);
-        pages.push(pageWords.join(' '));
-      }
-    }
-
-    return pages;
+    return pages.filter(p => p.trim().length > 0);
   };
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    setUploading(true);
     setError('');
-    setProgress('Reading file...');
+    setProgress('Analyzing file...');
 
     try {
-      let pages: string[] = [];
-
-      if (file.name.endsWith('.txt')) {
-        pages = await parseTextFile(file);
-      } else {
-        setError('Only .txt files are supported at this time');
-        setUploading(false);
+      if (!file.name.endsWith('.txt')) {
+        setError('Only .txt files are supported');
+        setProgress('');
         return;
       }
+
+      const pages = await parseTextFile(file);
 
       if (pages.length === 0) {
         setError('No content found in file');
-        setUploading(false);
+        setProgress('');
         return;
       }
 
-      setProgress(`Processing ${pages.length} pages...`);
+      setPreviewPages(pages);
+      setShowPreview(true);
+      setProgress(`Ready to upload ${pages.length} pages`);
 
-      const bookTitle = bookData.title || file.name.replace('.txt', '');
+      if (!bookData.title) {
+        setBookData(prev => ({
+          ...prev,
+          title: file.name.replace('.txt', '').replace(/[-_]/g, ' ')
+        }));
+      }
 
+    } catch (err) {
+      console.error('Parse error:', err);
+      setError('Failed to parse file');
+      setProgress('');
+    }
+  };
+
+  const handleUpload = async () => {
+    if (previewPages.length === 0) {
+      setError('No pages to upload');
+      return;
+    }
+
+    if (!bookData.title.trim()) {
+      setError('Please enter a book title');
+      return;
+    }
+
+    setUploading(true);
+    setError('');
+    setProgress('Creating book...');
+
+    try {
       const { data: bookRecord, error: bookError } = await supabase
         .from('books')
         .insert({
-          title: bookTitle,
-          author: bookData.author || 'Unknown Author',
-          description: bookData.description || '',
-          cover_image_url: bookData.coverImageUrl || '',
-          total_pages: pages.length,
+          title: bookData.title.trim(),
+          author: bookData.author.trim() || 'Unknown Author',
+          description: bookData.description.trim() || '',
+          cover_image_url: bookData.coverImageUrl.trim() || '',
+          total_pages: previewPages.length,
           category: bookData.category,
           order_index: 0
         })
@@ -97,18 +138,19 @@ export function BookUpload({ onClose, onUploadComplete }: BookUploadProps) {
 
       if (bookError) throw bookError;
 
-      setProgress('Uploading pages to database...');
+      setProgress('Uploading pages...');
 
-      const pageRecords = pages.map((content, index) => ({
+      const pageRecords = previewPages.map((content, index) => ({
         book_id: bookRecord.id,
         page_number: index + 1,
         content: content.trim()
       }));
 
-      const batchSize = 50;
+      const batchSize = 100;
       for (let i = 0; i < pageRecords.length; i += batchSize) {
         const batch = pageRecords.slice(i, i + batchSize);
-        setProgress(`Uploading pages ${i + 1}-${Math.min(i + batchSize, pageRecords.length)} of ${pageRecords.length}...`);
+        const percentage = Math.round(((i + batch.length) / pageRecords.length) * 100);
+        setProgress(`Uploading pages... ${percentage}%`);
 
         const { error: pagesError } = await supabase
           .from('book_pages')
@@ -131,12 +173,20 @@ export function BookUpload({ onClose, onUploadComplete }: BookUploadProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className={`rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto ${
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className={`rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto ${
         isDarkMode ? 'bg-gray-800' : 'bg-white'
       }`}>
-        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Upload Book</h2>
+        {/* Header */}
+        <div className={`p-6 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} flex items-center justify-between sticky top-0 z-10 ${
+          isDarkMode ? 'bg-gray-800' : 'bg-white'
+        }`}>
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+              <BookOpen className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Upload Book</h2>
+          </div>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
@@ -147,144 +197,244 @@ export function BookUpload({ onClose, onUploadComplete }: BookUploadProps) {
         </div>
 
         <div className="p-6 space-y-6">
+          {/* Status Messages */}
           {error && (
-            <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg">
-              {error}
+            <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 px-4 py-3 rounded-xl flex items-center gap-2">
+              <X className="w-5 h-5 flex-shrink-0" />
+              <span>{error}</span>
             </div>
           )}
 
           {progress && (
-            <div className="bg-blue-100 dark:bg-blue-900/30 border border-blue-400 dark:border-blue-700 text-blue-700 dark:text-blue-400 px-4 py-3 rounded-lg">
-              {progress}
+            <div className="bg-blue-100 dark:bg-blue-900/30 border border-blue-400 dark:border-blue-700 text-blue-700 dark:text-blue-400 px-4 py-3 rounded-xl flex items-center gap-2">
+              <Sparkles className="w-5 h-5 flex-shrink-0 animate-pulse" />
+              <span>{progress}</span>
             </div>
           )}
 
+          {/* Book Details Form */}
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Book Title</label>
-              <input
-                type="text"
-                value={bookData.title}
-                onChange={(e) => setBookData({ ...bookData, title: e.target.value })}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white'
-                    : 'bg-white border-gray-300 text-gray-900'
-                }`}
-                placeholder="Enter book title (or leave blank to use filename)"
-                disabled={uploading}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                  Book Title *
+                </label>
+                <input
+                  type="text"
+                  value={bookData.title}
+                  onChange={(e) => setBookData({ ...bookData, title: e.target.value })}
+                  className={`w-full px-4 py-3 rounded-xl border-2 transition-colors ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-white focus:border-amber-500'
+                      : 'bg-white border-gray-300 text-gray-900 focus:border-amber-500'
+                  } focus:outline-none`}
+                  placeholder="Enter book title"
+                  disabled={uploading}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                  Author
+                </label>
+                <input
+                  type="text"
+                  value={bookData.author}
+                  onChange={(e) => setBookData({ ...bookData, author: e.target.value })}
+                  className={`w-full px-4 py-3 rounded-xl border-2 transition-colors ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-white focus:border-amber-500'
+                      : 'bg-white border-gray-300 text-gray-900 focus:border-amber-500'
+                  } focus:outline-none`}
+                  placeholder="Author name"
+                  disabled={uploading}
+                />
+              </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Author</label>
-              <input
-                type="text"
-                value={bookData.author}
-                onChange={(e) => setBookData({ ...bookData, author: e.target.value })}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white'
-                    : 'bg-white border-gray-300 text-gray-900'
-                }`}
-                placeholder="Enter author name"
-                disabled={uploading}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">Description</label>
+              <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                Description
+              </label>
               <textarea
                 value={bookData.description}
                 onChange={(e) => setBookData({ ...bookData, description: e.target.value })}
                 rows={3}
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors ${
                   isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white'
-                    : 'bg-white border-gray-300 text-gray-900'
-                }`}
+                    ? 'bg-gray-700 border-gray-600 text-white focus:border-amber-500'
+                    : 'bg-white border-gray-300 text-gray-900 focus:border-amber-500'
+                } focus:outline-none resize-none`}
                 placeholder="Brief description of the book"
                 disabled={uploading}
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">Category</label>
-              <select
-                value={bookData.category}
-                onChange={(e) => setBookData({ ...bookData, category: e.target.value })}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white'
-                    : 'bg-white border-gray-300 text-gray-900'
-                }`}
-                disabled={uploading}
-              >
-                <option value="General">General</option>
-                <option value="Old Testament">Old Testament</option>
-                <option value="New Testament">New Testament</option>
-                <option value="Study Guide">Study Guide</option>
-                <option value="Devotional">Devotional</option>
-                <option value="Theology">Theology</option>
-              </select>
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                  Category
+                </label>
+                <select
+                  value={bookData.category}
+                  onChange={(e) => setBookData({ ...bookData, category: e.target.value })}
+                  className={`w-full px-4 py-3 rounded-xl border-2 transition-colors ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-white focus:border-amber-500'
+                      : 'bg-white border-gray-300 text-gray-900 focus:border-amber-500'
+                  } focus:outline-none`}
+                  disabled={uploading}
+                >
+                  <option value="General">General</option>
+                  <option value="Old Testament">Old Testament</option>
+                  <option value="New Testament">New Testament</option>
+                  <option value="Study Guide">Study Guide</option>
+                  <option value="Devotional">Devotional</option>
+                  <option value="Theology">Theology</option>
+                  <option value="Biography">Biography</option>
+                  <option value="Commentary">Commentary</option>
+                </select>
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">Cover Image URL (optional)</label>
-              <input
-                type="text"
-                value={bookData.coverImageUrl}
-                onChange={(e) => setBookData({ ...bookData, coverImageUrl: e.target.value })}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  isDarkMode
-                    ? 'bg-gray-700 border-gray-600 text-white'
-                    : 'bg-white border-gray-300 text-gray-900'
-                }`}
-                placeholder="https://example.com/cover.jpg"
-                disabled={uploading}
-              />
+              <div>
+                <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                  Cover Image URL
+                </label>
+                <input
+                  type="url"
+                  value={bookData.coverImageUrl}
+                  onChange={(e) => setBookData({ ...bookData, coverImageUrl: e.target.value })}
+                  className={`w-full px-4 py-3 rounded-xl border-2 transition-colors ${
+                    isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-white focus:border-amber-500'
+                      : 'bg-white border-gray-300 text-gray-900 focus:border-amber-500'
+                  } focus:outline-none`}
+                  placeholder="https://..."
+                  disabled={uploading}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8">
-            <label className="flex flex-col items-center cursor-pointer">
-              <FileText className="w-16 h-16 mb-4 text-gray-400" />
-              <span className="text-lg font-medium mb-2">
-                {uploading ? 'Uploading...' : 'Choose a text file'}
-              </span>
-              <span className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                Supported format: .txt
-              </span>
-              <input
-                type="file"
-                accept=".txt"
-                onChange={handleFileUpload}
-                disabled={uploading}
-                className="hidden"
-              />
-              {!uploading && (
-                <span className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                  Select File
+          {/* File Upload Area */}
+          {!showPreview ? (
+            <div className={`border-2 border-dashed rounded-2xl p-12 transition-colors ${
+              isDarkMode
+                ? 'border-gray-600 hover:border-amber-500 bg-gray-700/30'
+                : 'border-gray-300 hover:border-amber-500 bg-amber-50/30'
+            }`}>
+              <label className="flex flex-col items-center cursor-pointer">
+                <div className="p-4 bg-amber-100 dark:bg-amber-900/30 rounded-full mb-4">
+                  <FileText className="w-12 h-12 text-amber-600 dark:text-amber-400" />
+                </div>
+                <span className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                  Choose a text file
                 </span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 mb-6 text-center">
+                  Drag and drop or click to browse
+                </span>
+                <input
+                  type="file"
+                  accept=".txt"
+                  onChange={handleFileSelect}
+                  disabled={uploading}
+                  className="hidden"
+                />
+                {!uploading && (
+                  <span className="px-8 py-3 bg-amber-600 text-white rounded-xl hover:bg-amber-700 transition-colors font-semibold">
+                    Select File
+                  </span>
+                )}
+              </label>
+            </div>
+          ) : (
+            <div className={`border-2 rounded-2xl p-6 ${
+              isDarkMode ? 'border-green-700 bg-green-900/20' : 'border-green-300 bg-green-50'
+            }`}>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                    <FileText className="w-6 h-6 text-green-600 dark:text-green-400" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">File ready to upload</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{previewPages.length} pages detected</p>
+                  </div>
+                </div>
+                {!uploading && (
+                  <button
+                    onClick={() => {
+                      setShowPreview(false);
+                      setPreviewPages([]);
+                      setProgress('');
+                    }}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  >
+                    Change file
+                  </button>
+                )}
+              </div>
+
+              {previewPages.length > 0 && (
+                <div className={`mt-4 p-4 rounded-xl text-sm ${
+                  isDarkMode ? 'bg-gray-700' : 'bg-white'
+                }`}>
+                  <p className="font-semibold mb-2 text-gray-900 dark:text-white">First page preview:</p>
+                  <div className={`max-h-32 overflow-y-auto text-gray-700 dark:text-gray-300 ${
+                    isDarkMode ? 'scrollbar-thin scrollbar-thumb-gray-600' : ''
+                  }`}>
+                    {previewPages[0].substring(0, 300)}...
+                  </div>
+                </div>
               )}
-            </label>
+            </div>
+          )}
+
+          {/* Instructions */}
+          <div className={`rounded-xl p-4 text-sm ${
+            isDarkMode ? 'bg-gray-700/50' : 'bg-gray-50'
+          }`}>
+            <p className="font-semibold mb-2 text-gray-900 dark:text-white">Formatting Tips:</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <ul className="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• <code className="bg-gray-200 dark:bg-gray-600 px-1 rounded">[PAGE]</code> separates pages</li>
+                <li>• <code className="bg-gray-200 dark:bg-gray-600 px-1 rounded"># Title</code> creates headings</li>
+                <li>• <code className="bg-gray-200 dark:bg-gray-600 px-1 rounded">**bold**</code> for bold text</li>
+              </ul>
+              <ul className="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• <code className="bg-gray-200 dark:bg-gray-600 px-1 rounded">*italic*</code> for italic text</li>
+                <li>• Empty lines create paragraphs</li>
+                <li>• Auto-splits at ~400 words/page</li>
+              </ul>
+            </div>
           </div>
 
-          <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            <p className="font-medium mb-2">File Format Guidelines:</p>
-            <ul className="list-disc list-inside space-y-1 text-xs">
-              <li>Use [PAGE] or ---PAGE--- to separate pages manually</li>
-              <li>Or the book will be auto-split into ~500 word pages</li>
-              <li>Plain text format works best</li>
-            </ul>
-            <p className="font-medium mt-4 mb-2">Formatting Support:</p>
-            <ul className="list-disc list-inside space-y-1 text-xs">
-              <li># Title - Creates a large heading</li>
-              <li>## Subtitle - Creates a medium heading</li>
-              <li>**bold text** - Makes text bold</li>
-              <li>*italic text* - Makes text italic</li>
-              <li>Empty line creates a paragraph break</li>
-            </ul>
+          {/* Action Buttons */}
+          <div className="flex gap-3 pt-4">
+            <button
+              onClick={onClose}
+              disabled={uploading}
+              className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-colors ${
+                uploading
+                  ? 'bg-gray-300 cursor-not-allowed'
+                  : isDarkMode
+                  ? 'bg-gray-700 hover:bg-gray-600 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+              }`}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleUpload}
+              disabled={uploading || !showPreview || !bookData.title.trim()}
+              className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all transform hover:scale-105 ${
+                uploading || !showPreview || !bookData.title.trim()
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl'
+              }`}
+            >
+              {uploading ? 'Uploading...' : 'Upload Book'}
+            </button>
           </div>
         </div>
       </div>
