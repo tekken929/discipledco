@@ -9,6 +9,7 @@ import { NavigationMenu } from './components/NavigationMenu';
 import { OnboardingQuestions } from './components/OnboardingQuestions';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
 import FloatingBubbles from './components/FloatingBubbles';
+import CollectedMessagesDropdown from './components/CollectedMessagesDropdown';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
@@ -200,6 +201,9 @@ function AppContent() {
         </div>
       </header>
 
+      {/* Collected Messages Dropdown - Sticky across all pages */}
+      <CollectedMessagesDropdown />
+
       {/* Main Content */}
       <div className="flex-1">
         <Routes>
@@ -230,8 +234,8 @@ function AppContent() {
       {/* Floating Music Player */}
       <FloatingMusicPlayer />
 
-      {/* Floating Bubbles - Only on home pages */}
-      {isHomePage && <FloatingBubbles enabled={bubblesEnabled} />}
+      {/* Floating Bubbles - On all pages */}
+      <FloatingBubbles enabled={bubblesEnabled} />
     </div>
   );
 }

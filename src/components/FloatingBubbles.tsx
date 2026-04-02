@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useBubbles } from '../context/BubblesContext';
 
 interface Message {
@@ -65,6 +66,7 @@ interface FloatingBubblesProps {
 }
 
 export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
+  const location = useLocation();
   const { collectedMessages, addCollectedMessage } = useBubbles();
   const [showBubble, setShowBubble] = useState(false);
   const [currentMessage, setCurrentMessage] = useState<Message & { color: string } | null>(null);
@@ -97,7 +99,7 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [enabled]);
+  }, [enabled, location.pathname, collectedMessages]);
 
   const handleBubbleClick = () => {
     if (!currentMessage) return;
