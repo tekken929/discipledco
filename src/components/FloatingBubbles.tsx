@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
-interface BubbleMessage {
-  id: number;
+interface Message {
   message: string;
   scripture: string;
-  position: { x: number; y: number };
+}
+
+interface CollectedBubble extends Message {
+  id: number;
   color: string;
 }
 
-const encouragingMessages = [
+const encouragingMessages: Message[] = [
   {
     message: "You are here for a reason",
     scripture: "Jeremiah 29:11"
@@ -53,14 +55,14 @@ const encouragingMessages = [
 ];
 
 const colors = [
-  'from-blue-400/80 to-blue-500/80',
-  'from-purple-400/80 to-purple-500/80',
-  'from-pink-400/80 to-pink-500/80',
-  'from-green-400/80 to-green-500/80',
-  'from-yellow-400/80 to-yellow-500/80',
-  'from-orange-400/80 to-orange-500/80',
-  'from-teal-400/80 to-teal-500/80',
-  'from-cyan-400/80 to-cyan-500/80'
+  'from-blue-400 to-blue-500',
+  'from-rose-400 to-rose-500',
+  'from-emerald-400 to-emerald-500',
+  'from-amber-400 to-amber-500',
+  'from-cyan-400 to-cyan-500',
+  'from-fuchsia-400 to-fuchsia-500',
+  'from-lime-400 to-lime-500',
+  'from-sky-400 to-sky-500'
 ];
 
 interface FloatingBubblesProps {
@@ -68,49 +70,56 @@ interface FloatingBubblesProps {
 }
 
 export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
-  const [currentBubble, setCurrentBubble] = useState<BubbleMessage | null>(null);
-  const [messageIndex, setMessageIndex] = useState(0);
+  const [currentBubble, setCurrentBubble] = useState<CollectedBubble | null>(null);
+  const [collectedBubbles, setCollectedBubbles] = useState<CollectedBubble[]>([]);
+  const [availableMessages, setAvailableMessages] = useState<Message[]>([...encouragingMessages]);
+  const [bubbleY, setBubbleY] = useState(200);
 
-  const getRandomPosition = () => {
-    const padding = 150;
-    const maxX = window.innerWidth - padding;
-    const maxY = window.innerHeight - padding;
-
-    return {
-      x: Math.random() * (maxX - padding) + padding,
-      y: Math.random() * (maxY - padding) + padding
-    };
+  const getRandomLeftPosition = () => {
+    const minY = 200;
+    const maxY = window.innerHeight - 300;
+    return Math.random() * (maxY - minY) + minY;
   };
 
   const createBubble = () => {
-    const message = encouragingMessages[messageIndex];
-    const bubble: BubbleMessage = {
+    if (availableMessages.length === 0) return;
+
+    const randomIndex = Math.floor(Math.random() * availableMessages.length);
+    const message = availableMessages[randomIndex];
+
+    const bubble: CollectedBubble = {
       id: Date.now(),
       message: message.message,
       scripture: message.scripture,
-      position: getRandomPosition(),
       color: colors[Math.floor(Math.random() * colors.length)]
     };
 
     setCurrentBubble(bubble);
-    setMessageIndex((prev) => (prev + 1) % encouragingMessages.length);
+    setBubbleY(getRandomLeftPosition());
   };
 
-  const closeBubble = () => {
+  const collectBubble = () => {
+    if (!currentBubble) return;
+
+    setCollectedBubbles(prev => [...prev, currentBubble]);
+    setAvailableMessages(prev =>
+      prev.filter(m => m.message !== currentBubble.message)
+    );
     setCurrentBubble(null);
+
     setTimeout(() => {
-      if (enabled) {
+      if (enabled && availableMessages.length > 1) {
         createBubble();
       }
-    }, 3000);
+    }, 2000);
   };
 
   useEffect(() => {
-    if (enabled && !currentBubble) {
+    if (enabled && !currentBubble && availableMessages.length > 0) {
       const timer = setTimeout(createBubble, 2000);
       return () => clearTimeout(timer);
     }
-  }, [enabled, currentBubble]);
+  }, [enabled, currentBubble, availableMessages]);
 
   useEffect(() => {
     if (!enabled) {
@@ -118,38 +127,73 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
     }
   }, [enabled]);
 
-  if (!enabled || !currentBubble) return null;
+  if (!enabled) return null;
 
   return (
-    <div
-      className="fixed z-50 pointer-events-none"
-      style={{
-        left: `${currentBubble.position.x}px`,
-        top: `${currentBubble.position.y}px`,
-      }}
-    >
-      <div className="relative animate-float pointer-events-auto">
+    <>
+      {/* Floating Bubble in Left Margin */}
+      {currentBubble && (
         <div
-          className={`relative bg-gradient-to-br ${currentBubble.color} backdrop-blur-sm rounded-full p-6 shadow-lg max-w-[200px] text-center`}
+          className="fixed z-50 pointer-events-none left-8 hidden xl:block"
+          style={{
+            top: `${bubbleY}px`,
+          }}
         >
-          <button
-            onClick={closeBubble}
-            className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-md hover:bg-gray-100 transition-colors"
-            aria-label="Close bubble"
-          >
-            <X className="w-4 h-4 text-gray-700" />
-          </button>
+          <div className="relative animate-float pointer-events-auto">
+            <div
+              className={`relative bg-gradient-to-br ${currentBubble.color} backdrop-blur-sm rounded-full p-6 shadow-xl w-[180px] h-[180px] flex flex-col items-center justify-center text-center`}
+            >
+              <button
+                onClick={collectBubble}
+                className="absolute -top-2 -right-2 bg-white rounded-full p-1.5 shadow-md hover:bg-gray-100 transition-colors"
+                aria-label="Collect bubble"
+              >
+                <X className="w-4 h-4 text-gray-700" />
+              </button>
 
-          <p className="text-white font-semibold text-sm mb-2">
-            {currentBubble.message}
-          </p>
-          <p className="text-white/90 text-xs italic">
-            {currentBubble.scripture}
-          </p>
+              <p className="text-white font-bold text-sm mb-2 leading-tight">
+                {currentBubble.message}
+              </p>
+              <p className="text-white/90 text-xs italic">
+                {currentBubble.scripture}
+              </p>
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full pointer-events-none" />
+          </div>
         </div>
+      )}
 
-        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-full pointer-events-none" />
-      </div>
-    </div>
+      {/* Collected Bubbles - Permanent Display */}
+      {collectedBubbles.length > 0 && (
+        <div className="fixed left-4 top-32 z-40 hidden xl:block max-w-[200px]">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-xl p-4 border-2 border-gray-200 dark:border-gray-700">
+            <h3 className="text-sm font-bold text-gray-800 dark:text-white mb-3 text-center">
+              Your Messages
+            </h3>
+            <div className="space-y-2 max-h-[calc(100vh-250px)] overflow-y-auto">
+              {collectedBubbles.map((bubble) => (
+                <div
+                  key={bubble.id}
+                  className={`bg-gradient-to-br ${bubble.color} rounded-xl p-3 shadow-md`}
+                >
+                  <p className="text-white font-semibold text-xs mb-1 leading-tight">
+                    {bubble.message}
+                  </p>
+                  <p className="text-white/90 text-[10px] italic">
+                    {bubble.scripture}
+                  </p>
+                </div>
+              ))}
+            </div>
+            {availableMessages.length === 0 && (
+              <p className="text-center text-xs text-gray-600 dark:text-gray-400 mt-3 italic">
+                All messages collected!
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
