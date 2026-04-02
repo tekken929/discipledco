@@ -1,10 +1,18 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { topics } from '../data/topics';
+import { useEffect } from 'react';
 
 export function Topics() {
   const { topicId } = useParams();
   const selectedTopic = topicId ? topics.find(t => t.id === topicId) : null;
+
+  useEffect(() => {
+    // Reinitialize BibleGateway links after content loads
+    if (typeof (window as any).BGLinks !== 'undefined') {
+      (window as any).BGLinks.linkVerses();
+    }
+  }, [selectedTopic]);
 
   if (selectedTopic) {
     return (
@@ -85,7 +93,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
 
             <div className="space-y-6">
               {selectedTopic.references.map((ref, index) => {
-                const bibleGatewayUrl = `https://www.biblegateway.com/passage/?search=${encodeURIComponent(`${ref.book} ${ref.chapter}:${ref.verse}`)}&version=ESV`;
+                const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
 
                 return (
                   <div
@@ -99,16 +107,11 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
                           <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
-                            {ref.book} {ref.chapter}:{ref.verse}
+                            {verseReference}
                           </h3>
-                          <a
-                            href={bibleGatewayUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors"
-                          >
-                            Click for more →
-                          </a>
+                          <span className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors cursor-pointer">
+                            {verseReference}
+                          </span>
                         </div>
                       </div>
                     </div>
