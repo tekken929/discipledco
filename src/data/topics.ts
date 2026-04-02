@@ -7,7 +7,7 @@ export const topics: Topic[] = [
     description: 'God strictly forbids all forms of occult practices, divination, witchcraft, and communication with the dead. These practices open doors to demonic influence and are an abomination to the Lord.',
     shortDescription: 'Scripture explicitly forbids all occult practices including divination, sorcery, witchcraft, and necromancy. God calls His people to seek Him alone for guidance and truth.',
     icon: '⛔',
-    order: 1,
+    order: 15,
     references: [
       {
         book: 'Deuteronomy',
@@ -1277,7 +1277,7 @@ export const topics: Topic[] = [
     description: 'Understanding God\'s undeserved favor and compassion toward us',
     shortDescription: 'Salvation comes by grace through faith, not by works. God\'s undeserved favor and mercy are freely given to all who believe in Jesus Christ.',
     icon: '✝️',
-    order: 15,
+    order: 1,
     references: [
       {
         book: 'Ephesians',

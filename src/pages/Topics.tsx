@@ -132,8 +132,8 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
     );
   }
 
-  const featuredTopic = topics.find(t => t.id === 'forbidden-practices');
-  const regularTopics = topics.filter(t => t.id !== 'forbidden-practices');
+  const featuredTopic = topics.find(t => t.id === 'grace');
+  const regularTopics = topics.filter(t => t.id !== 'grace');
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -149,7 +149,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
       {featuredTopic && (
         <Link
           to={`/topics/${featuredTopic.id}`}
-          className="block mb-8 theme-card rounded-2xl p-8 border-4 border-red-500 dark:border-red-600 hover:shadow-2xl transition-all group hover:scale-[1.02]"
+          className="block mb-8 theme-card rounded-2xl p-8 border-4 border-blue-500 dark:border-blue-600 hover:shadow-2xl transition-all group hover:scale-[1.02]"
         >
           <div className="flex items-center gap-4 mb-4">
             <span className="text-6xl group-hover:scale-110 transition-transform">
@@ -164,7 +164,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between text-base text-red-600 dark:text-red-400 font-bold">
+          <div className="flex items-center justify-between text-base text-blue-600 dark:text-blue-400 font-bold">
             <span>{featuredTopic.references.length} Scripture references</span>
             <span>→</span>
           </div>
