@@ -145,29 +145,24 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
   if (!enabled || !showBubble || !currentMessage) return null;
 
   return (
-    <>
-      <div className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm animate-in fade-in duration-500 pointer-events-none" />
-      <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none animate-in fade-in duration-500">
-        <div className="relative animate-float pointer-events-auto">
-          <button
-            onClick={handleBubbleClick}
-            className={`relative bg-gradient-to-br ${currentMessage.color} backdrop-blur-sm rounded-full p-8 shadow-2xl w-[240px] h-[240px] flex flex-col items-center justify-center text-center hover:scale-105 transition-transform duration-300 cursor-pointer`}
-          >
-            <p className="text-white font-bold text-lg mb-3 leading-tight">
-              {currentMessage.message}
-            </p>
-            <p className="text-white/90 text-sm italic">
-              {currentMessage.scripture}
-            </p>
+    <div className="fixed top-24 right-4 z-20 animate-in slide-in-from-right duration-500">
+      <div className="relative">
+        <button
+          onClick={handleBubbleClick}
+          className={`relative bg-gradient-to-br ${currentMessage.color} backdrop-blur-sm rounded-2xl p-6 shadow-2xl w-[280px] flex flex-col items-center justify-center text-center hover:scale-105 transition-transform duration-300 cursor-pointer border-4 border-white/30`}
+        >
+          <p className="text-white font-bold text-lg mb-3 leading-tight">
+            {currentMessage.message}
+          </p>
+          <p className="text-white/90 text-sm italic mb-4">
+            {currentMessage.scripture}
+          </p>
 
-            <div className="absolute bottom-4 text-white/70 text-xs">
-              Click to collect
-            </div>
-          </button>
-
-          <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full pointer-events-none" />
-        </div>
+          <div className="text-white/90 text-xs font-semibold bg-white/20 px-4 py-2 rounded-full">
+            Click to collect
+          </div>
+        </button>
       </div>
-    </>
+    </div>
   );
 }

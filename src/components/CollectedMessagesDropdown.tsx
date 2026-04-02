@@ -9,7 +9,7 @@ export default function CollectedMessagesDropdown() {
   if (collectedMessages.length === 0) return null;
 
   return (
-    <div className="sticky top-0 z-40 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 border-b-2 border-amber-200 dark:border-gray-600 shadow-md">
+    <div className="sticky top-16 z-50 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 border-b-2 border-amber-200 dark:border-gray-600 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => setIsOpen(!isOpen)}
