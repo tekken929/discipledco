@@ -5,48 +5,59 @@ import { useBubbles } from '../context/BubblesContext';
 interface Message {
   message: string;
   scripture: string;
+  fullVerse: string;
 }
 
 const encouragingMessages: Message[] = [
   {
     message: "You are here for a reason",
-    scripture: "Jeremiah 29:11"
+    scripture: "Jeremiah 29:11",
+    fullVerse: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."
   },
   {
     message: "You are not a mistake",
-    scripture: "Psalm 139:14"
+    scripture: "Psalm 139:14",
+    fullVerse: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."
   },
   {
     message: "You have a purpose",
-    scripture: "Ephesians 2:10"
+    scripture: "Ephesians 2:10",
+    fullVerse: "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
   },
   {
     message: "Jesus loves you",
-    scripture: "John 3:16"
+    scripture: "John 3:16",
+    fullVerse: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
   },
   {
     message: "It's ok to start today",
-    scripture: "Lamentations 3:22-23"
+    scripture: "Lamentations 3:22-23",
+    fullVerse: "Because of the Lord's great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness."
   },
   {
     message: "You are wonderfully made",
-    scripture: "Psalm 139:13"
+    scripture: "Psalm 139:13",
+    fullVerse: "For you created my inmost being; you knit me together in my mother's womb."
   },
   {
     message: "God has plans for you",
-    scripture: "Proverbs 3:5-6"
+    scripture: "Proverbs 3:5-6",
+    fullVerse: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."
   },
   {
     message: "You are deeply loved",
-    scripture: "Romans 8:38-39"
+    scripture: "Romans 8:38-39",
+    fullVerse: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord."
   },
   {
     message: "Your story matters",
-    scripture: "2 Corinthians 5:17"
+    scripture: "2 Corinthians 5:17",
+    fullVerse: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"
   },
   {
     message: "Hope is available",
-    scripture: "Romans 15:13"
+    scripture: "Romans 15:13",
+    fullVerse: "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit."
   }
 ];
 
@@ -70,10 +81,16 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
   const { collectedMessages, addCollectedMessage } = useBubbles();
   const [showBubble, setShowBubble] = useState(false);
   const [currentMessage, setCurrentMessage] = useState<Message & { color: string } | null>(null);
+  const [shownOnPage, setShownOnPage] = useState<string | null>(null);
 
   useEffect(() => {
     if (!enabled) {
       setShowBubble(false);
+      return;
+    }
+
+    // Don't show bubble if already shown on this page
+    if (shownOnPage === location.pathname) {
       return;
     }
 
@@ -96,10 +113,11 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
 
     const timer = setTimeout(() => {
       setShowBubble(true);
+      setShownOnPage(location.pathname);
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [enabled, location.pathname, collectedMessages]);
+  }, [enabled, location.pathname, collectedMessages, shownOnPage]);
 
   const handleBubbleClick = () => {
     if (!currentMessage) return;
@@ -108,6 +126,7 @@ export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
       id: Date.now(),
       message: currentMessage.message,
       scripture: currentMessage.scripture,
+      fullVerse: currentMessage.fullVerse,
       color: currentMessage.color
     });
 

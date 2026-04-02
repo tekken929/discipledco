@@ -29,17 +29,20 @@ export default function CollectedMessagesDropdown() {
         </button>
 
         {isOpen && (
-          <div className="pb-4 px-4 space-y-2 max-h-[400px] overflow-y-auto animate-in slide-in-from-top duration-300">
+          <div className="pb-4 px-4 space-y-3 max-h-[500px] overflow-y-auto animate-in slide-in-from-top duration-300">
             {collectedMessages.map((msg) => (
               <div
                 key={msg.id}
                 className={`bg-gradient-to-br ${msg.color} rounded-lg p-4 shadow-md`}
               >
-                <p className="text-white font-semibold text-sm mb-1 leading-tight">
+                <p className="text-white font-semibold text-sm mb-2 leading-tight">
                   {msg.message}
                 </p>
-                <p className="text-white/90 text-xs italic">
+                <p className="text-white/90 text-xs font-medium mb-1">
                   {msg.scripture}
+                </p>
+                <p className="text-white/95 text-xs italic leading-relaxed border-t border-white/20 pt-2 mt-2">
+                  "{msg.fullVerse}"
                 </p>
               </div>
             ))}

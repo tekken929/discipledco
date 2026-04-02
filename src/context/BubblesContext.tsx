@@ -4,6 +4,7 @@ interface CollectedMessage {
   id: number;
   message: string;
   scripture: string;
+  fullVerse: string;
   color: string;
 }
 
