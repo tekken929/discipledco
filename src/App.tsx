@@ -3,10 +3,12 @@ import { Moon, Sun, Palette } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
+import { BubblesProvider, useBubbles } from './context/BubblesContext';
 import { Footer } from './components/Footer';
 import { NavigationMenu } from './components/NavigationMenu';
 import { OnboardingQuestions } from './components/OnboardingQuestions';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
+import FloatingBubbles from './components/FloatingBubbles';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
@@ -29,6 +31,7 @@ import { useNavbarScroll } from './hooks/useScrollAnimation';
 
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
+  const { bubblesEnabled } = useBubbles();
   const location = useLocation();
   const [selectedBook, setSelectedBook] = useState<Book>(books[0]);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
@@ -36,6 +39,7 @@ function AppContent() {
     return localStorage.getItem('onboardingCompleted') === 'true';
   });
   const isScrolled = useNavbarScroll(100);
+  const isHomePage = location.pathname === '/' || location.pathname === '/bible';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -225,6 +229,9 @@ function AppContent() {
 
       {/* Floating Music Player */}
       <FloatingMusicPlayer />
+
+      {/* Floating Bubbles - Only on home pages */}
+      {isHomePage && <FloatingBubbles enabled={bubblesEnabled} />}
     </div>
   );
 }
@@ -232,9 +239,11 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <MusicPlayerProvider>
-        <AppContent />
-      </MusicPlayerProvider>
+      <BubblesProvider>
+        <MusicPlayerProvider>
+          <AppContent />
+        </MusicPlayerProvider>
+      </BubblesProvider>
     </Router>
   );
 }

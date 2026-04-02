@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
+import { useBubbles } from '../context/BubblesContext';
 
 interface NavigationMenuProps {
   darkMode: boolean;
@@ -16,6 +17,7 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const location = useLocation();
   const isScrolled = useNavbarScroll(100);
+  const { bubblesEnabled, toggleBubbles } = useBubbles();
 
   useEffect(() => {
     setIsOpen(false);
@@ -235,6 +237,21 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 <span className="font-medium">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
               </div>
+            </button>
+
+            <button
+              onClick={() => {
+                toggleBubbles();
+              }}
+              className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-5 h-5" />
+                <span className="font-medium">Floating Bubbles</span>
+              </div>
+              <span className={`text-xs px-2 py-1 rounded-full ${bubblesEnabled ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'}`}>
+                {bubblesEnabled ? 'ON' : 'OFF'}
+              </span>
             </button>
           </div>
         </div>
