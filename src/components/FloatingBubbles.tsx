@@ -78,10 +78,19 @@ interface FloatingBubblesProps {
 
 export default function FloatingBubbles({ enabled }: FloatingBubblesProps) {
   const location = useLocation();
-  const { collectedMessages, addCollectedMessage } = useBubbles();
+  const { collectedMessages, addCollectedMessage, resetMessages } = useBubbles();
   const [showBubble, setShowBubble] = useState(false);
   const [currentMessage, setCurrentMessage] = useState<Message & { color: string } | null>(null);
   const [shownOnPage, setShownOnPage] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Reset messages and bubbles when navigating to home page
+    if (location.pathname === '/' || location.pathname === '/home') {
+      resetMessages();
+      setShownOnPage(null);
+      setShowBubble(false);
+    }
+  }, [location.pathname, resetMessages]);
 
   useEffect(() => {
     if (!enabled) {

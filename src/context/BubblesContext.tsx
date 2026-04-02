@@ -13,6 +13,7 @@ interface BubblesContextType {
   toggleBubbles: () => void;
   collectedMessages: CollectedMessage[];
   addCollectedMessage: (message: CollectedMessage) => void;
+  resetMessages: () => void;
 }
 
 const BubblesContext = createContext<BubblesContextType | undefined>(undefined);
@@ -44,8 +45,13 @@ export function BubblesProvider({ children }: { children: ReactNode }) {
     setCollectedMessages(prev => [...prev, message]);
   };
 
+  const resetMessages = () => {
+    setCollectedMessages([]);
+    localStorage.removeItem('collectedMessages');
+  };
+
   return (
-    <BubblesContext.Provider value={{ bubblesEnabled, toggleBubbles, collectedMessages, addCollectedMessage }}>
+    <BubblesContext.Provider value={{ bubblesEnabled, toggleBubbles, collectedMessages, addCollectedMessage, resetMessages }}>
       {children}
     </BubblesContext.Provider>
   );
