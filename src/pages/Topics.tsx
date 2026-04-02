@@ -1,14 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { topics } from '../data/topics';
-import { useState } from 'react';
-import { BibleVerseModal } from '../components/BibleVerseModal';
 
 export function Topics() {
   const { topicId } = useParams();
   const selectedTopic = topicId ? topics.find(t => t.id === topicId) : null;
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedVerse, setSelectedVerse] = useState('');
 
   if (selectedTopic) {
     return (
@@ -101,20 +97,9 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                         {index + 1}
                       </span>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
-                            {verseReference}
-                          </h3>
-                          <button
-                            onClick={() => {
-                              setSelectedVerse(verseReference);
-                              setModalOpen(true);
-                            }}
-                            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors"
-                          >
-                            Click for more →
-                          </button>
-                        </div>
+                        <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
+                          {verseReference}
+                        </h3>
                       </div>
                     </div>
                     <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12 mb-3">
@@ -133,12 +118,6 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
             </div>
           </div>
         </div>
-
-        <BibleVerseModal
-          verseReference={selectedVerse}
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-        />
       </main>
     );
   }
@@ -153,7 +132,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
           Biblical Topics
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">
-          Explore biblical guidance on various life topics with Scripture references
+          Explore biblical guidance on various life topics with Bible references
         </p>
       </div>
 
@@ -176,7 +155,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
             </div>
           </div>
           <div className="flex items-center justify-between text-base text-blue-600 dark:text-blue-400 font-bold">
-            <span>{featuredTopic.references.length} Scripture references</span>
+            <span>{featuredTopic.references.length} Bible references</span>
             <span>→</span>
           </div>
         </Link>
@@ -201,7 +180,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
               {topic.shortDescription}
             </p>
             <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
-              <span>{topic.references.length} Scripture references</span>
+              <span>{topic.references.length} Bible references</span>
               <span>→</span>
             </div>
           </Link>
