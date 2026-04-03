@@ -10,17 +10,19 @@ interface InfoPopupProps {
 
 function InfoPopup({ title, content, onClose }: InfoPopupProps) {
   return (
-    <div className="popup-container">
+    <>
       <div className="popup-overlay" onClick={onClose} />
-      <div className="info-popup">
-        <button onClick={onClose} className="popup-close" aria-label="Close">
-          <X className="w-5 h-5" />
-        </button>
-        <h3 className="popup-title">{title}</h3>
-        <div className="popup-divider"></div>
-        <div className="popup-content" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="popup-container">
+        <div className="info-popup">
+          <button onClick={onClose} className="popup-close" aria-label="Close">
+            <X className="w-5 h-5" />
+          </button>
+          <h3 className="popup-title">{title}</h3>
+          <div className="popup-divider"></div>
+          <div className="popup-content" dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
