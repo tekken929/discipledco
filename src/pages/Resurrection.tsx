@@ -1,9 +1,53 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info } from 'lucide-react';
+
+interface InfoPopupProps {
+  title: string;
+  content: string;
+  onClose: () => void;
+}
+
+function InfoPopup({ title, content, onClose }: InfoPopupProps) {
+  return (
+    <>
+      <div className="popup-overlay" onClick={onClose} />
+      <div className="info-popup">
+        <button onClick={onClose} className="popup-close" aria-label="Close">
+          <X className="w-5 h-5" />
+        </button>
+        <h3 className="popup-title">{title}</h3>
+        <div className="popup-divider"></div>
+        <p className="popup-content">{content}</p>
+      </div>
+    </>
+  );
+}
 
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activePopup, setActivePopup] = useState<string | null>(null);
+
+  const infoPoints = [
+    {
+      id: 'early-dating',
+      title: 'Early Dating',
+      content: 'P52 dates to 125-150 AD, placing it within decades of the original Gospel. This destroys theories of late legendary development.',
+      position: { top: '15%', left: '20%' }
+    },
+    {
+      id: 'textual-accuracy',
+      title: 'Textual Accuracy',
+      content: 'The fragment matches later manuscripts with remarkable precision, demonstrating faithful preservation across centuries.',
+      position: { top: '45%', left: '75%' }
+    },
+    {
+      id: 'wide-distribution',
+      title: 'Wide Distribution',
+      content: 'Found in Egypt, far from John\'s authorship in Ephesus, proving rapid circulation across the ancient world.',
+      position: { top: '75%', left: '30%' }
+    }
+  ];
 
   const navigationLinks = [
     { to: '/', icon: Home, title: 'Home' },
@@ -109,12 +153,33 @@ export function Resurrection() {
                 className="papyrus-image"
                 loading="eager"
               />
+              {/* Interactive Info Points */}
+              {infoPoints.map((point) => (
+                <button
+                  key={point.id}
+                  className="info-point"
+                  style={{ top: point.position.top, left: point.position.left }}
+                  onClick={() => setActivePopup(point.id)}
+                  aria-label={`Learn about ${point.title}`}
+                >
+                  <Info className="w-4 h-4" />
+                </button>
+              ))}
               <div className="papyrus-caption">
                 <p className="papyrus-caption-text">P52 • Rylands Papyrus • Gospel of John 18:31-33</p>
                 <p className="papyrus-caption-date">~125-150 AD</p>
               </div>
             </div>
           </div>
+
+          {/* Info Popups */}
+          {activePopup && (
+            <InfoPopup
+              title={infoPoints.find(p => p.id === activePopup)!.title}
+              content={infoPoints.find(p => p.id === activePopup)!.content}
+              onClose={() => setActivePopup(null)}
+            />
+          )}
         </div>
       </section>
 

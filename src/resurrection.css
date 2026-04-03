@@ -213,11 +213,11 @@
 }
 
 .resurrection-title {
-  font-size: clamp(2.75rem, 10vw, 6.5rem);
+  font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: 900;
   color: #f5ebdc;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   margin-bottom: 1.5rem;
   text-shadow:
     0 6px 12px rgba(0, 0, 0, 0.9),
@@ -225,10 +225,9 @@
     0 0 100px rgba(45, 62, 82, 0.4),
     0 2px 4px rgba(0, 0, 0, 0.8);
   font-family: 'Georgia', 'Garamond', serif;
-  line-height: 1.1;
+  line-height: 1.15;
   position: relative;
-  max-width: 100%;
-  word-wrap: break-word;
+  white-space: nowrap;
 }
 
 .resurrection-subtitle {
@@ -666,8 +665,8 @@
 
 @media (max-width: 480px) {
   .resurrection-title {
-    letter-spacing: 0.08em;
-    font-size: clamp(2.25rem, 11vw, 3rem);
+    letter-spacing: 0.06em;
+    font-size: clamp(1.875rem, 9vw, 2.5rem);
   }
 
   .resurrection-subtitle {
@@ -678,4 +677,162 @@
     top: 1rem;
     left: 1rem;
   }
+}
+
+/* Info Points on Image */
+.info-point {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: rgba(217, 202, 175, 0.95);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(101, 84, 63, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d1810;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.info-point:hover {
+  transform: scale(1.15);
+  background: rgba(245, 235, 220, 1);
+  border-color: rgba(139, 117, 90, 0.9);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      0 0 0 0 rgba(217, 202, 175, 0.7);
+  }
+  50% {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      0 0 0 8px rgba(217, 202, 175, 0);
+  }
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Info Popup */
+.info-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 90%;
+  background:
+    linear-gradient(180deg,
+      #f5ebdc 0%,
+      #ecdcc5 50%,
+      #e8dcc8 100%
+    );
+  border: 3px solid rgba(101, 84, 63, 0.7);
+  border-radius: 0.75rem;
+  padding: 2.5rem 2rem;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  animation: popupSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.info-popup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+  border-radius: 0.75rem;
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(101, 84, 63, 0.2);
+  border: 1px solid rgba(101, 84, 63, 0.4);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  color: #2d1810;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.popup-close:hover {
+  background: rgba(101, 84, 63, 0.35);
+  border-color: rgba(101, 84, 63, 0.6);
+  transform: scale(1.1);
+}
+
+.popup-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #2d1810;
+  margin-bottom: 0.75rem;
+  font-family: 'Georgia', 'Garamond', serif;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.popup-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(101, 84, 63, 0.8) 0%, rgba(101, 84, 63, 0.3) 70%, transparent 100%);
+  margin: 1rem 0 1.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.popup-content {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #3d2817;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  z-index: 1;
 }
