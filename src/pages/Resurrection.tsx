@@ -104,7 +104,7 @@ export function Resurrection() {
           <div className="resurrection-papyrus-frame">
             <div className="papyrus-image-container">
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/P52_recto.jpg/800px-P52_recto.jpg"
+                src="images/bible-books/p52.jpg"
                 alt="P52 Papyrus Fragment - Earliest known fragment of the Gospel of John"
                 className="papyrus-image"
                 loading="eager"
