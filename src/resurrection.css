@@ -213,11 +213,11 @@
 }
 
 .resurrection-title {
-  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-size: clamp(2.75rem, 10vw, 6.5rem);
   font-weight: 900;
   color: #f5ebdc;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   margin-bottom: 1.5rem;
   text-shadow:
     0 6px 12px rgba(0, 0, 0, 0.9),
@@ -225,8 +225,10 @@
     0 0 100px rgba(45, 62, 82, 0.4),
     0 2px 4px rgba(0, 0, 0, 0.8);
   font-family: 'Georgia', 'Garamond', serif;
-  line-height: 1;
+  line-height: 1.1;
   position: relative;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .resurrection-subtitle {
@@ -664,7 +666,8 @@
 
 @media (max-width: 480px) {
   .resurrection-title {
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
+    font-size: clamp(2.25rem, 11vw, 3rem);
   }
 
   .resurrection-subtitle {
