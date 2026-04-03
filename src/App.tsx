@@ -26,9 +26,11 @@ import { Podcasts } from './pages/Podcasts';
 import { Timeline } from './pages/Timeline';
 import { BibleAuthors } from './pages/BibleAuthors';
 import { ChristianHolidays } from './pages/ChristianHolidays';
+import { Resurrection } from './pages/Resurrection';
 import { books } from './data/books';
 import { Book } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
+import './resurrection.css';
 
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
@@ -225,6 +227,7 @@ function AppContent() {
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/bible-authors" element={<BibleAuthors />} />
           <Route path="/christian-holidays" element={<ChristianHolidays />} />
+          <Route path="/resurrection" element={<Resurrection />} />
         </Routes>
       </div>
 

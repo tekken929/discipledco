@@ -168,6 +168,13 @@ export function Footer() {
                 Podcasts
               </Link>
               <span className="text-gray-400">|</span>
+              <Link
+                to="/resurrection"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Resurrection
+              </Link>
+              <span className="text-gray-400">|</span>
               <button
                 onClick={() => setShowAdminPortal(true)}
                 className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-xs text-gray-500 dark:text-gray-400"
