@@ -1,0 +1,57 @@
+{
+  "name": "Faith Journey - Christian Learning Platform",
+  "short_name": "Faith Journey",
+  "description": "Explore Christian faith through interactive Bible study, timelines, stories, music, and more",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/logo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "lifestyle", "books"],
+  "shortcuts": [
+    {
+      "name": "Bible Timeline",
+      "short_name": "Timeline",
+      "description": "View Biblical events chronologically",
+      "url": "/timeline",
+      "icons": [{ "src": "/images/logo-icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Stories",
+      "short_name": "Stories",
+      "description": "Explore Bible stories",
+      "url": "/stories",
+      "icons": [{ "src": "/images/logo-icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Music",
+      "short_name": "Music",
+      "description": "Listen to Christian music",
+      "url": "/music",
+      "icons": [{ "src": "/images/logo-icon.svg", "sizes": "any" }]
+    }
+  ]
+}
