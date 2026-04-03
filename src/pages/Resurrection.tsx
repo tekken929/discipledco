@@ -307,6 +307,65 @@ export function Resurrection() {
               Will you step forward into the life that Christ offers? Will you take up the cross,
               deny yourself, and follow? The path is ancient. The truth is eternal. The witness remains.
             </p>
+
+            <button
+              className="faith-reflection-btn"
+              onClick={() => toggleSection('faith-reflection')}
+            >
+              My Thoughts on Faith
+            </button>
+
+            {expandedSections.has('faith-reflection') && (
+              <div className="faith-reflection-content">
+                <h3 className="faith-reflection-title">Faith: Evidence and Trust</h3>
+
+                <p className="faith-reflection-text">
+                  Faith, as presented in scripture, is not belief without basis. It is trust built on what has been revealed and observed.
+                </p>
+
+                <blockquote className="faith-reflection-quote">
+                  "Now faith is confidence in what we hope for and assurance about what we do not see."
+                  <cite>— Hebrews 11:1 (NIV)</cite>
+                </blockquote>
+
+                <p className="faith-reflection-text">
+                  The distinction matters. Blind faith assumes without reason. Biblical faith responds to what has been given—historical events, recorded testimony, and consistent claims preserved across texts.
+                </p>
+
+                <p className="faith-reflection-text">
+                  The resurrection accounts, the crucifixion details, the named individuals, the locations, the physical elements—these are not abstract ideas. They are presented as events that occurred in time, involving identifiable people and places.
+                </p>
+
+                <p className="faith-reflection-text">
+                  Scripture also acknowledges that belief is not meant to come from overwhelming force:
+                </p>
+
+                <blockquote className="faith-reflection-quote">
+                  "Then Jesus told him, 'Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.'"
+                  <cite>— John 20:29 (NIV)</cite>
+                </blockquote>
+
+                <p className="faith-reflection-text">
+                  This does not remove evidence—it defines the relationship to it.
+                </p>
+
+                <p className="faith-reflection-text">
+                  God does not eliminate the need for faith by providing undeniable proof that overrides choice. At the same time, He does not leave belief without foundation. What is given is enough—enough to examine, enough to question, enough to confirm.
+                </p>
+
+                <p className="faith-reflection-text">
+                  As knowledge increases, the consistency across the accounts, the alignment with historical context, and the preservation of detail all contribute to a stronger basis for belief.
+                </p>
+
+                <p className="faith-reflection-text">
+                  Faith, then, is not belief in nothing. It is trust formed in response to what has been shown—where the evidence points, but does not force, and where the conclusion remains a decision.
+                </p>
+
+                <p className="faith-reflection-text">
+                  In that framework, faith grows—not by ignoring evidence, but by engaging with it.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 

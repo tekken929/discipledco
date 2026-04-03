@@ -1214,6 +1214,88 @@
   animation: expandDown 0.3s ease;
 }
 
+/* Faith Reflection Button and Content */
+.faith-reflection-btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(139, 117, 90, 0.25) 100%);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(139, 117, 90, 0.5);
+  border-radius: 0.5rem;
+  color: #fef9f0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.faith-reflection-btn:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.35) 0%, rgba(139, 117, 90, 0.35) 100%);
+  border-color: rgba(139, 117, 90, 0.7);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.faith-reflection-content {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(139, 117, 90, 0.4);
+  animation: expandDown 0.4s ease;
+}
+
+.faith-reflection-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fffbf5;
+  margin-bottom: 1.5rem;
+  font-family: 'Georgia', 'Garamond', serif;
+  text-align: center;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.95),
+    0 0 20px rgba(212, 175, 55, 0.2);
+  letter-spacing: 0.02em;
+}
+
+.faith-reflection-text {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: #f0e6d6;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
+}
+
+.faith-reflection-quote {
+  background: rgba(245, 235, 220, 0.08);
+  border-left: 4px solid rgba(212, 175, 55, 0.6);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #f5ead5;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+  border-radius: 0.25rem;
+}
+
+.faith-reflection-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #d9cab7;
+  font-style: normal;
+  text-align: right;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .info-popup {
     max-width: 280px;
@@ -1226,5 +1308,23 @@
 
   .compact-content {
     padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  .faith-reflection-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .faith-reflection-title {
+    font-size: 1.5rem;
+  }
+
+  .faith-reflection-text {
+    font-size: 1.0625rem;
+  }
+
+  .faith-reflection-quote {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.0625rem;
   }
 }
