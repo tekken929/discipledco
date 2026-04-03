@@ -1,9 +1,127 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info, Plus } from 'lucide-react';
+
+interface InfoPopupProps {
+  title: string;
+  content: string;
+  onClose: () => void;
+}
+
+function InfoPopup({ title, content, onClose }: InfoPopupProps) {
+  return (
+    <>
+      <div className="popup-overlay" onClick={onClose} />
+      <div className="info-popup">
+        <button onClick={onClose} className="popup-close" aria-label="Close">
+          <X className="w-5 h-5" />
+        </button>
+        <h3 className="popup-title">{title}</h3>
+        <div className="popup-divider"></div>
+        <div className="popup-content" dangerouslySetInnerHTML={{ __html: content }} />
+      </div>
+    </>
+  );
+}
 
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activePopup, setActivePopup] = useState<string | null>(null);
+
+  const infoPoints = [
+    {
+      id: 'early-dating',
+      title: 'Early Dating',
+      content: 'P52 dates to 125-150 AD, placing it within decades of the original Gospel. This destroys theories of late legendary development.',
+      position: { top: '15%', left: '20%' }
+    },
+    {
+      id: 'textual-accuracy',
+      title: 'Textual Accuracy',
+      content: 'The fragment matches later manuscripts with remarkable precision, demonstrating faithful preservation across centuries.',
+      position: { top: '45%', left: '75%' }
+    },
+    {
+      id: 'wide-distribution',
+      title: 'Wide Distribution',
+      content: 'Found in Egypt, far from John\'s authorship in Ephesus, proving rapid circulation across the ancient world.',
+      position: { top: '75%', left: '30%' }
+    }
+  ];
+
+  const gospelEvents = [
+    {
+      id: 'prediction',
+      title: 'Jesus Predicts His Death',
+      content: `Jesus knew His mission from the beginning. He repeatedly told His disciples that He must suffer, die, and rise again.<br><br>
+        <strong>Matthew 16:21 (ESV):</strong> "From that time Jesus began to show his disciples that he must go to Jerusalem and suffer many things from the elders and chief priests and scribes, and be killed, and on the third day be raised."<br><br>
+        <strong>Mark 10:33-34 (ESV):</strong> "See, we are going up to Jerusalem, and the Son of Man will be delivered over to the chief priests and the scribes, and they will condemn him to death and deliver him over to the Gentiles. And they will mock him and spit on him, and flog him and kill him. And after three days he will rise."`
+    },
+    {
+      id: 'last-supper',
+      title: 'The Last Supper',
+      content: `On the night before His crucifixion, Jesus gathered with His disciples to share the Passover meal, instituting the Lord's Supper.<br><br>
+        <strong>Matthew 26:26-28 (ESV):</strong> "Now as they were eating, Jesus took bread, and after blessing it broke it and gave it to the disciples, and said, 'Take, eat; this is my body.' And he took a cup, and when he had given thanks he gave it to them, saying, 'Drink of it, all of you, for this is my blood of the covenant, which is poured out for many for the forgiveness of sins.'"<br><br>
+        <strong>John 13:34-35 (ESV):</strong> "A new commandment I give to you, that you love one another: just as I have loved you, you also are to love one another."`
+    },
+    {
+      id: 'gethsemane',
+      title: 'Garden of Gethsemane',
+      content: `In the garden, Jesus prayed with such intensity that His sweat became like drops of blood, fully aware of the suffering to come.<br><br>
+        <strong>Matthew 26:39 (ESV):</strong> "And going a little farther he fell on his face and prayed, saying, 'My Father, if it be possible, let this cup pass from me; nevertheless, not as I will, but as you will.'"<br><br>
+        <strong>Luke 22:44 (ESV):</strong> "And being in agony he prayed more earnestly; and his sweat became like great drops of blood falling down to the ground."`
+    },
+    {
+      id: 'pilate',
+      title: 'Before Pilate',
+      content: `Jesus was brought before Pontius Pilate, the Roman governor. Though Pilate found no fault in Him, political pressure would seal Christ's fate.<br><br>
+        <strong>John 18:37-38 (ESV):</strong> "Then Pilate said to him, 'So you are a king?' Jesus answered, 'You say that I am a king. For this purpose I was born and for this purpose I have come into the world—to bear witness to the truth. Everyone who is of the truth listens to my voice.' Pilate said to him, 'What is truth?'"<br><br>
+        <strong>Luke 23:4 (ESV):</strong> "Then Pilate said to the chief priests and the crowds, 'I find no guilt in this man.'"`
+    },
+    {
+      id: 'crucify',
+      title: '"Crucify Him!"',
+      content: `The crowd, stirred by the religious leaders, chose a murderer over the Messiah and demanded Jesus be crucified.<br><br>
+        <strong>Matthew 27:22-23 (ESV):</strong> "Pilate said to them, 'Then what shall I do with Jesus who is called Christ?' They all said, 'Let him be crucified!' And he said, 'Why? What evil has he done?' But they shouted all the more, 'Let him be crucified!'"<br><br>
+        <strong>Mark 15:13-14 (ESV):</strong> "And they cried out again, 'Crucify him.' And Pilate said to them, 'Why? What evil has he done?' But they shouted all the more, 'Crucify him.'"`
+    },
+    {
+      id: 'via-dolorosa',
+      title: 'The Way of Sorrows',
+      content: `Jesus carried His cross through Jerusalem to Golgotha, the place of the skull. Beaten, mocked, and exhausted, He walked the path of redemption.<br><br>
+        <strong>John 19:17 (ESV):</strong> "And he went out, bearing his own cross, to the place called The Place of a Skull, which in Aramaic is called Golgotha."<br><br>
+        <strong>Luke 23:26 (ESV):</strong> "And as they led him away, they seized one Simon of Cyrene, who was coming in from the country, and laid on him the cross, to carry it behind Jesus."`
+    },
+    {
+      id: 'crucifixion',
+      title: 'The Crucifixion',
+      content: `Between two thieves, the Son of God was crucified. From the cross, He spoke words of forgiveness, compassion, and ultimate surrender.<br><br>
+        <strong>Luke 23:34 (ESV):</strong> "And Jesus said, 'Father, forgive them, for they know not what they do.'"<br><br>
+        <strong>John 19:30 (ESV):</strong> "When Jesus had received the sour wine, he said, 'It is finished,' and he bowed his head and gave up his spirit."<br><br>
+        <strong>Matthew 27:51 (ESV):</strong> "And behold, the curtain of the temple was torn in two, from top to bottom. And the earth shook, and the rocks were split."`
+    },
+    {
+      id: 'burial',
+      title: 'The Burial',
+      content: `Joseph of Arimathea, a secret disciple, requested Jesus' body and laid it in his own new tomb. The stone was sealed, guards were posted.<br><br>
+        <strong>Matthew 27:59-60 (ESV):</strong> "And Joseph took the body and wrapped it in a clean linen shroud and laid it in his own new tomb, which he had cut in the rock. And he rolled a great stone to the entrance of the tomb and went away."<br><br>
+        <strong>John 19:41-42 (ESV):</strong> "Now in the place where he was crucified there was a garden, and in the garden a new tomb in which no one had yet been laid."`
+    },
+    {
+      id: 'empty-tomb',
+      title: 'The Empty Tomb',
+      content: `On the first day of the week, women came to the tomb with spices. They found the stone rolled away and the tomb empty. Angels declared: "He is not here; he has risen!"<br><br>
+        <strong>Mark 16:5-6 (ESV):</strong> "And entering the tomb, they saw a young man sitting on the right side, dressed in a white robe, and they were alarmed. And he said to them, 'Do not be alarmed. You seek Jesus of Nazareth, who was crucified. He has risen; he is not here. See the place where they laid him.'"<br><br>
+        <strong>Luke 24:5-6 (ESV):</strong> "Why do you seek the living among the dead? He is not here, but has risen."`
+    },
+    {
+      id: 'resurrection',
+      title: 'The Resurrection',
+      content: `Jesus appeared to Mary Magdalene, to Peter, to the disciples, and to more than 500 witnesses. Death was defeated. The grave was conquered.<br><br>
+        <strong>John 20:19-20 (ESV):</strong> "On the evening of that day, the first day of the week, the doors being locked where the disciples were for fear of the Jews, Jesus came and stood among them and said to them, 'Peace be with you.' When he had said this, he showed them his hands and his side. Then the disciples were glad when they saw the Lord."<br><br>
+        <strong>1 Corinthians 15:5-6 (ESV):</strong> "He appeared to Cephas, then to the twelve. Then he appeared to more than five hundred brothers at one time."`
+    }
+  ];
 
   const navigationLinks = [
     { to: '/', icon: Home, title: 'Home' },
@@ -109,11 +227,43 @@ export function Resurrection() {
                 className="papyrus-image"
                 loading="eager"
               />
+              {/* Interactive Info Points */}
+              {infoPoints.map((point) => (
+                <button
+                  key={point.id}
+                  className="info-point"
+                  style={{ top: point.position.top, left: point.position.left }}
+                  onClick={() => setActivePopup(point.id)}
+                  aria-label={`Learn about ${point.title}`}
+                >
+                  <Info className="w-4 h-4" />
+                </button>
+              ))}
               <div className="papyrus-caption">
                 <p className="papyrus-caption-text">P52 • Rylands Papyrus • Gospel of John 18:31-33 • 125-150 AD</p>
               </div>
             </div>
+            <p className="persecution-text">
+              Through centuries of persecution, through fire and flood, through the hands of scribes
+              and the passage of empires, the testimony endured.
+            </p>
           </div>
+
+          {/* Info Popups */}
+          {activePopup && infoPoints.find(p => p.id === activePopup) && (
+            <InfoPopup
+              title={infoPoints.find(p => p.id === activePopup)!.title}
+              content={infoPoints.find(p => p.id === activePopup)!.content}
+              onClose={() => setActivePopup(null)}
+            />
+          )}
+          {activePopup && gospelEvents.find(e => e.id === activePopup) && (
+            <InfoPopup
+              title={gospelEvents.find(e => e.id === activePopup)!.title}
+              content={gospelEvents.find(e => e.id === activePopup)!.content}
+              onClose={() => setActivePopup(null)}
+            />
+          )}
         </div>
       </section>
 
@@ -243,75 +393,23 @@ export function Resurrection() {
 
             {/* Gospel Timeline Content */}
             <div className="gospel-timeline">
-              <div className="timeline-event">
-                <h3 className="timeline-title">Jesus Predicts His Death</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">The Last Supper</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">Garden of Gethsemane</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">Before Pilate</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">"Crucify Him!"</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">The Way of Sorrows</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">The Crucifixion</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">The Burial</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">The Empty Tomb</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
-
-              <div className="timeline-event">
-                <h3 className="timeline-title">The Resurrection</h3>
-                <p className="timeline-text">
-                  {/* Space for additional content */}
-                </p>
-              </div>
+              {gospelEvents.map((event) => (
+                <div key={event.id} className="timeline-event">
+                  <div className="timeline-header">
+                    <h3 className="timeline-title">{event.title}</h3>
+                    <button
+                      className="timeline-expand-btn"
+                      onClick={() => setActivePopup(event.id)}
+                      aria-label={`Learn more about ${event.title}`}
+                    >
+                      <Plus className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <p className="timeline-text">
+                    {/* Space for additional content */}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
