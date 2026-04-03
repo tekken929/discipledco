@@ -27,6 +27,7 @@ import { Timeline } from './pages/Timeline';
 import { BibleAuthors } from './pages/BibleAuthors';
 import { ChristianHolidays } from './pages/ChristianHolidays';
 import { Resurrection } from './pages/Resurrection';
+import { Easter } from './pages/Easter';
 import { books } from './data/books';
 import { Book } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -44,6 +45,7 @@ function AppContent() {
   const isScrolled = useNavbarScroll(100);
   const isHomePage = location.pathname === '/' || location.pathname === '/bible';
   const isResurrectionPage = location.pathname === '/resurrection';
+  const isEasterPage = location.pathname === '/easter';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -92,10 +94,10 @@ function AppContent() {
   return (
     <div className="min-h-screen theme-background transition-colors flex flex-col">
       {/* Grain Overlay */}
-      {!isResurrectionPage && <div className="grain-overlay" />}
+      {!isResurrectionPage && !isEasterPage && <div className="grain-overlay" />}
 
       {/* Header - Sticky with Cinematic Blur */}
-      {!isResurrectionPage && <header className={`navbar-cinematic ${isScrolled ? 'scrolled' : ''} theme-card shadow-lg print:hidden transition-all sticky top-0 z-50`}>
+      {!isResurrectionPage && !isEasterPage && <header className={`navbar-cinematic ${isScrolled ? 'scrolled' : ''} theme-card shadow-lg print:hidden transition-all sticky top-0 z-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
@@ -205,7 +207,7 @@ function AppContent() {
       </header>}
 
       {/* Collected Messages Dropdown - Sticky across all pages */}
-      {!isResurrectionPage && <CollectedMessagesDropdown />}
+      {!isResurrectionPage && !isEasterPage && <CollectedMessagesDropdown />}
 
       {/* Main Content */}
       <div className="flex-1">
@@ -229,17 +231,18 @@ function AppContent() {
           <Route path="/bible-authors" element={<BibleAuthors />} />
           <Route path="/christian-holidays" element={<ChristianHolidays />} />
           <Route path="/resurrection" element={<Resurrection />} />
+          <Route path="/easter" element={<Easter />} />
         </Routes>
       </div>
 
       {/* Footer */}
-      {!isResurrectionPage && <Footer />}
+      {!isResurrectionPage && !isEasterPage && <Footer />}
 
       {/* Floating Music Player */}
-      {!isResurrectionPage && <FloatingMusicPlayer />}
+      {!isResurrectionPage && !isEasterPage && <FloatingMusicPlayer />}
 
       {/* Floating Bubbles - On all pages */}
-      {!isResurrectionPage && <FloatingBubbles enabled={bubblesEnabled} />}
+      {!isResurrectionPage && !isEasterPage && <FloatingBubbles enabled={bubblesEnabled} />}
     </div>
   );
 }

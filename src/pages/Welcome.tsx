@@ -47,12 +47,29 @@ export function Welcome() {
           </p>
         </div>
 
+        {/* Easter - Compact Bubble */}
+        <Link
+          to="/easter"
+          className="block mb-8 print:hidden transition-all duration-500 hover:scale-105 hover:shadow-3xl group cursor-pointer overflow-hidden rounded-xl shadow-2xl border-4 border-pink-400/40 hover:border-pink-400"
+          style={{
+            height: '80px',
+            backgroundImage: 'linear-gradient(135deg, #fef3c7 0%, #fce7f3 25%, #ddd6fe 50%, #bfdbfe 75%, #a7f3d0 100%)',
+            position: 'relative'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/10 to-white/30 group-hover:from-white/20 group-hover:via-white/5 group-hover:to-white/20 transition-all flex items-center justify-center">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-pink-500 group-hover:via-purple-500 group-hover:to-blue-500 transition-all tracking-wide" style={{ fontFamily: 'Georgia, serif', textShadow: '0 2px 4px rgba(255,255,255,0.5)' }}>
+              Easter - He Is Risen
+            </h2>
+          </div>
+        </Link>
+
         {/* Resurrection - Compact Bubble */}
         <Link
           to="/resurrection"
           className="block mb-8 print:hidden transition-all duration-500 hover:scale-105 hover:shadow-3xl group cursor-pointer overflow-hidden rounded-xl shadow-2xl border-4 border-amber-500/30 hover:border-amber-500"
           style={{
-            height: '50px',
+            height: '100px',
             backgroundImage: 'url(/images/p52.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
