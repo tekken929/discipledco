@@ -2,33 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info, Plus } from 'lucide-react';
 
-interface InfoPopupProps {
-  title: string;
-  content: string;
-  onClose: () => void;
-}
-
-function InfoPopup({ title, content, onClose }: InfoPopupProps) {
-  return (
-    <>
-      <div className="popup-overlay" onClick={onClose} />
-      <div className="popup-container">
-        <div className="info-popup">
-          <button onClick={onClose} className="popup-close" aria-label="Close">
-            <X className="w-5 h-5" />
-          </button>
-          <h3 className="popup-title">{title}</h3>
-          <div className="popup-divider"></div>
-          <div className="popup-content" dangerouslySetInnerHTML={{ __html: content }} />
-        </div>
-      </div>
-    </>
-  );
-}
-
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activePopup, setActivePopup] = useState<string | null>(null);
 
   const infoPoints = [
     {
@@ -51,77 +26,108 @@ export function Resurrection() {
     }
   ];
 
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+
+  const toggleSection = (id: string) => {
+    const newExpanded = new Set(expandedSections);
+    if (newExpanded.has(id)) {
+      newExpanded.delete(id);
+    } else {
+      newExpanded.add(id);
+    }
+    setExpandedSections(newExpanded);
+  };
+
   const gospelEvents = [
     {
-      id: 'prediction',
-      title: 'Jesus Predicts His Death',
-      content: `Jesus knew His mission from the beginning. He repeatedly told His disciples that He must suffer, die, and rise again.<br><br>
-        <strong>Matthew 16:21 (ESV):</strong> "From that time Jesus began to show his disciples that he must go to Jerusalem and suffer many things from the elders and chief priests and scribes, and be killed, and on the third day be raised."<br><br>
-        <strong>Mark 10:33-34 (ESV):</strong> "See, we are going up to Jerusalem, and the Son of Man will be delivered over to the chief priests and the scribes, and they will condemn him to death and deliver him over to the Gentiles. And they will mock him and spit on him, and flog him and kill him. And after three days he will rise."`
+      id: 'temple-cleansing',
+      title: 'Authority Challenged: The Cleansing of the Temple',
+      summary: 'Why Jesus overturned the tables • Corruption within sacred space • Religious systems vs. true worship',
+      content: `Content coming soon...`
     },
     {
-      id: 'last-supper',
-      title: 'The Last Supper',
-      content: `On the night before His crucifixion, Jesus gathered with His disciples to share the Passover meal, instituting the Lord's Supper.<br><br>
-        <strong>Matthew 26:26-28 (ESV):</strong> "Now as they were eating, Jesus took bread, and after blessing it broke it and gave it to the disciples, and said, 'Take, eat; this is my body.' And he took a cup, and when he had given thanks he gave it to them, saying, 'Drink of it, all of you, for this is my blood of the covenant, which is poured out for many for the forgiveness of sins.'"<br><br>
-        <strong>John 13:34-35 (ESV):</strong> "A new commandment I give to you, that you love one another: just as I have loved you, you also are to love one another."`
-    },
-    {
-      id: 'gethsemane',
-      title: 'Garden of Gethsemane',
-      content: `In the garden, Jesus prayed with such intensity that His sweat became like drops of blood, fully aware of the suffering to come.<br><br>
-        <strong>Matthew 26:39 (ESV):</strong> "And going a little farther he fell on his face and prayed, saying, 'My Father, if it be possible, let this cup pass from me; nevertheless, not as I will, but as you will.'"<br><br>
-        <strong>Luke 22:44 (ESV):</strong> "And being in agony he prayed more earnestly; and his sweat became like great drops of blood falling down to the ground."`
+      id: 'betrayal',
+      title: 'Betrayal & the Price of Innocence',
+      summary: 'Judas Iscariot\'s payment (30 pieces of silver) • The prophetic and symbolic weight of that amount • The intimacy of betrayal (a disciple, not an enemy)',
+      content: `Content coming soon...`
     },
     {
       id: 'pilate',
-      title: 'Before Pilate',
-      content: `Jesus was brought before Pontius Pilate, the Roman governor. Though Pilate found no fault in Him, political pressure would seal Christ's fate.<br><br>
-        <strong>John 18:37-38 (ESV):</strong> "Then Pilate said to him, 'So you are a king?' Jesus answered, 'You say that I am a king. For this purpose I was born and for this purpose I have come into the world—to bear witness to the truth. Everyone who is of the truth listens to my voice.' Pilate said to him, 'What is truth?'"<br><br>
-        <strong>Luke 23:4 (ESV):</strong> "Then Pilate said to the chief priests and the crowds, 'I find no guilt in this man.'"`
+      title: 'Power, Politics, and Truth',
+      summary: 'Pontius Pilate and his interrogation of Jesus • "What is truth?" — philosophical and political tension • Pilate\'s moral conflict vs. public pressure',
+      content: `Content coming soon...`
     },
     {
-      id: 'crucify',
-      title: '"Crucify Him!"',
-      content: `The crowd, stirred by the religious leaders, chose a murderer over the Messiah and demanded Jesus be crucified.<br><br>
-        <strong>Matthew 27:22-23 (ESV):</strong> "Pilate said to them, 'Then what shall I do with Jesus who is called Christ?' They all said, 'Let him be crucified!' And he said, 'Why? What evil has he done?' But they shouted all the more, 'Let him be crucified!'"<br><br>
-        <strong>Mark 15:13-14 (ESV):</strong> "And they cried out again, 'Crucify him.' And Pilate said to them, 'Why? What evil has he done?' But they shouted all the more, 'Crucify him.'"`
+      id: 'crowd',
+      title: 'The Crowd and the Collapse of Loyalty',
+      summary: 'From praise to "Crucify Him" • Mob mentality and influence of religious leaders • The volatility of human allegiance',
+      content: `Content coming soon...`
     },
     {
-      id: 'via-dolorosa',
-      title: 'The Way of Sorrows',
-      content: `Jesus carried His cross through Jerusalem to Golgotha, the place of the skull. Beaten, mocked, and exhausted, He walked the path of redemption.<br><br>
-        <strong>John 19:17 (ESV):</strong> "And he went out, bearing his own cross, to the place called The Place of a Skull, which in Aramaic is called Golgotha."<br><br>
-        <strong>Luke 23:26 (ESV):</strong> "And as they led him away, they seized one Simon of Cyrene, who was coming in from the country, and laid on him the cross, to carry it behind Jesus."`
+      id: 'scourging',
+      title: 'The Scourging: Flesh Torn, Time Stretched',
+      summary: 'Roman flogging practices and brutality • The lashes (often 39, but frequently more in Roman context) • Duration and physical toll before crucifixion even began',
+      content: `Content coming soon...`
     },
     {
-      id: 'crucifixion',
-      title: 'The Crucifixion',
-      content: `Between two thieves, the Son of God was crucified. From the cross, He spoke words of forgiveness, compassion, and ultimate surrender.<br><br>
-        <strong>Luke 23:34 (ESV):</strong> "And Jesus said, 'Father, forgive them, for they know not what they do.'"<br><br>
-        <strong>John 19:30 (ESV):</strong> "When Jesus had received the sour wine, he said, 'It is finished,' and he bowed his head and gave up his spirit."<br><br>
-        <strong>Matthew 27:51 (ESV):</strong> "And behold, the curtain of the temple was torn in two, from top to bottom. And the earth shook, and the rocks were split."`
+      id: 'crown-thorns',
+      title: 'The Crown of Thorns: Mockery and Kingship',
+      summary: 'Roman mockery vs. divine irony • Thorns as a symbol (curse, suffering, kingship) • The inversion of power',
+      content: `Content coming soon...`
     },
     {
-      id: 'burial',
-      title: 'The Burial',
-      content: `Joseph of Arimathea, a secret disciple, requested Jesus' body and laid it in his own new tomb. The stone was sealed, guards were posted.<br><br>
-        <strong>Matthew 27:59-60 (ESV):</strong> "And Joseph took the body and wrapped it in a clean linen shroud and laid it in his own new tomb, which he had cut in the rock. And he rolled a great stone to the entrance of the tomb and went away."<br><br>
-        <strong>John 19:41-42 (ESV):</strong> "Now in the place where he was crucified there was a garden, and in the garden a new tomb in which no one had yet been laid."`
+      id: 'cross-carried',
+      title: 'The Burden Shared: The Cross Carried',
+      summary: 'Simon of Cyrene compelled to carry the cross • Jesus\' physical exhaustion and human limitation • The weight of the cross—literal and symbolic',
+      content: `Content coming soon...`
+    },
+    {
+      id: 'power-restrained',
+      title: 'Power Restrained: The Willing Surrender',
+      summary: 'Jesus\' authority to stop it at any moment • The choice to remain—restraint as strength • Divine will over self-preservation',
+      content: `Content coming soon...`
+    },
+    {
+      id: 'instruments',
+      title: 'Instruments of Execution: The Cross Itself',
+      summary: 'The stakes/nails and their physical and symbolic role • Roman crucifixion methods • The weight of suffering and public humiliation',
+      content: `Content coming soon...`
+    },
+    {
+      id: 'piercing',
+      title: 'The Wound That Spoke',
+      summary: 'The piercing of Jesus\' side • Blood and water symbolism • Fulfillment of prophecy and confirmation of death',
+      content: `Content coming soon...`
+    },
+    {
+      id: 'joseph-tomb',
+      title: 'The Hidden Disciple: Joseph and the Tomb',
+      summary: 'Joseph of Arimathea • His status, risk, and quiet devotion • The significance of the unused tomb and burial cloth',
+      content: `Content coming soon...`
+    },
+    {
+      id: 'silence',
+      title: 'The Silence of Intervention',
+      summary: 'Heaven\'s restraint during suffering • The absence of rescue despite divine authority • The weight of abandonment and purpose',
+      content: `Content coming soon...`
+    },
+    {
+      id: 'stone',
+      title: 'The Stone and the Impossible Opening',
+      summary: 'The sealed tomb and Roman guard • The stone rolled away—not to let Jesus out, but to reveal He was gone • Divine power displayed without human involvement',
+      content: `Content coming soon...`
     },
     {
       id: 'empty-tomb',
-      title: 'The Empty Tomb',
-      content: `On the first day of the week, women came to the tomb with spices. They found the stone rolled away and the tomb empty. Angels declared: "He is not here; he has risen!"<br><br>
-        <strong>Mark 16:5-6 (ESV):</strong> "And entering the tomb, they saw a young man sitting on the right side, dressed in a white robe, and they were alarmed. And he said to them, 'Do not be alarmed. You seek Jesus of Nazareth, who was crucified. He has risen; he is not here. See the place where they laid him.'"<br><br>
-        <strong>Luke 24:5-6 (ESV):</strong> "Why do you seek the living among the dead? He is not here, but has risen."`
+      title: 'The Empty Tomb: Absence as Evidence',
+      summary: 'What wasn\'t there—and why that matters • The folded burial cloths • The first witnesses and their disbelief',
+      content: `Content coming soon...`
     },
     {
-      id: 'resurrection',
-      title: 'The Resurrection',
-      content: `Jesus appeared to Mary Magdalene, to Peter, to the disciples, and to more than 500 witnesses. Death was defeated. The grave was conquered.<br><br>
-        <strong>John 20:19-20 (ESV):</strong> "On the evening of that day, the first day of the week, the doors being locked where the disciples were for fear of the Jews, Jesus came and stood among them and said to them, 'Peace be with you.' When he had said this, he showed them his hands and his side. Then the disciples were glad when they saw the Lord."<br><br>
-        <strong>1 Corinthians 15:5-6 (ESV):</strong> "He appeared to Cephas, then to the twelve. Then he appeared to more than five hundred brothers at one time."`
+      id: 'shroud',
+      title: 'The Shroud: Image Without Explanation',
+      summary: 'Shroud of Turin and its mysterious imprint • The image: not painted, not burned, not fully explained by modern science • Forensic details aligning with crucifixion wounds described in the Gospels • Ongoing debate: faith, science, and unanswered questions • Not proof forced on belief—but evidence that refuses easy dismissal',
+      content: `Content coming soon...`
     }
   ];
 
@@ -251,21 +257,6 @@ export function Resurrection() {
             </p>
           </div>
 
-          {/* Info Popups */}
-          {activePopup && infoPoints.find(p => p.id === activePopup) && (
-            <InfoPopup
-              title={infoPoints.find(p => p.id === activePopup)!.title}
-              content={infoPoints.find(p => p.id === activePopup)!.content}
-              onClose={() => setActivePopup(null)}
-            />
-          )}
-          {activePopup && gospelEvents.find(e => e.id === activePopup) && (
-            <InfoPopup
-              title={gospelEvents.find(e => e.id === activePopup)!.title}
-              content={gospelEvents.find(e => e.id === activePopup)!.content}
-              onClose={() => setActivePopup(null)}
-            />
-          )}
         </div>
       </section>
 
@@ -354,80 +345,127 @@ export function Resurrection() {
             <div className="resurrection-divider"></div>
 
             <div className="tree-container">
-              <svg className="tree-svg" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+              <svg className="tree-svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
                 {/* Tree Trunk */}
-                <path d="M 180 600 Q 180 500, 190 450 Q 200 400, 200 300 Q 200 200, 200 100"
-                      stroke="#8B7556" strokeWidth="12" fill="none" strokeLinecap="round"/>
+                <path d="M 230 700 Q 230 600, 240 540 Q 250 480, 250 380 Q 250 280, 250 150"
+                      stroke="#8B7556" strokeWidth="16" fill="none" strokeLinecap="round"/>
 
                 {/* Root System */}
-                <path d="M 200 600 Q 180 580, 150 590" stroke="#6B5D48" strokeWidth="6" fill="none" opacity="0.7"/>
-                <path d="M 200 600 Q 220 580, 250 590" stroke="#6B5D48" strokeWidth="6" fill="none" opacity="0.7"/>
-                <path d="M 200 600 Q 200 590, 200 610" stroke="#6B5D48" strokeWidth="8" fill="none" opacity="0.7"/>
+                <path d="M 250 700 Q 230 680, 190 690" stroke="#6B5D48" strokeWidth="8" fill="none" opacity="0.7"/>
+                <path d="M 250 700 Q 270 680, 310 690" stroke="#6B5D48" strokeWidth="8" fill="none" opacity="0.7"/>
+                <path d="M 250 700 Q 250 690, 250 710" stroke="#6B5D48" strokeWidth="10" fill="none" opacity="0.7"/>
 
-                {/* Main Branches */}
-                <path d="M 200 100 Q 150 80, 120 90" stroke="#8B7556" strokeWidth="8" fill="none"/>
-                <path d="M 200 100 Q 250 80, 280 90" stroke="#8B7556" strokeWidth="8" fill="none"/>
-                <path d="M 200 150 Q 140 130, 100 140" stroke="#8B7556" strokeWidth="7" fill="none"/>
-                <path d="M 200 150 Q 260 130, 300 140" stroke="#8B7556" strokeWidth="7" fill="none"/>
-                <path d="M 200 200 Q 160 190, 130 200" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 200 200 Q 240 190, 270 200" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 200 250 Q 150 240, 120 250" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 200 250 Q 250 240, 280 250" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 200 300 Q 170 295, 140 305" stroke="#8B7556" strokeWidth="5" fill="none"/>
-                <path d="M 200 300 Q 230 295, 260 305" stroke="#8B7556" strokeWidth="5" fill="none"/>
+                {/* Main Branches - Extended for 15 circles */}
+                <path d="M 250 150 Q 180 130, 140 140" stroke="#8B7556" strokeWidth="10" fill="none"/>
+                <path d="M 250 150 Q 320 130, 360 140" stroke="#8B7556" strokeWidth="10" fill="none"/>
+                <path d="M 250 200 Q 170 180, 120 190" stroke="#8B7556" strokeWidth="9" fill="none"/>
+                <path d="M 250 200 Q 330 180, 380 190" stroke="#8B7556" strokeWidth="9" fill="none"/>
+                <path d="M 250 250 Q 190 240, 150 250" stroke="#8B7556" strokeWidth="8" fill="none"/>
+                <path d="M 250 250 Q 310 240, 350 250" stroke="#8B7556" strokeWidth="8" fill="none"/>
+                <path d="M 250 300 Q 180 290, 130 300" stroke="#8B7556" strokeWidth="7" fill="none"/>
+                <path d="M 250 300 Q 320 290, 370 300" stroke="#8B7556" strokeWidth="7" fill="none"/>
+                <path d="M 250 350 Q 200 345, 160 355" stroke="#8B7556" strokeWidth="7" fill="none"/>
+                <path d="M 250 350 Q 300 345, 340 355" stroke="#8B7556" strokeWidth="7" fill="none"/>
+                <path d="M 250 400 Q 190 395, 150 405" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 250 400 Q 310 395, 350 405" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 250 450 Q 210 445, 170 455" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 250 450 Q 290 445, 330 455" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 250 500 Q 200 495, 160 505" stroke="#8B7556" strokeWidth="5" fill="none"/>
 
-                {/* Leaves/Crown with labels - clickable */}
-                <circle cx="120" cy="90" r="25" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('burial')} style={{cursor: 'pointer'}}/>
-                <text x="120" y="95" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Burial</text>
+                {/* Decorative Leaves/Bubbles - Larger and non-clickable */}
+                <circle cx="140" cy="140" r="35" fill="#9CA383" opacity="0.7"/>
+                <text x="140" y="135" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Temple</text>
+                <text x="140" y="148" fontSize="10" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Cleansing</text>
 
-                <circle cx="280" cy="90" r="25" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('empty-tomb')} style={{cursor: 'pointer'}}/>
-                <text x="280" y="95" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Empty</text>
+                <circle cx="360" cy="140" r="35" fill="#9CA383" opacity="0.7"/>
+                <text x="360" y="138" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Betrayal</text>
+                <text x="360" y="151" fontSize="10" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">30 Silver</text>
 
-                <circle cx="100" cy="140" r="22" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('crucifixion')} style={{cursor: 'pointer'}}/>
-                <text x="100" y="145" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Crucifixion</text>
+                <circle cx="120" cy="190" r="33" fill="#9CA383" opacity="0.7"/>
+                <text x="120" y="188" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Pilate</text>
+                <text x="120" y="201" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">& Truth</text>
 
-                <circle cx="300" cy="140" r="22" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('via-dolorosa')} style={{cursor: 'pointer'}}/>
-                <text x="300" y="145" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Via</text>
+                <circle cx="380" cy="190" r="33" fill="#9CA383" opacity="0.7"/>
+                <text x="380" y="188" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Crowd</text>
+                <text x="380" y="201" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Loyalty Lost</text>
 
-                <circle cx="130" cy="200" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('crucify')} style={{cursor: 'pointer'}}/>
-                <text x="130" y="205" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Crucify</text>
+                <circle cx="150" cy="250" r="32" fill="#9CA383" opacity="0.7"/>
+                <text x="150" y="248" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Scourging</text>
+                <text x="150" y="261" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">39 Lashes</text>
 
-                <circle cx="270" cy="200" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('pilate')} style={{cursor: 'pointer'}}/>
-                <text x="270" y="205" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Pilate</text>
+                <circle cx="350" cy="250" r="32" fill="#9CA383" opacity="0.7"/>
+                <text x="350" y="248" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Crown</text>
+                <text x="350" y="261" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">of Thorns</text>
 
-                <circle cx="200" cy="70" r="30" fill="#d4af37" opacity="0.8" onClick={() => setActivePopup('resurrection')} style={{cursor: 'pointer'}}/>
-                <text x="200" y="70" fontSize="9" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">THE</text>
-                <text x="200" y="82" fontSize="9" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">RESURRECTION</text>
+                <circle cx="130" cy="300" r="31" fill="#9CA383" opacity="0.7"/>
+                <text x="130" y="298" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Cross</text>
+                <text x="130" y="311" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Carried</text>
 
-                <circle cx="150" cy="110" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('last-supper')} style={{cursor: 'pointer'}}/>
-                <text x="150" y="115" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Supper</text>
+                <circle cx="370" cy="300" r="31" fill="#9CA383" opacity="0.7"/>
+                <text x="370" y="298" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Power</text>
+                <text x="370" y="311" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Restrained</text>
 
-                <circle cx="250" cy="110" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('gethsemane')} style={{cursor: 'pointer'}}/>
-                <text x="250" y="115" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Garden</text>
+                <circle cx="160" cy="355" r="30" fill="#9CA383" opacity="0.7"/>
+                <text x="160" y="353" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Stakes</text>
+                <text x="160" y="366" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">& Nails</text>
+
+                <circle cx="340" cy="355" r="30" fill="#9CA383" opacity="0.7"/>
+                <text x="340" y="353" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Piercing</text>
+                <text x="340" y="366" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">His Side</text>
+
+                <circle cx="150" cy="405" r="30" fill="#9CA383" opacity="0.7"/>
+                <text x="150" y="403" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Joseph's</text>
+                <text x="150" y="416" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+
+                <circle cx="350" cy="405" r="30" fill="#9CA383" opacity="0.7"/>
+                <text x="350" y="403" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Heaven's</text>
+                <text x="350" y="416" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Silence</text>
+
+                <circle cx="170" cy="455" r="29" fill="#9CA383" opacity="0.7"/>
+                <text x="170" y="453" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Stone</text>
+                <text x="170" y="466" fontSize="8" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Rolled Away</text>
+
+                <circle cx="330" cy="455" r="29" fill="#9CA383" opacity="0.7"/>
+                <text x="330" y="453" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Empty</text>
+                <text x="330" y="466" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+
+                <circle cx="250" cy="505" r="29" fill="#9CA383" opacity="0.7"/>
+                <text x="250" y="503" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Shroud</text>
+                <text x="250" y="516" fontSize="8" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Mystery</text>
+
+                {/* Golden Resurrection Crown */}
+                <circle cx="250" cy="100" r="42" fill="#d4af37" opacity="0.85"/>
+                <text x="250" y="95" fontSize="12" fill="#2d1810" fontWeight="800" textAnchor="middle" fontFamily="Georgia">THE</text>
+                <text x="250" y="110" fontSize="13" fill="#2d1810" fontWeight="800" textAnchor="middle" fontFamily="Georgia">RESURRECTION</text>
 
                 {/* Cross at the top */}
-                <path d="M 200 40 L 200 80" stroke="#6B5D48" strokeWidth="4" fill="none"/>
-                <path d="M 185 50 L 215 50" stroke="#6B5D48" strokeWidth="4" fill="none"/>
+                <path d="M 250 55 L 250 105" stroke="#6B5D48" strokeWidth="5" fill="none"/>
+                <path d="M 230 70 L 270 70" stroke="#6B5D48" strokeWidth="5" fill="none"/>
               </svg>
             </div>
 
-            {/* Gospel Timeline Content */}
+            {/* Gospel Timeline Content - Expandable Sections */}
             <div className="gospel-timeline">
               {gospelEvents.map((event) => (
                 <div key={event.id} className="timeline-event">
                   <div className="timeline-header">
-                    <h3 className="timeline-title">{event.title}</h3>
+                    <div>
+                      <h3 className="timeline-title">{event.title}</h3>
+                      <p className="timeline-summary">{event.summary}</p>
+                    </div>
                     <button
-                      className="timeline-expand-btn"
-                      onClick={() => setActivePopup(event.id)}
-                      aria-label={`Learn more about ${event.title}`}
+                      className={`timeline-expand-btn ${expandedSections.has(event.id) ? 'expanded' : ''}`}
+                      onClick={() => toggleSection(event.id)}
+                      aria-label={expandedSections.has(event.id) ? `Collapse ${event.title}` : `Expand ${event.title}`}
                     >
-                      <Plus className="w-5 h-5" />
+                      <Plus className={`w-5 h-5 transition-transform ${expandedSections.has(event.id) ? 'rotate-45' : ''}`} />
                     </button>
                   </div>
-                  <p className="timeline-text">
-                    {/* Space for additional content */}
-                  </p>
+                  {expandedSections.has(event.id) && (
+                    <div className="timeline-content">
+                      <p className="timeline-text">{event.content}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
