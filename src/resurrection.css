@@ -529,22 +529,19 @@
 
 /* Scripture Block - Enhanced */
 .resurrection-scripture-block {
-  background: rgba(26, 35, 50, 0.5);
-  backdrop-filter: blur(18px);
+  background: rgba(250, 248, 245, 0.95);
   border: 3px solid rgba(139, 117, 90, 0.5);
   border-radius: 0.75rem;
   padding: 4rem 3rem;
   text-align: center;
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.7),
-    inset 0 3px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
   position: relative;
 }
 
 .scripture-mark {
   font-size: 8rem;
   line-height: 1;
-  color: rgba(139, 117, 90, 0.3);
+  color: rgba(139, 117, 90, 0.2);
   font-family: 'Georgia', serif;
   position: absolute;
   top: 1rem;
@@ -555,10 +552,9 @@
 .resurrection-scripture-text {
   font-size: clamp(1.25rem, 3vw, 1.625rem);
   line-height: 2;
-  color: #f5ebdc;
+  color: #2c2416;
   font-family: 'Georgia', 'Garamond', serif;
   font-style: italic;
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
   margin-bottom: 2rem;
   position: relative;
   z-index: 1;
@@ -567,7 +563,7 @@
 .resurrection-scripture-cite {
   display: block;
   font-size: 1.125rem;
-  color: #c9b896;
+  color: #5a4a35;
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -993,9 +989,11 @@
 
 .timeline-content {
   margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  padding: 2rem;
   border-top: 1px solid rgba(139, 117, 90, 0.3);
   animation: expandDown 0.3s ease;
+  background: rgba(250, 248, 245, 0.95);
+  border-radius: 0 0 0.75rem 0.75rem;
 }
 
 @keyframes expandDown {
@@ -1012,19 +1010,17 @@
 .timeline-text {
   font-size: 1.125rem;
   line-height: 2;
-  color: #f0e6d6;
+  color: #3d3426;
   font-family: 'Georgia', 'Times New Roman', serif;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
 }
 
 .timeline-text strong {
-  color: #fff9ed;
+  color: #2c2416;
   font-weight: 700;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(139, 117, 90, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(139, 117, 90, 0.15) 100%);
   padding: 0.15rem 0.4rem;
   border-radius: 0.25rem;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .timeline-text br + br {

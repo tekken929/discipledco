@@ -133,25 +133,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
         </Link>
 
-        {/* Resurrection - Compact Bubble */}
-        <Link
-          to="/resurrection"
-          className="block mb-12 print:hidden transition-all duration-500 card-cinematic hover:scale-105 hover:shadow-3xl group cursor-pointer overflow-hidden rounded-xl shadow-2xl border-4 border-amber-500/30 hover:border-amber-500"
-          style={{
-            height: '50px',
-            backgroundImage: 'url(/images/p52.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            position: 'relative'
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80 group-hover:from-black/70 group-hover:via-black/50 group-hover:to-black/70 transition-all flex items-center justify-center">
-            <h2 className="text-2xl font-bold text-amber-100 group-hover:text-amber-50 transition-colors tracking-wide" style={{ fontFamily: 'Georgia, serif', textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
-              Resurrection
-            </h2>
-          </div>
-        </Link>
-
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
         </div>
