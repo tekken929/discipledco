@@ -5,6 +5,7 @@ import { gospelEvents } from '../data/gospelEvents';
 
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activePopup, setActivePopup] = useState<string | null>(null);
 
   const infoPoints = [
     {
@@ -156,6 +157,36 @@ export function Resurrection() {
                   <Info className="w-4 h-4" />
                 </button>
               ))}
+
+              {/* Info Point Popups */}
+              {activePopup && (
+                <>
+                  <div
+                    className="popup-overlay"
+                    onClick={() => setActivePopup(null)}
+                  />
+                  {infoPoints.map(point =>
+                    activePopup === point.id && (
+                      <div
+                        key={point.id}
+                        className="info-popup"
+                        style={{ top: point.position.top, left: point.position.left }}
+                      >
+                        <button
+                          onClick={() => setActivePopup(null)}
+                          className="popup-close"
+                          aria-label="Close"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                        <h3 className="popup-title">{point.title}</h3>
+                        <p className="popup-content">{point.content}</p>
+                      </div>
+                    )
+                  )}
+                </>
+              )}
+
               <div className="papyrus-caption">
                 <p className="papyrus-caption-text">P52 • Rylands Papyrus • Gospel of John 18:31-33 • 125-150 AD</p>
               </div>
@@ -171,48 +202,80 @@ export function Resurrection() {
 
       {/* Content Sections */}
       <div className="resurrection-content">
-        {/* Historical Manuscript Section */}
+        {/* Historical Manuscript Section - Compact */}
         <section className="resurrection-section fade-in-section">
-          <div className="resurrection-manuscript-box">
-            <h2 className="resurrection-section-title">The Witness of P52</h2>
-            <div className="resurrection-divider"></div>
-            <p className="resurrection-body-text">
-              In the sands of Egypt, a fragment survived. P52, discovered in 1920, contains verses
-              from the Gospel of John—dated to within a single generation of the original writing.
-              A small piece of papyrus, yet a monument to the reliability of Scripture.
-            </p>
-            <p className="resurrection-body-text">
-              It proves what skeptics denied: that the Gospels were written early, circulated widely,
-              and preserved faithfully. The resurrection was not a legend added later. It was proclaimed
-              from the beginning.
-            </p>
-            <blockquote className="resurrection-quote">
-              "Jesus said to her, 'I am the resurrection and the life. Whoever believes in me,
-              though he die, yet shall he live.'"
-              <cite>John 11:25 (ESV)</cite>
-            </blockquote>
+          <div className="resurrection-compact-block">
+            <div className="compact-header" onClick={() => toggleSection('p52-witness')}>
+              <div>
+                <h2 className="compact-title">The Witness of P52</h2>
+                <p className="compact-summary">
+                  P52, discovered in 1920, proves the Gospels were written early, circulated widely, and preserved faithfully. The resurrection was proclaimed from the beginning.
+                </p>
+              </div>
+              <button
+                className={`compact-expand-btn ${expandedSections.has('p52-witness') ? 'expanded' : ''}`}
+                aria-label={expandedSections.has('p52-witness') ? 'Collapse' : 'Expand'}
+              >
+                <Plus className={`w-5 h-5 transition-transform ${expandedSections.has('p52-witness') ? 'rotate-45' : ''}`} />
+              </button>
+            </div>
+            {expandedSections.has('p52-witness') && (
+              <div className="compact-content">
+                <p className="resurrection-body-text">
+                  In the sands of Egypt, a fragment survived. P52, discovered in 1920, contains verses
+                  from the Gospel of John—dated to within a single generation of the original writing.
+                  A small piece of papyrus, yet a monument to the reliability of Scripture.
+                </p>
+                <p className="resurrection-body-text">
+                  It proves what skeptics denied: that the Gospels were written early, circulated widely,
+                  and preserved faithfully. The resurrection was not a legend added later. It was proclaimed
+                  from the beginning.
+                </p>
+                <blockquote className="resurrection-quote">
+                  "Jesus said to her, 'I am the resurrection and the life. Whoever believes in me,
+                  though he die, yet shall he live.'"
+                  <cite>John 11:25 (ESV)</cite>
+                </blockquote>
+              </div>
+            )}
           </div>
         </section>
 
-        {/* Deeper Meaning Section */}
+        {/* Deeper Meaning Section - Compact */}
         <section className="resurrection-section fade-in-section">
-          <div className="resurrection-truth-block">
-            <h2 className="resurrection-section-title">Truth That Endures</h2>
-            <div className="resurrection-divider"></div>
-            <p className="resurrection-body-text">
-              Resurrection is not metaphor. It is not philosophy. It is the central claim of the faith:
-              that death is defeated, that Christ rose bodily from the grave, and that this same power
-              is available to all who believe.
-            </p>
-            <p className="resurrection-body-text">
-              The early Christians did not die for an idea. They died proclaiming what they witnessed.
-              The tomb was empty. The grave clothes remained. The Risen Lord appeared to hundreds.
-            </p>
-            <p className="resurrection-body-text">
-              And the record of this event—copied, preserved, passed down through generations—stands
-              as testimony. The manuscript evidence is overwhelming. The historical case is strong.
-              The witness endures.
-            </p>
+          <div className="resurrection-compact-block">
+            <div className="compact-header" onClick={() => toggleSection('truth-endures')}>
+              <div>
+                <h2 className="compact-title">Truth That Endures</h2>
+                <p className="compact-summary">
+                  Resurrection is not metaphor—it is the central claim: death is defeated, Christ rose bodily, and this power is available to all who believe.
+                </p>
+              </div>
+              <button
+                className={`compact-expand-btn ${expandedSections.has('truth-endures') ? 'expanded' : ''}`}
+                aria-label={expandedSections.has('truth-endures') ? 'Collapse' : 'Expand'}
+              >
+                <Plus className={`w-5 h-5 transition-transform ${expandedSections.has('truth-endures') ? 'rotate-45' : ''}`} />
+              </button>
+            </div>
+            {expandedSections.has('truth-endures') && (
+              <div className="compact-content">
+                <p className="resurrection-body-text">
+                  Resurrection is not metaphor. It is not philosophy. It is the central claim of the faith:
+                  that death is defeated, that Christ rose bodily from the grave, and that this same power
+                  is available to all who believe.
+                </p>
+                <p className="resurrection-body-text">
+                  The early Christians did not die for an idea. They died proclaiming what they witnessed.
+                  The tomb was empty. The grave clothes remained. The Risen Lord appeared to hundreds.
+                </p>
+                <p className="resurrection-body-text">
+                  And the record of this event—copied, preserved, passed down through generations—stands
+                  as testimony. The manuscript evidence is overwhelming. The historical case is strong.
+                  The witness endures.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
