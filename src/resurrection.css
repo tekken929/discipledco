@@ -298,21 +298,13 @@
 }
 
 .papyrus-caption-text {
-  font-size: 1rem;
-  color: #e8dcc8;
+  font-size: clamp(1.375rem, 3.5vw, 2.25rem);
+  color: #d9caaf;
   font-family: 'Georgia', serif;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  margin-bottom: 0.5rem;
-}
-
-.papyrus-caption-date {
-  font-size: 0.875rem;
-  color: #c9b896;
-  font-family: 'Georgia', serif;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.8);
   font-style: italic;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* Content Sections - Enhanced */
@@ -828,11 +820,86 @@
   z-index: 1;
 }
 
-.popup-content {
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  color: #3d2817;
-  font-family: 'Georgia', 'Times New Roman', serif;
+/* Tree of Life Section */
+.tree-of-life-section {
+  background: rgba(26, 35, 50, 0.3);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(139, 117, 90, 0.4);
+  border-radius: 0.75rem;
+  padding: 3.5rem 2rem;
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
-  z-index: 1;
+}
+
+.tree-container {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.tree-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.gospel-timeline {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.timeline-event {
+  background: rgba(217, 202, 175, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(139, 117, 90, 0.3);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.timeline-event:hover {
+  background: rgba(217, 202, 175, 0.15);
+  border-color: rgba(139, 117, 90, 0.5);
+  transform: translateX(8px);
+}
+
+.timeline-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f5ebdc;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', 'Garamond', serif;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.02em;
+}
+
+.timeline-text {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: #d9caaf;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  min-height: 3rem;
+}
+
+@media (max-width: 768px) {
+  .tree-container {
+    padding: 1rem;
+  }
+
+  .gospel-timeline {
+    gap: 2rem;
+  }
+
+  .timeline-event {
+    padding: 1.5rem;
+  }
+
+  .tree-of-life-section {
+    padding: 2rem 1.5rem;
+  }
 }

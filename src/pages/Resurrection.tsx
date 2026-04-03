@@ -1,53 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info } from 'lucide-react';
-
-interface InfoPopupProps {
-  title: string;
-  content: string;
-  onClose: () => void;
-}
-
-function InfoPopup({ title, content, onClose }: InfoPopupProps) {
-  return (
-    <>
-      <div className="popup-overlay" onClick={onClose} />
-      <div className="info-popup">
-        <button onClick={onClose} className="popup-close" aria-label="Close">
-          <X className="w-5 h-5" />
-        </button>
-        <h3 className="popup-title">{title}</h3>
-        <div className="popup-divider"></div>
-        <p className="popup-content">{content}</p>
-      </div>
-    </>
-  );
-}
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home } from 'lucide-react';
 
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activePopup, setActivePopup] = useState<string | null>(null);
-
-  const infoPoints = [
-    {
-      id: 'early-dating',
-      title: 'Early Dating',
-      content: 'P52 dates to 125-150 AD, placing it within decades of the original Gospel. This destroys theories of late legendary development.',
-      position: { top: '15%', left: '20%' }
-    },
-    {
-      id: 'textual-accuracy',
-      title: 'Textual Accuracy',
-      content: 'The fragment matches later manuscripts with remarkable precision, demonstrating faithful preservation across centuries.',
-      position: { top: '45%', left: '75%' }
-    },
-    {
-      id: 'wide-distribution',
-      title: 'Wide Distribution',
-      content: 'Found in Egypt, far from John\'s authorship in Ephesus, proving rapid circulation across the ancient world.',
-      position: { top: '75%', left: '30%' }
-    }
-  ];
 
   const navigationLinks = [
     { to: '/', icon: Home, title: 'Home' },
@@ -153,48 +109,16 @@ export function Resurrection() {
                 className="papyrus-image"
                 loading="eager"
               />
-              {/* Interactive Info Points */}
-              {infoPoints.map((point) => (
-                <button
-                  key={point.id}
-                  className="info-point"
-                  style={{ top: point.position.top, left: point.position.left }}
-                  onClick={() => setActivePopup(point.id)}
-                  aria-label={`Learn about ${point.title}`}
-                >
-                  <Info className="w-4 h-4" />
-                </button>
-              ))}
               <div className="papyrus-caption">
-                <p className="papyrus-caption-text">P52 • Rylands Papyrus • Gospel of John 18:31-33</p>
-                <p className="papyrus-caption-date">~125-150 AD</p>
+                <p className="papyrus-caption-text">P52 • Rylands Papyrus • Gospel of John 18:31-33 • 125-150 AD</p>
               </div>
             </div>
           </div>
-
-          {/* Info Popups */}
-          {activePopup && (
-            <InfoPopup
-              title={infoPoints.find(p => p.id === activePopup)!.title}
-              content={infoPoints.find(p => p.id === activePopup)!.content}
-              onClose={() => setActivePopup(null)}
-            />
-          )}
         </div>
       </section>
 
       {/* Content Sections */}
       <div className="resurrection-content">
-        {/* Intro Statement */}
-        <section className="resurrection-section fade-in-section">
-          <div className="resurrection-intro-block">
-            <p className="resurrection-intro-text">
-              Through centuries of persecution, through fire and flood, through the hands of scribes
-              and the passage of empires, the testimony endured.
-            </p>
-          </div>
-        </section>
-
         {/* Historical Manuscript Section */}
         <section className="resurrection-section fade-in-section">
           <div className="resurrection-manuscript-box">
@@ -213,35 +137,8 @@ export function Resurrection() {
             <blockquote className="resurrection-quote">
               "Jesus said to her, 'I am the resurrection and the life. Whoever believes in me,
               though he die, yet shall he live.'"
-              <cite>John 11:25</cite>
+              <cite>John 11:25 (ESV)</cite>
             </blockquote>
-          </div>
-        </section>
-
-        {/* Evidence Section */}
-        <section className="resurrection-section fade-in-section">
-          <div className="resurrection-evidence-grid">
-            <div className="evidence-card">
-              <h3 className="evidence-title">Early Dating</h3>
-              <p className="evidence-text">
-                P52 dates to 125-150 AD, placing it within decades of the original Gospel.
-                This destroys theories of late legendary development.
-              </p>
-            </div>
-            <div className="evidence-card">
-              <h3 className="evidence-title">Wide Distribution</h3>
-              <p className="evidence-text">
-                Found in Egypt, far from John's authorship in Ephesus, proving rapid
-                circulation across the ancient world.
-              </p>
-            </div>
-            <div className="evidence-card">
-              <h3 className="evidence-title">Textual Accuracy</h3>
-              <p className="evidence-text">
-                The fragment matches later manuscripts with remarkable precision,
-                demonstrating faithful preservation.
-              </p>
-            </div>
           </div>
         </section>
 
@@ -277,7 +174,7 @@ export function Resurrection() {
               on the third day in accordance with the Scriptures, and that he appeared to Cephas,
               then to the twelve. Then he appeared to more than five hundred brothers at one time.
             </p>
-            <cite className="resurrection-scripture-cite">1 Corinthians 15:3-6</cite>
+            <cite className="resurrection-scripture-cite">1 Corinthians 15:3-6 (ESV)</cite>
           </div>
         </section>
 
@@ -295,7 +192,127 @@ export function Resurrection() {
               Will you step forward into the life that Christ offers? Will you take up the cross,
               deny yourself, and follow? The path is ancient. The truth is eternal. The witness remains.
             </p>
-            <div className="resurrection-closing-mark">✝</div>
+          </div>
+        </section>
+
+        {/* Tree of Life - Gospel Timeline */}
+        <section className="resurrection-section fade-in-section">
+          <div className="tree-of-life-section">
+            <h2 className="resurrection-section-title">The Tree of Life</h2>
+            <div className="resurrection-divider"></div>
+
+            <div className="tree-container">
+              <svg className="tree-svg" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+                {/* Tree Trunk */}
+                <path d="M 180 600 Q 180 500, 190 450 Q 200 400, 200 300 Q 200 200, 200 100"
+                      stroke="#8B7556" strokeWidth="12" fill="none" strokeLinecap="round"/>
+
+                {/* Root System */}
+                <path d="M 200 600 Q 180 580, 150 590" stroke="#6B5D48" strokeWidth="6" fill="none" opacity="0.7"/>
+                <path d="M 200 600 Q 220 580, 250 590" stroke="#6B5D48" strokeWidth="6" fill="none" opacity="0.7"/>
+                <path d="M 200 600 Q 200 590, 200 610" stroke="#6B5D48" strokeWidth="8" fill="none" opacity="0.7"/>
+
+                {/* Main Branches */}
+                <path d="M 200 100 Q 150 80, 120 90" stroke="#8B7556" strokeWidth="8" fill="none"/>
+                <path d="M 200 100 Q 250 80, 280 90" stroke="#8B7556" strokeWidth="8" fill="none"/>
+                <path d="M 200 150 Q 140 130, 100 140" stroke="#8B7556" strokeWidth="7" fill="none"/>
+                <path d="M 200 150 Q 260 130, 300 140" stroke="#8B7556" strokeWidth="7" fill="none"/>
+                <path d="M 200 200 Q 160 190, 130 200" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 200 200 Q 240 190, 270 200" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 200 250 Q 150 240, 120 250" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 200 250 Q 250 240, 280 250" stroke="#8B7556" strokeWidth="6" fill="none"/>
+                <path d="M 200 300 Q 170 295, 140 305" stroke="#8B7556" strokeWidth="5" fill="none"/>
+                <path d="M 200 300 Q 230 295, 260 305" stroke="#8B7556" strokeWidth="5" fill="none"/>
+
+                {/* Leaves/Crown */}
+                <circle cx="120" cy="90" r="25" fill="#9CA383" opacity="0.6"/>
+                <circle cx="280" cy="90" r="25" fill="#9CA383" opacity="0.6"/>
+                <circle cx="100" cy="140" r="22" fill="#9CA383" opacity="0.6"/>
+                <circle cx="300" cy="140" r="22" fill="#9CA383" opacity="0.6"/>
+                <circle cx="130" cy="200" r="20" fill="#9CA383" opacity="0.6"/>
+                <circle cx="270" cy="200" r="20" fill="#9CA383" opacity="0.6"/>
+                <circle cx="200" cy="70" r="30" fill="#9CA383" opacity="0.7"/>
+                <circle cx="150" cy="110" r="20" fill="#9CA383" opacity="0.6"/>
+                <circle cx="250" cy="110" r="20" fill="#9CA383" opacity="0.6"/>
+
+                {/* Cross at the top */}
+                <path d="M 200 40 L 200 80" stroke="#6B5D48" strokeWidth="4" fill="none"/>
+                <path d="M 185 50 L 215 50" stroke="#6B5D48" strokeWidth="4" fill="none"/>
+              </svg>
+            </div>
+
+            {/* Gospel Timeline Content */}
+            <div className="gospel-timeline">
+              <div className="timeline-event">
+                <h3 className="timeline-title">Jesus Predicts His Death</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">The Last Supper</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">Garden of Gethsemane</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">Before Pilate</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">"Crucify Him!"</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">The Way of Sorrows</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">The Crucifixion</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">The Burial</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">The Empty Tomb</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+
+              <div className="timeline-event">
+                <h3 className="timeline-title">The Resurrection</h3>
+                <p className="timeline-text">
+                  {/* Space for additional content */}
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </div>
