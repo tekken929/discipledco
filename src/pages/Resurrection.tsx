@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info, Plus } from 'lucide-react';
+import { gospelEvents } from '../data/gospelEvents';
 
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,98 +39,6 @@ export function Resurrection() {
     setExpandedSections(newExpanded);
   };
 
-  const gospelEvents = [
-    {
-      id: 'temple-cleansing',
-      title: 'Authority Challenged: The Cleansing of the Temple',
-      summary: 'Why Jesus overturned the tables • Corruption within sacred space • Religious systems vs. true worship',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'betrayal',
-      title: 'Betrayal & the Price of Innocence',
-      summary: 'Judas Iscariot\'s payment (30 pieces of silver) • The prophetic and symbolic weight of that amount • The intimacy of betrayal (a disciple, not an enemy)',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'pilate',
-      title: 'Power, Politics, and Truth',
-      summary: 'Pontius Pilate and his interrogation of Jesus • "What is truth?" — philosophical and political tension • Pilate\'s moral conflict vs. public pressure',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'crowd',
-      title: 'The Crowd and the Collapse of Loyalty',
-      summary: 'From praise to "Crucify Him" • Mob mentality and influence of religious leaders • The volatility of human allegiance',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'scourging',
-      title: 'The Scourging: Flesh Torn, Time Stretched',
-      summary: 'Roman flogging practices and brutality • The lashes (often 39, but frequently more in Roman context) • Duration and physical toll before crucifixion even began',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'crown-thorns',
-      title: 'The Crown of Thorns: Mockery and Kingship',
-      summary: 'Roman mockery vs. divine irony • Thorns as a symbol (curse, suffering, kingship) • The inversion of power',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'cross-carried',
-      title: 'The Burden Shared: The Cross Carried',
-      summary: 'Simon of Cyrene compelled to carry the cross • Jesus\' physical exhaustion and human limitation • The weight of the cross—literal and symbolic',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'power-restrained',
-      title: 'Power Restrained: The Willing Surrender',
-      summary: 'Jesus\' authority to stop it at any moment • The choice to remain—restraint as strength • Divine will over self-preservation',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'instruments',
-      title: 'Instruments of Execution: The Cross Itself',
-      summary: 'The stakes/nails and their physical and symbolic role • Roman crucifixion methods • The weight of suffering and public humiliation',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'piercing',
-      title: 'The Wound That Spoke',
-      summary: 'The piercing of Jesus\' side • Blood and water symbolism • Fulfillment of prophecy and confirmation of death',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'joseph-tomb',
-      title: 'The Hidden Disciple: Joseph and the Tomb',
-      summary: 'Joseph of Arimathea • His status, risk, and quiet devotion • The significance of the unused tomb and burial cloth',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'silence',
-      title: 'The Silence of Intervention',
-      summary: 'Heaven\'s restraint during suffering • The absence of rescue despite divine authority • The weight of abandonment and purpose',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'stone',
-      title: 'The Stone and the Impossible Opening',
-      summary: 'The sealed tomb and Roman guard • The stone rolled away—not to let Jesus out, but to reveal He was gone • Divine power displayed without human involvement',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'empty-tomb',
-      title: 'The Empty Tomb: Absence as Evidence',
-      summary: 'What wasn\'t there—and why that matters • The folded burial cloths • The first witnesses and their disbelief',
-      content: `Content coming soon...`
-    },
-    {
-      id: 'shroud',
-      title: 'The Shroud: Image Without Explanation',
-      summary: 'Shroud of Turin and its mysterious imprint • The image: not painted, not burned, not fully explained by modern science • Forensic details aligning with crucifixion wounds described in the Gospels • Ongoing debate: faith, science, and unanswered questions • Not proof forced on belief—but evidence that refuses easy dismissal',
-      content: `Content coming soon...`
-    }
-  ];
 
   const navigationLinks = [
     { to: '/', icon: Home, title: 'Home' },
@@ -341,106 +250,149 @@ export function Resurrection() {
         {/* Tree of Life - Gospel Timeline */}
         <section className="resurrection-section fade-in-section">
           <div className="tree-of-life-section">
-            <h2 className="resurrection-section-title">The Tree of Life</h2>
-            <div className="resurrection-divider"></div>
-
             <div className="tree-container">
-              <svg className="tree-svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
-                {/* Tree Trunk */}
-                <path d="M 230 700 Q 230 600, 240 540 Q 250 480, 250 380 Q 250 280, 250 150"
-                      stroke="#8B7556" strokeWidth="16" fill="none" strokeLinecap="round"/>
+              <svg className="tree-svg" viewBox="0 0 700 1000" xmlns="http://www.w3.org/2000/svg">
+                {/* Tree Trunk - Larger */}
+                <path d="M 330 1000 Q 330 880, 340 800 Q 350 700, 350 550 Q 350 400, 350 250 Q 350 180, 350 120"
+                      stroke="#8B7556" strokeWidth="22" fill="none" strokeLinecap="round"/>
 
                 {/* Root System */}
-                <path d="M 250 700 Q 230 680, 190 690" stroke="#6B5D48" strokeWidth="8" fill="none" opacity="0.7"/>
-                <path d="M 250 700 Q 270 680, 310 690" stroke="#6B5D48" strokeWidth="8" fill="none" opacity="0.7"/>
-                <path d="M 250 700 Q 250 690, 250 710" stroke="#6B5D48" strokeWidth="10" fill="none" opacity="0.7"/>
+                <path d="M 350 1000 Q 320 975, 260 985" stroke="#6B5D48" strokeWidth="12" fill="none" opacity="0.7"/>
+                <path d="M 350 1000 Q 380 975, 440 985" stroke="#6B5D48" strokeWidth="12" fill="none" opacity="0.7"/>
+                <path d="M 350 1000 Q 350 985, 350 1015" stroke="#6B5D48" strokeWidth="14" fill="none" opacity="0.7"/>
 
-                {/* Main Branches - Extended for 15 circles */}
-                <path d="M 250 150 Q 180 130, 140 140" stroke="#8B7556" strokeWidth="10" fill="none"/>
-                <path d="M 250 150 Q 320 130, 360 140" stroke="#8B7556" strokeWidth="10" fill="none"/>
-                <path d="M 250 200 Q 170 180, 120 190" stroke="#8B7556" strokeWidth="9" fill="none"/>
-                <path d="M 250 200 Q 330 180, 380 190" stroke="#8B7556" strokeWidth="9" fill="none"/>
-                <path d="M 250 250 Q 190 240, 150 250" stroke="#8B7556" strokeWidth="8" fill="none"/>
-                <path d="M 250 250 Q 310 240, 350 250" stroke="#8B7556" strokeWidth="8" fill="none"/>
-                <path d="M 250 300 Q 180 290, 130 300" stroke="#8B7556" strokeWidth="7" fill="none"/>
-                <path d="M 250 300 Q 320 290, 370 300" stroke="#8B7556" strokeWidth="7" fill="none"/>
-                <path d="M 250 350 Q 200 345, 160 355" stroke="#8B7556" strokeWidth="7" fill="none"/>
-                <path d="M 250 350 Q 300 345, 340 355" stroke="#8B7556" strokeWidth="7" fill="none"/>
-                <path d="M 250 400 Q 190 395, 150 405" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 250 400 Q 310 395, 350 405" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 250 450 Q 210 445, 170 455" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 250 450 Q 290 445, 330 455" stroke="#8B7556" strokeWidth="6" fill="none"/>
-                <path d="M 250 500 Q 200 495, 160 505" stroke="#8B7556" strokeWidth="5" fill="none"/>
+                {/* Branches - From bottom to top for 15 events */}
+                {/* Bottom level - #1 Temple */}
+                <path d="M 350 880 Q 280 860, 220 870" stroke="#8B7556" strokeWidth="10" fill="none"/>
 
-                {/* Decorative Leaves/Bubbles - Larger and non-clickable */}
-                <circle cx="140" cy="140" r="35" fill="#9CA383" opacity="0.7"/>
-                <text x="140" y="135" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Temple</text>
-                <text x="140" y="148" fontSize="10" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Cleansing</text>
+                {/* Level 2 - #2 Betrayal */}
+                <path d="M 350 830 Q 420 810, 480 820" stroke="#8B7556" strokeWidth="10" fill="none"/>
 
-                <circle cx="360" cy="140" r="35" fill="#9CA383" opacity="0.7"/>
-                <text x="360" y="138" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Betrayal</text>
-                <text x="360" y="151" fontSize="10" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">30 Silver</text>
+                {/* Level 3 - #3 Pilate */}
+                <path d="M 350 780 Q 270 760, 210 770" stroke="#8B7556" strokeWidth="9" fill="none"/>
 
-                <circle cx="120" cy="190" r="33" fill="#9CA383" opacity="0.7"/>
-                <text x="120" y="188" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Pilate</text>
-                <text x="120" y="201" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">& Truth</text>
+                {/* Level 4 - #4 Crowd */}
+                <path d="M 350 730 Q 430 710, 490 720" stroke="#8B7556" strokeWidth="9" fill="none"/>
 
-                <circle cx="380" cy="190" r="33" fill="#9CA383" opacity="0.7"/>
-                <text x="380" y="188" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Crowd</text>
-                <text x="380" y="201" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Loyalty Lost</text>
+                {/* Level 5 - #5 Scourging */}
+                <path d="M 350 680 Q 260 660, 200 670" stroke="#8B7556" strokeWidth="8" fill="none"/>
 
-                <circle cx="150" cy="250" r="32" fill="#9CA383" opacity="0.7"/>
-                <text x="150" y="248" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Scourging</text>
-                <text x="150" y="261" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">39 Lashes</text>
+                {/* Level 6 - #6 Crown */}
+                <path d="M 350 630 Q 440 610, 500 620" stroke="#8B7556" strokeWidth="8" fill="none"/>
 
-                <circle cx="350" cy="250" r="32" fill="#9CA383" opacity="0.7"/>
-                <text x="350" y="248" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Crown</text>
-                <text x="350" y="261" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">of Thorns</text>
+                {/* Level 7 - #7 Cross Carried */}
+                <path d="M 350 580 Q 250 560, 190 570" stroke="#8B7556" strokeWidth="7" fill="none"/>
 
-                <circle cx="130" cy="300" r="31" fill="#9CA383" opacity="0.7"/>
-                <text x="130" y="298" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Cross</text>
-                <text x="130" y="311" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Carried</text>
+                {/* Level 8 - #8 Power Restrained */}
+                <path d="M 350 530 Q 450 510, 510 520" stroke="#8B7556" strokeWidth="7" fill="none"/>
 
-                <circle cx="370" cy="300" r="31" fill="#9CA383" opacity="0.7"/>
-                <text x="370" y="298" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Power</text>
-                <text x="370" y="311" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Restrained</text>
+                {/* Level 9 - #9 Instruments */}
+                <path d="M 350 480 Q 270 460, 210 470" stroke="#8B7556" strokeWidth="7" fill="none"/>
 
-                <circle cx="160" cy="355" r="30" fill="#9CA383" opacity="0.7"/>
-                <text x="160" y="353" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Stakes</text>
-                <text x="160" y="366" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">& Nails</text>
+                {/* Level 10 - #10 Piercing */}
+                <path d="M 350 430 Q 430 410, 490 420" stroke="#8B7556" strokeWidth="7" fill="none"/>
 
-                <circle cx="340" cy="355" r="30" fill="#9CA383" opacity="0.7"/>
-                <text x="340" y="353" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Piercing</text>
-                <text x="340" y="366" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">His Side</text>
+                {/* Level 11 - #11 Joseph's Tomb */}
+                <path d="M 350 380 Q 260 360, 200 370" stroke="#8B7556" strokeWidth="6" fill="none"/>
 
-                <circle cx="150" cy="405" r="30" fill="#9CA383" opacity="0.7"/>
-                <text x="150" y="403" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Joseph's</text>
-                <text x="150" y="416" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+                {/* Level 12 - #12 Silence */}
+                <path d="M 350 330 Q 440 310, 500 320" stroke="#8B7556" strokeWidth="6" fill="none"/>
 
-                <circle cx="350" cy="405" r="30" fill="#9CA383" opacity="0.7"/>
-                <text x="350" y="403" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Heaven's</text>
-                <text x="350" y="416" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Silence</text>
+                {/* Level 13 - #13 Stone */}
+                <path d="M 350 280 Q 280 260, 220 270" stroke="#8B7556" strokeWidth="6" fill="none"/>
 
-                <circle cx="170" cy="455" r="29" fill="#9CA383" opacity="0.7"/>
-                <text x="170" y="453" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Stone</text>
-                <text x="170" y="466" fontSize="8" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Rolled Away</text>
+                {/* Level 14 - #14 Empty Tomb */}
+                <path d="M 350 230 Q 420 210, 480 220" stroke="#8B7556" strokeWidth="6" fill="none"/>
 
-                <circle cx="330" cy="455" r="29" fill="#9CA383" opacity="0.7"/>
-                <text x="330" y="453" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Empty</text>
-                <text x="330" y="466" fontSize="9" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+                {/* Level 15 - #15 Shroud (centered near top) */}
+                <path d="M 350 180 Q 320 165, 280 175" stroke="#8B7556" strokeWidth="5" fill="none"/>
+                <path d="M 350 180 Q 380 165, 420 175" stroke="#8B7556" strokeWidth="5" fill="none"/>
 
-                <circle cx="250" cy="505" r="29" fill="#9CA383" opacity="0.7"/>
-                <text x="250" y="503" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">The Shroud</text>
-                <text x="250" y="516" fontSize="8" fill="#2d1810" fontWeight="500" textAnchor="middle" fontFamily="Georgia">Mystery</text>
+                {/* Event Circles - Bottom to Top, Larger */}
 
-                {/* Golden Resurrection Crown */}
-                <circle cx="250" cy="100" r="42" fill="#d4af37" opacity="0.85"/>
-                <text x="250" y="95" fontSize="12" fill="#2d1810" fontWeight="800" textAnchor="middle" fontFamily="Georgia">THE</text>
-                <text x="250" y="110" fontSize="13" fill="#2d1810" fontWeight="800" textAnchor="middle" fontFamily="Georgia">RESURRECTION</text>
+                {/* #1 Temple Cleansing - Bottom */}
+                <circle cx="220" cy="870" r="42" fill="#9CA383" opacity="0.75"/>
+                <text x="220" y="865" fontSize="13" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">1. Temple</text>
+                <text x="220" y="880" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Cleansing</text>
 
-                {/* Cross at the top */}
-                <path d="M 250 55 L 250 105" stroke="#6B5D48" strokeWidth="5" fill="none"/>
-                <path d="M 230 70 L 270 70" stroke="#6B5D48" strokeWidth="5" fill="none"/>
+                {/* #2 Betrayal */}
+                <circle cx="480" cy="820" r="42" fill="#9CA383" opacity="0.75"/>
+                <text x="480" y="815" fontSize="13" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">2. Betrayal</text>
+                <text x="480" y="830" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">30 Silver</text>
+
+                {/* #3 Pilate */}
+                <circle cx="210" cy="770" r="40" fill="#9CA383" opacity="0.75"/>
+                <text x="210" y="765" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">3. Pilate</text>
+                <text x="210" y="780" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">& Truth</text>
+
+                {/* #4 Crowd */}
+                <circle cx="490" cy="720" r="40" fill="#9CA383" opacity="0.75"/>
+                <text x="490" y="715" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">4. Crowd</text>
+                <text x="490" y="730" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Loyalty</text>
+
+                {/* #5 Scourging */}
+                <circle cx="200" cy="670" r="39" fill="#9CA383" opacity="0.75"/>
+                <text x="200" y="665" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">5. Scourging</text>
+                <text x="200" y="680" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">39 Lashes</text>
+
+                {/* #6 Crown of Thorns */}
+                <circle cx="500" cy="620" r="39" fill="#9CA383" opacity="0.75"/>
+                <text x="500" y="615" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">6. Crown</text>
+                <text x="500" y="630" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">of Thorns</text>
+
+                {/* #7 Cross Carried */}
+                <circle cx="190" cy="570" r="38" fill="#9CA383" opacity="0.75"/>
+                <text x="190" y="565" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">7. Cross</text>
+                <text x="190" y="580" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Carried</text>
+
+                {/* #8 Power Restrained */}
+                <circle cx="510" cy="520" r="38" fill="#9CA383" opacity="0.75"/>
+                <text x="510" y="515" fontSize="11" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">8. Power</text>
+                <text x="510" y="530" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Restrained</text>
+
+                {/* #9 Instruments */}
+                <circle cx="210" cy="470" r="37" fill="#9CA383" opacity="0.75"/>
+                <text x="210" y="465" fontSize="11" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">9. Stakes</text>
+                <text x="210" y="480" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">& Nails</text>
+
+                {/* #10 Piercing */}
+                <circle cx="490" cy="420" r="37" fill="#9CA383" opacity="0.75"/>
+                <text x="490" y="415" fontSize="11" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">10. Piercing</text>
+                <text x="490" y="430" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">His Side</text>
+
+                {/* #11 Joseph's Tomb */}
+                <circle cx="200" cy="370" r="36" fill="#9CA383" opacity="0.75"/>
+                <text x="200" y="365" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">11. Joseph's</text>
+                <text x="200" y="380" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+
+                {/* #12 Silence */}
+                <circle cx="500" cy="320" r="36" fill="#9CA383" opacity="0.75"/>
+                <text x="500" y="315" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">12. Heaven's</text>
+                <text x="500" y="330" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Silence</text>
+
+                {/* #13 Stone */}
+                <circle cx="220" cy="270" r="35" fill="#9CA383" opacity="0.75"/>
+                <text x="220" y="265" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">13. Stone</text>
+                <text x="220" y="280" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Rolled Away</text>
+
+                {/* #14 Empty Tomb */}
+                <circle cx="480" cy="220" r="35" fill="#9CA383" opacity="0.75"/>
+                <text x="480" y="215" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">14. Empty</text>
+                <text x="480" y="230" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+
+                {/* #15 Shroud - Near top */}
+                <circle cx="350" cy="175" r="34" fill="#9CA383" opacity="0.75"/>
+                <text x="350" y="170" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">15. Shroud</text>
+                <text x="350" y="185" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Mystery</text>
+
+                {/* Golden Resurrection Crown - At the very top */}
+                <circle cx="350" cy="80" r="52" fill="#d4af37" opacity="0.9"/>
+                <text x="350" y="72" fontSize="15" fill="#2d1810" fontWeight="900" textAnchor="middle" fontFamily="Georgia">THE</text>
+                <text x="350" y="92" fontSize="16" fill="#2d1810" fontWeight="900" textAnchor="middle" fontFamily="Georgia">RESURRECTION</text>
+
+                {/* Cross at the very top */}
+                <path d="M 350 25 L 350 85" stroke="#6B5D48" strokeWidth="6" fill="none"/>
+                <path d="M 325 45 L 375 45" stroke="#6B5D48" strokeWidth="6" fill="none"/>
               </svg>
             </div>
 
@@ -463,7 +415,7 @@ export function Resurrection() {
                   </div>
                   {expandedSections.has(event.id) && (
                     <div className="timeline-content">
-                      <p className="timeline-text">{event.content}</p>
+                      <div className="timeline-text" dangerouslySetInnerHTML={{ __html: event.content }} />
                     </div>
                   )}
                 </div>
