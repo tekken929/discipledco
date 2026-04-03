@@ -1210,8 +1210,30 @@
 }
 
 .compact-content {
-  padding: 0 2rem 2rem 2rem;
+  padding: 2rem;
   animation: expandDown 0.3s ease;
+  background: rgba(250, 248, 245, 0.95);
+  border-radius: 0 0 0.75rem 0.75rem;
+  margin-top: -0.5rem;
+}
+
+.compact-content .resurrection-body-text {
+  color: #3d3426;
+  text-shadow: none;
+}
+
+.compact-content .evidence-list li {
+  color: #3d3426;
+  text-shadow: none;
+}
+
+.compact-content .evidence-list li strong {
+  color: #2c2416;
+}
+
+.compact-content h3 {
+  color: #2c2416;
+  text-shadow: none;
 }
 
 /* Faith Reflection Button and Content */
@@ -1245,44 +1267,42 @@
 
 .faith-reflection-content {
   margin-top: 2rem;
-  padding-top: 2rem;
+  padding: 2rem;
   border-top: 2px solid rgba(139, 117, 90, 0.4);
   animation: expandDown 0.4s ease;
+  background: rgba(250, 248, 245, 0.95);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .faith-reflection-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #fffbf5;
+  color: #2c2416;
   margin-bottom: 1.5rem;
   font-family: 'Georgia', 'Garamond', serif;
   text-align: center;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.95),
-    0 0 20px rgba(212, 175, 55, 0.2);
   letter-spacing: 0.02em;
 }
 
 .faith-reflection-text {
   font-size: 1.125rem;
   line-height: 1.9;
-  color: #f0e6d6;
+  color: #3d3426;
   font-family: 'Georgia', 'Times New Roman', serif;
   margin-bottom: 1.25rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
 }
 
 .faith-reflection-quote {
-  background: rgba(245, 235, 220, 0.08);
-  border-left: 4px solid rgba(212, 175, 55, 0.6);
+  background: rgba(212, 175, 55, 0.15);
+  border-left: 4px solid rgba(139, 117, 90, 0.8);
   padding: 1.5rem 2rem;
   margin: 2rem 0;
   font-size: 1.15rem;
   line-height: 1.8;
-  color: #f5ead5;
+  color: #2c2416;
   font-family: 'Georgia', serif;
   font-style: italic;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
   border-radius: 0.25rem;
 }
 
@@ -1290,7 +1310,7 @@
   display: block;
   margin-top: 1rem;
   font-size: 0.95rem;
-  color: #d9cab7;
+  color: #5a4a35;
   font-style: normal;
   text-align: right;
   font-weight: 600;
