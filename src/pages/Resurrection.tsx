@@ -10,7 +10,7 @@ interface InfoPopupProps {
 
 function InfoPopup({ title, content, onClose }: InfoPopupProps) {
   return (
-    <>
+    <div className="popup-container">
       <div className="popup-overlay" onClick={onClose} />
       <div className="info-popup">
         <button onClick={onClose} className="popup-close" aria-label="Close">
@@ -20,7 +20,7 @@ function InfoPopup({ title, content, onClose }: InfoPopupProps) {
         <div className="popup-divider"></div>
         <div className="popup-content" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
-    </>
+    </div>
   );
 }
 
@@ -374,16 +374,34 @@ export function Resurrection() {
                 <path d="M 200 300 Q 170 295, 140 305" stroke="#8B7556" strokeWidth="5" fill="none"/>
                 <path d="M 200 300 Q 230 295, 260 305" stroke="#8B7556" strokeWidth="5" fill="none"/>
 
-                {/* Leaves/Crown */}
-                <circle cx="120" cy="90" r="25" fill="#9CA383" opacity="0.6"/>
-                <circle cx="280" cy="90" r="25" fill="#9CA383" opacity="0.6"/>
-                <circle cx="100" cy="140" r="22" fill="#9CA383" opacity="0.6"/>
-                <circle cx="300" cy="140" r="22" fill="#9CA383" opacity="0.6"/>
-                <circle cx="130" cy="200" r="20" fill="#9CA383" opacity="0.6"/>
-                <circle cx="270" cy="200" r="20" fill="#9CA383" opacity="0.6"/>
-                <circle cx="200" cy="70" r="30" fill="#9CA383" opacity="0.7"/>
-                <circle cx="150" cy="110" r="20" fill="#9CA383" opacity="0.6"/>
-                <circle cx="250" cy="110" r="20" fill="#9CA383" opacity="0.6"/>
+                {/* Leaves/Crown with labels - clickable */}
+                <circle cx="120" cy="90" r="25" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('burial')} style={{cursor: 'pointer'}}/>
+                <text x="120" y="95" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Burial</text>
+
+                <circle cx="280" cy="90" r="25" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('empty-tomb')} style={{cursor: 'pointer'}}/>
+                <text x="280" y="95" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Empty</text>
+
+                <circle cx="100" cy="140" r="22" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('crucifixion')} style={{cursor: 'pointer'}}/>
+                <text x="100" y="145" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Crucifixion</text>
+
+                <circle cx="300" cy="140" r="22" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('via-dolorosa')} style={{cursor: 'pointer'}}/>
+                <text x="300" y="145" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Via</text>
+
+                <circle cx="130" cy="200" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('crucify')} style={{cursor: 'pointer'}}/>
+                <text x="130" y="205" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Crucify</text>
+
+                <circle cx="270" cy="200" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('pilate')} style={{cursor: 'pointer'}}/>
+                <text x="270" y="205" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Pilate</text>
+
+                <circle cx="200" cy="70" r="30" fill="#d4af37" opacity="0.8" onClick={() => setActivePopup('resurrection')} style={{cursor: 'pointer'}}/>
+                <text x="200" y="70" fontSize="9" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">THE</text>
+                <text x="200" y="82" fontSize="9" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">RESURRECTION</text>
+
+                <circle cx="150" cy="110" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('last-supper')} style={{cursor: 'pointer'}}/>
+                <text x="150" y="115" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Supper</text>
+
+                <circle cx="250" cy="110" r="20" fill="#9CA383" opacity="0.6" onClick={() => setActivePopup('gethsemane')} style={{cursor: 'pointer'}}/>
+                <text x="250" y="115" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Garden</text>
 
                 {/* Cross at the top */}
                 <path d="M 200 40 L 200 80" stroke="#6B5D48" strokeWidth="4" fill="none"/>
