@@ -8,7 +8,7 @@ export interface GospelEvent {
 export const gospelEvents: GospelEvent[] = [
   {
     id: 'temple-cleansing',
-    title: '1. Authority Challenged: The Cleansing of the Temple',
+    title: 'Authority Challenged: The Cleansing of the Temple',
     summary: 'Why Jesus overturned the tables • Corruption within sacred space • Religious systems vs. true worship',
     content: `Jesus entered the temple and found it operating as a marketplace—money changers seated, animals being sold, and transactions taking place in the very courts designated for worship.<br><br>
 
@@ -38,7 +38,7 @@ This event establishes a direct conflict between Jesus and the religious leaders
   },
   {
     id: 'betrayal',
-    title: '2. Betrayal & the Price of Innocence',
+    title: 'Betrayal & the Price of Innocence',
     summary: 'Judas Iscariot\'s payment (30 pieces of silver) • The prophetic and symbolic weight of that amount • The intimacy of betrayal (a disciple, not an enemy)',
     content: `The agreement to betray Jesus was not vague or symbolic—it was quantified.<br><br>
 
@@ -64,7 +64,7 @@ The detail of the amount, the identity of the betrayer, and the recorded intent 
   },
   {
     id: 'pilate',
-    title: '3. Power, Politics, and Truth',
+    title: 'Power, Politics, and Truth',
     summary: 'Pontius Pilate and his interrogation of Jesus • "What is truth?" — philosophical and political tension • Pilate\'s moral conflict vs. public pressure',
     content: `Jesus is brought before Pontius Pilate, the Roman authority responsible for maintaining order.<br><br>
 
@@ -91,7 +91,7 @@ The tension between acknowledged innocence and enacted punishment is central to 
   },
   {
     id: 'crowd',
-    title: '4. The Crowd and the Collapse of Loyalty',
+    title: 'The Crowd and the Collapse of Loyalty',
     summary: 'From praise to "Crucify Him" • Mob mentality and influence of religious leaders • The volatility of human allegiance',
     content: `Public response shifts rapidly within a short period of time.<br><br>
 
@@ -113,7 +113,7 @@ This shift reflects the role of authority, pressure, and public alignment. The G
   },
   {
     id: 'scourging',
-    title: '5. The Scourging: Flesh Torn, Time Stretched',
+    title: 'The Scourging: Flesh Torn, Time Stretched',
     summary: 'Roman flogging practices and brutality • The lashes (often 39, but frequently more in Roman context) • Duration and physical toll before crucifixion even began',
     content: `Before crucifixion, Jesus was subjected to Roman scourging—a form of punishment designed not just to injure, but to weaken a person to the edge of death.<br><br>
 
@@ -135,7 +135,7 @@ The scourging was not incidental—it was a defined part of the suffering record
   },
   {
     id: 'crown-thorns',
-    title: '6. The Crown of Thorns: Mockery and Kingship',
+    title: 'The Crown of Thorns: Mockery and Kingship',
     summary: 'Roman mockery vs. divine irony • Thorns as a symbol (curse, suffering, kingship) • The inversion of power',
     content: `After the scourging, Roman soldiers continued with a form of mockery directed at Jesus' claim to kingship.<br><br>
 
@@ -155,7 +155,7 @@ The moment functions on two levels—historical mockery and theological symbolis
   },
   {
     id: 'cross-carried',
-    title: '7. The Burden Shared: The Cross Carried',
+    title: 'The Burden Shared: The Cross Carried',
     summary: 'Simon of Cyrene compelled to carry the cross • Jesus\' physical exhaustion and human limitation • The weight of the cross—literal and symbolic',
     content: `Following the scourging and mockery, Jesus was led to the place of crucifixion while carrying the cross.<br><br>
 
@@ -175,7 +175,7 @@ The cross itself was not a symbolic object in this moment—it was a physical st
   },
   {
     id: 'power-restrained',
-    title: '8. Power Restrained: The Willing Surrender',
+    title: 'Power Restrained: The Willing Surrender',
     summary: 'Jesus\' authority to stop it at any moment • The choice to remain—restraint as strength • Divine will over self-preservation',
     content: `Throughout the arrest, trial, and crucifixion, the Gospels record multiple moments where Jesus does not resist, despite having the stated authority to do so.<br><br>
 
@@ -198,7 +198,7 @@ The event proceeds not because power is absent, but because it is not exercised.
   },
   {
     id: 'instruments',
-    title: '9. Instruments of Execution: The Cross Itself',
+    title: 'Instruments of Execution: The Cross Itself',
     summary: 'The stakes/nails and their physical and symbolic role • Roman crucifixion methods • The weight of suffering and public humiliation',
     content: `Crucifixion was a Roman method of execution designed for public exposure, prolonged suffering, and deterrence.<br><br>
 
@@ -222,7 +222,7 @@ The physical details recorded in the Gospels align with known Roman practices, r
   },
   {
     id: 'piercing',
-    title: '10. The Wound That Spoke',
+    title: 'The Wound That Spoke',
     summary: 'The piercing of Jesus\' side • Blood and water symbolism • Fulfillment of prophecy and confirmation of death',
     content: `After Jesus' death, a Roman soldier confirmed it through a specific action:<br><br>
 
@@ -246,32 +246,126 @@ The inclusion of this moment, with its specificity, strengthens the claim that t
   },
   {
     id: 'joseph-tomb',
-    title: '11. The Hidden Disciple: Joseph and the Tomb',
+    title: 'The Hidden Disciple: Joseph and the Tomb',
     summary: 'Joseph of Arimathea • His status, risk, and quiet devotion • The significance of the unused tomb and burial cloth',
-    content: `Content coming soon...`
+    content: `After the crucifixion, the body of Jesus was not left on the cross. A specific individual is recorded as stepping forward:<br><br>
+
+<strong>"As evening approached, there came a rich man from Arimathea, named Joseph, who had himself become a disciple of Jesus." — Matthew 27:57 (NIV)</strong><br><br>
+
+Joseph of Arimathea is identified as both wealthy and a disciple, though not publicly known as such during Jesus' ministry.<br><br>
+
+He approaches Pilate directly:<br><br>
+
+<strong>"Going to Pilate, he asked for Jesus' body, and Pilate ordered that it be given to him." — Matthew 27:58 (NIV)</strong><br><br>
+
+The burial is described with detail:<br><br>
+
+<strong>"Joseph took the body, wrapped it in a clean linen cloth, and placed it in his own new tomb that he had cut out of the rock." — Matthew 27:59–60 (NIV)</strong><br><br>
+
+The tomb was unused, and it belonged to Joseph himself. This removes ambiguity regarding prior occupants and establishes a known, specific burial location.<br><br>
+
+The use of linen cloth aligns with Jewish burial customs, and the involvement of a named figure adds traceability to the account.<br><br>
+
+This was not an anonymous burial. It was carried out by a known individual, in a known place, with recorded access granted by Roman authority.`
   },
   {
     id: 'silence',
-    title: '12. The Silence of Intervention',
+    title: 'The Silence of Intervention',
     summary: 'Heaven\'s restraint during suffering • The absence of rescue despite divine authority • The weight of abandonment and purpose',
-    content: `Content coming soon...`
+    content: `During the crucifixion, the Gospels record extended suffering without interruption or intervention.<br><br>
+
+Jesus speaks from the cross:<br><br>
+
+<strong>"My God, my God, why have you forsaken me?" — Matthew 27:46 (NIV)</strong><br><br>
+
+This statement reflects Psalm 22 and is spoken during the final hours of crucifixion.<br><br>
+
+Observers respond with recognition of His claims:<br><br>
+
+<strong>"He trusts in God. Let God rescue him now if he wants him, for he said, 'I am the Son of God.'" — Matthew 27:43 (NIV)</strong><br><br>
+
+No intervention follows.<br><br>
+
+Earlier, the possibility of divine intervention had been stated (Matthew 26:53), yet during the crucifixion itself, none occurs. The narrative records presence—crowds, soldiers, religious leaders—but no interruption of the process.<br><br>
+
+Darkness is noted:<br><br>
+
+<strong>"From noon until three in the afternoon darkness came over all the land." — Matthew 27:45 (NIV)</strong><br><br>
+
+The event proceeds to completion without external reversal.<br><br>
+
+The silence in this section is not absence of awareness—it is absence of interruption.`
   },
   {
     id: 'stone',
-    title: '13. The Stone and the Impossible Opening',
+    title: 'The Stone and the Impossible Opening',
     summary: 'The sealed tomb and Roman guard • The stone rolled away—not to let Jesus out, but to reveal He was gone • Divine power displayed without human involvement',
-    content: `Content coming soon...`
+    content: `After the burial, the tomb is secured:<br><br>
+
+<strong>"So they went and made the tomb secure by putting a seal on the stone and posting the guard." — Matthew 27:66 (NIV)</strong><br><br>
+
+The stone itself would have been large and set in place to cover the entrance. The addition of a Roman seal and guard establishes controlled access.<br><br>
+
+The opening of the tomb is recorded as follows:<br><br>
+
+<strong>"There was a violent earthquake, for an angel of the Lord came down from heaven and, going to the tomb, rolled back the stone and sat on it." — Matthew 28:2 (NIV)</strong><br><br>
+
+The movement of the stone is not attributed to human action. The presence of guards further limits the possibility of interference.<br><br>
+
+The purpose of the opened tomb is clarified by what follows—it is not described as enabling Jesus to exit, but as revealing the state of the tomb to those who arrive.<br><br>
+
+The sequence—sealed, guarded, then opened—forms a continuous account with defined conditions before and after.`
   },
   {
     id: 'empty-tomb',
-    title: '14. The Empty Tomb: Absence as Evidence',
+    title: 'The Empty Tomb: Absence as Evidence',
     summary: 'What wasn\'t there—and why that matters • The folded burial cloths • The first witnesses and their disbelief',
-    content: `Content coming soon...`
+    content: `When the tomb is visited, the primary detail recorded is not what is present, but what is absent.<br><br>
+
+<strong>"Why do you look for the living among the dead? He is not here; he has risen!" — Luke 24:5–6 (NIV)</strong><br><br>
+
+The tomb, previously identified, sealed, and guarded, is now open and empty.<br><br>
+
+John's account includes additional detail regarding the burial cloths:<br><br>
+
+<strong>"He saw the strips of linen lying there, as well as the cloth that had been wrapped around Jesus' head. The cloth was still lying in its place, separate from the linen." — John 20:6–7 (NIV)</strong><br><br>
+
+The arrangement of the cloths is noted specifically. They are not described as removed or taken, but left behind in an orderly state.<br><br>
+
+The first witnesses are also identified:<br><br>
+
+<strong>"When they came back from the tomb, they told all these things to the Eleven and to all the others." — Luke 24:9 (NIV)</strong><br><br>
+
+Their initial response is not immediate belief:<br><br>
+
+<strong>"But they did not believe the women, because their words seemed to them like nonsense." — Luke 24:11 (NIV)</strong><br><br>
+
+The account includes both the claim of resurrection and the skepticism of those who first heard it.<br><br>
+
+The empty tomb is presented as a physical condition, observed and reported, before interpretation is accepted.`
   },
   {
     id: 'shroud',
-    title: '15. The Shroud: Image Without Explanation',
+    title: 'The Shroud: Image Without Explanation',
     summary: 'Shroud of Turin and its mysterious imprint • The image: not painted, not burned, not fully explained by modern science • Forensic details aligning with crucifixion wounds described in the Gospels • Ongoing debate: faith, science, and unanswered questions • Not proof forced on belief—but evidence that refuses easy dismissal',
-    content: `Content coming soon...`
+    content: `Shroud of Turin is a linen cloth bearing the image of a crucified man, with markings consistent with wounds described in the Gospels.<br><br>
+
+The image is not formed by paint, dye, or known artistic methods. Scientific examinations have identified it as a superficial discoloration of the fibers, without penetration into the threads beneath.<br><br>
+
+The visible details correspond to recorded events: marks consistent with scourging, punctures aligned with crucifixion wounds, and a wound in the side.<br><br>
+
+The Gospels reference burial cloths directly:<br><br>
+
+<strong>"Then Joseph bought some linen cloth, took down the body, wrapped it in the linen…" — Mark 15:46 (NIV)</strong><br><br>
+
+While the Shroud itself is not named in scripture, the existence of linen burial cloths is established.<br><br>
+
+Studies of the image have noted characteristics that are difficult to reproduce, including the absence of directional brush strokes and the presence of three-dimensional information encoded in the image intensity.<br><br>
+
+At the same time, the Shroud remains a subject of ongoing examination and debate. Some analyses have suggested medieval origins, while others challenge those conclusions based on contamination and testing limitations.<br><br>
+
+The significance of the Shroud is not presented as forced proof, but as a physical object that aligns in notable ways with the recorded details of crucifixion and burial.<br><br>
+
+It exists within the intersection of documented Gospel accounts and continued scientific investigation.`
   }
 ];

@@ -311,79 +311,79 @@ export function Resurrection() {
                 {/* Event Circles - Bottom to Top, Larger */}
 
                 {/* #1 Temple Cleansing - Bottom */}
-                <circle cx="220" cy="870" r="42" fill="#9CA383" opacity="0.75"/>
-                <text x="220" y="865" fontSize="13" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">1. Temple</text>
-                <text x="220" y="880" fontSize="11" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Cleansing</text>
+                <circle cx="220" cy="870" r="60" fill="#9CA383" opacity="0.8"/>
+                <text x="220" y="865" fontSize="17" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Temple</text>
+                <text x="220" y="885" fontSize="14" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Cleansing</text>
 
                 {/* #2 Betrayal */}
-                <circle cx="480" cy="820" r="42" fill="#9CA383" opacity="0.75"/>
-                <text x="480" y="815" fontSize="13" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">2. Betrayal</text>
-                <text x="480" y="830" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">30 Silver</text>
+                <circle cx="480" cy="820" r="60" fill="#9CA383" opacity="0.8"/>
+                <text x="480" y="815" fontSize="17" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Betrayal</text>
+                <text x="480" y="835" fontSize="13" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">30 Silver</text>
 
                 {/* #3 Pilate */}
-                <circle cx="210" cy="770" r="40" fill="#9CA383" opacity="0.75"/>
-                <text x="210" y="765" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">3. Pilate</text>
-                <text x="210" y="780" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">& Truth</text>
+                <circle cx="210" cy="770" r="58" fill="#9CA383" opacity="0.8"/>
+                <text x="210" y="768" fontSize="17" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Pilate &</text>
+                <text x="210" y="788" fontSize="14" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Truth</text>
 
                 {/* #4 Crowd */}
-                <circle cx="490" cy="720" r="40" fill="#9CA383" opacity="0.75"/>
-                <text x="490" y="715" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">4. Crowd</text>
-                <text x="490" y="730" fontSize="10" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Loyalty</text>
+                <circle cx="490" cy="720" r="58" fill="#9CA383" opacity="0.8"/>
+                <text x="490" y="718" fontSize="17" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Crowd</text>
+                <text x="490" y="738" fontSize="13" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Loyalty Lost</text>
 
                 {/* #5 Scourging */}
-                <circle cx="200" cy="670" r="39" fill="#9CA383" opacity="0.75"/>
-                <text x="200" y="665" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">5. Scourging</text>
-                <text x="200" y="680" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">39 Lashes</text>
+                <circle cx="200" cy="670" r="56" fill="#9CA383" opacity="0.8"/>
+                <text x="200" y="668" fontSize="16" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Scourging</text>
+                <text x="200" y="686" fontSize="12" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">39 Lashes</text>
 
                 {/* #6 Crown of Thorns */}
-                <circle cx="500" cy="620" r="39" fill="#9CA383" opacity="0.75"/>
-                <text x="500" y="615" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">6. Crown</text>
-                <text x="500" y="630" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">of Thorns</text>
+                <circle cx="500" cy="620" r="56" fill="#9CA383" opacity="0.8"/>
+                <text x="500" y="618" fontSize="16" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Crown of</text>
+                <text x="500" y="636" fontSize="13" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Thorns</text>
 
                 {/* #7 Cross Carried */}
-                <circle cx="190" cy="570" r="38" fill="#9CA383" opacity="0.75"/>
-                <text x="190" y="565" fontSize="12" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">7. Cross</text>
-                <text x="190" y="580" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Carried</text>
+                <circle cx="190" cy="570" r="54" fill="#9CA383" opacity="0.8"/>
+                <text x="190" y="568" fontSize="16" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Cross</text>
+                <text x="190" y="586" fontSize="13" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Carried</text>
 
                 {/* #8 Power Restrained */}
-                <circle cx="510" cy="520" r="38" fill="#9CA383" opacity="0.75"/>
-                <text x="510" y="515" fontSize="11" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">8. Power</text>
-                <text x="510" y="530" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Restrained</text>
+                <circle cx="510" cy="520" r="54" fill="#9CA383" opacity="0.8"/>
+                <text x="510" y="518" fontSize="15" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Power</text>
+                <text x="510" y="536" fontSize="12" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Restrained</text>
 
                 {/* #9 Instruments */}
-                <circle cx="210" cy="470" r="37" fill="#9CA383" opacity="0.75"/>
-                <text x="210" y="465" fontSize="11" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">9. Stakes</text>
-                <text x="210" y="480" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">& Nails</text>
+                <circle cx="210" cy="470" r="52" fill="#9CA383" opacity="0.8"/>
+                <text x="210" y="468" fontSize="15" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Stakes &</text>
+                <text x="210" y="486" fontSize="13" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Nails</text>
 
                 {/* #10 Piercing */}
-                <circle cx="490" cy="420" r="37" fill="#9CA383" opacity="0.75"/>
-                <text x="490" y="415" fontSize="11" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">10. Piercing</text>
-                <text x="490" y="430" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">His Side</text>
+                <circle cx="490" cy="420" r="52" fill="#9CA383" opacity="0.8"/>
+                <text x="490" y="418" fontSize="15" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Piercing</text>
+                <text x="490" y="436" fontSize="12" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">His Side</text>
 
                 {/* #11 Joseph's Tomb */}
-                <circle cx="200" cy="370" r="36" fill="#9CA383" opacity="0.75"/>
-                <text x="200" y="365" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">11. Joseph's</text>
-                <text x="200" y="380" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+                <circle cx="200" cy="370" r="50" fill="#9CA383" opacity="0.8"/>
+                <text x="200" y="368" fontSize="14" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Joseph's</text>
+                <text x="200" y="386" fontSize="12" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Tomb</text>
 
                 {/* #12 Silence */}
-                <circle cx="500" cy="320" r="36" fill="#9CA383" opacity="0.75"/>
-                <text x="500" y="315" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">12. Heaven's</text>
-                <text x="500" y="330" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Silence</text>
+                <circle cx="500" cy="320" r="50" fill="#9CA383" opacity="0.8"/>
+                <text x="500" y="318" fontSize="14" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Heaven's</text>
+                <text x="500" y="336" fontSize="12" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Silence</text>
 
                 {/* #13 Stone */}
-                <circle cx="220" cy="270" r="35" fill="#9CA383" opacity="0.75"/>
-                <text x="220" y="265" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">13. Stone</text>
-                <text x="220" y="280" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Rolled Away</text>
+                <circle cx="220" cy="270" r="48" fill="#9CA383" opacity="0.8"/>
+                <text x="220" y="268" fontSize="14" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Stone</text>
+                <text x="220" y="286" fontSize="11" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Rolled Away</text>
 
                 {/* #14 Empty Tomb */}
-                <circle cx="480" cy="220" r="35" fill="#9CA383" opacity="0.75"/>
-                <text x="480" y="215" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">14. Empty</text>
-                <text x="480" y="230" fontSize="9" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Tomb</text>
+                <circle cx="480" cy="220" r="48" fill="#9CA383" opacity="0.8"/>
+                <text x="480" y="218" fontSize="14" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Empty</text>
+                <text x="480" y="236" fontSize="12" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Tomb</text>
 
                 {/* #15 Shroud - Near top */}
-                <circle cx="350" cy="175" r="34" fill="#9CA383" opacity="0.75"/>
-                <text x="350" y="170" fontSize="10" fill="#2d1810" fontWeight="700" textAnchor="middle" fontFamily="Georgia">15. Shroud</text>
-                <text x="350" y="185" fontSize="8" fill="#2d1810" fontWeight="600" textAnchor="middle" fontFamily="Georgia">Mystery</text>
+                <circle cx="350" cy="175" r="46" fill="#9CA383" opacity="0.8"/>
+                <text x="350" y="173" fontSize="14" fill="#1a1410" fontWeight="800" textAnchor="middle" fontFamily="Georgia">Shroud</text>
+                <text x="350" y="191" fontSize="11" fill="#1a1410" fontWeight="700" textAnchor="middle" fontFamily="Georgia">Mystery</text>
 
                 {/* Golden Resurrection Crown - At the very top */}
                 <circle cx="350" cy="80" r="52" fill="#d4af37" opacity="0.9"/>
