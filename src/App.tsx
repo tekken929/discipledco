@@ -28,6 +28,7 @@ import { BibleAuthors } from './pages/BibleAuthors';
 import { ChristianHolidays } from './pages/ChristianHolidays';
 import { Resurrection } from './pages/Resurrection';
 import { Easter } from './pages/Easter';
+import Guidance from './pages/Guidance';
 import { books } from './data/books';
 import { Book } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -232,6 +233,7 @@ function AppContent() {
           <Route path="/christian-holidays" element={<ChristianHolidays />} />
           <Route path="/resurrection" element={<Resurrection />} />
           <Route path="/easter" element={<Easter />} />
+          <Route path="/guidance" element={<Guidance />} />
         </Routes>
       </div>
 
