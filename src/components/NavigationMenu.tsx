@@ -31,24 +31,29 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
       title: 'Bible Overview'
     },
     {
-      to: '/bible-versions',
-      icon: BookOpen,
-      title: 'Bible Versions'
-    },
-    {
       to: '/topics',
       icon: MessageCircle,
-      title: 'Biblical Topics'
-    },
-    {
-      to: '/stories',
-      icon: Book,
-      title: 'Bible Stories'
+      title: 'Everyday Topics'
     },
     {
       to: '/religions',
       icon: FolderOpen,
-      title: 'Religions'
+      title: 'What is Religion'
+    },
+    {
+      to: '/bible-versions',
+      icon: BookOpen,
+      title: 'Versions of the Bible'
+    },
+    {
+      to: '/stories',
+      icon: Book,
+      title: 'Popular Stories'
+    },
+    {
+      to: '/music',
+      icon: Music,
+      title: 'Music Jukebox'
     },
     {
       to: '/faqs',

@@ -15,28 +15,34 @@ export function Footer() {
       description: 'Book order, chapters, and summaries of all 66 books'
     },
     {
-      to: '/bible-versions',
-      icon: BookOpen,
-      title: 'Bible Versions',
-      description: 'Translation philosophy and which one to use'
-    },
-    {
       to: '/topics',
       icon: MessageCircle,
-      title: 'Biblical Topics',
+      title: 'Everyday Topics',
       description: 'Guidance on marriage, sin, relationships & more'
-    },
-    {
-      to: '/stories',
-      icon: Book,
-      title: 'Bible Stories',
-      description: 'Popular stories from Scripture with summaries'
     },
     {
       to: '/religions',
       icon: FolderOpen,
-      title: 'Religions',
+      title: 'What is Religion',
       description: 'How the early Churches split into denominations'
+    },
+    {
+      to: '/bible-versions',
+      icon: BookOpen,
+      title: 'Versions of the Bible',
+      description: 'Translation philosophy and which one to use'
+    },
+    {
+      to: '/stories',
+      icon: Book,
+      title: 'Popular Stories',
+      description: 'Popular stories from Scripture with summaries'
+    },
+    {
+      to: '/music',
+      icon: Music,
+      title: 'Music Jukebox',
+      description: 'Original songs from the Book of Psalms'
     },
     {
       to: '/christian-holidays',
