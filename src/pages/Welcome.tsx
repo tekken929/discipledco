@@ -125,7 +125,7 @@ export function Welcome() {
                   Music Jukebox
                 </Link>
                 <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Enjoy music and songs while you explore. All songs are originals from the Book of Psalms
+                  Enjoy music and songs while you explore. All songs are originals written and produced by myself
                 </p>
               </div>
             </div>
