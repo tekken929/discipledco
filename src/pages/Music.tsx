@@ -11,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 type Category = 'All' | 'Heavy Metal' | 'House' | 'Calm' | 'Worship';
 
 export function Music() {
-  const { tracks: globalTracks, currentTrack, isPlaying, playTrack, togglePlayPause, playNext, playPrevious, setTracks, volume, setVolume } = useMusicPlayer();
+  const { tracks: globalTracks, currentTrack, isPlaying, playTrack, togglePlayPause, playNext, playPrevious, setTracks, volume, setVolume, currentTime, duration, seek } = useMusicPlayer();
   const [localVolume, setLocalVolume] = useState(volume * 100);
   const [selectedCategory, setSelectedCategory] = useState<Category>('All');
   const [allTracks, setAllTracks] = useState<typeof globalTracks>([]);
@@ -67,6 +67,14 @@ export function Music() {
     setVolume(newVolume / 100);
   };
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+
   const categories: Category[] = ['All', 'Worship', 'Heavy Metal', 'House', 'Calm'];
 
   const getCategoryColor = (category: Category) => {
@@ -100,25 +108,52 @@ export function Music() {
           </div>
 
           <div className="relative z-10 mt-8 mb-6">
-            <div className="bg-gradient-to-b from-black via-zinc-900 to-black rounded-xl p-8 shadow-inner border-4 border-zinc-700 min-h-[140px] flex items-center justify-center backdrop-blur-sm">
-              {currentTrack ? (
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-400 mb-2 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">
-                    {currentTrack.title}
-                  </div>
-                  <div className="text-xl text-cyan-300 font-mono drop-shadow-[0_0_8px_rgba(103,232,249,0.3)]">
-                    {currentTrack.artist}
-                  </div>
-                  {currentTrack.category && (
-                    <div className="mt-2 inline-block px-3 py-1 bg-cyan-500/20 border border-cyan-500/40 rounded-full">
-                      <span className="text-xs text-cyan-300 font-bold uppercase tracking-wider">{currentTrack.category}</span>
+            <div className="bg-gradient-to-b from-black via-zinc-900 to-black rounded-xl p-8 shadow-inner border-4 border-zinc-700 min-h-[200px] flex flex-col backdrop-blur-sm">
+              <div className="flex-1 flex items-center justify-center">
+                {currentTrack ? (
+                  <div className="text-center w-full">
+                    <div className="text-3xl font-bold text-cyan-400 mb-2 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">
+                      {currentTrack.title}
                     </div>
-                  )}
-                </div>
-              ) : (
-                <div className="text-center text-cyan-400/60">
-                  <MusicIcon className="w-16 h-16 mx-auto mb-3 opacity-40 drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]" />
-                  <div className="text-sm font-mono tracking-wider">SELECT A TRACK</div>
+                    <div className="text-xl text-cyan-300 font-mono drop-shadow-[0_0_8px_rgba(103,232,249,0.3)]">
+                      {currentTrack.artist}
+                    </div>
+                    {currentTrack.category && (
+                      <div className="mt-2 inline-block px-3 py-1 bg-cyan-500/20 border border-cyan-500/40 rounded-full">
+                        <span className="text-xs text-cyan-300 font-bold uppercase tracking-wider">{currentTrack.category}</span>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-center text-cyan-400/60">
+                    <MusicIcon className="w-16 h-16 mx-auto mb-3 opacity-40 drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]" />
+                    <div className="text-sm font-mono tracking-wider">SELECT A TRACK</div>
+                  </div>
+                )}
+              </div>
+
+              {currentTrack && (
+                <div className="mt-6 max-w-2xl mx-auto w-full px-4">
+                  <div
+                    className="h-2 bg-zinc-800 rounded-full cursor-pointer group relative border border-zinc-700"
+                    onClick={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const percentage = x / rect.width;
+                      seek(percentage * duration);
+                    }}
+                  >
+                    <div
+                      className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-full transition-all relative shadow-[0_0_10px_rgba(34,211,238,0.5)]"
+                      style={{ width: `${progress}%` }}
+                    >
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                  <div className="flex justify-between text-sm text-cyan-400 mt-2 font-mono">
+                    <span>{formatTime(currentTime)}</span>
+                    <span>{formatTime(duration)}</span>
+                  </div>
                 </div>
               )}
             </div>
