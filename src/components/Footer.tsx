@@ -97,28 +97,7 @@ export function Footer() {
   return (
     <footer className="theme-card border-t border-gray-200 dark:border-gray-700 mt-12 print:hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-6">
-          {footerLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="theme-card border-2 rounded-xl p-6 hover:shadow-lg transition-all group hover:scale-105 flex flex-col h-full"
-              >
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="theme-primary-button p-2 rounded-lg group-hover:scale-110 transition-transform flex-shrink-0">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">{link.title}</h3>
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{link.description}</p>
-              </Link>
-            );
-          })}
-        </div>
-
-        <div className="flex flex-col items-center gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-4">
             <a
               href="https://facebook.com"

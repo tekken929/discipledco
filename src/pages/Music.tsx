@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Mic, BookText, UserCheck, Radio, Calendar, Home, SkipBack, SkipForward, Play, Pause, Volume2, Music as MusicIcon } from 'lucide-react';
+import { SkipBack, SkipForward, Play, Pause, Volume2, Music as MusicIcon } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
+import { ReturnToHome } from '../components/ReturnToHome';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -12,7 +12,6 @@ type Category = 'All' | 'Heavy Metal' | 'House' | 'Calm' | 'Worship';
 
 export function Music() {
   const { tracks: globalTracks, currentTrack, isPlaying, playTrack, togglePlayPause, playNext, playPrevious, setTracks, volume, setVolume } = useMusicPlayer();
-  const [menuOpen, setMenuOpen] = useState(false);
   const [localVolume, setLocalVolume] = useState(volume * 100);
   const [selectedCategory, setSelectedCategory] = useState<Category>('All');
   const [allTracks, setAllTracks] = useState<typeof globalTracks>([]);
@@ -81,93 +80,11 @@ export function Music() {
     }
   };
 
-  const navigationLinks = [
-    { to: '/', icon: Home, title: 'Home' },
-    { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
-    { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
-    { to: '/topics', icon: MessageCircle, title: 'Biblical Topics' },
-    { to: '/stories', icon: Book, title: 'Bible Stories' },
-    { to: '/religions', icon: FolderOpen, title: 'Religions' },
-    { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
-    { to: '/faqs', icon: Users, title: 'FAQs' },
-  ];
-
-  const resourceLinks = [
-    { to: '/preaching', icon: Mic, title: 'Wisdom' },
-    { to: '/books', icon: BookText, title: 'Books' },
-    { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
-    { to: '/podcasts', icon: Radio, title: 'Podcasts' },
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),rgba(0,0,0,0))]"></div>
-
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="fixed top-6 left-6 z-50 bg-black/30 backdrop-blur-sm border-2 border-white/20 p-3 rounded-lg shadow-2xl hover:bg-black/40 transition-all"
-        aria-label="Navigation menu"
-      >
-        {menuOpen ? <X className="w-7 h-7 text-white" /> : <Menu className="w-7 h-7 text-white" />}
-      </button>
-
-      {menuOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
-            onClick={() => setMenuOpen(false)}
-          />
-          <div className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-amber-50 to-orange-100 dark:from-amber-900 dark:to-orange-950 shadow-2xl z-50 overflow-y-auto">
-            <div className="p-6 border-b border-amber-200 dark:border-amber-800 bg-gradient-to-r from-amber-100 to-orange-200 dark:from-amber-800 dark:to-orange-900 flex items-center justify-between sticky top-0 z-10">
-              <h3 className="text-xl font-bold text-amber-950 dark:text-amber-50">Navigation</h3>
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="text-amber-900 dark:text-amber-100 hover:text-amber-950 dark:hover:text-white transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            <nav className="p-4">
-              <div className="mb-6">
-                <p className="text-xs font-bold text-amber-800 dark:text-amber-300 uppercase tracking-wider mb-3 px-3">Main</p>
-                {navigationLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-800 transition-colors group mb-1"
-                    >
-                      <Icon className="w-5 h-5 text-amber-700 dark:text-amber-300 group-hover:text-amber-900 dark:group-hover:text-amber-100" />
-                      <span className="text-amber-900 dark:text-amber-100 font-medium group-hover:text-amber-950 dark:group-hover:text-white">{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div>
-                <p className="text-xs font-bold text-amber-800 dark:text-amber-300 uppercase tracking-wider mb-3 px-3">Resources</p>
-                {resourceLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-800 transition-colors group mb-1"
-                    >
-                      <Icon className="w-5 h-5 text-amber-700 dark:text-amber-300 group-hover:text-amber-900 dark:group-hover:text-amber-100" />
-                      <span className="text-amber-900 dark:text-amber-100 font-medium group-hover:text-amber-950 dark:group-hover:text-white">{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </nav>
-          </div>
-        </>
-      )}
+    <>
+      <ReturnToHome />
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),rgba(0,0,0,0))]"></div>
 
       <div className="relative z-10 w-full max-w-6xl">
         <div className="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-900 rounded-3xl shadow-2xl p-8 border-[12px] border-zinc-700 relative overflow-hidden">
@@ -356,6 +273,7 @@ export function Music() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
