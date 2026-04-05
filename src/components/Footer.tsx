@@ -164,9 +164,108 @@ export function Footer() {
           </div>
 
           <div className="text-center">
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
               © 2026 The Disciple Co. | Clear, structured overviews of the Bible and how to break free from this world.
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
+              <Link
+                to="/bible"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Bible Overview
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/topics"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Everyday Topics
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/religions"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                What is Religion
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/bible-versions"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Versions of the Bible
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/stories"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Popular Stories
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/music"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Music Jukebox
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/christian-holidays"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Holiday Origins
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/preaching"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Wisdom
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/books"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Books
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/church-mentors"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Mentors
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/podcasts"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Podcasts
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/guidance"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Guidance
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/easter"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Easter
+              </Link>
+              <span className="text-gray-400">|</span>
+              <Link
+                to="/resurrection"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Resurrection
+              </Link>
+            </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
                 onClick={() => setShowAdminPortal(true)}

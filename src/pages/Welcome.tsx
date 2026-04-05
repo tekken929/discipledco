@@ -31,205 +31,202 @@ export function Welcome() {
             <div className="theme-primary-button p-3 rounded-xl">
               <Target className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Start here:</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Start Here: Choose what you would like to learn more about.</h2>
           </div>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            <p className="text-lg mb-6">
-              Choose what you would like to learn more about.
-            </p>
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <button
                   onClick={() => setShowWhoMadeThis(true)}
-                  className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-gray-200 dark:border-gray-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-gray-200 dark:border-gray-700 w-full justify-center h-10"
                 >
                   <HelpCircle className="w-4 h-4" />
                   Who Made This?
                 </button>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Learn about the purpose and beliefs behind this website
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Learn about the purpose and beliefs<br />behind this website
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/bible"
-                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700 w-full justify-center h-10"
                 >
                   <BookOpen className="w-4 h-4" />
                   Bible Overview
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Explore all 66 books of the Bible with chapter summaries and timelines
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Explore all 66 books of the Bible with<br />chapter summaries and timelines
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/topics"
-                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700 w-full justify-center h-10"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Everyday Topics
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Discover topics covering marriage, relationships, sin, salvation, and more
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Discover topics covering marriage,<br />relationships, sin, salvation, and more
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/religions"
-                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700 w-full justify-center h-10"
                 >
                   <Church className="w-4 h-4" />
                   What is Religion
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Learn how Christianity and other religions developed and how different churches emerged
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Learn how Christianity and other religions<br />developed and how different churches emerged
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/bible-versions"
-                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700 w-full justify-center h-10"
                 >
                   <Book className="w-4 h-4" />
                   Versions of the Bible
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Understand the differences between translations and versions
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Understand the differences between<br />translations and versions
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/stories"
-                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700 w-full justify-center h-10"
                 >
                   <BookOpen className="w-4 h-4" />
                   Popular Stories
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Read Bible stories with context and meaning
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Read Bible stories with context<br />and meaning
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/music"
-                  className="inline-flex items-center gap-2 bg-pink-100 dark:bg-pink-900 text-pink-900 dark:text-pink-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-pink-200 dark:border-pink-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-pink-100 dark:bg-pink-900 text-pink-900 dark:text-pink-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-pink-200 dark:border-pink-700 w-full justify-center h-10"
                 >
                   <Music className="w-4 h-4" />
                   Music Jukebox
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Enjoy music and songs while you explore. All songs are originals written and produced by myself
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Enjoy music and songs while you explore<br />All songs are originals written by myself
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/christian-holidays"
-                  className="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900 text-teal-900 dark:text-teal-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-teal-200 dark:border-teal-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900 text-teal-900 dark:text-teal-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-teal-200 dark:border-teal-700 w-full justify-center h-10"
                 >
                   <Calendar className="w-4 h-4" />
                   Holiday Origins
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Discover the true origins and meanings of Easter, Christmas, and other Christian holidays
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Discover the true origins and meanings<br />of Easter, Christmas, and other holidays
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/preaching"
-                  className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-amber-200 dark:border-amber-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-amber-200 dark:border-amber-700 w-full justify-center h-10"
                 >
                   <Mic className="w-4 h-4" />
                   Wisdom
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Listen to powerful preaching and teachings from trusted pastors
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Listen to powerful preaching and teachings<br />from trusted pastors
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/books"
-                  className="inline-flex items-center gap-2 bg-cyan-100 dark:bg-cyan-900 text-cyan-900 dark:text-cyan-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-cyan-200 dark:border-cyan-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-cyan-100 dark:bg-cyan-900 text-cyan-900 dark:text-cyan-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-cyan-200 dark:border-cyan-700 w-full justify-center h-10"
                 >
                   <BookText className="w-4 h-4" />
                   Books
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Read Christian books and resources to deepen your faith
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Read Christian books and resources<br />to deepen your faith
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/church-mentors"
-                  className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-indigo-200 dark:border-indigo-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-indigo-200 dark:border-indigo-700 w-full justify-center h-10"
                 >
                   <UserCheck className="w-4 h-4" />
                   Mentors
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Connect with experienced mentors for spiritual guidance
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Connect with experienced mentors<br />for spiritual guidance
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/podcasts"
-                  className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-violet-200 dark:border-violet-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-violet-200 dark:border-violet-700 w-full justify-center h-10"
                 >
                   <Radio className="w-4 h-4" />
                   Podcasts
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Listen to podcasts on faith, theology, and Christian living
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Listen to podcasts on faith, theology,<br />and Christian living
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/guidance"
-                  className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-emerald-200 dark:border-emerald-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-emerald-200 dark:border-emerald-700 w-full justify-center h-10"
                 >
                   <Lightbulb className="w-4 h-4" />
                   Guidance
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Get biblical guidance and answers to life's important questions
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Get biblical guidance and answers<br />to life's important questions
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/easter"
-                  className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-yellow-200 dark:border-yellow-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-yellow-200 dark:border-yellow-700 w-full justify-center h-10"
                 >
                   <Sparkles className="w-4 h-4" />
                   Easter
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Explore the biblical story and significance of Easter
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Explore the biblical story<br />and significance of Easter
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center h-[56px]">
                 <Link
                   to="/resurrection"
-                  className="inline-flex items-center gap-2 bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-red-200 dark:border-red-700 w-full justify-center"
+                  className="inline-flex items-center gap-2 bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-red-200 dark:border-red-700 w-full justify-center h-10"
                 >
                   <Cross className="w-4 h-4" />
                   Resurrection
                 </Link>
-                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
-                  Understand the resurrection of Jesus Christ and its impact on faith
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed h-[56px] flex items-center">
+                  Understand the resurrection of Jesus Christ<br />and its impact on faith
                 </p>
               </div>
             </div>
