@@ -66,7 +66,7 @@ export function FloatingMusicPlayer() {
           </div>
         </div>
 
-        <div className="mb-2">
+        <div className="mb-3">
           <h3 className="text-xs font-semibold text-gray-900 dark:text-gray-100 truncate">
             {currentTrack.title}
           </h3>
@@ -75,9 +75,9 @@ export function FloatingMusicPlayer() {
           </p>
         </div>
 
-        <div className="mb-2">
+        <div className="mb-3">
           <div
-            className="h-1 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer group"
+            className="h-2 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer group relative"
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const x = e.clientX - rect.left;
@@ -86,11 +86,13 @@ export function FloatingMusicPlayer() {
             }}
           >
             <div
-              className="h-full theme-primary-button rounded-full transition-all group-hover:h-1.5"
+              className="h-full theme-primary-button rounded-full transition-all relative"
               style={{ width: `${progress}%` }}
-            />
+            >
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white dark:bg-gray-200 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </div>
-          <div className="flex justify-between text-xs text-gray-700 dark:text-gray-200 mt-0.5">
+          <div className="flex justify-between text-xs text-gray-700 dark:text-gray-200 mt-1">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>

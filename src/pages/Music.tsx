@@ -162,21 +162,36 @@ export function Music() {
                     No tracks in this category
                   </div>
                 ) : (
-                  <div className="space-y-1">
-                    {globalTracks.map((track) => (
-                      <button
-                        key={track.id}
-                        onClick={() => handlePlayTrack(track)}
-                        className={`w-full text-left px-3 py-2 rounded transition-all text-sm ${
-                          currentTrack?.id === track.id
-                            ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold shadow-lg'
-                            : 'bg-zinc-900/50 text-zinc-300 hover:bg-zinc-800 border border-zinc-800'
-                        }`}
-                      >
-                        <div className="truncate font-medium">{track.title}</div>
-                        <div className="text-xs opacity-75 truncate">{track.artist}</div>
-                      </button>
-                    ))}
+                  <div className="space-y-3">
+                    {categories.filter(cat => cat !== 'All').map((category) => {
+                      const categoryTracks = globalTracks.filter(track => track.category === category);
+                      if (categoryTracks.length === 0 && selectedCategory === 'All') return null;
+                      if (selectedCategory !== 'All' && selectedCategory !== category) return null;
+
+                      return (
+                        <div key={category} className="space-y-1">
+                          {selectedCategory === 'All' && (
+                            <div className={`text-xs font-bold tracking-wider px-2 py-1 rounded bg-gradient-to-r ${getCategoryColor(category as Category)} text-white`}>
+                              {category}
+                            </div>
+                          )}
+                          {categoryTracks.map((track) => (
+                            <button
+                              key={track.id}
+                              onClick={() => handlePlayTrack(track)}
+                              className={`w-full text-left px-3 py-2 rounded transition-all text-sm ${
+                                currentTrack?.id === track.id
+                                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold shadow-lg'
+                                  : 'bg-zinc-900/50 text-zinc-300 hover:bg-zinc-800 border border-zinc-800'
+                              }`}
+                            >
+                              <div className="truncate font-medium">{track.title}</div>
+                              <div className="text-xs opacity-75 truncate">{track.artist}</div>
+                            </button>
+                          ))}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
