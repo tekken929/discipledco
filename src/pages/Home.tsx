@@ -1,4 +1,5 @@
 import { BookDisplay } from '../components/BookDisplay';
+import { ReturnToHome } from '../components/ReturnToHome';
 import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
@@ -30,6 +31,8 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
 
   return (
     <>
+      <ReturnToHome />
+
       {/* SECTION DIVIDER */}
       <div className="section-divider print:hidden" />
 

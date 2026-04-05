@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, DollarSign } from 'lucide-react';
+import { BookOpen, Users, FolderOpen, Facebook, Instagram, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Sparkles, Cross } from 'lucide-react';
 import { Modal } from './Modal';
 import { useState } from 'react';
 import { AdminPortal } from '../pages/AdminPortal';
@@ -51,10 +51,46 @@ export function Footer() {
       description: 'True origins of Easter, Christmas & more'
     },
     {
-      to: '/faqs',
-      icon: Users,
-      title: 'FAQs',
-      description: 'Common questions about faith answered'
+      to: '/preaching',
+      icon: Mic,
+      title: 'Wisdom',
+      description: 'Powerful preaching and biblical teachings'
+    },
+    {
+      to: '/books',
+      icon: BookText,
+      title: 'Books',
+      description: 'Christian books and resources'
+    },
+    {
+      to: '/church-mentors',
+      icon: UserCheck,
+      title: 'Mentors',
+      description: 'Connect with spiritual mentors'
+    },
+    {
+      to: '/podcasts',
+      icon: Radio,
+      title: 'Podcasts',
+      description: 'Faith, theology, and Christian living'
+    },
+    {
+      to: '/guidance',
+      icon: Lightbulb,
+      title: 'Guidance',
+      description: 'Biblical answers to life questions'
+    },
+    {
+      to: '/easter',
+      icon: Sparkles,
+      title: 'Easter',
+      description: 'The biblical story of Easter'
+    },
+    {
+      to: '/resurrection',
+      icon: Cross,
+      title: 'Resurrection',
+      description: 'Jesus Christ and the resurrection'
     }
   ];
 
@@ -132,62 +168,6 @@ export function Footer() {
               © 2026 The Disciple Co. | Clear, structured overviews of the Bible and how to break free from this world.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <button
-                onClick={() => setShowWhoMadeThis(true)}
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Who made this?
-              </button>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/music"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Music
-              </Link>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/preaching"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Wisdom
-              </Link>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/books"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Books
-              </Link>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/church-mentors"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Mentors
-              </Link>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/podcasts"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Podcasts
-              </Link>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/resurrection"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Resurrection
-              </Link>
-              <span className="text-gray-400">|</span>
-              <Link
-                to="/guidance"
-                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
-              >
-                Guidance
-              </Link>
-              <span className="text-gray-400">|</span>
               <button
                 onClick={() => setShowAdminPortal(true)}
                 className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-xs text-gray-500 dark:text-gray-400"

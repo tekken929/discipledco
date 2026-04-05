@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info, Plus } from 'lucide-react';
 import { gospelEvents } from '../data/gospelEvents';
+import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Resurrection() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,7 +62,9 @@ export function Resurrection() {
   ];
 
   return (
-    <div className="resurrection-page">
+    <>
+      <ReturnToHome />
+      <div className="resurrection-page">
       {/* Hamburger Menu */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
@@ -547,5 +550,6 @@ export function Resurrection() {
         </section>
       </div>
     </div>
+    </>
   );
 }

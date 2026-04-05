@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, BookOpen, Heart } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { ReturnToHome } from '../components/ReturnToHome';
 
 interface ScriptureReference {
   book: string;
@@ -51,7 +52,9 @@ export default function Guidance() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <>
+      <ReturnToHome />
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="relative flex flex-col items-center justify-center min-h-screen px-4 py-16">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -168,5 +171,6 @@ export default function Guidance() {
         )}
       </div>
     </div>
+    </>
   );
 }

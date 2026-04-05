@@ -1,6 +1,7 @@
 import { Users, ScrollText, Book, Calendar, ArrowLeft } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
+import { ReturnToHome } from '../components/ReturnToHome';
 
 export function BibleAuthors() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -9,7 +10,9 @@ export function BibleAuthors() {
   const { ref: bigPictureRef, isVisible: bigPictureVisible } = useScrollAnimation();
 
   return (
-    <div className="min-h-screen">
+    <>
+      <ReturnToHome />
+      <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <Link
           to="/"
@@ -544,5 +547,6 @@ export function BibleAuthors() {
         </div>
       </div>
     </div>
+    </>
   );
 }

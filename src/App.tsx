@@ -5,7 +5,6 @@ import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
 import { BubblesProvider, useBubbles } from './context/BubblesContext';
 import { Footer } from './components/Footer';
-import { NavigationMenu } from './components/NavigationMenu';
 import { OnboardingQuestions } from './components/OnboardingQuestions';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
 import FloatingBubbles from './components/FloatingBubbles';
@@ -44,7 +43,8 @@ function AppContent() {
     return localStorage.getItem('onboardingCompleted') === 'true';
   });
   const isScrolled = useNavbarScroll(100);
-  const isHomePage = location.pathname === '/' || location.pathname === '/bible';
+  const isWelcomePage = location.pathname === '/';
+  const isHomePage = location.pathname === '/bible';
   const isResurrectionPage = location.pathname === '/resurrection';
   const isEasterPage = location.pathname === '/easter';
   const isMusicPage = location.pathname === '/music';
@@ -115,7 +115,7 @@ function AppContent() {
             </Link>
 
             <div className="flex items-center gap-3">
-              <div className="hidden lg:block relative">
+              <div className="relative">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -125,7 +125,7 @@ function AppContent() {
                   aria-label="Change color theme"
                 >
                   <Palette className="w-5 h-5" />
-                  <span>Theme</span>
+                  <span className="hidden sm:inline">Theme</span>
                 </button>
 
                 {showThemeMenu && (
@@ -190,19 +190,12 @@ function AppContent() {
 
               <button
                 onClick={toggleDarkMode}
-                className="btn-cinematic hidden lg:flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
+                className="btn-cinematic flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
                 aria-label="Toggle dark mode"
               >
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                <span>{darkMode ? 'Light' : 'Dark'}</span>
+                <span className="hidden sm:inline">{darkMode ? 'Light' : 'Dark'}</span>
               </button>
-
-              <NavigationMenu
-                darkMode={darkMode}
-                toggleDarkMode={toggleDarkMode}
-                colorTheme={colorTheme}
-                onThemeChange={handleThemeChange}
-              />
             </div>
           </div>
         </div>
@@ -243,9 +236,6 @@ function AppContent() {
 
       {/* Floating Music Player */}
       {!isResurrectionPage && !isEasterPage && !isMusicPage && <FloatingMusicPlayer />}
-
-      {/* Floating Bubbles - On all pages */}
-      {!isResurrectionPage && !isEasterPage && !isMusicPage && <FloatingBubbles enabled={bubblesEnabled} />}
     </div>
   );
 }

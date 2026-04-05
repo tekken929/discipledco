@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { topics } from '../data/topics';
+import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Topics() {
   const { topicId } = useParams();
@@ -8,14 +9,16 @@ export function Topics() {
 
   if (selectedTopic) {
     return (
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link
-          to="/topics"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          Back to Topics
-        </Link>
+      <>
+        <ReturnToHome />
+        <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Link
+            to="/topics"
+            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back to Topics
+          </Link>
 
         <div className="theme-card rounded-2xl shadow-xl p-8 transition-colors">
           <div className="flex items-center gap-4 mb-6">
@@ -119,6 +122,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
           </div>
         </div>
       </main>
+      </>
     );
   }
 
@@ -126,14 +130,16 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
   const regularTopics = topics.filter(t => t.id !== 'grace');
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Biblical Topics
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300">
-          Explore biblical guidance on various life topics with Bible references
-        </p>
+    <>
+      <ReturnToHome />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Biblical Topics
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300">
+            Explore biblical guidance on various life topics with Bible references
+          </p>
       </div>
 
       {featuredTopic && (
@@ -187,5 +193,6 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
         ))}
       </div>
     </main>
+    </>
   );
 }

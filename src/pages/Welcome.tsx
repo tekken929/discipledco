@@ -1,4 +1,4 @@
-import { BookOpen, Target, Music, Book, Users, MessageCircle, Church, HelpCircle } from 'lucide-react';
+import { BookOpen, Target, Music, Book, Users, MessageCircle, Church, HelpCircle, Calendar, Mic, BookText, UserCheck, Radio, Lightbulb, Sparkles, Cross } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
@@ -126,6 +126,110 @@ export function Welcome() {
                 </Link>
                 <p className="text-gray-700 dark:text-gray-300 md:pt-2">
                   Enjoy music and songs while you explore. All songs are originals written and produced by myself
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/christian-holidays"
+                  className="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900 text-teal-900 dark:text-teal-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-teal-200 dark:border-teal-700 w-full justify-center"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Holiday Origins
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Discover the true origins and meanings of Easter, Christmas, and other Christian holidays
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/preaching"
+                  className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-amber-200 dark:border-amber-700 w-full justify-center"
+                >
+                  <Mic className="w-4 h-4" />
+                  Wisdom
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Listen to powerful preaching and teachings from trusted pastors
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/books"
+                  className="inline-flex items-center gap-2 bg-cyan-100 dark:bg-cyan-900 text-cyan-900 dark:text-cyan-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-cyan-200 dark:border-cyan-700 w-full justify-center"
+                >
+                  <BookText className="w-4 h-4" />
+                  Books
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Read Christian books and resources to deepen your faith
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/church-mentors"
+                  className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-indigo-200 dark:border-indigo-700 w-full justify-center"
+                >
+                  <UserCheck className="w-4 h-4" />
+                  Mentors
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Connect with experienced mentors for spiritual guidance
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/podcasts"
+                  className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-violet-200 dark:border-violet-700 w-full justify-center"
+                >
+                  <Radio className="w-4 h-4" />
+                  Podcasts
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Listen to podcasts on faith, theology, and Christian living
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/guidance"
+                  className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-emerald-200 dark:border-emerald-700 w-full justify-center"
+                >
+                  <Lightbulb className="w-4 h-4" />
+                  Guidance
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Get biblical guidance and answers to life's important questions
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/easter"
+                  className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-yellow-200 dark:border-yellow-700 w-full justify-center"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  Easter
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Explore the biblical story and significance of Easter
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
+                <Link
+                  to="/resurrection"
+                  className="inline-flex items-center gap-2 bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-red-200 dark:border-red-700 w-full justify-center"
+                >
+                  <Cross className="w-4 h-4" />
+                  Resurrection
+                </Link>
+                <p className="text-gray-700 dark:text-gray-300 md:pt-2">
+                  Understand the resurrection of Jesus Christ and its impact on faith
                 </p>
               </div>
             </div>

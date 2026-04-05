@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, ChevronDown, ChevronUp } from 'lucide-react';
+import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Easter() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -187,7 +188,9 @@ export function Easter() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-blue-950">
+    <>
+      <ReturnToHome />
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-blue-950">
       {/* Hamburger Menu */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
@@ -362,5 +365,6 @@ export function Easter() {
         </div>
       </div>
     </div>
+    </>
   );
 }
