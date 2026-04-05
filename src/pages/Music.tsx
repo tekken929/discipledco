@@ -11,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 type Category = 'All' | 'Heavy Metal' | 'House' | 'Calm' | 'Worship';
 
 export function Music() {
-  const { tracks: globalTracks, currentTrack, isPlaying, playTrack, pauseTrack, nextTrack, previousTrack, setTracks, volume, setVolume } = useMusicPlayer();
+  const { tracks: globalTracks, currentTrack, isPlaying, playTrack, togglePlayPause, playNext, playPrevious, setTracks, volume, setVolume } = useMusicPlayer();
   const [menuOpen, setMenuOpen] = useState(false);
   const [localVolume, setLocalVolume] = useState(volume * 100);
   const [selectedCategory, setSelectedCategory] = useState<Category>('All');
@@ -57,11 +57,7 @@ export function Music() {
 
   const handlePlayPause = () => {
     if (currentTrack) {
-      if (isPlaying) {
-        pauseTrack();
-      } else {
-        playTrack(currentTrack);
-      }
+      togglePlayPause();
     } else if (globalTracks.length > 0) {
       handlePlayTrack(globalTracks[0]);
     }
@@ -273,7 +269,7 @@ export function Music() {
               <div className="text-xs text-zinc-400 mb-6 text-center font-bold tracking-wider">CONTROLS</div>
               <div className="flex items-center justify-center gap-8 mb-10">
                 <button
-                  onClick={previousTrack}
+                  onClick={playPrevious}
                   disabled={globalTracks.length === 0}
                   className="w-20 h-20 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-900 shadow-xl border-4 border-zinc-600 flex items-center justify-center relative group hover:scale-110 transition-transform disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 hover:shadow-cyan-500/20"
                 >
@@ -298,7 +294,7 @@ export function Music() {
                 </button>
 
                 <button
-                  onClick={nextTrack}
+                  onClick={playNext}
                   disabled={globalTracks.length === 0}
                   className="w-20 h-20 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-900 shadow-xl border-4 border-zinc-600 flex items-center justify-center relative group hover:scale-110 transition-transform disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 hover:shadow-cyan-500/20"
                 >

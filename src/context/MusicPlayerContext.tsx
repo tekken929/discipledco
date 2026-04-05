@@ -60,8 +60,14 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
       setCurrentTrack(track);
       if (audioRef.current) {
         audioRef.current.src = track.file_url;
+        audioRef.current.load();
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.error('Error playing track:', err);
+          setIsPlaying(false);
+        });
       }
-      setIsPlaying(false);
     }
   };
 
@@ -84,8 +90,14 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
       setCurrentTrack(nextTrack);
       if (audioRef.current) {
         audioRef.current.src = nextTrack.file_url;
+        audioRef.current.load();
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.error('Error playing next track:', err);
+          setIsPlaying(false);
+        });
       }
-      setIsPlaying(true);
     }
   };
 
@@ -96,8 +108,14 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
       setCurrentTrack(prevTrack);
       if (audioRef.current) {
         audioRef.current.src = prevTrack.file_url;
+        audioRef.current.load();
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.error('Error playing previous track:', err);
+          setIsPlaying(false);
+        });
       }
-      setIsPlaying(true);
     }
   };
 
