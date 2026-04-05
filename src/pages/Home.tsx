@@ -1,11 +1,11 @@
 import { BookDisplay } from '../components/BookDisplay';
 import { ReturnToHome } from '../components/ReturnToHome';
+import { Modal } from '../components/Modal';
 import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown, Users, MousePointerClick } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { BookOpen, ChevronDown, Users, ScrollText, Calendar } from 'lucide-react';
 
 interface HomeProps {
   selectedBook: Book;
@@ -13,9 +13,9 @@ interface HomeProps {
 
 export function Home({ selectedBook: initialBook }: HomeProps) {
   const [selectedBook, setSelectedBook] = useState<Book>(initialBook);
+  const [isAuthorsModalOpen, setIsAuthorsModalOpen] = useState(false);
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: selectorRef, isVisible: selectorVisible } = useScrollAnimation();
-  const { ref: authorsRef, isVisible: authorsVisible } = useScrollAnimation();
   const parallaxOffset = useParallax(0.3);
 
   const oldTestamentBooks = books.filter(b => b.testament === 'Old Testament');
@@ -45,16 +45,31 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             selectorVisible ? 'fade-in visible' : 'fade-in'
           }`}
         >
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-4">
-              <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
+          <div className="mb-8">
+            <div className="flex items-start justify-between gap-6">
+              <div className="text-center flex-1">
+                <div className="flex items-center justify-center mb-4">
+                  <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                  Bible Overview
+                </h1>
+                <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                  The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setIsAuthorsModalOpen(true)}
+                className="flex-shrink-0 theme-card border-2 border-blue-500 hover:border-blue-600 dark:border-blue-400 dark:hover:border-blue-500 rounded-xl p-4 hover:shadow-lg transition-all group hover:scale-105 cursor-pointer"
+              >
+                <div className="flex flex-col items-center gap-2 w-32">
+                  <Users className="w-8 h-8 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
+                  <h3 className="text-sm font-bold text-gray-900 dark:text-white text-center leading-tight">Bible Authors & Evidence</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 text-center">Click to explore</p>
+                </div>
+              </button>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Bible Overview
-            </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -106,40 +121,171 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
         </div>
 
-        {/* Bible Authors & Evidence - Clickable Bubble */}
-        <Link
-          to="/bible-authors"
-          ref={authorsRef}
-          className={`block mb-12 theme-card rounded-2xl p-6 shadow-2xl print:hidden transition-all duration-500 card-cinematic hover:scale-105 hover:shadow-3xl group cursor-pointer border-4 border-blue-500/30 hover:border-blue-500 ${
-            authorsVisible ? 'fade-in visible' : 'fade-in'
-          }`}
-        >
-          <div className="flex items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <Users className="w-10 h-10 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
-                <MousePointerClick className="w-5 h-5 text-blue-500 absolute -top-1 -right-1 animate-pulse" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  Bible Authors & Evidence
-                </h2>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                  Discover the ~40 authors who wrote Scripture over 1,500 years. Click to explore detailed timelines and historical evidence.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold text-sm group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg whitespace-nowrap">
-              <span>Explore</span>
-              <MousePointerClick className="w-4 h-4" />
-            </div>
-          </div>
-        </Link>
-
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
         </div>
       </main>
+
+      <Modal
+        isOpen={isAuthorsModalOpen}
+        onClose={() => setIsAuthorsModalOpen(false)}
+        title="Bible Authors & Evidence"
+      >
+        <div className="space-y-8">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            The Bible was written over approximately 1,500 years by more than 40 different authors from diverse backgrounds—shepherds, kings, fishermen, prophets, and scholars—all inspired by God to record His message to humanity.
+          </p>
+
+          <div className="theme-card rounded-xl p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <ScrollText className="w-8 h-8 text-gray-700 dark:text-gray-300" />
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Old Testament Timeline (c. 1500 BC → 400 BC)
+              </h3>
+            </div>
+
+            <div className="space-y-6">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-blue-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">Moses (c. 1500–1400 BC)</h4>
+                </div>
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-1">
+                  Books: Genesis, Exodus, Leviticus, Numbers, Deuteronomy
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Led Israel out of Egypt and received God's Law on Mount Sinai. His writings lay the foundation for understanding God's character, human sin, covenant, and obedience.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-purple-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-purple-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">David (c. 1000 BC)</h4>
+                </div>
+                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-1">Books: Many Psalms</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  King of Israel who wrote many Psalms expressing repentance, worship, struggle, and trust in God.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-yellow-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-yellow-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">Solomon (c. 970–930 BC)</h4>
+                </div>
+                <p className="text-sm font-semibold text-yellow-600 dark:text-yellow-400 mb-1">
+                  Books: Proverbs, Ecclesiastes, Song of Songs
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Known for wisdom. Wrote Proverbs (wisdom for daily life), Ecclesiastes (meaning without God), and Song of Songs.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-red-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-red-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">Isaiah (c. 700 BC)</h4>
+                </div>
+                <p className="text-sm font-semibold text-red-600 dark:text-red-400 mb-1">Books: Isaiah</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Spoke to a rebellious nation, warning of judgment but pointing clearly to the coming Messiah with detailed prophecies about Jesus.
+                </p>
+              </div>
+
+              <div className="text-sm text-gray-600 dark:text-gray-400 italic">
+                And many other prophets and historical writers (Jeremiah, Ezekiel, Daniel, Ezra, Nehemiah, and more)...
+              </div>
+            </div>
+          </div>
+
+          <div className="theme-card rounded-xl p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <ScrollText className="w-8 h-8 text-gray-700 dark:text-gray-300" />
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                New Testament Timeline (c. AD 45 → 90)
+              </h3>
+            </div>
+
+            <div className="space-y-6">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-blue-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">Matthew (c. AD 50–70)</h4>
+                </div>
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-1">Books: Matthew</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Former tax collector and one of Jesus' 12 disciples. Presents Jesus as the promised Messiah and King.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-red-500 pl-4 bg-red-50 dark:bg-red-950/20 p-4 rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-red-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">Paul (c. AD 50–67)</h4>
+                </div>
+                <p className="text-sm font-semibold text-red-600 dark:text-red-400 mb-2">
+                  Books: Romans, 1 & 2 Corinthians, Galatians, Ephesians, Philippians, Colossians, 1 & 2 Thessalonians, 1 & 2 Timothy, Titus, Philemon
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                  Former persecutor of Christians who encountered Jesus after the resurrection on the road to Damascus. His writings focus on salvation by grace through faith, renewal of the mind, and intentional Christian living.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-cyan-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-cyan-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">Peter (c. AD 60–65)</h4>
+                </div>
+                <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 mb-1">Books: 1 Peter, 2 Peter</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  One of Jesus' closest disciples. Writes with the perspective of someone who failed, was corrected, and transformed. Emphasizes standing firm in faith and being watchful.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-purple-500 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-purple-500" />
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">John (c. AD 90)</h4>
+                </div>
+                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-1">
+                  Books: John, 1 John, 2 John, 3 John, Revelation
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  One of Jesus' closest disciples. Focuses on the identity of Jesus as the Son of God and emphasizes belief, love, and eternal life.
+                </p>
+              </div>
+
+              <div className="text-sm text-gray-600 dark:text-gray-400 italic">
+                Also Mark, Luke, James, Jude, and the author of Hebrews...
+              </div>
+            </div>
+          </div>
+
+          <div className="theme-card rounded-xl p-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">The Big Picture</h3>
+
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="text-center">
+                <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">~1,500 years</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 font-semibold">Time Span</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl font-bold text-purple-600 dark:text-purple-400">~40</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 font-semibold">Authors</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl font-bold text-green-600 dark:text-green-400">66</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 font-semibold">Books</p>
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              The Bible is God's timeless guide to all humans, revealing His character, boundless love, and plan for our lives. It offers profound wisdom for daily living, comfort in times of trouble, hope for the future, and the transformative power of grace.
+            </p>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }
