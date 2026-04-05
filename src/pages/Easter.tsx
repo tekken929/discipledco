@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Easter() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
 
   const toggleSection = (id: string) => {
@@ -16,25 +14,6 @@ export function Easter() {
     }
     setExpandedSections(newExpanded);
   };
-
-  const navigationLinks = [
-    { to: '/', icon: Home, title: 'Home' },
-    { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
-    { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
-    { to: '/topics', icon: MessageCircle, title: 'Biblical Topics' },
-    { to: '/stories', icon: Book, title: 'Bible Stories' },
-    { to: '/religions', icon: FolderOpen, title: 'Religions' },
-    { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
-    { to: '/faqs', icon: Users, title: 'FAQs' },
-  ];
-
-  const resourceLinks = [
-    { to: '/music', icon: Music, title: 'Music' },
-    { to: '/preaching', icon: Mic, title: 'Wisdom' },
-    { to: '/books', icon: BookText, title: 'Books' },
-    { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
-    { to: '/podcasts', icon: Radio, title: 'Podcasts' },
-  ];
 
   const easterEvents = [
     {
@@ -191,75 +170,6 @@ export function Easter() {
     <>
       <ReturnToHome />
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-blue-950">
-      {/* Hamburger Menu */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="fixed top-6 left-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-pink-300 dark:border-pink-700"
-        aria-label="Navigation menu"
-      >
-        {menuOpen ? <X className="w-7 h-7 text-pink-600 dark:text-pink-400" /> : <Menu className="w-7 h-7 text-pink-600 dark:text-pink-400" />}
-      </button>
-
-      {/* Side Menu Panel */}
-      {menuOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40"
-            onClick={() => setMenuOpen(false)}
-          />
-          <div className="fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-800 shadow-2xl z-50 overflow-y-auto">
-            <div className="p-6 border-b border-pink-200 dark:border-pink-800">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold text-pink-900 dark:text-pink-100">Navigation</h3>
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  className="text-pink-700 dark:text-pink-300 hover:text-pink-900 dark:hover:text-pink-100 transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
-
-            <nav className="p-4">
-              <div className="mb-6">
-                <p className="text-xs font-bold text-pink-800 dark:text-pink-300 uppercase tracking-wider mb-3 px-3">Main</p>
-                {navigationLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-pink-100 dark:hover:bg-pink-900/30 transition-colors text-gray-900 dark:text-gray-100"
-                    >
-                      <Icon className="w-5 h-5 text-pink-600 dark:text-pink-400" />
-                      <span>{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="border-t border-pink-200 dark:border-pink-800 pt-4">
-                <p className="text-xs font-bold text-pink-800 dark:text-pink-300 uppercase tracking-wider mb-3 px-3">Resources</p>
-                {resourceLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-pink-100 dark:hover:bg-pink-900/30 transition-colors text-gray-900 dark:text-gray-100"
-                    >
-                      <Icon className="w-5 h-5 text-pink-600 dark:text-pink-400" />
-                      <span>{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </nav>
-          </div>
-        </>
-      )}
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 px-4">

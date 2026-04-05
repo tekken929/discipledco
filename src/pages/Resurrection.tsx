@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Music, Mic, BookText, UserCheck, Radio, Calendar, Home, Info, Plus } from 'lucide-react';
+import { Info, Plus } from 'lucide-react';
 import { gospelEvents } from '../data/gospelEvents';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Resurrection() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activePopup, setActivePopup] = useState<string | null>(null);
 
   const infoPoints = [
@@ -41,97 +39,10 @@ export function Resurrection() {
     setExpandedSections(newExpanded);
   };
 
-
-  const navigationLinks = [
-    { to: '/', icon: Home, title: 'Home' },
-    { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
-    { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
-    { to: '/topics', icon: MessageCircle, title: 'Biblical Topics' },
-    { to: '/stories', icon: Book, title: 'Bible Stories' },
-    { to: '/religions', icon: FolderOpen, title: 'Religions' },
-    { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
-    { to: '/faqs', icon: Users, title: 'FAQs' },
-  ];
-
-  const resourceLinks = [
-    { to: '/music', icon: Music, title: 'Music' },
-    { to: '/preaching', icon: Mic, title: 'Wisdom' },
-    { to: '/books', icon: BookText, title: 'Books' },
-    { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
-    { to: '/podcasts', icon: Radio, title: 'Podcasts' },
-  ];
-
   return (
     <>
       <ReturnToHome />
       <div className="resurrection-page">
-      {/* Hamburger Menu */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="resurrection-hamburger"
-        aria-label="Navigation menu"
-      >
-        {menuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-      </button>
-
-      {/* Side Menu Panel */}
-      {menuOpen && (
-        <>
-          <div
-            className="resurrection-overlay"
-            onClick={() => setMenuOpen(false)}
-          />
-          <div className="resurrection-menu">
-            <div className="resurrection-menu-header">
-              <h3 className="text-xl font-bold text-amber-950">Navigation</h3>
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="text-amber-900 hover:text-amber-950 transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            <nav className="resurrection-menu-content">
-              <div className="mb-6">
-                <p className="text-xs font-bold text-amber-800 uppercase tracking-wider mb-3 px-3">Main</p>
-                {navigationLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="resurrection-menu-link"
-                    >
-                      <Icon className="w-5 h-5" />
-                      <span>{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="border-t border-amber-400/40 pt-4">
-                <p className="text-xs font-bold text-amber-800 uppercase tracking-wider mb-3 px-3">Resources</p>
-                {resourceLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMenuOpen(false)}
-                      className="resurrection-menu-link"
-                    >
-                      <Icon className="w-5 h-5" />
-                      <span>{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </nav>
-          </div>
-        </>
-      )}
 
       {/* Hero Section */}
       <section className="resurrection-hero">
