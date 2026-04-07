@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Music2, Calendar, ExternalLink } from 'lucide-react';
 import { HallowedMusicPlayer } from '../components/HallowedMusicPlayer';
+import { HallowedMusicUpload } from '../components/HallowedMusicUpload';
 import '../hallowed.css';
 
 export function Hallowed() {
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleUploadComplete = () => {
+    setRefreshKey(prev => prev + 1);
+  };
+
   return (
     <div className="hallowed-page">
       <Link
@@ -57,7 +65,7 @@ export function Hallowed() {
             </div>
             <h1 className="hallowed-band-name">HALLOWED</h1>
             <p className="hallowed-tagline">Sacred Heavy Sound</p>
-            <HallowedMusicPlayer />
+            <HallowedMusicPlayer key={refreshKey} />
           </div>
         </div>
       </section>
@@ -210,6 +218,9 @@ export function Hallowed() {
           "Make a joyful noise unto the Lord, all the earth: make a loud noise, and rejoice, and sing praise."
           <cite>Psalm 98:4</cite>
         </blockquote>
+        <div className="hallowed-admin-section">
+          <HallowedMusicUpload onUploadComplete={handleUploadComplete} />
+        </div>
       </footer>
     </div>
   );

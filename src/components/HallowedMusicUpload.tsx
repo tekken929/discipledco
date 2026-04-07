@@ -6,14 +6,29 @@ interface HallowedMusicUploadProps {
   onUploadComplete: () => void;
 }
 
+const ADMIN_PASSWORD = 'hallowed2026';
+
 export function HallowedMusicUpload({ onUploadComplete }: HallowedMusicUploadProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
   const [uploading, setUploading] = useState(false);
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('Hallowed');
   const [album, setAlbum] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState('');
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setIsAuthenticated(true);
+      setError('');
+      setPassword('');
+    } else {
+      setError('Incorrect password');
+    }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -77,6 +92,7 @@ export function HallowedMusicUpload({ onUploadComplete }: HallowedMusicUploadPro
         setAlbum('');
         setFile(null);
         setIsOpen(false);
+        setIsAuthenticated(false);
         setUploading(false);
         onUploadComplete();
       });
@@ -92,20 +108,32 @@ export function HallowedMusicUpload({ onUploadComplete }: HallowedMusicUploadPro
       <button
         onClick={() => setIsOpen(true)}
         className="hallowed-upload-trigger"
-        aria-label="Upload music"
+        aria-label="Admin upload"
       >
         <Upload className="w-5 h-5" />
-        <span>Upload Track</span>
+        <span>Admin</span>
       </button>
 
       {isOpen && (
         <div className="hallowed-upload-modal">
-          <div className="hallowed-upload-backdrop" onClick={() => !uploading && setIsOpen(false)} />
+          <div className="hallowed-upload-backdrop" onClick={() => {
+            if (!uploading) {
+              setIsOpen(false);
+              setIsAuthenticated(false);
+              setPassword('');
+              setError('');
+            }
+          }} />
           <div className="hallowed-upload-content">
             <div className="hallowed-upload-header">
-              <h2>Upload Track</h2>
+              <h2>{isAuthenticated ? 'Upload Track' : 'Admin Access'}</h2>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsAuthenticated(false);
+                  setPassword('');
+                  setError('');
+                }}
                 disabled={uploading}
                 className="hallowed-upload-close"
                 aria-label="Close"
@@ -114,7 +142,28 @@ export function HallowedMusicUpload({ onUploadComplete }: HallowedMusicUploadPro
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="hallowed-upload-form">
+            {!isAuthenticated ? (
+              <form onSubmit={handlePasswordSubmit} className="hallowed-upload-form">
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoFocus
+                    required
+                  />
+                </div>
+
+                {error && <div className="error-message">{error}</div>}
+
+                <button type="submit" className="hallowed-upload-submit">
+                  Enter
+                </button>
+              </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="hallowed-upload-form">
               <div className="form-group">
                 <label htmlFor="file">Audio File</label>
                 <input
@@ -172,6 +221,7 @@ export function HallowedMusicUpload({ onUploadComplete }: HallowedMusicUploadPro
                 {uploading ? 'Uploading...' : 'Upload Track'}
               </button>
             </form>
+            )}
           </div>
         </div>
       )}

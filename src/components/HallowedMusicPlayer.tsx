@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { HallowedMusicUpload } from './HallowedMusicUpload';
 
 interface Track {
   id: string;
@@ -132,7 +131,6 @@ export function HallowedMusicPlayer() {
 
   return (
     <div className="hallowed-music-player">
-      <HallowedMusicUpload onUploadComplete={fetchTracks} />
       {tracks.length > 0 && <audio ref={audioRef} src={currentTrack?.audio_url} />}
 
       {tracks.length === 0 ? (
