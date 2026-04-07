@@ -6,11 +6,11 @@ export function Hallowed() {
   return (
     <div className="hallowed-page">
       <Link
-        to="/bible"
+        to="/music"
         className="fixed top-8 left-8 z-50 flex items-center gap-2 text-white hover:opacity-70 transition-opacity"
       >
         <ArrowLeft className="w-5 h-5" />
-        <span className="text-sm tracking-widest uppercase">Return Home</span>
+        <span className="text-sm tracking-widest uppercase">Return to Previous</span>
       </Link>
 
       <section className="hallowed-hero">
