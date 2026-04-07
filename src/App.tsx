@@ -27,11 +27,13 @@ import { BibleAuthors } from './pages/BibleAuthors';
 import { ChristianHolidays } from './pages/ChristianHolidays';
 import { Resurrection } from './pages/Resurrection';
 import { Easter } from './pages/Easter';
+import { Hallowed } from './pages/Hallowed';
 import Guidance from './pages/Guidance';
 import { books } from './data/books';
 import { Book } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
 import './resurrection.css';
+import './hallowed.css';
 
 function AppContent() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
@@ -47,6 +49,7 @@ function AppContent() {
   const isHomePage = location.pathname === '/bible';
   const isResurrectionPage = location.pathname === '/resurrection';
   const isEasterPage = location.pathname === '/easter';
+  const isHallowedPage = location.pathname === '/hallowed';
   const isMusicPage = location.pathname === '/music';
 
   useEffect(() => {
@@ -96,10 +99,10 @@ function AppContent() {
   return (
     <div className="min-h-screen theme-background transition-colors flex flex-col">
       {/* Grain Overlay */}
-      {!isResurrectionPage && !isEasterPage && !isMusicPage && <div className="grain-overlay" />}
+      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <div className="grain-overlay" />}
 
       {/* Header - Sticky with Cinematic Blur */}
-      {!isResurrectionPage && !isEasterPage && !isMusicPage && <header className={`navbar-cinematic ${isScrolled ? 'scrolled' : ''} theme-card shadow-lg print:hidden transition-all sticky top-0 z-50`}>
+      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <header className={`navbar-cinematic ${isScrolled ? 'scrolled' : ''} theme-card shadow-lg print:hidden transition-all sticky top-0 z-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
@@ -202,7 +205,7 @@ function AppContent() {
       </header>}
 
       {/* Collected Messages Dropdown - Sticky across all pages */}
-      {!isResurrectionPage && !isEasterPage && !isMusicPage && <CollectedMessagesDropdown />}
+      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <CollectedMessagesDropdown />}
 
       {/* Main Content */}
       <div className="flex-1">
@@ -227,15 +230,16 @@ function AppContent() {
           <Route path="/christian-holidays" element={<ChristianHolidays />} />
           <Route path="/resurrection" element={<Resurrection />} />
           <Route path="/easter" element={<Easter />} />
+          <Route path="/hallowed" element={<Hallowed />} />
           <Route path="/guidance" element={<Guidance />} />
         </Routes>
       </div>
 
       {/* Footer */}
-      {!isResurrectionPage && !isEasterPage && !isMusicPage && <Footer />}
+      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <Footer />}
 
       {/* Floating Music Player */}
-      {!isResurrectionPage && !isEasterPage && !isMusicPage && <FloatingMusicPlayer />}
+      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <FloatingMusicPlayer />}
     </div>
   );
 }
