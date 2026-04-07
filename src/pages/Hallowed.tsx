@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Music2, Calendar, ExternalLink } from 'lucide-react';
+import { HallowedMusicPlayer } from '../components/HallowedMusicPlayer';
 import '../hallowed.css';
 
 export function Hallowed() {
@@ -56,6 +57,7 @@ export function Hallowed() {
             </div>
             <h1 className="hallowed-band-name">HALLOWED</h1>
             <p className="hallowed-tagline">Sacred Heavy Sound</p>
+            <HallowedMusicPlayer />
           </div>
         </div>
       </section>
