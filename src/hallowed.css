@@ -476,6 +476,7 @@
 }
 
 .form-group input[type="text"],
+.form-group input[type="password"],
 .form-group input[type="file"] {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -487,6 +488,7 @@
 }
 
 .form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
 .form-group input[type="file"]:focus {
   outline: none;
   border-color: rgba(255, 255, 255, 0.3);
