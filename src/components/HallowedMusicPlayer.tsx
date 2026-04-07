@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { HallowedMusicUpload } from './HallowedMusicUpload';
 
 interface Track {
   id: string;
@@ -127,80 +128,88 @@ export function HallowedMusicPlayer() {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  if (tracks.length === 0) {
-    return null;
-  }
-
   const currentTrack = tracks[currentTrackIndex];
 
   return (
     <div className="hallowed-music-player">
-      <audio ref={audioRef} src={currentTrack?.audio_url} />
+      <HallowedMusicUpload onUploadComplete={fetchTracks} />
+      {tracks.length > 0 && <audio ref={audioRef} src={currentTrack?.audio_url} />}
 
-      <div className="player-track-info">
-        <div className="track-title">{currentTrack?.title || 'No Track'}</div>
-        <div className="track-artist">{currentTrack?.artist || 'Unknown Artist'}</div>
-        {currentTrack?.album && <div className="track-album">{currentTrack.album}</div>}
-      </div>
-
-      <div className="player-progress">
-        <span className="time-display">{formatTime(currentTime)}</span>
-        <input
-          type="range"
-          min="0"
-          max={duration || 0}
-          value={currentTime}
-          onChange={handleSeek}
-          className="progress-bar"
-        />
-        <span className="time-display">{formatTime(duration)}</span>
-      </div>
-
-      <div className="player-controls">
-        <button onClick={handlePrevious} className="control-btn" aria-label="Previous track">
-          <SkipBack className="w-5 h-5" />
-        </button>
-
-        <button onClick={togglePlay} className="control-btn play-btn" aria-label={isPlaying ? 'Pause' : 'Play'}>
-          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-        </button>
-
-        <button onClick={handleNext} className="control-btn" aria-label="Next track">
-          <SkipForward className="w-5 h-5" />
-        </button>
-
-        <div className="volume-control">
-          <button onClick={toggleMute} className="control-btn" aria-label={isMuted ? 'Unmute' : 'Mute'}>
-            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-          </button>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={isMuted ? 0 : volume}
-            onChange={handleVolumeChange}
-            className="volume-slider"
-          />
+      {tracks.length === 0 ? (
+        <div className="player-track-info">
+          <div className="track-title">No tracks available</div>
+          <div className="track-artist">Upload songs to start listening</div>
         </div>
-      </div>
+      ) : (
+        <div className="player-track-info">
+          <div className="track-title">{currentTrack?.title || 'No Track'}</div>
+          <div className="track-artist">{currentTrack?.artist || 'Unknown Artist'}</div>
+          {currentTrack?.album && <div className="track-album">{currentTrack.album}</div>}
+        </div>
+      )}
 
-      <div className="player-playlist">
-        <div className="playlist-title">Playlist ({tracks.length} tracks)</div>
-        <div className="playlist-tracks">
-          {tracks.map((track, index) => (
-            <button
-              key={track.id}
-              onClick={() => setCurrentTrackIndex(index)}
-              className={`playlist-track ${index === currentTrackIndex ? 'active' : ''}`}
-            >
-              <span className="track-number">{index + 1}</span>
-              <span className="track-name">{track.title}</span>
-              {track.duration && <span className="track-duration">{formatTime(track.duration)}</span>}
+      {tracks.length > 0 && (
+        <>
+          <div className="player-progress">
+            <span className="time-display">{formatTime(currentTime)}</span>
+            <input
+              type="range"
+              min="0"
+              max={duration || 0}
+              value={currentTime}
+              onChange={handleSeek}
+              className="progress-bar"
+            />
+            <span className="time-display">{formatTime(duration)}</span>
+          </div>
+
+          <div className="player-controls">
+            <button onClick={handlePrevious} className="control-btn" aria-label="Previous track">
+              <SkipBack className="w-5 h-5" />
             </button>
-          ))}
-        </div>
-      </div>
+
+            <button onClick={togglePlay} className="control-btn play-btn" aria-label={isPlaying ? 'Pause' : 'Play'}>
+              {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+            </button>
+
+            <button onClick={handleNext} className="control-btn" aria-label="Next track">
+              <SkipForward className="w-5 h-5" />
+            </button>
+
+            <div className="volume-control">
+              <button onClick={toggleMute} className="control-btn" aria-label={isMuted ? 'Unmute' : 'Mute'}>
+                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+              </button>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={isMuted ? 0 : volume}
+                onChange={handleVolumeChange}
+                className="volume-slider"
+              />
+            </div>
+          </div>
+
+          <div className="player-playlist">
+            <div className="playlist-title">Playlist ({tracks.length} tracks)</div>
+            <div className="playlist-tracks">
+              {tracks.map((track, index) => (
+                <button
+                  key={track.id}
+                  onClick={() => setCurrentTrackIndex(index)}
+                  className={`playlist-track ${index === currentTrackIndex ? 'active' : ''}`}
+                >
+                  <span className="track-number">{index + 1}</span>
+                  <span className="track-name">{track.title}</span>
+                  {track.duration && <span className="track-duration">{formatTime(track.duration)}</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
