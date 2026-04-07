@@ -2259,7 +2259,7 @@ export const books: Book[] = [
     type: 'Gospel',
     overview: [
       'Luke presents Jesus as the perfect Son of Man who came to seek and save the lost. Written by a physician for a Gentile audience, Luke emphasizes Jesus\' compassion for the marginalized: women, children, the poor, and social outcasts. The gospel is carefully researched, organized chronologically, and emphasizes prayer, the Holy Spirit, and joy.',
-      'Luke alone records parables like the Good Samaritan, Prodigal Son, and Rich Man and Lazarus, highlighting God\'s love for the outcast and warning against wealth and self-righteousness. The birth narrative is fuller than other gospels, including Mary\'s Magnificat and the angels\' announcement to shepherds. Women play prominent roles throughout.',
+      'Luke alone records parables like the Good Samaritan, the Prodigal Son, the Rich Man and Lazarus, highlighting God\'s love for the outcast and warning against wealth and self-righteousness. The birth narrative is fuller than other gospels, including Mary\'s Magnificat and the angels\' announcement to shepherds. Women play prominent roles throughout.',
       'The gospel emphasizes Jesus\' journey to Jerusalem, where He will accomplish the exodus predicted by Moses and the prophets. Luke shows Jesus as the universal Savior whose message extends beyond Israel to all nations. The book ends with resurrection appearances and Jesus\' ascension, promising the Holy Spirit and commissioning witnesses to all nations.'
     ],
     written: 'c. 60-62 AD',
