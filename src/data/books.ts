@@ -2315,7 +2315,7 @@ export const books: Book[] = [
     type: 'Gospel',
     overview: [
       'John presents Jesus as the divine Son of God who existed with the Father from eternity. The gospel is deliberately theological, selecting seven miraculous signs and extended discourses to demonstrate that Jesus is God incarnate. John emphasizes believing in Jesus for eternal life, using "believe" nearly 100 times.',
-      'The book opens with the magnificent prologue: "In the beginning was the Word, and the Word was with God, and the Word was God." John connects Jesus to creation, light, and life. Throughout, Jesus makes stunning "I am" statements claiming deity: I am the bread of life, light of the world, good shepherd, resurrection and life, way truth and life, true vine.',
+      'The book opens with the magnificent prologue: "In the beginning was the Word, and the Word was with God, and the Word was God." John connects Jesus to creation, light, and life. Throughout, Jesus makes stunning "I Am" statements claiming deity: I Am the Bread of Life, Light of the World, Good Shepherd, Resurrection and Life, Way Truth and Life, True Vine.',
       'John\'s gospel is deeply personal, emphasizing the love relationship between Father, Son, and believers. The extended Upper Room discourse reveals Jesus\' heart for His followers and promises the Holy Spirit as Comforter. John concludes that these things are written that readers may believe Jesus is the Christ and have life in His name.'
     ],
     written: 'c. 70-90 AD',
