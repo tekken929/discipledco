@@ -321,6 +321,15 @@ export function Music() {
               </button>
             ))}
           </div>
+
+          <div className="mt-8 text-center">
+            <a
+              href="/hallowed"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-black via-zinc-900 to-black border-2 border-white/20 rounded-xl text-white font-bold tracking-widest uppercase text-sm hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 transition-all duration-300 transform hover:scale-105"
+            >
+              Visit Hallowed Band Page
+            </a>
+          </div>
         </div>
       </div>
       </div>
