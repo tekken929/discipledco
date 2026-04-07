@@ -2518,7 +2518,7 @@ export const books: Book[] = [
         number: 2,
         title: 'Moral Disorders',
         chapterRange: '5-7',
-        summary: 'A man is sleeping with his father\'s wife, and the church is proud rather than mourning. Expel the immoral person. Don\'t take believers to secular courts. Sexual immorality is especially serious because bodies are temples of the Holy Spirit. Regarding marriage: it\'s good but also good to marry. Don\'t seek divorce, but if an unbeliever leaves, let them go. Remain in your calling.',
+        summary: 'A man is sleeping with his father\'s wife, and the church is proud rather than mourning. Expel the immoral person. Don\'t take believers to secular courts. Sexual immorality is especially serious because bodies are temples of the Holy Spirit. It is good  to stay unmarried. But if you cannot control yourself, you should marry, for it is better to marry than to burn with passion. Don\'t seek divorce, but if an unbeliever leaves, let them go. Remain in your calling.',
         keyVerse: "Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God? You are not your own.",
         verseReference: "1 Corinthians 6:19"},
       {
