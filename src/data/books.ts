@@ -2222,15 +2222,17 @@ export const books: Book[] = [
         title: 'Parables and Miracles',
         chapterRange: '4-8',
         summary: 'Jesus teaches in parables about the kingdom. He calms a storm, casts out a legion of demons, heals a bleeding woman, and raises Jairus\' daughter. He sends out the twelve and feeds 5,000. He walks on water, debates Pharisees about traditions, heals a deaf man, and feeds 4,000. Peter confesses Jesus is the Christ. Jesus predicts His death.',
-        keyVerse: "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
-        verseReference: "Mark 10:45"},
+        keyVerse: "Whoever wants to be my disciple must deny themselves and take up their cross and follow me.",
+        verseReference: "Mark 8:34"},
       {
         number: 3,
         title: 'Journey to Jerusalem',
         chapterRange: '9-10',
         summary: 'Jesus is transfigured on the mountain. He casts out a demon the disciples couldn\'t. He teaches about humility, causes of sin, divorce, and children. A rich man asks about eternal life but walks away sad. Jesus again predicts His death. James and John seek positions of honor; Jesus teaches that greatness comes through serving. He heals blind Bartimaeus.',
-        keyVerse: "Whoever wants to be my disciple must deny themselves and take up their cross and follow me.",
-        verseReference: "Mark 8:34"},
+
+        keyVerse: "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
+        verseReference: "Mark 10:45"},
+        
       {
         number: 4,
         title: 'Passion Week',
