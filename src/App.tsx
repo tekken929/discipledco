@@ -111,6 +111,7 @@ function AppContent() {
                 alt="Cross Logo"
                 className="w-12 h-12 rounded-xl object-cover shadow-md"
               />
+              
               <div>
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">The Disciple Co.</h1>
                 <p className="text-xs text-gray-600 dark:text-gray-400 italic">Luke 9:23, "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."</p>

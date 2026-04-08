@@ -64,7 +64,7 @@ export function Hallowed() {
               </svg>
             </div>
             <h1 className="hallowed-band-name">HALLOWED</h1>
-            <p className="hallowed-tagline">Sacred Heavy Sound</p>
+            <p className="hallowed-tagline">Sacred Sound</p>
             <HallowedMusicPlayer key={refreshKey} />
           </div>
         </div>
@@ -75,7 +75,7 @@ export function Hallowed() {
           <h2 className="hallowed-section-title">About</h2>
           <div className="hallowed-divider"></div>
           <p className="hallowed-text">
-            Hallowed emerged from the depths of spiritual questioning and sonic exploration.
+            Hallowed emerged from the depths of spiritual questioning and exploration.
             We craft heavy, atmospheric soundscapes that wrestle with faith, doubt, and the
             eternal search for meaning in a chaotic world.
           </p>

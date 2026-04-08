@@ -9,6 +9,20 @@ export function Footer() {
   const [showAdminPortal, setShowAdminPortal] = useState(false);
   const footerLinks = [
     {
+      to: '/music',
+      icon: BookOpen,
+      title: 'Hallowed',
+      description: 'Great Musical Talent.'
+    },
+
+    {
+      to: '/biblecomplete',
+      icon: BookOpen,
+      title: 'Complete Bible',
+      description: 'Explore the Entire Bible'
+    },
+    
+    {
       to: '/bible',
       icon: BookOpen,
       title: 'Bible Overview',
@@ -146,7 +160,24 @@ export function Footer() {
             <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
               © 2026 The Disciple Co. | Clear, structured overviews of the Bible and how to break free from this world.
             </p>
+  
             <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
+                  
+              
+              <Link
+                to="/hallowed"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Music Talent
+              </Link>
+              
+   <Link
+                to="https://bible-verse-search-a-5z3m.bolt.host/"
+                className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
+              >
+                Complete Bible
+              </Link>
+              
               <Link
                 to="/bible"
                 className="underline hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-gray-600 dark:text-gray-300"
