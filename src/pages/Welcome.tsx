@@ -9,18 +9,6 @@ import { Modal } from '../components/Modal';
 
 const featuredSections = [
   {
-    to: '/bible',
-    icon: BookOpen,
-    title: 'Bible Overview',
-    description: 'Explore all 66 books with chapter summaries, timelines, and key themes.',
-    color: 'blue',
-    bgLight: 'bg-blue-50 dark:bg-blue-950/30',
-    border: 'border-blue-200 dark:border-blue-800',
-    iconBg: 'bg-blue-100 dark:bg-blue-900',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    accent: 'text-blue-600 dark:text-blue-400',
-  },
-  {
     to: '/topics',
     icon: MessageCircle,
     title: 'Everyday Topics',
@@ -45,18 +33,6 @@ const featuredSections = [
     accent: 'text-orange-600 dark:text-orange-400',
   },
   {
-    to: '/guidance',
-    icon: Lightbulb,
-    title: 'Guidance',
-    description: 'Search for biblical answers to life\'s most important questions.',
-    color: 'green',
-    bgLight: 'bg-green-50 dark:bg-green-950/30',
-    border: 'border-green-200 dark:border-green-800',
-    iconBg: 'bg-green-100 dark:bg-green-900',
-    iconColor: 'text-green-600 dark:text-green-400',
-    accent: 'text-green-600 dark:text-green-400',
-  },
-  {
     to: '/religions',
     icon: Church,
     title: 'What is Religion',
@@ -67,6 +43,18 @@ const featuredSections = [
     iconBg: 'bg-red-100 dark:bg-red-900',
     iconColor: 'text-red-600 dark:text-red-400',
     accent: 'text-red-600 dark:text-red-400',
+  },
+  {
+    to: '/hallowed',
+    icon: Sparkles,
+    title: 'Hallowed Band',
+    description: 'Original Christian music from the Hallowed Band — Spirit-filled worship.',
+    color: 'blue',
+    bgLight: 'bg-blue-50 dark:bg-blue-950/30',
+    border: 'border-blue-200 dark:border-blue-800',
+    iconBg: 'bg-blue-100 dark:bg-blue-900',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    accent: 'text-blue-600 dark:text-blue-400',
   },
   {
     to: '/music',
@@ -80,12 +68,25 @@ const featuredSections = [
     iconColor: 'text-slate-600 dark:text-slate-400',
     accent: 'text-slate-600 dark:text-slate-400',
   },
+  {
+    to: '/preaching',
+    icon: Mic,
+    title: 'Wisdom',
+    description: 'Powerful preaching and biblical teachings to strengthen your faith.',
+    color: 'green',
+    bgLight: 'bg-green-50 dark:bg-green-950/30',
+    border: 'border-green-200 dark:border-green-800',
+    iconBg: 'bg-green-100 dark:bg-green-900',
+    iconColor: 'text-green-600 dark:text-green-400',
+    accent: 'text-green-600 dark:text-green-400',
+  },
 ];
 
 const quickLinks = [
+  { to: '/bible', icon: BookOpen, label: 'Bible Overview' },
+  { to: '/guidance', icon: Lightbulb, label: 'Guidance' },
   { to: '/bible-versions', icon: BookOpen, label: 'Bible Versions' },
   { to: '/christian-holidays', icon: Calendar, label: 'Holiday Origins' },
-  { to: '/preaching', icon: Mic, label: 'Wisdom' },
   { to: '/books', icon: BookText, label: 'Books' },
   { to: '/podcasts', icon: Radio, label: 'Podcasts' },
   { to: '/easter', icon: Sparkles, label: 'Easter' },
@@ -126,17 +127,6 @@ export function Welcome() {
                 <stop offset="0%" stopColor="#c8a96e" stopOpacity="0.12" />
                 <stop offset="100%" stopColor="transparent" stopOpacity="0" />
               </radialGradient>
-              <radialGradient id="glow1" cx="50%" cy="38%" r="18%">
-                <stop offset="0%" stopColor="#d4a843" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#d4a843" stopOpacity="0" />
-              </radialGradient>
-              <radialGradient id="glow2" cx="50%" cy="38%" r="8%">
-                <stop offset="0%" stopColor="#fff5d6" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#fff5d6" stopOpacity="0" />
-              </radialGradient>
-              <filter id="blur1">
-                <feGaussianBlur stdDeviation="3" />
-              </filter>
               <filter id="blur2">
                 <feGaussianBlur stdDeviation="8" />
               </filter>
@@ -175,22 +165,10 @@ export function Welcome() {
               />
             ))}
 
-            {/* Bright star cluster near cross */}
+            {/* Bright star cluster center */}
             <circle cx="50%" cy="36%" r="2.5" fill="white" opacity="0.9" filter="url(#starBlur)" />
             <circle cx="47%" cy="32%" r="1.5" fill="white" opacity="0.6" filter="url(#starBlur)" />
             <circle cx="53%" cy="33%" r="1.2" fill="white" opacity="0.5" filter="url(#starBlur)" />
-
-            {/* Divine golden glow behind cross */}
-            <ellipse cx="50%" cy="38%" rx="22%" ry="28%" fill="url(#glow1)" filter="url(#blur2)" />
-            <ellipse cx="50%" cy="38%" rx="8%" ry="10%" fill="url(#glow2)" filter="url(#blur1)" />
-
-            {/* The Cross - centered, elegant */}
-            {/* Vertical beam */}
-            <rect x="calc(50% - 3px)" y="18%" width="6" height="42%" rx="3" fill="#d4a843" opacity="0.95" filter="url(#blur1)" />
-            <rect x="calc(50% - 2px)" y="18%" width="4" height="42%" rx="2" fill="#fff5d6" opacity="0.6" />
-            {/* Horizontal beam */}
-            <rect x="calc(50% - 14%)" y="calc(18% + 10%)" width="28%" height="6" rx="3" fill="#d4a843" opacity="0.95" filter="url(#blur1)" />
-            <rect x="calc(50% - 14%)" y="calc(18% + 10.5%)" width="28%" height="4" rx="2" fill="#fff5d6" opacity="0.6" />
 
             {/* Horizon light bar */}
             <rect x="0" y="88%" width="100%" height="12%" fill="url(#rg1)" opacity="0.8" />
@@ -210,6 +188,17 @@ export function Welcome() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
           <div className="text-center max-w-3xl mx-auto">
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-2xl opacity-30 blur-xl scale-110 bg-amber-400" />
+                <img
+                  src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
+                  alt="The Disciple Co."
+                  className="relative w-24 h-24 rounded-2xl object-cover shadow-2xl ring-2 ring-white/20"
+                />
+              </div>
+            </div>
+
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
               The Disciple Co.
             </h1>
@@ -225,16 +214,16 @@ export function Welcome() {
                 className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white px-8 py-3.5 rounded-xl font-bold text-base shadow-xl hover:shadow-amber-500/30 hover:shadow-2xl transition-all hover:scale-105"
               >
                 <BookOpen className="w-5 h-5" />
-                Start with the Bible
+                Start with a Bible Overview
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <button
-                onClick={() => setShowWhoMadeThis(true)}
+              <Link
+                to="/guidance"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all hover:scale-105"
               >
-                <HelpCircle className="w-5 h-5" />
-                Who Made This?
-              </button>
+                <Lightbulb className="w-5 h-5" />
+                Lookup any Verse
+              </Link>
             </div>
           </div>
         </div>

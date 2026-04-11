@@ -26,24 +26,9 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
 
   const navigationLinks = [
     {
-      to: '/bible',
-      icon: BookOpen,
-      title: 'Bible Overview'
-    },
-    {
       to: '/topics',
       icon: MessageCircle,
       title: 'Everyday Topics'
-    },
-    {
-      to: '/religions',
-      icon: FolderOpen,
-      title: 'What is Religion'
-    },
-    {
-      to: '/bible-versions',
-      icon: BookOpen,
-      title: 'Versions of the Bible'
     },
     {
       to: '/stories',
@@ -51,27 +36,47 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
       title: 'Popular Stories'
     },
     {
+      to: '/religions',
+      icon: FolderOpen,
+      title: 'What is Religion'
+    },
+    {
+      to: '/hallowed',
+      icon: Sparkles,
+      title: 'Hallowed Band'
+    },
+    {
       to: '/music',
       icon: Music,
       title: 'Music Jukebox'
     },
     {
-      to: '/faqs',
-      icon: Users,
-      title: 'FAQs'
+      to: '/preaching',
+      icon: Mic,
+      title: 'Wisdom'
     }
   ];
 
   const resourceLinks = [
     {
-      to: '/music',
-      icon: Music,
-      title: 'Music'
+      to: '/bible',
+      icon: BookOpen,
+      title: 'Bible Overview'
     },
     {
-      to: '/preaching',
-      icon: Mic,
-      title: 'Wisdom'
+      to: '/guidance',
+      icon: BookOpen,
+      title: 'Guidance'
+    },
+    {
+      to: '/bible-versions',
+      icon: BookOpen,
+      title: 'Bible Versions'
+    },
+    {
+      to: '/christian-holidays',
+      icon: BookOpen,
+      title: 'Holiday Origins'
     },
     {
       to: '/books',
@@ -79,14 +84,34 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
       title: 'Books'
     },
     {
-      to: '/church-mentors',
-      icon: UserCheck,
-      title: 'Mentors'
-    },
-    {
       to: '/podcasts',
       icon: Radio,
       title: 'Podcasts'
+    },
+    {
+      to: '/easter',
+      icon: Sparkles,
+      title: 'Easter'
+    },
+    {
+      to: '/resurrection',
+      icon: BookOpen,
+      title: 'Resurrection'
+    },
+    {
+      to: '/faqs',
+      icon: Users,
+      title: 'FAQs'
+    },
+    {
+      to: '/timeline',
+      icon: BookOpen,
+      title: 'Timeline'
+    },
+    {
+      to: '/church-mentors',
+      icon: UserCheck,
+      title: 'Mentors'
     }
   ];
 
@@ -132,7 +157,7 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
 
           <div className="border-t border-gray-200 dark:border-gray-700 py-2">
             <div className="px-2">
-              <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">Resources</p>
+              <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">More</p>
             </div>
             <nav>
               {resourceLinks.map((link) => {
