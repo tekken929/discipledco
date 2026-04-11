@@ -110,33 +110,119 @@ export function Welcome() {
 
       {/* HERO SECTION */}
       <section className="relative overflow-hidden">
-        <div className="theme-primary-bg absolute inset-0 opacity-10" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="flex justify-center mb-8">
-              <div className="relative">
-                <div className="absolute inset-0 theme-primary-bg rounded-2xl opacity-20 blur-xl scale-110" />
-                <img
-                  src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
-                  alt="The Disciple Co."
-                  className="relative w-24 h-24 rounded-2xl object-cover shadow-xl"
-                />
-              </div>
-            </div>
+        {/* Generated background art */}
+        <div className="absolute inset-0">
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="rg1" cx="20%" cy="30%" r="60%">
+                <stop offset="0%" stopColor="#1e3a5f" stopOpacity="1" />
+                <stop offset="100%" stopColor="#0a0f1e" stopOpacity="1" />
+              </radialGradient>
+              <radialGradient id="rg2" cx="80%" cy="70%" r="50%">
+                <stop offset="0%" stopColor="#1a4060" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="rg3" cx="50%" cy="50%" r="70%">
+                <stop offset="0%" stopColor="#c8a96e" stopOpacity="0.12" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="glow1" cx="50%" cy="38%" r="18%">
+                <stop offset="0%" stopColor="#d4a843" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#d4a843" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="glow2" cx="50%" cy="38%" r="8%">
+                <stop offset="0%" stopColor="#fff5d6" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#fff5d6" stopOpacity="0" />
+              </radialGradient>
+              <filter id="blur1">
+                <feGaussianBlur stdDeviation="3" />
+              </filter>
+              <filter id="blur2">
+                <feGaussianBlur stdDeviation="8" />
+              </filter>
+              <filter id="starBlur">
+                <feGaussianBlur stdDeviation="0.4" />
+              </filter>
+            </defs>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
+            {/* Deep night sky base */}
+            <rect width="100%" height="100%" fill="url(#rg1)" />
+            <rect width="100%" height="100%" fill="url(#rg2)" />
+            <rect width="100%" height="100%" fill="url(#rg3)" />
+
+            {/* Subtle cloud wisps */}
+            <ellipse cx="20%" cy="55%" rx="30%" ry="12%" fill="#1e3a5f" opacity="0.25" filter="url(#blur2)" />
+            <ellipse cx="75%" cy="65%" rx="25%" ry="10%" fill="#1a4060" opacity="0.2" filter="url(#blur2)" />
+            <ellipse cx="50%" cy="80%" rx="40%" ry="15%" fill="#0f2240" opacity="0.4" filter="url(#blur2)" />
+
+            {/* Stars - scattered small dots */}
+            {[
+              [8,5],[15,12],[22,8],[30,15],[38,6],[45,11],[52,4],[60,9],[68,14],[75,7],[82,12],[90,5],[95,10],
+              [5,20],[12,25],[19,18],[26,28],[33,22],[40,17],[48,26],[55,20],[63,24],[70,19],[78,27],[85,21],[92,16],
+              [3,38],[10,42],[17,35],[24,40],[31,33],[36,45],[43,37],[50,43],[57,36],[65,41],[72,34],[80,44],[88,38],[95,32],
+              [7,58],[14,62],[20,55],[28,65],[35,60],[42,56],[50,63],[58,58],[66,64],[73,57],[81,61],[89,55],[94,60],
+              [4,72],[11,78],[18,70],[25,75],[32,68],[39,74],[47,79],[54,72],[61,76],[69,71],[76,77],[83,73],[91,68],
+              [6,88],[13,92],[21,85],[29,90],[37,87],[44,93],[51,88],[59,91],[67,86],[74,92],[82,88],[90,84],[96,90]
+            ].map(([cx, cy], i) => (
+              <circle
+                key={i}
+                cx={`${cx}%`}
+                cy={`${cy}%`}
+                r={i % 5 === 0 ? "1.2" : i % 3 === 0 ? "0.9" : "0.5"}
+                fill="white"
+                opacity={i % 4 === 0 ? "0.8" : i % 3 === 0 ? "0.5" : "0.3"}
+                filter="url(#starBlur)"
+              />
+            ))}
+
+            {/* Bright star cluster near cross */}
+            <circle cx="50%" cy="36%" r="2.5" fill="white" opacity="0.9" filter="url(#starBlur)" />
+            <circle cx="47%" cy="32%" r="1.5" fill="white" opacity="0.6" filter="url(#starBlur)" />
+            <circle cx="53%" cy="33%" r="1.2" fill="white" opacity="0.5" filter="url(#starBlur)" />
+
+            {/* Divine golden glow behind cross */}
+            <ellipse cx="50%" cy="38%" rx="22%" ry="28%" fill="url(#glow1)" filter="url(#blur2)" />
+            <ellipse cx="50%" cy="38%" rx="8%" ry="10%" fill="url(#glow2)" filter="url(#blur1)" />
+
+            {/* The Cross - centered, elegant */}
+            {/* Vertical beam */}
+            <rect x="calc(50% - 3px)" y="18%" width="6" height="42%" rx="3" fill="#d4a843" opacity="0.95" filter="url(#blur1)" />
+            <rect x="calc(50% - 2px)" y="18%" width="4" height="42%" rx="2" fill="#fff5d6" opacity="0.6" />
+            {/* Horizontal beam */}
+            <rect x="calc(50% - 14%)" y="calc(18% + 10%)" width="28%" height="6" rx="3" fill="#d4a843" opacity="0.95" filter="url(#blur1)" />
+            <rect x="calc(50% - 14%)" y="calc(18% + 10.5%)" width="28%" height="4" rx="2" fill="#fff5d6" opacity="0.6" />
+
+            {/* Horizon light bar */}
+            <rect x="0" y="88%" width="100%" height="12%" fill="url(#rg1)" opacity="0.8" />
+            <ellipse cx="50%" cy="92%" rx="50%" ry="6%" fill="#1a3a5f" opacity="0.6" filter="url(#blur2)" />
+
+            {/* Subtle vignette */}
+            <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+              <stop offset="60%" stopColor="transparent" stopOpacity="0" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0.55" />
+            </radialGradient>
+            <rect width="100%" height="100%" fill="url(#vignette)" />
+          </svg>
+        </div>
+
+        {/* Bottom fade to page */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 dark:from-gray-950 to-transparent pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
               The Disciple Co.
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-light italic">
+            <p className="text-lg md:text-xl text-white/75 mb-4 leading-relaxed font-light italic drop-shadow-lg">
               "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-10 font-medium">— Luke 9:23</p>
+            <p className="text-sm text-white/55 mb-10 font-semibold tracking-wide">— Luke 9:23</p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/bible"
-                className="inline-flex items-center gap-2 theme-primary-button text-white px-8 py-3.5 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white px-8 py-3.5 rounded-xl font-bold text-base shadow-xl hover:shadow-amber-500/30 hover:shadow-2xl transition-all hover:scale-105"
               >
                 <BookOpen className="w-5 h-5" />
                 Start with the Bible
@@ -144,7 +230,7 @@ export function Welcome() {
               </Link>
               <button
                 onClick={() => setShowWhoMadeThis(true)}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base border-2 theme-card text-gray-700 dark:text-gray-200 hover:shadow-md transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all hover:scale-105"
               >
                 <HelpCircle className="w-5 h-5" />
                 Who Made This?
@@ -153,11 +239,6 @@ export function Welcome() {
           </div>
         </div>
       </section>
-
-      {/* DIVIDER */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border-t border-gray-200 dark:border-gray-700" />
-      </div>
 
       {/* FEATURED SECTIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
