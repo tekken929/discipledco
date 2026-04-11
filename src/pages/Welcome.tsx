@@ -217,13 +217,15 @@ export function Welcome() {
                 Start with a Bible Overview
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                to="/guidance"
+              <a
+                href="https://bolt.new/~/sb1-gh8dwnua"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all hover:scale-105"
               >
                 <Lightbulb className="w-5 h-5" />
                 Lookup any Verse
-              </Link>
+              </a>
             </div>
           </div>
         </div>
