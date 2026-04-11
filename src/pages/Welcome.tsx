@@ -218,7 +218,7 @@ export function Welcome() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href="https://bolt.new/~/sb1-gh8dwnua"
+                href="https://bible-verse-search-a-5z3m.bolt.host/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all hover:scale-105"
