@@ -1,243 +1,270 @@
-import { BookOpen, Target, Music, Book, Users, MessageCircle, Church, HelpCircle, Calendar, Mic, BookText, UserCheck, Radio, Lightbulb, Sparkles, Cross } from 'lucide-react';
+import {
+  BookOpen, MessageCircle, Church, Book, Music, Calendar,
+  Mic, BookText, Radio, Lightbulb, Sparkles, ArrowRight,
+  HelpCircle, Users, Shield, Heart
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
+
+const featuredSections = [
+  {
+    to: '/bible',
+    icon: BookOpen,
+    title: 'Bible Overview',
+    description: 'Explore all 66 books with chapter summaries, timelines, and key themes.',
+    color: 'blue',
+    bgLight: 'bg-blue-50 dark:bg-blue-950/30',
+    border: 'border-blue-200 dark:border-blue-800',
+    iconBg: 'bg-blue-100 dark:bg-blue-900',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    accent: 'text-blue-600 dark:text-blue-400',
+  },
+  {
+    to: '/topics',
+    icon: MessageCircle,
+    title: 'Everyday Topics',
+    description: 'Biblical wisdom on marriage, relationships, sin, grace, and more.',
+    color: 'teal',
+    bgLight: 'bg-teal-50 dark:bg-teal-950/30',
+    border: 'border-teal-200 dark:border-teal-800',
+    iconBg: 'bg-teal-100 dark:bg-teal-900',
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    accent: 'text-teal-600 dark:text-teal-400',
+  },
+  {
+    to: '/stories',
+    icon: Book,
+    title: 'Popular Stories',
+    description: 'The greatest stories of Scripture — retold with context and meaning.',
+    color: 'orange',
+    bgLight: 'bg-orange-50 dark:bg-orange-950/30',
+    border: 'border-orange-200 dark:border-orange-800',
+    iconBg: 'bg-orange-100 dark:bg-orange-900',
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    accent: 'text-orange-600 dark:text-orange-400',
+  },
+  {
+    to: '/guidance',
+    icon: Lightbulb,
+    title: 'Guidance',
+    description: 'Search for biblical answers to life\'s most important questions.',
+    color: 'green',
+    bgLight: 'bg-green-50 dark:bg-green-950/30',
+    border: 'border-green-200 dark:border-green-800',
+    iconBg: 'bg-green-100 dark:bg-green-900',
+    iconColor: 'text-green-600 dark:text-green-400',
+    accent: 'text-green-600 dark:text-green-400',
+  },
+  {
+    to: '/religions',
+    icon: Church,
+    title: 'What is Religion',
+    description: 'How Christianity developed and how different denominations emerged.',
+    color: 'red',
+    bgLight: 'bg-red-50 dark:bg-red-950/30',
+    border: 'border-red-200 dark:border-red-800',
+    iconBg: 'bg-red-100 dark:bg-red-900',
+    iconColor: 'text-red-600 dark:text-red-400',
+    accent: 'text-red-600 dark:text-red-400',
+  },
+  {
+    to: '/music',
+    icon: Music,
+    title: 'Music Jukebox',
+    description: 'Original songs and worship music to accompany your journey.',
+    color: 'slate',
+    bgLight: 'bg-slate-50 dark:bg-slate-800/50',
+    border: 'border-slate-200 dark:border-slate-700',
+    iconBg: 'bg-slate-100 dark:bg-slate-800',
+    iconColor: 'text-slate-600 dark:text-slate-400',
+    accent: 'text-slate-600 dark:text-slate-400',
+  },
+];
+
+const quickLinks = [
+  { to: '/bible-versions', icon: BookOpen, label: 'Bible Versions' },
+  { to: '/christian-holidays', icon: Calendar, label: 'Holiday Origins' },
+  { to: '/preaching', icon: Mic, label: 'Wisdom' },
+  { to: '/books', icon: BookText, label: 'Books' },
+  { to: '/podcasts', icon: Radio, label: 'Podcasts' },
+  { to: '/easter', icon: Sparkles, label: 'Easter' },
+  { to: '/resurrection', icon: Heart, label: 'Resurrection' },
+  { to: '/faqs', icon: HelpCircle, label: 'FAQs' },
+  { to: '/timeline', icon: Calendar, label: 'Timeline' },
+  { to: '/church-mentors', icon: Users, label: 'Mentors' },
+];
+
+const beliefs = [
+  { icon: Shield, text: 'Sola Scriptura — Scripture alone as the ultimate authority' },
+  { icon: Heart, text: 'One God: Father, Son, and Holy Spirit' },
+  { icon: BookOpen, text: 'Jesus Christ is the only way to God' },
+  { icon: Lightbulb, text: 'Truth is revealed, not subjective' },
+];
 
 export function Welcome() {
   const [showWhoMadeThis, setShowWhoMadeThis] = useState(false);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 mb-8 text-center transition-colors">
-          <div className="flex justify-center mb-6">
-            <img
-              src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
-              alt="Discipled Co."
-              className="w-32 h-32 rounded-2xl object-cover shadow-lg"
-            />
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-           The Disciple Co.
-          </h1>
+    <div className="min-h-screen">
 
-          <p className="text-sm text-gray-600 dark:text-gray-400 italic">
-            Genesis 6:5 (NIV), "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
-          </p>
-        </div>
-
-        <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 mb-8 transition-colors">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="theme-primary-button p-3 rounded-xl">
-              <Target className="w-8 h-8" />
+      {/* HERO SECTION */}
+      <section className="relative overflow-hidden">
+        <div className="theme-primary-bg absolute inset-0 opacity-10" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="absolute inset-0 theme-primary-bg rounded-2xl opacity-20 blur-xl scale-110" />
+                <img
+                  src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
+                  alt="The Disciple Co."
+                  className="relative w-24 h-24 rounded-2xl object-cover shadow-xl"
+                />
+              </div>
             </div>
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Start Here:</h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300">Choose what you would like to learn more about.</p>
-            </div>
-          </div>
-          <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <button
-                  onClick={() => setShowWhoMadeThis(true)}
-                  className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-gray-200 dark:border-gray-700 w-full justify-center h-10"
-                >
-                  <HelpCircle className="w-4 h-4" />
-                  Who Made This?
-                </button>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Learn about the purpose and beliefs behind this website
-                </p>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/bible"
-                  className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-blue-200 dark:border-blue-700 w-full justify-center h-10"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Bible Overview
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Explore all 66 books of the Bible with chapter summaries and timelines
-                </p>
-              </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
+              The Disciple Co.
+            </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/topics"
-                  className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900 text-purple-900 dark:text-purple-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-purple-200 dark:border-purple-700 w-full justify-center h-10"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Everyday Topics
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Discover topics covering marriage, relationships, sin, salvation, and more
-                </p>
-              </div>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-light italic">
+              "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-10 font-medium">— Luke 9:23</p>
 
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/religions"
-                  className="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-rose-200 dark:border-rose-700 w-full justify-center h-10"
-                >
-                  <Church className="w-4 h-4" />
-                  What is Religion
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Learn how Christianity and other religions developed and how different churches emerged
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/bible-versions"
-                  className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-green-200 dark:border-green-700 w-full justify-center h-10"
-                >
-                  <Book className="w-4 h-4" />
-                  Versions of the Bible
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Understand the differences between translations and versions
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/stories"
-                  className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 text-orange-900 dark:text-orange-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-orange-200 dark:border-orange-700 w-full justify-center h-10"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Popular Stories
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Read Bible stories with context and meaning
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/music"
-                  className="inline-flex items-center gap-2 bg-pink-100 dark:bg-pink-900 text-pink-900 dark:text-pink-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-pink-200 dark:border-pink-700 w-full justify-center h-10"
-                >
-                  <Music className="w-4 h-4" />
-                  Music Jukebox
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Enjoy music and songs while you explore. All songs are originals written by myself
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/christian-holidays"
-                  className="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900 text-teal-900 dark:text-teal-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-teal-200 dark:border-teal-700 w-full justify-center h-10"
-                >
-                  <Calendar className="w-4 h-4" />
-                  Holiday Origins
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Discover the true origins and meanings of Easter, Christmas, and other holidays
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/preaching"
-                  className="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-amber-200 dark:border-amber-700 w-full justify-center h-10"
-                >
-                  <Mic className="w-4 h-4" />
-                  Wisdom
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Listen to powerful preaching and teachings from trusted pastors
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/books"
-                  className="inline-flex items-center gap-2 bg-cyan-100 dark:bg-cyan-900 text-cyan-900 dark:text-cyan-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-cyan-200 dark:border-cyan-700 w-full justify-center h-10"
-                >
-                  <BookText className="w-4 h-4" />
-                  Books
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Read Christian books and resources to deepen your faith
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/church-mentors"
-                  className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-indigo-200 dark:border-indigo-700 w-full justify-center h-10"
-                >
-                  <UserCheck className="w-4 h-4" />
-                  Mentors
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Connect with experienced mentors for spiritual guidance
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/podcasts"
-                  className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-violet-200 dark:border-violet-700 w-full justify-center h-10"
-                >
-                  <Radio className="w-4 h-4" />
-                  Podcasts
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Listen to podcasts on faith, theology, and Christian living
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/guidance"
-                  className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-emerald-200 dark:border-emerald-700 w-full justify-center h-10"
-                >
-                  <Lightbulb className="w-4 h-4" />
-                  Guidance
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Get biblical guidance and answers to life's important questions
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/easter"
-                  className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-yellow-200 dark:border-yellow-700 w-full justify-center h-10"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  Easter
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Explore the biblical story and significance of Easter
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-center">
-                <Link
-                  to="/resurrection"
-                  className="inline-flex items-center gap-2 bg-red-100 dark:bg-red-900 text-red-900 dark:text-red-100 px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all border-2 border-red-200 dark:border-red-700 w-full justify-center h-10"
-                >
-                  <Cross className="w-4 h-4" />
-                  Resurrection
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Understand the resurrection of Jesus Christ and its impact on faith
-                </p>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/bible"
+                className="inline-flex items-center gap-2 theme-primary-button text-white px-8 py-3.5 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all hover:scale-105"
+              >
+                <BookOpen className="w-5 h-5" />
+                Start with the Bible
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <button
+                onClick={() => setShowWhoMadeThis(true)}
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base border-2 theme-card text-gray-700 dark:text-gray-200 hover:shadow-md transition-all hover:scale-105"
+              >
+                <HelpCircle className="w-5 h-5" />
+                Who Made This?
+              </button>
             </div>
           </div>
         </div>
+      </section>
 
+      {/* DIVIDER */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="border-t border-gray-200 dark:border-gray-700" />
       </div>
 
+      {/* FEATURED SECTIONS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Explore the Faith</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Start with what matters most to you.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {featuredSections.map((section) => {
+            const Icon = section.icon;
+            return (
+              <Link
+                key={section.to}
+                to={section.to}
+                className={`group flex flex-col gap-4 p-6 rounded-2xl border-2 ${section.bgLight} ${section.border} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className={`p-3 rounded-xl ${section.iconBg}`}>
+                    <Icon className={`w-6 h-6 ${section.iconColor}`} />
+                  </div>
+                  <ArrowRight className={`w-5 h-5 ${section.accent} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200`} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{section.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{section.description}</p>
+                </div>
+                <span className={`text-sm font-semibold ${section.accent} flex items-center gap-1`}>
+                  Explore <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* VERSE BANNER */}
+      <section className="theme-primary-bg">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+          <p className="text-3xl md:text-4xl font-bold text-white leading-relaxed mb-4">
+            "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
+          </p>
+          <p className="text-white/80 font-semibold text-lg">— Genesis 6:5 (NIV)</p>
+        </div>
+      </section>
+
+      {/* QUICK LINKS GRID */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">More to Discover</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Every section is here to help you find truth.</p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          {quickLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="group flex flex-col items-center gap-2.5 p-4 rounded-xl border-2 theme-card hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 text-center"
+              >
+                <div className="p-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-colors">
+                  <Icon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                </div>
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 leading-tight">{link.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* BELIEFS SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="theme-card border-2 rounded-2xl p-8 md:p-12">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">What We Believe</h2>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                This isn't necessarily about religion — it's about truth. Not religion for the sake of religion. Not arguments for the sake of winning. Just a path toward truth.
+              </p>
+              <button
+                onClick={() => setShowWhoMadeThis(true)}
+                className="inline-flex items-center gap-2 theme-primary-button text-white px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg transition-all hover:scale-105"
+              >
+                <HelpCircle className="w-4 h-4" />
+                Our Story
+              </button>
+            </div>
+            <div className="space-y-4">
+              {beliefs.map((belief, i) => {
+                const Icon = belief.icon;
+                return (
+                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+                    <div className="p-1.5 rounded-lg theme-primary-bg flex-shrink-0">
+                      <Icon className="w-4 h-4 text-white" />
+                    </div>
+                    <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 leading-snug">{belief.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHO MADE THIS MODAL */}
       <Modal
         isOpen={showWhoMadeThis}
         onClose={() => setShowWhoMadeThis(false)}
@@ -288,6 +315,6 @@ export function Welcome() {
           </p>
         </div>
       </Modal>
-    </main>
+    </div>
   );
 }

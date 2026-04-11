@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Palette } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Users, ChevronDown, Palette, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
 import { BubblesProvider, useBubbles } from './context/BubblesContext';
@@ -16,7 +16,7 @@ import { Religions } from './pages/Religions';
 import { FAQs } from './pages/FAQs';
 import { Topics } from './pages/Topics';
 import { Stories } from './pages/Stories';
-import { Music } from './pages/Music';
+import { Music as MusicPage } from './pages/Music';
 import { Preaching } from './pages/Preaching';
 import { Books } from './pages/Books';
 import BookReader from './pages/BookReader';
@@ -30,52 +30,286 @@ import { Easter } from './pages/Easter';
 import { Hallowed } from './pages/Hallowed';
 import Guidance from './pages/Guidance';
 import { books } from './data/books';
-import { Book } from './types/book';
+import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
 import './resurrection.css';
 import './hallowed.css';
 
-function AppContent() {
+const navLinks = [
+  { to: '/bible', label: 'Bible Overview', icon: BookOpen },
+  { to: '/topics', label: 'Topics', icon: MessageCircle },
+  { to: '/stories', label: 'Stories', icon: Book },
+  { to: '/religions', label: 'Religion', icon: FolderOpen },
+  { to: '/guidance', label: 'Guidance', icon: Users },
+  { to: '/music', label: 'Music', icon: Music },
+];
+
+const moreLinks = [
+  { to: '/bible-versions', label: 'Bible Versions' },
+  { to: '/christian-holidays', label: 'Holiday Origins' },
+  { to: '/preaching', label: 'Wisdom' },
+  { to: '/books', label: 'Books' },
+  { to: '/podcasts', label: 'Podcasts' },
+  { to: '/church-mentors', label: 'Mentors' },
+  { to: '/timeline', label: 'Timeline' },
+  { to: '/easter', label: 'Easter' },
+  { to: '/resurrection', label: 'Resurrection' },
+  { to: '/faqs', label: 'FAQs' },
+  { to: '/hallowed', label: 'Hallowed Band' },
+];
+
+function TopNav() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
-  const { bubblesEnabled } = useBubbles();
+  const { bubblesEnabled, toggleBubbles } = useBubbles();
   const location = useLocation();
-  const [selectedBook, setSelectedBook] = useState<Book>(books[0]);
-  const [showThemeMenu, setShowThemeMenu] = useState(false);
-  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
-    return localStorage.getItem('onboardingCompleted') === 'true';
-  });
-  const isScrolled = useNavbarScroll(100);
-  const isWelcomePage = location.pathname === '/';
-  const isHomePage = location.pathname === '/bible';
+  const isScrolled = useNavbarScroll(60);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+  const settingsRef = useRef<HTMLDivElement>(null);
+
   const isResurrectionPage = location.pathname === '/resurrection';
   const isEasterPage = location.pathname === '/easter';
   const isHallowedPage = location.pathname === '/hallowed';
   const isMusicPage = location.pathname === '/music';
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setMobileOpen(false);
+    setMoreOpen(false);
+    setSettingsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
-    const handleClickOutside = () => {
-      if (showThemeMenu) {
-        setShowThemeMenu(false);
+    function handleClick(e: MouseEvent) {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
       }
-    };
-
-    if (showThemeMenu) {
-      document.addEventListener('click', handleClickOutside);
+      if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
+        setSettingsOpen(false);
+      }
     }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [showThemeMenu]);
+  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage) return null;
 
-  const handleThemeChange = (theme: ColorTheme) => {
-    setColorTheme(theme);
-    setShowThemeMenu(false);
-  };
+  return (
+    <header className={`sticky top-0 z-50 transition-all duration-300 print:hidden ${
+      isScrolled
+        ? 'theme-card shadow-lg border-b-2'
+        : 'theme-card border-b-2'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-18">
+
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex items-center gap-3 flex-shrink-0 group"
+          >
+            <img
+              src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
+              alt="The Disciple Co."
+              className="w-10 h-10 rounded-lg object-cover shadow-sm group-hover:shadow-md transition-shadow"
+            />
+            <div className="hidden sm:block">
+              <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">The Disciple Co.</span>
+            </div>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.to;
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                    isActive
+                      ? 'theme-primary-button text-white shadow-sm'
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            {/* More dropdown */}
+            <div ref={moreRef} className="relative">
+              <button
+                onClick={() => setMoreOpen(!moreOpen)}
+                className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
+              >
+                More
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {moreOpen && (
+                <div className="absolute right-0 top-full mt-1 w-52 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 py-1">
+                  {moreLinks.map((link) => {
+                    const isActive = location.pathname === link.to;
+                    return (
+                      <Link
+                        key={link.to}
+                        to={link.to}
+                        className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
+                          isActive
+                            ? 'theme-accent font-bold bg-blue-50 dark:bg-blue-950/30'
+                            : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </nav>
+
+          {/* Right controls */}
+          <div className="flex items-center gap-2">
+            {/* Settings */}
+            <div ref={settingsRef} className="relative hidden sm:block">
+              <button
+                onClick={() => setSettingsOpen(!settingsOpen)}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+                aria-label="Settings"
+              >
+                <Palette className="w-4 h-4" />
+                <span className="hidden md:inline">Theme</span>
+              </button>
+              {settingsOpen && (
+                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50">
+                  <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color Mood</p>
+                  </div>
+                  {(['subtle', 'happy', 'blackwhite'] as ColorTheme[]).map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => { setColorTheme(t); setSettingsOpen(false); }}
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors text-left ${
+                        colorTheme === t ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-800'
+                      }`}
+                    >
+                      <div className="flex gap-1">
+                        {t === 'subtle' && <><div className="w-4 h-4 rounded-full bg-gradient-to-br from-slate-400 to-blue-500" /><div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-slate-600" /></>}
+                        {t === 'happy' && <><div className="w-4 h-4 rounded-full bg-gradient-to-br from-amber-400 to-orange-500" /><div className="w-4 h-4 rounded-full bg-gradient-to-br from-orange-400 to-teal-500" /></>}
+                        {t === 'blackwhite' && <><div className="w-4 h-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-400" /><div className="w-4 h-4 rounded-full bg-gradient-to-br from-white to-gray-300 border border-gray-400" /></>}
+                      </div>
+                      <span className="font-semibold text-gray-900 dark:text-white capitalize">
+                        {t === 'blackwhite' ? 'Black & White' : t.charAt(0).toUpperCase() + t.slice(1)}
+                      </span>
+                      {colorTheme === t && <span className="ml-auto text-xs text-blue-500 font-bold">Active</span>}
+                    </button>
+                  ))}
+                  <div className="border-t border-gray-200 dark:border-gray-700">
+                    <button
+                      onClick={toggleDarkMode}
+                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
+                    >
+                      {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                      <span className="font-semibold">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                    </button>
+                    <button
+                      onClick={toggleBubbles}
+                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span className="font-semibold">Floating Bubbles</span>
+                      <span className={`ml-auto text-xs px-2 py-0.5 rounded-full font-bold ${bubblesEnabled ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'}`}>
+                        {bubblesEnabled ? 'ON' : 'OFF'}
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg border-2 theme-card text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden p-2 rounded-lg border-2 theme-card text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile nav drawer */}
+      {mobileOpen && (
+        <div className="lg:hidden border-t-2 border-gray-200 dark:border-gray-700 theme-card">
+          <nav className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
+            {[...navLinks, ...moreLinks].map((link) => {
+              const isActive = location.pathname === link.to;
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`px-3 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                    isActive
+                      ? 'theme-primary-button text-white'
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-3">
+            <button
+              onClick={toggleDarkMode}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+            >
+              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {darkMode ? 'Light' : 'Dark'}
+            </button>
+            <button
+              onClick={toggleBubbles}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+            >
+              <Sparkles className="w-4 h-4" />
+              Bubbles {bubblesEnabled ? 'ON' : 'OFF'}
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+function AppContent() {
+  const { darkMode } = useDarkMode();
+  const { bubblesEnabled } = useBubbles();
+  const location = useLocation();
+  const [selectedBook, setSelectedBook] = useState<BookType>(books[0]);
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
+    return localStorage.getItem('onboardingCompleted') === 'true';
+  });
+
+  const isResurrectionPage = location.pathname === '/resurrection';
+  const isEasterPage = location.pathname === '/easter';
+  const isHallowedPage = location.pathname === '/hallowed';
+  const isMusicPage = location.pathname === '/music';
+  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const handleOnboardingComplete = () => {
     localStorage.setItem('onboardingCompleted', 'true');
@@ -98,117 +332,12 @@ function AppContent() {
 
   return (
     <div className="min-h-screen theme-background transition-colors flex flex-col">
-      {/* Grain Overlay */}
-      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <div className="grain-overlay" />}
+      {!isSpecialPage && <div className="grain-overlay" />}
 
-      {/* Header - Sticky with Cinematic Blur */}
-      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <header className={`navbar-cinematic ${isScrolled ? 'scrolled' : ''} theme-card shadow-lg print:hidden transition-all sticky top-0 z-50`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all duration-300 hover:scale-105">
-              <img
-                src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
-                alt="Cross Logo"
-                className="w-12 h-12 rounded-xl object-cover shadow-md"
-              />
-              
-              <div>
-                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">The Disciple Co.</h1>
-                <p className="text-xs text-gray-600 dark:text-gray-400 italic">Luke 9:23, "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."</p>
-              </div>
-            </Link>
+      <TopNav />
 
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowThemeMenu(!showThemeMenu);
-                  }}
-                  className="btn-cinematic flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
-                  aria-label="Change color theme"
-                >
-                  <Palette className="w-5 h-5" />
-                  <span className="hidden sm:inline">Theme</span>
-                </button>
+      {!isSpecialPage && <CollectedMessagesDropdown />}
 
-                {showThemeMenu && (
-                  <div className="absolute right-0 mt-2 w-56 theme-card rounded-lg shadow-2xl border-2 overflow-hidden z-50">
-                    <div className="p-2 border-b border-gray-200 dark:border-gray-700">
-                      <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Color Mood</p>
-                    </div>
-                    <button
-                      onClick={() => handleThemeChange('subtle')}
-                      className={`w-full px-4 py-3 text-left hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${
-                        colorTheme === 'subtle' ? 'bg-slate-100 dark:bg-slate-800' : ''
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="flex gap-1">
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-slate-400 to-blue-500 shadow-md"></div>
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-slate-600 shadow-md"></div>
-                        </div>
-                        <div>
-                          <span className="text-gray-900 dark:text-white font-semibold">Subtle</span>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">Professional & calm</p>
-                        </div>
-                      </div>
-                    </button>
-                    <button
-                      onClick={() => handleThemeChange('happy')}
-                      className={`w-full px-4 py-3 text-left hover:bg-amber-50 dark:hover:bg-orange-950 transition-colors ${
-                        colorTheme === 'happy' ? 'bg-amber-50 dark:bg-orange-950' : ''
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="flex gap-1">
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 shadow-md"></div>
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-teal-500 shadow-md"></div>
-                        </div>
-                        <div>
-                          <span className="text-gray-900 dark:text-white font-semibold">Happy</span>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">Warm & vibrant</p>
-                        </div>
-                      </div>
-                    </button>
-                    <button
-                      onClick={() => handleThemeChange('blackwhite')}
-                      className={`w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors ${
-                        colorTheme === 'blackwhite' ? 'bg-gray-100 dark:bg-gray-900' : ''
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="flex gap-1">
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-400 shadow-md"></div>
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-white to-gray-300 border border-gray-400 shadow-md"></div>
-                        </div>
-                        <div>
-                          <span className="text-gray-900 dark:text-white font-semibold">Black & White</span>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">Classic monochrome</p>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <button
-                onClick={toggleDarkMode}
-                className="btn-cinematic flex items-center justify-center gap-2 theme-card border-2 text-gray-900 dark:text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg"
-                aria-label="Toggle dark mode"
-              >
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                <span className="hidden sm:inline">{darkMode ? 'Light' : 'Dark'}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>}
-
-      {/* Collected Messages Dropdown - Sticky across all pages */}
-      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <CollectedMessagesDropdown />}
-
-      {/* Main Content */}
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Welcome />} />
@@ -220,7 +349,7 @@ function AppContent() {
           <Route path="/topics/:topicId" element={<Topics />} />
           <Route path="/stories" element={<Stories />} />
           <Route path="/stories/:storyId" element={<Stories />} />
-          <Route path="/music" element={<Music />} />
+          <Route path="/music" element={<MusicPage />} />
           <Route path="/preaching" element={<Preaching />} />
           <Route path="/books" element={<Books />} />
           <Route path="/books/:bookId" element={<BookReader />} />
@@ -236,11 +365,9 @@ function AppContent() {
         </Routes>
       </div>
 
-      {/* Footer */}
-      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <Footer />}
-
-      {/* Floating Music Player */}
-      {!isResurrectionPage && !isEasterPage && !isHallowedPage && !isMusicPage && <FloatingMusicPlayer />}
+      {!isSpecialPage && <Footer />}
+      {!isSpecialPage && <FloatingMusicPlayer />}
+      {bubblesEnabled && !isSpecialPage && <FloatingBubbles />}
     </div>
   );
 }
