@@ -161,7 +161,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
             </div>
           </div>
           <div className="flex items-center justify-between text-base text-blue-600 dark:text-blue-400 font-bold">
-            <span>{featuredTopic.references.length} Bible references</span>
+            <span>Explore</span>
             <span>→</span>
           </div>
         </Link>
@@ -186,7 +186,7 @@ When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
               {topic.shortDescription}
             </p>
             <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
-              <span>{topic.references.length} Bible references</span>
+              <span>Explore</span>
               <span>→</span>
             </div>
           </Link>

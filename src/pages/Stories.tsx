@@ -100,7 +100,7 @@ export function Stories() {
               {story.shortSummary}
             </p>
             <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
-              <span>{story.references.length} Scripture references</span>
+              <span>Explore</span>
               <span>→</span>
             </div>
           </Link>

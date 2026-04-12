@@ -32,6 +32,14 @@ export function Music() {
 
     if (!error && data) {
       setAllTracks(data);
+      if (!currentTrack) {
+        const chosenOne = data.find((t: typeof data[0]) =>
+          t.title.toLowerCase().includes('chosen one') || t.title.toLowerCase() === 'the chosen one'
+        );
+        if (chosenOne) {
+          playTrack(chosenOne);
+        }
+      }
     }
   };
 
