@@ -211,7 +211,7 @@ export const books: Book[] = [
         number: 2,
         title: 'Journey Begins, Complaints Begin',
         chapterRange: '11-12',
-        summary: 'Israel departs from Sinai but immediately begins complaining about hardships, food, and leadership. God provides quail but also judgment. Even Miriam and Aaron challenge Moses\' authority. God\'s patience is tested by the people\'s constant ingratitude and rebellion.',
+        summary: 'The Israelites depart from Sinai but immediately begins complaining about hardships, food, and leadership. God provides quail but also judgment. Even Miriam and Aaron challenge Moses\' authority. God\'s patience is tested by the people\'s constant ingratitude and rebellion.',
         keyVerse: "Now the people complained about their hardships in the hearing of the LORD, and when he heard them his anger was aroused.",
         verseReference: "Numbers 11:1"},
       {
