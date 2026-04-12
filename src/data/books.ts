@@ -149,7 +149,7 @@ export const books: Book[] = [
         number: 2,
         title: 'The Priesthood Consecrated',
         chapterRange: '8-10',
-        summary: 'Aaron and his sons are ordained as priests through elaborate ceremonies involving washing, clothing, anointing, and sacrifices. God\'s glory appears to affirm their consecration. Nadab and Abihu die for offering unauthorized fire, demonstrating the importance of approaching God on His terms.',
+        summary: 'Aaron is Moses brother, he and his sons are ordained as priests through elaborate ceremonies involving washing, clothing, anointing, and sacrifices. God\'s glory appears to affirm their consecration. Nadab and Abihu die for offering unauthorized fire, demonstrating the importance of approaching God on His terms.',
         keyVerse: "Aaron's sons Nadab and Abihu took their censers, put fire in them and added incense; and they offered unauthorized fire before the LORD, contrary to his command.",
         verseReference: "Leviticus 10:1"},
       {
