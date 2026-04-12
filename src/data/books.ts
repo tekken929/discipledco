@@ -170,7 +170,7 @@ export const books: Book[] = [
         number: 5,
         title: 'Practical Holiness',
         chapterRange: '17-22',
-        summary: 'God provides laws governing daily life: sexual morality, justice, treatment of the vulnerable, honesty, and respect for parents. The standard is clear: "Be holy, because I, the LORD your God, am holy." Holiness must permeate every aspect of life.',
+        summary: 'God provides laws governing daily life: sexual morality, justice, treatment of the vulnerable, honesty, and respect for parents. The standard is clear: "Be holy because I, the LORD your God, am holy." Holiness must permeate every aspect of life.',
         keyVerse: "Be holy because I, the LORD your God, am holy.",
         verseReference: "Leviticus 19:2"},
       {
