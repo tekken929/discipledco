@@ -1275,7 +1275,7 @@ export const topics: Topic[] = [
     id: 'grace',
     title: 'Grace & Mercy',
     description: 'Understanding God\'s undeserved favor and compassion toward us',
-    shortDescription: 'Salvation comes by grace through faith, not by works. God\'s undeserved favor and mercy are freely given to all who believe in Jesus Christ.',
+    shortDescription: 'Grace and mercy are the foundation of everything. Mercy is God not giving us what we deserve, and grace is Him giving us what we could never earn. When you really understand that, it changes how you see yourself—and how you see Him.',
     icon: '✝️',
     order: 1,
     references: [
