@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Users, ChevronDown, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Cross } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Users, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Cross } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -84,10 +84,8 @@ function TopNav() {
   const location = useLocation();
   const isScrolled = useNavbarScroll(60);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -98,16 +96,12 @@ function TopNav() {
 
   useEffect(() => {
     setMobileOpen(false);
-    setMoreOpen(false);
     setSettingsOpen(false);
     setMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setMoreOpen(false);
-      }
       if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
         setSettingsOpen(false);
       }
@@ -145,56 +139,6 @@ function TopNav() {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = location.pathname === link.to;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                    isActive
-                      ? 'theme-primary-button text-white shadow-sm'
-                      : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-
-            {/* More dropdown */}
-            <div ref={moreRef} className="relative">
-              <button
-                onClick={() => setMoreOpen(!moreOpen)}
-                className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
-              >
-                More
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {moreOpen && (
-                <div className="absolute right-0 top-full mt-1 w-52 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 py-1">
-                  {moreLinks.map((link) => {
-                    const isActive = location.pathname === link.to;
-                    return (
-                      <Link
-                        key={link.to}
-                        to={link.to}
-                        className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
-                          isActive
-                            ? 'theme-accent font-bold bg-blue-50 dark:bg-blue-950/30'
-                            : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </nav>
 
           {/* Right controls */}
           <div className="flex items-center gap-2">
