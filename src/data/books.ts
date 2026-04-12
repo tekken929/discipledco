@@ -177,7 +177,7 @@ export const books: Book[] = [
         number: 6,
         title: 'Festivals and Faithfulness',
         chapterRange: '23-27',
-        summary: 'God establishes annual festivals (Passover, Firstfruits, Weeks, Trumpets, Day of Atonement, Tabernacles) to commemorate His acts and cultivate worship. Laws for Sabbath years, Jubilee, vows, and tithes ensure ongoing faithfulness and dependence on God\'s provision.',
+        summary: 'God establishes annual festivals (Passover, Firstfruits, Weeks, Trumpets, Day of Atonement, Tabernacles) to commemorate His acts and cultivate worship. Laws for Sabbath years, Jubilee, vows, and tithes cultivate ongoing faithfulness and dependence on God\'s provision.',
         keyVerse: "Consecrate the fiftieth year and proclaim liberty throughout the land to all its inhabitants. It shall be a jubilee for you.",
         verseReference: "Leviticus 25:10"},
     ]
