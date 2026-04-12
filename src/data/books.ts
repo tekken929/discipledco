@@ -142,7 +142,7 @@ export const books: Book[] = [
         number: 1,
         title: 'The Sacrificial System',
         chapterRange: '1-7',
-        summary: 'God establishes five types of offerings: burnt offering (complete dedication), grain offering (thanksgiving), peace offering (fellowship), sin offering (unintentional sin), and guilt offering (restitution). Each sacrifice has specific requirements and purposes, pointing to the need for blood atonement.',
+        summary: 'God establishes five types of offerings: burnt offering (complete dedication), grain offering (thanksgiving), peace offering (fellowship), sin offering (unintentional sin), and guilt offering (restitution). Each sacrifice has specific requirements and purposes, often including bloodshed for atonement.',
         keyVerse: "If anyone sins and does what is forbidden in any of the LORD's commands, even though they do not know it, they are guilty and will be held responsible.",
         verseReference: "Leviticus 5:17"},
       {
