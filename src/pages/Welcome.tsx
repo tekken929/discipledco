@@ -97,7 +97,7 @@ const quickLinks = [
 ];
 
 const beliefs = [
-  { icon: Shield, text: 'Sola Scriptura — Scripture alone as the ultimate authority' },
+  { icon: Shield, text: 'Scripture (the Bible) alone has everything we need and is the ultimate authority.' },
   { icon: Heart, text: 'One God: Father, Son, and Holy Spirit' },
   { icon: BookOpen, text: 'Jesus Christ is the only way to God' },
   { icon: Lightbulb, text: 'Truth is revealed, not subjective' },
@@ -309,14 +309,14 @@ export function Welcome() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">What We Believe</h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                This isn't necessarily about religion — it's about truth. Not religion for the sake of religion. Not arguments for the sake of winning. Just a path toward truth.
+                This isn't necessarily about religion — it's about truth. Not religion for the sake of religion. Not arguments for the sake of winning. Just a path toward truth. We are called to not just read the bible, but to understand the context, interpret it to the best of our ability, and apply it to our daily lives.
               </p>
               <button
                 onClick={() => setShowWhoMadeThis(true)}
                 className="inline-flex items-center gap-2 theme-primary-button text-white px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg transition-all hover:scale-105"
               >
                 <HelpCircle className="w-4 h-4" />
-                Our Story
+                Learn More
               </button>
             </div>
             <div className="space-y-4">
