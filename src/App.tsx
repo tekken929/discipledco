@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Users, ChevronDown, Palette, Sparkles } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Users, ChevronDown, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Cross } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -58,6 +58,26 @@ const moreLinks = [
   { to: '/hallowed', label: 'Hallowed Band' },
 ];
 
+const allMenuLinks = [
+  { to: '/music', label: 'Hallowed', icon: Music },
+  { to: '/bible', label: 'Bible Overview', icon: BookOpen },
+  { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
+  { to: '/religions', label: 'What is Religion', icon: FolderOpen },
+  { to: '/bible-versions', label: 'Bible Versions', icon: BookOpen },
+  { to: '/stories', label: 'Popular Stories', icon: Book },
+  { to: '/music', label: 'Music Jukebox', icon: Music },
+  { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
+  { to: '/preaching', label: 'Wisdom', icon: Mic },
+  { to: '/books', label: 'Books', icon: BookText },
+  { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
+  { to: '/podcasts', label: 'Podcasts', icon: Radio },
+  { to: '/guidance', label: 'Guidance', icon: Lightbulb },
+  { to: '/easter', label: 'Easter', icon: Sparkles },
+  { to: '/resurrection', label: 'Resurrection', icon: Cross },
+  { to: '/faqs', label: 'FAQs', icon: Users },
+  { to: '/timeline', label: 'Timeline', icon: BookOpen },
+];
+
 function TopNav() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
   const { bubblesEnabled, toggleBubbles } = useBubbles();
@@ -66,8 +86,10 @@ function TopNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const isResurrectionPage = location.pathname === '/resurrection';
   const isEasterPage = location.pathname === '/easter';
@@ -78,6 +100,7 @@ function TopNav() {
     setMobileOpen(false);
     setMoreOpen(false);
     setSettingsOpen(false);
+    setMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -87,6 +110,9 @@ function TopNav() {
       }
       if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
         setSettingsOpen(false);
+      }
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClick);
@@ -172,6 +198,44 @@ function TopNav() {
 
           {/* Right controls */}
           <div className="flex items-center gap-2">
+            {/* Menu button with all links */}
+            <div ref={menuRef} className="relative">
+              <button
+                onClick={() => { setMenuOpen(!menuOpen); setSettingsOpen(false); }}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+                aria-label="All pages menu"
+              >
+                {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                <span className="hidden md:inline">Menu</span>
+              </button>
+              {menuOpen && (
+                <div className="absolute right-0 top-full mt-1 w-56 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 max-h-[80vh] overflow-y-auto">
+                  <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 sticky top-0 theme-card">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">All Pages</p>
+                  </div>
+                  {allMenuLinks.map((link) => {
+                    const Icon = link.icon;
+                    const isActive = location.pathname === link.to;
+                    return (
+                      <Link
+                        key={`${link.to}-${link.label}`}
+                        to={link.to}
+                        onClick={() => setMenuOpen(false)}
+                        className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors ${
+                          isActive
+                            ? 'theme-accent font-bold bg-blue-50 dark:bg-blue-950/30'
+                            : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 flex-shrink-0" />
+                        {link.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
             {/* Settings */}
             <div ref={settingsRef} className="relative hidden sm:block">
               <button
