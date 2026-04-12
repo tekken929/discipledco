@@ -38,7 +38,7 @@ export const books: Book[] = [
         number: 3,
         title: 'The Covenant: Abraham',
         chapterRange: '12-25',
-        summary: 'God calls Abraham and promises him land, descendants, and blessing for all nations. Abraham\'s faith is tested repeatedly, including the near-sacrifice of Isaac. God establishes an everlasting covenant with Abraham\'s offspring.',
+        summary: 'God calls Abraham and promises him land, descendants, and blessing for all nations. Abraham\'s faith is tested repeatedly, including the near-sacrifice of Isaac, his son. God establishes an everlasting covenant with Abraham\'s offspring.',
         keyVerse: "I will make you into a great nation, and I will bless you; I will make your name great, and you will be a blessing.",
         verseReference: "Genesis 12:2"},
       {
