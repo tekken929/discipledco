@@ -1,6 +1,7 @@
 import { BookDisplay } from '../components/BookDisplay';
 import { ReturnToHome } from '../components/ReturnToHome';
 import { Modal } from '../components/Modal';
+import { BibleRoadmap } from '../components/BibleRoadmap';
 import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
@@ -120,6 +121,8 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             </div>
           </div>
         </div>
+
+        <BibleRoadmap />
 
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
