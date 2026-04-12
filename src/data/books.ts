@@ -128,7 +128,7 @@ export const books: Book[] = [
     type: 'Pentateuch / Law',
     overview: [
       'Leviticus is God\'s instruction manual for holy living. Written primarily for the priests and Levites, it details how sinful people can approach a holy God through sacrifice, ritual, and obedience. The book emphasizes that God dwells among His people and they must reflect His holiness.',
-      'The first half focuses on the sacrificial system, showing how blood must be shed for sin to be forgiven. The second half covers laws for daily life, festivals, and moral conduct. The repeated command "Be holy, because I am holy" summarizes the book\'s central message.',
+      'The first half focuses on the sacrificial system, showing how blood must be shed for sin to be forgiven. The second half covers laws for daily life, festivals, and moral conduct. The repeated command "Be holy, because I am holy," summarizes the book\'s central message.',
       'Though often considered difficult to read, Leviticus establishes critical concepts that point forward to Christ: atonement, substitution, the priesthood, and the distinction between clean and unclean. It reveals both the seriousness of sin and the gracious provision God makes for forgiveness.'
     ],
     written: 'c. 1445-1405 BC',
