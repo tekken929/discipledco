@@ -190,7 +190,7 @@ export const books: Book[] = [
     type: 'Pentateuch / Law / History',
     overview: [
       'Numbers chronicles Israel\'s forty-year journey from Mount Sinai to the edge of the Promised Land. The book derives its name from the two censuses conducted, but its Hebrew name "In the Wilderness" better captures its essence—a generation lost in the desert due to unbelief.',
-      'The book reveals a painful pattern: God\'s faithfulness and provision contrasted with Israel\'s constant grumbling, rebellion, and refusal to trust. What should have been an eleven-day journey becomes a forty-year sentence as the exodus generation dies in the wilderness for refusing to enter Canaan.',
+      'The book reveals a painful pattern: God\'s faithfulness and provision contrasted with Israel\'s constant grumbling, rebellion, and refusal to trust. What should have been an eleven-day journey becomes a forty-year sentence as the exodus generation dies in the wilderness due to their refusal to enter Canaan.',
       'Despite human failure, Numbers demonstrates God\'s patience, holiness, and unwavering commitment to His promises. He disciplines His people but does not abandon them. A new generation rises, ready to possess the land their parents forfeited through unbelief.'
     ],
     written: 'c. 1445-1405 BC',
