@@ -6,7 +6,7 @@ import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown, Users, ScrollText, Calendar, ArrowRight } from 'lucide-react';
+import { BookOpen, ChevronDown, Users, ScrollText, Calendar, ArrowRight, Map, Route, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface HomeProps {
@@ -67,6 +67,81 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 print:px-0 print:py-0">
 
+        {/* Three path tiles */}
+        <section className="mb-10 print:hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button
+              onClick={() => {
+                document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="group text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
+                  <Map className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                </div>
+                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+                Tour of the Bible
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+                Browse all 66 books — Old and New Testament — with summaries and context for each one.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                Explore the books
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </button>
+
+            <button
+              onClick={() => {
+                document.getElementById('reading-roadmap')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="group text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
+                  <Route className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                </div>
+                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Step by Step</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+                Bible Reading Roadmap
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+                A clear five-step path through Scripture — where to start, what to read next, and why order matters.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                See the roadmap
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </button>
+
+            <Link
+              to="/courses"
+              className="group text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
+                  <GraduationCap className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                </div>
+                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">8 Modules</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+                The Foundation Course
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+                A guided discipleship path covering what the Bible is, who God is, salvation, and how to live it out.
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                Start the course
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </Link>
+          </div>
+        </section>
+
         {/* START HERE intro */}
         <section className="mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden">
           <div className="max-w-3xl">
@@ -88,7 +163,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         </section>
 
         {/* Quick Roadmap */}
-        <section className="mb-12 print:hidden">
+        <section id="reading-roadmap" className="mb-12 print:hidden">
           <div className="theme-card rounded-2xl p-8 shadow-xl">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">A Simple Reading Roadmap</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">Follow these five steps in order and you will have a foundation before you know it.</p>
