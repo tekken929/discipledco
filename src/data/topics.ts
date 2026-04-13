@@ -1276,6 +1276,7 @@ export const topics: Topic[] = [
     title: 'Grace & Mercy',
     description: 'Understanding God\'s undeserved favor and compassion toward us',
     shortDescription: 'Grace and mercy are the foundation of everything. Mercy is God not giving us what we deserve, and grace is Him giving us what we could never earn. When you really understand that, it changes how you see yourself—and how you see Him.',
+    expandedContent: 'This is where everything started to shift for me. I had heard the words grace and mercy my whole life, but I did not really understand what they meant. I thought mercy was just God being kind, and grace was just a general idea of forgiveness. But when you slow down and really look at it, it is much more serious than that. Mercy is God holding back what we actually deserve. And if we are honest about who we are without Him, that should stop us for a second. Because none of us would stand on our own. Grace is the opposite side of that. It is not just that God holds back judgment. He gives us something we did not earn and could not earn. Not because we got our life together, but because He chose to. That is the part that is hard to accept. We naturally want to earn things. We want to feel like we did enough to deserve it. But grace does not work like that. It is given. And when you actually start to understand that, not just in your head but in how you live, it changes everything.',
     icon: '✝️',
     order: 1,
     references: [

@@ -29,6 +29,8 @@ import { Resurrection } from './pages/Resurrection';
 import { Easter } from './pages/Easter';
 import { Hallowed } from './pages/Hallowed';
 import Guidance from './pages/Guidance';
+import { Courses } from './pages/Courses';
+import { CourseModule } from './pages/CourseModule';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -59,6 +61,7 @@ const moreLinks = [
 ];
 
 const allMenuLinks = [
+  { to: '/courses', label: 'Foundation Course', icon: BookOpen },
   { to: '/music', label: 'Hallowed', icon: Music },
   { to: '/bible', label: 'Bible Overview', icon: BookOpen },
   { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
@@ -370,6 +373,8 @@ function AppContent() {
           <Route path="/easter" element={<Easter />} />
           <Route path="/hallowed" element={<Hallowed />} />
           <Route path="/guidance" element={<Guidance />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/module/:moduleId" element={<CourseModule />} />
         </Routes>
       </div>
 

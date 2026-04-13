@@ -6,11 +6,40 @@ import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown, Users, ScrollText, Calendar } from 'lucide-react';
+import { BookOpen, ChevronDown, Users, ScrollText, Calendar, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface HomeProps {
   selectedBook: Book;
 }
+
+const roadmapSteps = [
+  {
+    number: 1,
+    label: 'Start with Jesus',
+    detail: 'Begin with the Gospel of John — written so you believe Jesus is the Son of God.',
+  },
+  {
+    number: 2,
+    label: 'See how it spread',
+    detail: 'Read Acts to understand how the early church was born and grew after the resurrection.',
+  },
+  {
+    number: 3,
+    label: 'Learn how to live',
+    detail: "Paul's letters — Romans, Ephesians, Galatians — explain salvation, grace, and daily faith.",
+  },
+  {
+    number: 4,
+    label: 'Go back to the beginning',
+    detail: 'Now Genesis, Exodus, and the Psalms unlock depth you could not have seen before.',
+  },
+  {
+    number: 5,
+    label: 'Build daily wisdom',
+    detail: 'Proverbs, Psalms, and the general letters give you rhythm, wisdom, and endurance.',
+  },
+];
 
 export function Home({ selectedBook: initialBook }: HomeProps) {
   const [selectedBook, setSelectedBook] = useState<Book>(initialBook);
@@ -34,18 +63,79 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
     <>
       <ReturnToHome />
 
-      {/* SECTION DIVIDER */}
       <div className="section-divider print:hidden" />
 
-      {/* BOOK SELECTOR SECTION */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 print:px-0 print:py-0">
+
+        {/* START HERE intro */}
+        <section className="mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden">
+          <div className="max-w-3xl">
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-4">Start Here</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
+              Most people open the Bible and do not know where to start.
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+              Not because they do not care, but because no one ever showed them how to approach it. This page is not just a list of books. It is a guide to help you understand what you are reading, where to begin, and how it all connects.
+            </p>
+            <Link
+              to="/courses"
+              className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105"
+            >
+              Take the Full Course
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
+
+        {/* Quick Roadmap */}
+        <section className="mb-12 print:hidden">
+          <div className="theme-card rounded-2xl p-8 shadow-xl">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">A Simple Reading Roadmap</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">Follow these five steps in order and you will have a foundation before you know it.</p>
+
+            <div className="space-y-4">
+              {roadmapSteps.map((step, index) => (
+                <div key={step.number} className="flex items-start gap-5">
+                  <div className="flex flex-col items-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-gray-900 dark:bg-white flex items-center justify-center text-sm font-bold text-white dark:text-gray-900">
+                      {step.number}
+                    </div>
+                    {index < roadmapSteps.length - 1 && (
+                      <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mt-2" />
+                    )}
+                  </div>
+                  <div className="pb-2">
+                    <p className="font-bold text-gray-900 dark:text-white text-base">{step.label}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-0.5">{step.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How to Approach */}
+        <section className="mb-12 print:hidden">
+          <div className="rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">How to Approach the Bible</h3>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
+              Do not rush it. Read to understand, not to finish. Ask simple questions: What is happening? What does this mean? What does this change for me? The goal is not information. It is transformation over time.
+            </p>
+          </div>
+        </section>
+
+        {/* Book selector */}
         <div
           id="book-selector"
           ref={selectorRef}
-          className={`mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden transition-all duration-500 card-cinematic ${
+          className={`mb-6 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden transition-all duration-500 card-cinematic ${
             selectorVisible ? 'fade-in visible' : 'fade-in'
           }`}
         >
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-2xl leading-relaxed">
+            Below is the full structure of the Bible. As you follow the roadmap above, use this as your reference to understand where everything fits.
+          </p>
+
           <div className="mb-8">
             <div className="flex items-start justify-between gap-6">
               <div className="text-center flex-1">
@@ -74,7 +164,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {/* Old Testament Dropdown */}
             <div className="space-y-3">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">Old Testament</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
@@ -97,7 +186,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               </div>
             </div>
 
-            {/* New Testament Dropdown */}
             <div className="space-y-3">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">New Testament</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
@@ -127,6 +215,35 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
         </div>
+
+        {/* Go Deeper bridge */}
+        <section className="mt-16 mb-8 print:hidden">
+          <div className="theme-card rounded-2xl border-2 p-8 md:p-10">
+            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Go Deeper</p>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-snug">
+              The themes show up everywhere once you start seeing them.
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 max-w-2xl">
+              Once you begin reading, you will start to see key themes show up over and over again — grace, faith, sin, purpose, and spiritual warfare. These are not separate ideas. They are all connected. Explore them deeper in the Topics section.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/topics"
+                className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105"
+              >
+                Explore Topics
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/courses"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
+              >
+                Start the Full Course
+              </Link>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <Modal
@@ -161,23 +278,23 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 </p>
               </div>
 
-              <div className="border-l-4 border-purple-500 pl-4">
+              <div className="border-l-4 border-yellow-500 pl-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Calendar className="w-4 h-4 text-purple-500" />
+                  <Calendar className="w-4 h-4 text-yellow-500" />
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white">David (c. 1000 BC)</h4>
                 </div>
-                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-1">Books: Many Psalms</p>
+                <p className="text-sm font-semibold text-yellow-600 dark:text-yellow-400 mb-1">Books: Many Psalms</p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   King of Israel who wrote many Psalms expressing repentance, worship, struggle, and trust in God.
                 </p>
               </div>
 
-              <div className="border-l-4 border-yellow-500 pl-4">
+              <div className="border-l-4 border-amber-500 pl-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Calendar className="w-4 h-4 text-yellow-500" />
+                  <Calendar className="w-4 h-4 text-amber-500" />
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white">Solomon (c. 970–930 BC)</h4>
                 </div>
-                <p className="text-sm font-semibold text-yellow-600 dark:text-yellow-400 mb-1">
+                <p className="text-sm font-semibold text-amber-600 dark:text-amber-400 mb-1">
                   Books: Proverbs, Ecclesiastes, Song of Songs
                 </p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -242,16 +359,16 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 </div>
                 <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 mb-1">Books: 1 Peter, 2 Peter</p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  One of Jesus' closest disciples. Writes with the perspective of someone who failed, was corrected, and transformed. Emphasizes standing firm in faith and being watchful.
+                  One of Jesus' closest disciples. Writes with the perspective of someone who failed, was corrected, and transformed.
                 </p>
               </div>
 
-              <div className="border-l-4 border-purple-500 pl-4">
+              <div className="border-l-4 border-gray-500 pl-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Calendar className="w-4 h-4 text-purple-500" />
+                  <Calendar className="w-4 h-4 text-gray-500" />
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white">John (c. AD 90)</h4>
                 </div>
-                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-1">
+                <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
                   Books: John, 1 John, 2 John, 3 John, Revelation
                 </p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -265,7 +382,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             </div>
           </div>
 
-          <div className="theme-card rounded-xl p-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30">
+          <div className="theme-card rounded-xl p-6 bg-gradient-to-br from-blue-50 to-slate-50 dark:from-blue-950/30 dark:to-slate-950/30">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">The Big Picture</h3>
 
             <div className="grid grid-cols-3 gap-4 mb-4">
@@ -274,7 +391,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 <p className="text-sm text-gray-700 dark:text-gray-300 font-semibold">Time Span</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-purple-600 dark:text-purple-400">~40</p>
+                <p className="text-3xl font-bold text-gray-600 dark:text-gray-400">~40</p>
                 <p className="text-sm text-gray-700 dark:text-gray-300 font-semibold">Authors</p>
               </div>
               <div className="text-center">
