@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, Clock, HelpCircle } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -11,6 +11,59 @@ interface NavigationMenuProps {
   colorTheme: ColorTheme;
   onThemeChange: (theme: ColorTheme) => void;
 }
+
+interface NavLink {
+  to: string;
+  icon: React.ElementType;
+  title: string;
+  external?: boolean;
+}
+
+interface NavSection {
+  heading: string;
+  links: NavLink[];
+}
+
+const sections: NavSection[] = [
+  {
+    heading: 'Bible',
+    links: [
+      { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
+      { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
+      { to: 'https://bible-verse-search-a-5z3m.bolt.host/', icon: Lightbulb, title: 'Lookup any Verse', external: true },
+    ],
+  },
+  {
+    heading: 'Religion',
+    links: [
+      { to: '/religions', icon: FolderOpen, title: 'What is Religion' },
+      { to: '/topics', icon: MessageCircle, title: 'Everyday Topics' },
+      { to: '/stories', icon: Book, title: 'Popular Stories' },
+      { to: '/guidance', icon: BookOpen, title: 'Guidance' },
+      { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
+    ],
+  },
+  {
+    heading: 'Music',
+    links: [
+      { to: '/music', icon: Music, title: 'Music Jukebox' },
+      { to: '/hallowed', icon: Sparkles, title: 'Hallowed Band' },
+      { to: '/podcasts', icon: Radio, title: 'Podcasts' },
+      { to: '/preaching', icon: Mic, title: 'Wisdom' },
+    ],
+  },
+  {
+    heading: 'Information',
+    links: [
+      { to: '/timeline', icon: Clock, title: 'Timeline' },
+      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
+      { to: '/easter', icon: Sparkles, title: 'Easter' },
+      { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
+      { to: '/books', icon: BookText, title: 'Books' },
+      { to: '/faqs', icon: HelpCircle, title: 'FAQs' },
+    ],
+  },
+];
 
 export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeChange }: NavigationMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,96 +77,42 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
     setShowThemeMenu(false);
   }, [location.pathname]);
 
-  const navigationLinks = [
-    {
-      to: '/topics',
-      icon: MessageCircle,
-      title: 'Everyday Topics'
-    },
-    {
-      to: '/stories',
-      icon: Book,
-      title: 'Popular Stories'
-    },
-    {
-      to: '/religions',
-      icon: FolderOpen,
-      title: 'What is Religion'
-    },
-    {
-      to: '/hallowed',
-      icon: Sparkles,
-      title: 'Hallowed Band'
-    },
-    {
-      to: '/music',
-      icon: Music,
-      title: 'Music Jukebox'
-    },
-    {
-      to: '/preaching',
-      icon: Mic,
-      title: 'Wisdom'
-    }
-  ];
+  const renderLink = (link: NavLink) => {
+    const Icon = link.icon;
+    const isActive = !link.external && location.pathname === link.to;
 
-  const resourceLinks = [
-    {
-      to: '/bible',
-      icon: BookOpen,
-      title: 'Bible Overview'
-    },
-    {
-      to: '/guidance',
-      icon: BookOpen,
-      title: 'Guidance'
-    },
-    {
-      to: '/bible-versions',
-      icon: BookOpen,
-      title: 'Bible Versions'
-    },
-    {
-      to: '/christian-holidays',
-      icon: BookOpen,
-      title: 'Holiday Origins'
-    },
-    {
-      to: '/books',
-      icon: BookText,
-      title: 'Books'
-    },
-    {
-      to: '/podcasts',
-      icon: Radio,
-      title: 'Podcasts'
-    },
-    {
-      to: '/easter',
-      icon: Sparkles,
-      title: 'Easter'
-    },
-    {
-      to: '/resurrection',
-      icon: BookOpen,
-      title: 'Resurrection'
-    },
-    {
-      to: '/faqs',
-      icon: Users,
-      title: 'FAQs'
-    },
-    {
-      to: '/timeline',
-      icon: BookOpen,
-      title: 'Timeline'
-    },
-    {
-      to: '/church-mentors',
-      icon: UserCheck,
-      title: 'Mentors'
+    if (link.external) {
+      return (
+        <a
+          key={link.to}
+          href={link.to}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setIsOpen(false)}
+          className="flex items-center gap-3 px-4 py-2.5 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6"
+        >
+          <Icon className="w-4 h-4" />
+          <span className="font-medium text-sm">{link.title}</span>
+        </a>
+      );
     }
-  ];
+
+    return (
+      <Link
+        key={link.to}
+        to={link.to}
+        onClick={() => setIsOpen(false)}
+        className={`flex items-center gap-3 px-4 py-2.5 transition-all duration-300 ${
+          isActive
+            ? 'theme-primary-button text-white nav-link-active'
+            : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
+        }`}
+      >
+        <Icon className="w-4 h-4" />
+        <span className="font-medium text-sm">{link.title}</span>
+      </Link>
+    );
+  };
 
   return (
     <div className="relative">
@@ -129,108 +128,22 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 theme-card rounded-lg shadow-2xl border-2 overflow-hidden z-50">
+        <div className="absolute right-0 mt-2 w-64 theme-card rounded-lg shadow-2xl border-2 overflow-hidden z-50 max-h-[85vh] overflow-y-auto">
 
-          {/* Bible section */}
-          <div className="p-2 border-b border-gray-200 dark:border-gray-700">
-            <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Bible</p>
-          </div>
-          <nav className="py-2 border-b border-gray-200 dark:border-gray-700">
-            {[
-              { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
-              { to: 'https://bible-verse-search-a-5z3m.bolt.host/', icon: Lightbulb, title: 'Lookup any Verse', external: true },
-            ].map((link) => {
-              const Icon = link.icon;
-              const isActive = !link.external && location.pathname === link.to;
-              if (link.external) {
-                return (
-                  <a
-                    key={link.to}
-                    href={link.to}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6"
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{link.title}</span>
-                  </a>
-                );
-              }
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
-                    isActive
-                      ? 'theme-primary-button text-white nav-link-active'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{link.title}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Main navigation */}
-          <div className="p-2">
-            <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 pt-1">Navigation</p>
-          </div>
-          <nav className="py-2">
-            {navigationLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive = location.pathname === link.to;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
-                    isActive
-                      ? 'theme-primary-button text-white nav-link-active'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{link.title}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          <div className="border-t border-gray-200 dark:border-gray-700 py-2">
-            <div className="px-2">
-              <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">More</p>
+          {sections.map((section, i) => (
+            <div key={section.heading} className={i > 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}>
+              <div className="px-4 pt-3 pb-1">
+                <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">{section.heading}</p>
+              </div>
+              <nav className="pb-2">
+                {section.links.map(renderLink)}
+              </nav>
             </div>
-            <nav>
-              {resourceLinks.filter(l => l.to !== '/bible').map((link) => {
-                const Icon = link.icon;
-                const isActive = location.pathname === link.to;
-                return (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
-                      isActive
-                        ? 'theme-primary-button text-white nav-link-active'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{link.title}</span>
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
+          ))}
 
           <div className="border-t border-gray-200 dark:border-gray-700 py-2">
-            <div className="px-2">
-              <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">Settings</p>
+            <div className="px-4 pt-2 pb-1">
+              <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">Settings</p>
             </div>
 
             <button
@@ -238,11 +151,11 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                 e.stopPropagation();
                 setShowThemeMenu(!showThemeMenu);
               }}
-              className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+              className="flex items-center justify-between w-full px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
             >
               <div className="flex items-center gap-3">
-                <Palette className="w-5 h-5" />
-                <span className="font-medium">Theme</span>
+                <Palette className="w-4 h-4" />
+                <span className="font-medium text-sm">Theme</span>
               </div>
               <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">{colorTheme}</span>
             </button>
@@ -250,13 +163,8 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
             {showThemeMenu && (
               <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 space-y-1">
                 <button
-                  onClick={() => {
-                    onThemeChange('subtle');
-                    setShowThemeMenu(false);
-                  }}
-                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
-                    colorTheme === 'subtle' ? 'bg-slate-200 dark:bg-slate-700' : 'hover:bg-slate-100 dark:hover:bg-slate-800'
-                  }`}
+                  onClick={() => { onThemeChange('subtle'); setShowThemeMenu(false); }}
+                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${colorTheme === 'subtle' ? 'bg-slate-200 dark:bg-slate-700' : 'hover:bg-slate-100 dark:hover:bg-slate-800'}`}
                 >
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
@@ -267,13 +175,8 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                   </div>
                 </button>
                 <button
-                  onClick={() => {
-                    onThemeChange('happy');
-                    setShowThemeMenu(false);
-                  }}
-                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
-                    colorTheme === 'happy' ? 'bg-amber-200 dark:bg-orange-900' : 'hover:bg-amber-50 dark:hover:bg-orange-950'
-                  }`}
+                  onClick={() => { onThemeChange('happy'); setShowThemeMenu(false); }}
+                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${colorTheme === 'happy' ? 'bg-amber-200 dark:bg-orange-900' : 'hover:bg-amber-50 dark:hover:bg-orange-950'}`}
                 >
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
@@ -284,13 +187,8 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
                   </div>
                 </button>
                 <button
-                  onClick={() => {
-                    onThemeChange('blackwhite');
-                    setShowThemeMenu(false);
-                  }}
-                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${
-                    colorTheme === 'blackwhite' ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-900'
-                  }`}
+                  onClick={() => { onThemeChange('blackwhite'); setShowThemeMenu(false); }}
+                  className={`w-full px-3 py-2 text-left rounded-lg transition-colors ${colorTheme === 'blackwhite' ? 'bg-gray-300 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-900'}`}
                 >
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
@@ -304,26 +202,22 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
             )}
 
             <button
-              onClick={() => {
-                toggleDarkMode();
-              }}
-              className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+              onClick={toggleDarkMode}
+              className="flex items-center justify-between w-full px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
             >
               <div className="flex items-center gap-3">
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                <span className="font-medium">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                <span className="font-medium text-sm">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
               </div>
             </button>
 
             <button
-              onClick={() => {
-                toggleBubbles();
-              }}
-              className="flex items-center justify-between w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+              onClick={toggleBubbles}
+              className="flex items-center justify-between w-full px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
             >
               <div className="flex items-center gap-3">
-                <Sparkles className="w-5 h-5" />
-                <span className="font-medium">Floating Bubbles</span>
+                <Sparkles className="w-4 h-4" />
+                <span className="font-medium text-sm">Floating Bubbles</span>
               </div>
               <span className={`text-xs px-2 py-1 rounded-full ${bubblesEnabled ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'}`}>
                 {bubblesEnabled ? 'ON' : 'OFF'}
