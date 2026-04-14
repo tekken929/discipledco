@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -130,8 +130,54 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-64 theme-card rounded-lg shadow-2xl border-2 overflow-hidden z-50">
+
+          {/* Bible section */}
           <div className="p-2 border-b border-gray-200 dark:border-gray-700">
-            <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Navigation</p>
+            <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Bible</p>
+          </div>
+          <nav className="py-2 border-b border-gray-200 dark:border-gray-700">
+            {[
+              { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
+              { to: 'https://bible-verse-search-a-5z3m.bolt.host/', icon: Lightbulb, title: 'Lookup any Verse', external: true },
+            ].map((link) => {
+              const Icon = link.icon;
+              const isActive = !link.external && location.pathname === link.to;
+              if (link.external) {
+                return (
+                  <a
+                    key={link.to}
+                    href={link.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6"
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="font-medium">{link.title}</span>
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
+                    isActive
+                      ? 'theme-primary-button text-white nav-link-active'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium">{link.title}</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Main navigation */}
+          <div className="p-2">
+            <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 pt-1">Navigation</p>
           </div>
           <nav className="py-2">
             {navigationLinks.map((link) => {
@@ -160,7 +206,7 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
               <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide px-2 mb-2">More</p>
             </div>
             <nav>
-              {resourceLinks.map((link) => {
+              {resourceLinks.filter(l => l.to !== '/bible').map((link) => {
                 const Icon = link.icon;
                 const isActive = location.pathname === link.to;
                 return (
