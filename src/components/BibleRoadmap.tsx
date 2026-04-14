@@ -134,9 +134,136 @@ const pillars = [
   },
 ];
 
-export function BibleRoadmap() {
-  const [open, setOpen] = useState(false);
+interface BibleRoadmapProps {
+  defaultOpen?: boolean;
+}
+
+export function BibleRoadmap({ defaultOpen = false }: BibleRoadmapProps) {
+  const [open, setOpen] = useState(defaultOpen);
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
+
+  const content = (
+    <div className="border-t border-gray-200 dark:border-gray-700">
+      {/* Intro */}
+      <div className="px-8 py-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl">
+          The Bible is not a novel to be read cover to cover in order. It is a library — 66 books of different genres, written across 15 centuries. Reading it in the right order helps you build understanding progressively, so each book deepens what you already know rather than confusing you with context you haven't yet encountered.
+        </p>
+      </div>
+
+      {/* Four Pillars */}
+      <div className="px-8 py-8 border-b border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <span className="w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center text-sm font-bold">1</span>
+          How to Approach Every Passage
+        </h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {pillars.map((pillar) => {
+            const Icon = pillar.icon;
+            return (
+              <div key={pillar.title} className={`rounded-xl border-2 ${pillar.border} ${pillar.bg} p-5`}>
+                <div className="flex items-center gap-3 mb-3">
+                  <Icon className={`w-5 h-5 ${pillar.color} flex-shrink-0`} />
+                  <div>
+                    <p className={`text-xs font-bold uppercase tracking-wider ${pillar.color}`}>{pillar.title}</p>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">{pillar.question}</p>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{pillar.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Reading Order */}
+      <div className="px-8 py-8">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+          <span className="w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center text-sm font-bold">2</span>
+          Recommended Reading Order
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 ml-9">Click each phase to see the books and why to read them in this order.</p>
+
+        <div className="space-y-3">
+          {phases.map((phase, index) => {
+            const isExpanded = expandedPhase === phase.phase;
+            return (
+              <div key={phase.phase} className={`rounded-xl border-2 ${phase.borderColor} overflow-hidden transition-all duration-200`}>
+                <button
+                  onClick={() => setExpandedPhase(isExpanded ? null : phase.phase)}
+                  className={`w-full flex items-center justify-between px-5 py-4 ${isExpanded ? phase.bgColor : 'hover:' + phase.bgColor} transition-colors`}
+                >
+                  <div className="flex items-center gap-4">
+                    <span className={`w-8 h-8 rounded-full border-2 ${phase.borderColor} flex items-center justify-center text-sm font-bold ${phase.color} flex-shrink-0`}>
+                      {phase.phase}
+                    </span>
+                    <div className="text-left">
+                      <p className="font-bold text-gray-900 dark:text-white">{phase.title}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{phase.subtitle}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 hidden sm:block">
+                      {phase.books.length} book{phase.books.length !== 1 ? 's' : ''}
+                    </span>
+                    {isExpanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
+                  </div>
+                </button>
+
+                {isExpanded && (
+                  <div className={`${phase.bgColor} border-t ${phase.borderColor} px-5 py-4`}>
+                    <div className="space-y-3 ml-12">
+                      {phase.books.map((book) => (
+                        <div key={book.name} className="flex gap-3">
+                          <div className="flex items-start gap-2 flex-shrink-0 mt-0.5">
+                            <CheckCircle2 className={`w-4 h-4 ${phase.color} flex-shrink-0`} />
+                          </div>
+                          <div>
+                            <p className="font-bold text-gray-900 dark:text-white text-sm">{book.name}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{book.why}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {index < phases.length - 1 && (
+                      <div className="flex items-center gap-2 mt-4 ml-12 text-gray-400 dark:text-gray-500">
+                        <ArrowRight className="w-4 h-4" />
+                        <span className="text-xs">Then move to Phase {phase.phase + 1}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Tips */}
+        <div className="mt-8 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6">
+          <h4 className="font-bold text-gray-900 dark:text-white mb-4">Practical Tips for Every Reader</h4>
+          <ul className="space-y-2.5">
+            {[
+              'Read a little every day rather than large amounts infrequently. Consistency builds understanding.',
+              'Keep a journal. Write one observation, one truth, and one application after each reading.',
+              "Don't skip difficult passages — note them and return with more context as you grow.",
+              'Read with prayer. Ask God to give you understanding before you open the page.',
+              'The Old Testament points to Jesus. As you read, ask: "How does this connect to Christ?"',
+              'Use a reliable translation. ESV, CSB, and NIV are good starting points for modern readers.',
+            ].map((tip) => (
+              <li key={tip} className="flex gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                <span className="text-amber-500 font-bold flex-shrink-0 mt-0.5">—</span>
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (defaultOpen) {
+    return <div className="print:hidden">{content}</div>;
+  }
 
   return (
     <div className="mb-10 theme-card rounded-2xl shadow-xl overflow-hidden print:hidden">
@@ -159,124 +286,7 @@ export function BibleRoadmap() {
         </div>
       </button>
 
-      {open && (
-        <div className="border-t border-gray-200 dark:border-gray-700">
-          {/* Intro */}
-          <div className="px-8 py-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20">
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl">
-              The Bible is not a novel to be read cover to cover in order. It is a library — 66 books of different genres, written across 15 centuries. Reading it in the right order helps you build understanding progressively, so each book deepens what you already know rather than confusing you with context you haven't yet encountered.
-            </p>
-          </div>
-
-          {/* Four Pillars */}
-          <div className="px-8 py-8 border-b border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-              <span className="w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center text-sm font-bold">1</span>
-              How to Approach Every Passage
-            </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {pillars.map((pillar) => {
-                const Icon = pillar.icon;
-                return (
-                  <div key={pillar.title} className={`rounded-xl border-2 ${pillar.border} ${pillar.bg} p-5`}>
-                    <div className="flex items-center gap-3 mb-3">
-                      <Icon className={`w-5 h-5 ${pillar.color} flex-shrink-0`} />
-                      <div>
-                        <p className={`text-xs font-bold uppercase tracking-wider ${pillar.color}`}>{pillar.title}</p>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">{pillar.question}</p>
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{pillar.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Reading Order */}
-          <div className="px-8 py-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-              <span className="w-7 h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center text-sm font-bold">2</span>
-              Recommended Reading Order
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 ml-9">Click each phase to see the books and why to read them in this order.</p>
-
-            <div className="space-y-3">
-              {phases.map((phase, index) => {
-                const isExpanded = expandedPhase === phase.phase;
-                return (
-                  <div key={phase.phase} className={`rounded-xl border-2 ${phase.borderColor} overflow-hidden transition-all duration-200`}>
-                    <button
-                      onClick={() => setExpandedPhase(isExpanded ? null : phase.phase)}
-                      className={`w-full flex items-center justify-between px-5 py-4 ${isExpanded ? phase.bgColor : 'hover:' + phase.bgColor} transition-colors`}
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className={`w-8 h-8 rounded-full border-2 ${phase.borderColor} flex items-center justify-center text-sm font-bold ${phase.color} flex-shrink-0`}>
-                          {phase.phase}
-                        </span>
-                        <div className="text-left">
-                          <p className="font-bold text-gray-900 dark:text-white">{phase.title}</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{phase.subtitle}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 hidden sm:block">
-                          {phase.books.length} book{phase.books.length !== 1 ? 's' : ''}
-                        </span>
-                        {isExpanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
-                      </div>
-                    </button>
-
-                    {isExpanded && (
-                      <div className={`${phase.bgColor} border-t ${phase.borderColor} px-5 py-4`}>
-                        <div className="space-y-3 ml-12">
-                          {phase.books.map((book, i) => (
-                            <div key={book.name} className="flex gap-3">
-                              <div className="flex items-start gap-2 flex-shrink-0 mt-0.5">
-                                <CheckCircle2 className={`w-4 h-4 ${phase.color} flex-shrink-0`} />
-                              </div>
-                              <div>
-                                <p className="font-bold text-gray-900 dark:text-white text-sm">{book.name}</p>
-                                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{book.why}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        {index < phases.length - 1 && (
-                          <div className="flex items-center gap-2 mt-4 ml-12 text-gray-400 dark:text-gray-500">
-                            <ArrowRight className="w-4 h-4" />
-                            <span className="text-xs">Then move to Phase {phase.phase + 1}</span>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Tips */}
-            <div className="mt-8 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-6">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-4">Practical Tips for Every Reader</h4>
-              <ul className="space-y-2.5">
-                {[
-                  'Read a little every day rather than large amounts infrequently. Consistency builds understanding.',
-                  'Keep a journal. Write one observation, one truth, and one application after each reading.',
-                  'Don\'t skip difficult passages — note them and return with more context as you grow.',
-                  'Read with prayer. Ask God to give you understanding before you open the page.',
-                  'The Old Testament points to Jesus. As you read, ask: "How does this connect to Christ?"',
-                  'Use a reliable translation. ESV, CSB, and NIV are good starting points for modern readers.',
-                ].map((tip) => (
-                  <li key={tip} className="flex gap-2.5 text-sm text-gray-700 dark:text-gray-300">
-                    <span className="text-amber-500 font-bold flex-shrink-0 mt-0.5">—</span>
-                    {tip}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
+      {open && content}
     </div>
   );
 }

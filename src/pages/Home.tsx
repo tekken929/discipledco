@@ -5,7 +5,7 @@ import { BibleRoadmap } from '../components/BibleRoadmap';
 import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
-import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { BookOpen, ChevronDown, Users, ScrollText, Calendar, ArrowRight, Map, Route, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -13,40 +13,12 @@ interface HomeProps {
   selectedBook: Book;
 }
 
-const roadmapSteps = [
-  {
-    number: 1,
-    label: 'Start with Jesus',
-    detail: 'Begin with the Gospel of John — written so you believe Jesus is the Son of God.',
-  },
-  {
-    number: 2,
-    label: 'See how it spread',
-    detail: 'Read Acts to understand how the early church was born and grew after the resurrection.',
-  },
-  {
-    number: 3,
-    label: 'Learn how to live',
-    detail: "Paul's letters — Romans, Ephesians, Galatians — explain salvation, grace, and daily faith.",
-  },
-  {
-    number: 4,
-    label: 'Go back to the beginning',
-    detail: 'Now Genesis, Exodus, and the Psalms unlock depth you could not have seen before.',
-  },
-  {
-    number: 5,
-    label: 'Build daily wisdom',
-    detail: 'Proverbs, Psalms, and the general letters give you rhythm, wisdom, and endurance.',
-  },
-];
 
 export function Home({ selectedBook: initialBook }: HomeProps) {
   const [selectedBook, setSelectedBook] = useState<Book>(initialBook);
   const [isAuthorsModalOpen, setIsAuthorsModalOpen] = useState(false);
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
   const { ref: selectorRef, isVisible: selectorVisible } = useScrollAnimation();
-  const parallaxOffset = useParallax(0.3);
 
   const oldTestamentBooks = books.filter(b => b.testament === 'Old Testament');
   const newTestamentBooks = books.filter(b => b.testament === 'New Testament');
@@ -67,14 +39,24 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 print:px-0 print:py-0">
 
-        {/* Three path tiles */}
-        <section className="mb-10 print:hidden">
+        {/* START HERE intro */}
+        <section className="mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden">
+          <div className="max-w-3xl mb-8">
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-4">Start Here</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
+              Most people open the Bible and do not know where to start.
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              Not because they do not care, but because no one ever showed them how to approach it. This page is not just a list of books. It is a guide to help you understand what you are reading, where to begin, and how it all connects.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <button
               onClick={() => {
                 document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
-              className="group text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer"
+              className="group text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
@@ -95,10 +77,8 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             </button>
 
             <button
-              onClick={() => {
-                document.getElementById('reading-roadmap')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-              className="group text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer"
+              onClick={() => setIsRoadmapModalOpen(true)}
+              className="group text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
@@ -110,17 +90,17 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 Bible Reading Roadmap
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
-                A clear five-step path through Scripture — where to start, what to read next, and why order matters.
+                A clear path through Scripture — where to start, what to read next, and why order matters.
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                See the roadmap
+                Open the roadmap
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </button>
 
             <Link
               to="/courses"
-              className="group text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1"
+              className="group text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-white/50 dark:bg-gray-800/50"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
@@ -139,53 +119,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </Link>
-          </div>
-        </section>
-
-        {/* START HERE intro */}
-        <section className="mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden">
-          <div className="max-w-3xl">
-            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-4">Start Here</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
-              Most people open the Bible and do not know where to start.
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-              Not because they do not care, but because no one ever showed them how to approach it. This page is not just a list of books. It is a guide to help you understand what you are reading, where to begin, and how it all connects.
-            </p>
-            <Link
-              to="/courses"
-              className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105"
-            >
-              Take the Full Course
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </section>
-
-        {/* Quick Roadmap */}
-        <section id="reading-roadmap" className="mb-12 print:hidden">
-          <div className="theme-card rounded-2xl p-8 shadow-xl">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">A Simple Reading Roadmap</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">Follow these five steps in order and you will have a foundation before you know it.</p>
-
-            <div className="space-y-4">
-              {roadmapSteps.map((step, index) => (
-                <div key={step.number} className="flex items-start gap-5">
-                  <div className="flex flex-col items-center flex-shrink-0">
-                    <div className="w-9 h-9 rounded-full bg-gray-900 dark:bg-white flex items-center justify-center text-sm font-bold text-white dark:text-gray-900">
-                      {step.number}
-                    </div>
-                    {index < roadmapSteps.length - 1 && (
-                      <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mt-2" />
-                    )}
-                  </div>
-                  <div className="pb-2">
-                    <p className="font-bold text-gray-900 dark:text-white text-base">{step.label}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-0.5">{step.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -285,8 +218,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
         </div>
 
-        <BibleRoadmap />
-
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
         </div>
@@ -320,6 +251,14 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         </section>
 
       </main>
+
+      <Modal
+        isOpen={isRoadmapModalOpen}
+        onClose={() => setIsRoadmapModalOpen(false)}
+        title="Bible Reading Roadmap"
+      >
+        <BibleRoadmap defaultOpen />
+      </Modal>
 
       <Modal
         isOpen={isAuthorsModalOpen}
