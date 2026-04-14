@@ -258,7 +258,7 @@ export function Welcome() {
       {/* VERSE BANNER */}
       <section className="theme-primary-bg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-          <p className="text-xl md:text-xl font-bold text-white leading-relaxed mb-4">
+          <p className="text-2xl md:text-2xl font-bold text-white leading-relaxed mb-4">
             "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
           </p>
           <p className="text-white/80 font-semibold text-lg">— Genesis 6:5 (NIV)</p>
