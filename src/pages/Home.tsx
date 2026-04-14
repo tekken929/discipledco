@@ -27,7 +27,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
     const book = books.find(b => b.id === bookId);
     if (book) {
       setSelectedBook(book);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 

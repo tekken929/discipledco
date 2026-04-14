@@ -155,64 +155,13 @@ function TopNav() {
 
           {/* Right controls */}
           <div className="flex items-center gap-2">
-            {/* Menu button with all links */}
-            <div ref={menuRef} className="relative">
-              <button
-                onClick={() => { setMenuOpen(!menuOpen); setSettingsOpen(false); }}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
-                aria-label="All pages menu"
-              >
-                {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-                <span className="hidden md:inline">Menu</span>
-              </button>
-              {menuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 max-h-[85vh] overflow-y-auto">
-                  {menuSections.map((section, i) => (
-                    <div key={section.heading} className={i > 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}>
-                      <div className="px-4 pt-3 pb-1 sticky top-0 theme-card">
-                        <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">{section.heading}</p>
-                      </div>
-                      <nav className="pb-2">
-                        {section.links.map((link) => {
-                          const Icon = link.icon;
-                          const isActive = !link.external && location.pathname === link.to;
-                          if (link.external) {
-                            return (
-                              <a
-                                key={link.label}
-                                href={link.to}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => setMenuOpen(false)}
-                                className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6"
-                              >
-                                <Icon className="w-4 h-4 flex-shrink-0" />
-                                {link.label}
-                              </a>
-                            );
-                          }
-                          return (
-                            <Link
-                              key={link.label}
-                              to={link.to}
-                              onClick={() => setMenuOpen(false)}
-                              className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all ${
-                                isActive
-                                  ? 'theme-primary-button text-white'
-                                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6'
-                              }`}
-                            >
-                              <Icon className="w-4 h-4 flex-shrink-0" />
-                              {link.label}
-                            </Link>
-                          );
-                        })}
-                      </nav>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg border-2 theme-card text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
 
             {/* Settings */}
             <div ref={settingsRef} className="relative hidden sm:block">
@@ -271,13 +220,64 @@ function TopNav() {
               )}
             </div>
 
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-lg border-2 theme-card text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
+            {/* Menu button with all links */}
+            <div ref={menuRef} className="relative">
+              <button
+                onClick={() => { setMenuOpen(!menuOpen); setSettingsOpen(false); }}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+                aria-label="All pages menu"
+              >
+                {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                <span className="hidden md:inline">Menu</span>
+              </button>
+              {menuOpen && (
+                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 max-h-[85vh] overflow-y-auto">
+                  {menuSections.map((section, i) => (
+                    <div key={section.heading} className={i > 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}>
+                      <div className="px-4 pt-3 pb-1 sticky top-0 theme-card">
+                        <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">{section.heading}</p>
+                      </div>
+                      <nav className="pb-2">
+                        {section.links.map((link) => {
+                          const Icon = link.icon;
+                          const isActive = !link.external && location.pathname === link.to;
+                          if (link.external) {
+                            return (
+                              <a
+                                key={link.label}
+                                href={link.to}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setMenuOpen(false)}
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6"
+                              >
+                                <Icon className="w-4 h-4 flex-shrink-0" />
+                                {link.label}
+                              </a>
+                            );
+                          }
+                          return (
+                            <Link
+                              key={link.label}
+                              to={link.to}
+                              onClick={() => setMenuOpen(false)}
+                              className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all ${
+                                isActive
+                                  ? 'theme-primary-button text-white'
+                                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6'
+                              }`}
+                            >
+                              <Icon className="w-4 h-4 flex-shrink-0" />
+                              {link.label}
+                            </Link>
+                          );
+                        })}
+                      </nav>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Mobile hamburger */}
             <button

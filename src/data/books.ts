@@ -2324,7 +2324,7 @@ export const books: Book[] = [
     testament: 'New Testament' as const,
     authorDescription: "Fisherman, son of Zebedee, and one of Jesus' closest disciples. Called the beloved disciple, he wrote extensively about love and eternal life.",
     bibleVersion: 'NIV',
-    imageUrl: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageUrl: 'https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg?auto=compress&cs=tinysrgb&w=800',
     structure: [
       {
         number: 1,
