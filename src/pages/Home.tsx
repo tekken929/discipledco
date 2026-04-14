@@ -122,15 +122,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
         </section>
 
-        {/* How to Approach */}
-        <section className="mb-12 print:hidden">
-          <div className="rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">How to Approach the Bible</h3>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
-              Do not rush it. Read to understand, not to finish. Ask simple questions: What is happening? What does this mean? What does this change for me? The goal is not information. It is transformation over time.
-            </p>
-          </div>
-        </section>
 
         {/* Book selector */}
         <div
@@ -140,35 +131,16 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             selectorVisible ? 'fade-in visible' : 'fade-in'
           }`}
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-2xl leading-relaxed">
-            Below is the full structure of the Bible. As you follow the roadmap above, use this as your reference to understand where everything fits.
-          </p>
-
-          <div className="mb-8">
-            <div className="flex items-start justify-between gap-6">
-              <div className="text-center flex-1">
-                <div className="flex items-center justify-center mb-4">
-                  <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
-                </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                  Bible Overview
-                </h1>
-                <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                  The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setIsAuthorsModalOpen(true)}
-                className="flex-shrink-0 theme-card border-2 border-blue-500 hover:border-blue-600 dark:border-blue-400 dark:hover:border-blue-500 rounded-xl p-4 hover:shadow-lg transition-all group hover:scale-105 cursor-pointer"
-              >
-                <div className="flex flex-col items-center gap-2 w-32">
-                  <Users className="w-8 h-8 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-sm font-bold text-gray-900 dark:text-white text-center leading-tight">Bible Authors & Evidence</h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 text-center">Click to explore</p>
-                </div>
-              </button>
+          <div className="mb-8 text-center">
+            <div className="flex items-center justify-center mb-4">
+              <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Bible Overview
+            </h1>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              The Bible is a sacred collection of 66 books written over 1,500 years by more than 40 different authors, all inspired by God. Divided into the Old and New Testaments, these ancient texts contain history, poetry, prophecy, and teachings that reveal God's plan for humanity and His love for all people.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -222,8 +194,29 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           <BookDisplay book={selectedBook} />
         </div>
 
+        {/* Bible Authors tile */}
+        <section className="mt-8 mb-8 print:hidden">
+          <button
+            onClick={() => setIsAuthorsModalOpen(true)}
+            className="group w-full text-left theme-card border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 cursor-pointer"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/40 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 dark:group-hover:bg-blue-950/60 transition-colors">
+                  <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">Bible Authors & Evidence</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Who wrote the Bible, when, and why their accounts can be trusted — Old and New Testament.</p>
+                </div>
+              </div>
+              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all flex-shrink-0 ml-4" />
+            </div>
+          </button>
+        </section>
+
         {/* Go Deeper bridge */}
-        <section className="mt-16 mb-8 print:hidden">
+        <section className="mt-4 mb-8 print:hidden">
           <div className="theme-card rounded-2xl border-2 p-8 md:p-10">
             <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Go Deeper</p>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-snug">
