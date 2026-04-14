@@ -15,7 +15,8 @@ This guide will help you easily edit content across the Discipled Co. website. E
 7. [Editing FAQs Page](#editing-faqs-page)
 8. [Editing Header & Logo](#editing-header--logo)
 9. [Editing Footer & Social Links](#editing-footer--social-links)
-10. [Adding New Pages](#adding-new-pages)
+10. [Editing the Home Page](#editing-the-home-page)
+11. [Adding New Pages](#adding-new-pages)
 
 ---
 
@@ -413,7 +414,138 @@ Find this line (around line 82):
 
 ---
 
-## 10. Adding New Pages
+## 10. Editing the Home Page
+
+### Location: `src/pages/Home.tsx`
+
+The Home page is the Bible Overview page — the main landing page when users arrive at the site. It contains a "Start Here" intro, a book selector, and a "Go Deeper" section.
+
+### Sections You Can Edit:
+
+---
+
+### "Start Here" Intro Block
+
+This is the large welcome section at the top. Find the `section` with the comment `{/* START HERE intro */}` (around line 43).
+
+**To change the headline:**
+```tsx
+<h2 className="text-3xl md:text-4xl font-bold ...">
+  Most people open the Bible and do not know where to start.
+</h2>
+```
+Replace the text between the `<h2>` tags.
+
+**To change the subtext:**
+```tsx
+<p className="text-lg text-gray-600 dark:text-gray-400 ...">
+  Not because they do not care...
+</p>
+```
+Replace the paragraph text.
+
+---
+
+### The Three Action Cards
+
+Below the intro are three clickable cards: "Tour of the Bible", "Bible Reading Roadmap", and "The Foundation Course". Each card is a `<button>` or `<Link>` element.
+
+**To change a card title:**
+Find the `<h3>` inside each card:
+```tsx
+<h3 className="text-lg font-bold ...">
+  Tour of the Bible
+</h3>
+```
+
+**To change a card description:**
+Find the `<p>` inside the card:
+```tsx
+<p className="text-sm text-gray-500 ...">
+  Browse all 66 books...
+</p>
+```
+
+**To change the card link text:**
+```tsx
+<span className="inline-flex items-center ...">
+  Explore the books
+</span>
+```
+
+**To change where a card links to** (Foundation Course card only):
+```tsx
+<Link to="/courses" ...>
+```
+Change `"/courses"` to any valid route.
+
+---
+
+### Bible Overview Heading & Description
+
+Find the `{/* Book selector */}` section (around line 127). The heading and description of the Bible can be changed here:
+
+```tsx
+<h1 className="text-4xl md:text-5xl font-bold ...">
+  Bible Overview
+</h1>
+<p className="text-lg text-gray-700 ...">
+  The Bible is a sacred collection of 66 books...
+</p>
+```
+
+---
+
+### Old Testament & New Testament Descriptions
+
+Just below the main heading, you'll find two description paragraphs — one for Old Testament and one for New Testament:
+
+```tsx
+<p className="text-sm text-gray-600 ...">
+  The Old Testament contains 39 books covering creation...
+</p>
+```
+
+```tsx
+<p className="text-sm text-gray-600 ...">
+  The New Testament contains 27 books including the Gospels...
+</p>
+```
+
+Edit these directly in the JSX.
+
+---
+
+### "Bible Authors & Evidence" Tile
+
+Find the section with comment `{/* Bible Authors tile */}` (around line 198). You can edit:
+
+- **Tile title**: Change `"Bible Authors & Evidence"`
+- **Tile subtitle**: Change the description text below the title
+
+The full content of the Authors modal is defined further down in the file, inside `<Modal isOpen={isAuthorsModalOpen} ...>`. Each author block is a `<div>` with a colored left border. To add a new author entry, copy an existing `border-l-4` block and update the name, dates, books, and description.
+
+---
+
+### "Go Deeper" Bridge Section
+
+Find the section with comment `{/* Go Deeper bridge */}` (around line 219):
+
+```tsx
+<p className="text-xs font-bold text-gray-400 ...">Go Deeper</p>
+<h3 className="text-2xl font-bold ...">
+  The themes show up everywhere once you start seeing them.
+</h3>
+<p className="text-gray-600 ...">
+  Once you begin reading...
+</p>
+```
+
+Edit text directly. The two buttons below link to `/topics` and `/courses` — change `to="..."` to update those destinations.
+
+---
+
+## 11. Adding New Pages
 
 ### Step 1: Create a New Page File
 
