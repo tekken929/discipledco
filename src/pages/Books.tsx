@@ -54,7 +54,7 @@ export function Books() {
         <div className="mb-8">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">Library</h1>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            Explore our collection of spiritual books and resources
+            Explore our collection of Non-fiction material and Fictional books and resources
           </p>
         </div>
 
