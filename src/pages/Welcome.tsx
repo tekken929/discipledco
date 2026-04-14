@@ -33,7 +33,7 @@ const featuredSections = [
     accent: 'text-amber-600 dark:text-amber-400',
   },
   {
-    to: '/guidance',
+    to: 'https://bible-verse-search-a-5z3m.bolt.host/',
     icon: Lightbulb,
     title: 'Lookup Any Verse',
     description: 'Find Bible verses on any topic — guidance, hope, fear, love, and more.',
@@ -43,6 +43,7 @@ const featuredSections = [
     iconBg: 'bg-teal-100 dark:bg-teal-900',
     iconColor: 'text-teal-600 dark:text-teal-400',
     accent: 'text-teal-600 dark:text-teal-400',
+    external: true,
   },
   {
     to: '/preaching',
@@ -195,7 +196,7 @@ export function Welcome() {
             </p>
             <p className="text-sm text-white/55 mb-10 font-semibold tracking-wide">— Luke 9:23</p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-3">
               <Link
                 to="/bible"
                 className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white px-8 py-3.5 rounded-xl font-bold text-base shadow-xl hover:shadow-amber-500/30 hover:shadow-2xl transition-all hover:scale-105"
@@ -204,6 +205,7 @@ export function Welcome() {
                 Start with a Bible Overview
                 <ArrowRight className="w-4 h-4" />
               </Link>
+              <p className="text-white/50 text-sm italic">Most people open the Bible and do not know where to start.</p>
             </div>
           </div>
         </div>
@@ -219,12 +221,9 @@ export function Welcome() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {featuredSections.map((section) => {
             const Icon = section.icon;
-            return (
-              <Link
-                key={section.to}
-                to={section.to}
-                className={`group flex flex-col gap-4 p-6 rounded-2xl border-2 ${section.bgLight} ${section.border} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}
-              >
+            const cardClass = `group flex flex-col gap-4 p-6 rounded-2xl border-2 ${section.bgLight} ${section.border} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`;
+            const cardContent = (
+              <>
                 <div className="flex items-start justify-between">
                   <div className={`p-3 rounded-xl ${section.iconBg}`}>
                     <Icon className={`w-6 h-6 ${section.iconColor}`} />
@@ -238,6 +237,18 @@ export function Welcome() {
                 <span className={`text-sm font-semibold ${section.accent} flex items-center gap-1`}>
                   Explore <ArrowRight className="w-3.5 h-3.5" />
                 </span>
+              </>
+            );
+            if ((section as any).external) {
+              return (
+                <a key={section.to} href={section.to} target="_blank" rel="noopener noreferrer" className={cardClass}>
+                  {cardContent}
+                </a>
+              );
+            }
+            return (
+              <Link key={section.to} to={section.to} className={cardClass}>
+                {cardContent}
               </Link>
             );
           })}
@@ -255,7 +266,7 @@ export function Welcome() {
       </section>
 
       {/* BELIEFS SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
         <div className="theme-card border-2 rounded-2xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>

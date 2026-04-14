@@ -26,17 +26,25 @@ interface NavSection {
 
 const sections: NavSection[] = [
   {
+    heading: 'Featured',
+    links: [
+      { to: '/religions', icon: FolderOpen, title: 'What is Religion' },
+      { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
+      { to: 'https://bible-verse-search-a-5z3m.bolt.host/', icon: Lightbulb, title: 'Lookup Any Verse', external: true },
+      { to: '/preaching', icon: Mic, title: 'Wisdom' },
+      { to: '/music', icon: Music, title: 'Music Jukebox' },
+      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
+    ],
+  },
+  {
     heading: 'Bible',
     links: [
       { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
-      { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
-      { to: 'https://bible-verse-search-a-5z3m.bolt.host/', icon: Lightbulb, title: 'Lookup any Verse', external: true },
     ],
   },
   {
     heading: 'Religion',
     links: [
-      { to: '/religions', icon: FolderOpen, title: 'What is Religion' },
       { to: '/topics', icon: MessageCircle, title: 'Everyday Topics' },
       { to: '/stories', icon: Book, title: 'Popular Stories' },
       { to: '/guidance', icon: BookOpen, title: 'Guidance' },
@@ -46,17 +54,14 @@ const sections: NavSection[] = [
   {
     heading: 'Music',
     links: [
-      { to: '/music', icon: Music, title: 'Music Jukebox' },
       { to: '/hallowed', icon: Sparkles, title: 'Hallowed Band' },
       { to: '/podcasts', icon: Radio, title: 'Podcasts' },
-      { to: '/preaching', icon: Mic, title: 'Wisdom' },
     ],
   },
   {
-    heading: 'Information',
+    heading: 'More',
     links: [
       { to: '/timeline', icon: Clock, title: 'Timeline' },
-      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
       { to: '/easter', icon: Sparkles, title: 'Easter' },
       { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
       { to: '/books', icon: BookText, title: 'Books' },
