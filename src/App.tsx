@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Users, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Cross } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -37,48 +37,58 @@ import { useNavbarScroll } from './hooks/useScrollAnimation';
 import './resurrection.css';
 import './hallowed.css';
 
-const navLinks = [
-  { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-  { to: '/topics', label: 'Topics', icon: MessageCircle },
-  { to: '/stories', label: 'Stories', icon: Book },
-  { to: '/religions', label: 'Religion', icon: FolderOpen },
-  { to: '/guidance', label: 'Guidance', icon: Users },
-  { to: '/music', label: 'Music', icon: Music },
-];
 
-const moreLinks = [
-  { to: '/bible-versions', label: 'Bible Versions' },
-  { to: '/christian-holidays', label: 'Holiday Origins' },
-  { to: '/preaching', label: 'Wisdom' },
-  { to: '/books', label: 'Books' },
-  { to: '/podcasts', label: 'Podcasts' },
-  { to: '/church-mentors', label: 'Mentors' },
-  { to: '/timeline', label: 'Timeline' },
-  { to: '/easter', label: 'Easter' },
-  { to: '/resurrection', label: 'Resurrection' },
-  { to: '/faqs', label: 'FAQs' },
-  { to: '/hallowed', label: 'Hallowed Band' },
-];
+interface MenuLink {
+  to: string;
+  label: string;
+  icon: React.ElementType;
+  external?: boolean;
+}
 
-const allMenuLinks = [
-  { to: '/courses', label: 'Foundation Course', icon: BookOpen },
-  { to: '/music', label: 'Hallowed', icon: Music },
-  { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-  { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
-  { to: '/religions', label: 'What is Religion', icon: FolderOpen },
-  { to: '/bible-versions', label: 'Bible Versions', icon: BookOpen },
-  { to: '/stories', label: 'Popular Stories', icon: Book },
-  { to: '/music', label: 'Music Jukebox', icon: Music },
-  { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
-  { to: '/preaching', label: 'Wisdom', icon: Mic },
-  { to: '/books', label: 'Books', icon: BookText },
-  { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
-  { to: '/podcasts', label: 'Podcasts', icon: Radio },
-  { to: '/guidance', label: 'Guidance', icon: Lightbulb },
-  { to: '/easter', label: 'Easter', icon: Sparkles },
-  { to: '/resurrection', label: 'Resurrection', icon: Cross },
-  { to: '/faqs', label: 'FAQs', icon: Users },
-  { to: '/timeline', label: 'Timeline', icon: BookOpen },
+interface MenuSection {
+  heading: string;
+  links: MenuLink[];
+}
+
+const menuSections: MenuSection[] = [
+  {
+    heading: 'Bible',
+    links: [
+      { to: '/bible', label: 'Bible Overview', icon: BookOpen },
+      { to: '/bible-versions', label: 'Bible Versions', icon: BookOpen },
+      { to: 'https://bible-verse-search-a-5z3m.bolt.host/', label: 'Lookup any Verse', icon: Lightbulb, external: true },
+    ],
+  },
+  {
+    heading: 'Religion',
+    links: [
+      { to: '/religions', label: 'What is Religion', icon: FolderOpen },
+      { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
+      { to: '/stories', label: 'Popular Stories', icon: Book },
+      { to: '/guidance', label: 'Guidance', icon: Lightbulb },
+      { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
+    ],
+  },
+  {
+    heading: 'Music',
+    links: [
+      { to: '/music', label: 'Music Jukebox', icon: Music },
+      { to: '/hallowed', label: 'Hallowed Band', icon: Sparkles },
+      { to: '/podcasts', label: 'Podcasts', icon: Radio },
+      { to: '/preaching', label: 'Wisdom', icon: Mic },
+    ],
+  },
+  {
+    heading: 'Information',
+    links: [
+      { to: '/timeline', label: 'Timeline', icon: BookOpen },
+      { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
+      { to: '/easter', label: 'Easter', icon: Sparkles },
+      { to: '/resurrection', label: 'Resurrection', icon: BookOpen },
+      { to: '/books', label: 'Books', icon: BookText },
+      { to: '/faqs', label: 'FAQs', icon: BookOpen },
+    ],
+  },
 ];
 
 function TopNav() {
@@ -156,29 +166,50 @@ function TopNav() {
                 <span className="hidden md:inline">Menu</span>
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-56 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 max-h-[80vh] overflow-y-auto">
-                  <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 sticky top-0 theme-card">
-                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">All Pages</p>
-                  </div>
-                  {allMenuLinks.map((link) => {
-                    const Icon = link.icon;
-                    const isActive = location.pathname === link.to;
-                    return (
-                      <Link
-                        key={`${link.to}-${link.label}`}
-                        to={link.to}
-                        onClick={() => setMenuOpen(false)}
-                        className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors ${
-                          isActive
-                            ? 'theme-accent font-bold bg-blue-50 dark:bg-blue-950/30'
-                            : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                        }`}
-                      >
-                        <Icon className="w-4 h-4 flex-shrink-0" />
-                        {link.label}
-                      </Link>
-                    );
-                  })}
+                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 max-h-[85vh] overflow-y-auto">
+                  {menuSections.map((section, i) => (
+                    <div key={section.heading} className={i > 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}>
+                      <div className="px-4 pt-3 pb-1 sticky top-0 theme-card">
+                        <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">{section.heading}</p>
+                      </div>
+                      <nav className="pb-2">
+                        {section.links.map((link) => {
+                          const Icon = link.icon;
+                          const isActive = !link.external && location.pathname === link.to;
+                          if (link.external) {
+                            return (
+                              <a
+                                key={link.label}
+                                href={link.to}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setMenuOpen(false)}
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6"
+                              >
+                                <Icon className="w-4 h-4 flex-shrink-0" />
+                                {link.label}
+                              </a>
+                            );
+                          }
+                          return (
+                            <Link
+                              key={link.label}
+                              to={link.to}
+                              onClick={() => setMenuOpen(false)}
+                              className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all ${
+                                isActive
+                                  ? 'theme-primary-button text-white'
+                                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6'
+                              }`}
+                            >
+                              <Icon className="w-4 h-4 flex-shrink-0" />
+                              {link.label}
+                            </Link>
+                          );
+                        })}
+                      </nav>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -264,22 +295,24 @@ function TopNav() {
       {mobileOpen && (
         <div className="lg:hidden border-t-2 border-gray-200 dark:border-gray-700 theme-card">
           <nav className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
-            {[...navLinks, ...moreLinks].map((link) => {
-              const isActive = location.pathname === link.to;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`px-3 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                    isActive
-                      ? 'theme-primary-button text-white'
-                      : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {menuSections.flatMap((section) =>
+              section.links.filter((l) => !l.external).map((link) => {
+                const isActive = location.pathname === link.to;
+                return (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    className={`px-3 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                      isActive
+                        ? 'theme-primary-button text-white'
+                        : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })
+            )}
           </nav>
           <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-3">
             <button
