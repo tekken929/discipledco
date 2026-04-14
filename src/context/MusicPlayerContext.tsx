@@ -46,9 +46,7 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   }, [volume]);
 
   useEffect(() => {
-    if (isPlaying && audioRef.current && audioRef.current.src) {
-      audioRef.current.play();
-    } else if (!isPlaying && audioRef.current) {
+    if (!isPlaying && audioRef.current) {
       audioRef.current.pause();
     }
   }, [isPlaying]);

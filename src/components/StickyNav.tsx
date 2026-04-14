@@ -43,7 +43,7 @@ export function StickyNav() {
 
   return (
     <>
-      <div className="sticky top-0 z-50 theme-card border-b-2 shadow-sm backdrop-blur-sm">
+      <div className="sticky top-0 z-40 theme-card border-b-2 shadow-sm backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex gap-3 flex-wrap">
             <Link

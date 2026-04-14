@@ -129,7 +129,7 @@ function TopNav() {
   if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage) return null;
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 print:hidden ${
+    <header className={`sticky top-0 z-[100] transition-all duration-300 print:hidden ${
       isScrolled
         ? 'theme-card shadow-lg border-b-2'
         : 'theme-card border-b-2'
@@ -174,7 +174,7 @@ function TopNav() {
                 <span className="hidden md:inline">Theme</span>
               </button>
               {settingsOpen && (
-                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50">
+                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-[200]">
                   <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
                     <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color Mood</p>
                   </div>
@@ -231,7 +231,7 @@ function TopNav() {
                 <span className="hidden md:inline">Menu</span>
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-50 max-h-[85vh] overflow-y-auto">
+                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-[200] max-h-[85vh] overflow-y-auto">
                   {menuSections.map((section, i) => (
                     <div key={section.heading} className={i > 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}>
                       <div className="px-4 pt-3 pb-1 sticky top-0 theme-card">

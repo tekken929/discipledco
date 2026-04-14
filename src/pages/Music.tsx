@@ -21,7 +21,12 @@ export function Music() {
   }, []);
 
   useEffect(() => {
-    filterTracksByCategory();
+    if (allTracks.length === 0) return;
+    if (selectedCategory === 'All') {
+      setTracks(allTracks);
+    } else {
+      setTracks(allTracks.filter(track => track.category === selectedCategory));
+    }
   }, [selectedCategory, allTracks]);
 
   const loadTracks = async () => {
@@ -32,7 +37,7 @@ export function Music() {
 
     if (!error && data) {
       setAllTracks(data);
-      if (!currentTrack) {
+      if (!currentTrack && globalTracks.length === 0) {
         const chosenOne = data.find((t: typeof data[0]) =>
           t.title.toLowerCase().includes('chosen one') || t.title.toLowerCase() === 'the chosen one'
         );
@@ -40,15 +45,6 @@ export function Music() {
           playTrack(chosenOne);
         }
       }
-    }
-  };
-
-  const filterTracksByCategory = () => {
-    if (selectedCategory === 'All') {
-      setTracks(allTracks);
-    } else {
-      const filtered = allTracks.filter(track => track.category === selectedCategory);
-      setTracks(filtered);
     }
   };
 
