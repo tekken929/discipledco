@@ -214,8 +214,8 @@ export function Welcome() {
       {/* FEATURED SECTIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Explore the Faith</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">Start with what matters most to you.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Gain knowledge</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">Pick your topic below to learn more.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -258,7 +258,7 @@ export function Welcome() {
       {/* VERSE BANNER */}
       <section className="theme-primary-bg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-          <p className="text-3xl md:text-4xl font-bold text-white leading-relaxed mb-4">
+          <p className="text-lg md:text-xl font-bold text-white leading-relaxed mb-4">
             "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
           </p>
           <p className="text-white/80 font-semibold text-lg">— Genesis 6:5 (NIV)</p>
