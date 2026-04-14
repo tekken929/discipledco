@@ -1,37 +1,13 @@
 import {
-  BookOpen, MessageCircle, Church, Book, Music, Calendar,
-  Mic, BookText, Radio, Lightbulb, Sparkles, ArrowRight,
-  HelpCircle, Users, Shield, Heart
+  BookOpen, Church, Music, Calendar,
+  Mic, Lightbulb, ArrowRight,
+  HelpCircle, Shield, Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
 
 const featuredSections = [
-  {
-    to: '/topics',
-    icon: MessageCircle,
-    title: 'Everyday Topics',
-    description: 'Biblical wisdom on marriage, relationships, sin, grace, and more.',
-    color: 'teal',
-    bgLight: 'bg-teal-50 dark:bg-teal-950/30',
-    border: 'border-teal-200 dark:border-teal-800',
-    iconBg: 'bg-teal-100 dark:bg-teal-900',
-    iconColor: 'text-teal-600 dark:text-teal-400',
-    accent: 'text-teal-600 dark:text-teal-400',
-  },
-  {
-    to: '/stories',
-    icon: Book,
-    title: 'Popular Stories',
-    description: 'The greatest stories of Scripture — retold with context and meaning.',
-    color: 'orange',
-    bgLight: 'bg-orange-50 dark:bg-orange-950/30',
-    border: 'border-orange-200 dark:border-orange-800',
-    iconBg: 'bg-orange-100 dark:bg-orange-900',
-    iconColor: 'text-orange-600 dark:text-orange-400',
-    accent: 'text-orange-600 dark:text-orange-400',
-  },
   {
     to: '/religions',
     icon: Church,
@@ -45,16 +21,40 @@ const featuredSections = [
     accent: 'text-red-600 dark:text-red-400',
   },
   {
-    to: '/hallowed',
-    icon: Sparkles,
-    title: 'Hallowed Band',
-    description: 'Original Christian music from the Hallowed Band — Spirit-filled worship.',
-    color: 'blue',
-    bgLight: 'bg-blue-50 dark:bg-blue-950/30',
-    border: 'border-blue-200 dark:border-blue-800',
-    iconBg: 'bg-blue-100 dark:bg-blue-900',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    accent: 'text-blue-600 dark:text-blue-400',
+    to: '/bible-versions',
+    icon: BookOpen,
+    title: 'Bible Versions',
+    description: 'Understand the differences between Bible translations and which to use.',
+    color: 'amber',
+    bgLight: 'bg-amber-50 dark:bg-amber-950/30',
+    border: 'border-amber-200 dark:border-amber-800',
+    iconBg: 'bg-amber-100 dark:bg-amber-900',
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    accent: 'text-amber-600 dark:text-amber-400',
+  },
+  {
+    to: '/guidance',
+    icon: Lightbulb,
+    title: 'Lookup Any Verse',
+    description: 'Find Bible verses on any topic — guidance, hope, fear, love, and more.',
+    color: 'teal',
+    bgLight: 'bg-teal-50 dark:bg-teal-950/30',
+    border: 'border-teal-200 dark:border-teal-800',
+    iconBg: 'bg-teal-100 dark:bg-teal-900',
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    accent: 'text-teal-600 dark:text-teal-400',
+  },
+  {
+    to: '/preaching',
+    icon: Mic,
+    title: 'Wisdom',
+    description: 'Powerful preaching and biblical teachings to strengthen your faith.',
+    color: 'green',
+    bgLight: 'bg-green-50 dark:bg-green-950/30',
+    border: 'border-green-200 dark:border-green-800',
+    iconBg: 'bg-green-100 dark:bg-green-900',
+    iconColor: 'text-green-600 dark:text-green-400',
+    accent: 'text-green-600 dark:text-green-400',
   },
   {
     to: '/music',
@@ -69,32 +69,19 @@ const featuredSections = [
     accent: 'text-slate-600 dark:text-slate-400',
   },
   {
-    to: '/preaching',
-    icon: Mic,
-    title: 'Wisdom',
-    description: 'Powerful preaching and biblical teachings to strengthen your faith.',
-    color: 'green',
-    bgLight: 'bg-green-50 dark:bg-green-950/30',
-    border: 'border-green-200 dark:border-green-800',
-    iconBg: 'bg-green-100 dark:bg-green-900',
-    iconColor: 'text-green-600 dark:text-green-400',
-    accent: 'text-green-600 dark:text-green-400',
+    to: '/christian-holidays',
+    icon: Calendar,
+    title: 'Holiday Origins',
+    description: 'Discover the true meaning and history behind Christian holidays.',
+    color: 'orange',
+    bgLight: 'bg-orange-50 dark:bg-orange-950/30',
+    border: 'border-orange-200 dark:border-orange-800',
+    iconBg: 'bg-orange-100 dark:bg-orange-900',
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    accent: 'text-orange-600 dark:text-orange-400',
   },
 ];
 
-const quickLinks = [
-  { to: '/bible', icon: BookOpen, label: 'Bible Overview' },
-  { to: '/guidance', icon: Lightbulb, label: 'Guidance' },
-  { to: '/bible-versions', icon: BookOpen, label: 'Bible Versions' },
-  { to: '/christian-holidays', icon: Calendar, label: 'Holiday Origins' },
-  { to: '/books', icon: BookText, label: 'Books' },
-  { to: '/podcasts', icon: Radio, label: 'Podcasts' },
-  { to: '/easter', icon: Sparkles, label: 'Easter' },
-  { to: '/resurrection', icon: Heart, label: 'Resurrection' },
-  { to: '/faqs', icon: HelpCircle, label: 'FAQs' },
-  { to: '/timeline', icon: Calendar, label: 'Timeline' },
-  { to: '/church-mentors', icon: Users, label: 'Mentors' },
-];
 
 const beliefs = [
   { icon: Shield, text: 'Scripture (the Bible) alone has everything we need and is the ultimate authority.' },
@@ -264,32 +251,6 @@ export function Welcome() {
             "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
           </p>
           <p className="text-white/80 font-semibold text-lg">— Genesis 6:5 (NIV)</p>
-        </div>
-      </section>
-
-      {/* QUICK LINKS GRID */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">More to Discover</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">Every section is here to help you find truth.</p>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {quickLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="group flex flex-col items-center gap-2.5 p-4 rounded-xl border-2 theme-card hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 text-center"
-              >
-                <div className="p-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-colors">
-                  <Icon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-                </div>
-                <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 leading-tight">{link.label}</span>
-              </Link>
-            );
-          })}
         </div>
       </section>
 
