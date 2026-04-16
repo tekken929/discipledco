@@ -146,47 +146,7 @@ export function Hallowed() {
         </div>
       </section>
 
-      <section className="hallowed-section">
-        <div className="hallowed-content-block">
-          <h2 className="hallowed-section-title">Live</h2>
-          <div className="hallowed-divider"></div>
-
-          <div className="hallowed-shows">
-            <div className="show-item">
-              <div className="show-date">
-                <Calendar className="w-5 h-5 inline-block mr-2 opacity-50" />
-                <div>APR 15, 2026</div>
-              </div>
-              <div className="show-details">
-                <div className="show-venue">The Sanctuary</div>
-                <div className="show-location">Portland, OR</div>
-              </div>
-            </div>
-
-            <div className="show-item">
-              <div className="show-date">
-                <Calendar className="w-5 h-5 inline-block mr-2 opacity-50" />
-                <div>MAY 3, 2026</div>
-              </div>
-              <div className="show-details">
-                <div className="show-venue">Cathedral Club</div>
-                <div className="show-location">Seattle, WA</div>
-              </div>
-            </div>
-
-            <div className="show-item">
-              <div className="show-date">
-                <Calendar className="w-5 h-5 inline-block mr-2 opacity-50" />
-                <div>MAY 20, 2026</div>
-              </div>
-              <div className="show-details">
-                <div className="show-venue">The Chapel</div>
-                <div className="show-location">San Francisco, CA</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       <section className="hallowed-section">
         <div className="hallowed-content-block">
