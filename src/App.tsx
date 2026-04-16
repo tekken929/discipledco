@@ -59,6 +59,7 @@ const menuSections: MenuSection[] = [
       { to: '/bible', label: 'Tour the Bible', icon: BookOpen },
       { to: '/bible', label: 'Bible Roadmap', icon: RouteIcon },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
+      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
       { to: '/bible-lookup', label: 'Lookup any Verse', icon: Lightbulb },
       { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
     ],
@@ -84,7 +85,6 @@ const menuSections: MenuSection[] = [
     heading: 'Information',
     links: [
       { to: '/timeline', label: 'Timeline', icon: Clock },
-      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
       { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
       { to: '/easter', label: 'Easter', icon: Sparkles },
       { to: '/resurrection', label: 'Resurrection', icon: BookOpen },
