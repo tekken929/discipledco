@@ -10,6 +10,7 @@ All admin access is password-protected. Passwords are stored in the `.env` file 
 |---|---|---|
 | Admin Portal (upload music & books) | `jukebox2024` | Admin Portal login screen |
 | Delete songs | `deletesong2024` | Trash icon confirmation on the Music page |
+| Hallowed page (upload music) | `hallowed2026` | Upload form on the Hallowed page |
 
 ---
 
@@ -50,6 +51,20 @@ Unlocks the full Admin Portal, which includes:
 - Upload MP3 files to the music jukebox
 - Add and manage books in the book library
 - Delete books
+
+### Hallowed page password
+
+Unlocks the music upload form on the Hallowed page (`/hallowed`).
+
+**Note:** This password is stored differently from the others — it is hardcoded directly inside `src/components/HallowedMusicUpload.tsx` on line 9:
+
+```typescript
+const ADMIN_PASSWORD = 'hallowed2026';
+```
+
+To change it, edit that line, save the file, and redeploy.
+
+---
 
 ### Delete song password (`VITE_MUSIC_DELETE_PASSWORD`)
 
