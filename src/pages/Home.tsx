@@ -4,9 +4,10 @@ import { Modal } from '../components/Modal';
 import { BibleRoadmap } from '../components/BibleRoadmap';
 import { Book } from '../types/book';
 import { books } from '../data/books';
+import { timelineEvents } from '../data/timeline';
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown, Users, ScrollText, Calendar, ArrowRight, Map, Route, GraduationCap } from 'lucide-react';
+import { BookOpen, ChevronDown, Users, ScrollText, Calendar, ArrowRight, Map, Route, GraduationCap, Clock, Star, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface HomeProps {
@@ -14,10 +15,71 @@ interface HomeProps {
 }
 
 
+const getCategoryStyle = (category: string) => {
+  switch (category) {
+    case 'creation':
+      return {
+        card: 'border-amber-200 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10',
+        badge: 'bg-amber-500 text-white',
+        icon: 'text-amber-600 dark:text-amber-400',
+        title: 'text-amber-900 dark:text-amber-100',
+        text: 'text-amber-800 dark:text-amber-200',
+      };
+    case 'jewish':
+      return {
+        card: 'border-blue-200 dark:border-blue-700 bg-blue-50/50 dark:bg-blue-900/10',
+        badge: 'bg-blue-600 text-white',
+        icon: 'text-blue-600 dark:text-blue-400',
+        title: 'text-blue-900 dark:text-blue-100',
+        text: 'text-blue-800 dark:text-blue-200',
+      };
+    case 'catholic':
+      return {
+        card: 'border-red-200 dark:border-red-700 bg-red-50/50 dark:bg-red-900/10',
+        badge: 'bg-red-600 text-white',
+        icon: 'text-red-600 dark:text-red-400',
+        title: 'text-red-900 dark:text-red-100',
+        text: 'text-red-800 dark:text-red-200',
+      };
+    case 'protestant':
+      return {
+        card: 'border-green-200 dark:border-green-700 bg-green-50/50 dark:bg-green-900/10',
+        badge: 'bg-green-600 text-white',
+        icon: 'text-green-600 dark:text-green-400',
+        title: 'text-green-900 dark:text-green-100',
+        text: 'text-green-800 dark:text-green-200',
+      };
+    case 'modern':
+      return {
+        card: 'border-teal-200 dark:border-teal-700 bg-teal-50/50 dark:bg-teal-900/10',
+        badge: 'bg-teal-600 text-white',
+        icon: 'text-teal-600 dark:text-teal-400',
+        title: 'text-teal-900 dark:text-teal-100',
+        text: 'text-teal-800 dark:text-teal-200',
+      };
+    default:
+      return {
+        card: 'border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/10',
+        badge: 'bg-gray-600 text-white',
+        icon: 'text-gray-600 dark:text-gray-400',
+        title: 'text-gray-900 dark:text-white',
+        text: 'text-gray-700 dark:text-gray-300',
+      };
+  }
+};
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'creation': return <Star className="w-4 h-4" />;
+    default: return <Calendar className="w-4 h-4" />;
+  }
+};
+
 export function Home({ selectedBook: initialBook }: HomeProps) {
   const [selectedBook, setSelectedBook] = useState<Book>(initialBook);
   const [isAuthorsModalOpen, setIsAuthorsModalOpen] = useState(false);
   const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(false);
   const { ref: selectorRef, isVisible: selectorVisible } = useScrollAnimation();
 
   const oldTestamentBooks = books.filter(b => b.testament === 'Old Testament');
@@ -213,6 +275,83 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all flex-shrink-0 ml-4" />
             </div>
           </button>
+        </section>
+
+        {/* Historical Timeline */}
+        <section className="mt-8 mb-8 print:hidden">
+          <button
+            onClick={() => setShowTimeline(!showTimeline)}
+            className="group w-full text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 cursor-pointer"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
+                  <Clock className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">Complete Historical Timeline</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">From Creation to modern day — key events in Jewish, Catholic, Orthodox, and Protestant history.</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                <span className="hidden sm:inline text-xs font-semibold text-gray-500 dark:text-gray-400">{showTimeline ? 'Hide' : 'Show'}</span>
+                {showTimeline ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+              </div>
+            </div>
+          </button>
+
+          {showTimeline && (
+            <div className="mt-4 space-y-4">
+              {timelineEvents.map((event, index) => {
+                const style = getCategoryStyle(event.category);
+                return (
+                  <div key={event.id} className="relative">
+                    {index !== timelineEvents.length - 1 && (
+                      <div className="absolute left-7 top-20 bottom-0 w-0.5 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600" />
+                    )}
+                    <div className={`theme-card border-2 ${style.card} rounded-2xl shadow-md hover:shadow-lg transition-all p-6`}>
+                      <div className="flex items-start gap-4">
+                        <div className={`${style.badge} p-2.5 rounded-full shadow flex-shrink-0 mt-0.5`}>
+                          {getCategoryIcon(event.category)}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                            <h3 className={`text-xl font-bold ${style.title} leading-snug`}>{event.title}</h3>
+                            <span className={`${style.badge} px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap w-fit`}>{event.year}</span>
+                          </div>
+                          <p className={`text-sm ${style.text} mb-3 leading-relaxed`}>{event.description}</p>
+                          <ul className="space-y-1.5">
+                            {event.details.map((detail, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                <span className={`${style.icon} mt-0.5 font-bold`}>•</span>
+                                <span className="leading-relaxed">{detail}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          {event.relatedLinks && event.relatedLinks.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {event.relatedLinks.map((link, idx) => (
+                                <a
+                                  key={idx}
+                                  href={link.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 theme-card border px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-300 hover:shadow transition-all"
+                                >
+                                  <BookOpen className="w-3 h-3" />
+                                  {link.title}
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </section>
 
         {/* Go Deeper bridge */}
