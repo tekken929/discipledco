@@ -1,111 +1,88 @@
-# Cinematic Mode - Easy Revert Guide
+# Cinematic Mode Guide
 
-This document explains the cinematic enhancements added to the website and how to easily revert back to the original version if needed.
+Cinematic mode adds scroll animations, parallax effects, and premium visual polish to the site. This guide explains what it does and how to turn it off if needed.
 
-## What Was Added
+---
 
-The website now features a cinematic, story-driven experience with:
+## What Cinematic Mode Adds
 
-1. **Smooth scroll animations** - Sections fade in as you scroll
-2. **Cinematic hero section** - Animated background with parallax effects on the homepage
-3. **Timeline path experience** - Visual journey path with active state animations
-4. **Elegant typography** - Playfair Display for headings, Inter for body text
-5. **Micro-interactions** - Hover effects, button glows, card lifts
-6. **Navbar blur effect** - Transparent at top, blurs on scroll
-7. **Grain texture overlay** - Subtle film-like texture
-8. **Section color themes** - Warm glows for different timeline sections
-9. **Generous spacing** - More breathing room between sections
+| Feature | What it does |
+|---|---|
+| Scroll animations | Sections fade in as you scroll down the page |
+| Cinematic hero | Animated background on the homepage |
+| Timeline path | Visual journey path with animated active states |
+| Typography upgrade | Playfair Display for headings, Inter for body |
+| Micro-interactions | Hover lifts, glows, and transitions on cards and buttons |
+| Navbar blur | Navbar is transparent at top, blurs when you scroll |
+| Grain overlay | Subtle film-grain texture over the whole page |
+| Section glows | Warm colour tints for different timeline sections |
 
-## Files Modified
+---
 
-### New Files Created:
-- `src/cinematic.css` - All cinematic styles and animations
-- `src/hooks/useScrollAnimation.ts` - Scroll animation hooks
-- `CINEMATIC-MODE.md` - This file
+## How to Turn It Off
 
-### Modified Files:
-- `src/main.tsx` - Added `import './cinematic.css'`
-- `src/App.tsx` - Added grain overlay, navbar scroll detection, cinematic button classes
-- `src/pages/Home.tsx` - Added cinematic hero section
-- `src/pages/Timeline.tsx` - Added timeline path and scroll animations
-- `src/components/NavigationMenu.tsx` - Added scroll detection and micro-interactions
+### Full off (one step)
 
-## How to Revert to Original
+Open `src/main.tsx` and delete this line:
 
-### Complete Revert (Easiest)
+```typescript
+import './cinematic.css';
+```
 
-1. **Remove the cinematic CSS import**
-   - Open `src/main.tsx`
-   - Delete the line: `import './cinematic.css';`
-   - Save the file
+Save the file. All cinematic effects are instantly removed. The site works exactly as before — just without the visual layer.
 
-This will disable ALL cinematic features instantly while keeping the functionality intact.
+### Turn off specific features
 
-### Partial Revert Options
+**Remove the grain texture only**
+1. Delete `.grain-overlay { ... }` from `src/cinematic.css`
+2. Remove `<div className="grain-overlay" />` from `src/App.tsx`
 
-If you want to keep some features but remove others:
+**Remove scroll animations only**
+In `src/cinematic.css`, delete or comment out:
+- `.fade-in` and related classes
+- All `@keyframes` blocks
 
-#### Option 1: Keep Typography, Remove Animations
-In `src/cinematic.css`, comment out or delete these sections:
-- `.fade-in` and related animations
-- `.cinematic-hero-bg` animations
-- `.timeline-path` animations
-- `.grain-overlay`
+**Remove the navbar blur**
+In `src/App.tsx`, remove the `isScrolled` state variable and the `navbar-cinematic` class from the nav element.
 
-#### Option 2: Keep Layout, Remove Effects
-In `src/cinematic.css`, comment out or delete:
-- All `@keyframes` animations
-- `.btn-cinematic`, `.card-cinematic` hover effects
-- `.grain-overlay`
-- `.parallax` transforms
+**Remove the hero section**
+In `src/pages/Home.tsx`, replace the hero block with a plain heading and paragraph.
 
-#### Option 3: Remove Individual Features
+**Remove the timeline path**
+In `src/pages/Timeline.tsx`, delete the `.timeline-path` div and the scroll detection logic above it.
 
-**Remove Grain Texture:**
-- Delete `.grain-overlay` from `src/cinematic.css`
-- Remove `<div className="grain-overlay" />` from `src/App.tsx`
+---
 
-**Remove Hero Section:**
-- In `src/pages/Home.tsx`, replace the new hero section with the original simpler layout
+## Files Involved
 
-**Remove Timeline Path:**
-- In `src/pages/Timeline.tsx`, remove the `.timeline-path` div and scroll detection logic
+### Added by cinematic mode
+- `src/cinematic.css` — all visual styles and keyframe animations
+- `src/hooks/useScrollAnimation.ts` — scroll detection hook
 
-**Remove Navbar Blur:**
-- In `src/App.tsx`, remove the `isScrolled` state and `navbar-cinematic` class
+### Modified by cinematic mode
+- `src/main.tsx` — imports `cinematic.css`
+- `src/App.tsx` — grain overlay div, scroll detection, cinematic nav class
+- `src/pages/Home.tsx` — hero section
+- `src/pages/Timeline.tsx` — timeline path and scroll animations
+- `src/components/NavigationMenu.tsx` — scroll detection and hover effects
 
-## Design Philosophy
+---
 
-The cinematic mode was designed to:
-- Make scrolling feel like moving through a story
-- Create a premium, high-end aesthetic
-- Add depth without clutter
-- Use subtle, intentional animations
-- Maintain calm, immersive experience
+## Adjusting the Effects
 
-## Performance Notes
-
-All animations use:
-- CSS transforms (hardware accelerated)
-- `will-change` hints for smooth performance
-- Efficient intersection observers
-- Throttled scroll events
-
-The overhead is minimal and should not impact performance on modern devices.
-
-## Customization
-
-Want to adjust the cinematic experience? Edit these CSS variables in `src/cinematic.css`:
+Edit these CSS variables near the top of `src/cinematic.css`:
 
 ```css
 :root {
-  --cinematic-spacing: 12rem;      /* Space between major sections */
-  --section-spacing: 8rem;          /* Space between content sections */
-  --warm-glow: rgba(255, 223, 186, 0.15);  /* Glow color */
+  --cinematic-spacing: 12rem;                    /* Gap between major page sections */
+  --section-spacing: 8rem;                       /* Gap between content sections */
+  --warm-glow: rgba(255, 223, 186, 0.15);        /* Colour of section glow effects */
   --transition-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);  /* Animation curve */
 }
 ```
 
-## Support
+---
 
-If you need help reverting or customizing the cinematic mode, all the code is clearly commented and organized for easy modification.
+## Performance Notes
+
+All animations run on the GPU using CSS transforms. The impact on page speed is minimal on any modern device. The scroll detection uses `IntersectionObserver`, which is efficient and does not block the main thread.

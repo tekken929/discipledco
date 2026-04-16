@@ -1,776 +1,317 @@
-# Website Editing Guide - Discipled Co.
+# Website Editing Guide — Discipled Co.
 
-This guide will help you easily edit content across the Discipled Co. website. Each section explains which files to modify for different types of content.
-
----
-
-## Table of Contents
-
-1. [Editing Biblical Topics](#editing-biblical-topics)
-2. [Editing Books of the Bible](#editing-books-of-the-bible)
-3. [Editing Bible Versions Page](#editing-bible-versions-page)
-4. [Editing Timeline](#editing-timeline)
-5. [Editing Religions Page](#editing-religions-page)
-6. [Editing Stories Page](#editing-stories-page)
-7. [Editing FAQs Page](#editing-faqs-page)
-8. [Editing Header & Logo](#editing-header--logo)
-9. [Editing Footer & Social Links](#editing-footer--social-links)
-10. [Editing the Home Page](#editing-the-home-page)
-11. [Adding New Pages](#adding-new-pages)
+A plain-English guide to editing content across the site. No coding experience needed for most tasks.
 
 ---
 
-## 1. Editing Biblical Topics
+## Quick Reference
 
-### Location: `src/data/topics.ts`
+| What you want to change | File to open |
+|---|---|
+| Biblical topics & verses | `src/data/topics.ts` |
+| Books of the Bible (overview info) | `src/data/books.ts` |
+| Bible translations page | `src/pages/BibleVersions.tsx` |
+| Historical timeline | `src/data/timeline.ts` |
+| Religions page | `src/pages/Religions.tsx` |
+| Bible stories | `src/data/stories.ts` |
+| FAQs | `src/pages/FAQs.tsx` |
+| Site header & logo | `src/App.tsx` |
+| Footer & social media links | `src/components/Footer.tsx` |
+| Home page | `src/pages/Home.tsx` |
+| Music jukebox | `src/pages/Music.tsx` |
+| Book library | Supabase database (see Books guide) |
 
-This file contains all the biblical topics (Marriage, Lust, Sin, etc.) with their Scripture references.
+---
 
-### How to Edit:
+## 1. Biblical Topics
 
-#### Adding a New Topic:
+**File:** `src/data/topics.ts`
 
-```typescript
-{
-  id: 'your-topic-id',           // URL-friendly name (e.g., 'grace', 'hope')
-  title: 'Your Topic Title',     // Display name (e.g., 'Grace & Mercy')
-  description: 'Brief description of this topic',
-  icon: '🎯',                    // Any emoji icon
-  references: [
-    // Add at least 10 biblical references (see format below)
-  ]
-}
-```
+This file holds all the topical Scripture sections (Marriage, Sin, Hope, etc.).
 
-#### Adding Biblical References:
+### Add a new topic
 
-```typescript
-{
-  book: 'Book Name',             // e.g., 'John', 'Romans', 'Psalm'
-  chapter: 3,                    // Chapter number
-  verse: '16',                   // Verse(s) - can be '16' or '16-18'
-  text: 'Full verse text here'   // The actual Scripture text
-}
-```
-
-#### Example - Adding a "Hope" Topic:
+Copy this block and fill in the blanks:
 
 ```typescript
 {
-  id: 'hope',
-  title: 'Hope in Christ',
-  description: 'Finding hope and encouragement in God\'s promises',
-  icon: '🌟',
+  id: 'hope',                          // URL slug — lowercase, no spaces
+  title: 'Hope in Christ',             // Displayed title
+  description: 'Short description',
+  icon: '🌟',                          // Any emoji
   references: [
     {
       book: 'Romans',
       chapter: 15,
       verse: '13',
-      text: 'May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.'
+      text: 'May the God of hope fill you with all joy and peace...'
     },
-    {
-      book: 'Jeremiah',
-      chapter: 29,
-      verse: '11',
-      text: 'For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.'
-    }
-    // Add at least 8 more references...
+    // Add at least 9 more references
   ]
 }
 ```
 
+Add it inside the main array in `topics.ts`, then save.
+
 ---
 
-## 2. Editing Books of the Bible
+## 2. Books of the Bible
 
-### Location: `src/data/books.ts`
+**File:** `src/data/books.ts`
 
-This file contains the structured overview of all 66 books of the Bible.
-
-### How to Edit:
-
-Each book has this structure:
+Each of the 66 books has an entry like this:
 
 ```typescript
 {
-  id: 'unique-id',
-  name: 'Book Name',
-  order: 1,                      // Book number (1-66)
-  testament: 'Old Testament',    // or 'New Testament'
-  chapters: 50,                  // Total chapters
-  author: 'Author Name',
-  dateWritten: 'Approx. date',
-  audience: 'Original audience',
-  keyThemes: ['Theme 1', 'Theme 2', 'Theme 3'],
-  purpose: 'Why this book was written',
+  id: 'genesis',
+  name: 'Genesis',
+  order: 1,
+  testament: 'Old Testament',
+  chapters: 50,
+  author: 'Moses',
+  dateWritten: 'c. 1446–1406 BC',
+  audience: 'The nation of Israel',
+  keyThemes: ['Creation', 'Fall', 'Promise'],
+  purpose: 'Why this book was written...',
   keyVerses: [
-    {
-      reference: 'Book 1:1',
-      text: 'Verse text'
-    }
+    { reference: 'Genesis 1:1', text: 'In the beginning God created...' }
   ],
   outline: [
-    {
-      section: 'Section Title',
-      chapters: '1-11',
-      summary: 'What happens in this section'
-    }
+    { section: 'Creation', chapters: '1-2', summary: 'God creates the world.' }
   ]
 }
 ```
 
-#### To Update Book Information:
-
-1. Find the book in the array (they're in biblical order)
-2. Edit any field you need to update
-3. Save the file
+Find the book you want, edit the field, and save. Books are listed in biblical order.
 
 ---
 
-## 3. Editing Bible Versions Page
+## 3. Bible Versions Page
 
-### Location: `src/pages/BibleVersions.tsx`
+**File:** `src/pages/BibleVersions.tsx`
 
-This page explains different Bible translations with interactive examples showing how Hebrew and Greek words were translated into English.
-
-### How to Edit:
-
-Find the `versions` array (around line 33). Each version has:
+Find the `versions` array (around line 33). Each version looks like:
 
 ```typescript
 {
-  id: 'kjv',                        // Unique identifier
-  name: 'King James Version',       // Full name
-  abbreviation: 'KJV',              // Short version
-  year: '1611',                     // Year published
-  translatedBy: 'Who translated it',
-  description: 'Brief overview...',
-  philosophy: 'Translation approach...',
-  colorClass: 'Tailwind gradient colors',
-  borderClass: 'Tailwind border colors',
-  textClass: 'Tailwind text colors',
-  badgeClass: 'Tailwind badge colors',
-  image: 'https://...',             // Ancient Bible/cross image
-  examples: [
-    // Translation examples (see below)
-  ]
-}
-```
-
-#### To Add a New Bible Version:
-
-1. Choose unique colors for your version (avoid repeating existing colors)
-2. Find an appropriate ancient Bible or cross image from Pexels
-3. Add translation examples showing original Greek/Hebrew
-
-```typescript
-{
-  id: 'msg',
-  name: 'The Message',
-  abbreviation: 'MSG',
-  year: '2002',
-  translatedBy: 'Eugene Peterson',
-  description: 'A contemporary paraphrase...',
-  philosophy: 'Paraphrase (meaning in modern language)',
-  colorClass: 'from-violet-50 to-violet-100 dark:from-violet-900/30 dark:to-violet-800/30',
-  borderClass: 'border-violet-200 dark:border-violet-700',
-  textClass: 'text-violet-900 dark:text-violet-100',
-  badgeClass: 'bg-violet-600 text-white',
-  image: 'https://images.pexels.com/photos/[ID]/pexels-photo-[ID].jpeg?auto=compress&cs=tinysrgb&w=1200',
+  id: 'kjv',
+  name: 'King James Version',
+  abbreviation: 'KJV',
+  year: '1611',
+  translatedBy: 'Translator name(s)',
+  description: 'Overview of this translation...',
+  philosophy: 'Word-for-word / Thought-for-thought / Paraphrase',
   examples: [
     {
       original: 'ἀγάπη (agapē)',
       originalLanguage: 'Greek',
-      meaning: 'Unconditional love...',
-      translation: 'How MSG translates it with verse reference'
+      meaning: 'Unconditional divine love',
+      translation: '"Love" (1 Cor 13:4) — "Love is patient, love is kind..."'
     }
-    // Add 2-3 more examples
   ]
 }
 ```
 
-#### Adding Translation Examples:
-
-Each version should have 3 examples showing:
-- **original**: The Greek or Hebrew word (with transliteration)
-- **originalLanguage**: Either "Greek" or "Hebrew"
-- **meaning**: What the original word means
-- **translation**: How this version translates it (include verse reference)
-
-```typescript
-{
-  original: 'λόγος (logos)',
-  originalLanguage: 'Greek',
-  meaning: 'Word, reason, divine expression - God\'s complete revelation',
-  translation: '"Word" (John 1:1) - "In the beginning was the Word"'
-}
-```
+To add a new version, copy an existing block, change all the fields, and add it to the array.
 
 ---
 
-## 4. Editing Timeline
+## 4. Historical Timeline
 
-### Location: `src/data/timeline.ts`
+**File:** `src/data/timeline.ts`
 
-This file contains the complete historical timeline showing the development from Creation through Judaism, Catholicism, Protestantism, to modern times. This timeline appears on the **Religions Page**.
-
-### How to Edit:
-
-The timeline has detailed editing instructions at the top of the file. Each event has:
-
-```typescript
-{
-  id: 'event-1',                    // Unique ID
-  year: '1054 AD',                  // Year or approximate date
-  title: 'The Great Schism',        // Event name
-  category: 'catholic',             // Category (see below)
-  description: 'Brief description (1-2 sentences)',
-  details: [
-    'Bullet point 1',
-    'Bullet point 2',
-    'Add 3-5 details'
-  ],
-  relatedLinks: [                   // Optional
-    { title: 'Learn More', url: 'https://example.com' }
-  ]
-}
-```
-
-#### Categories:
-- **creation**: Creation to Abraham
-- **jewish**: Jewish faith development (Abraham to Jesus)
-- **catholic**: Early church and Catholic formation (Jesus to Great Schism)
-- **protestant**: Protestant Reformation onwards
-- **modern**: 20th century to present
-
-#### To Add a New Timeline Event:
-
-1. Copy an existing event as a template
-2. Change the `id` to a unique value (e.g., 'event-27')
-3. Update all fields with your event information
-4. Choose the correct category
-5. Add it to the `timelineEvents` array in chronological order
+Each event looks like:
 
 ```typescript
 {
   id: 'event-27',
   year: '1738 AD',
   title: 'Methodist Revival',
-  category: 'protestant',
-  description: 'John Wesley begins the Methodist movement emphasizing personal holiness.',
+  category: 'protestant',           // creation | jewish | catholic | protestant | modern
+  description: '1–2 sentence summary',
   details: [
     'Wesley experiences conversion at Aldersgate',
-    'Emphasis on personal holiness and social reform',
     'Open-air preaching reaches common people',
-    'Methodical approach to faith leads to name "Methodist"'
+    'Methodical approach to faith coins the name "Methodist"'
   ]
 }
 ```
 
-## 5. Editing Religions Page
+Add events in chronological order. Categories control the colour and filter on the Religions page.
 
-### Location: `src/pages/Religions.tsx`
-
-This page explains how different Christian denominations developed and displays the timeline.
-
-### How to Edit:
-
-1. **Main Content**: Edit the introduction text directly in the JSX
-2. **Timeline**: The timeline is pulled from `src/data/timeline.ts` (see section 4 above)
-3. **Key Differences Section**: Edit the Judaism, Catholicism, and Protestantism comparison sections
-
-The timeline automatically displays all events from `timeline.ts` with interactive styling based on category.
+**Available categories:**
+- `creation` — Creation to Abraham
+- `jewish` — Abraham to Jesus
+- `catholic` — Early church through the Great Schism
+- `protestant` — Reformation and beyond
+- `modern` — 20th century to present
 
 ---
 
-## 6. Editing Stories Page
+## 5. Bible Stories
 
-### Location: `src/data/stories.ts`
+**File:** `src/data/stories.ts`
 
-This file contains Bible stories organized by testament. Each story includes the narrative and key verses.
-
-### How to Edit:
-
-Find the `stories` array and add/edit stories:
+Add or edit stories using this format:
 
 ```typescript
 {
-  id: 'unique-id',
-  title: 'Story Title',
-  testament: 'Old Testament',       // or 'New Testament'
-  book: 'Book Name',
-  chapter: 1,
-  summary: 'Brief summary of the story',
+  id: 'david-goliath',
+  title: 'David and Goliath',
+  testament: 'Old Testament',
+  book: '1 Samuel',
+  chapter: 17,
+  summary: 'A young shepherd defeats a giant warrior through faith in God.',
   keyVerses: [
     {
-      reference: 'Genesis 1:1',
-      text: 'Full verse text here'
+      reference: '1 Samuel 17:45',
+      text: 'You come to me with sword and spear...'
     }
   ],
   lessons: [
-    'Lesson 1',
-    'Lesson 2',
-    'Lesson 3'
+    'Faith overcomes impossible odds',
+    'God uses the humble',
+    'Courage comes from trusting God'
   ]
 }
 ```
 
-## 7. Editing FAQs Page
+---
 
-### Location: `src/pages/FAQs.tsx`
+## 6. FAQs
 
-### How to Edit:
+**File:** `src/pages/FAQs.tsx`
 
-Find the `faqs` array and add/edit questions:
-
-```typescript
-{
-  question: 'Your question here?',
-  answer: 'Your detailed answer here. Can be multiple sentences.'
-}
-```
-
-#### Example - Adding a New FAQ:
+Find the `faqs` array and add entries:
 
 ```typescript
 {
   question: 'How do I pray effectively?',
-  answer: 'Effective prayer involves speaking to God honestly, listening for His guidance through Scripture, and praying according to His will. Start with thanksgiving, confess your sins, bring your requests, and pray for others.'
+  answer: 'Start with thanksgiving, confess your sins, bring your requests, and pray for others. Speak honestly to God and listen through Scripture.'
 }
 ```
 
 ---
 
-## 8. Editing Header & Logo
+## 7. Site Header & Logo
 
-### Location: `src/App.tsx`
+**File:** `src/App.tsx`
 
-### To Change the Logo:
-
-Find this line (around line 32):
-
-```typescript
-src="https://images.pexels.com/photos/6120234/pexels-photo-6120234.jpeg?..."
-```
-
-Replace the URL with your new logo image URL.
-
-### To Change the Site Title:
-
-Find this line (around line 38):
-
-```typescript
-<h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">Discipled Co.</h1>
-```
-
-Replace "Discipled Co." with your new title.
-
-### To Change the Subtitle:
-
-Find this line (around line 39):
-
-```typescript
-<p className="text-gray-600 dark:text-gray-300 text-xs">Biblical Guidance & Study</p>
-```
-
-Replace the text with your new subtitle.
+- **Logo image** — find the `<img src="...">` tag near the top of the `return` block and replace the URL
+- **Site name** — find `Discipled Co.` inside an `<h1>` tag and change the text
+- **Subtitle** — find `Biblical Guidance & Study` inside a `<p>` tag and change the text
 
 ---
 
-## 9. Editing Footer & Social Links
+## 8. Footer & Social Links
 
-### Location: `src/components/Footer.tsx`
+**File:** `src/components/Footer.tsx`
 
-### To Change Social Media Links:
-
-Find these sections (around lines 52-80):
-
+**Social media links** — find these around lines 52–80:
 ```typescript
-href="https://facebook.com"        // Change to your Facebook page
-href="https://instagram.com"       // Change to your Instagram
-href="https://tiktok.com"         // Change to your TikTok
+href="https://facebook.com"     // Your Facebook page
+href="https://instagram.com"    // Your Instagram
+href="https://tiktok.com"       // Your TikTok
 ```
 
-### To Edit Footer Links:
-
-Find the `footerLinks` array (around line 6) and edit the links:
-
+**Footer nav links** — find the `footerLinks` array:
 ```typescript
 {
   to: '/your-page',
-  icon: IconName,
+  icon: BookOpen,
   title: 'Link Title',
-  description: 'Link description'
+  description: 'Short description'
 }
 ```
 
-### To Change Copyright Text:
-
-Find this line (around line 82):
-
-```typescript
-© 2026 Discipled Co. | Clear, structured overviews...
-```
+**Copyright line** — search for `© 2026 Discipled Co.` and edit it.
 
 ---
 
-## 10. Editing the Home Page
+## 9. Home Page
 
-### Location: `src/pages/Home.tsx`
+**File:** `src/pages/Home.tsx`
 
-The Home page is the Bible Overview page — the main landing page when users arrive at the site. It contains a "Start Here" intro, a book selector, and a "Go Deeper" section.
+Key sections and where to find them:
 
-### Sections You Can Edit:
+| Section | What to look for in the file |
+|---|---|
+| Main headline | `<h2>` with "Most people open the Bible..." |
+| Intro paragraph | `<p>` below that `<h2>` |
+| Three action cards | `<button>` or `<Link>` blocks with `<h3>` titles |
+| Bible Overview heading | `<h1>Bible Overview</h1>` |
+| OT & NT description paragraphs | Two `<p>` tags below that heading |
+| "Go Deeper" section | `{/* Go Deeper bridge */}` comment |
 
----
-
-### "Start Here" Intro Block
-
-This is the large welcome section at the top. Find the `section` with the comment `{/* START HERE intro */}` (around line 43).
-
-**To change the headline:**
-```tsx
-<h2 className="text-3xl md:text-4xl font-bold ...">
-  Most people open the Bible and do not know where to start.
-</h2>
-```
-Replace the text between the `<h2>` tags.
-
-**To change the subtext:**
-```tsx
-<p className="text-lg text-gray-600 dark:text-gray-400 ...">
-  Not because they do not care...
-</p>
-```
-Replace the paragraph text.
+Edit text directly inside the JSX tags.
 
 ---
 
-### The Three Action Cards
+## 10. Music Jukebox
 
-Below the intro are three clickable cards: "Tour of the Bible", "Bible Reading Roadmap", and "The Foundation Course". Each card is a `<button>` or `<Link>` element.
+**File:** `src/pages/Music.tsx`
 
-**To change a card title:**
-Find the `<h3>` inside each card:
-```tsx
-<h3 className="text-lg font-bold ...">
-  Tour of the Bible
-</h3>
-```
+Music is managed through the Admin Portal at the top right of the Music page.
 
-**To change a card description:**
-Find the `<p>` inside the card:
-```tsx
-<p className="text-sm text-gray-500 ...">
-  Browse all 66 books...
-</p>
-```
+- Upload MP3s via the portal (password required — see `ADMIN-PASSWORDS.md`)
+- Title is taken from the filename automatically
+- Delete songs using the trash icon in the playlist
 
-**To change the card link text:**
-```tsx
-<span className="inline-flex items-center ...">
-  Explore the books
-</span>
-```
-
-**To change where a card links to** (Foundation Course card only):
-```tsx
-<Link to="/courses" ...>
-```
-Change `"/courses"` to any valid route.
+All files are stored in Supabase Storage. No code changes needed for day-to-day music management.
 
 ---
 
-### Bible Overview Heading & Description
+## 11. Adding a Brand New Page
 
-Find the `{/* Book selector */}` section (around line 127). The heading and description of the Bible can be changed here:
+### Step 1 — Create the page file
 
-```tsx
-<h1 className="text-4xl md:text-5xl font-bold ...">
-  Bible Overview
-</h1>
-<p className="text-lg text-gray-700 ...">
-  The Bible is a sacred collection of 66 books...
-</p>
-```
-
----
-
-### Old Testament & New Testament Descriptions
-
-Just below the main heading, you'll find two description paragraphs — one for Old Testament and one for New Testament:
-
-```tsx
-<p className="text-sm text-gray-600 ...">
-  The Old Testament contains 39 books covering creation...
-</p>
-```
-
-```tsx
-<p className="text-sm text-gray-600 ...">
-  The New Testament contains 27 books including the Gospels...
-</p>
-```
-
-Edit these directly in the JSX.
-
----
-
-### "Bible Authors & Evidence" Tile
-
-Find the section with comment `{/* Bible Authors tile */}` (around line 198). You can edit:
-
-- **Tile title**: Change `"Bible Authors & Evidence"`
-- **Tile subtitle**: Change the description text below the title
-
-The full content of the Authors modal is defined further down in the file, inside `<Modal isOpen={isAuthorsModalOpen} ...>`. Each author block is a `<div>` with a colored left border. To add a new author entry, copy an existing `border-l-4` block and update the name, dates, books, and description.
-
----
-
-### "Go Deeper" Bridge Section
-
-Find the section with comment `{/* Go Deeper bridge */}` (around line 219):
-
-```tsx
-<p className="text-xs font-bold text-gray-400 ...">Go Deeper</p>
-<h3 className="text-2xl font-bold ...">
-  The themes show up everywhere once you start seeing them.
-</h3>
-<p className="text-gray-600 ...">
-  Once you begin reading...
-</p>
-```
-
-Edit text directly. The two buttons below link to `/topics` and `/courses` — change `to="..."` to update those destinations.
-
----
-
-## 11. Adding New Pages
-
-### Step 1: Create a New Page File
-
-Create a new file in `src/pages/` (e.g., `src/pages/YourPage.tsx`):
+Create `src/pages/YourPage.tsx`:
 
 ```typescript
 export function YourPage() {
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-        Your Page Title
+        Page Title
       </h1>
-
       <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-        <p className="text-gray-700 dark:text-gray-300">
-          Your content here...
-        </p>
+        <p className="text-gray-700 dark:text-gray-300">Content here...</p>
       </div>
     </main>
   );
 }
 ```
 
-### Step 2: Add Route in App.tsx
+### Step 2 — Register the route
 
-In `src/App.tsx`, add:
-
-1. Import at the top:
+In `src/App.tsx`, add at the top:
 ```typescript
 import { YourPage } from './pages/YourPage';
 ```
 
-2. Add route in the `<Routes>` section:
+Then inside the `<Routes>` block:
 ```typescript
 <Route path="/your-page" element={<YourPage />} />
 ```
 
-### Step 3: Add Link in Footer (Optional)
+### Step 3 — Add a footer link (optional)
 
-In `src/components/Footer.tsx`, add to `footerLinks` array:
-
+In `src/components/Footer.tsx`, add to `footerLinks`:
 ```typescript
 {
   to: '/your-page',
-  icon: BookOpen,  // Choose any icon from lucide-react
+  icon: BookOpen,
   title: 'Your Page',
-  description: 'Description of your page'
+  description: 'Short description'
 }
 ```
 
 ---
 
-## 11. Managing the Music Jukebox
+## Tips
 
-### Location: `src/pages/Music.tsx`
-
-The Music page is a fully functional jukebox for uploading and playing MP3 files. All music files are stored in Supabase Storage and track information is stored in the database.
-
-### How to Upload Music:
-
-1. Navigate to the Music page at `/music`
-2. Click the "Upload Songs" button in the top-right corner
-3. Select one or more MP3 files from your computer
-4. The files will upload automatically and appear in the playlist
-
-### Features:
-
-- **Upload**: Add multiple MP3 files at once
-- **Playlist**: See all uploaded songs with title, artist, duration, and play count
-- **Player Controls**: Play, pause, skip forward/backward, adjust volume
-- **Progress Bar**: See and control playback position
-- **Delete**: Remove songs you no longer want (trash icon on each track)
-- **Auto-play Next**: Automatically plays the next song when current one ends
-
-### Editing Song Information:
-
-Song information is stored in the Supabase database. To manually edit:
-
-1. The title is automatically extracted from the filename (without extension)
-2. Artist defaults to "Unknown Artist"
-3. Duration is automatically detected from the audio file
-4. Play count increases each time a song is played
-
-### Technical Details:
-
-- **Database Table**: `music_tracks` stores all song metadata
-- **Storage Bucket**: `music` bucket stores the actual MP3 files
-- **Supported Formats**: MP3, WAV, OGG, and other browser-supported audio formats
-- **Public Access**: All uploaded music is publicly accessible (no authentication required)
-
-### To Restrict Upload Access:
-
-If you want to limit who can upload music, edit the database policies in Supabase:
-
-1. Go to your Supabase dashboard
-2. Navigate to Authentication & Policies
-3. Edit the "Anyone can upload music tracks" policy to require authentication
-
----
-
-## 12. Managing the Book Library
-
-### Overview
-
-The Book Library system allows you to create beautiful, interactive books with realistic page-turning animations. Books are stored in the Supabase database with their pages.
-
-### Quick Start - Adding a New Book
-
-1. **Insert the book record:**
-```sql
-INSERT INTO books (title, author, description, category, order_index, total_pages, cover_image_url)
-VALUES (
-  'Your Book Title',
-  'Author Name',
-  'A brief description of what this book is about.',
-  'Study Guide',
-  1,
-  10,
-  'https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg?auto=compress&cs=tinysrgb&w=800'
-)
-RETURNING id;
-```
-
-2. **Copy the returned book ID and add pages:**
-```sql
-INSERT INTO book_pages (book_id, page_number, content) VALUES
-('YOUR_BOOK_ID_HERE', 1, 'First page content here...'),
-('YOUR_BOOK_ID_HERE', 2, 'Second page content here...'),
-('YOUR_BOOK_ID_HERE', 3, 'Third page content here...');
-```
-
-### Editing Existing Books
-
-**Update book details:**
-```sql
-UPDATE books
-SET title = 'New Title',
-    author = 'New Author',
-    description = 'New description'
-WHERE id = 'YOUR_BOOK_ID';
-```
-
-**Update a specific page:**
-```sql
-UPDATE book_pages
-SET content = 'Updated content here...'
-WHERE book_id = 'YOUR_BOOK_ID' AND page_number = 1;
-```
-
-**Delete a book (and all its pages):**
-```sql
-DELETE FROM books WHERE id = 'YOUR_BOOK_ID';
-```
-
-### Tips for Great Book Content
-
-- **Page Length**: Keep content to 200-300 words per page for best readability
-- **No Scrolling**: Content automatically fits the page without scrolling
-- **Line Breaks**: Use natural line breaks - they'll display correctly
-- **Page Numbers**: Start from 1 and increment sequentially
-- **Categories**: Use categories like "Study Guide", "Devotional", "Old Testament", "New Testament"
-
-### Interactive Features
-
-The book reader includes:
-- **Page Turning**: Smooth animations when clicking next/previous
-- **Drag to Turn**: Grab the bottom-right corner of the right page and drag left to turn pages
-- **Dark Mode**: Full dark mode support
-- **Category Filtering**: Filter books by category on the library page
-
-### Finding Book IDs
-
-```sql
-SELECT id, title, author FROM books ORDER BY order_index;
-```
-
-### Database Tables
-
-**books table:**
-- `id` - Unique identifier (UUID)
-- `title` - Book title
-- `author` - Author name
-- `description` - Brief description
-- `cover_image_url` - Cover image URL (optional)
-- `total_pages` - Total number of pages
-- `category` - Category for filtering
-- `order_index` - Display order (lower numbers first)
-- `created_at` - Creation timestamp
-
-**book_pages table:**
-- `id` - Unique identifier (UUID)
-- `book_id` - References the parent book
-- `page_number` - Page number (1, 2, 3, etc.)
-- `content` - The actual page content
-- `created_at` - Creation timestamp
-
----
-
-## Quick Reference: File Locations
-
-| What to Edit | File Location |
-|-------------|---------------|
-| Biblical Topics & Verses | `src/data/topics.ts` |
-| Books of the Bible | `src/data/books.ts` |
-| Bible Versions & Translations | `src/pages/BibleVersions.tsx` |
-| Historical Timeline Events | `src/data/timeline.ts` |
-| Religions Page Content | `src/pages/Religions.tsx` |
-| Bible Stories | `src/data/stories.ts` |
-| FAQs | `src/pages/FAQs.tsx` |
-| Header & Logo | `src/App.tsx` |
-| Footer & Social Links | `src/components/Footer.tsx` |
-| Home Page | `src/pages/Home.tsx` |
-| Topics Page | `src/pages/Topics.tsx` |
-| Music Jukebox | `src/pages/Music.tsx` |
-
----
-
-## Need Help?
-
-- All text content uses **Tailwind CSS** for styling
-- Color scheme: Blue theme with dark mode support
-- Icons: Using **lucide-react** library
-- Always test your changes by running: `npm run dev`
-- Build for production: `npm run build`
-
----
-
-**Remember**: After making any changes, save the file and the website will automatically refresh if you're running the development server!
+- Save any file and the browser will reload automatically (if dev server is running)
+- All styling uses **Tailwind CSS** classes
+- Icons come from the **lucide-react** library
+- The site supports dark mode — changes show in both modes
+- For admin passwords and access details, see `ADMIN-PASSWORDS.md`
