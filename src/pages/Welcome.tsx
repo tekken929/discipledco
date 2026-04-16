@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
 import { BibleRoadmap } from '../components/BibleRoadmap';
+import { BibleVersePopup } from '../components/BibleVersePopup';
 import { timelineEvents } from '../data/timeline';
+import type { BibleRef } from '../types/timeline';
 
 const featuredSections = [
   {
@@ -122,6 +124,7 @@ export function Welcome() {
   const [showWhoMadeThis, setShowWhoMadeThis] = useState(false);
   const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [activeVersePopup, setActiveVersePopup] = useState<{ ref: BibleRef; badgeClass: string } | null>(null);
 
   return (
     <div className="min-h-screen">
@@ -332,6 +335,23 @@ export function Welcome() {
                             </li>
                           ))}
                         </ul>
+                        {event.bibleRefs && event.bibleRefs.length > 0 && (
+                          <div className="mt-4">
+                            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Read in Scripture</p>
+                            <div className="flex flex-wrap gap-2">
+                              {event.bibleRefs.map((ref, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => setActiveVersePopup({ ref, badgeClass: style.badge })}
+                                  className={`inline-flex items-center gap-1.5 ${style.badge} opacity-90 hover:opacity-100 px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5`}
+                                >
+                                  <BookOpen className="w-3 h-3" />
+                                  {ref.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         {event.relatedLinks && event.relatedLinks.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-2">
                             {event.relatedLinks.map((link, idx) => (
@@ -445,6 +465,17 @@ export function Welcome() {
           </div>
         </div>
       </section>
+
+      {/* BIBLE VERSE POPUP */}
+      {activeVersePopup && (
+        <BibleVersePopup
+          book={activeVersePopup.ref.book}
+          chapter={activeVersePopup.ref.chapter}
+          label={activeVersePopup.ref.label}
+          categoryBadgeClass={activeVersePopup.badgeClass}
+          onClose={() => setActiveVersePopup(null)}
+        />
+      )}
 
       {/* ROADMAP MODAL */}
       <Modal
