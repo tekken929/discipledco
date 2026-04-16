@@ -32,6 +32,7 @@ import Guidance from './pages/Guidance';
 import { Courses } from './pages/Courses';
 import { CourseModule } from './pages/CourseModule';
 import { BibleLookup } from './pages/BibleLookup';
+import { BibleStudies } from './pages/BibleStudies';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -83,6 +84,7 @@ const menuSections: MenuSection[] = [
     heading: 'Information',
     links: [
       { to: '/timeline', label: 'Timeline', icon: Clock },
+      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
       { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
       { to: '/easter', label: 'Easter', icon: Sparkles },
       { to: '/resurrection', label: 'Resurrection', icon: BookOpen },
@@ -411,6 +413,8 @@ function AppContent() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/module/:moduleId" element={<CourseModule />} />
           <Route path="/bible-lookup" element={<BibleLookup />} />
+          <Route path="/bible-studies" element={<BibleStudies />} />
+          <Route path="/bible-studies/:studyId" element={<BibleStudies />} />
         </Routes>
       </div>
 
