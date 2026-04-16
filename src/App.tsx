@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Route, GraduationCap, Clock, HelpCircle } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -55,9 +55,11 @@ const menuSections: MenuSection[] = [
   {
     heading: 'Bible',
     links: [
-      { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-      { to: '/bible-versions', label: 'Bible Versions', icon: BookOpen },
+      { to: '/bible', label: 'Tour the Bible', icon: BookOpen },
+      { to: '/bible', label: 'Bible Roadmap', icon: Route },
+      { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
       { to: '/bible-lookup', label: 'Lookup any Verse', icon: Lightbulb },
+      { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
     ],
   },
   {
@@ -66,28 +68,27 @@ const menuSections: MenuSection[] = [
       { to: '/religions', label: 'What is Religion', icon: FolderOpen },
       { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
       { to: '/stories', label: 'Popular Stories', icon: Book },
-      { to: '/guidance', label: 'Guidance', icon: Lightbulb },
-      { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
-    ],
-  },
-  {
-    heading: 'Music',
-    links: [
-      { to: '/music', label: 'Music Jukebox', icon: Music },
-      { to: '/hallowed', label: 'Hallowed Band', icon: Sparkles },
       { to: '/podcasts', label: 'Podcasts', icon: Radio },
       { to: '/preaching', label: 'Wisdom', icon: Mic },
     ],
   },
   {
+    heading: 'Music',
+    links: [
+      { to: '/hallowed', label: 'Hallowed Band', icon: Sparkles },
+      { to: '/music', label: 'Music Jukebox', icon: Music },
+    ],
+  },
+  {
     heading: 'Information',
     links: [
-      { to: '/timeline', label: 'Timeline', icon: BookOpen },
+      { to: '/timeline', label: 'Timeline', icon: Clock },
       { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
       { to: '/easter', label: 'Easter', icon: Sparkles },
       { to: '/resurrection', label: 'Resurrection', icon: BookOpen },
       { to: '/books', label: 'Books', icon: BookText },
-      { to: '/faqs', label: 'FAQs', icon: BookOpen },
+      { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
+      { to: '/faqs', label: 'FAQs', icon: HelpCircle },
     ],
   },
 ];
