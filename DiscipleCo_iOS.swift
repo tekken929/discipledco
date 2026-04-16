@@ -675,6 +675,327 @@ class AppData {
                     keyTakeaway: "Your identity in Christ is settled, not earned — forgiven, adopted, and sealed by the Spirit."),
             ]),
     ]
+
+    let bibleStudies: [BibleStudySeries] = [
+        BibleStudySeries(id: 1, level: "beginner", title: "Who Is God?", subtitle: "Understanding the Character of the Creator",
+            description: "Before you can follow God, you need to know who He is. This series explores what the Bible reveals about God's nature — His love, holiness, power, and personal care for you.",
+            tag: "Foundations",
+            lessons: [
+                BibleStudyLesson(title: "God Is Personal, Not Just a Force",
+                    preview: "Many people grow up thinking of God as a distant power or cosmic energy. But the Bible presents something radically different.",
+                    content: "The very first verse of the Bible tells us: 'In the beginning, God created the heavens and the earth.' This is not the language of an impersonal force. This is the language of a Creator who acts, who speaks, and who cares about what He makes.\n\nThroughout Scripture, God is presented as someone who speaks, listens, feels grief, rejoices, and responds. In Genesis 3, after Adam and Eve sin, God walks through the garden asking, 'Where are you?' — not because He didn't know, but because He was seeking them. That's personal.\n\nJesus revealed the intimacy of this relationship when He taught His followers to pray 'Our Father.' Not 'O Great Power' or 'Distant Creator.' Father. That word changes everything about how we relate to God.",
+                    keyVerse: "Jeremiah 29:11 — 'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.'",
+                    reflectivePrompt: "Have you ever thought of God as distant or impersonal? What would change in your daily life if you really believed He was close and personal?",
+                    keyTakeaway: "God is not a vague cosmic force. He is a personal Being who created you, knows you, and wants a relationship with you."),
+                BibleStudyLesson(title: "God Is Holy — and That Changes Everything",
+                    preview: "Holiness is one of the most important things to understand about God, yet it is one of the most misunderstood.",
+                    content: "When the prophet Isaiah saw a vision of God in heaven, the angels were not shouting 'Love, love, love is the Lord.' They were crying 'Holy, holy, holy is the Lord Almighty' (Isaiah 6:3). Holiness is the attribute of God that all of heaven responds to with awe.\n\nHoliness means God is completely set apart — pure, perfect, without any corruption. There is no darkness in Him at all (1 John 1:5). He cannot lie. He cannot do evil. He is the standard of what is right and good.\n\nThis matters for us because it explains why sin is such a serious problem. It's not just that God makes arbitrary rules. It's that anything impure cannot exist in the presence of perfect purity.",
+                    keyVerse: "Isaiah 6:3 — 'Holy, holy, holy is the Lord Almighty; the whole earth is full of his glory.'",
+                    reflectivePrompt: "Does understanding God's holiness make Him feel more distant or more worthy of trust? How does it change how you think about right and wrong?",
+                    keyTakeaway: "God's holiness means He is perfectly pure and righteous. This is not a barrier to relationship — it's what makes His love so remarkable."),
+                BibleStudyLesson(title: "God Is Love — Not Soft, But Sacrificial",
+                    preview: "The most quoted description of God is that 'God is love.' But what that actually means is far deeper than most people realize.",
+                    content: "1 John 4:8 says plainly: 'Whoever does not love does not know God, because God is love.' Not just loving — love itself. It's not something He does on occasion. It is who He is at the core.\n\nBut here's where many people misunderstand. God's love is not sentimental or soft. It is not simply being okay with everything. The Bible's definition of love shows up most clearly in action: 'For God so loved the world that He gave His one and only Son' (John 3:16). Love, by biblical definition, gives. It sacrifices. It costs something.",
+                    keyVerse: "Romans 8:38–39 — 'Neither death nor life... will be able to separate us from the love of God that is in Christ Jesus our Lord.'",
+                    reflectivePrompt: "Have you ever experienced or witnessed a love that cost something? How does that change your understanding of what God's love means?",
+                    keyTakeaway: "God's love is not passive or sentimental — it is active, sacrificial, and unbreakable. It is the most trustworthy thing in the universe."),
+                BibleStudyLesson(title: "God Is Sovereign — He Is in Control",
+                    preview: "In a world that feels chaotic and unpredictable, one of the most grounding truths in Scripture is that God is sovereign.",
+                    content: "Sovereignty means God is in ultimate authority over all things. He is not surprised by events. He is not outmaneuvered by evil. He is not waiting to see how things play out. Psalm 103:19 says: 'The Lord has established His throne in heaven, and His kingdom rules over all.'\n\nJoseph in Genesis is one of the clearest examples. He was sold into slavery by his own brothers, falsely imprisoned, and forgotten for years. Yet at the end of his story he says: 'You intended to harm me, but God intended it for good' (Genesis 50:20).",
+                    keyVerse: "Romans 8:28 — 'We know that in all things God works for the good of those who love him, who have been called according to his purpose.'",
+                    reflectivePrompt: "Is there a difficult situation in your life right now where it's hard to trust that God is in control? What would it mean to really believe Romans 8:28 about that situation?",
+                    keyTakeaway: "God's sovereignty means He is in ultimate authority and nothing is outside His ability to redeem. This is not a reason to be passive — it is a reason to trust."),
+            ]),
+        BibleStudySeries(id: 2, level: "beginner", title: "What Is Sin?", subtitle: "Understanding the Problem God Came to Solve",
+            description: "You cannot fully appreciate salvation without first understanding what you are being saved from. This series unpacks what sin actually is, where it came from, and why it matters so much.",
+            tag: "Foundations",
+            lessons: [
+                BibleStudyLesson(title: "Sin Is More Than Just Bad Behavior",
+                    preview: "Most people think of sin as doing wrong things. But the Bible describes something much deeper — a condition, not just a list of actions.",
+                    content: "The most common Greek word for sin in the New Testament is 'hamartia,' which literally means 'missing the mark.' The idea is not just that you did something wrong, but that you aimed at the wrong target altogether.\n\nSin began in Genesis 3. God created Adam and Eve in a perfect relationship with Him, with one boundary. They chose to cross that boundary — not because they were forced to, but because they were tempted and chose themselves over God. That choice introduced a spiritual brokenness that has affected every human being since.",
+                    keyVerse: "Romans 3:23 — 'For all have sinned and fall short of the glory of God.'",
+                    reflectivePrompt: "Do you tend to see sin as a list of bad actions, or as something deeper? How does that change what you think the solution needs to be?",
+                    keyTakeaway: "Sin is not just bad behavior — it is a condition of the human heart that separates us from God. This is why grace, not self-improvement, is the answer."),
+                BibleStudyLesson(title: "The Consequences of Sin",
+                    preview: "Sin is not just a spiritual technicality. It has real, measurable consequences — in relationships, in our inner life, and in eternity.",
+                    content: "Romans 6:23 is one of the most direct verses in the Bible: 'For the wages of sin is death.' Wages are what you earn. This is what sin earns: spiritual death — separation from God.\n\nThe prophet Isaiah put it this way: 'Your iniquities have separated you from your God; your sins have hidden his face from you, so that he will not hear' (Isaiah 59:2). The greatest consequence of sin is not punishment — it is distance from God, the very source of life and peace.",
+                    keyVerse: "Romans 6:23 — 'For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.'",
+                    reflectivePrompt: "Can you identify any area of your life where unaddressed sin has caused damage? What do you think restoration would look like?",
+                    keyTakeaway: "Sin's greatest consequence is separation from God. But God does not leave us there — He provides a way back through Jesus."),
+                BibleStudyLesson(title: "Why We Cannot Fix It Ourselves",
+                    preview: "Almost every religion or philosophy in the world offers a solution to the human problem. Most put the work on you.",
+                    content: "Religion generally works like this: do good, avoid bad, and eventually the scale tips in your favor. The problem is that the Bible presents a different diagnosis — and therefore a different solution.\n\nPaul describes his own struggle in Romans 7: 'I do not do the good I want to do, but the evil I do not want to do — this I keep on doing.' This is the honest cry of someone who knows what is right but finds themselves unable to consistently live it out under their own power.\n\nThe solution cannot come from us. It has to come from outside of us — from a God who can change the nature, not just the behavior. That's what new birth is.",
+                    keyVerse: "Ezekiel 36:26 — 'I will give you a new heart and put a new spirit in you.'",
+                    reflectivePrompt: "Have you ever tried to change a behavior on your own willpower alone, only to fall back into it? What does that experience tell you about the need for something deeper?",
+                    keyTakeaway: "Willpower and religion cannot fix the human sin problem. Only a new nature, given by God through Jesus, can address the root."),
+            ]),
+        BibleStudySeries(id: 3, level: "beginner", title: "Who Is Jesus?", subtitle: "The Central Question of All of History",
+            description: "Jesus of Nazareth is the most influential figure in all of human history. But who does He claim to be — and is that claim supported by evidence?",
+            tag: "Jesus",
+            lessons: [
+                BibleStudyLesson(title: "Jesus Was a Real Historical Person",
+                    preview: "Some people assume Jesus is a mythological figure. The evidence from history — including non-Christian sources — says otherwise.",
+                    content: "The existence of Jesus is supported not only by the New Testament but by multiple non-Christian historians from the first and second centuries.\n\nTacitus, the Roman historian, writes in his Annals (AD 116) about 'Christus, from whom the name had its origin, [who] suffered the extreme penalty during the reign of Tiberius at the hands of one of our procurators, Pontius Pilatus.' No serious historian today denies that Jesus existed.",
+                    keyVerse: "John 1:14 — 'The Word became flesh and made his dwelling among us.'",
+                    reflectivePrompt: "Have you ever encountered the idea that Jesus was just a myth? How does the historical evidence change or reinforce your view of Him?",
+                    keyTakeaway: "Jesus is not a mythological figure. His existence is confirmed by multiple historical sources, both Christian and non-Christian."),
+                BibleStudyLesson(title: "Jesus Claimed to Be God",
+                    preview: "Jesus did not just claim to be a good teacher or a prophet. He made claims that forced people to either accept Him or reject Him.",
+                    content: "C.S. Lewis famously observed that Jesus left us no comfortable middle option. He said things that a merely good man would never say. 'I and the Father are one' (John 10:30). 'Before Abraham was born, I am' (John 8:58). 'I am the way and the truth and the life. No one comes to the Father except through me' (John 14:6).\n\nLewis's conclusion: Jesus is either a liar, a lunatic, or Lord. The option that many people prefer — that He was simply a great moral teacher — is the one option He did not leave open.",
+                    keyVerse: "John 14:6 — 'Jesus answered, I am the way and the truth and the life. No one comes to the Father except through me.'",
+                    reflectivePrompt: "Which of the three options — liar, lunatic, or Lord — do you find most difficult to dismiss?",
+                    keyTakeaway: "Jesus made claims that rule out the 'nice teacher' option. He either is who He claimed to be, or He was deluded or dishonest. The evidence points to Lord."),
+                BibleStudyLesson(title: "Why Jesus Had to Die",
+                    preview: "The death of Jesus was not a tragedy that derailed His mission. It was the mission.",
+                    content: "At the heart of the gospel is a problem of justice. God is holy and just — He cannot simply overlook sin. Sin has consequences. A judge who lets every guilty person walk free is not a good judge.\n\nBut God is also love. He does not want any person to be eternally separated from Him. The answer is the cross. Jesus, who was fully God and fully human, willingly took on the death we deserve. 2 Corinthians 5:21: 'God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.'",
+                    keyVerse: "2 Corinthians 5:21 — 'God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.'",
+                    reflectivePrompt: "Before reading this, how did you think about why Jesus died? Has your understanding shifted?",
+                    keyTakeaway: "Jesus died not as a tragic accident but as the intentional fulfillment of God's plan to satisfy justice and extend mercy at the same time."),
+                BibleStudyLesson(title: "The Resurrection — Did It Really Happen?",
+                    preview: "The resurrection is the cornerstone claim of Christianity. If it happened, everything changes.",
+                    content: "Paul writes in 1 Corinthians 15:17: 'If Christ has not been raised, your faith is futile; you are still in your sins.' The evidence for the resurrection: the tomb was empty (no one produced a body), multiple independent sources record appearances of the risen Jesus, and the transformation of the disciples is historically remarkable — cowards who ran away became martyrs who died for this testimony.",
+                    keyVerse: "1 Corinthians 15:3–4 — 'Christ died for our sins according to the Scriptures, he was buried, he was raised on the third day.'",
+                    reflectivePrompt: "What do you find most compelling or most challenging about the historical case for the resurrection?",
+                    keyTakeaway: "The resurrection is a historical claim backed by the empty tomb, multiple eyewitness accounts, and the transformation of the early disciples."),
+            ]),
+        BibleStudySeries(id: 4, level: "beginner", title: "What Is Salvation?", subtitle: "How to Be Made Right with God",
+            description: "Salvation is the central gift of the Christian faith. This series clarifies what salvation is, how it works, and what it produces.",
+            tag: "The Gospel",
+            lessons: [
+                BibleStudyLesson(title: "Grace: Saved by Gift, Not by Effort",
+                    preview: "Almost every religion teaches that you earn your way to God. Christianity teaches the opposite.",
+                    content: "Ephesians 2:8–9: 'For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God — not by works, so that no one can boast.'\n\nGrace means receiving something you did not earn and do not deserve. You cannot earn grace — the moment you earn something, it stops being grace and becomes a transaction. Salvation is not a reward for the good enough. It is a rescue for the lost.",
+                    keyVerse: "Ephesians 2:8–9 — 'For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God.'",
+                    reflectivePrompt: "Do you ever find yourself thinking you need to get your life together before you can come to God? Where does that impulse come from?",
+                    keyTakeaway: "Salvation is entirely a gift from God, received through faith. You cannot earn it, improve your way to it, or maintain it through effort."),
+                BibleStudyLesson(title: "Faith: What It Means to Believe",
+                    preview: "The word 'believe' is used over 100 times in the New Testament. But what does biblical faith actually mean?",
+                    content: "James 2:19 makes a startling point: 'Even the demons believe that — and shudder.' Believing facts about God is not the same as saving faith.\n\nBiblical faith has three elements: notitia (knowledge), assensus (agreement), and fiducia (trust — personally committing yourself to what you believe). The third element is what makes faith saving. A good illustration is a bridge: you can know it exists, believe it holds weight, but faith is when you step onto it.",
+                    keyVerse: "John 3:16 — 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.'",
+                    reflectivePrompt: "Is there a difference between what you know about Jesus and what you actually trust Him with in your daily life?",
+                    keyTakeaway: "Saving faith is not just knowing facts about Jesus — it is personally trusting Him with your life."),
+                BibleStudyLesson(title: "Repentance: Turning Around",
+                    preview: "The first word of Jesus's public ministry was 'Repent.' Understanding repentance is essential.",
+                    content: "The Greek word for repentance is 'metanoia' — literally 'a change of mind' that leads to a change of direction. Repentance is not just feeling bad about what you have done. It is a decision. It is turning around.\n\n2 Corinthians 7:10 distinguishes between two kinds of sorrow: 'Godly sorrow brings repentance that leads to salvation... but worldly sorrow brings death.' Worldly sorrow is regret about consequences. Godly sorrow is grief over who you have been — and it produces change.",
+                    keyVerse: "Acts 3:19 — 'Repent, then, and turn to God, so that your sins may be wiped out.'",
+                    reflectivePrompt: "Is there an area of your life where you know what God thinks, but you're still defending your own way?",
+                    keyTakeaway: "Repentance is not just remorse — it is a genuine change of direction, agreeing with God about your sin and choosing to turn toward Him."),
+                BibleStudyLesson(title: "Assurance: Knowing You Are Saved",
+                    preview: "Many Christians live with chronic uncertainty about their salvation. The Bible speaks directly to this.",
+                    content: "1 John 5:13 was written for a specific purpose: 'I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life.' The word 'know' is deliberate. John is not writing so you can sort of hope or vaguely wonder.\n\nAssurance of salvation is not arrogance. It is trust in a promise. Jesus said, 'I give them eternal life, and they shall never perish; no one will snatch them out of my hand' (John 10:28).",
+                    keyVerse: "1 John 5:13 — 'I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life.'",
+                    reflectivePrompt: "Do you have assurance of your salvation, or does it feel uncertain? What would it mean to rest your assurance in God's promise?",
+                    keyTakeaway: "Assurance of salvation is trusting God's promise. Your security rests in Jesus's grip on you, not your grip on Him."),
+            ]),
+        BibleStudySeries(id: 5, level: "beginner", title: "Prayer — How to Talk to God", subtitle: "Building a Real, Honest Conversation with God",
+            description: "Prayer is one of the most important practices in the Christian life — and one of the most neglected. This series takes prayer beyond ritual.",
+            tag: "Spiritual Practices",
+            lessons: [
+                BibleStudyLesson(title: "What Prayer Actually Is",
+                    preview: "Many people think of prayer as a religious ritual or a last resort in a crisis. The Bible describes something far more dynamic.",
+                    content: "Prayer is simply talking to God. It is not a formula, a performance, or a technique. Jesus told His followers not to 'heap up empty phrases' or pray to be seen by others (Matthew 6:5–7).\n\nThe God of the Bible is not impressed by eloquence. He is looking for honesty. The Psalms are full of raw, unpolished prayers — 'How long, Lord? Will you forget me forever?' (Psalm 13:1). You do not need special language or a special building.",
+                    keyVerse: "Philippians 4:6 — 'Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.'",
+                    reflectivePrompt: "When you think about praying, what obstacles or hesitations come up most often?",
+                    keyTakeaway: "Prayer is honest conversation with God — not performance, not formula, not last resort. It is the primary way relationship with God is built."),
+                BibleStudyLesson(title: "How Jesus Prayed — The Lord's Prayer Unpacked",
+                    preview: "When the disciples asked Jesus to teach them how to pray, He gave them a model far richer than most people realize.",
+                    content: "In Matthew 6:9–13, Jesus gives what is commonly called the Lord's Prayer. It is not meant to be a prayer you recite — it is a structure you follow.\n\n'Our Father' — You are approaching a Father, not a judge.\n'Hallowed be your name' — Before requests, there is worship.\n'Your kingdom come, your will be done' — Surrendering your agenda to God's purposes.\n'Give us today our daily bread' — Daily practical needs to God.\n'Forgive us our debts' — Keeping the account short.\n'Lead us not into temptation' — Acknowledging your own vulnerability.",
+                    keyVerse: "Matthew 6:9–10 — 'Our Father in heaven, hallowed be your name. Your kingdom come, your will be done, on earth as it is in heaven.'",
+                    reflectivePrompt: "Which part of the Lord's Prayer structure do you find yourself skipping most often?",
+                    keyTakeaway: "The Lord's Prayer is a model for prayer, not a script. It teaches: approach God as Father, worship before requesting, surrender your agenda, pray for daily needs."),
+                BibleStudyLesson(title: "When God Says No",
+                    preview: "What do you do when you pray and God doesn't answer the way you wanted?",
+                    content: "Paul describes in 2 Corinthians 12 a 'thorn in the flesh' he repeatedly asked God to remove. God's answer was: 'My grace is sufficient for you, for my power is made perfect in weakness.' Three times Paul asked. Three times the answer was no — but the no came with a reason and a promise.\n\nWhen God says no, there are several things He might be doing: protecting you from something you cannot see, preparing you for something that requires this season, or accomplishing a larger purpose through your willingness to trust Him anyway.",
+                    keyVerse: "2 Corinthians 12:9 — 'My grace is sufficient for you, for my power is made perfect in weakness.'",
+                    reflectivePrompt: "Is there a prayer you have prayed that God seems to have said no to? Looking back, can you see any possible reason?",
+                    keyTakeaway: "God's no is not rejection or absence. It is evidence of a wisdom greater than ours, working toward purposes we cannot always see."),
+                BibleStudyLesson(title: "Building a Consistent Prayer Life",
+                    preview: "Knowing about prayer and actually praying are two different things. This lesson is practical.",
+                    content: "The most honest thing that can be said about prayer is that it requires intention. It does not happen by accident.\n\nPractical patterns: Fixed times of prayer — Daniel prayed three times a day regardless of circumstances (Daniel 6:10). A regular place — Jesus often went to a specific garden to pray. Journaling your prayers — Writing prayers slows down your thinking and allows you to look back at answers. Praying Scripture back to God — Taking a Psalm and praying through it line by line. Start small and be consistent — Five minutes every day builds a stronger habit than sporadic two-hour sessions.",
+                    keyVerse: "1 Thessalonians 5:17 — 'Pray continually.'",
+                    reflectivePrompt: "What is the most realistic way for you to build a consistent prayer habit given your actual schedule?",
+                    keyTakeaway: "Consistent prayer requires intention and structure. Fixed times, a regular place, and starting small build a prayer life that is sustainable and transformative."),
+            ]),
+        BibleStudySeries(id: 6, level: "beginner", title: "Reading the Bible", subtitle: "How to Actually Understand What You're Reading",
+            description: "Many Christians own a Bible and rarely open it. This series gives you practical tools to read Scripture in a way that is genuinely life-changing.",
+            tag: "Spiritual Practices",
+            lessons: [
+                BibleStudyLesson(title: "Why Reading the Bible Is Non-Negotiable",
+                    preview: "The Bible is not just a religious book to be read once. It is the primary way God speaks to His people.",
+                    content: "2 Timothy 3:16–17 states: 'All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.' Every part is useful. Not just the famous parts.\n\nJesus, when tempted in the wilderness, responded to every temptation with Scripture: 'It is written...' This was not coincidence. He was modeling that the Word of God is the weapon against temptation and the anchor in confusion.",
+                    keyVerse: "2 Timothy 3:16–17 — 'All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.'",
+                    reflectivePrompt: "How often do you currently read the Bible? What gets in the way?",
+                    keyTakeaway: "Regular Bible reading is not optional for a healthy Christian life. It is how God speaks, how you are protected, and how you stay oriented toward truth."),
+                BibleStudyLesson(title: "The Observe-Interpret-Apply Method",
+                    preview: "Most people read the Bible too quickly. There is a better way.",
+                    content: "OBSERVE — What does the text actually say? Read slowly. Notice who is speaking and to whom. Notice what words are repeated. Ask: Who? What? When? Where? How?\n\nINTERPRET — What does the text mean? Context is everything. What was the historical situation? What did this mean to the original audience? Every passage has one primary meaning — the author's intended meaning.\n\nAPPLY — What does this mean for how I live? Application should be concrete — not 'I should trust God more' but 'This week when I feel anxious about X, I am going to say out loud that God is in control.'",
+                    keyVerse: "James 1:22 — 'Do not merely listen to the word, and so deceive yourselves. Do what it says.'",
+                    reflectivePrompt: "Think of a Bible passage you have read before. If you applied the Observe step — just looking carefully — what do you notice that you may have glossed over before?",
+                    keyTakeaway: "The Observe-Interpret-Apply method slows you down and deepens your understanding. The goal is not more verses read but more truth received and lived."),
+                BibleStudyLesson(title: "Where to Start and How to Keep Going",
+                    preview: "The Bible is long and complex. Knowing where to start and how to build momentum changes everything.",
+                    content: "One of the most common mistakes people make is trying to read the Bible straight through from Genesis 1. Leviticus stops most people cold.\n\nThe best starting point for someone new to the Bible is the Gospel of John. It was written specifically so that readers would believe in Jesus (John 20:31). After John, move to Romans, then the other Gospels and Acts.\n\nFor building a reading habit: one chapter a day is far better than reading ten chapters in a burst and then stopping for a month. Consider reading with a journal nearby — write down one observation, one question, and one application.",
+                    keyVerse: "John 20:31 — 'These are written that you may believe that Jesus is the Messiah, the Son of God, and that by believing you may have life in his name.'",
+                    reflectivePrompt: "What has your experience of reading the Bible been so far? What approach feels most helpful or most feasible for you right now?",
+                    keyTakeaway: "Start with the Gospel of John. Prioritize consistency over quantity. Give yourself permission to not understand everything at once — keep moving."),
+            ]),
+        BibleStudySeries(id: 7, level: "beginner", title: "The Holy Spirit", subtitle: "Who He Is and Why He Changes Everything",
+            description: "The Holy Spirit is one of the most misunderstood persons of the Trinity. This series clears up the confusion.",
+            tag: "Theology",
+            lessons: [
+                BibleStudyLesson(title: "Who Is the Holy Spirit?",
+                    preview: "The Holy Spirit is often described as a force or a feeling. The Bible describes a person.",
+                    content: "The Holy Spirit is not an impersonal force like electricity or spiritual energy. He is the third person of the Trinity — fully God, fully personal, fully active.\n\nJesus spoke of the Spirit as 'He' — not 'it.' 'But the Advocate, the Holy Spirit, whom the Father will send in my name, will teach you all things' (John 14:26). The Spirit can be grieved (Ephesians 4:30), lied to (Acts 5:3–4), and resisted (Acts 7:51) — all things that are only possible with a personal being.",
+                    keyVerse: "John 14:16–17 — 'And I will ask the Father, and he will give you another advocate to help you and be with you forever — the Spirit of truth.'",
+                    reflectivePrompt: "Have you thought of the Holy Spirit as a person or more as a vague spiritual force? How does understanding Him as a person change how you might relate to Him?",
+                    keyTakeaway: "The Holy Spirit is a person — the third member of the Trinity — who lives permanently inside every believer."),
+                BibleStudyLesson(title: "What the Holy Spirit Does in You",
+                    preview: "The Spirit is not just present in the Christian life — He is the engine of genuine spiritual transformation.",
+                    content: "Galatians 5:22–23 describes what the Holy Spirit produces in the life of a believer: 'love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.' These are called the fruit of the Spirit — singular fruit. It is one interconnected character that develops as you walk with the Spirit.\n\nThe fruit is not produced by trying harder to be loving or patient — it is the natural result of connection with the Spirit, like fruit that grows naturally from a healthy tree.",
+                    keyVerse: "Galatians 5:22–23 — 'The fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.'",
+                    reflectivePrompt: "Looking at the fruit of the Spirit list, which one feels most developed in you right now? Which one feels most lacking?",
+                    keyTakeaway: "The Holy Spirit's work in you is transformation from the inside out — producing character, equipping with gifts, convicting of sin, and interceding when you are too weak to pray."),
+                BibleStudyLesson(title: "Walking in Step with the Spirit",
+                    preview: "Paul uses the phrase 'walk by the Spirit' — not run, not sprint, not perform. Walk. What does that look like practically?",
+                    content: "Galatians 5:16 says: 'Walk by the Spirit, and you will not gratify the desires of the flesh.' Paul does not say struggle against the flesh harder. He says walk by the Spirit. The focus is on cooperation, not combat.\n\nPractically: Start your day with a simple prayer: 'Holy Spirit, lead me today. I am available.' When you sense a prompting — to encourage someone, to pray — act on it. When you grieve the Spirit through sin, confess quickly and return to fellowship. Read Scripture with the expectation that the Spirit will illuminate it.",
+                    keyVerse: "Galatians 5:16 — 'Walk by the Spirit, and you will not gratify the desires of the flesh.'",
+                    reflectivePrompt: "When you sense a prompting to do something — encourage someone, pray — what is your typical response?",
+                    keyTakeaway: "Walking in step with the Spirit is daily attentiveness and responsiveness — not a mystical experience but a practical posture of surrender and openness."),
+            ]),
+        BibleStudySeries(id: 8, level: "beginner", title: "Christian Community — Why You Need the Church", subtitle: "You Were Not Designed to Follow Jesus Alone",
+            description: "Many people today want Jesus without the church. But the New Testament knows nothing of solo Christianity.",
+            tag: "Life Together",
+            lessons: [
+                BibleStudyLesson(title: "You Cannot Do This Alone",
+                    preview: "Modern culture celebrates radical independence. Christianity runs on something different.",
+                    content: "Hebrews 10:24–25 is one of the most direct commands about community: 'Let us consider how we may spur one another on toward love and good deeds, not giving up meeting together... but encouraging one another.'\n\nEcclesiastes 4:9–10 makes the practical case: 'Two are better than one. If either of them falls down, one can help the other up. But pity anyone who falls and has no one to help them up.' Solo Christianity sounds noble, but evidence consistently shows community is essential to long-term faith.",
+                    keyVerse: "Hebrews 10:24–25 — 'Let us consider how we may spur one another on toward love and good deeds, not giving up meeting together.'",
+                    reflectivePrompt: "Do you currently have people in your life who know you well enough to encourage you and hold you accountable in your faith?",
+                    keyTakeaway: "Solo Christianity is not what the New Testament describes. Genuine community — where people actually know and help each other — is essential to following Jesus over the long haul."),
+                BibleStudyLesson(title: "What the Church Actually Is",
+                    preview: "Many people think the church is a building or an institution. The Bible describes something entirely different.",
+                    content: "The Greek word for church is 'ekklesia' — literally 'the called-out ones.' It refers to a community of people, not a building. When Paul writes to 'the church in Corinth,' there was no church building.\n\nThe New Testament uses several images: a family (brothers and sisters in Christ), a body (each person is a part with a function — 'no part can say to another I don't need you,' 1 Corinthians 12:21), and a temple (each believer is a living stone being built into something larger).",
+                    keyVerse: "1 Corinthians 12:27 — 'Now you are the body of Christ, and each one of you is a part of it.'",
+                    reflectivePrompt: "How do you typically think about the church — as a place you go to, or a community you belong to?",
+                    keyTakeaway: "The church is not a building or a service — it is a community you are meant to belong to, contribute to, and be shaped by."),
+                BibleStudyLesson(title: "Finding and Choosing a Church",
+                    preview: "For someone new to the Christian faith, choosing a church can feel overwhelming. Here are the things that actually matter.",
+                    content: "The criteria most people use — music style, how polished the service is — are mostly the wrong criteria.\n\nWhat actually matters: SOUND TEACHING — Is the Bible taught clearly and honestly? Is the gospel preached? GENUINE COMMUNITY — Are there real relationships, or is everyone a stranger? Can you connect to smaller groups? WORSHIP THAT HONORS GOD — Is the focus on God or on the experience? ACCOUNTABILITY AND GROWTH — Is there expectation of discipleship?\n\nThere is no perfect church — it is made of imperfect people. But a church with sound teaching, genuine community, and a culture of growth is worth committing to.",
+                    keyVerse: "Acts 2:42 — 'They devoted themselves to the apostles' teaching and to fellowship, to the breaking of bread and to prayer.'",
+                    reflectivePrompt: "What have your previous experiences with church been like? What has been missing?",
+                    keyTakeaway: "Choose a church based on sound teaching, genuine community, and a culture of growth — not on style, comfort, or entertainment value."),
+            ]),
+        BibleStudySeries(id: 9, level: "beginner", title: "Dealing with Doubt", subtitle: "What to Do When Faith Feels Hard",
+            description: "Doubt is not the opposite of faith — it is part of the journey. This series is for Christians who have questions and moments when God feels distant.",
+            tag: "Real Life",
+            lessons: [
+                BibleStudyLesson(title: "Doubt Is Not the Enemy of Faith",
+                    preview: "Many Christians are afraid to admit doubt. The Bible says something different.",
+                    content: "The Psalms are the most honest book in the Bible. Psalm 13 opens with: 'How long, Lord? Will you forget me forever?' This is raw, honest doubt spoken directly to God.\n\nElijah, after calling down fire from heaven, runs away in fear and asks God to let him die. John the Baptist, who baptized Jesus, sends messengers from prison asking: 'Are you the one who is to come, or should we expect someone else?' These are not weak believers — these are heroes of the faith who went through deep darkness.\n\nFaith is not the absence of doubt. It is the choice to trust in spite of uncertainty.",
+                    keyVerse: "Mark 9:24 — 'I do believe; help me overcome my unbelief!'",
+                    reflectivePrompt: "What is the biggest doubt or question you are currently carrying about your faith?",
+                    keyTakeaway: "Doubt does not disqualify you. It is part of authentic faith. The Bible's greatest figures wrestled with doubt and God met them in it."),
+                BibleStudyLesson(title: "What to Do When God Feels Absent",
+                    preview: "Every Christian goes through seasons when prayer feels like talking to a ceiling.",
+                    content: "The mystics called it 'the dark night of the soul.' Even Mother Teresa's private journals showed she experienced nearly 50 years of feeling God's absence while ministering to the dying poor.\n\nWhat helps: Keep showing up. Keep reading Scripture even when it feels dry. Keep praying even when prayer feels hollow. Faith exercised without feeling is not weaker faith — it is stronger faith. The feeling often returns. But even if it does not, the truth remains the same whether you feel it or not.",
+                    keyVerse: "Psalm 27:14 — 'Wait for the Lord; be strong and take heart and wait for the Lord.'",
+                    reflectivePrompt: "Have you ever gone through a season where God felt absent? What did you do during that time?",
+                    keyTakeaway: "God's felt absence is not His actual absence. Seasons of silence are part of almost every believer's journey. Keep showing up."),
+                BibleStudyLesson(title: "Hard Questions Have Real Answers",
+                    preview: "Christianity does not ask you to stop thinking. The best Christian thinkers have engaged the hard questions head-on.",
+                    content: "Some of the hardest questions: Why does God allow suffering? How can a good God send people to hell? Hasn't science disproved religion?\n\nOn suffering: C.S. Lewis concluded that the existence of evil actually points to the existence of a moral standard — and therefore a Moral Lawgiver. On science and faith: The founders of modern science — Newton, Kepler, Pasteur — were devout Christians who saw science as reading the mind of God through creation.\n\nYou do not need to have all the answers to move forward in faith. But knowing the questions have been wrestled with by great minds and found answerable should give you confidence.",
+                    keyVerse: "1 Peter 3:15 — 'Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have.'",
+                    reflectivePrompt: "What is the one question about Christianity that you find hardest to answer? Have you ever seriously researched it?",
+                    keyTakeaway: "Christianity does not require intellectual surrender. Hard questions have real answers. Engage them seriously — the faith is stronger for honest investigation."),
+            ]),
+        BibleStudySeries(id: 10, level: "beginner", title: "Living It Out — Everyday Discipleship", subtitle: "What Following Jesus Actually Looks Like Day to Day",
+            description: "Christianity is not just a belief system — it is a way of life. This series grounds faith in the practical, daily reality of what it looks like to actually live as a disciple.",
+            tag: "Daily Life",
+            lessons: [
+                BibleStudyLesson(title: "Discipleship Is a Daily Decision",
+                    preview: "Becoming a Christian is a moment. Being a Christian is a daily choice to follow.",
+                    content: "Luke 9:23: 'Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.' Three verbs. Deny yourself. Take up your cross. Follow. And the key word: daily.\n\nThis is why the Christian life is described in terms of movement: running a race, walking in the Spirit, pressing on toward a goal. There is no arrival point in this life. Growth is the goal. Yesterday's failures do not disqualify you from today's faithfulness.",
+                    keyVerse: "Luke 9:23 — 'Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.'",
+                    reflectivePrompt: "What is one area of your life where following Jesus daily costs you something?",
+                    keyTakeaway: "Discipleship is a daily decision, not a one-time event. Every day is an opportunity to choose His way — and every new morning is a fresh start."),
+                BibleStudyLesson(title: "Renewing Your Mind",
+                    preview: "The most important battlefield in the Christian life is not behavior — it is thinking.",
+                    content: "Romans 12:2: 'Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is.'\n\nThe 'pattern of this world' — the default assumptions and values that culture constantly presses you toward — is not neutral. It is formative. Renewing your mind is active, not passive. It means filling your thinking with Scripture and choosing consciously rather than defaulting.",
+                    keyVerse: "Romans 12:2 — 'Do not conform to the pattern of this world, but be transformed by the renewing of your mind.'",
+                    reflectivePrompt: "What are the biggest sources of information, entertainment, and influence in your daily life? Are they more likely to renew your mind toward God?",
+                    keyTakeaway: "Transformation begins in the mind. Renewing your mind is active, intentional, and daily — choosing what fills your thinking."),
+                BibleStudyLesson(title: "Serving Others — Finding Your Place",
+                    preview: "Christianity is not a spectator sport. Every believer is called to serve.",
+                    content: "Ephesians 2:10: 'For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.' Saved by grace — for works.\n\nEvery believer has been given spiritual gifts for building up the body of Christ (1 Corinthians 12:7). These are not optional extras for the particularly devout. Discovering yours and using them is part of what it means to be fully alive in Christ.",
+                    keyVerse: "Ephesians 2:10 — 'For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.'",
+                    reflectivePrompt: "What do you think your gifts or strengths might be? Is there a need in your church or community that matches what you are good at?",
+                    keyTakeaway: "You are saved for something — good works that God prepared for you specifically. Finding your unique place of service is central to the full Christian life."),
+                BibleStudyLesson(title: "Sharing Your Faith — Naturally and Without Fear",
+                    preview: "Many Christians feel paralyzed at the idea of sharing their faith.",
+                    content: "1 Peter 3:15: 'Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have. But do this with gentleness and respect.'\n\nThe most effective evangelism is story-telling. The man born blind who was healed by Jesus said simply: 'Whether he is a sinner or not, I don't know. One thing I do know. I was blind but now I see!' He did not have a systematic theology. He had a story. Your story is something no one can argue with.",
+                    keyVerse: "1 Peter 3:15 — 'Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have.'",
+                    reflectivePrompt: "Is there someone in your life right now who doesn't know Jesus? What would it look like to pray for them consistently?",
+                    keyTakeaway: "Sharing your faith starts with living differently and telling your story. You don't need all the answers — you need genuine hope and the willingness to talk about it."),
+            ]),
+        BibleStudySeries(id: 11, level: "intermediate", title: "When God Does Not Answer Prayer", subtitle: "What Scripture Says About Silence, Waiting, and Hindered Prayer",
+            description: "Some of the most honest moments in the Christian life happen when prayer feels like silence. This study doesn't offer easy answers — it opens Scripture and looks directly at what God says.",
+            tag: "Prayer",
+            lessons: [
+                BibleStudyLesson(title: "The Foundation: God Hears — But on His Terms",
+                    preview: "Before examining why God sometimes doesn't answer, we need to establish what Scripture actually promises about prayer.",
+                    content: "Scripture makes bold promises about prayer. Jesus said, 'If you will ask anything in my name, I will do it' (John 14:14). John wrote, 'If we ask anything according to his will, he listens to us' (1 John 5:14). But those two verses carry critical qualifiers: 'in my name' and 'according to his will.'\n\nPraying 'in Jesus's name' is not a formula you add at the end. It means praying in alignment with His character and purposes. 'According to His will' assumes that your prayer is submitted to a will greater than your own.",
+                    keyVerse: "1 John 5:14 — 'If we ask anything according to his will, he listens to us.'",
+                    reflectivePrompt: "When you pray, do you typically pray toward what you want, or toward what God might want?",
+                    keyTakeaway: "God's promises about prayer all carry qualifiers — 'in my name' and 'according to his will.' Prayer is a conversation submitted to a will greater than your own."),
+                BibleStudyLesson(title: "Hindered Prayer: When Wrong Motives Block the Line",
+                    preview: "James is direct: some prayers go unanswered not because God is absent, but because the motive behind them is wrong.",
+                    content: "James 4:3: 'You ask, and don't receive, because you ask with wrong motives, so that you may spend it for your pleasures.' You can sincerely want something that is entirely self-serving.\n\nThe solution is not to stop praying until your motives are perfect. No one's motives are ever fully pure. The solution is to bring your motives into the prayer itself: 'Lord, I'm not sure my heart is right in this. Show me what I'm missing. Align my wants with yours.'",
+                    keyVerse: "James 4:3 — 'You ask, and don't receive, because you ask with wrong motives.'",
+                    reflectivePrompt: "Think of a prayer you've been praying persistently. What is the motive beneath it?",
+                    keyTakeaway: "Wrong motives are explicitly identified in Scripture as a reason prayers go unanswered. Honest examination of motive is part of prayer itself."),
+                BibleStudyLesson(title: "When Sin Creates Distance",
+                    preview: "Scripture is direct: unconfessed, cherished sin creates separation between you and God.",
+                    content: "Psalm 66:18: 'If I cherished sin in my heart, the Lord wouldn't have listened.' The key word is 'cherished' — not just 'committed.' Everyone sins. The problem is sin that is held onto, protected, and rationalized rather than confessed.\n\nThe practical discipline here is keeping 'short accounts' with God — not letting sin accumulate and create distance, but addressing it honestly and quickly when it appears. 1 John 1:9: 'If we confess our sins, he is faithful and righteous to forgive us.'",
+                    keyVerse: "Psalm 66:18 — 'If I cherished sin in my heart, the Lord wouldn't have listened.'",
+                    reflectivePrompt: "Is there anything in your life right now that you know is wrong, but you have been protecting rather than confessing?",
+                    keyTakeaway: "Cherished, unconfessed sin creates spiritual distance that affects prayer. Confess, turn, and restore the relationship through the forgiveness Jesus already made available."),
+                BibleStudyLesson(title: "How We Are Not Supposed to Pray",
+                    preview: "Jesus was specific about the wrong ways to pray — and His warnings reveal a great deal about what prayer is actually for.",
+                    content: "Jesus addresses prayer in the Sermon on the Mount by correcting wrong postures: prayer as performance designed to impress others (Matthew 6:5), vain repetition ('don't use vain repetitions as the Gentiles do,' Matthew 6:7), the posture of doubt (James 1:6–7), and refusing to forgive others while expecting God to hear your prayers (Mark 11:25).\n\nEach wrong posture points toward the same problem: prayer that is fundamentally about self rather than honest communion with God.",
+                    keyVerse: "Matthew 6:5 — 'When you pray, you shall not be as the hypocrites, for they love to stand and pray... that they may be seen by men.'",
+                    reflectivePrompt: "Of the four wrong postures — performing, using empty words, doubting, refusing to forgive — which one do you find yourself most tempted toward?",
+                    keyTakeaway: "Jesus identified four wrong approaches to prayer: performance, empty repetition, unbelief, and unforgiveness. Each keeps self at the center rather than God."),
+                BibleStudyLesson(title: "What True Prayer Looks Like — and Learning to Wait",
+                    preview: "After examining what blocks prayer, this lesson turns to what prayer looks like when it is aligned.",
+                    content: "James 5:16: 'The prayer of a righteous person is powerful and effective.' Not eloquent. Not lengthy. Righteous. The condition for effective prayer is not technique — it is character and alignment.\n\nWhen you have examined your motives, confessed your sin, checked your posture — and prayer still feels like silence — you wait. Psalm 27:14: 'Wait for Yahweh. Be strong, and let your heart take courage. Yes, wait for Yahweh.' The deepest truth: silence is not absence. Waiting is not rejection.",
+                    keyVerse: "James 5:16 — 'The prayer of a righteous person is powerful and effective.'",
+                    reflectivePrompt: "Is there a prayer you have been waiting on for a long time? What would it look like to continue bringing it to God honestly while genuinely surrendering the outcome?",
+                    keyTakeaway: "True prayer is righteous and honest, not performative. When God is silent, the biblical response is active waiting — trusting that His silence or delay is never without purpose."),
+            ]),
+        BibleStudySeries(id: 12, level: "intermediate", title: "Spiritual Warfare — The Invisible Battle", subtitle: "What the Bible Says About the Enemy, Temptation, and Standing Firm",
+            description: "Scripture does not teach that the Christian life is a peaceful walk with no opposition. It teaches that there is an active enemy and a real battle — and that God has fully equipped you for it.",
+            tag: "Spiritual Life",
+            lessons: [
+                BibleStudyLesson(title: "Is There Really a Devil?",
+                    preview: "Modern culture dismisses the idea of a personal devil. But Jesus treated him as a real, active opponent.",
+                    content: "Jesus spoke directly to Satan in the wilderness temptation (Matthew 4). Paul warned that 'our wrestling is not against flesh and blood, but against the principalities, against the powers, against the world's rulers of the darkness of this age' (Ephesians 6:12).\n\nHowever, Scripture is equally clear about his limits. He is not omnipresent, not omniscient, and not omnipotent. He is a created being who has already been decisively defeated at the cross. Colossians 2:15: Jesus 'stripped the rulers and authorities of their power, and put them on public display, triumphing over them.'",
+                    keyVerse: "1 Peter 5:8–9 — 'Your adversary, the devil, walks around like a roaring lion, seeking whom he may devour. Withstand him steadfast in your faith.'",
+                    reflectivePrompt: "Have you ever considered that temptation, accusation, and discouragement might have a spiritual source as well as a human one?",
+                    keyTakeaway: "The devil is real, active, and has real influence — but he is a defeated enemy. The battle is real, but the outcome is not in doubt."),
+            ]),
+        BibleStudySeries(id: 13, level: "advanced", title: "The Doctrine of Scripture", subtitle: "What the Bible Claims About Itself",
+            description: "Is the Bible really the Word of God? This advanced study examines the doctrine of Scripture — inspiration, inerrancy, canonization, and transmission — with rigor and honesty.",
+            tag: "Scripture",
+            lessons: []),
+        BibleStudySeries(id: 14, level: "advanced", title: "The Trinity", subtitle: "One God in Three Persons",
+            description: "The Trinity is the most important and the most misunderstood doctrine in Christianity. This study examines what Scripture actually says, where the doctrine came from, and why it matters.",
+            tag: "Doctrine",
+            lessons: []),
+        BibleStudySeries(id: 15, level: "advanced", title: "The Problem of Evil", subtitle: "Theodicy and the Christian Answer",
+            description: "If God is all-powerful and all-good, why does evil exist? This is the hardest philosophical challenge to Christian faith. This study engages it seriously.",
+            tag: "Apologetics",
+            lessons: []),
+    ]
 }
 
 // ============================================================
@@ -1724,15 +2045,22 @@ struct MoreScreen: View {
         Group {
             sectionHeader("BIBLE")
             moreRow("Foundation Course", subtitle: "8 modules from basics to doctrine", icon: "graduationcap.fill", color: .appPrimary) { CoursesScreen() }
+            moreRow("Bible Studies", subtitle: "In-depth studies by experience level", icon: "book.fill", color: Color(red: 0.70, green: 0.45, blue: 0.10)) { BibleStudiesScreen() }
             moreRow("Lookup Any Verse", subtitle: "Search by book and chapter", icon: "magnifyingglass", color: Color(red: 0.08, green: 0.6, blue: 0.55)) { BibleLookupScreen() }
             moreRow("Bible Versions", subtitle: "Which translation is right for you", icon: "books.vertical.fill", color: Color(red: 0.85, green: 0.55, blue: 0.05)) { BibleVersionsScreen() }
             moreRow("Bible Authors", subtitle: "Evidence and authorship", icon: "person.text.rectangle.fill", color: Color(red: 0.4, green: 0.6, blue: 0.3)) { BibleAuthorsScreen() }
+            moreRow("Guidance", subtitle: "Search scripture for spiritual guidance", icon: "heart.text.square.fill", color: Color(red: 0.20, green: 0.55, blue: 0.90)) { GuidanceScreen() }
 
-            sectionHeader("RELIGION")
+            sectionHeader("RELIGION & COMMUNITY")
             moreRow("What is Religion", subtitle: "Schism, Reformation, denominations", icon: "building.columns.fill", color: Color(red: 0.83, green: 0.18, blue: 0.18)) { ReligionsScreen() }
             moreRow("Everyday Topics", subtitle: "Scripture on life's questions", icon: "list.bullet.rectangle.fill", color: Color(red: 0.13, green: 0.55, blue: 0.13)) { TopicsScreen() }
             moreRow("Popular Stories", subtitle: "The Bible's greatest narratives", icon: "text.book.closed.fill", color: Color(red: 0.20, green: 0.40, blue: 0.85)) { StoriesScreen() }
+            moreRow("Church Mentors", subtitle: "Connect with experienced believers", icon: "person.2.fill", color: Color(red: 0.35, green: 0.55, blue: 0.80)) { ChurchMentorsScreen() }
+
+            sectionHeader("MEDIA")
             moreRow("Wisdom", subtitle: "Sermons from trusted preachers", icon: "mic.fill", color: Color(red: 0.50, green: 0.25, blue: 0.10)) { PreachingScreen() }
+            moreRow("Podcasts", subtitle: "Top Christian podcasts and more", icon: "radio.fill", color: Color(red: 0.20, green: 0.60, blue: 0.50)) { PodcastsScreen() }
+            moreRow("Hallowed", subtitle: "Sacred sound — the band", icon: "waveform", color: Color(red: 0.10, green: 0.10, blue: 0.15)) { HallowedScreen() }
 
             sectionHeader("INFORMATION")
             moreRow("Historical Timeline", subtitle: "From Creation to the modern church", icon: "clock.fill", color: Color(red: 0.08, green: 0.60, blue: 0.55)) { TimelineScreen() }
@@ -2713,29 +3041,179 @@ struct BibleAuthorsScreen: View {
 // MARK: - Preaching Screen
 // ============================================================
 
+struct PreachingSermon: Identifiable {
+    let id: String
+    let preacher: String
+    let title: String
+    let videoId: String
+    let description: String
+    let instagram: String?
+    let facebook: String?
+    let tiktok: String?
+    let youtube: String
+}
+
 struct PreachingScreen: View {
-    let preachers: [(String, String, String, String)] = [
-        ("Wes Huff", "Christian Apologist", "One of the clearest communicators on why Christianity is true. His work on manuscript evidence and the reliability of the New Testament is exceptional.", "https://www.youtube.com/@WesHuff"),
-        ("Philip Anthony Mitchell", "Bible Teacher", "Deep, verse-by-verse teaching through books of the Bible. Known for his thoroughness and pastoral clarity.", "https://www.youtube.com/@PhilipAnthonyMitchell"),
-        ("T.D. Jakes", "Pastor — The Potter's House", "One of the most powerful communicators in Christian ministry. Known for practical, Spirit-filled preaching that meets people where they are.", "https://www.youtube.com/@TDJakesOfficial"),
+    let sermons: [PreachingSermon] = [
+        PreachingSermon(
+            id: "wes-huff",
+            preacher: "Wes Huff",
+            title: "How to Talk About Jesus Without Sounding Like an Idiot",
+            videoId: "P4d23yKp5QU",
+            description: "Wesley Huff shares practical strategies for Christians to talk about their faith with others, combining real world experience and Biblical teachings on engaging in meaningful conversations about faith in Jesus.",
+            instagram: "https://www.instagram.com/wesley_huff/",
+            facebook: "https://www.facebook.com/WesLivingstoneHuff",
+            tiktok: "https://www.tiktok.com/@wesley__huff",
+            youtube: "https://www.youtube.com/watch?v=P4d23yKp5QU"
+        ),
+        PreachingSermon(
+            id: "anthony-mitchell",
+            preacher: "Philip Anthony Mitchell",
+            title: "You Are Anointed for This",
+            videoId: "WElQZ2EoJmY",
+            description: "A powerful sermon from 2819 Church in Atlanta on recognizing and walking in the anointing God has placed on your life for His purposes.",
+            instagram: "https://www.instagram.com/philipamitchell/",
+            facebook: "https://www.facebook.com/philipanthonymitchell",
+            tiktok: "https://www.tiktok.com/@philipanthonymitchell",
+            youtube: "https://www.youtube.com/watch?v=WElQZ2EoJmY"
+        ),
+        PreachingSermon(
+            id: "td-jakes",
+            preacher: "T.D. Jakes",
+            title: "Change your Mind",
+            videoId: "5MM7KrmPL_g",
+            description: "Bishop T.D. Jakes delivers a transformative message about freedom, healing, and restoration from Luke 13:10-17. A powerful word for anyone seeking spiritual breakthrough and liberation.",
+            instagram: "https://www.instagram.com/bishopjakes/",
+            facebook: "https://www.facebook.com/BishopTdJakes",
+            tiktok: "https://www.tiktok.com/@bishopjakes",
+            youtube: "https://www.youtube.com/watch?v=5MM7KrmPL_g"
+        ),
     ]
 
-    var body: some View {
-        List(preachers, id: \.0) { preacher in
-            VStack(alignment: .leading, spacing: 8) {
-                Text(preacher.0).font(.system(size: 17, weight: .bold))
-                Text(preacher.1).font(.system(size: 12, weight: .semibold)).foregroundColor(.appPrimary)
-                Text(preacher.2).font(.system(size: 13)).foregroundColor(.secondary).lineSpacing(3)
+    @State private var selectedId: String = "wes-huff"
 
-                if let url = URL(string: preacher.3) {
-                    Link("Watch on YouTube", destination: url)
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.appPrimary)
+    var activeSermon: PreachingSermon {
+        sermons.first(where: { $0.id == selectedId }) ?? sermons[0]
+    }
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 0) {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 0) {
+                        ForEach(sermons) { sermon in
+                            Button(action: { selectedId = sermon.id }) {
+                                Text(sermon.preacher)
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(selectedId == sermon.id ? .white : .primary)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
+                                    .background(selectedId == sermon.id ? Color.appPrimary : Color(UIColor.secondarySystemBackground))
+                            }
+                        }
+                    }
                 }
+                .background(Color(UIColor.secondarySystemBackground))
+
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(activeSermon.title)
+                            .font(.system(size: 22, weight: .bold))
+                        Text(activeSermon.description)
+                            .font(.system(size: 14))
+                            .foregroundColor(.secondary)
+                            .lineSpacing(4)
+                    }
+
+                    if let url = URL(string: activeSermon.youtube) {
+                        Link(destination: url) {
+                            ZStack {
+                                AsyncImage(url: URL(string: "https://img.youtube.com/vi/\(activeSermon.videoId)/hqdefault.jpg")) { image in
+                                    image.resizable().aspectRatio(contentMode: .fill)
+                                } placeholder: {
+                                    Rectangle()
+                                        .fill(Color(UIColor.systemGray5))
+                                        .overlay(
+                                            ProgressView()
+                                        )
+                                }
+                                .frame(height: 200)
+                                .clipped()
+                                .cornerRadius(12)
+
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 56, height: 56)
+                                    .overlay(
+                                        Image(systemName: "play.fill")
+                                            .font(.system(size: 20))
+                                            .foregroundColor(.white)
+                                            .offset(x: 2)
+                                    )
+                            }
+                        }
+                    }
+
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Follow on Social")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.secondary)
+
+                        HStack(spacing: 10) {
+                            if let insta = activeSermon.instagram, let url = URL(string: insta) {
+                                Link(destination: url) {
+                                    Label("Instagram", systemImage: "camera.fill")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 8)
+                                        .background(LinearGradient(colors: [Color(red: 0.56, green: 0.17, blue: 0.75), Color(red: 0.98, green: 0.27, blue: 0.55)], startPoint: .leading, endPoint: .trailing))
+                                        .cornerRadius(8)
+                                }
+                            }
+                            if let fb = activeSermon.facebook, let url = URL(string: fb) {
+                                Link(destination: url) {
+                                    Label("Facebook", systemImage: "person.2.fill")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 8)
+                                        .background(Color(red: 0.23, green: 0.35, blue: 0.60))
+                                        .cornerRadius(8)
+                                }
+                            }
+                            if let tiktok = activeSermon.tiktok, let url = URL(string: tiktok) {
+                                Link(destination: url) {
+                                    Label("TikTok", systemImage: "music.note")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 8)
+                                        .background(Color.black)
+                                        .cornerRadius(8)
+                                }
+                            }
+                        }
+                    }
+
+                    if let url = URL(string: activeSermon.youtube) {
+                        Link(destination: url) {
+                            HStack {
+                                Image(systemName: "arrow.up.right.square.fill")
+                                Text("Watch on YouTube")
+                                    .font(.system(size: 15, weight: .semibold))
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(Color.red)
+                            .cornerRadius(12)
+                        }
+                    }
+                }
+                .padding()
             }
-            .padding(.vertical, 6)
         }
-        .listStyle(.plain)
         .navigationTitle("Wisdom")
     }
 }
@@ -2795,6 +3273,859 @@ struct FAQsScreen: View {
             .padding()
         }
         .navigationTitle("FAQs")
+    }
+}
+
+// ============================================================
+// MARK: - Bible Studies Screen
+// ============================================================
+
+struct BibleStudyLesson: Identifiable {
+    let id = UUID()
+    let title: String
+    let preview: String
+    let content: String
+    let keyVerse: String?
+    let reflectivePrompt: String?
+    let keyTakeaway: String?
+}
+
+struct BibleStudySeries: Identifiable {
+    let id: Int
+    let level: String
+    let title: String
+    let subtitle: String
+    let description: String
+    let tag: String
+    let lessons: [BibleStudyLesson]
+}
+
+struct BibleStudiesScreen: View {
+    @State private var selectedLevel = "beginner"
+    let levels = [("beginner", "Beginner"), ("intermediate", "Intermediate"), ("advanced", "Advanced")]
+
+    let studies: [BibleStudySeries] = AppData.shared.bibleStudies
+
+    var filtered: [BibleStudySeries] {
+        studies.filter { $0.level == selectedLevel }
+    }
+
+    var levelDescription: String {
+        switch selectedLevel {
+        case "beginner": return "New to the faith or exploring Christianity for the first time."
+        case "intermediate": return "Growing in your faith and ready to go deeper into Scripture and doctrine."
+        case "advanced": return "Hard questions and deep theology for those ready to wrestle seriously."
+        default: return ""
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Picker("Level", selection: $selectedLevel) {
+                ForEach(levels, id: \.0) { level in
+                    Text(level.1).tag(level.0)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding()
+
+            Text(levelDescription)
+                .font(.system(size: 13))
+                .foregroundColor(.secondary)
+                .italic()
+                .padding(.horizontal)
+                .padding(.bottom, 8)
+
+            List(filtered) { study in
+                NavigationLink(destination: BibleStudyDetailScreen(study: study)) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack {
+                            Text(study.tag)
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.appPrimary)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.appPrimary.opacity(0.12))
+                                .cornerRadius(6)
+                            Spacer()
+                            Text("\(study.lessons.isEmpty ? "Coming Soon" : "\(study.lessons.count) lessons")")
+                                .font(.system(size: 11))
+                                .foregroundColor(.secondary)
+                        }
+                        Text(study.title)
+                            .font(.system(size: 16, weight: .bold))
+                        Text(study.subtitle)
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
+                        Text(study.description)
+                            .font(.system(size: 13))
+                            .foregroundColor(.secondary)
+                            .lineLimit(2)
+                            .lineSpacing(2)
+                    }
+                    .padding(.vertical, 6)
+                }
+            }
+            .listStyle(.plain)
+        }
+        .navigationTitle("Bible Studies")
+    }
+}
+
+struct BibleStudyDetailScreen: View {
+    let study: BibleStudySeries
+    @State private var expandedLesson: UUID? = nil
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Text(study.tag)
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.appPrimary)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(Color.appPrimary.opacity(0.12))
+                            .cornerRadius(8)
+                        Spacer()
+                    }
+                    Text(study.title)
+                        .font(.system(size: 26, weight: .bold))
+                    Text(study.subtitle)
+                        .font(.system(size: 14))
+                        .foregroundColor(.secondary)
+                    Text(study.description)
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                        .lineSpacing(4)
+                }
+                .padding()
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(14)
+
+                if study.lessons.isEmpty {
+                    VStack(spacing: 12) {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(.secondary)
+                        Text("Content Coming Soon")
+                            .font(.system(size: 18, weight: .bold))
+                        Text("This study is being written. Check back soon.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(40)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(14)
+                } else {
+                    VStack(spacing: 8) {
+                        ForEach(study.lessons) { lesson in
+                            BibleStudyLessonRow(lesson: lesson, isExpanded: expandedLesson == lesson.id) {
+                                withAnimation {
+                                    expandedLesson = expandedLesson == lesson.id ? nil : lesson.id
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .padding()
+            .padding(.bottom, 30)
+        }
+        .navigationTitle(study.title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct BibleStudyLessonRow: View {
+    let lesson: BibleStudyLesson
+    let isExpanded: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: onTap) {
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(lesson.title)
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.leading)
+                        if !isExpanded {
+                            Text(lesson.preview)
+                                .font(.system(size: 12))
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                        }
+                    }
+                    Spacer(minLength: 8)
+                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .font(.system(size: 12))
+                        .foregroundColor(.secondary)
+                        .padding(.top, 2)
+                }
+                .padding(16)
+            }
+            .buttonStyle(.plain)
+
+            if isExpanded {
+                VStack(alignment: .leading, spacing: 14) {
+                    Divider()
+
+                    Text(lesson.preview)
+                        .font(.system(size: 13))
+                        .foregroundColor(.secondary)
+                        .italic()
+                        .lineSpacing(3)
+
+                    ForEach(lesson.content.components(separatedBy: "\n\n"), id: \.self) { paragraph in
+                        Text(paragraph)
+                            .font(.system(size: 14))
+                            .foregroundColor(.primary)
+                            .lineSpacing(4)
+                    }
+
+                    if let keyVerse = lesson.keyVerse {
+                        HStack(alignment: .top, spacing: 10) {
+                            Rectangle()
+                                .fill(Color.amber)
+                                .frame(width: 3)
+                                .cornerRadius(2)
+                            Text(keyVerse)
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(Color(red: 0.6, green: 0.35, blue: 0.0))
+                                .lineSpacing(3)
+                        }
+                        .padding(12)
+                        .background(Color.amber.opacity(0.08))
+                        .cornerRadius(10)
+                    }
+
+                    if let prompt = lesson.reflectivePrompt {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("REFLECT")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.appPrimary)
+                            Text(prompt)
+                                .font(.system(size: 13))
+                                .foregroundColor(.appPrimary)
+                                .lineSpacing(3)
+                        }
+                        .padding(12)
+                        .background(Color.appPrimary.opacity(0.07))
+                        .cornerRadius(10)
+                    }
+
+                    if let takeaway = lesson.keyTakeaway {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("KEY TAKEAWAY")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.secondary)
+                            Text(takeaway)
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundColor(.primary)
+                                .lineSpacing(3)
+                        }
+                        .padding(12)
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(10)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 16)
+            }
+        }
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(12)
+    }
+}
+
+// ============================================================
+// MARK: - Podcasts Screen
+// ============================================================
+
+struct PodcastsScreen: View {
+    let topPodcasts: [(String, String, String)] = [
+        ("The Bible Project", "Exploring the Bible through animated videos and in-depth discussions", "https://bibleproject.com/podcast/"),
+        ("Ask Pastor John", "John Piper answers biblical and pastoral questions", "https://www.desiringgod.org/ask-pastor-john"),
+        ("The Gospel Coalition", "Conversations on theology, culture, and the Christian life", "https://www.thegospelcoalition.org/podcasts/"),
+    ]
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Top Recommended Podcasts")
+                        .font(.system(size: 18, weight: .bold))
+                        .padding(.horizontal)
+
+                    ForEach(Array(topPodcasts.enumerated()), id: \.offset) { index, podcast in
+                        if let url = URL(string: podcast.2) {
+                            Link(destination: url) {
+                                HStack(spacing: 14) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color.appPrimary)
+                                            .frame(width: 36, height: 36)
+                                        Text("\(index + 1)")
+                                            .font(.system(size: 16, weight: .bold))
+                                            .foregroundColor(.white)
+                                    }
+
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(podcast.0)
+                                            .font(.system(size: 15, weight: .semibold))
+                                            .foregroundColor(.primary)
+                                        Text(podcast.1)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(.secondary)
+                                            .lineLimit(2)
+                                    }
+
+                                    Spacer()
+                                    Image(systemName: "arrow.up.right")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.secondary)
+                                }
+                                .padding()
+                                .background(Color(UIColor.secondarySystemBackground))
+                                .cornerRadius(12)
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
+                }
+
+                VStack(spacing: 16) {
+                    Image(systemName: "cross.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color(red: 0.2, green: 0.4, blue: 0.8))
+
+                    Text("The Discipled Co. Podcast")
+                        .font(.system(size: 22, weight: .bold))
+
+                    Text("Coming Soon")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.secondary)
+
+                    Text("We're working on bringing you meaningful conversations about faith, discipleship, and living out the Gospel in everyday life. Stay tuned for updates!")
+                        .font(.system(size: 14))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(32)
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(14)
+                .padding(.horizontal)
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("YouTube Content")
+                        .font(.system(size: 18, weight: .bold))
+                        .padding(.horizontal)
+
+                    HStack(spacing: 14) {
+                        Image(systemName: "play.rectangle.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.secondary)
+                        Text("Our YouTube channel is currently in development. Check back soon for video content, teachings, and more!")
+                            .font(.system(size: 14))
+                            .foregroundColor(.secondary)
+                            .lineSpacing(3)
+                    }
+                    .padding()
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(12)
+                    .padding(.horizontal)
+                }
+            }
+            .padding(.vertical)
+        }
+        .navigationTitle("Podcasts")
+    }
+}
+
+// ============================================================
+// MARK: - Guidance Screen
+// ============================================================
+
+struct GuidanceEntry: Identifiable, Codable {
+    let id: String
+    let question: String
+    let answer: String
+    let category: String?
+    let scripture_references: [GuidanceScripture]?
+
+    enum CodingKeys: String, CodingKey {
+        case id, question, answer, category, scripture_references
+    }
+}
+
+struct GuidanceScripture: Codable, Identifiable {
+    let id = UUID()
+    let book: String?
+    let chapter: Int?
+    let verse: Int?
+    let version: String?
+    let text: String?
+
+    enum CodingKeys: String, CodingKey {
+        case book, chapter, verse, version, text
+    }
+}
+
+struct GuidanceScreen: View {
+    @State private var searchText = ""
+    @State private var results: [GuidanceEntry] = []
+    @State private var isLoading = false
+    @State private var hasSearched = false
+    @State private var errorMessage: String? = nil
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                VStack(spacing: 16) {
+                    Image(systemName: "book.fill")
+                        .font(.system(size: 48))
+                        .foregroundColor(.appPrimary)
+                        .padding()
+                        .background(Color.appPrimary.opacity(0.1))
+                        .clipShape(Circle())
+
+                    Text("Biblical Guidance")
+                        .font(.system(size: 28, weight: .bold))
+
+                    Text("What do you need guidance on?")
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
+                }
+                .padding(.top, 8)
+
+                HStack(spacing: 12) {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.secondary)
+                        TextField("Ask anything... (e.g., How do I find peace?)", text: $searchText)
+                            .font(.system(size: 15))
+                            .onSubmit { performSearch() }
+                    }
+                    .padding(12)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(12)
+
+                    Button(action: performSearch) {
+                        Text(isLoading ? "..." : "Search")
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .background(Color.appPrimary)
+                            .cornerRadius(12)
+                    }
+                    .disabled(isLoading || searchText.trimmingCharacters(in: .whitespaces).isEmpty)
+                }
+                .padding(.horizontal)
+
+                if isLoading {
+                    ProgressView("Searching the Scriptures...")
+                        .padding(40)
+                } else if hasSearched {
+                    if results.isEmpty {
+                        VStack(spacing: 12) {
+                            Image(systemName: "book.closed")
+                                .font(.system(size: 32))
+                                .foregroundColor(.secondary)
+                            Text("No guidance found for \"\(searchText)\"")
+                                .font(.system(size: 16))
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                            Text("Try different keywords or check back later.")
+                                .font(.system(size: 13))
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding(32)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(14)
+                        .padding(.horizontal)
+                    } else {
+                        VStack(spacing: 16) {
+                            ForEach(results) { result in
+                                GuidanceResultCard(result: result)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+
+                Spacer(minLength: 40)
+            }
+        }
+        .navigationTitle("Guidance")
+    }
+
+    func performSearch() {
+        let query = searchText.trimmingCharacters(in: .whitespaces)
+        guard !query.isEmpty else { return }
+        isLoading = true
+        hasSearched = true
+
+        let supabaseURL = Config.supabaseURL
+        let anonKey = Config.supabaseAnonKey
+        let terms = query.lowercased().split(separator: " ").filter { $0.count > 2 }.map(String.init)
+
+        guard !terms.isEmpty else {
+            isLoading = false
+            results = []
+            return
+        }
+
+        let filterParts = terms.map { "keywords.cs.{\($0)}" }.joined(separator: ",")
+        let encodedFilter = filterParts.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "\(supabaseURL)/rest/v1/guidance_qa?or=\(encodedFilter)&select=*"
+
+        guard let url = URL(string: urlString) else { isLoading = false; return }
+
+        var request = URLRequest(url: url)
+        request.setValue(anonKey, forHTTPHeaderField: "apikey")
+        request.setValue("Bearer \(anonKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        URLSession.shared.dataTask(with: request) { data, _, _ in
+            DispatchQueue.main.async {
+                isLoading = false
+                guard let data = data else { return }
+                results = (try? JSONDecoder().decode([GuidanceEntry].self, from: data)) ?? []
+            }
+        }.resume()
+    }
+}
+
+struct GuidanceResultCard: View {
+    let result: GuidanceEntry
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .top, spacing: 10) {
+                Image(systemName: "heart.fill")
+                    .foregroundColor(.appPrimary)
+                    .font(.system(size: 16))
+                Text(result.question)
+                    .font(.system(size: 18, weight: .bold))
+            }
+
+            if let category = result.category {
+                Text(category)
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(.appPrimary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(Color.appPrimary.opacity(0.1))
+                    .cornerRadius(8)
+            }
+
+            Text(result.answer)
+                .font(.system(size: 14))
+                .foregroundColor(.secondary)
+                .lineSpacing(4)
+
+            if let refs = result.scripture_references, !refs.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Scripture References")
+                        .font(.system(size: 14, weight: .semibold))
+
+                    ForEach(refs) { ref in
+                        VStack(alignment: .leading, spacing: 4) {
+                            if let book = ref.book, let ch = ref.chapter, let v = ref.verse {
+                                Text("\(book) \(ch):\(v) \(ref.version.map { "(\($0))" } ?? "")")
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundColor(.appPrimary)
+                            }
+                            if let text = ref.text {
+                                Text("\"\(text)\"")
+                                    .font(.system(size: 13))
+                                    .italic()
+                                    .foregroundColor(.secondary)
+                                    .lineSpacing(3)
+                            }
+                        }
+                        .padding(12)
+                        .background(Color.appPrimary.opacity(0.06))
+                        .cornerRadius(10)
+                    }
+                }
+            }
+        }
+        .padding(16)
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(14)
+    }
+}
+
+// ============================================================
+// MARK: - Church Mentors Screen
+// ============================================================
+
+struct ChurchMentorsScreen: View {
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                Image(systemName: "person.2.fill")
+                    .font(.system(size: 56))
+                    .foregroundColor(.appPrimary)
+                    .padding()
+                    .background(Color.appPrimary.opacity(0.1))
+                    .clipShape(Circle())
+
+                Text("Church Mentors")
+                    .font(.system(size: 28, weight: .bold))
+
+                Text("Connect with experienced believers who can guide you in your spiritual journey.")
+                    .font(.system(size: 16))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(4)
+
+                VStack(spacing: 16) {
+                    Image(systemName: "clock.fill")
+                        .font(.system(size: 32))
+                        .foregroundColor(.secondary)
+                    Text("Content Coming Soon")
+                        .font(.system(size: 18, weight: .bold))
+                    Text("We're building a network of trusted mentors. Check back soon.")
+                        .font(.system(size: 14))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(40)
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(14)
+            }
+            .padding(24)
+        }
+        .navigationTitle("Church Mentors")
+    }
+}
+
+// ============================================================
+// MARK: - Hallowed Band Screen
+// ============================================================
+
+struct HallowedScreen: View {
+    @EnvironmentObject var audio: AudioPlayerManager
+    @State private var hallowedTracks: [MusicTrack] = []
+    @State private var isLoading = false
+
+    let releases: [(String, String)] = [
+        ("Ashes to Light", "2024"),
+        ("The Narrow Path", "2023"),
+        ("Covenant", "2022"),
+    ]
+
+    let socialLinks: [(String, String, String)] = [
+        ("Spotify", "music.note", "https://spotify.com"),
+        ("Apple Music", "music.note.list", "https://music.apple.com"),
+        ("Bandcamp", "waveform", "https://bandcamp.com"),
+        ("Instagram", "camera", "https://instagram.com"),
+        ("YouTube", "play.rectangle.fill", "https://youtube.com"),
+    ]
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 0) {
+                ZStack {
+                    LinearGradient(
+                        colors: [Color.black, Color(white: 0.06)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+
+                    VStack(spacing: 20) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.white.opacity(0.15), lineWidth: 1)
+                                .frame(width: 120, height: 120)
+                            Circle()
+                                .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                                .frame(width: 100, height: 100)
+                            VStack(spacing: 4) {
+                                Rectangle()
+                                    .fill(Color.white.opacity(0.6))
+                                    .frame(width: 2, height: 40)
+                                Rectangle()
+                                    .fill(Color.white.opacity(0.6))
+                                    .frame(width: 40, height: 2)
+                            }
+                        }
+
+                        Text("HALLOWED")
+                            .font(.system(size: 32, weight: .black, design: .default))
+                            .tracking(8)
+                            .foregroundColor(.white)
+
+                        Text("Sacred Sound")
+                            .font(.system(size: 14, weight: .light))
+                            .tracking(4)
+                            .foregroundColor(.white.opacity(0.6))
+
+                        if !hallowedTracks.isEmpty {
+                            VStack(spacing: 8) {
+                                ForEach(hallowedTracks.prefix(3)) { track in
+                                    Button(action: { audio.play(track: track) }) {
+                                        HStack {
+                                            Image(systemName: audio.currentTrack?.id == track.id && audio.isPlaying ? "pause.fill" : "play.fill")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(.black)
+                                                .frame(width: 28, height: 28)
+                                                .background(Color.white)
+                                                .clipShape(Circle())
+                                            Text(track.title)
+                                                .font(.system(size: 13, weight: .medium))
+                                                .foregroundColor(.white)
+                                            Spacer()
+                                            Text(track.artist ?? "Hallowed")
+                                                .font(.system(size: 11))
+                                                .foregroundColor(.white.opacity(0.5))
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 10)
+                                        .background(Color.white.opacity(0.06))
+                                        .cornerRadius(10)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                    }
+                    .padding(40)
+                }
+
+                VStack(alignment: .leading, spacing: 32) {
+                    VStack(alignment: .leading, spacing: 14) {
+                        hallowedSectionTitle("About")
+
+                        Text("Hallowed emerged from the depths of spiritual questioning and exploration. We craft heavy, atmospheric soundscapes that wrestle with faith, doubt, and the eternal search for meaning in a chaotic world.")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color(white: 0.7))
+                            .lineSpacing(5)
+
+                        Text("Our music blends crushing riffs with ethereal melodies, creating a worship experience that acknowledges both the light and the darkness. Every note is a prayer, every lyric a meditation on the divine mystery.")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color(white: 0.7))
+                            .lineSpacing(5)
+                    }
+
+                    VStack(alignment: .leading, spacing: 14) {
+                        hallowedSectionTitle("Releases")
+
+                        ForEach(releases, id: \.0) { release in
+                            HStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color(white: 0.1))
+                                        .frame(width: 56, height: 56)
+                                    Image(systemName: "music.note")
+                                        .font(.system(size: 22))
+                                        .foregroundColor(Color(white: 0.4))
+                                }
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(release.0)
+                                        .font(.system(size: 15, weight: .semibold))
+                                        .foregroundColor(.white)
+                                    Text(release.1)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(white: 0.5))
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+
+                    VStack(alignment: .leading, spacing: 14) {
+                        hallowedSectionTitle("Connect")
+
+                        VStack(spacing: 8) {
+                            ForEach(socialLinks, id: \.0) { link in
+                                if let url = URL(string: link.2) {
+                                    Link(destination: url) {
+                                        HStack {
+                                            Image(systemName: link.1)
+                                                .font(.system(size: 14))
+                                                .foregroundColor(.white)
+                                                .frame(width: 20)
+                                            Text(link.0)
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(.white)
+                                            Spacer()
+                                            Image(systemName: "arrow.up.right")
+                                                .font(.system(size: 11))
+                                                .foregroundColor(Color(white: 0.5))
+                                        }
+                                        .padding(.vertical, 12)
+                                        .padding(.horizontal, 16)
+                                        .background(Color(white: 0.08))
+                                        .cornerRadius(10)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Text("\"Make a joyful noise unto the Lord, all the earth: make a loud noise, and rejoice, and sing praise.\"")
+                        .font(.system(size: 14))
+                        .italic()
+                        .foregroundColor(Color(white: 0.5))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+
+                    Text("Psalm 98:4")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Color(white: 0.35))
+                        .frame(maxWidth: .infinity)
+                }
+                .padding(24)
+                .background(Color(red: 0.04, green: 0.04, blue: 0.06))
+            }
+        }
+        .background(Color.black)
+        .navigationTitle("Hallowed")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear { loadHallowedTracks() }
+    }
+
+    @ViewBuilder
+    func hallowedSectionTitle(_ title: String) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title.uppercased())
+                .font(.system(size: 11, weight: .bold))
+                .tracking(3)
+                .foregroundColor(Color(white: 0.4))
+            Rectangle()
+                .fill(Color(white: 0.15))
+                .frame(height: 1)
+        }
+    }
+
+    func loadHallowedTracks() {
+        let urlString = "\(Config.supabaseURL)/rest/v1/hallowed_tracks?select=*&order=created_at.desc&limit=5"
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        request.setValue(Config.supabaseAnonKey, forHTTPHeaderField: "apikey")
+        request.setValue("Bearer \(Config.supabaseAnonKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        URLSession.shared.dataTask(with: request) { data, _, _ in
+            DispatchQueue.main.async {
+                guard let data = data else { return }
+                hallowedTracks = (try? JSONDecoder().decode([MusicTrack].self, from: data)) ?? []
+            }
+        }.resume()
     }
 }
 
