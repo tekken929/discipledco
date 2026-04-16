@@ -31,6 +31,7 @@ import { Hallowed } from './pages/Hallowed';
 import Guidance from './pages/Guidance';
 import { Courses } from './pages/Courses';
 import { CourseModule } from './pages/CourseModule';
+import { BibleLookup } from './pages/BibleLookup';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -56,7 +57,7 @@ const menuSections: MenuSection[] = [
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
       { to: '/bible-versions', label: 'Bible Versions', icon: BookOpen },
-      { to: 'https://bible-verse-search-a-5z3m.bolt.host/', label: 'Lookup any Verse', icon: Lightbulb, external: true },
+      { to: '/bible-lookup', label: 'Lookup any Verse', icon: Lightbulb },
     ],
   },
   {
@@ -408,6 +409,7 @@ function AppContent() {
           <Route path="/guidance" element={<Guidance />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/module/:moduleId" element={<CourseModule />} />
+          <Route path="/bible-lookup" element={<BibleLookup />} />
         </Routes>
       </div>
 

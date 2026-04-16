@@ -28,7 +28,7 @@ const featuredSections = [
   {
     to: '/bible-versions',
     icon: BookOpen,
-    title: 'Bible Versions',
+    title: 'Which Bible Version Should I Use?',
     description: 'Understand the differences between Bible translations and which to use.',
     color: 'amber',
     bgLight: 'bg-amber-50 dark:bg-amber-950/30',
@@ -38,17 +38,16 @@ const featuredSections = [
     accent: 'text-amber-600 dark:text-amber-400',
   },
   {
-    to: 'https://bible-verse-search-a-5z3m.bolt.host/',
+    to: '/bible-lookup',
     icon: Lightbulb,
     title: 'Lookup Any Verse',
-    description: 'Find Bible verses on any topic — guidance, hope, fear, love, and more.',
+    description: 'Search the World English Bible by book and chapter — read any passage instantly.',
     color: 'teal',
     bgLight: 'bg-teal-50 dark:bg-teal-950/30',
     border: 'border-teal-200 dark:border-teal-800',
     iconBg: 'bg-teal-100 dark:bg-teal-900',
     iconColor: 'text-teal-600 dark:text-teal-400',
     accent: 'text-teal-600 dark:text-teal-400',
-    external: true,
   },
   {
     to: '/preaching',
