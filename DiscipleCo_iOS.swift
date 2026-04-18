@@ -1304,7 +1304,7 @@ struct HomeScreen: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: true) {
                 VStack(spacing: 0) {
                     HeroSection()
                     FeaturedGrid(items: featuredItems)
@@ -1505,7 +1505,7 @@ struct BibleScreen: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 8) {
                         ForEach(filters, id: \.self) { f in
                             Button(f) { filter = f }
@@ -1578,7 +1578,7 @@ struct BookDetailScreen: View {
     @State private var expandedSection: Int? = nil
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 0) {
                 AsyncImage(url: URL(string: book.imageUrl)) { image in
                     image.resizable().scaledToFill()
@@ -1755,7 +1755,7 @@ struct MusicScreen: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 8) {
                         ForEach(categories, id: \.self) { cat in
                             Button(cat) { selectedCategory = cat }
@@ -2152,7 +2152,7 @@ struct TopicDetailScreen: View {
     let topic: Topic
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Text(topic.icon).font(.system(size: 44))
@@ -2233,7 +2233,7 @@ struct StoryDetailScreen: View {
     let story: BibleStory
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Text(story.icon).font(.system(size: 44))
@@ -2288,7 +2288,7 @@ struct TimelineScreen: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 8) {
                         Button("All") { filter = nil }
                             .filterPill(active: filter == nil, color: .appPrimary)
@@ -2435,7 +2435,7 @@ struct CourseModuleScreen: View {
     @State private var expandedLesson: String? = nil
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -2554,7 +2554,7 @@ struct BibleLookupScreen: View {
     @State private var maxChapter = 21
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(spacing: 12) {
                     HStack(spacing: 12) {
@@ -2656,7 +2656,7 @@ struct BibleVersionsScreen: View {
     ]
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Which Bible Version Should I Use?")
@@ -2734,7 +2734,7 @@ struct BibleVersionsScreen: View {
 
 struct ReligionsScreen: View {
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("What is Religion?")
@@ -2816,7 +2816,7 @@ struct ResurrectionScreen: View {
                            startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
 
-            ScrollView {
+            ScrollView(showsIndicators: true) {
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(spacing: 12) {
                         Text("✝")
@@ -2896,7 +2896,7 @@ struct EasterScreen: View {
     @State private var expandedSection: String? = nil
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(spacing: 8) {
                     Text("✝")
@@ -3097,9 +3097,9 @@ struct PreachingScreen: View {
     }
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(spacing: 0) {
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: 0) {
                         ForEach(sermons) { sermon in
                             Button(action: { selectedId = sermon.id }) {
@@ -3236,7 +3236,7 @@ struct FAQsScreen: View {
     @State private var expanded: String? = nil
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(spacing: 1) {
                 ForEach(faqs, id: \.0) { faq in
                     Button {
@@ -3377,7 +3377,7 @@ struct BibleStudyDetailScreen: View {
     @State private var expandedLesson: UUID? = nil
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -3555,7 +3555,7 @@ struct PodcastsScreen: View {
     ]
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Top Recommended Podcasts")
@@ -3686,7 +3686,7 @@ struct GuidanceScreen: View {
     @State private var errorMessage: String? = nil
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(spacing: 24) {
                 VStack(spacing: 16) {
                     Image(systemName: "book.fill")
@@ -3872,7 +3872,7 @@ struct GuidanceResultCard: View {
 
 struct ChurchMentorsScreen: View {
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(spacing: 24) {
                 Image(systemName: "person.2.fill")
                     .font(.system(size: 56))
@@ -3937,7 +3937,7 @@ struct HallowedScreen: View {
     ]
 
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: true) {
             VStack(spacing: 0) {
                 ZStack {
                     LinearGradient(
