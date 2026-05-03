@@ -1,103 +1,84 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Download, RefreshCw, Type, BookOpen, ChevronDown, Loader2, Check, Image as ImageIcon, Monitor, AlignCenter } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Download, RefreshCw, Type, BookOpen, ChevronDown, Loader2, Check, Image as ImageIcon, Monitor, AlignCenter, ZoomIn } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// ─── Social Format Ratios ─────────────────────────────────────────────────
 interface SocialFormat {
-  id: string;
-  label: string;
-  platform: string;
-  width: number;
-  height: number;
-  description: string;
+  id: string; label: string; platform: string; width: number; height: number; description: string;
 }
-
 const SOCIAL_FORMATS: SocialFormat[] = [
-  { id: 'instagram-post',     label: 'Instagram Post',     platform: 'Instagram', width: 1080,  height: 1080,  description: '1:1 Square' },
-  { id: 'instagram-story',    label: 'Instagram Story',    platform: 'Instagram', width: 1080,  height: 1920,  description: '9:16 Vertical' },
-  { id: 'instagram-portrait', label: 'Instagram Portrait', platform: 'Instagram', width: 1080,  height: 1350,  description: '4:5 Portrait' },
-  { id: 'tiktok',             label: 'TikTok',             platform: 'TikTok',    width: 1080,  height: 1920,  description: '9:16 Vertical' },
-  { id: 'facebook-post',      label: 'Facebook Post',      platform: 'Facebook',  width: 1200,  height: 630,   description: '1.91:1 Landscape' },
-  { id: 'facebook-story',     label: 'Facebook Story',     platform: 'Facebook',  width: 1080,  height: 1920,  description: '9:16 Vertical' },
-  { id: 'facebook-square',    label: 'Facebook Square',    platform: 'Facebook',  width: 1080,  height: 1080,  description: '1:1 Square' },
-  { id: 'twitter-post',       label: 'X / Twitter Post',   platform: 'X',         width: 1600,  height: 900,   description: '16:9 Landscape' },
-  { id: 'twitter-square',     label: 'X / Twitter Square', platform: 'X',         width: 1080,  height: 1080,  description: '1:1 Square' },
-  { id: 'youtube-thumbnail',  label: 'YouTube Thumbnail',  platform: 'YouTube',   width: 1280,  height: 720,   description: '16:9 Landscape' },
-  { id: 'pinterest',          label: 'Pinterest Pin',      platform: 'Pinterest', width: 1000,  height: 1500,  description: '2:3 Portrait' },
-  { id: 'linkedin-post',      label: 'LinkedIn Post',      platform: 'LinkedIn',  width: 1200,  height: 627,   description: '1.91:1 Landscape' },
-  { id: 'linkedin-square',    label: 'LinkedIn Square',    platform: 'LinkedIn',  width: 1080,  height: 1080,  description: '1:1 Square' },
-  { id: 'snapchat',           label: 'Snapchat',           platform: 'Snapchat',  width: 1080,  height: 1920,  description: '9:16 Vertical' },
-  { id: 'wallpaper-phone',    label: 'Phone Wallpaper',    platform: 'Wallpaper', width: 1080,  height: 2340,  description: '9:19.5 Tall' },
-  { id: 'wallpaper-desktop',  label: 'Desktop Wallpaper',  platform: 'Wallpaper', width: 1920,  height: 1080,  description: '16:9 Wide' },
+  { id:'instagram-post',     label:'Instagram Post',     platform:'Instagram', width:1080, height:1080,  description:'1:1 Square' },
+  { id:'instagram-story',    label:'Instagram Story',    platform:'Instagram', width:1080, height:1920,  description:'9:16 Vertical' },
+  { id:'instagram-portrait', label:'Instagram Portrait', platform:'Instagram', width:1080, height:1350,  description:'4:5 Portrait' },
+  { id:'tiktok',             label:'TikTok',             platform:'TikTok',    width:1080, height:1920,  description:'9:16 Vertical' },
+  { id:'facebook-post',      label:'Facebook Post',      platform:'Facebook',  width:1200, height:630,   description:'1.91:1 Landscape' },
+  { id:'facebook-story',     label:'Facebook Story',     platform:'Facebook',  width:1080, height:1920,  description:'9:16 Vertical' },
+  { id:'facebook-square',    label:'Facebook Square',    platform:'Facebook',  width:1080, height:1080,  description:'1:1 Square' },
+  { id:'twitter-post',       label:'X / Twitter Post',   platform:'X',         width:1600, height:900,   description:'16:9 Landscape' },
+  { id:'twitter-square',     label:'X / Twitter Square', platform:'X',         width:1080, height:1080,  description:'1:1 Square' },
+  { id:'youtube-thumbnail',  label:'YouTube Thumbnail',  platform:'YouTube',   width:1280, height:720,   description:'16:9 Landscape' },
+  { id:'pinterest',          label:'Pinterest Pin',      platform:'Pinterest', width:1000, height:1500,  description:'2:3 Portrait' },
+  { id:'linkedin-post',      label:'LinkedIn Post',      platform:'LinkedIn',  width:1200, height:627,   description:'1.91:1 Landscape' },
+  { id:'linkedin-square',    label:'LinkedIn Square',    platform:'LinkedIn',  width:1080, height:1080,  description:'1:1 Square' },
+  { id:'snapchat',           label:'Snapchat',           platform:'Snapchat',  width:1080, height:1920,  description:'9:16 Vertical' },
+  { id:'wallpaper-phone',    label:'Phone Wallpaper',    platform:'Wallpaper', width:1080, height:2340,  description:'9:19.5 Tall' },
+  { id:'wallpaper-desktop',  label:'Desktop Wallpaper',  platform:'Wallpaper', width:1920, height:1080,  description:'16:9 Wide' },
 ];
 
-// ─── Gradient Backgrounds ─────────────────────────────────────────────────
 interface GradientBg {
-  id: string;
-  label: string;
-  gradient: string;
-  colors: string[];
-  textColor: string;
-  accentColor: string;
-  overlayOpacity: number;
+  id: string; label: string; gradient: string; colors: string[];
+  textColor: string; accentColor: string; overlayOpacity: number;
 }
-
 const GRADIENT_BACKGROUNDS: GradientBg[] = [
-  { id:'g1',  label:'Heavenly Dawn',     gradient:'linear-gradient(135deg, #f6d365, #fda085, #f093fb)', colors:['#f6d365','#fda085','#f093fb'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.1  },
-  { id:'g2',  label:'Deep Waters',       gradient:'linear-gradient(135deg, #0f2027, #203a43, #2c5364)', colors:['#0f2027','#203a43','#2c5364'], textColor:'#e0f2fe', accentColor:'rgba(186,230,253,0.9)', overlayOpacity:0.0  },
-  { id:'g3',  label:'Morning Glory',     gradient:'linear-gradient(160deg, #a8edea, #fed6e3)',          colors:['#a8edea','#fed6e3'],           textColor:'#1e3a5f', accentColor:'rgba(30,58,95,0.85)',   overlayOpacity:0.0  },
-  { id:'g4',  label:'Sacred Fire',       gradient:'linear-gradient(135deg, #f83600, #f9d423)',          colors:['#f83600','#f9d423'],           textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.15 },
-  { id:'g5',  label:'Midnight Prayer',   gradient:'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)', colors:['#1a1a2e','#16213e','#0f3460'], textColor:'#fbbf24', accentColor:'rgba(251,191,36,0.9)',  overlayOpacity:0.0  },
-  { id:'g6',  label:'Olive Garden',      gradient:'linear-gradient(135deg, #134e5e, #71b280)',          colors:['#134e5e','#71b280'],           textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
-  { id:'g7',  label:'Holy Mountain',     gradient:'linear-gradient(160deg, #a1c4fd, #c2e9fb)',          colors:['#a1c4fd','#c2e9fb'],           textColor:'#1e3a5f', accentColor:'rgba(30,58,95,0.85)',   overlayOpacity:0.0  },
-  { id:'g8',  label:'Desert Sand',       gradient:'linear-gradient(135deg, #c9a96e, #e8d5b7, #c9a96e)', colors:['#c9a96e','#e8d5b7'],           textColor:'#3b2a1a', accentColor:'rgba(59,42,26,0.85)',   overlayOpacity:0.0  },
-  { id:'g9',  label:'River of Life',     gradient:'linear-gradient(135deg, #006994, #00a86b, #50c878)', colors:['#006994','#00a86b','#50c878'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.1  },
-  { id:'g10', label:'Crimson Cross',     gradient:'linear-gradient(135deg, #8b0000, #c41e3a, #8b0000)', colors:['#8b0000','#c41e3a'],           textColor:'#fff5f5', accentColor:'rgba(255,245,245,0.9)', overlayOpacity:0.1  },
-  { id:'g11', label:'Cloud of Glory',    gradient:'linear-gradient(160deg, #ffffff, #e8eaf6, #c5cae9)', colors:['#ffffff','#e8eaf6','#c5cae9'], textColor:'#283593', accentColor:'rgba(40,53,147,0.85)',  overlayOpacity:0.0  },
-  { id:'g12', label:'Burning Bush',      gradient:'linear-gradient(135deg, #e65c00, #f9d423)',          colors:['#e65c00','#f9d423'],           textColor:'#1a0800', accentColor:'rgba(26,8,0,0.85)',     overlayOpacity:0.05 },
-  { id:'g13', label:'Still Waters',      gradient:'linear-gradient(135deg, #1c3f6e, #3a7bd5, #00d2ff)', colors:['#1c3f6e','#3a7bd5','#00d2ff'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.1  },
-  { id:'g14', label:'Solomon Gold',      gradient:'linear-gradient(135deg, #373b44, #4286f4, #ffd700)', colors:['#373b44','#4286f4','#ffd700'], textColor:'#ffffff', accentColor:'rgba(255,215,0,0.95)',  overlayOpacity:0.05 },
-  { id:'g15', label:'Resurrection Dawn', gradient:'linear-gradient(135deg, #4a0404, #c0392b, #f39c12, #f9e79f)', colors:['#4a0404','#c0392b','#f39c12','#f9e79f'], textColor:'#ffffff', accentColor:'rgba(249,231,159,0.95)', overlayOpacity:0.1 },
-  { id:'g16', label:'Forest Chapel',     gradient:'linear-gradient(135deg, #1a2a1a, #2d5a27, #4a7c59)', colors:['#1a2a1a','#2d5a27','#4a7c59'], textColor:'#d4edda', accentColor:'rgba(212,237,218,0.9)', overlayOpacity:0.05 },
-  { id:'g17', label:'Stone Altar',       gradient:'linear-gradient(135deg, #3d3d3d, #6b6b6b, #9e9e9e)', colors:['#3d3d3d','#6b6b6b','#9e9e9e'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
-  { id:'g18', label:'Promised Land',     gradient:'linear-gradient(135deg, #56ab2f, #a8e063)',          colors:['#56ab2f','#a8e063'],           textColor:'#1a3a0a', accentColor:'rgba(26,58,10,0.85)',   overlayOpacity:0.0  },
-  { id:'g19', label:'Sea of Glass',      gradient:'linear-gradient(135deg, #e0eafc, #cfdef3, #a8c0e0)', colors:['#e0eafc','#cfdef3','#a8c0e0'], textColor:'#1a2a4a', accentColor:'rgba(26,42,74,0.85)',   overlayOpacity:0.0  },
-  { id:'g20', label:'Ancient Parchment', gradient:'linear-gradient(135deg, #f5e6c8, #edddb4, #d4b896)', colors:['#f5e6c8','#edddb4'],           textColor:'#3d2b1f', accentColor:'rgba(61,43,31,0.85)',   overlayOpacity:0.0  },
-  { id:'g21', label:'Sapphire Throne',   gradient:'linear-gradient(135deg, #0a0f3d, #1a237e, #283593)', colors:['#0a0f3d','#1a237e','#283593'], textColor:'#e8eaf6', accentColor:'rgba(232,234,246,0.9)', overlayOpacity:0.0  },
-  { id:'g22', label:'Twilight Psalm',    gradient:'linear-gradient(135deg, #2c1654, #7b2d8b, #ff6b6b)', colors:['#2c1654','#7b2d8b','#ff6b6b'], textColor:'#ffe4e1', accentColor:'rgba(255,228,225,0.9)', overlayOpacity:0.05 },
-  { id:'g23', label:'Eternal Spring',    gradient:'linear-gradient(160deg, #43e97b, #38f9d7)',          colors:['#43e97b','#38f9d7'],           textColor:'#0a2a1a', accentColor:'rgba(10,42,26,0.85)',   overlayOpacity:0.0  },
-  { id:'g24', label:'Pilgrim Path',      gradient:'linear-gradient(135deg, #bdc3c7, #2c3e50)',          colors:['#bdc3c7','#2c3e50'],           textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
-  { id:'g25', label:'Covenant Rainbow',  gradient:'linear-gradient(135deg, #f7971e, #ffd200, #21d4fd, #b721ff)', colors:['#f7971e','#ffd200','#21d4fd'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.95)', overlayOpacity:0.15 },
-  { id:'g26', label:'Bread of Life',     gradient:'linear-gradient(135deg, #d4a857, #f5e6c8, #c4893a)', colors:['#d4a857','#f5e6c8','#c4893a'], textColor:'#3d2000', accentColor:'rgba(61,32,0,0.85)',    overlayOpacity:0.0  },
-  { id:'g27', label:"Refiner's Fire",    gradient:'linear-gradient(135deg, #ff416c, #ff4b2b)',          colors:['#ff416c','#ff4b2b'],           textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.1  },
-  { id:'g28', label:'Dew of Heaven',     gradient:'linear-gradient(160deg, #d4fc79, #96e6a1)',          colors:['#d4fc79','#96e6a1'],           textColor:'#1a3a00', accentColor:'rgba(26,58,0,0.85)',    overlayOpacity:0.0  },
-  { id:'g29', label:'Sanctified Night',  gradient:'linear-gradient(135deg, #0d0d0d, #1a1a1a, #2d2d2d)', colors:['#0d0d0d','#1a1a1a','#2d2d2d'], textColor:'#f5f5f5', accentColor:'rgba(245,245,245,0.9)', overlayOpacity:0.0  },
-  { id:'g30', label:'Pearl Gates',       gradient:'linear-gradient(160deg, #f8f9fa, #e9ecef, #dee2e6)', colors:['#f8f9fa','#e9ecef','#dee2e6'], textColor:'#212529', accentColor:'rgba(33,37,41,0.85)',   overlayOpacity:0.0  },
-  { id:'g31', label:'Ember Worship',     gradient:'linear-gradient(135deg, #2d1b00, #8b3a00, #d4642a)', colors:['#2d1b00','#8b3a00','#d4642a'], textColor:'#ffd4b0', accentColor:'rgba(255,212,176,0.9)', overlayOpacity:0.0  },
-  { id:'g32', label:'Heavenly Host',     gradient:'linear-gradient(135deg, #e8f4ff, #b8d4ff, #8ab4ff)', colors:['#e8f4ff','#b8d4ff','#8ab4ff'], textColor:'#1a2a4a', accentColor:'rgba(26,42,74,0.85)',   overlayOpacity:0.0  },
-  { id:'g33', label:'Mountain of God',   gradient:'linear-gradient(160deg, #667db6, #0082c8, #667db6)', colors:['#667db6','#0082c8','#667db6'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
-  { id:'g34', label:'New Jerusalem',     gradient:'linear-gradient(135deg, #ffecd2, #fcb69f)',          colors:['#ffecd2','#fcb69f'],           textColor:'#3d1500', accentColor:'rgba(61,21,0,0.85)',    overlayOpacity:0.0  },
-  { id:'g35', label:'Living Water',      gradient:'linear-gradient(135deg, #00b4db, #0083b0)',          colors:['#00b4db','#0083b0'],           textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
-  { id:'g36', label:'Harvest Field',     gradient:'linear-gradient(135deg, #f4a62a, #e8e04f, #b8d96e)', colors:['#f4a62a','#e8e04f','#b8d96e'], textColor:'#2a1a00', accentColor:'rgba(42,26,0,0.85)',    overlayOpacity:0.0  },
-  { id:'g37', label:'Selah Moment',      gradient:'linear-gradient(135deg, #485563, #29323c)',          colors:['#485563','#29323c'],           textColor:'#f0f4f8', accentColor:'rgba(240,244,248,0.9)', overlayOpacity:0.0  },
-  { id:'g38', label:'Grace Ocean',       gradient:'linear-gradient(135deg, #005c97, #363795)',          colors:['#005c97','#363795'],           textColor:'#e0f7ff', accentColor:'rgba(224,247,255,0.9)', overlayOpacity:0.0  },
-  { id:'g39', label:'Blessed Morning',   gradient:'linear-gradient(160deg, #fff1eb, #ace0f9)',          colors:['#fff1eb','#ace0f9'],           textColor:'#1a2a3a', accentColor:'rgba(26,42,58,0.85)',   overlayOpacity:0.0  },
-  { id:'g40', label:'Crown of Thorns',   gradient:'linear-gradient(135deg, #1a0000, #4a1010, #8b2020)', colors:['#1a0000','#4a1010','#8b2020'], textColor:'#ffd4d4', accentColor:'rgba(255,212,212,0.9)', overlayOpacity:0.0  },
+  { id:'g1',  label:'Heavenly Dawn',     gradient:'linear-gradient(135deg, #f6d365, #fda085, #f093fb)', colors:['#f6d365','#fda085'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.10 },
+  { id:'g2',  label:'Deep Waters',       gradient:'linear-gradient(135deg, #0f2027, #203a43, #2c5364)', colors:['#0f2027','#2c5364'], textColor:'#e0f2fe', accentColor:'rgba(186,230,253,0.9)', overlayOpacity:0.00 },
+  { id:'g3',  label:'Morning Glory',     gradient:'linear-gradient(160deg, #a8edea, #fed6e3)',          colors:['#a8edea','#fed6e3'], textColor:'#1e3a5f', accentColor:'rgba(30,58,95,0.85)',   overlayOpacity:0.00 },
+  { id:'g4',  label:'Sacred Fire',       gradient:'linear-gradient(135deg, #f83600, #f9d423)',          colors:['#f83600','#f9d423'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.15 },
+  { id:'g5',  label:'Midnight Prayer',   gradient:'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)', colors:['#1a1a2e','#0f3460'], textColor:'#fbbf24', accentColor:'rgba(251,191,36,0.9)',  overlayOpacity:0.00 },
+  { id:'g6',  label:'Olive Garden',      gradient:'linear-gradient(135deg, #134e5e, #71b280)',          colors:['#134e5e','#71b280'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
+  { id:'g7',  label:'Holy Mountain',     gradient:'linear-gradient(160deg, #a1c4fd, #c2e9fb)',          colors:['#a1c4fd','#c2e9fb'], textColor:'#1e3a5f', accentColor:'rgba(30,58,95,0.85)',   overlayOpacity:0.00 },
+  { id:'g8',  label:'Desert Sand',       gradient:'linear-gradient(135deg, #c9a96e, #e8d5b7, #c9a96e)', colors:['#c9a96e','#e8d5b7'], textColor:'#3b2a1a', accentColor:'rgba(59,42,26,0.85)',   overlayOpacity:0.00 },
+  { id:'g9',  label:'River of Life',     gradient:'linear-gradient(135deg, #006994, #00a86b, #50c878)', colors:['#006994','#50c878'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.10 },
+  { id:'g10', label:'Crimson Cross',     gradient:'linear-gradient(135deg, #8b0000, #c41e3a, #8b0000)', colors:['#8b0000','#c41e3a'], textColor:'#fff5f5', accentColor:'rgba(255,245,245,0.9)', overlayOpacity:0.10 },
+  { id:'g11', label:'Cloud of Glory',    gradient:'linear-gradient(160deg, #ffffff, #e8eaf6, #c5cae9)', colors:['#ffffff','#c5cae9'], textColor:'#283593', accentColor:'rgba(40,53,147,0.85)',  overlayOpacity:0.00 },
+  { id:'g12', label:'Burning Bush',      gradient:'linear-gradient(135deg, #e65c00, #f9d423)',          colors:['#e65c00','#f9d423'], textColor:'#1a0800', accentColor:'rgba(26,8,0,0.85)',     overlayOpacity:0.05 },
+  { id:'g13', label:'Still Waters',      gradient:'linear-gradient(135deg, #1c3f6e, #3a7bd5, #00d2ff)', colors:['#1c3f6e','#00d2ff'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.10 },
+  { id:'g14', label:'Solomon Gold',      gradient:'linear-gradient(135deg, #373b44, #4286f4, #ffd700)', colors:['#373b44','#ffd700'], textColor:'#ffffff', accentColor:'rgba(255,215,0,0.95)',  overlayOpacity:0.05 },
+  { id:'g15', label:'Resurrection Dawn', gradient:'linear-gradient(135deg, #4a0404, #c0392b, #f39c12, #f9e79f)', colors:['#4a0404','#f9e79f'], textColor:'#ffffff', accentColor:'rgba(249,231,159,0.95)', overlayOpacity:0.10 },
+  { id:'g16', label:'Forest Chapel',     gradient:'linear-gradient(135deg, #1a2a1a, #2d5a27, #4a7c59)', colors:['#1a2a1a','#4a7c59'], textColor:'#d4edda', accentColor:'rgba(212,237,218,0.9)', overlayOpacity:0.05 },
+  { id:'g17', label:'Stone Altar',       gradient:'linear-gradient(135deg, #3d3d3d, #6b6b6b, #9e9e9e)', colors:['#3d3d3d','#9e9e9e'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
+  { id:'g18', label:'Promised Land',     gradient:'linear-gradient(135deg, #56ab2f, #a8e063)',          colors:['#56ab2f','#a8e063'], textColor:'#1a3a0a', accentColor:'rgba(26,58,10,0.85)',   overlayOpacity:0.00 },
+  { id:'g19', label:'Sea of Glass',      gradient:'linear-gradient(135deg, #e0eafc, #cfdef3, #a8c0e0)', colors:['#e0eafc','#a8c0e0'], textColor:'#1a2a4a', accentColor:'rgba(26,42,74,0.85)',   overlayOpacity:0.00 },
+  { id:'g20', label:'Ancient Parchment', gradient:'linear-gradient(135deg, #f5e6c8, #edddb4, #d4b896)', colors:['#f5e6c8','#d4b896'], textColor:'#3d2b1f', accentColor:'rgba(61,43,31,0.85)',   overlayOpacity:0.00 },
+  { id:'g21', label:'Sapphire Throne',   gradient:'linear-gradient(135deg, #0a0f3d, #1a237e, #283593)', colors:['#0a0f3d','#283593'], textColor:'#e8eaf6', accentColor:'rgba(232,234,246,0.9)', overlayOpacity:0.00 },
+  { id:'g22', label:'Twilight Psalm',    gradient:'linear-gradient(135deg, #2c1654, #7b2d8b, #ff6b6b)', colors:['#2c1654','#ff6b6b'], textColor:'#ffe4e1', accentColor:'rgba(255,228,225,0.9)', overlayOpacity:0.05 },
+  { id:'g23', label:'Eternal Spring',    gradient:'linear-gradient(160deg, #43e97b, #38f9d7)',          colors:['#43e97b','#38f9d7'], textColor:'#0a2a1a', accentColor:'rgba(10,42,26,0.85)',   overlayOpacity:0.00 },
+  { id:'g24', label:'Pilgrim Path',      gradient:'linear-gradient(135deg, #bdc3c7, #2c3e50)',          colors:['#bdc3c7','#2c3e50'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
+  { id:'g25', label:'Covenant Rainbow',  gradient:'linear-gradient(135deg, #f7971e, #ffd200, #21d4fd, #b721ff)', colors:['#f7971e','#21d4fd'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.95)', overlayOpacity:0.15 },
+  { id:'g26', label:'Bread of Life',     gradient:'linear-gradient(135deg, #d4a857, #f5e6c8, #c4893a)', colors:['#d4a857','#c4893a'], textColor:'#3d2000', accentColor:'rgba(61,32,0,0.85)',    overlayOpacity:0.00 },
+  { id:'g27', label:"Refiner's Fire",    gradient:'linear-gradient(135deg, #ff416c, #ff4b2b)',          colors:['#ff416c','#ff4b2b'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.10 },
+  { id:'g28', label:'Dew of Heaven',     gradient:'linear-gradient(160deg, #d4fc79, #96e6a1)',          colors:['#d4fc79','#96e6a1'], textColor:'#1a3a00', accentColor:'rgba(26,58,0,0.85)',    overlayOpacity:0.00 },
+  { id:'g29', label:'Sanctified Night',  gradient:'linear-gradient(135deg, #0d0d0d, #1a1a1a, #2d2d2d)', colors:['#0d0d0d','#2d2d2d'], textColor:'#f5f5f5', accentColor:'rgba(245,245,245,0.9)', overlayOpacity:0.00 },
+  { id:'g30', label:'Pearl Gates',       gradient:'linear-gradient(160deg, #f8f9fa, #e9ecef, #dee2e6)', colors:['#f8f9fa','#dee2e6'], textColor:'#212529', accentColor:'rgba(33,37,41,0.85)',   overlayOpacity:0.00 },
+  { id:'g31', label:'Ember Worship',     gradient:'linear-gradient(135deg, #2d1b00, #8b3a00, #d4642a)', colors:['#2d1b00','#d4642a'], textColor:'#ffd4b0', accentColor:'rgba(255,212,176,0.9)', overlayOpacity:0.00 },
+  { id:'g32', label:'Heavenly Host',     gradient:'linear-gradient(135deg, #e8f4ff, #b8d4ff, #8ab4ff)', colors:['#e8f4ff','#8ab4ff'], textColor:'#1a2a4a', accentColor:'rgba(26,42,74,0.85)',   overlayOpacity:0.00 },
+  { id:'g33', label:'Mountain of God',   gradient:'linear-gradient(160deg, #667db6, #0082c8, #667db6)', colors:['#667db6','#0082c8'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
+  { id:'g34', label:'New Jerusalem',     gradient:'linear-gradient(135deg, #ffecd2, #fcb69f)',          colors:['#ffecd2','#fcb69f'], textColor:'#3d1500', accentColor:'rgba(61,21,0,0.85)',    overlayOpacity:0.00 },
+  { id:'g35', label:'Living Water',      gradient:'linear-gradient(135deg, #00b4db, #0083b0)',          colors:['#00b4db','#0083b0'], textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)', overlayOpacity:0.05 },
+  { id:'g36', label:'Harvest Field',     gradient:'linear-gradient(135deg, #f4a62a, #e8e04f, #b8d96e)', colors:['#f4a62a','#b8d96e'], textColor:'#2a1a00', accentColor:'rgba(42,26,0,0.85)',    overlayOpacity:0.00 },
+  { id:'g37', label:'Selah Moment',      gradient:'linear-gradient(135deg, #485563, #29323c)',          colors:['#485563','#29323c'], textColor:'#f0f4f8', accentColor:'rgba(240,244,248,0.9)', overlayOpacity:0.00 },
+  { id:'g38', label:'Grace Ocean',       gradient:'linear-gradient(135deg, #005c97, #363795)',          colors:['#005c97','#363795'], textColor:'#e0f7ff', accentColor:'rgba(224,247,255,0.9)', overlayOpacity:0.00 },
+  { id:'g39', label:'Blessed Morning',   gradient:'linear-gradient(160deg, #fff1eb, #ace0f9)',          colors:['#fff1eb','#ace0f9'], textColor:'#1a2a3a', accentColor:'rgba(26,42,58,0.85)',   overlayOpacity:0.00 },
+  { id:'g40', label:'Crown of Thorns',   gradient:'linear-gradient(135deg, #1a0000, #4a1010, #8b2020)', colors:['#1a0000','#8b2020'], textColor:'#ffd4d4', accentColor:'rgba(255,212,212,0.9)', overlayOpacity:0.00 },
 ];
 
-// ─── Photo Backgrounds ─────────────────────────────────────────────────────
 interface PhotoBg {
-  id: string;
-  label: string;
-  url: string;
-  textColor: string;
-  accentColor: string;
-  overlayOpacity: number;
+  id: string; label: string; url: string;
+  textColor: string; accentColor: string; overlayOpacity: number;
 }
-
 const PHOTO_BACKGROUNDS: PhotoBg[] = [
   { id:'p1',  label:'Sunrise Mountains',    url:'https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg?auto=compress&cs=tinysrgb&w=1280',  textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)',  overlayOpacity:0.45 },
   { id:'p2',  label:'Calm Lake Reflection', url:'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=1280',  textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)',  overlayOpacity:0.40 },
@@ -121,7 +102,6 @@ const PHOTO_BACKGROUNDS: PhotoBg[] = [
   { id:'p20', label:'Mountain Meadow',      url:'https://images.pexels.com/photos/1378583/pexels-photo-1378583.jpeg?auto=compress&cs=tinysrgb&w=1280',  textColor:'#ffffff', accentColor:'rgba(255,255,255,0.9)',  overlayOpacity:0.40 },
 ];
 
-// ─── Featured Verses ──────────────────────────────────────────────────────
 const FEATURED_VERSES = [
   { ref:'John 3:16',          text:'"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."' },
   { ref:'Psalm 23:1',         text:'"The Lord is my shepherd; I shall not want."' },
@@ -141,7 +121,6 @@ const FEATURED_VERSES = [
   { ref:'Ephesians 2:8-9',    text:'"For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God."' },
 ];
 
-// ─── Bible Data ───────────────────────────────────────────────────────────
 const BOOKS_OT = ['Genesis','Exodus','Leviticus','Numbers','Deuteronomy','Joshua','Judges','Ruth','1 Samuel','2 Samuel','1 Kings','2 Kings','1 Chronicles','2 Chronicles','Ezra','Nehemiah','Esther','Job','Psalms','Proverbs','Ecclesiastes','Song of Solomon','Isaiah','Jeremiah','Lamentations','Ezekiel','Daniel','Hosea','Joel','Amos','Obadiah','Jonah','Micah','Nahum','Habakkuk','Zephaniah','Haggai','Zechariah','Malachi'];
 const BOOKS_NT = ['Matthew','Mark','Luke','John','Acts','Romans','1 Corinthians','2 Corinthians','Galatians','Ephesians','Philippians','Colossians','1 Thessalonians','2 Thessalonians','1 Timothy','2 Timothy','Titus','Philemon','Hebrews','James','1 Peter','2 Peter','1 John','2 John','3 John','Jude','Revelation'];
 const CHAPTER_COUNTS: Record<string, number> = {
@@ -150,57 +129,53 @@ const CHAPTER_COUNTS: Record<string, number> = {
 
 type InputMode = 'type' | 'lookup';
 type BgType = 'gradient' | 'photo';
+type FontScale = 'sm' | 'md' | 'lg' | 'xl';
 
-// Auto-scale font size based on canvas dimensions and verse length
-function calcFontSize(W: number, H: number, charCount: number): { verse: number; ref: number } {
+const FONT_SCALES: Record<FontScale, { label: string; multiplier: number }> = {
+  sm: { label: 'Small',   multiplier: 0.75 },
+  md: { label: 'Medium',  multiplier: 1.00 },
+  lg: { label: 'Large',   multiplier: 1.30 },
+  xl: { label: 'X-Large', multiplier: 1.60 },
+};
+
+function calcFontSize(W: number, H: number, charCount: number, scale: FontScale): { verse: number; ref: number } {
   const base = Math.min(W, H);
-  // Start generous, shrink for long verses
   let verse = base * 0.072;
   if (charCount > 200) verse = base * 0.056;
   if (charCount > 300) verse = base * 0.046;
   if (charCount > 400) verse = base * 0.038;
-  // But also scale up for short verses
   if (charCount < 80)  verse = base * 0.088;
-  const ref = verse * 0.56;
-  return { verse: Math.round(verse), ref: Math.round(ref) };
+  verse *= FONT_SCALES[scale].multiplier;
+  return { verse: Math.round(verse), ref: Math.round(verse * 0.56) };
 }
 
-// ─── Accordion Section ────────────────────────────────────────────────────
+// ─── Accordion ──────────────────────────────────────────────────────────────
 function AccordionSection({
   step, title, icon, summary, open, onToggle, children,
 }: {
-  step: number;
-  title: string;
-  icon: React.ReactNode;
-  summary: string;
-  open: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
+  step: number; title: string; icon: React.ReactNode; summary: string;
+  open: boolean; onToggle: () => void; children: React.ReactNode;
 }) {
   return (
-    <div className={`rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
+    // NOTE: NO overflow-hidden here — dropdowns must escape the bubble
+    <div className={`rounded-2xl border-2 transition-all duration-300 theme-card ${
       open
         ? 'border-amber-400 dark:border-amber-500 shadow-lg shadow-amber-100/50 dark:shadow-amber-900/20'
         : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-    } theme-card`}>
+    }`}>
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center gap-4 px-5 py-4 text-left"
+        className="w-full flex items-center gap-4 px-5 py-4 text-left rounded-2xl"
       >
-        {/* Step number */}
         <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-black transition-colors ${
           open ? 'bg-amber-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
         }`}>
           {step}
         </div>
-
-        {/* Icon */}
         <div className={`flex-shrink-0 transition-colors ${open ? 'text-amber-500' : 'text-gray-400 dark:text-gray-500'}`}>
           {icon}
         </div>
-
-        {/* Text */}
         <div className="flex-1 min-w-0">
           <p className={`font-bold text-base transition-colors ${open ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>
             {title}
@@ -209,22 +184,19 @@ function AccordionSection({
             <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-0.5">{summary}</p>
           )}
         </div>
-
-        {/* Chevron */}
         <ChevronDown className={`w-5 h-5 flex-shrink-0 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180 text-amber-500' : ''}`} />
       </button>
 
-      {/* Expanded content */}
-      <div className={`transition-all duration-300 ${open ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none overflow-hidden'}`}>
+      {open && (
         <div className="px-5 pb-5 border-t border-gray-100 dark:border-gray-700 pt-4">
           {children}
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
-// ─── Gradient Swatch ──────────────────────────────────────────────────────
+// ─── Gradient Swatch ─────────────────────────────────────────────────────────
 function GradientSwatch({ bg }: { bg: GradientBg }) {
   return (
     <span
@@ -234,39 +206,56 @@ function GradientSwatch({ bg }: { bg: GradientBg }) {
   );
 }
 
-// ─── Custom Dropdown ──────────────────────────────────────────────────────
+// ─── Portal Dropdown — renders in document.body, never clipped ──────────────
 interface DropdownOption<T> {
-  value: T;
-  label: string;
-  sublabel?: string;
-  prefix?: React.ReactNode;
+  value: T; label: string; sublabel?: string; prefix?: React.ReactNode;
 }
 
 function Dropdown<T extends string>({
   options, value, onChange, placeholder,
 }: {
-  options: DropdownOption<T>[];
-  value: T;
-  onChange: (v: T) => void;
-  placeholder?: string;
+  options: DropdownOption<T>[]; value: T; onChange: (v: T) => void; placeholder?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const selected = options.find((o) => o.value === value);
 
+  function openMenu() {
+    if (!triggerRef.current) return;
+    const rect = triggerRef.current.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const menuH = Math.min(options.length * 42, 260);
+    const top = spaceBelow >= menuH ? rect.bottom + 4 : rect.top - menuH - 4;
+    setMenuStyle({
+      position: 'fixed',
+      top,
+      left: rect.left,
+      width: rect.width,
+      zIndex: 9999,
+    });
+    setOpen(true);
+  }
+
   useEffect(() => {
-    function h(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    if (!open) return;
+    function handler(e: MouseEvent) {
+      if (
+        triggerRef.current && !triggerRef.current.contains(e.target as Node) &&
+        menuRef.current && !menuRef.current.contains(e.target as Node)
+      ) setOpen(false);
     }
-    document.addEventListener('mousedown', h);
-    return () => document.removeEventListener('mousedown', h);
-  }, []);
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
 
   return (
-    <div ref={ref} className="relative">
+    <div className="relative">
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => open ? setOpen(false) : openMenu()}
         className="w-full flex items-center gap-2.5 theme-card border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 hover:border-amber-400 dark:hover:border-amber-500 transition-colors"
       >
         {selected?.prefix && <span className="flex-shrink-0">{selected.prefix}</span>}
@@ -276,8 +265,13 @@ function Dropdown<T extends string>({
         )}
         <ChevronDown className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
-      {open && (
-        <div className="absolute z-50 top-full left-0 right-0 mt-1 theme-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl max-h-60 overflow-y-auto">
+
+      {open && createPortal(
+        <div
+          ref={menuRef}
+          style={menuStyle}
+          className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl max-h-64 overflow-y-auto"
+        >
           {options.map((opt) => (
             <button
               key={opt.value}
@@ -295,13 +289,14 @@ function Dropdown<T extends string>({
               {opt.value === value && <Check className="w-4 h-4 text-amber-500 flex-shrink-0" />}
             </button>
           ))}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
 }
 
-// ─── Main Component ────────────────────────────────────────────────────────
+// ─── Main Component ──────────────────────────────────────────────────────────
 export function VerseOfTheDay() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const photoImgRef = useRef<HTMLImageElement | null>(null);
@@ -312,13 +307,13 @@ export function VerseOfTheDay() {
   const [verseText, setVerseText] = useState(FEATURED_VERSES[0].text);
   const [verseRef, setVerseRef] = useState(FEATURED_VERSES[0].ref);
   const [formatId, setFormatId] = useState<string>('instagram-post');
+  const [fontScale, setFontScale] = useState<FontScale>('md');
   const [bgType, setBgType] = useState<BgType>('gradient');
   const [gradientBgId, setGradientBgId] = useState<string>('g1');
   const [photoBgId, setPhotoBgId] = useState<string>('p1');
   const [downloaded, setDownloaded] = useState(false);
   const [photoLoading, setPhotoLoading] = useState(false);
 
-  // Lookup
   const [lookupBook, setLookupBook] = useState('John');
   const [lookupChapter, setLookupChapter] = useState(3);
   const [lookupVerse, setLookupVerse] = useState(16);
@@ -326,18 +321,15 @@ export function VerseOfTheDay() {
   const [lookupError, setLookupError] = useState('');
   const [chapterVerseCount, setChapterVerseCount] = useState(36);
 
-  const format = SOCIAL_FORMATS.find((f) => f.id === formatId) ?? SOCIAL_FORMATS[0];
+  const format    = SOCIAL_FORMATS.find((f) => f.id === formatId) ?? SOCIAL_FORMATS[0];
   const gradientBg = GRADIENT_BACKGROUNDS.find((b) => b.id === gradientBgId) ?? GRADIENT_BACKGROUNDS[0];
-  const photoBg = PHOTO_BACKGROUNDS.find((b) => b.id === photoBgId) ?? PHOTO_BACKGROUNDS[0];
-  const activeBg = bgType === 'gradient' ? gradientBg : photoBg;
+  const photoBg   = PHOTO_BACKGROUNDS.find((b) => b.id === photoBgId) ?? PHOTO_BACKGROUNDS[0];
+  const activeBg  = bgType === 'gradient' ? gradientBg : photoBg;
   const chapterCount = CHAPTER_COUNTS[lookupBook] || 1;
-  const aspectRatio = format.width / format.height;
+  const aspectRatio  = format.width / format.height;
 
-  function toggle(n: number) {
-    setOpenSection((prev) => (prev === n ? 0 : n));
-  }
+  function toggle(n: number) { setOpenSection((p) => (p === n ? 0 : n)); }
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
   function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number, size: number): string[] {
     ctx.font = `italic ${size}px Georgia, serif`;
     const words = text.split(' ');
@@ -345,12 +337,8 @@ export function VerseOfTheDay() {
     let current = '';
     for (const word of words) {
       const test = current ? `${current} ${word}` : word;
-      if (ctx.measureText(test).width > maxWidth && current) {
-        lines.push(current);
-        current = word;
-      } else {
-        current = test;
-      }
+      if (ctx.measureText(test).width > maxWidth && current) { lines.push(current); current = word; }
+      else current = test;
     }
     if (current) lines.push(current);
     return lines;
@@ -362,7 +350,6 @@ export function VerseOfTheDay() {
     return matches.map((color, i) => ({ stop: i / Math.max(matches.length - 1, 1), color }));
   }
 
-  // ── Draw Canvas ───────────────────────────────────────────────────────────
   const drawCanvas = useCallback((imgEl?: HTMLImageElement | null) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -374,28 +361,20 @@ export function VerseOfTheDay() {
     canvas.width = W;
     canvas.height = H;
 
-    // Background
     if (bgType === 'photo') {
       const img = imgEl ?? photoImgRef.current;
       if (img && img.complete && img.naturalWidth > 0) {
-        const imgRatio = img.naturalWidth / img.naturalHeight;
-        const canvasRatio = W / H;
+        const ir = img.naturalWidth / img.naturalHeight;
+        const cr = W / H;
         let sx = 0, sy = 0, sw = img.naturalWidth, sh = img.naturalHeight;
-        if (imgRatio > canvasRatio) {
-          sw = img.naturalHeight * canvasRatio;
-          sx = (img.naturalWidth - sw) / 2;
-        } else {
-          sh = img.naturalWidth / canvasRatio;
-          sy = (img.naturalHeight - sh) / 2;
-        }
+        if (ir > cr) { sw = img.naturalHeight * cr; sx = (img.naturalWidth - sw) / 2; }
+        else          { sh = img.naturalWidth / cr;  sy = (img.naturalHeight - sh) / 2; }
         ctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
       } else {
-        ctx.fillStyle = '#1a2a4a';
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#1a2a4a'; ctx.fillRect(0, 0, W, H);
       }
       if (photoBg.overlayOpacity > 0) {
-        ctx.fillStyle = `rgba(0,0,0,${photoBg.overlayOpacity})`;
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = `rgba(0,0,0,${photoBg.overlayOpacity})`; ctx.fillRect(0, 0, W, H);
       }
     } else {
       const stops = parseGradientColors(gradientBg.gradient);
@@ -403,17 +382,14 @@ export function VerseOfTheDay() {
         const grd = ctx.createLinearGradient(0, 0, W, H);
         stops.forEach(({ stop, color }) => grd.addColorStop(stop, color));
         ctx.fillStyle = grd;
-      } else {
-        ctx.fillStyle = '#1a2a4a';
-      }
+      } else ctx.fillStyle = '#1a2a4a';
       ctx.fillRect(0, 0, W, H);
       if (gradientBg.overlayOpacity > 0) {
-        ctx.fillStyle = `rgba(0,0,0,${gradientBg.overlayOpacity})`;
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = `rgba(0,0,0,${gradientBg.overlayOpacity})`; ctx.fillRect(0, 0, W, H);
       }
     }
 
-    const textColor = activeBg.textColor;
+    const textColor   = activeBg.textColor;
     const accentColor = activeBg.accentColor;
 
     // Cross watermark
@@ -423,10 +399,8 @@ export function VerseOfTheDay() {
     ctx.lineWidth = Math.round(W * 0.055);
     ctx.lineCap = 'round';
     ctx.beginPath();
-    ctx.moveTo(W / 2, H * 0.06);
-    ctx.lineTo(W / 2, H * 0.94);
-    ctx.moveTo(W * 0.22, H * 0.27);
-    ctx.lineTo(W * 0.78, H * 0.27);
+    ctx.moveTo(W / 2, H * 0.06); ctx.lineTo(W / 2, H * 0.94);
+    ctx.moveTo(W * 0.22, H * 0.27); ctx.lineTo(W * 0.78, H * 0.27);
     ctx.stroke();
     ctx.restore();
 
@@ -436,15 +410,12 @@ export function VerseOfTheDay() {
     ctx.strokeStyle = accentColor;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(W * 0.1, H * 0.1);
-    ctx.lineTo(W * 0.9, H * 0.1);
-    ctx.moveTo(W * 0.1, H * 0.9);
-    ctx.lineTo(W * 0.9, H * 0.9);
+    ctx.moveTo(W * 0.1, H * 0.1); ctx.lineTo(W * 0.9, H * 0.1);
+    ctx.moveTo(W * 0.1, H * 0.9); ctx.lineTo(W * 0.9, H * 0.9);
     ctx.stroke();
     ctx.restore();
 
-    // Auto font size
-    const { verse: verseSize, ref: refSize } = calcFontSize(W, H, verseText.length);
+    const { verse: verseSize, ref: refSize } = calcFontSize(W, H, verseText.length, fontScale);
     const padding = W * 0.1;
     const textWidth = W - padding * 2;
     const lines = wrapText(ctx, verseText, textWidth, verseSize);
@@ -455,19 +426,15 @@ export function VerseOfTheDay() {
     ctx.globalAlpha = 1;
     ctx.textAlign = 'center';
 
-    // Verse text with shadow
     ctx.save();
     ctx.shadowColor = 'rgba(0,0,0,0.45)';
     ctx.shadowBlur = 14;
     ctx.shadowOffsetY = 3;
     ctx.fillStyle = textColor;
     ctx.font = `italic ${verseSize}px Georgia, serif`;
-    lines.forEach((line, i) => {
-      ctx.fillText(line, W / 2, startY + i * lineHeight);
-    });
+    lines.forEach((line, i) => ctx.fillText(line, W / 2, startY + i * lineHeight));
     ctx.restore();
 
-    // Reference
     ctx.save();
     ctx.shadowColor = 'rgba(0,0,0,0.4)';
     ctx.shadowBlur = 8;
@@ -477,29 +444,26 @@ export function VerseOfTheDay() {
     ctx.fillText(`\u2014 ${verseRef}`, W / 2, startY + totalTextHeight + refSize * 1.8);
     ctx.restore();
 
-    // Branding
     const brandSize = Math.round(Math.min(W, H) * 0.013);
     ctx.font = `500 ${brandSize}px Inter, Arial, sans-serif`;
     ctx.globalAlpha = 0.4;
     ctx.fillStyle = textColor;
     ctx.fillText('thediscipleco.org', W / 2, H * 0.912);
-  }, [format, bgType, gradientBg, photoBg, activeBg, verseText, verseRef]);
+  }, [format, bgType, gradientBg, photoBg, activeBg, verseText, verseRef, fontScale]);
 
-  // Photo load effect
   useEffect(() => {
     if (bgType !== 'photo') { drawCanvas(); return; }
     if (photoLoadedBgId.current === photoBg.id && photoImgRef.current) { drawCanvas(photoImgRef.current); return; }
     setPhotoLoading(true);
     const img = new Image();
     img.crossOrigin = 'anonymous';
-    img.onload = () => { photoImgRef.current = img; photoLoadedBgId.current = photoBg.id; setPhotoLoading(false); drawCanvas(img); };
+    img.onload  = () => { photoImgRef.current = img; photoLoadedBgId.current = photoBg.id; setPhotoLoading(false); drawCanvas(img); };
     img.onerror = () => { setPhotoLoading(false); drawCanvas(); };
     img.src = photoBg.url;
   }, [bgType, photoBg, drawCanvas]);
 
-  useEffect(() => { if (bgType === 'gradient') drawCanvas(); }, [bgType, gradientBg, verseText, verseRef, format, drawCanvas]);
+  useEffect(() => { if (bgType === 'gradient') drawCanvas(); }, [bgType, gradientBg, verseText, verseRef, format, fontScale, drawCanvas]);
 
-  // ── Lookup ────────────────────────────────────────────────────────────────
   async function handleLookup() {
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
     setLookupLoading(true); setLookupError('');
@@ -514,7 +478,7 @@ export function VerseOfTheDay() {
       const target = verses.find((v) => v.verse === lookupVerse) || verses[0];
       if (target) { setVerseText(`"${target.text}"`); setVerseRef(`${lookupBook} ${lookupChapter}:${target.verse}`); }
     } catch { setLookupError('Could not load verse. Try another reference.'); }
-    finally { setLookupLoading(false); }
+    finally   { setLookupLoading(false); }
   }
 
   function handleDownload() {
@@ -528,19 +492,19 @@ export function VerseOfTheDay() {
     setTimeout(() => setDownloaded(false), 2500);
   }
 
-  // Summaries shown when collapsed
-  const formatSummary = `${format.label} — ${format.width}×${format.height}px`;
-  const verseSummary = verseRef;
-  const bgSummary = bgType === 'gradient' ? gradientBg.label : photoBg.label;
+  const formatSummary  = `${format.label} — ${format.width}×${format.height}px`;
+  const verseSummary   = verseRef;
+  const scaleSummary   = FONT_SCALES[fontScale].label;
+  const bgSummary      = bgType === 'gradient' ? gradientBg.label : photoBg.label;
 
   return (
     <>
       <ReturnToHome />
       <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        {/* ── Header ─────────────────────────────────────────────────────── */}
-        <div className="mb-10">
-          <div className="flex items-center gap-4 mb-4">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-4 mb-3">
             <img
               src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
               alt="Bible"
@@ -550,31 +514,22 @@ export function VerseOfTheDay() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
                 Verse of the Day
               </h1>
-              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                Create a beautiful verse image for social media
-              </p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Create a beautiful verse image for social media</p>
             </div>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed max-w-3xl mt-2">
+          <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed max-w-3xl">
             Pick a verse, choose a background, select your platform size, and download a share-ready image — perfect for Instagram, Facebook, TikTok, and more.
           </p>
         </div>
 
-        {/* ── Two-column layout ──────────────────────────────────────────── */}
-        <div className="grid xl:grid-cols-[1fr_480px] 2xl:grid-cols-[1fr_540px] gap-8 items-start">
+        {/* 1/3 controls + 2/3 preview */}
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
 
-          {/* Left: Controls */}
-          <div className="space-y-4">
+          {/* Controls — 1 col */}
+          <div className="space-y-3 lg:col-span-1">
 
-            {/* Step 1 — Size */}
-            <AccordionSection
-              step={1}
-              title="Size"
-              icon={<Monitor className="w-5 h-5" />}
-              summary={formatSummary}
-              open={openSection === 1}
-              onToggle={() => toggle(1)}
-            >
+            {/* 1 — Size */}
+            <AccordionSection step={1} title="Size" icon={<Monitor className="w-5 h-5" />} summary={formatSummary} open={openSection === 1} onToggle={() => toggle(1)}>
               <Dropdown
                 options={SOCIAL_FORMATS.map((f) => ({ value: f.id, label: f.label, sublabel: f.description }))}
                 value={formatId}
@@ -585,31 +540,11 @@ export function VerseOfTheDay() {
               </p>
             </AccordionSection>
 
-            {/* Step 2 — Text */}
-            <AccordionSection
-              step={2}
-              title="Text"
-              icon={<Type className="w-5 h-5" />}
-              summary={verseSummary}
-              open={openSection === 2}
-              onToggle={() => toggle(2)}
-            >
-              {/* Mode toggle */}
+            {/* 2 — Text */}
+            <AccordionSection step={2} title="Text" icon={<Type className="w-5 h-5" />} summary={verseSummary} open={openSection === 2} onToggle={() => toggle(2)}>
               <div className="flex rounded-xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden mb-4">
-                <button
-                  onClick={() => setInputMode('type')}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-colors ${inputMode === 'type' ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
-                >
-                  <Type className="w-4 h-4" />
-                  Type / Featured
-                </button>
-                <button
-                  onClick={() => setInputMode('lookup')}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-colors ${inputMode === 'lookup' ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Bible Lookup
-                </button>
+                <button onClick={() => setInputMode('type')}   className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-colors ${inputMode === 'type'   ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}><Type className="w-4 h-4" /> Type / Featured</button>
+                <button onClick={() => setInputMode('lookup')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-colors ${inputMode === 'lookup' ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}><BookOpen className="w-4 h-4" /> Lookup</button>
               </div>
 
               {inputMode === 'type' && (
@@ -619,10 +554,7 @@ export function VerseOfTheDay() {
                     <Dropdown
                       options={FEATURED_VERSES.map((fv) => ({ value: fv.ref, label: fv.ref }))}
                       value={verseRef}
-                      onChange={(ref) => {
-                        const fv = FEATURED_VERSES.find((v) => v.ref === ref);
-                        if (fv) { setVerseText(fv.text); setVerseRef(fv.ref); }
-                      }}
+                      onChange={(ref) => { const fv = FEATURED_VERSES.find((v) => v.ref === ref); if (fv) { setVerseText(fv.text); setVerseRef(fv.ref); } }}
                       placeholder="Select a featured verse..."
                     />
                   </div>
@@ -633,23 +565,11 @@ export function VerseOfTheDay() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Verse Text</label>
-                    <textarea
-                      value={verseText}
-                      onChange={(e) => setVerseText(e.target.value)}
-                      rows={4}
-                      placeholder="Type your verse here..."
-                      className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-amber-500"
-                    />
+                    <textarea value={verseText} onChange={(e) => setVerseText(e.target.value)} rows={4} placeholder="Type your verse here..." className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-amber-500" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Reference</label>
-                    <input
-                      type="text"
-                      value={verseRef}
-                      onChange={(e) => setVerseRef(e.target.value)}
-                      placeholder="e.g. John 3:16"
-                      className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
-                    />
+                    <input type="text" value={verseRef} onChange={(e) => setVerseRef(e.target.value)} placeholder="e.g. John 3:16" className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-xl px-3 py-2.5 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500" />
                   </div>
                 </div>
               )}
@@ -660,11 +580,7 @@ export function VerseOfTheDay() {
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Old Testament</label>
                       <div className="relative">
-                        <select
-                          value={BOOKS_OT.includes(lookupBook) ? lookupBook : ''}
-                          onChange={(e) => { if (e.target.value) { setLookupBook(e.target.value); setLookupChapter(1); setLookupVerse(1); } }}
-                          className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                        >
+                        <select value={BOOKS_OT.includes(lookupBook) ? lookupBook : ''} onChange={(e) => { if (e.target.value) { setLookupBook(e.target.value); setLookupChapter(1); setLookupVerse(1); } }} className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500">
                           {!BOOKS_OT.includes(lookupBook) && <option value="">-- Select --</option>}
                           {BOOKS_OT.map((b) => <option key={b} value={b}>{b}</option>)}
                         </select>
@@ -674,11 +590,7 @@ export function VerseOfTheDay() {
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">New Testament</label>
                       <div className="relative">
-                        <select
-                          value={BOOKS_NT.includes(lookupBook) ? lookupBook : ''}
-                          onChange={(e) => { if (e.target.value) { setLookupBook(e.target.value); setLookupChapter(1); setLookupVerse(1); } }}
-                          className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                        >
+                        <select value={BOOKS_NT.includes(lookupBook) ? lookupBook : ''} onChange={(e) => { if (e.target.value) { setLookupBook(e.target.value); setLookupChapter(1); setLookupVerse(1); } }} className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500">
                           {!BOOKS_NT.includes(lookupBook) && <option value="">-- Select --</option>}
                           {BOOKS_NT.map((b) => <option key={b} value={b}>{b}</option>)}
                         </select>
@@ -690,14 +602,8 @@ export function VerseOfTheDay() {
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Chapter</label>
                       <div className="relative">
-                        <select
-                          value={lookupChapter}
-                          onChange={(e) => { setLookupChapter(Number(e.target.value)); setLookupVerse(1); }}
-                          className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                        >
-                          {Array.from({ length: chapterCount }, (_, i) => i + 1).map((c) => (
-                            <option key={c} value={c}>{c}</option>
-                          ))}
+                        <select value={lookupChapter} onChange={(e) => { setLookupChapter(Number(e.target.value)); setLookupVerse(1); }} className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                          {Array.from({ length: chapterCount }, (_, i) => i + 1).map((c) => <option key={c} value={c}>{c}</option>)}
                         </select>
                         <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                       </div>
@@ -705,25 +611,15 @@ export function VerseOfTheDay() {
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Verse</label>
                       <div className="relative">
-                        <select
-                          value={lookupVerse}
-                          onChange={(e) => setLookupVerse(Number(e.target.value))}
-                          className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                        >
-                          {Array.from({ length: chapterVerseCount }, (_, i) => i + 1).map((v) => (
-                            <option key={v} value={v}>{v}</option>
-                          ))}
+                        <select value={lookupVerse} onChange={(e) => setLookupVerse(Number(e.target.value))} className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                          {Array.from({ length: chapterVerseCount }, (_, i) => i + 1).map((v) => <option key={v} value={v}>{v}</option>)}
                         </select>
                         <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                       </div>
                     </div>
                   </div>
                   {lookupError && <p className="text-xs text-red-500 dark:text-red-400">{lookupError}</p>}
-                  <button
-                    onClick={handleLookup}
-                    disabled={lookupLoading}
-                    className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors text-sm"
-                  >
+                  <button onClick={handleLookup} disabled={lookupLoading} className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors text-sm">
                     {lookupLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
                     Load Verse
                   </button>
@@ -731,31 +627,31 @@ export function VerseOfTheDay() {
               )}
             </AccordionSection>
 
-            {/* Step 3 — Background */}
-            <AccordionSection
-              step={3}
-              title="Background"
-              icon={<ImageIcon className="w-5 h-5" />}
-              summary={bgSummary}
-              open={openSection === 3}
-              onToggle={() => toggle(3)}
-            >
-              {/* Gradient / Photo toggle */}
-              <div className="flex rounded-xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden mb-4">
-                <button
-                  onClick={() => setBgType('gradient')}
-                  className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${bgType === 'gradient' ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
-                >
-                  Gradient
-                </button>
-                <button
-                  onClick={() => setBgType('photo')}
-                  className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${bgType === 'photo' ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
-                >
-                  Photo
-                </button>
+            {/* 3 — Text Size */}
+            <AccordionSection step={3} title="Text Size" icon={<ZoomIn className="w-5 h-5" />} summary={scaleSummary} open={openSection === 3} onToggle={() => toggle(3)}>
+              <div className="grid grid-cols-4 gap-2">
+                {(Object.keys(FONT_SCALES) as FontScale[]).map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setFontScale(s)}
+                    className={`py-3 rounded-xl text-sm font-semibold transition-all border-2 ${
+                      fontScale === s
+                        ? 'bg-amber-500 border-amber-500 text-white shadow-md'
+                        : 'theme-card border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-amber-300 dark:hover:border-amber-600'
+                    }`}
+                  >
+                    {FONT_SCALES[s].label}
+                  </button>
+                ))}
               </div>
+            </AccordionSection>
 
+            {/* 4 — Background */}
+            <AccordionSection step={4} title="Background" icon={<ImageIcon className="w-5 h-5" />} summary={bgSummary} open={openSection === 4} onToggle={() => toggle(4)}>
+              <div className="flex rounded-xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden mb-4">
+                <button onClick={() => setBgType('gradient')} className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${bgType === 'gradient' ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}>Gradient</button>
+                <button onClick={() => setBgType('photo')}    className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${bgType === 'photo'    ? 'bg-amber-500 text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}>Photo</button>
+              </div>
               {bgType === 'gradient' && (
                 <Dropdown
                   options={GRADIENT_BACKGROUNDS.map((bg) => ({ value: bg.id, label: bg.label, prefix: <GradientSwatch bg={bg} /> }))}
@@ -763,7 +659,6 @@ export function VerseOfTheDay() {
                   onChange={setGradientBgId}
                 />
               )}
-
               {bgType === 'photo' && (
                 <div className="space-y-2">
                   <Dropdown
@@ -773,26 +668,18 @@ export function VerseOfTheDay() {
                   />
                   {photoLoading && (
                     <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      Loading photo...
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" /> Loading photo...
                     </div>
                   )}
                 </div>
               )}
             </AccordionSection>
 
-            {/* Step 4 — Download */}
-            <AccordionSection
-              step={4}
-              title="Download"
-              icon={<Download className="w-5 h-5" />}
-              summary="Save your image"
-              open={openSection === 4}
-              onToggle={() => toggle(4)}
-            >
+            {/* 5 — Download */}
+            <AccordionSection step={5} title="Download" icon={<Download className="w-5 h-5" />} summary="Save your image" open={openSection === 5} onToggle={() => toggle(5)}>
               <div className="space-y-3">
                 <div className="theme-card rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
                     <span className="text-gray-500 dark:text-gray-400">Platform</span>
                     <span className="font-semibold text-gray-900 dark:text-white">{format.label}</span>
                     <span className="text-gray-500 dark:text-gray-400">Size</span>
@@ -813,11 +700,10 @@ export function VerseOfTheDay() {
                 </button>
               </div>
             </AccordionSection>
-
           </div>
 
-          {/* Right: Live Preview — sticky */}
-          <div className="xl:sticky xl:top-24 space-y-4">
+          {/* Preview — 2 cols */}
+          <div className="lg:col-span-2 lg:sticky lg:top-24 space-y-4">
             <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
               <div className="px-5 py-3.5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -828,12 +714,13 @@ export function VerseOfTheDay() {
                   {format.width} × {format.height}
                 </span>
               </div>
-              <div className="p-4 flex items-center justify-center bg-gray-50 dark:bg-gray-900/40">
+              <div className="p-6 flex items-center justify-center bg-gray-50 dark:bg-gray-900/40 min-h-[300px]">
                 <div
-                  className="relative rounded-xl overflow-hidden shadow-2xl w-full"
+                  className="relative rounded-xl overflow-hidden shadow-2xl"
                   style={{
-                    maxWidth: aspectRatio >= 1 ? '100%' : '260px',
-                    margin: '0 auto',
+                    width: aspectRatio >= 1 ? '100%' : 'auto',
+                    maxWidth: '100%',
+                    height: aspectRatio < 1 ? 'min(60vh, 520px)' : 'auto',
                     aspectRatio: `${format.width}/${format.height}`,
                   }}
                 >
@@ -847,17 +734,15 @@ export function VerseOfTheDay() {
               </div>
             </div>
 
-            {/* Quick-download below preview */}
             <button
               onClick={handleDownload}
-              className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-sm transition-all shadow hover:shadow-md hover:scale-[1.01] active:scale-[0.99] ${
+              className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-base transition-all shadow hover:shadow-md hover:scale-[1.01] active:scale-[0.99] ${
                 downloaded ? 'bg-green-500 text-white' : 'bg-amber-500 hover:bg-amber-600 text-white'
               }`}
             >
-              {downloaded ? <><Check className="w-4 h-4" /> Downloaded!</> : <><Download className="w-4 h-4" /> Download Image</>}
+              {downloaded ? <><Check className="w-5 h-5" /> Downloaded!</> : <><Download className="w-5 h-5" /> Download Image</>}
             </button>
           </div>
-
         </div>
       </main>
     </>
