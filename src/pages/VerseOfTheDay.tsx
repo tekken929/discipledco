@@ -863,6 +863,3 @@ export function VerseOfTheDay() {
     </>
   );
 }
-
-
-export { VerseOfTheDay }
