@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Route as RouteIcon, GraduationCap, Clock, HelpCircle } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Route as RouteIcon, GraduationCap, Clock, HelpCircle, Image } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -33,6 +33,7 @@ import { Courses } from './pages/Courses';
 import { CourseModule } from './pages/CourseModule';
 import { BibleLookup } from './pages/BibleLookup';
 import { BibleStudies } from './pages/BibleStudies';
+import { VerseOfTheDay } from './pages/VerseOfTheDay';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -61,6 +62,7 @@ const menuSections: MenuSection[] = [
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
       { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
       { to: '/bible-lookup', label: 'Lookup any Verse', icon: Lightbulb },
+      { to: '/verse-of-the-day', label: 'Verse of the Day', icon: Image },
       { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
     ],
   },
@@ -415,6 +417,7 @@ function AppContent() {
           <Route path="/bible-lookup" element={<BibleLookup />} />
           <Route path="/bible-studies" element={<BibleStudies />} />
           <Route path="/bible-studies/:studyId" element={<BibleStudies />} />
+          <Route path="/verse-of-the-day" element={<VerseOfTheDay />} />
         </Routes>
       </div>
 
