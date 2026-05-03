@@ -2,9 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Download, RefreshCw, Type, BookOpen, ChevronDown, Loader2, Check, Image as ImageIcon, Monitor, AlignCenter, ZoomIn } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+import { supabase } from '../lib/supabase';
 
 interface SocialFormat {
   id: string; label: string; platform: string; width: number; height: number; description: string;
@@ -465,20 +463,30 @@ export function VerseOfTheDay() {
   useEffect(() => { if (bgType === 'gradient') drawCanvas(); }, [bgType, gradientBg, verseText, verseRef, format, fontScale, drawCanvas]);
 
   async function handleLookup() {
-    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
     setLookupLoading(true); setLookupError('');
     try {
-      const url = `${SUPABASE_URL}/functions/v1/fetch-verses?book=${encodeURIComponent(lookupBook)}&chapter=${lookupChapter}`;
-      const res = await fetch(url, { headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}` } });
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      if (data.error) throw new Error();
-      const verses: { verse: number; text: string }[] = data.verses || [];
-      setChapterVerseCount(verses.length);
-      const target = verses.find((v) => v.verse === lookupVerse) || verses[0];
-      if (target) { setVerseText(`"${target.text}"`); setVerseRef(`${lookupBook} ${lookupChapter}:${target.verse}`); }
-    } catch { setLookupError('Could not load verse. Try another reference.'); }
-    finally   { setLookupLoading(false); }
+      const { data, error } = await supabase
+        .from('bible_verses')
+        .select('verse, text')
+        .eq('book', lookupBook)
+        .eq('chapter', lookupChapter)
+        .order('verse');
+
+      if (error) throw error;
+      if (!data || data.length === 0) {
+        setLookupError('No verses found for that reference.');
+        return;
+      }
+
+      setChapterVerseCount(data.length);
+      const target = data.find((v) => v.verse === lookupVerse) ?? data[0];
+      setVerseText(`"${target.text.trim()}"`);
+      setVerseRef(`${lookupBook} ${lookupChapter}:${target.verse}`);
+    } catch {
+      setLookupError('Could not load verse. Try another reference.');
+    } finally {
+      setLookupLoading(false);
+    }
   }
 
   function handleDownload() {
