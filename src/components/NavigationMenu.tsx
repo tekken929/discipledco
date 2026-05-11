@@ -49,6 +49,7 @@ const sections: NavSection[] = [
       { to: '/stories', icon: Book, title: 'Popular Stories' },
       { to: '/guidance', icon: BookOpen, title: 'Guidance' },
       { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
+      { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', icon: BookOpen, title: 'Common Prayer', external: true },
     ],
   },
   {

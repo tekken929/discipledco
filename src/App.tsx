@@ -74,6 +74,7 @@ const menuSections: MenuSection[] = [
       { to: '/stories', label: 'Popular Stories', icon: Book },
       { to: '/podcasts', label: 'Podcasts', icon: Radio },
       { to: '/preaching', label: 'Wisdom', icon: Mic },
+      { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', icon: BookOpen, external: true },
     ],
   },
   {
