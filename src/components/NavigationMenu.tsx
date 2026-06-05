@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, Clock, HelpCircle, Wind, Map, GraduationCap, Image, Lock } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, Map, GraduationCap, Image, Lock } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -31,7 +31,6 @@ const sections: NavSection[] = [
     links: [
       { to: '/bible', icon: Map, title: 'Bible Overview' },
       { to: '/courses', icon: GraduationCap, title: 'Foundation Course' },
-      { to: '/timeline', icon: Clock, title: 'Timeline' },
     ],
   },
   {
@@ -41,7 +40,6 @@ const sections: NavSection[] = [
       { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
       { to: '/bible-lookup', icon: Lightbulb, title: 'Lookup Any Verse' },
       { to: '/preaching', icon: Mic, title: 'Wisdom' },
-      { to: '/music', icon: Music, title: 'Music Jukebox' },
       { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies' },
     ],
   },
@@ -50,6 +48,7 @@ const sections: NavSection[] = [
     links: [
       { to: '/prayer', icon: Wind, title: 'Daily Prayer' },
       { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
+      { to: '/music', icon: Music, title: 'Music Jukebox', comingSoon: true },
       { to: '/faqs', icon: HelpCircle, title: 'FAQs', comingSoon: true },
       { to: '#', icon: Image, title: 'Media', comingSoon: true },
     ],
