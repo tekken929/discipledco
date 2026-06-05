@@ -291,11 +291,13 @@ export function Welcome() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
 
-          {/* App Download — top right */}
+          {/* App Download / Support — top right */}
           <div className="hidden sm:flex absolute top-6 right-4 sm:right-6 lg:right-8 flex-col items-end gap-3">
             <a
-              href="#"
-              aria-label="Download The Disciple Co. App"
+              href="https://www.patreon.com/cw/Disciple929/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Support on Patreon"
               className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
             >
               <img
@@ -304,9 +306,9 @@ export function Welcome() {
                 className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0"
               />
               <div className="text-left">
-                <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Download the App</p>
+                <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Support the Mission</p>
                 <p className="text-white text-sm font-bold leading-tight">The Disciple Co.</p>
-                <p className="text-white/60 text-xs">Available on the App Store</p>
+                <p className="text-white/60 text-xs">Support us on Patreon</p>
               </div>
             </a>
           </div>
@@ -517,7 +519,16 @@ export function Welcome() {
       </section>
 
       {/* FEATURED SECTIONS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16">
+        {/* Section divider */}
+        <div className="flex items-center gap-4 mb-12">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
+            <BookOpen className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Explore More</span>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+        </div>
         <div className="mb-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Gain knowledge</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">Pick your topic below to learn more.</p>
@@ -615,7 +626,7 @@ export function Welcome() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-          {/* Daily Prayer — LIVE */}
+          {/* Daily Prayer — PREVIEW */}
           <Link
             to="/prayer"
             className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-teal-200 dark:border-teal-800 bg-teal-50/50 dark:bg-teal-950/20 hover:border-teal-400 dark:hover:border-teal-600 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -624,7 +635,7 @@ export function Welcome() {
               <div className="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center flex-shrink-0">
                 <Wind className="w-5 h-5 text-teal-600 dark:text-teal-400" />
               </div>
-              <span className="text-[10px] font-bold bg-teal-500 text-white px-2 py-0.5 rounded-full uppercase tracking-wide">Live</span>
+              <span className="text-[10px] font-bold bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 border border-teal-300 dark:border-teal-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Daily Prayer</h3>
@@ -635,7 +646,7 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Holiday Origins — LIVE */}
+          {/* Holiday Origins — PREVIEW */}
           <Link
             to="/christian-holidays"
             className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -644,7 +655,7 @@ export function Welcome() {
               <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center flex-shrink-0">
                 <Calendar className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               </div>
-              <span className="text-[10px] font-bold bg-amber-500 text-white px-2 py-0.5 rounded-full uppercase tracking-wide">Live</span>
+              <span className="text-[10px] font-bold bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Holiday Origins</h3>
@@ -733,6 +744,28 @@ export function Welcome() {
           <p>I am simply a man—a sinner like everyone else—trying to spread understanding and bring clarity to faith, religion, and why I believe the Bible remains the ultimate authority in life.</p>
           <p>I began this journey while trying to answer my own questions about faith, the Church, and God. I quickly realized that I wanted to share what I had learned and provide others with information as truthfully and accurately as I could.</p>
           <p>My goal is to represent what it means to be a Christian with honesty and faithfulness according to my understanding of the teachings of the Holy Bible.</p>
+
+          {/* Support disclaimer + Patreon */}
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-5 mt-2">
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5 italic">
+              We will always keep this website ad-free. We believe this message should be freely shared with everyone, and you will never be asked to pay for the content within. If you would like to support the project, please consider donating through our Patreon below.
+            </p>
+            <a
+              href="https://www.patreon.com/cw/Disciple929/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 p-4 rounded-xl border-2 border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950/30 hover:border-orange-400 dark:hover:border-orange-600 hover:shadow-md transition-all group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center flex-shrink-0">
+                <Heart className="w-5 h-5 text-orange-500 dark:text-orange-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-gray-900 dark:text-white leading-snug">Support on Patreon</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">The Disciple Co. — help us keep it free for everyone</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-orange-500 dark:text-orange-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
+            </a>
+          </div>
         </div>
       </Modal>
     </div>
