@@ -149,7 +149,7 @@ function TopNav() {
             className="flex items-center gap-2.5 flex-shrink-0 group"
           >
             <img
-              src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
+              src="/images/Untitled_design_(34)_Large.jpeg"
               alt="The Disciple Co."
               className="w-8 h-8 rounded-lg object-cover"
             />
