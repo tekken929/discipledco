@@ -25,13 +25,13 @@
 @layer components {
   /* ── Subtle Theme — Warm Parchment ──────────────────────────── */
   [data-theme="subtle"] .theme-background {
-    @apply bg-stone-50;
+    @apply bg-amber-50/70;
   }
   [data-theme="subtle"].dark .theme-background {
     @apply bg-[#0f1117];
   }
   [data-theme="subtle"] .theme-card {
-    @apply bg-white border-stone-200;
+    @apply bg-white border-amber-200/80;
   }
   [data-theme="subtle"].dark .theme-card {
     @apply bg-[#1a1d27] border-[#2a2d3a];
@@ -66,13 +66,13 @@
 
   /* ── Warm Amber Theme — Rich & Vibrant ──────────────────────── */
   [data-theme="happy"] .theme-background {
-    @apply bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50;
+    @apply bg-gradient-to-br from-amber-100 via-orange-50 to-yellow-100;
   }
   [data-theme="happy"].dark .theme-background {
     @apply bg-gradient-to-br from-[#1a1000] via-[#1a0d00] to-[#120e00];
   }
   [data-theme="happy"] .theme-card {
-    @apply bg-white border-amber-200;
+    @apply bg-white border-amber-300;
   }
   [data-theme="happy"].dark .theme-card {
     @apply bg-[#231800] border-amber-900/60;
@@ -104,13 +104,13 @@
 
   /* ── Ink Theme — Clean Monochrome ───────────────────────────── */
   [data-theme="blackwhite"] .theme-background {
-    @apply bg-gray-50;
+    @apply bg-gray-100;
   }
   [data-theme="blackwhite"].dark .theme-background {
     @apply bg-[#0a0a0a];
   }
   [data-theme="blackwhite"] .theme-card {
-    @apply bg-white border-gray-200;
+    @apply bg-white border-gray-300;
   }
   [data-theme="blackwhite"].dark .theme-card {
     @apply bg-[#141414] border-[#2a2a2a];
@@ -145,13 +145,13 @@
 
   /* ── Ocean Theme — Deep Coastal Blues ───────────────────────── */
   [data-theme="ocean"] .theme-background {
-    @apply bg-gradient-to-br from-sky-50 via-slate-50 to-cyan-50;
+    @apply bg-gradient-to-br from-sky-100 via-slate-100 to-cyan-100;
   }
   [data-theme="ocean"].dark .theme-background {
     @apply bg-gradient-to-br from-[#030d1a] via-[#050f1e] to-[#041018];
   }
   [data-theme="ocean"] .theme-card {
-    @apply bg-white border-sky-200;
+    @apply bg-white border-sky-300;
   }
   [data-theme="ocean"].dark .theme-card {
     @apply bg-[#071828] border-[#0d2840];
@@ -186,13 +186,13 @@
 
   /* ── Dusk Theme — Muted Rose & Slate ────────────────────────── */
   [data-theme="dusk"] .theme-background {
-    @apply bg-gradient-to-br from-rose-50 via-slate-50 to-stone-50;
+    @apply bg-gradient-to-br from-rose-100 via-slate-100 to-stone-100;
   }
   [data-theme="dusk"].dark .theme-background {
     @apply bg-gradient-to-br from-[#160a0e] via-[#0f0e12] to-[#100e10];
   }
   [data-theme="dusk"] .theme-card {
-    @apply bg-white border-rose-100;
+    @apply bg-white border-rose-200;
   }
   [data-theme="dusk"].dark .theme-card {
     @apply bg-[#1c1118] border-[#2e1a22];

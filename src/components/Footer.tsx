@@ -103,10 +103,10 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.patreon.com/cw/Disciple929/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                className="p-1.5 rounded-md text-gray-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                 aria-label="Patreon"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">

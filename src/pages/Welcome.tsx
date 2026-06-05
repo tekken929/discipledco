@@ -291,13 +291,11 @@ export function Welcome() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
 
-          {/* App Download / Support — top right */}
+          {/* App Download — top right */}
           <div className="hidden sm:flex absolute top-6 right-4 sm:right-6 lg:right-8 flex-col items-end gap-3">
             <a
-              href="https://www.patreon.com/cw/Disciple929/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Support on Patreon"
+              href="#"
+              aria-label="Download The Disciple Co. App"
               className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
             >
               <img
@@ -306,9 +304,9 @@ export function Welcome() {
                 className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0"
               />
               <div className="text-left">
-                <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Support the Mission</p>
+                <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Download the App</p>
                 <p className="text-white text-sm font-bold leading-tight">The Disciple Co.</p>
-                <p className="text-white/60 text-xs">Support us on Patreon</p>
+                <p className="text-white/60 text-xs">Available on the App Store</p>
               </div>
             </a>
           </div>
