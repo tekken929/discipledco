@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:wght@700;800;900&family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -140,13 +140,6 @@
     @apply text-gray-200;
   }
 }
-
-/* ── Font preview utilities ──────────────────────────────────── */
-.font-playfair  { font-family: 'Playfair Display', Georgia, serif; }
-.font-cinzel    { font-family: 'Cinzel', 'Times New Roman', serif; }
-.font-cormorant { font-family: 'Cormorant Garamond', Georgia, serif; }
-.font-dm-serif  { font-family: 'DM Serif Display', Georgia, serif; }
-.font-libre     { font-family: 'Libre Baskerville', Georgia, serif; }
 
 /* ── Grain overlay texture ──────────────────────────────────── */
 .grain-overlay {

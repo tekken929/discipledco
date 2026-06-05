@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Lora', 'Georgia', 'serif'],
+        display: ['Cinzel', 'Georgia', 'serif'],
       },
     },
   },
