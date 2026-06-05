@@ -2,7 +2,7 @@ import {
   BookOpen, Church, Music, Calendar,
   Mic, Lightbulb, ArrowRight,
   HelpCircle, Shield, Heart,
-  Map, Route, GraduationCap, Clock, ChevronDown, ChevronUp, Star
+  Map, Route, GraduationCap, Clock, Star
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -247,55 +247,21 @@ export function Welcome() {
             </p>
             <p className="text-sm text-white/55 mb-10 font-semibold tracking-wide">— Luke 9:23</p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-3xl mx-auto">
+            <div className="flex justify-center">
               <Link
                 to="/bible"
-                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-5 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm"
+                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm max-w-xs w-full"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-                    <Map className="w-4 h-4 text-white" />
+                  <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
+                    <Map className="w-5 h-5 text-amber-300" />
                   </div>
-                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest">Self-Guided</span>
+                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest">Begin Your Journey</span>
                 </div>
-                <h3 className="text-base font-bold text-white mb-1.5 leading-snug">Tour of the Bible</h3>
-                <p className="text-sm text-white/60 leading-relaxed mb-3">Browse all 66 books with summaries and context.</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-amber-300 group-hover:text-amber-200 transition-colors">
-                  Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-
-              <button
-                onClick={() => setIsRoadmapModalOpen(true)}
-                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-5 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm cursor-pointer"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-                    <Route className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest">Step by Step</span>
-                </div>
-                <h3 className="text-base font-bold text-white mb-1.5 leading-snug">Bible Reading Roadmap</h3>
-                <p className="text-sm text-white/60 leading-relaxed mb-3">Where to start, what to read next, and why order matters.</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-amber-300 group-hover:text-amber-200 transition-colors">
-                  Open roadmap <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </button>
-
-              <Link
-                to="/courses"
-                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-5 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-                    <GraduationCap className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest">8 Modules</span>
-                </div>
-                <h3 className="text-base font-bold text-white mb-1.5 leading-snug">The Foundation Course</h3>
-                <p className="text-sm text-white/60 leading-relaxed mb-3">A guided discipleship path covering what the Bible is.</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-amber-300 group-hover:text-amber-200 transition-colors">
-                  Start course <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                <h3 className="text-xl font-bold text-white mb-2 leading-snug">Start Here</h3>
+                <p className="text-sm text-white/60 leading-relaxed mb-4">Your guided entry point — browse all 66 books, understand the Bible's structure, and find where to begin.</p>
+                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">
+                  Tour the Bible <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </Link>
             </div>
@@ -303,29 +269,92 @@ export function Welcome() {
         </div>
       </section>
 
-      {/* HISTORICAL TIMELINE */}
+      {/* 4-TILE NAVIGATION ROW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-2">
-        <button
-          onClick={() => setShowTimeline(!showTimeline)}
-          className="group w-full text-left theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 rounded-2xl p-6 hover:shadow-sm transition-all cursor-pointer"
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                <Clock className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">Complete Historical Timeline</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">From Creation to modern day — key events in Jewish, Catholic, Orthodox, and Protestant history.</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 ml-4 flex-shrink-0">
-              <span className="hidden sm:inline text-xs font-semibold text-gray-500 dark:text-gray-400">{showTimeline ? 'Hide' : 'Show'}</span>
-              {showTimeline ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
-            </div>
-          </div>
-        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
+          {/* Tour of the Bible */}
+          <Link
+            to="/bible"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center flex-shrink-0">
+                <Map className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              </div>
+              <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Tour of the Bible</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Browse all 66 books with summaries and context.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400 group-hover:gap-2 transition-all mt-auto">
+              Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
+          {/* Bible Reading Roadmap */}
+          <button
+            onClick={() => setIsRoadmapModalOpen(true)}
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5 text-left cursor-pointer w-full"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
+                <Route className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Step by Step</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Bible Reading Roadmap</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Where to start, what to read next, and why order matters.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all mt-auto">
+              Open roadmap <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </button>
+
+          {/* Foundation Course */}
+          <Link
+            to="/courses"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/40 flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="w-5 h-5 text-green-600 dark:text-green-400" />
+              </div>
+              <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">8 Modules</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">The Foundation Course</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">A guided discipleship path covering what the Bible is.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-green-600 dark:text-green-400 group-hover:gap-2 transition-all mt-auto">
+              Start course <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
+          {/* Complete Historical Timeline */}
+          <button
+            onClick={() => setShowTimeline(!showTimeline)}
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5 text-left cursor-pointer w-full"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              </div>
+              <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">{showTimeline ? 'Collapse' : 'Expand'}</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Complete Historical Timeline</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">From Creation to modern day — key events in Biblical history.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-gray-600 dark:text-gray-400 group-hover:gap-2 transition-all mt-auto">
+              {showTimeline ? 'Hide timeline' : 'View timeline'} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </button>
+        </div>
+
+        {/* Timeline expandable content */}
         {showTimeline && (
           <div className="mt-4 space-y-4">
             {timelineEvents.map((event, index) => {
