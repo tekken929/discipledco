@@ -392,7 +392,7 @@ function AppContent() {
     setHasCompletedOnboarding(true);
   };
 
-  if (!hasCompletedOnboarding) {
+  if (!hasCompletedOnboarding && !isAppPage) {
     return (
       <OnboardingQuestions
         onComplete={handleOnboardingComplete}
