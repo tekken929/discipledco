@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Route as RouteIcon, GraduationCap, Clock, HelpCircle, Image, Wind } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -44,6 +44,7 @@ interface MenuLink {
   label: string;
   icon: React.ElementType;
   external?: boolean;
+  comingSoon?: boolean;
 }
 
 interface MenuSection {
@@ -56,43 +57,44 @@ const menuSections: MenuSection[] = [
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-      { to: '/bible', label: 'Bible Roadmap', icon: RouteIcon },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
-      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
-      { to: '/bible-lookup', label: 'Lookup any Verse', icon: Lightbulb },
-      { to: '/verse-of-the-day', label: 'Verse of the Day', icon: Image },
-      { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
     ],
   },
   {
-    heading: 'Religion',
+    heading: 'Gain Knowledge',
     links: [
       { to: '/religions', label: 'What is Religion', icon: FolderOpen },
+      { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
+      { to: '/bible-lookup', label: 'Lookup Any Verse', icon: Lightbulb },
+      { to: '/preaching', label: 'Wisdom', icon: Mic },
+      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
+    ],
+  },
+  {
+    heading: 'Being Developed',
+    links: [
+      { to: '/prayer', label: 'Daily Prayer', icon: Wind },
+      { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
+      { to: '/music', label: 'Music Jukebox', icon: Music, comingSoon: true },
+      { to: '/faqs', label: 'FAQs', icon: HelpCircle, comingSoon: true },
+      { to: '#', label: 'Media', icon: Image, comingSoon: true },
+    ],
+  },
+  {
+    heading: 'Misc',
+    links: [
       { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
       { to: '/stories', label: 'Popular Stories', icon: Book },
-      { to: '/podcasts', label: 'Podcasts', icon: Radio },
-      { to: '/preaching', label: 'Wisdom', icon: Mic },
-      { to: '/prayer', label: 'Daily Prayer (BCP)', icon: Wind },
-      { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', icon: BookOpen, external: true },
-    ],
-  },
-  {
-    heading: 'Music',
-    links: [
+      { to: '/guidance', label: 'Guidance', icon: BookOpen },
+      { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
       { to: '/hallowed', label: 'Hallowed Band', icon: Sparkles },
-      { to: '/music', label: 'Music Jukebox', icon: Music },
-    ],
-  },
-  {
-    heading: 'Information',
-    links: [
-      { to: '/timeline', label: 'Timeline', icon: Clock },
-      { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
+      { to: '/podcasts', label: 'Podcasts', icon: Radio },
+      { to: '/books', label: 'Books', icon: BookText },
       { to: '/easter', label: 'Easter', icon: Sparkles },
       { to: '/resurrection', label: 'Resurrection', icon: BookOpen },
-      { to: '/books', label: 'Books', icon: BookText },
-      { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
-      { to: '/faqs', label: 'FAQs', icon: HelpCircle },
+      { to: '/verse-of-the-day', label: 'Verse of the Day', icon: Image },
+      { to: '/bible-authors', label: 'Bible Authors', icon: BookOpen },
+      { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', icon: BookOpen, external: true },
     ],
   },
 ];
@@ -235,9 +237,23 @@ function TopNav() {
                         <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">{section.heading}</p>
                       </div>
                       <nav className="pb-2">
-                        {section.links.map((link) => {
+                      {section.links.map((link) => {
                           const Icon = link.icon;
-                          const isActive = !link.external && location.pathname === link.to;
+                          const isActive = !link.external && !link.comingSoon && location.pathname === link.to;
+                          if (link.comingSoon) {
+                            return (
+                              <div
+                                key={link.label}
+                                className="flex items-center justify-between px-4 py-2.5 opacity-45 cursor-not-allowed select-none"
+                              >
+                                <div className="flex items-center gap-3 text-gray-500 dark:text-gray-500 text-sm font-medium">
+                                  <Icon className="w-4 h-4 flex-shrink-0" />
+                                  {link.label}
+                                </div>
+                                <span className="text-[10px] font-bold text-gray-400 dark:text-gray-600 uppercase tracking-wide">Soon</span>
+                              </div>
+                            );
+                          }
                           if (link.external) {
                             return (
                               <a
@@ -293,7 +309,7 @@ function TopNav() {
         <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 theme-card">
           <nav className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
             {menuSections.flatMap((section) =>
-              section.links.filter((l) => !l.external).map((link) => {
+              section.links.filter((l) => !l.external && !l.comingSoon).map((link) => {
                 const isActive = location.pathname === link.to;
                 return (
                   <Link

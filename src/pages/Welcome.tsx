@@ -63,18 +63,6 @@ const featuredSections = [
     accent: 'text-green-600 dark:text-green-400',
   },
   {
-    to: '/music',
-    icon: Music,
-    title: 'Music Jukebox',
-    description: 'Original songs and worship music to accompany your journey.',
-    color: 'slate',
-    bgLight: 'bg-slate-50 dark:bg-slate-800/50',
-    border: 'border-slate-200 dark:border-slate-700',
-    iconBg: 'bg-slate-100 dark:bg-slate-800',
-    iconColor: 'text-slate-600 dark:text-slate-400',
-    accent: 'text-slate-600 dark:text-slate-400',
-  },
-  {
     to: '/bible-studies',
     icon: BookOpen,
     title: 'Bible Studies',
@@ -622,7 +610,7 @@ export function Welcome() {
           <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Being Developed</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">More features coming soon — live features are available now.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
 
           {/* Daily Prayer — PREVIEW */}
           <Link
@@ -663,6 +651,23 @@ export function Welcome() {
               Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </span>
           </Link>
+
+          {/* Music Jukebox — Coming Soon */}
+          <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <Music className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              </div>
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+                <Lock className="w-2.5 h-2.5" /> Soon
+              </span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Music Jukebox</h3>
+              <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Original songs and worship music to accompany your journey.</p>
+            </div>
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
+          </div>
 
           {/* FAQs — Coming Soon */}
           <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
