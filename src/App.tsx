@@ -32,6 +32,7 @@ import { BibleLookup } from './pages/BibleLookup';
 import { BibleStudies } from './pages/BibleStudies';
 import { VerseOfTheDay } from './pages/VerseOfTheDay';
 import Prayer from './pages/Prayer';
+import { AppDownload } from './pages/AppDownload';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -133,7 +134,7 @@ function TopNav() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage) return null;
+  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/app') return null;
 
   return (
     <header className={`sticky top-0 z-[100] transition-all duration-200 print:hidden theme-card border-b ${
@@ -374,7 +375,8 @@ function AppContent() {
   const isEasterPage = location.pathname === '/easter';
   const isHallowedPage = location.pathname === '/hallowed';
   const isMusicPage = location.pathname === '/music';
-  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage;
+  const isAppPage = location.pathname === '/app';
+  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -436,6 +438,7 @@ function AppContent() {
           <Route path="/bible-studies/:studyId" element={<BibleStudies />} />
           <Route path="/verse-of-the-day" element={<VerseOfTheDay />} />
           <Route path="/prayer" element={<Prayer />} />
+          <Route path="/app" element={<AppDownload />} />
         </Routes>
       </div>
 
