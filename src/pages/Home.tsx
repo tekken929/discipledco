@@ -104,7 +104,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         {/* START HERE intro */}
         <section className="mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden">
           <div className="max-w-3xl mb-8">
-            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-3">Start Here</span>
+            <span className="text-xs font-bold text-blue-500 dark:text-blue-400 uppercase tracking-widest block mb-3">Start Here</span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               Most people open the Bible and do not know where to start.
             </h2>
@@ -117,14 +117,14 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             {/* Step 1 — Bible Reading Roadmap */}
             <button
               onClick={() => setIsRoadmapModalOpen(true)}
-              className="group relative text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50 overflow-hidden"
+              className="group relative text-left border-2 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-sky-50/60 dark:bg-sky-950/30 overflow-hidden"
             >
-              <span className="absolute top-2 left-3 text-8xl font-black text-gray-900/[0.06] dark:text-white/[0.06] leading-none select-none pointer-events-none">1</span>
+              <span className="absolute top-1 left-2 text-8xl font-black text-sky-400/25 dark:text-sky-400/20 leading-none select-none pointer-events-none">1</span>
               <div className="relative flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                  <Route className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-200 dark:group-hover:bg-sky-900/80 transition-colors">
+                  <Route className="w-5 h-5 text-sky-600 dark:text-sky-400" />
                 </div>
-                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Step by Step</span>
+                <span className="text-xs font-bold text-sky-500 dark:text-sky-400 uppercase tracking-widest">Step by Step</span>
               </div>
               <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
                 Bible Reading Roadmap
@@ -132,7 +132,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 A clear path through Scripture — where to start, what to read next, and why order matters.
               </p>
-              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 dark:text-sky-400 group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors">
                 Open the roadmap
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
@@ -143,14 +143,14 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               onClick={() => {
                 document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
-              className="group relative text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50 overflow-hidden"
+              className="group relative text-left border-2 border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-amber-50/60 dark:bg-amber-950/20 overflow-hidden"
             >
-              <span className="absolute top-2 left-3 text-8xl font-black text-gray-900/[0.06] dark:text-white/[0.06] leading-none select-none pointer-events-none">2</span>
+              <span className="absolute top-1 left-2 text-8xl font-black text-amber-400/30 dark:text-amber-400/20 leading-none select-none pointer-events-none">2</span>
               <div className="relative flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                  <Map className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-200 dark:group-hover:bg-amber-900/80 transition-colors">
+                  <Map className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                 </div>
-                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
+                <span className="text-xs font-bold text-amber-500 dark:text-amber-400 uppercase tracking-widest">Self-Guided</span>
               </div>
               <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
                 Bible Overview
@@ -158,7 +158,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 Browse all 66 books — Old and New Testament — with summaries and context for each one.
               </p>
-              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 dark:text-amber-400 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
                 Explore the books
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
@@ -167,14 +167,14 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
             {/* Step 3 — Foundation Course */}
             <Link
               to="/courses"
-              className="group relative text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-white/50 dark:bg-gray-800/50 overflow-hidden"
+              className="group relative text-left border-2 border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-emerald-50/60 dark:bg-emerald-950/20 overflow-hidden"
             >
-              <span className="absolute top-2 left-3 text-8xl font-black text-gray-900/[0.06] dark:text-white/[0.06] leading-none select-none pointer-events-none">3</span>
+              <span className="absolute top-1 left-2 text-8xl font-black text-emerald-400/25 dark:text-emerald-400/20 leading-none select-none pointer-events-none">3</span>
               <div className="relative flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                  <GraduationCap className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/80 transition-colors">
+                  <GraduationCap className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
-                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">8 Modules</span>
+                <span className="text-xs font-bold text-emerald-500 dark:text-emerald-400 uppercase tracking-widest">8 Modules</span>
               </div>
               <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
                 The Foundation Course
@@ -182,7 +182,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 A guided discipleship path covering what the Bible is, who God is, salvation, and how to live it out.
               </p>
-              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
                 Start the course
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
@@ -194,12 +194,12 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         <section className="mb-12 print:hidden">
           <button
             onClick={() => setShowTimeline(!showTimeline)}
-            className="group w-full text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 cursor-pointer"
+            className="group w-full text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-slate-400 dark:hover:border-slate-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 cursor-pointer"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                  <Clock className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+                  <Clock className="w-6 h-6 text-slate-600 dark:text-slate-300" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">Complete Historical Timeline</h3>
@@ -271,13 +271,15 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         <div
           id="book-selector"
           ref={selectorRef}
-          className={`mb-6 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden transition-all duration-500 card-cinematic ${
+          className={`mb-6 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden transition-all duration-500 card-cinematic border-2 border-amber-100 dark:border-amber-900/40 ${
             selectorVisible ? 'fade-in visible' : 'fade-in'
           }`}
         >
           <div className="mb-8 text-center">
             <div className="flex items-center justify-center mb-4">
-              <BookOpen className="w-12 h-12 text-gray-700 dark:text-gray-300" />
+              <div className="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Bible Overview
@@ -288,7 +290,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div className="space-y-3">
+            <div className="space-y-3 bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">Old Testament</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                 The Old Testament contains 39 books covering creation, law, history, poetry, and prophecy. It reveals God's covenant with Israel and His promises of a coming Messiah.
@@ -297,7 +299,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 <select
                   value={selectedBook.testament === 'Old Testament' ? selectedBook.id : ''}
                   onChange={(e) => handleBookSelect(e.target.value)}
-                  className="appearance-none w-full bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer transition-colors"
+                  className="appearance-none w-full bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 cursor-pointer transition-colors"
                 >
                   <option value="">Select a book...</option>
                   {oldTestamentBooks.map((book) => (
@@ -310,7 +312,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 border border-blue-100 dark:border-blue-800/50">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">New Testament</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                 The New Testament contains 27 books including the Gospels, Acts, letters to early churches, and Revelation. It tells of Jesus Christ's life, death, and resurrection.
@@ -361,8 +363,8 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
 
         {/* Go Deeper bridge */}
         <section className="mt-4 mb-8 print:hidden">
-          <div className="theme-card rounded-2xl border-2 p-8 md:p-10">
-            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Go Deeper</p>
+          <div className="rounded-2xl border-2 border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/20 p-8 md:p-10">
+            <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-4">Go Deeper</p>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-snug">
               The themes show up everywhere once you start seeing them.
             </h3>
@@ -379,7 +381,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               </Link>
               <Link
                 to="/courses"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border-2 border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-all"
               >
                 Start the Full Course
               </Link>
