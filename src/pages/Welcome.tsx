@@ -134,70 +134,153 @@ export function Welcome() {
         <div className="absolute inset-0">
           <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <defs>
-              <radialGradient id="rg1" cx="20%" cy="30%" r="60%">
-                <stop offset="0%" stopColor="#1e3a5f" stopOpacity="1" />
-                <stop offset="100%" stopColor="#0a0f1e" stopOpacity="1" />
+              {/* Deep space base */}
+              <radialGradient id="rg1" cx="25%" cy="25%" r="65%">
+                <stop offset="0%" stopColor="#0d1b3e" stopOpacity="1" />
+                <stop offset="100%" stopColor="#020408" stopOpacity="1" />
               </radialGradient>
-              <radialGradient id="rg2" cx="80%" cy="70%" r="50%">
-                <stop offset="0%" stopColor="#1a4060" stopOpacity="0.8" />
+              <radialGradient id="rg2" cx="75%" cy="75%" r="55%">
+                <stop offset="0%" stopColor="#0a1628" stopOpacity="0.9" />
                 <stop offset="100%" stopColor="transparent" stopOpacity="0" />
               </radialGradient>
-              <radialGradient id="rg3" cx="50%" cy="50%" r="70%">
-                <stop offset="0%" stopColor="#c8a96e" stopOpacity="0.12" />
+              {/* Nebula clouds */}
+              <radialGradient id="nebula1" cx="30%" cy="40%" r="35%">
+                <stop offset="0%" stopColor="#1a3d6e" stopOpacity="0.45" />
+                <stop offset="60%" stopColor="#0d2244" stopOpacity="0.2" />
                 <stop offset="100%" stopColor="transparent" stopOpacity="0" />
               </radialGradient>
-              <filter id="blur2">
-                <feGaussianBlur stdDeviation="8" />
+              <radialGradient id="nebula2" cx="70%" cy="30%" r="30%">
+                <stop offset="0%" stopColor="#0e3d5c" stopOpacity="0.5" />
+                <stop offset="60%" stopColor="#061e2e" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="nebula3" cx="55%" cy="65%" r="40%">
+                <stop offset="0%" stopColor="#2a1a4e" stopOpacity="0.35" />
+                <stop offset="60%" stopColor="#150d28" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="nebula4" cx="15%" cy="70%" r="28%">
+                <stop offset="0%" stopColor="#0b3a3a" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="nebula5" cx="85%" cy="55%" r="25%">
+                <stop offset="0%" stopColor="#1e2a50" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+              {/* Milky Way band */}
+              <linearGradient id="milkyway" x1="0%" y1="20%" x2="100%" y2="80%">
+                <stop offset="0%" stopColor="transparent" stopOpacity="0" />
+                <stop offset="30%" stopColor="#c8d4f0" stopOpacity="0.03" />
+                <stop offset="50%" stopColor="#d4e0ff" stopOpacity="0.06" />
+                <stop offset="70%" stopColor="#c8d4f0" stopOpacity="0.03" />
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </linearGradient>
+              <filter id="blur3">
+                <feGaussianBlur stdDeviation="12" />
+              </filter>
+              <filter id="blur6">
+                <feGaussianBlur stdDeviation="24" />
               </filter>
               <filter id="starBlur">
-                <feGaussianBlur stdDeviation="0.4" />
+                <feGaussianBlur stdDeviation="0.3" />
               </filter>
+              <filter id="brightStar">
+                <feGaussianBlur stdDeviation="0.8" />
+              </filter>
+              <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+                <stop offset="55%" stopColor="transparent" stopOpacity="0" />
+                <stop offset="100%" stopColor="#000000" stopOpacity="0.7" />
+              </radialGradient>
             </defs>
 
-            {/* Deep night sky base */}
+            {/* Base deep space */}
             <rect width="100%" height="100%" fill="url(#rg1)" />
             <rect width="100%" height="100%" fill="url(#rg2)" />
-            <rect width="100%" height="100%" fill="url(#rg3)" />
 
-            {/* Subtle cloud wisps */}
-            <ellipse cx="20%" cy="55%" rx="30%" ry="12%" fill="#1e3a5f" opacity="0.25" filter="url(#blur2)" />
-            <ellipse cx="75%" cy="65%" rx="25%" ry="10%" fill="#1a4060" opacity="0.2" filter="url(#blur2)" />
-            <ellipse cx="50%" cy="80%" rx="40%" ry="15%" fill="#0f2240" opacity="0.4" filter="url(#blur2)" />
+            {/* Nebula color clouds */}
+            <rect width="100%" height="100%" fill="url(#nebula1)" />
+            <rect width="100%" height="100%" fill="url(#nebula2)" />
+            <rect width="100%" height="100%" fill="url(#nebula3)" />
+            <rect width="100%" height="100%" fill="url(#nebula4)" />
+            <rect width="100%" height="100%" fill="url(#nebula5)" />
 
-            {/* Stars - scattered small dots */}
-            {[
+            {/* Milky Way diffuse band */}
+            <rect width="100%" height="100%" fill="url(#milkyway)" />
+            <ellipse cx="50%" cy="48%" rx="55%" ry="18%" fill="#8090c0" opacity="0.025" filter="url(#blur6)" />
+            <ellipse cx="45%" cy="52%" rx="40%" ry="12%" fill="#a0b0d8" opacity="0.02" filter="url(#blur6)" />
+
+            {/* Subtle nebula wisps — blurred colored patches */}
+            <ellipse cx="22%" cy="38%" rx="18%" ry="8%" fill="#2060a0" opacity="0.18" filter="url(#blur3)" />
+            <ellipse cx="68%" cy="28%" rx="15%" ry="6%" fill="#1080a0" opacity="0.2" filter="url(#blur3)" />
+            <ellipse cx="80%" cy="58%" rx="20%" ry="9%" fill="#300868" opacity="0.15" filter="url(#blur3)" />
+            <ellipse cx="35%" cy="72%" rx="16%" ry="7%" fill="#083840" opacity="0.2" filter="url(#blur3)" />
+            <ellipse cx="10%" cy="52%" rx="12%" ry="5%" fill="#0c4878" opacity="0.22" filter="url(#blur3)" />
+            <ellipse cx="90%" cy="42%" rx="14%" ry="6%" fill="#082050" opacity="0.2" filter="url(#blur3)" />
+
+            {/* Dense background star field — tiny dim dots */}
+            {([
+              [2,3],[6,7],[9,2],[13,5],[17,9],[21,3],[25,7],[29,4],[33,8],[37,2],[41,6],[45,3],[49,8],[53,5],[57,2],[61,7],[65,4],[69,9],[73,3],[77,6],[81,2],[85,8],[89,4],[93,7],[97,5],
+              [1,15],[4,12],[8,18],[11,14],[15,11],[19,16],[23,13],[27,17],[31,12],[35,15],[39,11],[43,16],[47,13],[51,18],[55,14],[59,11],[63,17],[67,13],[71,16],[75,12],[79,17],[83,14],[87,11],[91,16],[95,13],[99,15],
+              [3,27],[7,23],[10,29],[14,25],[18,22],[22,28],[26,24],[30,27],[34,23],[38,26],[42,22],[46,28],[50,25],[54,22],[58,27],[62,24],[66,29],[70,25],[74,23],[78,28],[82,24],[86,27],[90,23],[94,26],[98,22],
+              [2,37],[5,34],[9,39],[12,35],[16,32],[20,38],[24,34],[28,37],[32,33],[36,36],[40,32],[44,38],[48,35],[52,32],[56,37],[60,34],[64,39],[68,35],[72,33],[76,38],[80,34],[84,37],[88,33],[92,36],[96,32],
+              [1,47],[4,44],[8,49],[11,45],[15,42],[19,48],[23,44],[27,47],[31,43],[35,46],[39,42],[43,48],[47,45],[51,42],[55,47],[59,44],[63,49],[67,45],[71,43],[75,48],[79,44],[83,47],[87,43],[91,46],[95,42],
+              [3,57],[6,54],[10,59],[13,55],[17,52],[21,58],[25,54],[29,57],[33,53],[37,56],[41,52],[45,58],[49,55],[53,52],[57,57],[61,54],[65,59],[69,55],[73,53],[77,58],[81,54],[85,57],[89,53],[93,56],[97,52],
+              [2,67],[5,64],[9,69],[12,65],[16,62],[20,68],[24,64],[28,67],[32,63],[36,66],[40,62],[44,68],[48,65],[52,62],[56,67],[60,64],[64,69],[68,65],[72,63],[76,68],[80,64],[84,67],[88,63],[92,66],[96,62],
+              [1,77],[4,74],[8,79],[11,75],[15,72],[19,78],[23,74],[27,77],[31,73],[35,76],[39,72],[43,78],[47,75],[51,72],[55,77],[59,74],[63,79],[67,75],[71,73],[75,78],[79,74],[83,77],[87,73],[91,76],[95,72],
+              [3,87],[6,84],[10,89],[13,85],[17,82],[21,88],[25,84],[29,87],[33,83],[37,86],[41,82],[45,88],[49,85],[53,82],[57,87],[61,84],[65,89],[69,85],[73,83],[77,88],[81,84],[85,87],[89,83],[93,86],[97,82],
+            ] as [number, number][]).map(([cx, cy], i) => (
+              <circle key={`bg-${i}`} cx={`${cx}%`} cy={`${cy}%`} r="0.4" fill="white" opacity={i % 3 === 0 ? "0.25" : "0.15"} />
+            ))}
+
+            {/* Mid-layer stars — slightly brighter */}
+            {([
               [8,5],[15,12],[22,8],[30,15],[38,6],[45,11],[52,4],[60,9],[68,14],[75,7],[82,12],[90,5],[95,10],
               [5,20],[12,25],[19,18],[26,28],[33,22],[40,17],[48,26],[55,20],[63,24],[70,19],[78,27],[85,21],[92,16],
               [3,38],[10,42],[17,35],[24,40],[31,33],[36,45],[43,37],[50,43],[57,36],[65,41],[72,34],[80,44],[88,38],[95,32],
               [7,58],[14,62],[20,55],[28,65],[35,60],[42,56],[50,63],[58,58],[66,64],[73,57],[81,61],[89,55],[94,60],
               [4,72],[11,78],[18,70],[25,75],[32,68],[39,74],[47,79],[54,72],[61,76],[69,71],[76,77],[83,73],[91,68],
-              [6,88],[13,92],[21,85],[29,90],[37,87],[44,93],[51,88],[59,91],[67,86],[74,92],[82,88],[90,84],[96,90]
-            ].map(([cx, cy], i) => (
+              [6,88],[13,92],[21,85],[29,90],[37,87],[44,93],[51,88],[59,91],[67,86],[74,92],[82,88],[90,84],[96,90],
+            ] as [number, number][]).map(([cx, cy], i) => (
               <circle
-                key={i}
+                key={`mid-${i}`}
                 cx={`${cx}%`}
                 cy={`${cy}%`}
-                r={i % 5 === 0 ? "1.2" : i % 3 === 0 ? "0.9" : "0.5"}
+                r={i % 5 === 0 ? "1.0" : i % 3 === 0 ? "0.7" : "0.45"}
                 fill="white"
-                opacity={i % 4 === 0 ? "0.8" : i % 3 === 0 ? "0.5" : "0.3"}
+                opacity={i % 4 === 0 ? "0.85" : i % 3 === 0 ? "0.55" : "0.35"}
                 filter="url(#starBlur)"
               />
             ))}
 
-            {/* Bright star cluster center */}
-            <circle cx="50%" cy="36%" r="2.5" fill="white" opacity="0.9" filter="url(#starBlur)" />
-            <circle cx="47%" cy="32%" r="1.5" fill="white" opacity="0.6" filter="url(#starBlur)" />
-            <circle cx="53%" cy="33%" r="1.2" fill="white" opacity="0.5" filter="url(#starBlur)" />
+            {/* Foreground bright stars with glow */}
+            {([
+              [18,9,1.8,0.95],[42,23,1.5,0.8],[67,16,2.0,0.9],[84,31,1.6,0.85],[11,44,1.7,0.9],
+              [56,38,1.4,0.75],[73,52,1.8,0.85],[29,61,1.5,0.8],[91,18,1.6,0.9],[6,76,1.7,0.85],
+              [47,69,1.5,0.8],[78,83,1.6,0.85],[34,87,1.8,0.9],[62,7,1.4,0.75],[96,64,1.7,0.85],
+            ] as [number, number, number, number][]).map(([cx, cy, r, op], i) => (
+              <g key={`bright-${i}`}>
+                <circle cx={`${cx}%`} cy={`${cy}%`} r={r * 3} fill="white" opacity={op * 0.08} filter="url(#brightStar)" />
+                <circle cx={`${cx}%`} cy={`${cy}%`} r={r} fill="white" opacity={op} filter="url(#starBlur)" />
+              </g>
+            ))}
 
-            {/* Horizon light bar */}
-            <rect x="0" y="88%" width="100%" height="12%" fill="url(#rg1)" opacity="0.8" />
-            <ellipse cx="50%" cy="92%" rx="50%" ry="6%" fill="#1a3a5f" opacity="0.6" filter="url(#blur2)" />
+            {/* Iconic bright star cluster near center */}
+            <circle cx="50%" cy="36%" r="3" fill="white" opacity="0.95" filter="url(#starBlur)" />
+            <circle cx="50%" cy="36%" r="8" fill="white" opacity="0.06" filter="url(#brightStar)" />
+            <circle cx="47%" cy="32%" r="1.8" fill="white" opacity="0.7" filter="url(#starBlur)" />
+            <circle cx="53%" cy="33%" r="1.4" fill="white" opacity="0.6" filter="url(#starBlur)" />
+            <circle cx="44%" cy="38%" r="1.2" fill="#b0ccff" opacity="0.7" filter="url(#starBlur)" />
+            <circle cx="56%" cy="40%" r="1.0" fill="#ffd0a0" opacity="0.65" filter="url(#starBlur)" />
 
-            {/* Subtle vignette */}
-            <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
-              <stop offset="60%" stopColor="transparent" stopOpacity="0" />
-              <stop offset="100%" stopColor="#000000" stopOpacity="0.55" />
-            </radialGradient>
+            {/* Tinted stars — blue and warm hints */}
+            {([
+              [20,14,"#a0c8ff",0.7],[55,28,"#ffc8a0",0.6],[78,44,"#c0d8ff",0.65],[36,58,"#a0e8d8",0.55],
+              [8,33,"#b8d0ff",0.6],[64,71,"#ffd8b0",0.55],[91,26,"#a8ccff",0.65],[43,82,"#c8e0ff",0.5],
+            ] as [number, number, string, number][]).map(([cx, cy, color, op], i) => (
+              <circle key={`tinted-${i}`} cx={`${cx}%`} cy={`${cy}%`} r="0.9" fill={color} opacity={op} filter="url(#starBlur)" />
+            ))}
+
+            {/* Vignette */}
             <rect width="100%" height="100%" fill="url(#vignette)" />
           </svg>
         </div>
@@ -250,7 +333,7 @@ export function Welcome() {
             <div className="flex justify-center">
               <Link
                 to="/bible"
-                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm max-w-lg w-full"
+                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl px-6 py-5 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm max-w-2xl w-full"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
@@ -258,10 +341,12 @@ export function Welcome() {
                   </div>
                   <span className="text-xs font-bold text-white/50 uppercase tracking-widest">Begin Your Journey</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 leading-snug">Start Here</h3>
+                <h3 className="text-xl font-bold text-white mb-2 leading-snug">
+                  Start Here <span className="font-normal text-white/50 text-base">(Bible Overview)</span>
+                </h3>
                 <p className="text-sm text-white/60 leading-relaxed mb-4">Your guided entry point — browse all 66 books, understand the Bible's structure, and find where to begin.</p>
                 <span className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">
-                  Tour the Bible <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  Bible Overview <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </Link>
             </div>
@@ -273,7 +358,7 @@ export function Welcome() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-          {/* Tour of the Bible */}
+          {/* Bible Overview */}
           <Link
             to="/bible"
             className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -285,7 +370,7 @@ export function Welcome() {
               <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Tour of the Bible</h3>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Bible Overview</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Browse all 66 books with summaries and context.</p>
             </div>
             <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-600 dark:text-amber-400 group-hover:gap-2 transition-all mt-auto">

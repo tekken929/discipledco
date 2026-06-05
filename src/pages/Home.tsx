@@ -127,7 +127,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
-                Tour of the Bible
+                Bible Overview
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 Browse all 66 books — Old and New Testament — with summaries and context for each one.

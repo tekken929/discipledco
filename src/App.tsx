@@ -55,7 +55,7 @@ const menuSections: MenuSection[] = [
   {
     heading: 'Bible',
     links: [
-      { to: '/bible', label: 'Tour the Bible', icon: BookOpen },
+      { to: '/bible', label: 'Bible Overview', icon: BookOpen },
       { to: '/bible', label: 'Bible Roadmap', icon: RouteIcon },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
       { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
