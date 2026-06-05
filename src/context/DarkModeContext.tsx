@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-export type ColorTheme = 'subtle' | 'happy' | 'blackwhite';
+export type ColorTheme = 'subtle' | 'happy' | 'blackwhite' | 'ocean' | 'dusk';
 
 interface DarkModeContextType {
   darkMode: boolean;

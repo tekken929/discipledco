@@ -119,7 +119,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               onClick={() => setIsRoadmapModalOpen(true)}
               className="group relative text-left border-2 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-sky-50/60 dark:bg-sky-950/30 overflow-hidden"
             >
-              <span className="absolute top-1 left-2 text-8xl font-black text-sky-400/25 dark:text-sky-400/20 leading-none select-none pointer-events-none">1</span>
+              <span className="absolute top-1 right-3 text-8xl font-black text-sky-400/25 dark:text-sky-400/20 leading-none select-none pointer-events-none">1</span>
               <div className="relative flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-200 dark:group-hover:bg-sky-900/80 transition-colors">
                   <Route className="w-5 h-5 text-sky-600 dark:text-sky-400" />
@@ -145,7 +145,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               }}
               className="group relative text-left border-2 border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-amber-50/60 dark:bg-amber-950/20 overflow-hidden"
             >
-              <span className="absolute top-1 left-2 text-8xl font-black text-amber-400/30 dark:text-amber-400/20 leading-none select-none pointer-events-none">2</span>
+              <span className="absolute top-1 right-3 text-8xl font-black text-amber-400/30 dark:text-amber-400/20 leading-none select-none pointer-events-none">2</span>
               <div className="relative flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-200 dark:group-hover:bg-amber-900/80 transition-colors">
                   <Map className="w-5 h-5 text-amber-600 dark:text-amber-400" />
@@ -169,7 +169,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               to="/courses"
               className="group relative text-left border-2 border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-emerald-50/60 dark:bg-emerald-950/20 overflow-hidden"
             >
-              <span className="absolute top-1 left-2 text-8xl font-black text-emerald-400/25 dark:text-emerald-400/20 leading-none select-none pointer-events-none">3</span>
+              <span className="absolute top-1 right-3 text-8xl font-black text-emerald-400/25 dark:text-emerald-400/20 leading-none select-none pointer-events-none">3</span>
               <div className="relative flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-900/80 transition-colors">
                   <GraduationCap className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
