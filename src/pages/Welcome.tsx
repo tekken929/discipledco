@@ -242,6 +242,23 @@ export function Welcome() {
               The Disciple Co.
             </h1>
 
+            {/* ── FONT PREVIEW — pick a number, then I'll lock it in ── */}
+            <div className="mb-8 w-full max-w-2xl mx-auto space-y-3 text-left">
+              <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest text-center mb-4">Choose a heading font style</p>
+              {[
+                { label: '1 — Playfair Display', cls: 'font-playfair', style: 'Classic serif. Elegant, editorial, authoritative.' },
+                { label: '2 — Cinzel', cls: 'font-cinzel', style: 'Roman-inspired. Ancient, majestic, commanding.' },
+                { label: '3 — Cormorant Garamond', cls: 'font-cormorant', style: 'High-contrast luxury serif. Refined, poetic.' },
+                { label: '4 — DM Serif Display', cls: 'font-dm-serif', style: 'Modern editorial serif. Clean, warm, readable.' },
+                { label: '5 — Libre Baskerville', cls: 'font-libre', style: 'Literary serif. Traditional, strong, dependable.' },
+              ].map(({ label, cls, style }) => (
+                <div key={cls} className="bg-white/8 backdrop-blur-sm border border-white/15 rounded-xl px-5 py-3">
+                  <p className="text-white/40 text-[9px] font-bold uppercase tracking-widest mb-1">{label} — {style}</p>
+                  <p className={`${cls} text-3xl font-bold text-white leading-tight drop-shadow`}>The Disciple Co.</p>
+                </div>
+              ))}
+            </div>
+
             <p className="text-lg md:text-xl text-white/75 mb-4 leading-relaxed font-light italic drop-shadow-lg">
               "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
             </p>
