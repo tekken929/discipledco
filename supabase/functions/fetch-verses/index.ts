@@ -16,6 +16,7 @@ Deno.serve(async (req: Request) => {
     const url = new URL(req.url);
     const book = url.searchParams.get("book");
     const chapter = parseInt(url.searchParams.get("chapter") || "0");
+    const translation = (url.searchParams.get("translation") || "web").toLowerCase();
 
     if (!book || !chapter) {
       return new Response(
@@ -26,9 +27,34 @@ Deno.serve(async (req: Request) => {
 
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
+    // KJV — query kjv_bible table directly
+    if (translation === "kjv") {
+      const { data, error } = await supabase
+        .from("kjv_bible")
+        .select("verse, text")
+        .eq("book", book)
+        .eq("chapter", chapter)
+        .order("verse");
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        return new Response(
+          JSON.stringify({ error: "Chapter not found in KJV database" }),
+          { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      return new Response(
+        JSON.stringify({ book, chapter, verses: data, source: "kjv_db", translation: "kjv" }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // WEB — query bible_verses table, fall back to bible-api.com
     const { data, error } = await supabase
       .from("bible_verses")
       .select("verse, text")
@@ -53,13 +79,13 @@ Deno.serve(async (req: Request) => {
         text: v.text.trim(),
       }));
       return new Response(
-        JSON.stringify({ book, chapter, verses, source: "api" }),
+        JSON.stringify({ book, chapter, verses, source: "api", translation: "web" }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
     return new Response(
-      JSON.stringify({ book, chapter, verses: data, source: "db" }),
+      JSON.stringify({ book, chapter, verses: data, source: "db", translation: "web" }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err) {
