@@ -104,79 +104,85 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         {/* START HERE intro */}
         <section className="mb-12 theme-card rounded-2xl p-8 md:p-12 shadow-xl print:hidden">
           <div className="max-w-3xl mb-8">
-            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-4">Start Here</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-3">Start Here</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               Most people open the Bible and do not know where to start.
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
               Not because they do not care, but because no one ever showed them how to approach it. This page is not just a list of books. It is a guide to help you understand what you are reading, where to begin, and how it all connects.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button
-              onClick={() => {
-                document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-              className="group text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
-                  <Map className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                </div>
-                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
-                Bible Overview
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
-                Browse all 66 books — Old and New Testament — with summaries and context for each one.
-              </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                Explore the books
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </span>
-            </button>
-
+            {/* Step 1 — Bible Reading Roadmap */}
             <button
               onClick={() => setIsRoadmapModalOpen(true)}
-              className="group text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50"
+              className="group relative text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50 overflow-hidden"
             >
-              <div className="flex items-center gap-3 mb-3">
+              <span className="absolute top-2 left-3 text-8xl font-black text-gray-900/[0.06] dark:text-white/[0.06] leading-none select-none pointer-events-none">1</span>
+              <div className="relative flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
                   <Route className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 </div>
                 <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Step by Step</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+              <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
                 Bible Reading Roadmap
               </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+              <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 A clear path through Scripture — where to start, what to read next, and why order matters.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                 Open the roadmap
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </button>
 
+            {/* Step 2 — Bible Overview */}
+            <button
+              onClick={() => {
+                document.getElementById('book-selector')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="group relative text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer bg-white/50 dark:bg-gray-800/50 overflow-hidden"
+            >
+              <span className="absolute top-2 left-3 text-8xl font-black text-gray-900/[0.06] dark:text-white/[0.06] leading-none select-none pointer-events-none">2</span>
+              <div className="relative flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
+                  <Map className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                </div>
+                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Self-Guided</span>
+              </div>
+              <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+                Bible Overview
+              </h3>
+              <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+                Browse all 66 books — Old and New Testament — with summaries and context for each one.
+              </p>
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                Explore the books
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </button>
+
+            {/* Step 3 — Foundation Course */}
             <Link
               to="/courses"
-              className="group text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-white/50 dark:bg-gray-800/50"
+              className="group relative text-left border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-white/50 dark:bg-gray-800/50 overflow-hidden"
             >
-              <div className="flex items-center gap-3 mb-3">
+              <span className="absolute top-2 left-3 text-8xl font-black text-gray-900/[0.06] dark:text-white/[0.06] leading-none select-none pointer-events-none">3</span>
+              <div className="relative flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
                   <GraduationCap className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 </div>
                 <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">8 Modules</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+              <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
                 The Foundation Course
               </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+              <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 A guided discipleship path covering what the Bible is, who God is, salvation, and how to live it out.
               </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                 Start the course
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>

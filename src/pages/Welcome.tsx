@@ -342,7 +342,7 @@ export function Welcome() {
                   <span className="text-xs font-bold text-white/50 uppercase tracking-widest">Begin Your Journey</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 leading-snug">
-                  Start Here <span className="font-normal text-white/50 text-base">(Bible Overview)</span>
+                  Start Here
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed mb-4">Your guided entry point — browse all 66 books, understand the Bible's structure, and find where to begin.</p>
                 <span className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">
