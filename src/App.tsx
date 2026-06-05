@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Route as RouteIcon, GraduationCap, Clock, HelpCircle, Image } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, Route as RouteIcon, GraduationCap, Clock, HelpCircle, Image, Wind } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -34,6 +34,7 @@ import { CourseModule } from './pages/CourseModule';
 import { BibleLookup } from './pages/BibleLookup';
 import { BibleStudies } from './pages/BibleStudies';
 import { VerseOfTheDay } from './pages/VerseOfTheDay';
+import Prayer from './pages/Prayer';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -74,6 +75,7 @@ const menuSections: MenuSection[] = [
       { to: '/stories', label: 'Popular Stories', icon: Book },
       { to: '/podcasts', label: 'Podcasts', icon: Radio },
       { to: '/preaching', label: 'Wisdom', icon: Mic },
+      { to: '/prayer', label: 'Daily Prayer (BCP)', icon: Wind },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', icon: BookOpen, external: true },
     ],
   },
@@ -419,6 +421,7 @@ function AppContent() {
           <Route path="/bible-studies" element={<BibleStudies />} />
           <Route path="/bible-studies/:studyId" element={<BibleStudies />} />
           <Route path="/verse-of-the-day" element={<VerseOfTheDay />} />
+          <Route path="/prayer" element={<Prayer />} />
         </Routes>
       </div>
 

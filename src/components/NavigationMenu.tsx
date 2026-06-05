@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, Clock, HelpCircle } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, Clock, HelpCircle, Wind } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -49,6 +49,7 @@ const sections: NavSection[] = [
       { to: '/stories', icon: Book, title: 'Popular Stories' },
       { to: '/guidance', icon: BookOpen, title: 'Guidance' },
       { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
+      { to: '/prayer', icon: Wind, title: 'Daily Prayer (BCP)' },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', icon: BookOpen, title: 'Common Prayer', external: true },
     ],
   },
