@@ -33,6 +33,7 @@ import { BibleStudies } from './pages/BibleStudies';
 import { VerseOfTheDay } from './pages/VerseOfTheDay';
 import Prayer from './pages/Prayer';
 import { AppDownload } from './pages/AppDownload';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -134,7 +135,7 @@ function TopNav() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/app') return null;
+  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/app' || location.pathname === '/privacy') return null;
 
   return (
     <header className={`sticky top-0 z-[100] transition-all duration-200 print:hidden theme-card border-b ${
@@ -376,7 +377,8 @@ function AppContent() {
   const isHallowedPage = location.pathname === '/hallowed';
   const isMusicPage = location.pathname === '/music';
   const isAppPage = location.pathname === '/app';
-  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage;
+  const isPrivacyPage = location.pathname === '/privacy';
+  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage || isPrivacyPage;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -392,7 +394,7 @@ function AppContent() {
     setHasCompletedOnboarding(true);
   };
 
-  if (!hasCompletedOnboarding && !isAppPage) {
+  if (!hasCompletedOnboarding && !isAppPage && !isPrivacyPage) {
     return (
       <OnboardingQuestions
         onComplete={handleOnboardingComplete}
@@ -439,6 +441,7 @@ function AppContent() {
           <Route path="/verse-of-the-day" element={<VerseOfTheDay />} />
           <Route path="/prayer" element={<Prayer />} />
           <Route path="/app" element={<AppDownload />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
       </div>
 
