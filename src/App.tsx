@@ -138,26 +138,23 @@ function TopNav() {
   if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage) return null;
 
   return (
-    <header className={`sticky top-0 z-[100] transition-all duration-300 print:hidden ${
-      isScrolled
-        ? 'theme-card shadow-lg border-b-2'
-        : 'theme-card border-b-2'
+    <header className={`sticky top-0 z-[100] transition-all duration-200 print:hidden theme-card border-b ${
+      isScrolled ? 'shadow-sm' : ''
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-18">
+        <div className="flex items-center justify-between h-14">
 
-          {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-3 flex-shrink-0 group"
+            className="flex items-center gap-2.5 flex-shrink-0 group"
           >
             <img
               src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
               alt="The Disciple Co."
-              className="w-10 h-10 rounded-lg object-cover shadow-sm group-hover:shadow-md transition-shadow"
+              className="w-8 h-8 rounded-lg object-cover"
             />
             <div className="hidden sm:block">
-              <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">The Disciple Co.</span>
+              <span className="text-base font-bold text-gray-900 dark:text-white tracking-tight">The Disciple Co.</span>
             </div>
           </Link>
 
@@ -166,7 +163,7 @@ function TopNav() {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg border-2 theme-card text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle dark mode"
             >
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -176,14 +173,14 @@ function TopNav() {
             <div ref={settingsRef} className="relative hidden sm:block">
               <button
                 onClick={() => setSettingsOpen(!settingsOpen)}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Settings"
               >
                 <Palette className="w-4 h-4" />
                 <span className="hidden md:inline">Theme</span>
               </button>
               {settingsOpen && (
-                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-[200]">
+                <div className="absolute right-0 top-full mt-1 w-56 theme-card rounded-xl shadow-xl border overflow-hidden z-[200]">
                   <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
                     <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color Mood</p>
                   </div>
@@ -233,14 +230,14 @@ function TopNav() {
             <div ref={menuRef} className="relative">
               <button
                 onClick={() => { setMenuOpen(!menuOpen); setSettingsOpen(false); }}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="All pages menu"
               >
                 {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
                 <span className="hidden md:inline">Menu</span>
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-60 theme-card rounded-xl shadow-2xl border-2 overflow-hidden z-[200] max-h-[85vh] overflow-y-auto">
+                <div className="absolute right-0 top-full mt-1 w-56 theme-card rounded-xl shadow-xl border overflow-hidden z-[200] max-h-[85vh] overflow-y-auto">
                   {menuSections.map((section, i) => (
                     <div key={section.heading} className={i > 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}>
                       <div className="px-4 pt-3 pb-1 sticky top-0 theme-card">
@@ -291,7 +288,7 @@ function TopNav() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg border-2 theme-card text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              className="lg:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -302,7 +299,7 @@ function TopNav() {
 
       {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div className="lg:hidden border-t-2 border-gray-200 dark:border-gray-700 theme-card">
+        <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 theme-card">
           <nav className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
             {menuSections.flatMap((section) =>
               section.links.filter((l) => !l.external).map((link) => {

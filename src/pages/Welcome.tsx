@@ -203,7 +203,7 @@ export function Welcome() {
         </div>
 
         {/* Bottom fade to page */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 dark:from-gray-950 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
           <div className="text-center max-w-3xl mx-auto">
@@ -218,7 +218,7 @@ export function Welcome() {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
               The Disciple Co.
             </h1>
 
@@ -287,7 +287,7 @@ export function Welcome() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-2">
         <button
           onClick={() => setShowTimeline(!showTimeline)}
-          className="group w-full text-left theme-card border-2 border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 cursor-pointer"
+          className="group w-full text-left theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 rounded-2xl p-6 hover:shadow-sm transition-all cursor-pointer"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -315,7 +315,7 @@ export function Welcome() {
                   {index !== timelineEvents.length - 1 && (
                     <div className="absolute left-7 top-20 bottom-0 w-0.5 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600" />
                   )}
-                  <div className={`theme-card border-2 ${style.card} rounded-2xl shadow-md hover:shadow-lg transition-all p-6`}>
+                  <div className={`theme-card border ${style.card} rounded-2xl shadow-sm hover:shadow-md transition-all p-6`}>
                     <div className="flex items-start gap-4">
                       <div className={`${style.badge} p-2.5 rounded-full shadow flex-shrink-0 mt-0.5`}>
                         {getCategoryIcon(event.category)}
@@ -380,14 +380,14 @@ export function Welcome() {
       {/* FEATURED SECTIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Gain knowledge</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">Pick your topic below to learn more.</p>
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Gain knowledge</h2>
+          <p className="text-gray-500 dark:text-gray-400 text-base">Pick your topic below to learn more.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {featuredSections.map((section) => {
             const Icon = section.icon;
-            const cardClass = `group flex flex-col gap-4 p-6 rounded-2xl border-2 ${section.bgLight} ${section.border} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`;
+            const cardClass = `group flex flex-col gap-4 p-6 rounded-2xl border ${section.bgLight} ${section.border} hover:shadow-md transition-all duration-300 hover:-translate-y-0.5`;
             const cardContent = (
               <>
                 <div className="flex items-start justify-between">
@@ -433,10 +433,10 @@ export function Welcome() {
 
       {/* BELIEFS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
-        <div className="theme-card border-2 rounded-2xl p-8 md:p-12">
+        <div className="theme-card border rounded-2xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">What We Believe</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-4">What We Believe</h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                 This isn't necessarily about religion — it's about truth. Not religion for the sake of religion. Not arguments for the sake of winning. Just a path toward truth. We are called to not just read the bible, but to understand the context, interpret it to the best of our ability, and apply it to our daily lives.
               </p>
@@ -492,7 +492,7 @@ export function Welcome() {
         title="Who made this page?"
       >
         <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-          <div className="p-4 theme-card border-2 rounded-lg">
+          <div className="p-4 theme-card border rounded-lg">
             <p className="text-lg">
               <span className="font-bold text-gray-900 dark:text-white">This isn't necessarily about religion—it's about truth.</span>
             </p>
@@ -506,7 +506,7 @@ export function Welcome() {
             I fall somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions. I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. I also realize that it is hard to fully support something, if part of it is broken or mis-represented.
           </p>
 
-          <div className="p-4 theme-card border-2 rounded-lg space-y-2">
+          <div className="p-4 theme-card border rounded-lg space-y-2">
             <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe in 'Sola Scriptura'</span></p>
             <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe truth is not subjective—it is revealed.</span></p>
             <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe in one God, existing as Father, Son, and Holy Spirit.</span></p>
@@ -521,7 +521,7 @@ export function Welcome() {
             If we can help anyone walk through life's biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then we have succeeded.
           </p>
 
-          <div className="p-4 theme-card border-2 rounded-lg space-y-1">
+          <div className="p-4 theme-card border rounded-lg space-y-1">
             <p className="text-base font-semibold text-gray-900 dark:text-white">Not religion for the sake of religion.</p>
             <p className="text-base font-semibold text-gray-900 dark:text-white">Not arguments for the sake of winning.</p>
             <p className="text-base font-semibold text-gray-900 dark:text-white">Just a path toward truth.</p>
