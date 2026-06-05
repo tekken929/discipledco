@@ -176,29 +176,34 @@ function TopNav() {
                 <span className="hidden md:inline">Theme</span>
               </button>
               {settingsOpen && (
-                <div className="absolute right-0 top-full mt-1 w-56 theme-card rounded-xl shadow-xl border overflow-hidden z-[200]">
-                  <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color Mood</p>
+                <div className="absolute right-0 top-full mt-1 w-64 theme-card rounded-xl shadow-xl border overflow-hidden z-[200]">
+                  <div className="px-4 py-2.5 border-b border-gray-200 dark:border-gray-700">
+                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color Theme</p>
                   </div>
-                  {(['subtle', 'happy', 'blackwhite'] as ColorTheme[]).map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => { setColorTheme(t); setSettingsOpen(false); }}
-                      className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors text-left ${
-                        colorTheme === t ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-800'
-                      }`}
-                    >
-                      <div className="flex gap-1">
-                        {t === 'subtle' && <><div className="w-4 h-4 rounded-full bg-gradient-to-br from-slate-400 to-blue-500" /><div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-slate-600" /></>}
-                        {t === 'happy' && <><div className="w-4 h-4 rounded-full bg-gradient-to-br from-amber-400 to-orange-500" /><div className="w-4 h-4 rounded-full bg-gradient-to-br from-orange-400 to-teal-500" /></>}
-                        {t === 'blackwhite' && <><div className="w-4 h-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-gray-400" /><div className="w-4 h-4 rounded-full bg-gradient-to-br from-white to-gray-300 border border-gray-400" /></>}
-                      </div>
-                      <span className="font-semibold text-gray-900 dark:text-white capitalize">
-                        {t === 'blackwhite' ? 'Black & White' : t.charAt(0).toUpperCase() + t.slice(1)}
-                      </span>
-                      {colorTheme === t && <span className="ml-auto text-xs text-blue-500 font-bold">Active</span>}
-                    </button>
-                  ))}
+                  <div className="p-2 space-y-0.5">
+                    {([
+                      { id: 'subtle',     label: 'Parchment',   dot1: 'bg-stone-200 border border-stone-300',  dot2: 'bg-amber-600' },
+                      { id: 'happy',      label: 'Warm Amber',  dot1: 'bg-amber-400',                          dot2: 'bg-orange-500' },
+                      { id: 'ocean',      label: 'Ocean',       dot1: 'bg-sky-200 border border-sky-300',       dot2: 'bg-sky-600' },
+                      { id: 'dusk',       label: 'Dusk',        dot1: 'bg-rose-100 border border-rose-200',     dot2: 'bg-rose-700' },
+                      { id: 'blackwhite', label: 'Ink',         dot1: 'bg-white border border-gray-400',        dot2: 'bg-gray-900 border border-gray-600' },
+                    ] as { id: ColorTheme; label: string; dot1: string; dot2: string }[]).map((t) => (
+                      <button
+                        key={t.id}
+                        onClick={() => { setColorTheme(t.id); setSettingsOpen(false); }}
+                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-left ${
+                          colorTheme === t.id ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-800'
+                        }`}
+                      >
+                        <div className="flex gap-1 flex-shrink-0">
+                          <div className={`w-4 h-4 rounded-full ${t.dot1}`} />
+                          <div className={`w-4 h-4 rounded-full ${t.dot2}`} />
+                        </div>
+                        <span className="font-semibold text-gray-900 dark:text-white">{t.label}</span>
+                        {colorTheme === t.id && <span className="ml-auto text-xs font-bold text-blue-500">Active</span>}
+                      </button>
+                    ))}
+                  </div>
                   <div className="border-t border-gray-200 dark:border-gray-700">
                     <button
                       onClick={toggleDarkMode}
@@ -306,7 +311,7 @@ function TopNav() {
               })
             )}
           </nav>
-          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-3">
+          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-2 flex-wrap">
             <button
               onClick={toggleDarkMode}
               className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
@@ -314,6 +319,26 @@ function TopNav() {
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               {darkMode ? 'Light' : 'Dark'}
             </button>
+            {([
+              { id: 'subtle' as ColorTheme,     label: 'Parchment',  dot: 'bg-amber-600' },
+              { id: 'happy' as ColorTheme,       label: 'Amber',      dot: 'bg-orange-500' },
+              { id: 'ocean' as ColorTheme,       label: 'Ocean',      dot: 'bg-sky-600' },
+              { id: 'dusk' as ColorTheme,        label: 'Dusk',       dot: 'bg-rose-700' },
+              { id: 'blackwhite' as ColorTheme,  label: 'Ink',        dot: 'bg-gray-900 dark:bg-white' },
+            ]).map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setColorTheme(t.id)}
+                className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold transition-all border-2 ${
+                  colorTheme === t.id
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300'
+                    : 'theme-card text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                }`}
+              >
+                <div className={`w-3 h-3 rounded-full ${t.dot}`} />
+                {t.label}
+              </button>
+            ))}
           </div>
         </div>
       )}
