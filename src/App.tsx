@@ -3,12 +3,9 @@ import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, P
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
-import { BubblesProvider, useBubbles } from './context/BubblesContext';
 import { Footer } from './components/Footer';
 import { OnboardingQuestions } from './components/OnboardingQuestions';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
-import FloatingBubbles from './components/FloatingBubbles';
-import CollectedMessagesDropdown from './components/CollectedMessagesDropdown';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { BibleVersions } from './pages/BibleVersions';
@@ -102,7 +99,6 @@ const menuSections: MenuSection[] = [
 
 function TopNav() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
-  const { bubblesEnabled, toggleBubbles } = useBubbles();
   const location = useLocation();
   const isScrolled = useNavbarScroll(60);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -211,16 +207,6 @@ function TopNav() {
                       {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                       <span className="font-semibold">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
                     </button>
-                    <button
-                      onClick={toggleBubbles}
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
-                    >
-                      <Sparkles className="w-4 h-4" />
-                      <span className="font-semibold">Floating Bubbles</span>
-                      <span className={`ml-auto text-xs px-2 py-0.5 rounded-full font-bold ${bubblesEnabled ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'}`}>
-                        {bubblesEnabled ? 'ON' : 'OFF'}
-                      </span>
-                    </button>
                   </div>
                 </div>
               )}
@@ -328,13 +314,6 @@ function TopNav() {
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               {darkMode ? 'Light' : 'Dark'}
             </button>
-            <button
-              onClick={toggleBubbles}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
-            >
-              <Sparkles className="w-4 h-4" />
-              Bubbles {bubblesEnabled ? 'ON' : 'OFF'}
-            </button>
           </div>
         </div>
       )}
@@ -344,7 +323,6 @@ function TopNav() {
 
 function AppContent() {
   const { darkMode } = useDarkMode();
-  const { bubblesEnabled } = useBubbles();
   const location = useLocation();
   const [selectedBook, setSelectedBook] = useState<BookType>(books[0]);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
@@ -386,8 +364,6 @@ function AppContent() {
 
       <TopNav />
 
-      {!isSpecialPage && <CollectedMessagesDropdown />}
-
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Welcome />} />
@@ -424,7 +400,6 @@ function AppContent() {
 
       {!isSpecialPage && <Footer />}
       {!isSpecialPage && <FloatingMusicPlayer />}
-      {bubblesEnabled && !isSpecialPage && <FloatingBubbles />}
     </div>
   );
 }
@@ -432,11 +407,9 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <BubblesProvider>
-        <MusicPlayerProvider>
-          <AppContent />
-        </MusicPlayerProvider>
-      </BubblesProvider>
+      <MusicPlayerProvider>
+        <AppContent />
+      </MusicPlayerProvider>
     </Router>
   );
 }

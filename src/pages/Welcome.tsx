@@ -250,7 +250,7 @@ export function Welcome() {
             <div className="flex justify-center">
               <Link
                 to="/bible"
-                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm max-w-xs w-full"
+                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm max-w-lg w-full"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
@@ -494,7 +494,7 @@ export function Welcome() {
                 className="inline-flex items-center gap-2 theme-primary-button text-white px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg transition-all hover:scale-105"
               >
                 <HelpCircle className="w-4 h-4" />
-                Learn More
+                Who Made This?
               </button>
             </div>
             <div className="space-y-4">
@@ -540,49 +540,21 @@ export function Welcome() {
         onClose={() => setShowWhoMadeThis(false)}
         title="Who made this page?"
       >
-        <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-          <div className="p-4 theme-card border rounded-lg">
-            <p className="text-lg">
-              <span className="font-bold text-gray-900 dark:text-white">This isn't necessarily about religion—it's about truth.</span>
-            </p>
-          </div>
-
-          <p className="text-base">
-            Sometimes we don't fit neatly into a single denomination. Sometimes labels are too much. I feel like sometimes that is the wrong thing to search for, especially if you are just beginning.
-          </p>
-
-          <p className="text-base">
-            I fall somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry, while holding firmly to Scripture as the ultimate authority. People are forever sinners, including the people who make Church decisions. I respect deeply the traditions of the Catholic Church and how these traditions can be turned into habits. I also realize that it is hard to fully support something, if part of it is broken or mis-represented.
-          </p>
-
+        <div className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed text-base">
+          <p>Sometimes we don't fit neatly into a single denomination. Sometimes labels can become distracting. Especially for those just beginning their journey, I believe searching for a label may not be the right place to start.</p>
+          <p>I fall somewhere between Catholic, Orthodox, and Protestant traditions—respecting the depth of history, structure, and tradition they carry while holding firmly to Scripture as the ultimate authority.</p>
+          <p>People are sinners, including those who make decisions within the Church. I deeply respect the traditions of the Catholic Church and the ways these traditions can become meaningful habits that shape faith and daily life. At the same time, I recognize that it can be difficult to fully support something when parts of it seem broken or misrepresented.</p>
           <div className="p-4 theme-card border rounded-lg space-y-2">
-            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe in 'Sola Scriptura'</span></p>
-            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe truth is not subjective—it is revealed.</span></p>
-            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe in one God, existing as Father, Son, and Holy Spirit.</span></p>
-            <p className="text-base"><span className="font-bold text-gray-900 dark:text-white">I believe that Jesus Christ is the only way to God—not one option among many, but the way.</span></p>
+            <p><span className="font-bold text-gray-900 dark:text-white">I believe in Sola Scriptura.</span></p>
+            <p><span className="font-bold text-gray-900 dark:text-white">I believe truth is not subjective—it is revealed.</span></p>
+            <p><span className="font-bold text-gray-900 dark:text-white">I believe in one God existing as Father, Son, and Holy Spirit.</span></p>
+            <p><span className="font-bold text-gray-900 dark:text-white">I believe Jesus Christ is the only way to God—not one option among many, but the way.</span></p>
           </div>
-
-          <p className="text-base">
-            <span className="font-bold text-gray-900 dark:text-white">My foundation is the Scripture.</span>
-          </p>
-
-          <p className="text-base">
-            If we can help anyone walk through life's biggest questions without pressure, without confusion, and without relying on blind Church traditions or personal opinions, then we have succeeded.
-          </p>
-
-          <div className="p-4 theme-card border rounded-lg space-y-1">
-            <p className="text-base font-semibold text-gray-900 dark:text-white">Not religion for the sake of religion.</p>
-            <p className="text-base font-semibold text-gray-900 dark:text-white">Not arguments for the sake of winning.</p>
-            <p className="text-base font-semibold text-gray-900 dark:text-white">Just a path toward truth.</p>
-          </div>
-
-          <p className="text-base">
-            I am simply a man, a sinner just like you, trying to spread understanding and bring clarity to what religions are and how the bible is the undisputed champion in life.
-          </p>
-
-          <p className="text-base italic">
-            I started this website while trying to answer my own questions about faith, the Church and God in my own life. I realized quickly that I needed to share factual information (as I know it), and give it to others. My goal is to represent what being a Christian means in full truth as I know it from the teachings of the Holy Bible.
-          </p>
+          <p><span className="font-bold text-gray-900 dark:text-white">Scripture is my foundation.</span></p>
+          <p>If we can help even one person navigate life's biggest questions without pressure, confusion, blind tradition, or personal opinion taking center stage, then we have succeeded.</p>
+          <p>I am simply a man—a sinner like everyone else—trying to spread understanding and bring clarity to faith, religion, and why I believe the Bible remains the ultimate authority in life.</p>
+          <p>I began this journey while trying to answer my own questions about faith, the Church, and God. I quickly realized that I wanted to share what I had learned and provide others with information as truthfully and accurately as I could.</p>
+          <p>My goal is to represent what it means to be a Christian with honesty and faithfulness according to my understanding of the teachings of the Holy Bible.</p>
         </div>
       </Modal>
     </div>
