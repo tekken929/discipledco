@@ -74,9 +74,9 @@ const AUDIENCE = [
   { icon: Sun, label: 'Anyone wanting to grow closer to God' },
 ];
 
-function AppStoreBadge() {
+function AppStoreBadge({ href }: { href: string }) {
   return (
-    <Link to="/app"
+    <a href={href} target="_blank" rel="noopener noreferrer"
       className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white px-5 py-3 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl">
       <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
@@ -85,13 +85,13 @@ function AppStoreBadge() {
         <p className="text-[10px] font-medium text-white/70 leading-none mb-0.5">Download on the</p>
         <p className="text-base font-bold leading-none">App Store</p>
       </div>
-    </Link>
+    </a>
   );
 }
 
-function GooglePlayBadge() {
+function GooglePlayBadge({ href }: { href: string }) {
   return (
-    <Link to="/app"
+    <a href={href} target="_blank" rel="noopener noreferrer"
       className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white px-5 py-3 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl">
       <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
         <path d="M3.18 23.76c.38.21.82.22 1.24 0L14.69 12 4.42.24c-.42-.22-.86-.2-1.24 0C2.55.59 2.25 1.19 2.25 2v19.76c0 .81.3 1.41.93 1.76zM16.34 13.65l2.54-2.54-2.54-2.54-2.54 2.54 2.54 2.54zM5.17 21.96L14.04 13l-8.87-8.96v17.92zM21.05 10.5l-2.32-1.35-2.82 2.83 2.82 2.82 2.32-1.35c.65-.38 1.07-.98 1.07-1.47s-.42-1.09-1.07-1.48z" />
@@ -100,13 +100,36 @@ function GooglePlayBadge() {
         <p className="text-[10px] font-medium text-white/70 leading-none mb-0.5">Get it on</p>
         <p className="text-base font-bold leading-none">Google Play</p>
       </div>
-    </Link>
+    </a>
   );
 }
 
 export function AppDownload() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+
+      {/* ── HEADER ── */}
+      <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <img src="/images/Untitled_design_(34)_Large.jpeg" alt="The Disciple Co."
+              className="w-8 h-8 rounded-lg object-cover" />
+            <span className="font-bold text-gray-900 dark:text-white text-sm hidden sm:block">The Disciple Co.</span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link to="/" className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors hidden sm:block">
+              Website
+            </Link>
+            <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-3.5 py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </header>
 
       {/* ── HERO ── */}
       <section className="relative bg-gradient-to-b from-[#0d1a2e] to-[#1a2a40] overflow-hidden">
@@ -140,8 +163,8 @@ export function AppDownload() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-              <AppStoreBadge />
-              <GooglePlayBadge />
+              <AppStoreBadge href={APP_CONFIG.appStoreLink} />
+              <GooglePlayBadge href={APP_CONFIG.googlePlayLink} />
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-5 text-white/40 text-xs">
@@ -211,11 +234,11 @@ export function AppDownload() {
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base mb-8 max-w-lg mx-auto lg:mx-0">
                   {feature.body}
                 </p>
-                <Link to="/app"
+                <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white hover:opacity-70 transition-opacity group">
                   Download the App
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
+                </a>
               </div>
             </div>
           );

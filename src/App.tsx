@@ -336,7 +336,7 @@ function AppContent() {
   const isMusicPage = location.pathname === '/music';
   const isAppPage = location.pathname === '/app';
   const isPrivacyPage = location.pathname === '/privacy';
-  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isPrivacyPage;
+  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage || isPrivacyPage;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -369,8 +369,7 @@ function AppContent() {
 
       <div className="flex-1">
         <Routes>
-          <Route path="/" element={<Home selectedBook={selectedBook} />} />
-          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/" element={<Welcome />} />
           <Route path="/bible" element={<Home selectedBook={selectedBook} />} />
           <Route path="/bible-versions" element={<BibleVersions />} />
           <Route path="/religions" element={<Religions />} />
