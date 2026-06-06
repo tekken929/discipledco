@@ -582,9 +582,8 @@ export function Welcome() {
         {/* Section divider */}
         <div className="flex items-center gap-4 mb-12">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div className="flex items-center justify-center w-8 h-8 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
             <BookOpen className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
-            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Explore More</span>
           </div>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
         </div>
@@ -685,6 +684,13 @@ export function Welcome() {
 
       {/* BEING DEVELOPED SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
+            <BookOpen className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+        </div>
         <div className="mb-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Being Developed</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">More features coming soon — live features are available now.</p>

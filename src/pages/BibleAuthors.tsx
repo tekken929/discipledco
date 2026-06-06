@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Users, ScrollText, Book, Calendar, ArrowLeft, Shield, Search, ChevronDown, ChevronUp, Quote } from 'lucide-react';
+import { ScrollText, Book, Calendar, Shield, Search, ChevronDown, ChevronUp, Quote } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { Link } from 'react-router-dom';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 type AuthorEntry = {
@@ -350,25 +349,12 @@ export function BibleAuthors() {
     <>
       <ReturnToHome />
       <div className="min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 dark:bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 transition-all shadow-md hover:scale-105"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            <span>Back to Bible Overviews</span>
-          </Link>
-        </div>
-
         {/* Hero */}
         <div
           ref={headerRef}
           className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 transition-all duration-500 ${headerVisible ? 'fade-in visible' : 'fade-in'}`}
         >
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Users className="w-16 h-16 text-gray-700 dark:text-gray-300" />
-            </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Bible Authors & Evidence
             </h1>
