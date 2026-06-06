@@ -19,9 +19,6 @@ export function BookDisplay({ book }: BookDisplayProps) {
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
 
   const handlePrint = () => {
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) return;
-
     const html = `<!DOCTYPE html>
 <html>
 <head>
@@ -127,13 +124,15 @@ export function BookDisplay({ book }: BookDisplayProps) {
 </body>
 </html>`;
 
-    printWindow.document.write(html);
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => {
-      printWindow.print();
-      printWindow.close();
-    }, 400);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const newWindow = window.open(url, '_blank');
+    if (newWindow) {
+      newWindow.addEventListener('load', () => {
+        setTimeout(() => newWindow.print(), 300);
+      });
+    }
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
   };
 
   const toggleSection = (sectionNumber: number) => {
