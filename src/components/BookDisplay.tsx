@@ -31,6 +31,7 @@ export function BookDisplay({ book }: BookDisplayProps) {
       background: #ffffff;
       color: #111827;
       padding: 40px;
+      padding-top: 88px;
       max-width: 820px;
       margin: 0 auto;
     }
@@ -56,13 +57,76 @@ export function BookDisplay({ book }: BookDisplayProps) {
     .key-verse-text { font-style: italic; color: #374151; margin-bottom: 4px; font-size: 0.88rem; }
     .key-verse-ref { font-size: 0.73rem; font-weight: 600; color: #6b7280; }
     .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+    /* Toolbar */
+    .toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      z-index: 100;
+    }
+    .toolbar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #6b7280;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toolbar-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-save {
+      background: #0f766e;
+      color: #ffffff;
+    }
+    .btn-save:hover { opacity: 0.88; }
+    .btn-print {
+      background: #f3f4f6;
+      color: #111827;
+      border: 1px solid #d1d5db;
+    }
+    .btn-print:hover { background: #e5e7eb; }
     @media print {
+      .toolbar { display: none; }
       body { padding: 20px; }
       .section-card { break-inside: avoid; }
     }
   </style>
 </head>
 <body>
+  <div class="toolbar">
+    <span class="toolbar-title">${book.name} — The Disciple Co.</span>
+    <div class="toolbar-actions">
+      <button class="btn btn-save" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save as PDF
+      </button>
+      <button class="btn btn-print" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+    </div>
+  </div>
+
   <h1>${book.name}</h1>
 
   <div class="meta-grid">
@@ -126,12 +190,7 @@ export function BookDisplay({ book }: BookDisplayProps) {
 
     const blob = new Blob([html], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
-    const newWindow = window.open(url, '_blank');
-    if (newWindow) {
-      newWindow.addEventListener('load', () => {
-        setTimeout(() => newWindow.print(), 300);
-      });
-    }
+    window.open(url, '_blank');
     setTimeout(() => URL.revokeObjectURL(url), 10000);
   };
 
