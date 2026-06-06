@@ -133,7 +133,7 @@ function TopNav() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/app' || location.pathname === '/privacy') return null;
+  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/privacy') return null;
 
   return (
     <header className={`sticky top-0 z-[100] transition-all duration-200 print:hidden theme-card border-b ${
@@ -160,15 +160,13 @@ function TopNav() {
           {/* Right controls */}
           <div className="flex items-center gap-2">
             {/* Website link */}
-            <a
-              href="https://thediscipleco.org"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/"
               className="hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               <Globe className="w-4 h-4" />
-              <span className="hidden lg:inline">Website</span>
-            </a>
+              <span className="hidden lg:inline">Home</span>
+            </Link>
 
             {/* App Store download */}
             <Link
@@ -334,9 +332,9 @@ function AppContent() {
   const isEasterPage = location.pathname === '/easter';
   const isHallowedPage = location.pathname === '/hallowed';
   const isMusicPage = location.pathname === '/music';
-  const isAppPage = location.pathname === '/app';
+  const isAppPage = location.pathname === '/app' || location.pathname === '/';
   const isPrivacyPage = location.pathname === '/privacy';
-  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage || isPrivacyPage;
+  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isPrivacyPage;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -369,7 +367,8 @@ function AppContent() {
 
       <div className="flex-1">
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<AppDownload />} />
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/bible" element={<Home selectedBook={selectedBook} />} />
           <Route path="/bible-versions" element={<BibleVersions />} />
           <Route path="/religions" element={<Religions />} />
