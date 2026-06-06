@@ -334,7 +334,7 @@ function AppContent() {
   const isEasterPage = location.pathname === '/easter';
   const isHallowedPage = location.pathname === '/hallowed';
   const isMusicPage = location.pathname === '/music';
-  const isAppPage = location.pathname === '/app' || location.pathname === '/';
+  const isAppPage = location.pathname === '/app';
   const isPrivacyPage = location.pathname === '/privacy';
   const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isPrivacyPage;
 
@@ -369,7 +369,7 @@ function AppContent() {
 
       <div className="flex-1">
         <Routes>
-          <Route path="/" element={<AppDownload />} />
+          <Route path="/" element={<Home selectedBook={selectedBook} />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/bible" element={<Home selectedBook={selectedBook} />} />
           <Route path="/bible-versions" element={<BibleVersions />} />
