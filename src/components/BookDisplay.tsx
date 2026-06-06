@@ -19,7 +19,121 @@ export function BookDisplay({ book }: BookDisplayProps) {
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
 
   const handlePrint = () => {
-    window.print();
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>${book.name} — The Disciple Co.</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #111827;
+      padding: 40px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 24px; color: #111827; }
+    h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; color: #111827; display: flex; align-items: center; gap: 8px; }
+    .meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+    .meta-card { border-radius: 12px; padding: 14px 16px; border: 1px solid; }
+    .meta-label { font-size: 0.72rem; font-weight: 600; margin-bottom: 4px; }
+    .meta-value { font-size: 1.2rem; font-weight: 700; }
+    .meta-sub { font-size: 0.72rem; margin-top: 5px; line-height: 1.5; }
+    .overview { margin-bottom: 32px; }
+    .overview p { color: #374151; line-height: 1.75; margin-bottom: 12px; font-size: 0.95rem; }
+    .section-card { border-radius: 12px; border: 2px solid; margin-bottom: 16px; overflow: hidden; page-break-inside: avoid; }
+    .section-bar { height: 6px; }
+    .section-body { padding: 18px 22px; }
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .section-num { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; font-weight: 800; flex-shrink: 0; }
+    .section-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .section-title { font-size: 1.05rem; font-weight: 700; color: #111827; }
+    .chapter-range { padding: 2px 11px; background: #f3f4f6; color: #374151; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .section-summary { color: #374151; line-height: 1.65; margin-bottom: 12px; margin-left: 56px; font-size: 0.9rem; }
+    .key-verse { margin-left: 56px; padding: 11px 15px; background: #f9fafb; border-radius: 8px; border-left: 4px solid; }
+    .key-verse-text { font-style: italic; color: #374151; margin-bottom: 4px; font-size: 0.88rem; }
+    .key-verse-ref { font-size: 0.73rem; font-weight: 600; color: #6b7280; }
+    .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+    @media print {
+      body { padding: 20px; }
+      .section-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <h1>${book.name}</h1>
+
+  <div class="meta-grid">
+    <div class="meta-card" style="background:#eff6ff;border-color:#bfdbfe;">
+      <div class="meta-label" style="color:#1d4ed8;">Book Order</div>
+      <div class="meta-value" style="color:#1e3a8a;">#${book.order}</div>
+    </div>
+    <div class="meta-card" style="background:#f0fdf4;border-color:#bbf7d0;">
+      <div class="meta-label" style="color:#15803d;">Chapters</div>
+      <div class="meta-value" style="color:#14532d;">${book.chapters}</div>
+    </div>
+    <div class="meta-card" style="background:#fff7ed;border-color:#fed7aa;">
+      <div class="meta-label" style="color:#c2410c;">Type</div>
+      <div class="meta-value" style="color:#7c2d12;font-size:1rem;">${book.type}</div>
+    </div>
+    <div class="meta-card" style="background:#faf5ff;border-color:#e9d5ff;">
+      <div class="meta-label" style="color:#7e22ce;">Written</div>
+      <div class="meta-value" style="color:#3b0764;font-size:1rem;">${book.written}</div>
+    </div>
+    <div class="meta-card" style="background:#f0fdfa;border-color:#99f6e4;">
+      <div class="meta-label" style="color:#0f766e;">Time Period</div>
+      <div class="meta-value" style="color:#134e4a;font-size:1rem;">${book.timePeriod}</div>
+    </div>
+    <div class="meta-card" style="background:#fff1f2;border-color:#fecdd3;">
+      <div class="meta-label" style="color:#be123c;">Author</div>
+      <div class="meta-value" style="color:#881337;font-size:0.95rem;">${book.author}</div>
+      <div class="meta-sub" style="color:#9f1239;">${book.authorDescription}</div>
+    </div>
+  </div>
+
+  <div class="overview">
+    <h2>Overview</h2>
+    ${book.overview.map(p => `<p>${p}</p>`).join('\n    ')}
+  </div>
+
+  <h2>Content</h2>
+  ${book.structure.map((section) => {
+    const color = sectionColors[(section.number - 1) % sectionColors.length];
+    return `<div class="section-card" style="border-color:${color};">
+    <div class="section-bar" style="background:${color};"></div>
+    <div class="section-body">
+      <div class="section-header">
+        <div class="section-num" style="background:${color};">${section.number}</div>
+        <div class="section-title-row">
+          <span class="section-title">${section.title}</span>
+          <span class="chapter-range">Ch. ${section.chapterRange}</span>
+        </div>
+      </div>
+      ${section.summary ? `<p class="section-summary">${section.summary}</p>` : ''}
+      ${section.keyVerse ? `<div class="key-verse" style="border-color:${color};">
+        <p class="key-verse-text">"${section.keyVerse}"</p>
+        <p class="key-verse-ref">— ${section.verseReference}</p>
+      </div>` : ''}
+    </div>
+  </div>`;
+  }).join('\n  ')}
+
+  <div class="footer">The Disciple Co. &nbsp;·&nbsp; thediscipleco.org</div>
+</body>
+</html>`;
+
+    printWindow.document.write(html);
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+    }, 400);
   };
 
   const toggleSection = (sectionNumber: number) => {
