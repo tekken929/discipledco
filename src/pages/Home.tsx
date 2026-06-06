@@ -7,16 +7,8 @@ import { books } from '../data/books';
 import { timelineEvents } from '../data/timeline';
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown, Users, ArrowRight, Map, Route, GraduationCap, Clock, Star, ChevronUp } from 'lucide-react';
+import { BookOpen, ChevronDown, ArrowRight, Map, Route, GraduationCap, Clock, Star, ChevronUp, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-// Inline SVG line-art decorations — used as subtle watermarks on tiles
-const CrossMark = ({ className = '' }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 80 100" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round">
-    <line x1="40" y1="4" x2="40" y2="96" />
-    <line x1="8" y1="28" x2="72" y2="28" />
-  </svg>
-);
 
 interface HomeProps {
   selectedBook: Book;
@@ -346,42 +338,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
         <div className="spacing-section">
           <BookDisplay book={selectedBook} />
         </div>
-
-        {/* GAIN KNOWLEDGE — sample tile */}
-        <section className="mt-8 mb-8 print:hidden">
-          <div className="mb-5">
-            <span className="text-xs font-bold text-amber-500 dark:text-amber-400 uppercase tracking-widest block mb-1">Gain Knowledge</span>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Deepen your understanding</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Bible Authors — sample tile with religious line-art watermark */}
-            <Link
-              to="/bible-authors"
-              className="group relative text-left border-2 border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-amber-50/60 dark:bg-amber-950/20 overflow-hidden theme-card"
-            >
-              {/* Watermark cross — same concept as the "1 2 3" numbers on Start Here */}
-              <CrossMark className="absolute bottom-2 right-3 w-24 h-28 opacity-[0.07] dark:opacity-[0.06] pointer-events-none select-none text-amber-600 dark:text-amber-400" />
-
-              <div className="relative flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-200 dark:group-hover:bg-amber-900/80 transition-colors">
-                  <Users className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                </div>
-                <span className="text-xs font-bold text-amber-500 dark:text-amber-400 uppercase tracking-widest">40+ Authors</span>
-              </div>
-              <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
-                Bible Authors & Evidence
-              </h3>
-              <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
-                Who wrote Scripture, when they wrote it, and why their accounts can be trusted — with manuscript and archaeological evidence.
-              </p>
-              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 dark:text-amber-400 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
-                Explore authors
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </span>
-            </Link>
-          </div>
-        </section>
 
         {/* Go Deeper bridge */}
         <section className="mt-4 mb-8 print:hidden">

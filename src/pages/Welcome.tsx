@@ -3,7 +3,7 @@ import {
   Mic, Lightbulb, ArrowRight,
   HelpCircle, Shield, Heart,
   Map, Route, GraduationCap, Clock, Star,
-  Wind, Image, HelpCircle as FAQ, Lock
+  Wind, Image, HelpCircle as FAQ, Lock, Users
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -13,7 +13,56 @@ import { BibleVersePopup } from '../components/BibleVersePopup';
 import { timelineEvents } from '../data/timeline';
 import type { BibleRef } from '../types/timeline';
 
-const featuredSections = [
+// Subtle religious line-art watermarks — positioned absolute in tile background
+const CrossWatermark = ({ accentClass }: { accentClass: string }) => (
+  <svg className={`absolute bottom-3 right-3 w-20 h-24 opacity-[0.07] dark:opacity-[0.06] pointer-events-none select-none ${accentClass}`}
+    viewBox="0 0 60 80" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round">
+    <line x1="30" y1="4" x2="30" y2="76" />
+    <line x1="6" y1="22" x2="54" y2="22" />
+  </svg>
+);
+
+const BookWatermark = ({ accentClass }: { accentClass: string }) => (
+  <svg className={`absolute bottom-3 right-2 w-24 h-20 opacity-[0.07] dark:opacity-[0.06] pointer-events-none select-none ${accentClass}`}
+    viewBox="0 0 80 70" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M40,6 L8,14 L8,60 L40,52 Z" />
+    <path d="M40,6 L72,14 L72,60 L40,52 Z" />
+    <line x1="40" y1="6" x2="40" y2="52" />
+    <line x1="16" y1="28" x2="36" y2="24" />
+    <line x1="16" y1="38" x2="36" y2="34" />
+    <line x1="44" y1="24" x2="64" y2="28" />
+    <line x1="44" y1="34" x2="60" y2="38" />
+  </svg>
+);
+
+const ScrollWatermark = ({ accentClass }: { accentClass: string }) => (
+  <svg className={`absolute bottom-3 right-3 w-20 h-24 opacity-[0.07] dark:opacity-[0.06] pointer-events-none select-none ${accentClass}`}
+    viewBox="0 0 60 80" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14,14 C8,14 6,19 6,23 L6,57 C6,61 8,66 14,66 L46,66 C52,66 54,61 54,57 L54,23 C54,19 52,14 46,14 Z" />
+    <path d="M14,14 C8,14 6,9 6,5 C6,1 10,0 14,2 C18,4 16,14 14,14 Z" />
+    <path d="M14,66 C8,66 6,71 6,75 C6,79 10,80 14,78 C18,76 16,66 14,66 Z" />
+    <line x1="16" y1="30" x2="44" y2="30" />
+    <line x1="16" y1="40" x2="44" y2="40" />
+    <line x1="16" y1="50" x2="36" y2="50" />
+  </svg>
+);
+
+type WatermarkType = 'cross' | 'book' | 'scroll';
+
+const featuredSections: {
+  to: string;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  color: string;
+  bgLight: string;
+  border: string;
+  iconBg: string;
+  iconColor: string;
+  accent: string;
+  watermark: WatermarkType;
+  watermarkAccent: string;
+}[] = [
   {
     to: '/religions',
     icon: Church,
@@ -25,6 +74,8 @@ const featuredSections = [
     iconBg: 'bg-red-100 dark:bg-red-900',
     iconColor: 'text-red-600 dark:text-red-400',
     accent: 'text-red-600 dark:text-red-400',
+    watermark: 'cross',
+    watermarkAccent: 'text-red-600 dark:text-red-400',
   },
   {
     to: '/bible-versions',
@@ -37,6 +88,8 @@ const featuredSections = [
     iconBg: 'bg-amber-100 dark:bg-amber-900',
     iconColor: 'text-amber-600 dark:text-amber-400',
     accent: 'text-amber-600 dark:text-amber-400',
+    watermark: 'book',
+    watermarkAccent: 'text-amber-600 dark:text-amber-400',
   },
   {
     to: '/bible-lookup',
@@ -49,6 +102,8 @@ const featuredSections = [
     iconBg: 'bg-teal-100 dark:bg-teal-900',
     iconColor: 'text-teal-600 dark:text-teal-400',
     accent: 'text-teal-600 dark:text-teal-400',
+    watermark: 'book',
+    watermarkAccent: 'text-teal-600 dark:text-teal-400',
   },
   {
     to: '/preaching',
@@ -61,6 +116,8 @@ const featuredSections = [
     iconBg: 'bg-green-100 dark:bg-green-900',
     iconColor: 'text-green-600 dark:text-green-400',
     accent: 'text-green-600 dark:text-green-400',
+    watermark: 'cross',
+    watermarkAccent: 'text-green-600 dark:text-green-400',
   },
   {
     to: '/bible-studies',
@@ -73,6 +130,22 @@ const featuredSections = [
     iconBg: 'bg-amber-100 dark:bg-amber-900',
     iconColor: 'text-amber-600 dark:text-amber-400',
     accent: 'text-amber-600 dark:text-amber-400',
+    watermark: 'scroll',
+    watermarkAccent: 'text-amber-600 dark:text-amber-400',
+  },
+  {
+    to: '/bible-authors',
+    icon: Users,
+    title: 'Bible Authors & Evidence',
+    description: 'Who wrote Scripture, when they wrote it, and why their accounts can be trusted — with manuscript and archaeological evidence.',
+    color: 'blue',
+    bgLight: 'bg-blue-50 dark:bg-blue-950/30',
+    border: 'border-blue-200 dark:border-blue-800',
+    iconBg: 'bg-blue-100 dark:bg-blue-900',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    accent: 'text-blue-600 dark:text-blue-400',
+    watermark: 'scroll',
+    watermarkAccent: 'text-blue-600 dark:text-blue-400',
   },
 ];
 
@@ -523,20 +596,26 @@ export function Welcome() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {featuredSections.map((section) => {
             const Icon = section.icon;
-            const cardClass = `group flex flex-col gap-4 p-6 rounded-2xl border ${section.bgLight} ${section.border} hover:shadow-md transition-all duration-300 hover:-translate-y-0.5`;
+            const cardClass = `group relative flex flex-col gap-4 p-6 rounded-2xl border overflow-hidden ${section.bgLight} ${section.border} hover:shadow-md transition-all duration-300 hover:-translate-y-0.5`;
+            const Watermark = section.watermark === 'cross'
+              ? <CrossWatermark accentClass={section.watermarkAccent} />
+              : section.watermark === 'book'
+              ? <BookWatermark accentClass={section.watermarkAccent} />
+              : <ScrollWatermark accentClass={section.watermarkAccent} />;
             const cardContent = (
               <>
-                <div className="flex items-start justify-between">
+                {Watermark}
+                <div className="relative flex items-start justify-between">
                   <div className={`p-3 rounded-xl ${section.iconBg}`}>
                     <Icon className={`w-6 h-6 ${section.iconColor}`} />
                   </div>
                   <ArrowRight className={`w-5 h-5 ${section.accent} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200`} />
                 </div>
-                <div>
+                <div className="relative">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{section.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{section.description}</p>
                 </div>
-                <span className={`text-sm font-semibold ${section.accent} flex items-center gap-1`}>
+                <span className={`relative text-sm font-semibold ${section.accent} flex items-center gap-1 mt-auto`}>
                   Explore <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </>

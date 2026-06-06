@@ -41,6 +41,7 @@ const sections: NavSection[] = [
       { to: '/bible-lookup', icon: Lightbulb, title: 'Lookup Any Verse' },
       { to: '/preaching', icon: Mic, title: 'Wisdom' },
       { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies' },
+      { to: '/bible-authors', icon: Users, title: 'Bible Authors & Evidence' },
     ],
   },
   {
@@ -66,7 +67,6 @@ const sections: NavSection[] = [
       { to: '/easter', icon: Sparkles, title: 'Easter' },
       { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
       { to: '/verse-of-the-day', icon: BookOpen, title: 'Verse of the Day' },
-      { to: '/bible-authors', icon: Users, title: 'Bible Authors' },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', icon: BookOpen, title: 'Common Prayer', external: true },
     ],
   },
