@@ -161,7 +161,7 @@ function TopNav() {
           <div className="flex items-center gap-2">
             {/* Website link */}
             <Link
-              to="/"
+              to="/bible"
               className="hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               <Globe className="w-4 h-4" />

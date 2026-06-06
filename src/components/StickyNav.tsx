@@ -47,7 +47,7 @@ export function StickyNav() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex gap-3 flex-wrap">
             <Link
-              to="/"
+              to="/bible"
               className="inline-flex items-center gap-2 px-4 py-2 theme-primary-button text-white rounded-lg font-semibold text-sm transition-all shadow-md hover:scale-105"
             >
               <Home className="w-4 h-4" />
