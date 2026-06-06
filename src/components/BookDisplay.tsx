@@ -105,6 +105,12 @@ export function BookDisplay({ book }: BookDisplayProps) {
       border: 1px solid #d1d5db;
     }
     .btn-print:hover { background: #e5e7eb; }
+    .btn-close {
+      background: #f3f4f6;
+      color: #6b7280;
+      border: 1px solid #d1d5db;
+    }
+    .btn-close:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
     @page { margin: 0; }
     @media print {
       .toolbar { display: none; }
@@ -124,6 +130,10 @@ export function BookDisplay({ book }: BookDisplayProps) {
       <button class="btn btn-print" onclick="window.print()">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Print
+      </button>
+      <button class="btn btn-close" onclick="window.close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Close
       </button>
     </div>
   </div>
@@ -216,7 +226,7 @@ export function BookDisplay({ book }: BookDisplayProps) {
             className="flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg flex-shrink-0"
           >
             <Download className="w-5 h-5" />
-            <span className="hidden sm:inline">Download PDF</span>
+            <span className="hidden sm:inline">Download/Save PDF</span>
             <span className="sm:hidden">PDF</span>
           </button>
         </div>
