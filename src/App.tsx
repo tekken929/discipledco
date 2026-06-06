@@ -105,7 +105,6 @@ function TopNav() {
   const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
   const location = useLocation();
   const isScrolled = useNavbarScroll(60);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const settingsRef = useRef<HTMLDivElement>(null);
@@ -316,72 +315,10 @@ function TopNav() {
               )}
             </div>
 
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile nav drawer */}
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 theme-card">
-          <nav className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
-            {menuSections.flatMap((section) =>
-              section.links.filter((l) => !l.external && !l.comingSoon).map((link) => {
-                const isActive = location.pathname === link.to;
-                return (
-                  <Link
-                    key={link.label}
-                    to={link.to}
-                    className={`px-3 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                      isActive
-                        ? 'theme-primary-button text-white'
-                        : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })
-            )}
-          </nav>
-          <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-3 flex items-center gap-2 flex-wrap">
-            <button
-              onClick={toggleDarkMode}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all border-2 theme-card"
-            >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              {darkMode ? 'Light' : 'Dark'}
-            </button>
-            {([
-              { id: 'subtle' as ColorTheme,     label: 'Parchment',  dot: 'bg-amber-600' },
-              { id: 'happy' as ColorTheme,       label: 'Amber',      dot: 'bg-orange-500' },
-              { id: 'ocean' as ColorTheme,       label: 'Ocean',      dot: 'bg-sky-600' },
-              { id: 'dusk' as ColorTheme,        label: 'Dusk',       dot: 'bg-rose-700' },
-              { id: 'blackwhite' as ColorTheme,  label: 'Ink',        dot: 'bg-gray-900 dark:bg-white' },
-            ]).map((t) => (
-              <button
-                key={t.id}
-                onClick={() => setColorTheme(t.id)}
-                className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-semibold transition-all border-2 ${
-                  colorTheme === t.id
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300'
-                    : 'theme-card text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-              >
-                <div className={`w-3 h-3 rounded-full ${t.dot}`} />
-                {t.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </header>
   );
 }

@@ -301,7 +301,7 @@ export function Welcome() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <div className="absolute inset-0 rounded-3xl opacity-40 blur-2xl scale-110 bg-amber-400" />
+                <div className="absolute inset-0 rounded-3xl opacity-40 blur-2xl scale-110 bg-sky-400" />
                 <img
                   src="/images/Untitled_design_(34)_Large.jpeg"
                   alt="The Disciple Co."
