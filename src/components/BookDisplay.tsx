@@ -105,9 +105,10 @@ export function BookDisplay({ book }: BookDisplayProps) {
       border: 1px solid #d1d5db;
     }
     .btn-print:hover { background: #e5e7eb; }
+    @page { margin: 0; }
     @media print {
       .toolbar { display: none; }
-      body { padding: 20px; }
+      body { padding: 20px 40px; }
       .section-card { break-inside: avoid; }
     }
   </style>
