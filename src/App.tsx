@@ -116,7 +116,6 @@ function TopNav() {
   const isMusicPage = location.pathname === '/music';
 
   useEffect(() => {
-    setMobileOpen(false);
     setSettingsOpen(false);
     setMenuOpen(false);
   }, [location.pathname]);
