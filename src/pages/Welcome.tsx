@@ -737,6 +737,26 @@ export function Welcome() {
             </span>
           </Link>
 
+          {/* Resurrection — PREVIEW */}
+          <Link
+            to="/resurrection"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-sky-200 dark:border-sky-800 bg-sky-50/50 dark:bg-sky-950/20 hover:border-sky-400 dark:hover:border-sky-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center flex-shrink-0">
+                <Star className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+              </div>
+              <span className="text-[10px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 border border-sky-300 dark:border-sky-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">The Resurrection</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Historical and biblical evidence for the resurrection of Jesus Christ.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 dark:text-sky-400 group-hover:gap-2 transition-all mt-auto">
+              Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
           {/* Bible Studies — Coming Soon */}
           <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
