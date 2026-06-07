@@ -1,10 +1,33 @@
-import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
+import { ArrowLeft, BookOpen, ArrowRight } from 'lucide-react';
 import { topics } from '../data/topics';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 const DEFAULT_GRADIENT = 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)';
+
+const TILE_GRADIENTS: Record<string, string> = {
+  'forbidden-practices': 'linear-gradient(135deg, #1a0a0a 0%, #3b0f0f 30%, #7f1d1d 60%, #b91c1c 85%, #fca5a5 100%)',
+  marriage:             'linear-gradient(135deg, #1a0a2e 0%, #4a044e 30%, #86198f 60%, #d946ef 85%, #f0abfc 100%)',
+  lust:                 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 65%, #3b82f6 85%, #93c5fd 100%)',
+  sin:                  'linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 65%, #3b82f6 85%, #93c5fd 100%)',
+  forgiveness:          'linear-gradient(135deg, #0c1a2e 0%, #064e3b 30%, #065f46 60%, #059669 85%, #6ee7b7 100%)',
+  prayer:               'linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4338ca 60%, #6366f1 85%, #c7d2fe 100%)',
+  love:                 'linear-gradient(135deg, #3b0764 0%, #6b21a8 30%, #9333ea 60%, #c084fc 85%, #f3e8ff 100%)',
+  'fear-anxiety':       'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 75%, #4e9af1 100%)',
+  wisdom:               'linear-gradient(135deg, #1a1a0a 0%, #3b3b0f 30%, #7c6f14 60%, #ca8a04 85%, #fef08a 100%)',
+  anger:                'linear-gradient(135deg, #1a0a0a 0%, #450a0a 30%, #991b1b 60%, #dc2626 85%, #fca5a5 100%)',
+  faith:                'linear-gradient(135deg, #0a1628 0%, #1e3a5f 30%, #1d4ed8 60%, #60a5fa 85%, #dbeafe 100%)',
+  demons:               'linear-gradient(135deg, #09090b 0%, #18181b 30%, #27272a 60%, #52525b 85%, #a1a1aa 100%)',
+  possession:           'linear-gradient(135deg, #0a0a0a 0%, #1c1917 30%, #44403c 60%, #78716c 85%, #d6d3d1 100%)',
+  suffering:            'linear-gradient(135deg, #1c0a2e 0%, #3b0764 30%, #6d28d9 60%, #8b5cf6 85%, #ddd6fe 100%)',
+  'children-death':     'linear-gradient(135deg, #0a1628 0%, #1e3a5f 30%, #0e7490 60%, #06b6d4 85%, #cffafe 100%)',
+  hell:                 'linear-gradient(135deg, #1a0000 0%, #450a0a 30%, #7f1d1d 60%, #b45309 85%, #fde68a 100%)',
+  heaven:               'linear-gradient(135deg, #0c1a2e 0%, #1e3a5f 30%, #1d4ed8 60%, #60a5fa 85%, #e0f2fe 100%)',
+  'god-sovereignty':    'linear-gradient(135deg, #0a0a00 0%, #1a1a00 30%, #713f12 60%, #a16207 85%, #fef9c3 100%)',
+  grace:                'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)',
+  'holy-spirit':        'linear-gradient(135deg, #0c1a2e 0%, #064e3b 30%, #0f766e 60%, #0d9488 85%, #ccfbf1 100%)',
+  'end-times':          'linear-gradient(135deg, #09090b 0%, #1e1b4b 30%, #312e81 60%, #4338ca 85%, #e0e7ff 100%)',
+};
 
 type AccentKey = 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate';
 
@@ -54,22 +77,7 @@ const ACCENT: Record<AccentKey, {
 
 export function Topics() {
   const { topicId } = useParams();
-  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
   const selectedTopic = topicId ? topics.find(t => t.id === topicId) : null;
-
-  const toggleExpand = (id: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setExpandedTopics(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
 
   if (selectedTopic) {
     const hasRichContent = !!(selectedTopic.bodyContent || selectedTopic.whatWeLearns || selectedTopic.prayer);
@@ -278,51 +286,38 @@ export function Topics() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {regularTopics.sort((a, b) => a.order - b.order).map((topic) => {
-            const isExpanded = expandedTopics.has(topic.id);
+            const tileGradient = topic.heroGradient ?? TILE_GRADIENTS[topic.id] ?? DEFAULT_GRADIENT;
             return (
               <div
                 key={topic.id}
-                className="theme-card rounded-xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all"
+                className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5"
               >
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-4xl">{topic.icon}</span>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {topic.title}
-                    </h2>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-200 mb-3 leading-relaxed">
-                    {topic.shortDescription}
-                  </p>
-
-                  {topic.expandedContent && isExpanded && (
-                    <div className="mb-4 pt-3 border-t border-gray-100 dark:border-gray-700">
-                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                        {topic.expandedContent}
+                <div
+                  className="relative px-6 py-7 h-full flex flex-col"
+                  style={{ background: tileGradient }}
+                >
+                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex-1">
+                      <h2 className="text-xl font-bold text-white mb-2 leading-snug">
+                        {topic.title}
+                      </h2>
+                      {topic.subtitle && (
+                        <p className="text-white/60 text-xs uppercase tracking-wider mb-2">{topic.subtitle}</p>
+                      )}
+                      <p className="text-white/80 text-sm leading-relaxed line-clamp-3">
+                        {topic.shortDescription}
                       </p>
                     </div>
-                  )}
-
-                  <div className="flex items-center justify-between">
-                    <Link
-                      to={`/topics/${topic.id}`}
-                      className="inline-flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                    >
-                      Explore
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    {topic.expandedContent && (
-                      <button
-                        onClick={(e) => toggleExpand(topic.id, e)}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                    <div className="mt-5 pt-4 border-t border-white/20">
+                      <Link
+                        to={`/topics/${topic.id}`}
+                        className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 text-xs font-bold px-4 py-2 rounded-lg transition-all"
                       >
-                        {isExpanded ? (
-                          <><ChevronUp className="w-3.5 h-3.5" /> Less</>
-                        ) : (
-                          <><ChevronDown className="w-3.5 h-3.5" /> More</>
-                        )}
-                      </button>
-                    )}
+                        Explore
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
