@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Info, Plus } from 'lucide-react';
+import { Info, Plus, X } from 'lucide-react';
 import { gospelEvents } from '../data/gospelEvents';
 import { ReturnToHome } from '../components/ReturnToHome';
 
