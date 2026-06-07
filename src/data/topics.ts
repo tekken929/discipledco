@@ -1274,71 +1274,66 @@ export const topics: Topic[] = [
   {
     id: 'grace',
     title: 'Grace & Mercy',
+    subtitle: 'Understanding God\'s Heart',
     description: 'Understanding God\'s undeserved favor and compassion toward us',
-    shortDescription: 'Grace and mercy are the foundation of everything. Mercy is God not giving us what we deserve, and grace is Him giving us what we could never earn. When you really understand that, it changes how you see yourself—and how you see Him.',
-    expandedContent: 'This is where everything started to shift for me. I had heard the words grace and mercy my whole life, but I did not really understand what they meant. I thought mercy was just God being kind, and grace was just a general idea of forgiveness. But when you slow down and really look at it, it is much more serious than that. Mercy is God holding back what we actually deserve. And if we are honest about who we are without Him, that should stop us for a second. Because none of us would stand on our own. Grace is the opposite side of that. It is not just that God holds back judgment. He gives us something we did not earn and could not earn. Not because we got our life together, but because He chose to. That is the part that is hard to accept. We naturally want to earn things. We want to feel like we did enough to deserve it. But grace does not work like that. It is given. And when you actually start to understand that, not just in your head but in how you live, it changes everything.',
+    shortDescription: 'Mercy is God not giving us what we deserve. Grace is God giving us what we could never earn. Both shine most brightly at the cross, where God\'s justice and His love meet perfectly in Jesus Christ.',
+    bodyContent: [
+      'If you have ever broken something valuable, said something you should not have said, or disobeyed when you knew what was right, then you already understand something important about being human. Every one of us makes mistakes. Every one of us sins. The Bible tells us that none of us are perfect, and that includes every person who has ever lived except Jesus Christ.',
+      'That may sound like bad news at first, but it helps us understand something wonderful about God.',
+      'When the Bible speaks about mercy, it is describing God choosing not to give us the punishment our sins deserve. Imagine standing before a judge knowing you are guilty, only to hear that the penalty has been removed. That is a picture of mercy.',
+      'Grace goes even further.',
+      'Grace is God giving us blessings we could never earn for ourselves. Forgiveness. Adoption into His family. Eternal life. A relationship with Him. These are not rewards for good behavior. They are gifts given through Jesus Christ.',
+      'This is what makes the Gospel so remarkable. God does not wait for us to become perfect before He loves us. While we were still sinners, Christ came to save us. His mercy removes our guilt, and His grace fills our empty hands with gifts we could never deserve.',
+      'When we begin to understand grace and mercy, we stop thinking that Christianity is about earning God\'s approval. Instead, we discover that salvation is a gift purchased by Jesus and offered freely to all who trust Him.',
+      'That truth changes the way we see ourselves. We no longer have to pretend we are perfect. It also changes the way we see other people. If God has shown mercy to us, we should be quick to show mercy to others. If God has been gracious to us, we should learn to be gracious as well.',
+      'Grace and mercy are not small ideas hidden in the Bible. They are woven through every page of Scripture and shine most brightly at the cross, where God\'s justice and God\'s love meet perfectly in Jesus Christ.',
+    ],
+    whatWeLearns: [
+      'Mercy means God does not give us the punishment we deserve.',
+      'Grace means God gives us blessings we could never earn.',
+      'Salvation is a gift from God, not something we achieve ourselves.',
+      'Jesus is the greatest demonstration of God\'s grace and mercy.',
+      'Understanding grace helps us show kindness and forgiveness to others.',
+    ],
+    familyConversation: 'Can you think of a time when someone forgave you for something you did wrong? How does that help you understand God\'s mercy and grace?',
+    prayer: 'Heavenly Father,\n\nThank You for showing mercy when we deserve judgment and grace when we deserve nothing at all. Thank You for sending Jesus to save us and bring us into Your family. Help us to trust You, love You, and show the same kindness to others that You have shown to us.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '✝️',
     order: 1,
     references: [
       {
         book: 'Ephesians',
         chapter: 2,
-        verse: '8-9',
-        text: 'For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast.'
+        verse: '8–9',
+        text: 'For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Titus',
+        chapter: 3,
+        verse: '5',
+        text: 'Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost.',
+        translation: 'KJV'
       },
       {
         book: 'Romans',
         chapter: 5,
         verse: '8',
-        text: 'But God shows his love for us in that while we were still sinners, Christ died for us.'
-      },
-      {
-        book: 'Titus',
-        chapter: 3,
-        verse: '5-7',
-        text: 'He saved us, not because of works done by us in righteousness, but according to his own mercy, by the washing of regeneration and renewal of the Holy Spirit, whom he poured out on us richly through Jesus Christ our Savior, so that being justified by his grace we might become heirs according to the hope of eternal life.'
-      },
-      {
-        book: '2 Corinthians',
-        chapter: 12,
-        verse: '9',
-        text: 'But he said to me, "My grace is sufficient for you, for my power is made perfect in weakness." Therefore I will boast all the more gladly of my weaknesses, so that the power of Christ may rest upon me.'
-      },
-      {
-        book: 'Hebrews',
-        chapter: 4,
-        verse: '16',
-        text: 'Let us then with confidence draw near to the throne of grace, that we may receive mercy and find grace to help in time of need.'
-      },
-      {
-        book: '1 Peter',
-        chapter: 5,
-        verse: '10',
-        text: 'And after you have suffered a little while, the God of all grace, who has called you to his eternal glory in Christ, will himself restore, confirm, strengthen, and establish you.'
-      },
-      {
-        book: 'Romans',
-        chapter: 3,
-        verse: '23-24',
-        text: 'For all have sinned and fall short of the glory of God, and are justified by his grace as a gift, through the redemption that is in Christ Jesus.'
-      },
-      {
-        book: 'James',
-        chapter: 4,
-        verse: '6',
-        text: 'But he gives more grace. Therefore it says, "God opposes the proud but gives grace to the humble."'
+        text: 'But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us.',
+        translation: 'KJV'
       },
       {
         book: 'Psalm',
         chapter: 103,
-        verse: '8-12',
-        text: 'The Lord is merciful and gracious, slow to anger and abounding in steadfast love. He will not always chide, nor will he keep his anger forever. He does not deal with us according to our sins, nor repay us according to our iniquities.'
+        verse: '10–12',
+        text: 'He hath not dealt with us after our sins; nor rewarded us according to our iniquities. For as the heaven is high above the earth, so great is his mercy toward them that fear him. As far as the east is from the west, so far hath he removed our transgressions from us.',
+        translation: 'KJV'
       },
       {
         book: 'Lamentations',
         chapter: 3,
-        verse: '22-23',
-        text: 'The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.'
+        verse: '22–23',
+        text: 'It is of the LORD\'S mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.',
+        translation: 'KJV'
       }
     ]
   },

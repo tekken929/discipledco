@@ -24,10 +24,12 @@ export function Topics() {
   };
 
   if (selectedTopic) {
+    const hasRichContent = !!(selectedTopic.bodyContent || selectedTopic.whatWeLearns || selectedTopic.prayer);
+
     return (
       <>
         <ReturnToHome />
-        <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link
             to="/topics"
             className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
@@ -36,110 +38,174 @@ export function Topics() {
             Back to Topics
           </Link>
 
-          <div className="theme-card rounded-2xl shadow-xl p-8 transition-colors">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="text-5xl">{selectedTopic.icon}</span>
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          {/* Hero header */}
+          <div className="rounded-2xl overflow-hidden shadow-xl mb-8">
+            <div
+              className="relative px-8 py-14 flex flex-col items-center text-center"
+              style={{
+                background: 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)',
+              }}
+            >
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="relative z-10">
+                {selectedTopic.subtitle && (
+                  <p className="text-amber-200 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+                    {selectedTopic.subtitle}
+                  </p>
+                )}
+                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow-sm">
                   {selectedTopic.title}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 text-lg">
+                <p className="text-amber-100 text-lg leading-relaxed max-w-xl drop-shadow-sm">
                   {selectedTopic.shortDescription}
                 </p>
               </div>
             </div>
+          </div>
 
-            {selectedTopic.expandedContent && (
-              <div className="mb-6 p-6 rounded-xl bg-stone-50 dark:bg-stone-900/30 border border-stone-200 dark:border-stone-700">
-                <p className="text-gray-700 dark:text-gray-300 leading-loose">
-                  {selectedTopic.expandedContent}
+          {/* Body paragraphs */}
+          {selectedTopic.bodyContent && (
+            <div className="space-y-5 mb-10">
+              {selectedTopic.bodyContent.map((paragraph, i) => (
+                <p key={i} className="text-gray-700 dark:text-gray-300 leading-[1.9] text-[1.05rem]">
+                  {paragraph}
                 </p>
-              </div>
-            )}
+              ))}
+            </div>
+          )}
 
-            {selectedTopic.id === 'sin' && (
-              <div className="mt-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/30 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 transition-colors">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                  Key Points About Salvation
-                </h2>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">1</span>
+          {/* Legacy expandedContent fallback */}
+          {!hasRichContent && selectedTopic.expandedContent && (
+            <div className="mb-8 p-6 rounded-xl bg-stone-50 dark:bg-stone-900/30 border border-stone-200 dark:border-stone-700">
+              <p className="text-gray-700 dark:text-gray-300 leading-loose">
+                {selectedTopic.expandedContent}
+              </p>
+            </div>
+          )}
+
+          {/* What We Learn */}
+          {selectedTopic.whatWeLearns && (
+            <div className="mb-10 theme-card rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">What We Learn</h2>
+              </div>
+              <ul className="divide-y divide-gray-100 dark:divide-gray-800">
+                {selectedTopic.whatWeLearns.map((point, i) => (
+                  <li key={i} className="flex items-start gap-4 px-6 py-4">
+                    <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-xs font-bold flex items-center justify-center">
+                      {i + 1}
+                    </span>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">{point}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Special sin content */}
+          {selectedTopic.id === 'sin' && (
+            <div className="mt-6 mb-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/30 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 transition-colors">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                Key Points About Salvation
+              </h2>
+              <div className="space-y-3">
+                {[
+                  { n: '1', title: 'Believe (Trust in Jesus)', body: 'John 3:16 — "Whoever believes in him shall not perish but have eternal life"\nRomans 10:9 — "If you declare… \'Jesus is Lord\'… you will be saved"' },
+                  { n: '2', title: 'Recognize the problem (sin)', body: 'Romans 3:23 — "All have sinned…"\nRomans 6:23 — "The wages of sin is death…"' },
+                  { n: '3', title: 'Receive grace (not earned)', body: 'Ephesians 2:8–9 — "By grace you have been saved… not by works"' },
+                  { n: '4', title: 'Turn (repentance = change of direction)', body: 'Acts 3:19 — "Repent… that your sins may be wiped out"' },
+                  { n: '5', title: 'Follow (new life begins)', body: '2 Corinthians 5:17 — "If anyone is in Christ… new creation"\nJohn 8:36 — "If the Son sets you free, you will be free indeed"' },
+                ].map(item => (
+                  <div key={item.n} className="flex items-start gap-3">
+                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">{item.n}</span>
                     <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
-                      <b>Believe (Trust in Jesus)</b><br />
-                      John 3:16 — "Whoever believes in him shall not perish but have eternal life"<br />Romans 10:9 — "If you declare… 'Jesus is Lord'… you will be saved"
+                      <b>{item.title}</b><br />{item.body}
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">2</span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Recognize the problem (sin)</b><br />
-                      Romans 3:23 — "All have sinned…"<br />Romans 6:23 — "The wages of sin is death…"</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">3</span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Receive grace (not earned)</b><br />
-                      Ephesians 2:8–9 — "By grace you have been saved… not by works"</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">4</span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Turn (repentance = change of direction)</b><br />
-                      Acts 3:19 — "Repent… that your sins may be wiped out"</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">5</span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed"><b>Follow (new life begins)</b><br />
-                      2 Corinthians 5:17 — "If anyone is in Christ… new creation"<br />John 8:36 — "If the Son sets you free, you will be free indeed"</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">**</span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed">You are saved not by what you do, but by what Jesus has already done.
-                      When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
-                  </div>
+                ))}
+                <div className="flex items-start gap-3">
+                  <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">**</span>
+                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">You are saved not by what you do, but by what Jesus has already done. When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
-            <div className="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <BookOpen className="w-6 h-6" />
-                Biblical References
-              </h2>
-
-              <div className="space-y-6">
-                {selectedTopic.references.map((ref, index) => {
-                  const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
-
-                  return (
-                    <div
-                      key={index}
-                      className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700 transition-colors hover:shadow-lg"
-                    >
-                      <div className="flex items-start gap-3 mb-3">
-                        <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-sm">
-                          {index + 1}
+          {/* Bible Verses */}
+          <div className="mb-10">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              {selectedTopic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
+            </h2>
+            <div className="space-y-4">
+              {selectedTopic.references.map((ref, index) => {
+                const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
+                return (
+                  <div
+                    key={index}
+                    className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm"
+                  >
+                    <div className="px-5 py-3 bg-gray-50 dark:bg-gray-800/60 flex items-center justify-between">
+                      <h3 className="font-bold text-gray-900 dark:text-gray-100 text-sm tracking-wide">
+                        {verseReference}
+                      </h3>
+                      {ref.translation && (
+                        <span className="text-xs font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2 py-0.5 rounded-full">
+                          {ref.translation}
                         </span>
-                        <div className="flex-1">
-                          <h3 className="font-bold text-blue-900 dark:text-blue-100 text-lg">
-                            {verseReference}
-                          </h3>
-                        </div>
-                      </div>
-                      <p className="text-gray-800 dark:text-gray-200 leading-relaxed pl-12 mb-3">
+                      )}
+                    </div>
+                    <div className="px-5 py-4 theme-card">
+                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed italic text-[0.98rem]">
                         "{ref.text}"
                       </p>
                       {ref.summary && (
-                        <div className="pl-12 pt-3 border-t border-blue-300 dark:border-blue-600">
-                          <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
-                            {ref.summary}
-                          </p>
-                        </div>
+                        <p className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                          {ref.summary}
+                        </p>
                       )}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
+
+          {/* Family Conversation */}
+          {selectedTopic.familyConversation && (
+            <div className="mb-8 rounded-2xl border border-amber-200 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-900/20 px-6 py-5">
+              <h2 className="text-base font-bold text-amber-900 dark:text-amber-300 uppercase tracking-widest mb-3 text-sm">
+                Family Conversation
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {selectedTopic.familyConversation}
+              </p>
+            </div>
+          )}
+
+          {/* Prayer */}
+          {selectedTopic.prayer && (
+            <div className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 theme-card px-6 py-6">
+              <h2 className="text-base font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4 text-sm">
+                Prayer
+              </h2>
+              <div className="space-y-3">
+                {selectedTopic.prayer.split('\n').filter(l => l.trim()).map((line, i) => (
+                  <p
+                    key={i}
+                    className={`leading-relaxed ${
+                      i === 0 || line.trim().startsWith('In ') || line.trim() === 'Amen.'
+                        ? 'text-gray-500 dark:text-gray-400 text-sm'
+                        : 'text-gray-700 dark:text-gray-300'
+                    }`}
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+
         </main>
       </>
     );
@@ -162,50 +228,30 @@ export function Topics() {
         </div>
 
         {featuredTopic && (
-          <div className="mb-8 theme-card rounded-2xl border-4 border-blue-500 dark:border-blue-600 overflow-hidden">
-            <div className="p-8">
-              <div className="flex items-start gap-4 mb-4">
-                <span className="text-6xl flex-shrink-0">
-                  {featuredTopic.icon}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    {featuredTopic.title}
-                  </h2>
-                  <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-                    {featuredTopic.shortDescription}
-                  </p>
-                </div>
-              </div>
-
-              {featuredTopic.expandedContent && expandedTopics.has(featuredTopic.id) && (
-                <div className="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
-                  <p className="text-gray-700 dark:text-gray-300 leading-loose">
-                    {featuredTopic.expandedContent}
-                  </p>
-                </div>
-              )}
-
-              <div className="flex items-center justify-between mt-6">
+          <div className="mb-8 rounded-2xl overflow-hidden shadow-lg border border-amber-300 dark:border-amber-700/50">
+            <div
+              className="relative px-8 py-10"
+              style={{
+                background: 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)',
+              }}
+            >
+              <div className="absolute inset-0 bg-black/15" />
+              <div className="relative z-10">
+                <p className="text-amber-200 text-xs font-bold uppercase tracking-[0.2em] mb-2">Featured Topic</p>
+                <h2 className="text-3xl font-bold text-white mb-2">{featuredTopic.title}</h2>
+                {featuredTopic.subtitle && (
+                  <p className="text-amber-200 text-sm mb-3">{featuredTopic.subtitle}</p>
+                )}
+                <p className="text-amber-100 leading-relaxed max-w-2xl text-base mb-6">
+                  {featuredTopic.shortDescription}
+                </p>
                 <Link
                   to={`/topics/${featuredTopic.id}`}
-                  className="inline-flex items-center gap-2 text-base text-blue-600 dark:text-blue-400 font-bold hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                  className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/40 text-sm font-bold px-5 py-2.5 rounded-xl transition-all"
                 >
                   Explore with Scripture
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                {featuredTopic.expandedContent && (
-                  <button
-                    onClick={(e) => toggleExpand(featuredTopic.id, e)}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
-                  >
-                    {expandedTopics.has(featuredTopic.id) ? (
-                      <><ChevronUp className="w-4 h-4" /> Read less</>
-                    ) : (
-                      <><ChevronDown className="w-4 h-4" /> Read more</>
-                    )}
-                  </button>
-                )}
               </div>
             </div>
           </div>
