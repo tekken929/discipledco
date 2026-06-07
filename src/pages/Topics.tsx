@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ArrowRight } from 'lucide-react';
+import { ArrowLeft, BookOpen, ArrowRight, Lock } from 'lucide-react';
 import { topics } from '../data/topics';
 import { ReturnToHome } from '../components/ReturnToHome';
 
@@ -287,16 +287,26 @@ export function Topics() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {regularTopics.sort((a, b) => a.order - b.order).map((topic) => {
             const tileGradient = topic.heroGradient ?? TILE_GRADIENTS[topic.id] ?? DEFAULT_GRADIENT;
+            const isUnlocked = !!topic.bodyContent;
             return (
               <div
                 key={topic.id}
-                className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-0.5"
+                className={`rounded-xl overflow-hidden shadow-md transition-all ${isUnlocked ? 'hover:shadow-xl hover:-translate-y-0.5' : 'opacity-50 cursor-not-allowed grayscale'}`}
               >
                 <div
                   className="relative px-6 py-7 h-full flex flex-col"
                   style={{ background: tileGradient }}
                 >
                   <div className="absolute inset-0 bg-black/20" />
+
+                  {/* Coming Soon badge */}
+                  {!isUnlocked && (
+                    <div className="absolute top-3 right-3 z-20 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white/80 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full border border-white/20">
+                      <Lock className="w-2.5 h-2.5" />
+                      Soon
+                    </div>
+                  )}
+
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex-1">
                       <h2 className="text-xl font-bold text-white mb-2 leading-snug">
@@ -310,13 +320,20 @@ export function Topics() {
                       </p>
                     </div>
                     <div className="mt-5 pt-4 border-t border-white/20">
-                      <Link
-                        to={`/topics/${topic.id}`}
-                        className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 text-xs font-bold px-4 py-2 rounded-lg transition-all"
-                      >
-                        Explore
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+                      {isUnlocked ? (
+                        <Link
+                          to={`/topics/${topic.id}`}
+                          className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 text-xs font-bold px-4 py-2 rounded-lg transition-all"
+                        >
+                          Explore
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ) : (
+                        <span className="inline-flex items-center gap-2 bg-black/30 text-white/50 border border-white/10 text-xs font-bold px-4 py-2 rounded-lg">
+                          <Lock className="w-3 h-3" />
+                          Coming Soon
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

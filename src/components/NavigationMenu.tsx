@@ -40,7 +40,7 @@ const sections: NavSection[] = [
       { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
       { to: '/bible-lookup', icon: Lightbulb, title: 'Lookup Any Verse' },
       { to: '/preaching', icon: Mic, title: 'Wisdom' },
-      { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies' },
+      { to: '/topics', icon: MessageCircle, title: 'Biblical Topics' },
       { to: '/bible-authors', icon: Users, title: 'Bible Authors & Evidence' },
     ],
   },
@@ -49,6 +49,7 @@ const sections: NavSection[] = [
     links: [
       { to: '/prayer', icon: Wind, title: 'Daily Prayer' },
       { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
+      { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies', comingSoon: true },
       { to: '/music', icon: Music, title: 'Music Jukebox', comingSoon: true },
       { to: '/faqs', icon: HelpCircle, title: 'FAQs', comingSoon: true },
       { to: '#', icon: Image, title: 'Media', comingSoon: true },
@@ -57,7 +58,6 @@ const sections: NavSection[] = [
   {
     heading: 'Misc',
     links: [
-      { to: '/topics', icon: MessageCircle, title: 'Everyday Topics' },
       { to: '/stories', icon: Book, title: 'Popular Stories' },
       { to: '/guidance', icon: BookOpen, title: 'Guidance' },
       { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
