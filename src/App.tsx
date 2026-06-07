@@ -69,7 +69,7 @@ const menuSections: MenuSection[] = [
       { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
       { to: '/bible-lookup', label: 'Lookup Any Verse', icon: Lightbulb },
       { to: '/preaching', label: 'Wisdom', icon: Mic },
-      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
+      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen, comingSoon: true },
     ],
   },
   {
