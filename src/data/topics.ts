@@ -224,70 +224,67 @@ export const topics: Topic[] = [
   {
     id: 'sin',
     title: 'Sin & Repentance',
-    description: 'Understanding sin, forgiveness, and the path to repentance. "Salvation is not something you achieve, it\'s something you receive. It comes through trusting in who Jesus is and what He has done, not in what you can do."',
-    shortDescription: 'All have sinned and fall short of God\'s glory. Through confession, repentance, and faith in Jesus Christ, God offers forgiveness and restoration to all who come to Him.',
+    subtitle: 'Understanding God\'s Heart',
+    description: 'Understanding sin, forgiveness, and the path to repentance',
+    shortDescription: 'Every person has sinned and fallen short of God\'s perfect standard. Yet God calls sinners to repentance and offers complete forgiveness through Jesus Christ to all who trust in Him.',
+    bodyContent: [
+      'One of the hardest truths for people to accept is that our greatest problem is not outside of us. It is not our circumstances, our upbringing, our failures, or the people who have hurt us. According to Scripture, our greatest problem is sin.',
+      'Sin is more than simply making mistakes. Sin is falling short of God\'s perfect standard. It is choosing our own way instead of His. From the first pages of Genesis to the final pages of Revelation, the Bible tells the story of humanity\'s rebellion against God and God\'s loving plan to rescue sinners.',
+      'The Bible teaches that every person has sinned. No one is excluded from that verdict. The kindest person, the most generous person, the most religious person, and the worst criminal all stand in need of God\'s forgiveness. This truth may humble us, but it also places every person on equal ground before God.',
+      'Yet the story does not end with our sin.',
+      'God, in His mercy, calls sinners to repentance. Repentance is not merely feeling sorry for what we have done. It is a change of heart that leads to a change of direction. It is turning away from sin and turning toward God. True repentance recognizes that sin is serious, but it also believes that God\'s grace is greater.',
+      'This is why Jesus came into the world. He did not come merely to teach good morals or offer helpful advice. He came to save sinners. Through His death and resurrection, He made forgiveness possible for all who place their faith in Him.',
+      'When we confess our sins, God does not respond with reluctance. He responds with mercy. The same God who knows every sinful thought, word, and action also offers complete forgiveness through Jesus Christ. He restores what sin has broken and welcomes repentant sinners into His family.',
+      'Repentance is not the end of joy. It is the beginning of it. The path back to God is not found through hiding our sin but through bringing it into the light and trusting the Savior who came to forgive it.',
+    ],
+    whatWeLearns: [
+      'Every person has sinned and needs God\'s forgiveness.',
+      'Sin separates us from God and falls short of His perfect standard.',
+      'Repentance means turning away from sin and turning toward God.',
+      'Jesus Christ came to save sinners through His death and resurrection.',
+      'God promises forgiveness and restoration to those who trust in Him.',
+    ],
+    familyConversation: 'Why do you think it can be difficult to admit when we are wrong, and how does knowing that God is willing to forgive us help us come to Him honestly?',
+    prayer: 'Heavenly Father,\n\nThank You for loving us even though we have sinned against You. Thank You for sending Jesus Christ to save sinners and make forgiveness possible. Help us to be honest about our sin, quick to repent, and eager to trust in Your mercy. Teach us to walk in obedience and to find joy in following You each day.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '🙏',
+    heroGradient: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 65%, #3b82f6 85%, #93c5fd 100%)',
+    accentColor: 'blue',
     order: 2,
     references: [
       {
         book: 'Romans',
         chapter: 3,
         verse: '23',
-        text: 'For all have sinned and fall short of the glory of God.'
-      },
-      {
-        book: '1 John',
-        chapter: 1,
-        verse: '9',
-        text: 'If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.'
-      },
-      {
-        book: 'Romans',
-        chapter: 6,
-        verse: '23',
-        text: 'For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 28,
-        verse: '13',
-        text: 'Whoever conceals his transgressions will not prosper, but he who confesses and forsakes them will obtain mercy.'
+        text: 'For all have sinned, and come short of the glory of God;',
+        translation: 'KJV'
       },
       {
         book: 'Acts',
         chapter: 3,
         verse: '19',
-        text: 'Repent therefore, and turn back, that your sins may be blotted out.'
+        text: 'Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the presence of the Lord;',
+        translation: 'KJV'
       },
       {
-        book: 'Isaiah',
+        book: '1 John',
         chapter: 1,
-        verse: '18',
-        text: 'Come now, let us reason together, says the Lord: though your sins are like scarlet, they shall be as white as snow; though they are red like crimson, they shall become like wool.'
+        verse: '9',
+        text: 'If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.',
+        translation: 'KJV'
       },
       {
-        book: 'Psalm',
-        chapter: 51,
-        verse: '10',
-        text: 'Create in me a clean heart, O God, and renew a right spirit within me.'
+        book: 'Mark',
+        chapter: 1,
+        verse: '15',
+        text: 'And saying, The time is fulfilled, and the kingdom of God is at hand: repent ye, and believe the gospel.',
+        translation: 'KJV'
       },
       {
-        book: '2 Chronicles',
-        chapter: 7,
-        verse: '14',
-        text: 'If my people who are called by my name humble themselves, and pray and seek my face and turn from their wicked ways, then I will hear from heaven and will forgive their sin and heal their land.'
-      },
-      {
-        book: 'James',
-        chapter: 4,
-        verse: '17',
-        text: 'So whoever knows the right thing to do and fails to do it, for him it is sin.'
-      },
-      {
-        book: 'Ezekiel',
-        chapter: 18,
-        verse: '30-32',
-        text: 'Therefore I will judge you, O house of Israel, every one according to his ways, declares the Lord God. Repent and turn from all your transgressions, lest iniquity be your ruin.'
+        book: 'Luke',
+        chapter: 15,
+        verse: '7',
+        text: 'I say unto you, that likewise joy shall be in heaven over one sinner that repenteth, more than over ninety and nine just persons, which need no repentance.',
+        translation: 'KJV'
       }
     ]
   },
@@ -1298,6 +1295,8 @@ export const topics: Topic[] = [
     familyConversation: 'Can you think of a time when someone forgave you for something you did wrong? How does that help you understand God\'s mercy and grace?',
     prayer: 'Heavenly Father,\n\nThank You for showing mercy when we deserve judgment and grace when we deserve nothing at all. Thank You for sending Jesus to save us and bring us into Your family. Help us to trust You, love You, and show the same kindness to others that You have shown to us.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '✝️',
+    heroGradient: 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)',
+    accentColor: 'amber',
     order: 1,
     references: [
       {

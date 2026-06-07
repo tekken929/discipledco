@@ -4,6 +4,54 @@ import { ArrowLeft, BookOpen, ChevronDown, ChevronUp, ArrowRight } from 'lucide-
 import { topics } from '../data/topics';
 import { ReturnToHome } from '../components/ReturnToHome';
 
+const DEFAULT_GRADIENT = 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)';
+
+type AccentKey = 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate';
+
+const ACCENT: Record<AccentKey, {
+  badgeBg: string; badgeText: string;
+  convBorder: string; convBg: string; convTitle: string;
+  translationBg: string; translationText: string;
+  bookIcon: string;
+}> = {
+  amber: {
+    badgeBg: 'bg-amber-100 dark:bg-amber-900/40', badgeText: 'text-amber-700 dark:text-amber-400',
+    convBorder: 'border-amber-200 dark:border-amber-800/50', convBg: 'bg-amber-50 dark:bg-amber-900/20', convTitle: 'text-amber-900 dark:text-amber-300',
+    translationBg: 'bg-amber-50 dark:bg-amber-900/30', translationText: 'text-amber-700 dark:text-amber-400',
+    bookIcon: 'text-amber-600 dark:text-amber-400',
+  },
+  blue: {
+    badgeBg: 'bg-blue-100 dark:bg-blue-900/40', badgeText: 'text-blue-700 dark:text-blue-400',
+    convBorder: 'border-blue-200 dark:border-blue-800/50', convBg: 'bg-blue-50 dark:bg-blue-900/20', convTitle: 'text-blue-900 dark:text-blue-300',
+    translationBg: 'bg-blue-50 dark:bg-blue-900/30', translationText: 'text-blue-700 dark:text-blue-400',
+    bookIcon: 'text-blue-600 dark:text-blue-400',
+  },
+  green: {
+    badgeBg: 'bg-green-100 dark:bg-green-900/40', badgeText: 'text-green-700 dark:text-green-400',
+    convBorder: 'border-green-200 dark:border-green-800/50', convBg: 'bg-green-50 dark:bg-green-900/20', convTitle: 'text-green-900 dark:text-green-300',
+    translationBg: 'bg-green-50 dark:bg-green-900/30', translationText: 'text-green-700 dark:text-green-400',
+    bookIcon: 'text-green-600 dark:text-green-400',
+  },
+  rose: {
+    badgeBg: 'bg-rose-100 dark:bg-rose-900/40', badgeText: 'text-rose-700 dark:text-rose-400',
+    convBorder: 'border-rose-200 dark:border-rose-800/50', convBg: 'bg-rose-50 dark:bg-rose-900/20', convTitle: 'text-rose-900 dark:text-rose-300',
+    translationBg: 'bg-rose-50 dark:bg-rose-900/30', translationText: 'text-rose-700 dark:text-rose-400',
+    bookIcon: 'text-rose-600 dark:text-rose-400',
+  },
+  sky: {
+    badgeBg: 'bg-sky-100 dark:bg-sky-900/40', badgeText: 'text-sky-700 dark:text-sky-400',
+    convBorder: 'border-sky-200 dark:border-sky-800/50', convBg: 'bg-sky-50 dark:bg-sky-900/20', convTitle: 'text-sky-900 dark:text-sky-300',
+    translationBg: 'bg-sky-50 dark:bg-sky-900/30', translationText: 'text-sky-700 dark:text-sky-400',
+    bookIcon: 'text-sky-600 dark:text-sky-400',
+  },
+  slate: {
+    badgeBg: 'bg-slate-100 dark:bg-slate-800/60', badgeText: 'text-slate-700 dark:text-slate-300',
+    convBorder: 'border-slate-200 dark:border-slate-700', convBg: 'bg-slate-50 dark:bg-slate-800/30', convTitle: 'text-slate-800 dark:text-slate-300',
+    translationBg: 'bg-slate-100 dark:bg-slate-800', translationText: 'text-slate-600 dark:text-slate-400',
+    bookIcon: 'text-slate-600 dark:text-slate-400',
+  },
+};
+
 export function Topics() {
   const { topicId } = useParams();
   const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
@@ -25,6 +73,8 @@ export function Topics() {
 
   if (selectedTopic) {
     const hasRichContent = !!(selectedTopic.bodyContent || selectedTopic.whatWeLearns || selectedTopic.prayer);
+    const accent = ACCENT[selectedTopic.accentColor ?? 'amber'];
+    const gradient = selectedTopic.heroGradient ?? DEFAULT_GRADIENT;
 
     return (
       <>
@@ -42,21 +92,19 @@ export function Topics() {
           <div className="rounded-2xl overflow-hidden shadow-xl mb-8">
             <div
               className="relative px-8 py-14 flex flex-col items-center text-center"
-              style={{
-                background: 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)',
-              }}
+              style={{ background: gradient }}
             >
               <div className="absolute inset-0 bg-black/20" />
               <div className="relative z-10">
                 {selectedTopic.subtitle && (
-                  <p className="text-amber-200 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+                  <p className="text-white/70 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
                     {selectedTopic.subtitle}
                   </p>
                 )}
                 <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow-sm">
                   {selectedTopic.title}
                 </h1>
-                <p className="text-amber-100 text-lg leading-relaxed max-w-xl drop-shadow-sm">
+                <p className="text-white/85 text-lg leading-relaxed max-w-xl drop-shadow-sm">
                   {selectedTopic.shortDescription}
                 </p>
               </div>
@@ -92,7 +140,7 @@ export function Topics() {
               <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                 {selectedTopic.whatWeLearns.map((point, i) => (
                   <li key={i} className="flex items-start gap-4 px-6 py-4">
-                    <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-xs font-bold flex items-center justify-center">
+                    <span className={`mt-0.5 flex-shrink-0 w-6 h-6 rounded-full ${accent.badgeBg} ${accent.badgeText} text-xs font-bold flex items-center justify-center`}>
                       {i + 1}
                     </span>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">{point}</p>
@@ -102,39 +150,10 @@ export function Topics() {
             </div>
           )}
 
-          {/* Special sin content */}
-          {selectedTopic.id === 'sin' && (
-            <div className="mt-6 mb-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/30 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 transition-colors">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                Key Points About Salvation
-              </h2>
-              <div className="space-y-3">
-                {[
-                  { n: '1', title: 'Believe (Trust in Jesus)', body: 'John 3:16 — "Whoever believes in him shall not perish but have eternal life"\nRomans 10:9 — "If you declare… \'Jesus is Lord\'… you will be saved"' },
-                  { n: '2', title: 'Recognize the problem (sin)', body: 'Romans 3:23 — "All have sinned…"\nRomans 6:23 — "The wages of sin is death…"' },
-                  { n: '3', title: 'Receive grace (not earned)', body: 'Ephesians 2:8–9 — "By grace you have been saved… not by works"' },
-                  { n: '4', title: 'Turn (repentance = change of direction)', body: 'Acts 3:19 — "Repent… that your sins may be wiped out"' },
-                  { n: '5', title: 'Follow (new life begins)', body: '2 Corinthians 5:17 — "If anyone is in Christ… new creation"\nJohn 8:36 — "If the Son sets you free, you will be free indeed"' },
-                ].map(item => (
-                  <div key={item.n} className="flex items-start gap-3">
-                    <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">{item.n}</span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
-                      <b>{item.title}</b><br />{item.body}
-                    </p>
-                  </div>
-                ))}
-                <div className="flex items-start gap-3">
-                  <span className="bg-gray-700 dark:bg-gray-600 text-white font-bold px-2.5 py-1 rounded-lg text-sm min-w-[28px] text-center">**</span>
-                  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">You are saved not by what you do, but by what Jesus has already done. When you trust in Him, turn from sin, and follow Him, you receive new life.</p>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Bible Verses */}
           <div className="mb-10">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              <BookOpen className={`w-5 h-5 ${accent.bookIcon}`} />
               {selectedTopic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
             </h2>
             <div className="space-y-4">
@@ -150,7 +169,7 @@ export function Topics() {
                         {verseReference}
                       </h3>
                       {ref.translation && (
-                        <span className="text-xs font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2 py-0.5 rounded-full">
+                        <span className={`text-xs font-semibold ${accent.translationText} ${accent.translationBg} px-2 py-0.5 rounded-full`}>
                           {ref.translation}
                         </span>
                       )}
@@ -173,8 +192,8 @@ export function Topics() {
 
           {/* Family Conversation */}
           {selectedTopic.familyConversation && (
-            <div className="mb-8 rounded-2xl border border-amber-200 dark:border-amber-800/50 bg-amber-50 dark:bg-amber-900/20 px-6 py-5">
-              <h2 className="text-base font-bold text-amber-900 dark:text-amber-300 uppercase tracking-widest mb-3 text-sm">
+            <div className={`mb-8 rounded-2xl border ${accent.convBorder} ${accent.convBg} px-6 py-5`}>
+              <h2 className={`text-sm font-bold ${accent.convTitle} uppercase tracking-widest mb-3`}>
                 Family Conversation
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -186,7 +205,7 @@ export function Topics() {
           {/* Prayer */}
           {selectedTopic.prayer && (
             <div className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 theme-card px-6 py-6">
-              <h2 className="text-base font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4 text-sm">
+              <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
                 Prayer
               </h2>
               <div className="space-y-3">

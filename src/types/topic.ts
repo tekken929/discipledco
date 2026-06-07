@@ -18,6 +18,8 @@ export interface Topic {
   whatWeLearns?: string[];
   familyConversation?: string;
   prayer?: string;
+  heroGradient?: string;
+  accentColor?: 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate';
   icon: string;
   references: BibleReference[];
   order: number;
