@@ -3,7 +3,7 @@ import {
   Mic, Lightbulb, ArrowRight,
   HelpCircle, Shield, Heart,
   Map, Route, GraduationCap, Clock, Star,
-  Wind, Image, HelpCircle as FAQ, Lock, Users
+  Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -120,18 +120,18 @@ const featuredSections: {
     watermarkAccent: 'text-green-600 dark:text-green-400',
   },
   {
-    to: '/bible-studies',
-    icon: BookOpen,
-    title: 'Bible Studies',
-    description: 'Ten in-depth study series for the beginner Christian — from who God is to living it out daily.',
-    color: 'amber',
-    bgLight: 'bg-amber-50 dark:bg-amber-950/30',
-    border: 'border-amber-200 dark:border-amber-800',
-    iconBg: 'bg-amber-100 dark:bg-amber-900',
-    iconColor: 'text-amber-600 dark:text-amber-400',
-    accent: 'text-amber-600 dark:text-amber-400',
-    watermark: 'scroll',
-    watermarkAccent: 'text-amber-600 dark:text-amber-400',
+    to: '/topics',
+    icon: MessageCircle,
+    title: 'Biblical Topics',
+    description: 'In-depth biblical guidance on topics that matter — grace, sin, love, fear, faith, and more.',
+    color: 'emerald',
+    bgLight: 'bg-emerald-50 dark:bg-emerald-950/30',
+    border: 'border-emerald-200 dark:border-emerald-800',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+    accent: 'text-emerald-600 dark:text-emerald-400',
+    watermark: 'cross',
+    watermarkAccent: 'text-emerald-600 dark:text-emerald-400',
   },
   {
     to: '/bible-authors',
@@ -737,8 +737,24 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Music Jukebox — Coming Soon */}
+          {/* Bible Studies — Coming Soon */}
           <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              </div>
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+                <Lock className="w-2.5 h-2.5" /> Soon
+              </span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Bible Studies</h3>
+              <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Ten in-depth study series for the beginner Christian — from who God is to living it out daily.</p>
+            </div>
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
+          </div>
+
+          {/* Music Jukebox — Coming Soon */}          <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
                 <Music className="w-5 h-5 text-gray-400 dark:text-gray-500" />
