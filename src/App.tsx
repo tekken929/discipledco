@@ -192,8 +192,6 @@ function TopNav() {
             {/* Website link */}
             <a
               href="https://thediscipleco.org"
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center gap-1.5 p-2 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             >
               <Globe className="w-4 h-4 flex-shrink-0" />
