@@ -7,12 +7,12 @@ const DEFAULT_GRADIENT = 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d977
 
 const TILE_GRADIENTS: Record<string, string> = {
   'forbidden-practices': 'linear-gradient(135deg, #1a0a0a 0%, #3b0f0f 30%, #7f1d1d 60%, #b91c1c 85%, #fca5a5 100%)',
-  marriage:             'linear-gradient(135deg, #1a0a2e 0%, #4a044e 30%, #86198f 60%, #d946ef 85%, #f0abfc 100%)',
+  marriage:             'linear-gradient(135deg, #3b0a0a 0%, #7f1d1d 30%, #b91c1c 60%, #f43f5e 85%, #fecdd3 100%)',
   lust:                 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 65%, #3b82f6 85%, #93c5fd 100%)',
   sin:                  'linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 65%, #3b82f6 85%, #93c5fd 100%)',
   forgiveness:          'linear-gradient(135deg, #0c1a2e 0%, #064e3b 30%, #065f46 60%, #059669 85%, #6ee7b7 100%)',
-  prayer:               'linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4338ca 60%, #6366f1 85%, #c7d2fe 100%)',
-  love:                 'linear-gradient(135deg, #3b0764 0%, #6b21a8 30%, #9333ea 60%, #c084fc 85%, #f3e8ff 100%)',
+  prayer:               'linear-gradient(135deg, #0a1a2e 0%, #0c2340 30%, #1e3a5f 60%, #2563eb 85%, #bfdbfe 100%)',
+  love:                 'linear-gradient(135deg, #4a0011 0%, #881337 30%, #be123c 60%, #fb7185 85%, #fecdd3 100%)',
   'fear-anxiety':       'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 75%, #4e9af1 100%)',
   wisdom:               'linear-gradient(135deg, #1a1a0a 0%, #3b3b0f 30%, #7c6f14 60%, #ca8a04 85%, #fef08a 100%)',
   anger:                'linear-gradient(135deg, #1a0a0a 0%, #450a0a 30%, #991b1b 60%, #dc2626 85%, #fca5a5 100%)',
@@ -26,7 +26,7 @@ const TILE_GRADIENTS: Record<string, string> = {
   'god-sovereignty':    'linear-gradient(135deg, #0a0a00 0%, #1a1a00 30%, #713f12 60%, #a16207 85%, #fef9c3 100%)',
   grace:                'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)',
   'holy-spirit':        'linear-gradient(135deg, #0c1a2e 0%, #064e3b 30%, #0f766e 60%, #0d9488 85%, #ccfbf1 100%)',
-  'end-times':          'linear-gradient(135deg, #09090b 0%, #1e1b4b 30%, #312e81 60%, #4338ca 85%, #e0e7ff 100%)',
+  'end-times':          'linear-gradient(135deg, #09090b 0%, #0f172a 30%, #1e293b 60%, #334155 85%, #e2e8f0 100%)',
 };
 
 type AccentKey = 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate';

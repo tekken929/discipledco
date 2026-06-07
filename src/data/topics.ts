@@ -431,70 +431,65 @@ export const topics: Topic[] = [
   {
     id: 'love',
     title: 'Love & Compassion',
+    subtitle: 'Understanding God\'s Heart',
     description: 'Biblical teachings on love, compassion, and loving others',
-    shortDescription: 'Love God with all your heart and love your neighbor as yourself. True love is patient, kind, and selfless, reflecting God\'s love for us.',
+    shortDescription: 'God is the source of all true love. Jesus showed us what love looks like in action — patient, kind, selfless, and willing to sacrifice everything. The love of Christ is meant to change how we treat every person around us.',
+    bodyContent: [
+      'When Jesus was asked which commandment was the greatest, He did not begin with rules, traditions, or religious ceremonies. He pointed directly to love. He said we are to love God with all our heart, soul, mind, and strength, and to love our neighbor as ourselves. In those words, Jesus revealed something profound about the Christian life. At its core, Christianity is not merely about what we do. It is about whom we love.',
+      'The reason love stands at the center of Scripture is because it stands at the center of God\'s character. The Bible teaches that God is love. This does not mean that love is God, but that genuine love finds its source in Him. Every act of kindness, every expression of mercy, every moment of compassion reflects something of the God who created us.',
+      'When we look at the life of Jesus, we see what love looks like in action. He welcomed children when others overlooked them. He touched lepers when others avoided them. He forgave sinners when others condemned them. He wept with those who were grieving and showed compassion to those who were hurting. His love was not based on what people could give Him in return. It flowed from a heart completely devoted to His Father and completely committed to the good of others.',
+      'The world\'s idea of love often changes with feelings and circumstances. Biblical love is deeper than emotion alone. It is a commitment to seek the good of another person, even when it requires sacrifice. It is patient when patience is difficult. It is kind when kindness is unexpected. It chooses forgiveness over bitterness and generosity over selfishness.',
+      'The greatest display of love ever shown was the cross. Jesus willingly gave His life so that sinners could be forgiven and reconciled to God. When we understand the love Christ has shown us, we begin to see people differently. We become more patient with their weaknesses, more compassionate toward their struggles, and more willing to serve without expecting anything in return.',
+      'Love and compassion are not merely virtues Christians admire. They are qualities we are called to live because they reflect the heart of the Savior we follow.',
+    ],
+    whatWeLearns: [
+      'God is the source of all true love.',
+      'Jesus showed perfect love and compassion throughout His life.',
+      'Loving God and loving others are the greatest commandments.',
+      'Biblical love is patient, kind, selfless, and sacrificial.',
+      'The love of Christ should shape how we treat other people.',
+    ],
+    familyConversation: 'Can you think of a time when someone showed you kindness or compassion when you needed it most? How does that help you understand the love that God has shown to us through Jesus?',
+    prayer: 'Heavenly Father,\n\nThank You for loving us with a love that never fails. Thank You for sending Jesus Christ to show us what true love looks like and to save us through His sacrifice. Help us to love You with all our heart and to show kindness, patience, and compassion to the people around us. Teach us to reflect Your love in our words, our actions, and our attitudes each day.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '❤️',
+    heroGradient: 'linear-gradient(135deg, #4a0011 0%, #881337 30%, #be123c 60%, #fb7185 85%, #fecdd3 100%)',
+    accentColor: 'rose',
     order: 3,
     references: [
       {
+        book: 'Matthew',
+        chapter: 22,
+        verse: '37–39',
+        text: 'Jesus said unto him, Thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind. This is the first and great commandment. And the second is like unto it, Thou shalt love thy neighbour as thyself.',
+        translation: 'KJV'
+      },
+      {
         book: '1 Corinthians',
         chapter: 13,
-        verse: '4-7',
-        text: 'Love is patient and kind; love does not envy or boast; it is not arrogant or rude. It does not insist on its own way; it is not irritable or resentful; it does not rejoice at wrongdoing, but rejoices with the truth. Love bears all things, believes all things, hopes all things, endures all things.'
+        verse: '4–5',
+        text: 'Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up, Doth not behave itself unseemly, seeketh not her own, is not easily provoked, thinketh no evil;',
+        translation: 'KJV'
       },
       {
         book: 'John',
         chapter: 13,
-        verse: '34-35',
-        text: 'A new commandment I give to you, that you love one another: just as I have loved you, you also are to love one another. By this all people will know that you are my disciples, if you have love for one another.'
+        verse: '34–35',
+        text: 'A new commandment I give unto you, That ye love one another; as I have loved you, that ye also love one another. By this shall all men know that ye are my disciples, if ye have love one to another.',
+        translation: 'KJV'
       },
       {
         book: '1 John',
         chapter: 4,
-        verse: '7-8',
-        text: 'Beloved, let us love one another, for love is from God, and whoever loves has been born of God and knows God. Anyone who does not love does not know God, because God is love.'
-      },
-      {
-        book: 'Matthew',
-        chapter: 22,
-        verse: '37-39',
-        text: 'And he said to him, "You shall love the Lord your God with all your heart and with all your soul and with all your mind. This is the great and first commandment. And a second is like it: You shall love your neighbor as yourself."'
+        verse: '9–11',
+        text: 'In this was manifested the love of God toward us, because that God sent his only begotten Son into the world, that we might live through him. Herein is love, not that we loved God, but that he loved us, and sent his Son to be the propitiation for our sins. Beloved, if God so loved us, we ought also to love one another.',
+        translation: 'KJV'
       },
       {
         book: 'Romans',
-        chapter: 13,
-        verse: '10',
-        text: 'Love does no wrong to a neighbor; therefore love is the fulfilling of the law.'
-      },
-      {
-        book: 'Colossians',
-        chapter: 3,
-        verse: '14',
-        text: 'And above all these put on love, which binds everything together in perfect harmony.'
-      },
-      {
-        book: '1 Peter',
-        chapter: 4,
-        verse: '8',
-        text: 'Above all, keep loving one another earnestly, since love covers a multitude of sins.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 17,
-        verse: '17',
-        text: 'A friend loves at all times, and a brother is born for adversity.'
-      },
-      {
-        book: 'John',
-        chapter: 15,
-        verse: '12-13',
-        text: 'This is my commandment, that you love one another as I have loved you. Greater love has no one than this, that someone lay down his life for his friends.'
-      },
-      {
-        book: 'Galatians',
         chapter: 5,
-        verse: '22-23',
-        text: 'But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.'
+        verse: '8',
+        text: 'But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us.',
+        translation: 'KJV'
       }
     ]
   },
