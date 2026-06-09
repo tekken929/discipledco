@@ -108,7 +108,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               Most people open the Bible and do not know where to start.
             </h2>
             <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
-              Not because they do not care, but because no one ever showed them how to approach it. This page is not just a list of books. It is a guide to help you understand what you are reading, where to begin, and how it all connects.
+              Not because they do not care, but because no one ever showed them how to approach it. Our Reading Roadmap, will show you how to approach reading and what order we suggest to start in.  The Bible Overview will give you a summary of each book of the Bible, and our Foundation Course will give you an introductory summary class of everything Bible and Faith.
             </p>
           </div>
 
