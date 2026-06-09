@@ -413,6 +413,26 @@ export function Welcome() {
               </Link>
             </div>
           </div>
+
+          {/* Bible Lookup tile — 1/3 size, below Start Here */}
+          <div className="flex justify-center mt-3">
+            <Link
+              to="/bible-lookup"
+              className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-xl px-4 py-3.5 hover:shadow-lg transition-all hover:-translate-y-0.5 backdrop-blur-sm max-w-xs w-full"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-7 h-7 rounded-lg bg-teal-400/20 border border-teal-300/30 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-3.5 h-3.5 text-teal-300" />
+                </div>
+                <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Read The Bible</span>
+              </div>
+              <h3 className="text-sm font-bold text-white mb-1 leading-snug">Complete Bible</h3>
+              <p className="text-xs text-white/55 leading-relaxed mb-2.5">Browse any passage across KJV, ESV, NASB, NLT, and the World English Bible — five complete versions to read and compare.</p>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-300 group-hover:text-teal-200 transition-colors">
+                Open Bible Lookup <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
