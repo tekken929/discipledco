@@ -414,27 +414,25 @@ export function Welcome() {
             </div>
           </div>
 
-          {/* Bible Lookup tile — 1/3 size, below Start Here */}
-          <div className="flex justify-center mt-3">
-            <Link
-              to="/bible-lookup"
-              className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-xl px-4 py-3.5 hover:shadow-lg transition-all hover:-translate-y-0.5 backdrop-blur-sm max-w-xs w-full"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-7 h-7 rounded-lg bg-teal-400/20 border border-teal-300/30 flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-3.5 h-3.5 text-teal-300" />
-                </div>
-                <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Read The Bible</span>
-              </div>
-              <h3 className="text-sm font-bold text-white mb-1 leading-snug">Complete Bible</h3>
-              <p className="text-xs text-white/55 leading-relaxed mb-2.5">Browse any passage across KJV, ESV, NASB, NLT, and the World English Bible — five complete versions to read and compare.</p>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-300 group-hover:text-teal-200 transition-colors">
-                Open Bible Lookup <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </span>
-            </Link>
-          </div>
         </div>
       </section>
+
+      {/* Complete Bible tile — between hero and nav row */}
+      <div className="flex justify-center px-4 -mt-2 pb-6">
+        <Link
+          to="/bible-lookup"
+          className="group inline-flex items-center gap-3 bg-white dark:bg-gray-800 border border-teal-200 dark:border-teal-800 hover:border-teal-400 dark:hover:border-teal-600 rounded-xl px-4 py-2.5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
+        >
+          <div className="w-6 h-6 rounded-lg bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center flex-shrink-0">
+            <BookOpen className="w-3 h-3 text-teal-600 dark:text-teal-400" />
+          </div>
+          <div>
+            <span className="text-xs font-bold text-gray-900 dark:text-white">Complete Bible</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500 ml-1.5">— KJV, ESV, NASB, NLT & World English Bible</span>
+          </div>
+          <ArrowRight className="w-3.5 h-3.5 text-teal-500 dark:text-teal-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
+        </Link>
+      </div>
 
       {/* 4-TILE NAVIGATION ROW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-2">
