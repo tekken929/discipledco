@@ -418,9 +418,11 @@ export function Welcome() {
       </section>
 
       {/* Complete Bible tile — between hero and nav row */}
-      <div className="flex justify-center px-4 -mt-2 pb-6">
-        <Link
-          to="/bible-lookup"
+      <div className="flex justify-center px-4 mt-8 pb-6">
+        <a
+          href="/bible-lookup"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group inline-flex items-center gap-3 bg-white dark:bg-gray-800 border border-teal-200 dark:border-teal-800 hover:border-teal-400 dark:hover:border-teal-600 rounded-xl px-4 py-2.5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
         >
           <div className="w-6 h-6 rounded-lg bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center flex-shrink-0">
@@ -431,7 +433,7 @@ export function Welcome() {
             <span className="text-xs text-gray-400 dark:text-gray-500 ml-1.5">— KJV, ESV, NASB, NLT & World English Bible</span>
           </div>
           <ArrowRight className="w-3.5 h-3.5 text-teal-500 dark:text-teal-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
-        </Link>
+        </a>
       </div>
 
       {/* 4-TILE NAVIGATION ROW */}
