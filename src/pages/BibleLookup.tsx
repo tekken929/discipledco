@@ -7,7 +7,7 @@ interface Verse {
   text: string;
 }
 
-type Translation = 'web' | 'kjv';
+type Translation = 'kjv' | 'web' | 'esv' | 'nasb' | 'nlt';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -49,27 +49,34 @@ const CHAPTER_COUNTS: Record<string, number> = {
   '3 John': 1, Jude: 1, Revelation: 22,
 };
 
-const SAMPLE_PASSAGES = [
-  { book: 'Genesis', chapter: 1, label: 'Genesis 1 — In the Beginning' },
-  { book: 'Psalms', chapter: 23, label: 'Psalm 23 — The Lord is My Shepherd' },
-  { book: 'Isaiah', chapter: 53, label: 'Isaiah 53 — The Suffering Servant' },
-  { book: 'John', chapter: 1, label: 'John 1 — The Word Made Flesh' },
-  { book: 'John', chapter: 3, label: 'John 3 — Born Again' },
-  { book: 'Romans', chapter: 8, label: 'Romans 8 — Life in the Spirit' },
-  { book: 'Matthew', chapter: 5, label: 'Matthew 5 — Sermon on the Mount' },
-  { book: '1 Corinthians', chapter: 13, label: '1 Corinthians 13 — Love Chapter' },
-];
-
-const TRANSLATION_INFO: Record<Translation, { label: string; full: string; description: string }> = {
+const TRANSLATION_INFO: Record<Translation, { label: string; full: string; description: string; licensed?: boolean }> = {
+  kjv: {
+    label: 'KJV',
+    full: 'King James Version',
+    description: 'Classic 1611 — Public Domain',
+  },
   web: {
     label: 'WEB',
     full: 'World English Bible',
     description: 'Modern English — Public Domain',
   },
-  kjv: {
-    label: 'KJV',
-    full: 'King James Version',
-    description: 'Classic 1611 Translation — Public Domain',
+  esv: {
+    label: 'ESV',
+    full: 'English Standard Version',
+    description: 'Modern literal — 2016',
+    licensed: true,
+  },
+  nasb: {
+    label: 'NASB',
+    full: 'New American Standard Bible',
+    description: 'Precise & scholarly — 1995',
+    licensed: true,
+  },
+  nlt: {
+    label: 'NLT',
+    full: 'New Living Translation',
+    description: 'Readable & clear — 2015',
+    licensed: true,
   },
 };
 
@@ -81,6 +88,8 @@ export function BibleLookup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const [loadedBook, setLoadedBook] = useState('John');
+  const [loadedChapter, setLoadedChapter] = useState(3);
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
 
   const chapterCount = CHAPTER_COUNTS[selectedBook] || 1;
@@ -100,10 +109,15 @@ export function BibleLookup() {
       const data = await res.json();
       if (data.error) throw new Error(data.error);
       setVerses(data.verses || []);
+      setLoadedBook(book);
+      setLoadedChapter(chapter);
       setLoadedTranslation(trans);
       setLoaded(true);
-    } catch {
-      setError('Could not load this chapter. Please try again.');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Could not load this chapter.';
+      setError(msg.includes('API key') || msg.includes('not configured')
+        ? msg
+        : 'Could not load this chapter. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -117,12 +131,6 @@ export function BibleLookup() {
     fetchVerses(selectedBook, selectedChapter, translation);
   }
 
-  function handleSample(book: string, chapter: number) {
-    setSelectedBook(book);
-    setSelectedChapter(chapter);
-    fetchVerses(book, chapter, translation);
-  }
-
   function handleBookChange(book: string) {
     setSelectedBook(book);
     setSelectedChapter(1);
@@ -131,7 +139,7 @@ export function BibleLookup() {
   function handleTranslationChange(t: Translation) {
     setTranslation(t);
     if (loaded) {
-      fetchVerses(selectedBook, selectedChapter, t);
+      fetchVerses(loadedBook, loadedChapter, t);
     }
   }
 
@@ -148,11 +156,11 @@ export function BibleLookup() {
             </div>
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
-              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Read any chapter — KJV or World English Bible</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">KJV, WEB, ESV, NASB &amp; NLT</p>
             </div>
           </div>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-4 max-w-2xl">
-            Select a translation, book, and chapter below — or jump to a featured passage.
+            Select a translation, book, and chapter to read.
           </p>
         </div>
 
@@ -160,15 +168,31 @@ export function BibleLookup() {
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
 
-            {/* Translation toggle */}
+            {/* Translation selector */}
             <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5">
               <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Translation</h2>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 {(['kjv', 'web'] as Translation[]).map((t) => (
                   <button
                     key={t}
                     onClick={() => handleTranslationChange(t)}
                     className={`flex flex-col items-center gap-1 py-3 px-2 rounded-xl border-2 font-semibold text-sm transition-all ${
+                      translation === t
+                        ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
+                        : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                    }`}
+                  >
+                    <span className="text-base font-bold">{TRANSLATION_INFO[t].label}</span>
+                    <span className="text-[10px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {(['esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => handleTranslationChange(t)}
+                    className={`flex flex-col items-center gap-1 py-3 px-1 rounded-xl border-2 font-semibold text-sm transition-all ${
                       translation === t
                         ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
                         : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
@@ -246,26 +270,6 @@ export function BibleLookup() {
                 </button>
               </div>
             </div>
-
-            {/* Featured passages */}
-            <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5">
-              <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Featured Passages</h2>
-              <div className="space-y-1.5">
-                {SAMPLE_PASSAGES.map((s) => (
-                  <button
-                    key={`${s.book}-${s.chapter}`}
-                    onClick={() => handleSample(s.book, s.chapter)}
-                    className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                      selectedBook === s.book && selectedChapter === s.chapter && loaded
-                        ? 'bg-teal-100 dark:bg-teal-900/40 text-teal-800 dark:text-teal-200 font-semibold'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700/50'
-                    }`}
-                  >
-                    {s.label}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Main reading pane */}
@@ -281,9 +285,22 @@ export function BibleLookup() {
               )}
 
               {error && (
-                <div className="flex items-center gap-3 p-8 text-red-500">
-                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  <p className="text-sm">{error}</p>
+                <div className="p-8">
+                  <div className="flex items-start gap-3 text-red-500">
+                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-semibold">Could not load this chapter</p>
+                      <p className="text-sm mt-1 text-red-400">{error}</p>
+                      {TRANSLATION_INFO[translation]?.licensed && (
+                        <p className="text-xs mt-3 text-gray-500 dark:text-gray-400">
+                          ESV, NASB &amp; NLT require a free API key from{' '}
+                          <span className="font-semibold">scripture.api.bible</span>. Add it as{' '}
+                          <code className="bg-gray-100 dark:bg-gray-800 px-1 rounded">BIBLE_API_KEY</code>{' '}
+                          in your Supabase edge function secrets.
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -293,7 +310,7 @@ export function BibleLookup() {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                          {selectedBook} {selectedChapter}
+                          {loadedBook} {loadedChapter}
                         </h2>
                         <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                           {info.full} &mdash; {verses.length} verses
