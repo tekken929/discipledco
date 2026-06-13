@@ -496,70 +496,67 @@ export const topics: Topic[] = [
   {
     id: 'fear-anxiety',
     title: 'Fear & Anxiety',
+    subtitle: 'Understanding God\'s Heart',
     description: 'Finding peace and overcoming fear through faith in God',
     shortDescription: 'God has not given us a spirit of fear. Cast your anxieties on Him, trust in His presence, and find peace that surpasses all understanding.',
+    bodyContent: [
+      'Fear is one of the most common experiences in the human heart. Children fear the dark. Adults fear the future. We worry about our families, our health, our finances, and countless things beyond our control. Ever since sin entered the world, fear has been a companion that follows humanity wherever it goes.',
+      'Yet when we open the Scriptures, we find that one of God\'s most repeated commands is simple: "Fear not."',
+      'This command is not given because there is nothing to fear. The world contains real dangers, real suffering, and real uncertainty. God does not ask us to pretend those things do not exist. Instead, He continually directs our attention away from the size of our problems and toward the greatness of His presence.',
+      'The Bible teaches that fear grows when we focus on what we cannot control. Peace grows when we remember who is in control. Throughout Scripture, God reminds His people that He is with them. He was with Moses before Pharaoh. He was with Joshua before entering the Promised Land. He was with David as he faced Goliath. He was with the disciples during storms at sea. In every circumstance, God\'s presence became the source of courage.',
+      'Anxiety often comes from carrying burdens we were never meant to carry alone. We replay possible outcomes in our minds and imagine problems that may never come. We try to solve tomorrow\'s troubles while forgetting the God who has been faithful today.',
+      'This is why Scripture repeatedly invites us to bring our concerns to the Lord. Prayer is not simply presenting a list of requests. It is an act of trust. It is placing our fears into the hands of a Father who knows us completely and loves us perfectly.',
+      'The peace God offers is different from the peace the world provides. The world finds peace when circumstances improve. God\'s peace can remain even when circumstances are difficult. It comes from knowing that our lives are held securely by the One who rules over all things.',
+      'The answer to fear is not confidence in ourselves. The answer to fear is confidence in God. When we remember His promises, His power, and His presence, we discover that even in the middle of uncertainty, our hearts can rest.',
+    ],
+    whatWeLearns: [
+      'Fear and anxiety are common struggles for every person.',
+      'God repeatedly tells His people not to fear because He is with them.',
+      'Prayer allows us to bring our worries to God.',
+      'God\'s peace is not dependent upon our circumstances.',
+      'Trusting God\'s character helps us face uncertainty with courage.',
+    ],
+    familyConversation: 'What is something that causes you to feel worried or afraid, and how can remembering God\'s promises help you trust Him in that situation?',
+    prayer: 'Heavenly Father,\n\nThank You for being with us in every season of life. Thank You that we never face our fears alone and that nothing is beyond Your control. Help us to bring our worries to You instead of carrying them ourselves. Fill our hearts with Your peace, strengthen our faith, and teach us to trust You more each day. Remind us that Your presence is greater than any fear we may face.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '☮️',
+    heroGradient: 'linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 75%, #4e9af1 100%)',
+    accentColor: 'sky',
     order: 4,
     references: [
       {
         book: 'Philippians',
         chapter: 4,
-        verse: '6-7',
-        text: 'Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.'
-      },
-      {
-        book: 'Isaiah',
-        chapter: 41,
-        verse: '10',
-        text: 'Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you, I will uphold you with my righteous right hand.'
-      },
-      {
-        book: '2 Timothy',
-        chapter: 1,
-        verse: '7',
-        text: 'For God gave us a spirit not of fear but of power and love and self-control.'
-      },
-      {
-        book: 'Psalm',
-        chapter: 23,
-        verse: '4',
-        text: 'Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me.'
+        verse: '6–7',
+        text: 'Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.',
+        translation: 'KJV'
       },
       {
         book: '1 Peter',
         chapter: 5,
         verse: '7',
-        text: 'Casting all your anxieties on him, because he cares for you.'
+        text: 'Casting all your care upon him; for he careth for you.',
+        translation: 'KJV'
       },
       {
-        book: 'Matthew',
-        chapter: 6,
-        verse: '34',
-        text: 'Therefore do not be anxious about tomorrow, for tomorrow will be anxious for itself. Sufficient for the day is its own trouble.'
+        book: 'Isaiah',
+        chapter: 41,
+        verse: '10',
+        text: 'Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.',
+        translation: 'KJV'
       },
       {
-        book: 'Proverbs',
-        chapter: 3,
-        verse: '5-6',
-        text: 'Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths.'
-      },
-      {
-        book: 'John',
-        chapter: 14,
-        verse: '27',
-        text: 'Peace I leave with you; my peace I give to you. Not as the world gives do I give to you. Let not your hearts be troubled, neither let them be afraid.'
+        book: '2 Timothy',
+        chapter: 1,
+        verse: '7',
+        text: 'For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.',
+        translation: 'KJV'
       },
       {
         book: 'Psalm',
         chapter: 56,
-        verse: '3',
-        text: 'When I am afraid, I put my trust in you.'
-      },
-      {
-        book: 'Romans',
-        chapter: 8,
-        verse: '38-39',
-        text: 'For I am sure that neither death nor life, nor angels nor rulers, nor things present nor things to come, nor powers, nor height nor depth, nor anything else in all creation, will be able to separate us from the love of God in Christ Jesus our Lord.'
+        verse: '3–4',
+        text: 'What time I am afraid, I will trust in thee. In God I will praise his word, in God I have put my trust; I will not fear what flesh can do unto me.',
+        translation: 'KJV'
       }
     ]
   },
