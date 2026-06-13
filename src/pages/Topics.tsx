@@ -344,18 +344,18 @@ export function Topics() {
 
         {/* Go Deeper bridge to course */}
         <div className="mt-16 theme-card rounded-2xl border-2 p-8 md:p-10 text-center">
-          <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Go Deeper</p>
+          <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">Ready to Go Deeper?</p>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            These topics connect to a larger journey.
+            Start the Foundation Course
           </h3>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto mb-8">
-            Grace, faith, sin, purpose, identity — these are not isolated subjects. They are threads woven through all of Scripture. Module 8 of the Foundation course walks through each one in depth.
+            These topics are just the beginning. The Foundation Course takes you through the essential truths of Scripture — from who God is and what He has done, to what it means to follow Jesus in everyday life.
           </p>
           <Link
-            to="/courses/module/module-8"
+            to="/courses"
             className="inline-flex items-center gap-2 px-6 py-3 theme-primary-button rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105"
           >
-            Explore Module 8 — Going Deeper
+            Begin the Foundation Course
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

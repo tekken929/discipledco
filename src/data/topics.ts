@@ -555,70 +555,67 @@ export const topics: Topic[] = [
   {
     id: 'wisdom',
     title: 'Wisdom & Discernment',
+    subtitle: 'Understanding God\'s Heart',
     description: 'Seeking godly wisdom and making righteous decisions',
     shortDescription: 'The fear of the Lord is the beginning of wisdom. Ask God for wisdom and He will give generously, guiding your path and decisions.',
+    bodyContent: [
+      'There is a difference between knowledge and wisdom. Knowledge is knowing facts. Wisdom is knowing what to do with them. A person may know many things and still make foolish decisions. Wisdom is the God-given ability to see life from His perspective and to walk according to His truth.',
+      'The Bible teaches that wisdom does not begin with human intelligence, education, or experience. It begins with the fear of the Lord. This does not mean being terrified of God. Rather, it means approaching Him with reverence, awe, and humble submission. It is recognizing that He is the Creator, we are His creatures, and His ways are higher than our own.',
+      'From the beginning of Scripture, we see the consequences of rejecting God\'s wisdom. Adam and Eve believed they could determine right and wrong for themselves and chose their own path rather than trusting God\'s Word. Ever since then, humanity has repeatedly tried to build life on human understanding alone. The result has often been confusion, brokenness, and disappointment.',
+      'God, however, delights in giving wisdom to those who seek it. James tells us that if we lack wisdom, we should ask God, who gives generously and without reproach. What an encouraging promise. We do not need to navigate life\'s challenges alone. The Lord is willing to guide His people through His Word, His Spirit, and His providential care.',
+      'Discernment is closely connected to wisdom. If wisdom helps us know what is right, discernment helps us distinguish between truth and error. Not everything that sounds good is good. Not every voice that claims to speak truth actually does. Throughout Scripture, believers are called to test what they hear against God\'s revealed Word.',
+      'This becomes increasingly important in a world filled with competing ideas, opinions, and influences. The wise person does not simply follow the crowd or trust every popular teaching. Instead, they measure everything by the standard of Scripture and seek God\'s direction before making decisions.',
+      'The life of Solomon offers both an encouragement and a warning. When he first became king, he asked God for wisdom rather than riches or power, and God granted his request abundantly. Yet later in life, Solomon drifted from the wisdom he had received because he stopped guarding his heart. His story reminds us that wisdom is not merely something we acquire. It is something we must continue to pursue.',
+      'True wisdom ultimately points us to Jesus Christ. The New Testament describes Him as the wisdom of God. In Him we find truth without error, guidance without confusion, and a perfect example of how life should be lived. The more closely we walk with Christ, the more wisdom and discernment will shape our lives.',
+    ],
+    whatWeLearns: [
+      'Wisdom begins with a reverent fear of the Lord.',
+      'God generously gives wisdom to those who ask Him.',
+      'Discernment helps us distinguish truth from error.',
+      'Scripture is the ultimate standard for wise decision making.',
+      'Jesus Christ is the perfect example of God\'s wisdom.',
+    ],
+    familyConversation: 'Can you think of a decision you have had to make recently? What would it look like to seek God\'s wisdom through prayer and Scripture before deciding what to do?',
+    prayer: 'Heavenly Father,\n\nThank You for being the source of all wisdom and truth. Thank You for not leaving us to figure out life on our own but inviting us to seek Your guidance. Help us to fear You rightly, to trust Your Word completely, and to discern what is true in a world filled with many voices. Give us wisdom for our decisions, humility to follow Your direction, and hearts that desire Your will above our own. Teach us to walk closely with Jesus Christ, in whom are hidden all the treasures of wisdom and knowledge.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '📖',
+    heroGradient: 'linear-gradient(135deg, #1c0a00 0%, #431407 30%, #7c2d12 60%, #c2410c 85%, #fed7aa 100%)',
+    accentColor: 'orange',
     order: 8,
     references: [
-      {
-        book: 'James',
-        chapter: 1,
-        verse: '5',
-        text: 'If any of you lacks wisdom, let him ask God, who gives generously to all without reproach, and it will be given him.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 3,
-        verse: '5-6',
-        text: 'Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths.'
-      },
       {
         book: 'Proverbs',
         chapter: 9,
         verse: '10',
-        text: 'The fear of the Lord is the beginning of wisdom, and the knowledge of the Holy One is insight.'
+        text: 'The fear of the LORD is the beginning of wisdom: and the knowledge of the holy is understanding.',
+        translation: 'KJV'
+      },
+      {
+        book: 'James',
+        chapter: 1,
+        verse: '5',
+        text: 'If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Proverbs',
+        chapter: 3,
+        verse: '5–6',
+        text: 'Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Hebrews',
+        chapter: 5,
+        verse: '14',
+        text: 'But strong meat belongeth to them that are of full age, even those who by reason of use have their senses exercised to discern both good and evil.',
+        translation: 'KJV'
       },
       {
         book: 'Colossians',
-        chapter: 3,
-        verse: '16',
-        text: 'Let the word of Christ dwell in you richly, teaching and admonishing one another in all wisdom, singing psalms and hymns and spiritual songs, with thankfulness in your hearts to God.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 4,
-        verse: '7',
-        text: 'The beginning of wisdom is this: Get wisdom, and whatever you get, get insight.'
-      },
-      {
-        book: 'Psalm',
-        chapter: 119,
-        verse: '105',
-        text: 'Your word is a lamp to my feet and a light to my path.'
-      },
-      {
-        book: 'Proverbs',
         chapter: 2,
-        verse: '6',
-        text: 'For the Lord gives wisdom; from his mouth come knowledge and understanding.'
-      },
-      {
-        book: 'Ecclesiastes',
-        chapter: 7,
-        verse: '12',
-        text: 'For the protection of wisdom is like the protection of money, and the advantage of knowledge is that wisdom preserves the life of him who has it.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 12,
-        verse: '15',
-        text: 'The way of a fool is right in his own eyes, but a wise man listens to advice.'
-      },
-      {
-        book: '1 Corinthians',
-        chapter: 3,
-        verse: '19',
-        text: 'For the wisdom of this world is folly with God. For it is written, "He catches the wise in their craftiness."'
+        verse: '2–3',
+        text: 'That their hearts might be comforted, being knit together in love, and unto all riches of the full assurance of understanding, to the acknowledgment of the mystery of God, and of the Father, and of Christ; In whom are hid all the treasures of wisdom and knowledge.',
+        translation: 'KJV'
       }
     ]
   },
@@ -695,70 +692,66 @@ export const topics: Topic[] = [
   {
     id: 'faith',
     title: 'Faith & Trust',
+    subtitle: 'Understanding God\'s Heart',
     description: 'Building faith and trusting in God\'s plan for your life',
     shortDescription: 'Faith is confidence in what we hope for and assurance about what we cannot see. Trust God completely and walk by faith, not by sight.',
+    bodyContent: [
+      'Faith is one of the most important themes in all of Scripture. From Genesis to Revelation, we find ordinary people learning to trust an extraordinary God. Some trusted Him quickly. Others struggled along the way. Yet throughout every story, one truth remains constant: God is always faithful, even when His people are weak.',
+      'The Bible defines faith as "the substance of things hoped for, the evidence of things not seen" (Hebrews 11:1). Faith is not wishful thinking or blind optimism. Biblical faith is confidence in the character of God. It is trusting what He has said because we know who He is.',
+      'Every day we trust things we cannot fully see. We trust that a bridge will hold our weight. We trust that the sun will rise in the morning. We trust the people who have proven themselves trustworthy over time. In a much greater way, faith is trusting the God who has proven Himself faithful throughout history and throughout our lives.',
+      'When Abraham left his homeland, he did not know where God would lead him. When Moses stood before Pharaoh, he could not see how God would deliver Israel. When David faced Goliath, the outcome was far from certain. Yet each of these men chose to trust God rather than their circumstances. Their confidence was not found in their own strength but in the promises of the Lord.',
+      'Trust becomes especially important when life does not make sense. There are moments when prayers seem unanswered, when difficulties linger longer than expected, and when the future feels uncertain. During those seasons, faith does not mean pretending everything is easy. Faith means believing that God is still good, still wise, and still working even when we cannot see the whole picture.',
+      'The greatest example of trust is found in Jesus Christ. He perfectly trusted His Father in every circumstance, even when that path led to the cross. Through His obedience, He demonstrated what complete trust in God looks like.',
+      'Walking by faith does not mean having all the answers. It means knowing the One who does. God never asks us to place our trust in chance, luck, or human wisdom. He calls us to trust Him because His promises are true, His character never changes, and His faithfulness endures forever.',
+    ],
+    whatWeLearns: [
+      'Faith is confidence in God\'s character and promises.',
+      'Trusting God is not blind faith but confidence in His faithfulness.',
+      'God often calls His people to trust Him before they can see the outcome.',
+      'Faith grows when we remember God\'s past faithfulness.',
+      'Walking by faith means relying on God even when circumstances are uncertain.',
+    ],
+    familyConversation: 'Can you think of a time when you had to trust God even though you could not see how everything would work out? What did you learn about Him through that experience?',
+    prayer: 'Heavenly Father,\n\nThank You for being completely trustworthy in every season of life. Thank You for keeping Your promises and remaining faithful even when we struggle to understand what You are doing. Help us to trust You with our future, our worries, and our decisions. Strengthen our faith when it feels weak and teach us to walk by faith rather than by sight. May our confidence rest not in ourselves but in Your unchanging character and Your perfect wisdom.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '✨',
+    heroGradient: 'linear-gradient(135deg, #0a1628 0%, #1e3a5f 30%, #1d4ed8 60%, #60a5fa 85%, #dbeafe 100%)',
+    accentColor: 'slate',
     order: 7,
     references: [
       {
         book: 'Hebrews',
         chapter: 11,
         verse: '1',
-        text: 'Now faith is the assurance of things hoped for, the conviction of things not seen.'
+        text: 'Now faith is the substance of things hoped for, the evidence of things not seen.',
+        translation: 'KJV'
       },
       {
         book: 'Proverbs',
         chapter: 3,
-        verse: '5-6',
-        text: 'Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths.'
-      },
-      {
-        book: 'Romans',
-        chapter: 10,
-        verse: '17',
-        text: 'So faith comes from hearing, and hearing through the word of Christ.'
-      },
-      {
-        book: 'Mark',
-        chapter: 11,
-        verse: '22-24',
-        text: 'And Jesus answered them, "Have faith in God. Truly, I say to you, whoever says to this mountain, \'Be taken up and thrown into the sea,\' and does not doubt in his heart, but believes that what he says will come to pass, it will be done for him."'
+        verse: '5–6',
+        text: 'Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.',
+        translation: 'KJV'
       },
       {
         book: '2 Corinthians',
         chapter: 5,
         verse: '7',
-        text: 'For we walk by faith, not by sight.'
+        text: '(For we walk by faith, not by sight:)',
+        translation: 'KJV'
       },
       {
-        book: 'Matthew',
-        chapter: 17,
-        verse: '20',
-        text: 'He said to them, "Because of your little faith. For truly, I say to you, if you have faith like a grain of mustard seed, you will say to this mountain, \'Move from here to there,\' and it will move, and nothing will be impossible for you."'
+        book: 'Isaiah',
+        chapter: 26,
+        verse: '3–4',
+        text: 'Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee. Trust ye in the LORD for ever: for in the LORD JEHOVAH is everlasting strength.',
+        translation: 'KJV'
       },
       {
-        book: 'James',
-        chapter: 2,
-        verse: '17',
-        text: 'So also faith by itself, if it does not have works, is dead.'
-      },
-      {
-        book: 'Ephesians',
-        chapter: 2,
-        verse: '8-9',
-        text: 'For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast.'
-      },
-      {
-        book: 'Hebrews',
-        chapter: 11,
-        verse: '6',
-        text: 'And without faith it is impossible to please him, for whoever would draw near to God must believe that he exists and that he rewards those who seek him.'
-      },
-      {
-        book: '1 Peter',
-        chapter: 1,
-        verse: '7',
-        text: 'So that the tested genuineness of your faith—more precious than gold that perishes though it is tested by fire—may be found to result in praise and glory and honor at the revelation of Jesus Christ.'
+        book: 'Psalm',
+        chapter: 56,
+        verse: '3–4',
+        text: 'What time I am afraid, I will trust in thee. In God I will praise his word, in God I have put my trust; I will not fear what flesh can do unto me.',
+        translation: 'KJV'
       }
     ]
   },
