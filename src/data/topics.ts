@@ -622,70 +622,67 @@ export const topics: Topic[] = [
   {
     id: 'anger',
     title: 'Anger & Patience',
+    subtitle: 'Understanding God\'s Heart',
     description: 'Controlling anger and cultivating patience in difficult times',
     shortDescription: 'Be slow to anger and quick to listen. A soft answer turns away wrath, and patience demonstrates godly understanding and self-control.',
+    bodyContent: [
+      'Anger is a powerful emotion. It can rise quickly when we feel hurt, misunderstood, treated unfairly, or disappointed. Every person experiences anger at some point in life. The question is not whether we will feel anger, but what we will do with it.',
+      'The Bible does not teach that all anger is sinful. There are times when anger reflects a righteous concern for what is true, good, and just. Jesus Himself displayed righteous anger when He cleansed the temple because God\'s house had been turned into a place of corruption. Yet Scripture repeatedly warns us that human anger often moves in a very different direction. Left unchecked, it can lead to harsh words, damaged relationships, bitterness, and sinful actions.',
+      'One of the remarkable truths found throughout the Bible is that God Himself is "slow to anger." Although humanity continually rebels against Him, God demonstrates extraordinary patience. He warns before He judges. He calls people to repentance. He shows mercy again and again. His patience is not weakness. It is an expression of His wisdom, grace, and self-control.',
+      'Because believers are called to reflect God\'s character, we are also called to be slow to anger. This does not mean ignoring problems or pretending everything is fine. Rather, it means responding thoughtfully instead of reacting impulsively. It means listening before speaking, seeking understanding before judgment, and allowing wisdom to guide our emotions.',
+      'Patience is one of the clearest evidences of spiritual maturity. A patient person is not someone who never faces frustration. A patient person has learned to trust God enough to remain steady when difficulties arise. Patience helps us endure hardships, show grace to others, and wait on God\'s timing instead of demanding our own.',
+      'The book of Proverbs frequently contrasts the wise person with the foolish person. The foolish person quickly loses control of their temper, while the wise person exercises restraint. A harsh response often escalates conflict, but a gentle answer can calm a tense situation. This principle is not merely practical advice. It reflects the wisdom of God Himself.',
+      'The ultimate example of patience is found in Jesus Christ. He endured rejection, false accusations, betrayal, and suffering without responding in sinful anger. He entrusted Himself to His Father and demonstrated perfect self-control even under tremendous pressure.',
+      'In a world where anger often seems celebrated and outrage is constantly encouraged, Scripture calls believers to a different path. We are called to listen carefully, speak thoughtfully, and respond with patience that reflects the character of Christ. As God\'s Spirit works within us, our anger becomes governed by wisdom, and our patience becomes a testimony to the transforming power of the Gospel.',
+    ],
+    whatWeLearns: [
+      'Anger itself is not always sinful, but it must be controlled.',
+      'God is slow to anger and rich in mercy.',
+      'Patience reflects spiritual maturity and trust in God.',
+      'A gentle response can prevent conflict from growing worse.',
+      'Jesus Christ demonstrated perfect patience and self-control.',
+    ],
+    familyConversation: 'Think about a time when you became angry. Looking back, how might listening more carefully, speaking more gently, or exercising patience have changed the outcome?',
+    prayer: 'Heavenly Father,\n\nThank You for being patient with us even when we fail and fall short. Thank You for showing mercy instead of giving us what our sins deserve. Help us to be slow to anger, quick to listen, and careful with our words. Teach us to respond with wisdom when we are frustrated and to trust You when circumstances are difficult. May the patience of Christ be seen in our attitudes, our conversations, and our relationships with others.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '🧘',
+    heroGradient: 'linear-gradient(135deg, #1a0a0a 0%, #4c0519 30%, #881337 60%, #be123c 85%, #fecdd3 100%)',
+    accentColor: 'red',
     order: 9,
     references: [
       {
-        book: 'Ephesians',
-        chapter: 4,
-        verse: '26-27',
-        text: 'Be angry and do not sin; do not let the sun go down on your anger, and give no opportunity to the devil.'
+        book: 'James',
+        chapter: 1,
+        verse: '19–20',
+        text: 'Wherefore, my beloved brethren, let every man be swift to hear, slow to speak, slow to wrath: For the wrath of man worketh not the righteousness of God.',
+        translation: 'KJV'
       },
       {
         book: 'Proverbs',
         chapter: 15,
         verse: '1',
-        text: 'A soft answer turns away wrath, but a harsh word stirs up anger.'
-      },
-      {
-        book: 'James',
-        chapter: 1,
-        verse: '19-20',
-        text: 'Know this, my beloved brothers: let every person be quick to hear, slow to speak, slow to anger; for the anger of man does not produce the righteousness of God.'
+        text: 'A soft answer turneth away wrath: but grievous words stir up anger.',
+        translation: 'KJV'
       },
       {
         book: 'Proverbs',
         chapter: 14,
         verse: '29',
-        text: 'Whoever is slow to anger has great understanding, but he who has a hasty temper exalts folly.'
+        text: 'He that is slow to wrath is of great understanding: but he that is hasty of spirit exalteth folly.',
+        translation: 'KJV'
       },
       {
-        book: 'Proverbs',
-        chapter: 16,
-        verse: '32',
-        text: 'Whoever is slow to anger is better than the mighty, and he who rules his spirit than he who takes a city.'
+        book: 'Ephesians',
+        chapter: 4,
+        verse: '26–27',
+        text: 'Be ye angry, and sin not: let not the sun go down upon your wrath: Neither give place to the devil.',
+        translation: 'KJV'
       },
       {
         book: 'Colossians',
         chapter: 3,
-        verse: '8',
-        text: 'But now you must put them all away: anger, wrath, malice, slander, and obscene talk from your mouth.'
-      },
-      {
-        book: 'Ecclesiastes',
-        chapter: 7,
-        verse: '9',
-        text: 'Be not quick in your spirit to become angry, for anger lodges in the heart of fools.'
-      },
-      {
-        book: 'Psalm',
-        chapter: 37,
-        verse: '8',
-        text: 'Refrain from anger, and forsake wrath! Fret not yourself; it tends only to evil.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 29,
-        verse: '11',
-        text: 'A fool gives full vent to his spirit, but a wise man quietly holds it back.'
-      },
-      {
-        book: 'Romans',
-        chapter: 12,
-        verse: '19',
-        text: 'Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, "Vengeance is mine, I will repay, says the Lord."'
+        verse: '12–13',
+        text: 'Put on therefore, as the elect of God, holy and beloved, bowels of mercies, kindness, humbleness of mind, meekness, longsuffering; Forbearing one another, and forgiving one another...',
+        translation: 'KJV'
       }
     ]
   },
