@@ -291,70 +291,67 @@ export const topics: Topic[] = [
   {
     id: 'forgiveness',
     title: 'Forgiveness',
+    subtitle: 'Understanding God\'s Heart',
     description: 'The importance of forgiving others as God forgives us',
     shortDescription: 'As God forgives us through Christ, we are called to forgive others. Releasing resentment frees us and reflects God\'s merciful character to the world.',
+    bodyContent: [
+      'Few things are more difficult than forgiveness. When someone hurts us, speaks against us, betrays our trust, or causes deep pain, our natural response is often to hold tightly to the hurt. We replay the offense in our minds, revisit the wound, and sometimes convince ourselves that holding on to resentment somehow protects us from being hurt again.',
+      'Yet Scripture points us toward a different path.',
+      'The Bible teaches that forgiveness begins with understanding how much we ourselves have been forgiven. Every believer stands before God as a sinner who has received mercy through Jesus Christ. Our greatest debt was not owed to another person but to a holy God. Through the death and resurrection of Christ, that debt was paid in full. The forgiveness God extends to His people is complete, undeserved, and freely given through grace.',
+      'When we truly grasp the depth of God\'s forgiveness toward us, it changes how we view the offenses of others. This does not mean that sin is ignored or that justice no longer matters. Forgiveness is not pretending that wrong actions were acceptable. Rather, forgiveness is choosing to release our desire for personal revenge and entrusting judgment to God.',
+      'Jesus demonstrated this perfectly. Even while suffering on the cross, He prayed for those who were crucifying Him. His words reveal the heart of God toward sinners and remind us that mercy often shines brightest when it is least expected.',
+      'Forgiveness is not always a single moment. Sometimes it is a choice we make repeatedly as old wounds resurface. It may not erase painful memories, and it does not always restore broken relationships. Yet forgiveness frees us from the prison of bitterness. It allows us to move forward without carrying the weight of resentment that can slowly harden the heart.',
+      'The world often views forgiveness as weakness. Scripture presents it as strength. It takes courage to release an offense into God\'s hands. It takes faith to trust that God sees every injustice and will do what is right.',
+      'When believers forgive others, they reflect something beautiful about the character of God. They become living reminders of the mercy they themselves have received through Christ. In a world filled with anger, division, and revenge, forgiveness shines as a powerful testimony to the transforming grace of God.',
+    ],
+    whatWeLearns: [
+      'God forgives sinners through Jesus Christ.',
+      'Forgiveness is rooted in understanding God\'s mercy toward us.',
+      'Forgiving others does not mean pretending sin did not happen.',
+      'Bitterness harms the heart, while forgiveness brings freedom.',
+      'Forgiveness reflects God\'s character to the world.',
+    ],
+    familyConversation: 'Can you think of a time when someone forgave you for something you did wrong? How does God\'s forgiveness toward us help us learn to forgive others, even when it is difficult?',
+    prayer: 'Heavenly Father,\n\nThank You for the incredible forgiveness You have shown us through Jesus Christ. Thank You for removing our sins and extending mercy when we could never earn it ourselves. Help us to release bitterness, anger, and resentment when others hurt us. Give us hearts that are quick to forgive and willing to trust You with every injustice. May our lives reflect the same grace and mercy that You have shown to us.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '🕊️',
+    heroGradient: 'linear-gradient(135deg, #0c1a2e 0%, #064e3b 30%, #065f46 60%, #059669 85%, #6ee7b7 100%)',
+    accentColor: 'green',
     order: 6,
     references: [
       {
-        book: 'Matthew',
-        chapter: 6,
-        verse: '14-15',
-        text: 'For if you forgive others their trespasses, your heavenly Father will also forgive you, but if you do not forgive others their trespasses, neither will your Father forgive your trespasses.'
-      },
-      {
         book: 'Ephesians',
         chapter: 4,
-        verse: '32',
-        text: 'Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you.'
+        verse: '31–32',
+        text: 'Let all bitterness, and wrath, and anger, and clamour, and evil speaking, be put away from you, with all malice: And be ye kind one to another, tenderhearted, forgiving one another, even as God for Christ\'s sake hath forgiven you.',
+        translation: 'KJV'
       },
       {
         book: 'Colossians',
         chapter: 3,
         verse: '13',
-        text: 'Bearing with one another and, if one has a complaint against another, forgiving each other; as the Lord has forgiven you, so you also must forgive.'
-      },
-      {
-        book: 'Luke',
-        chapter: 6,
-        verse: '37',
-        text: 'Judge not, and you will not be judged; condemn not, and you will not be condemned; forgive, and you will be forgiven.'
+        text: 'Forbearing one another, and forgiving one another, if any man have a quarrel against any: even as Christ forgave you, so also do ye.',
+        translation: 'KJV'
       },
       {
         book: 'Matthew',
-        chapter: 18,
-        verse: '21-22',
-        text: 'Then Peter came up and said to him, "Lord, how often will my brother sin against me, and I forgive him? As many as seven times?" Jesus said to him, "I do not say to you seven times, but seventy-seven times."'
+        chapter: 6,
+        verse: '14–15',
+        text: 'For if ye forgive men their trespasses, your heavenly Father will also forgive you: But if ye forgive not men their trespasses, neither will your Father forgive your trespasses.',
+        translation: 'KJV'
       },
       {
-        book: 'Mark',
-        chapter: 11,
-        verse: '25',
-        text: 'And whenever you stand praying, forgive, if you have anything against anyone, so that your Father also who is in heaven may forgive you your trespasses.'
-      },
-      {
-        book: 'Proverbs',
-        chapter: 17,
-        verse: '9',
-        text: 'Whoever covers an offense seeks love, but he who repeats a matter separates close friends.'
-      },
-      {
-        book: 'Romans',
-        chapter: 12,
-        verse: '19',
-        text: 'Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, "Vengeance is mine, I will repay, says the Lord."'
-      },
-      {
-        book: '1 Peter',
-        chapter: 4,
-        verse: '8',
-        text: 'Above all, keep loving one another earnestly, since love covers a multitude of sins.'
+        book: 'Luke',
+        chapter: 23,
+        verse: '34',
+        text: 'Then said Jesus, Father, forgive them; for they know not what they do. And they parted his raiment, and cast lots.',
+        translation: 'KJV'
       },
       {
         book: 'Psalm',
         chapter: 103,
         verse: '12',
-        text: 'As far as the east is from the west, so far does he remove our transgressions from us.'
+        text: 'As far as the east is from the west, so far hath he removed our transgressions from us.',
+        translation: 'KJV'
       }
     ]
   },
