@@ -361,70 +361,65 @@ export const topics: Topic[] = [
   {
     id: 'prayer',
     title: 'Prayer',
+    subtitle: 'Understanding God\'s Heart',
     description: 'How to pray and communicate with God effectively',
     shortDescription: 'Prayer is direct communication with God. Bring your requests, thanksgiving, and confession to Him with confidence, knowing He hears and answers according to His will.',
+    bodyContent: [
+      'One of the greatest privileges given to a believer is prayer. The God who created the heavens and the earth, who holds the stars in place and rules over all things, invites His children to come before Him and speak with Him. Prayer is not a ritual designed to impress God, nor is it a religious exercise meant to earn His favor. Prayer is the gracious invitation of a loving Father who desires fellowship with His children.',
+      'Throughout Scripture, we see God\'s people turning to Him in prayer. Abraham prayed. Moses prayed. David poured out his heart before the Lord. The prophets cried out to God in times of trouble. The disciples watched Jesus pray and asked Him to teach them how to do the same. Again and again, the Bible presents prayer as a vital part of walking with God.',
+      'Prayer includes much more than asking for things. It is a conversation with the Lord. We come with thanksgiving, acknowledging His goodness and faithfulness. We come with confession, honestly admitting our sins and seeking His forgiveness. We come with requests, bringing our needs, concerns, and burdens before Him. We come with praise, worshiping Him for who He is and what He has done.',
+      'Many people wonder if God truly hears their prayers. Scripture gives a clear answer. God hears His children. This does not mean He always answers exactly as we expect or according to our timetable. A loving Father sometimes says yes, sometimes says no, and sometimes tells us to wait. Yet every answer flows from His perfect wisdom, His perfect love, and His perfect knowledge of what is best for us.',
+      'Jesus opened the way for believers to approach God with confidence. Because of His death and resurrection, we do not come before God as strangers hoping to be noticed. We come as beloved children welcomed into His presence. Prayer reminds us that we are never alone, never forgotten, and never beyond the reach of God\'s care.',
+      'The purpose of prayer is not to change God\'s character but often to change our hearts. As we spend time with Him, our fears become smaller, our faith becomes stronger, and our trust in His promises grows deeper. Prayer is one of God\'s greatest gifts because it continually draws us closer to Him.',
+    ],
+    whatWeLearns: [
+      'Prayer is direct communication with God.',
+      'God invites His children to come to Him with confidence.',
+      'Prayer includes praise, thanksgiving, confession, and requests.',
+      'God hears the prayers of His people.',
+      'Prayer strengthens our relationship with God and deepens our trust in Him.',
+    ],
+    familyConversation: 'If you could talk to God about anything right now, what would you want to thank Him for, and what would you ask Him to help you with?',
+    prayer: 'Heavenly Father,\n\nThank You for inviting us to come into Your presence through prayer. Thank You that You hear us, care for us, and know our needs before we even ask. Help us to speak with You often, to trust Your wisdom, and to rest in Your promises. Teach us to bring our praises, our thanks, our struggles, and our requests before You with confidence, knowing that You are a loving Father who cares for His children.\n\nIn Jesus\' name,\n\nAmen.',
     icon: '🙌',
+    heroGradient: 'linear-gradient(135deg, #0a1a2e 0%, #0c2340 30%, #1e3a5f 60%, #2563eb 85%, #bfdbfe 100%)',
+    accentColor: 'blue',
     order: 5,
     references: [
       {
-        book: 'Matthew',
-        chapter: 6,
-        verse: '9-13',
-        text: 'Pray then like this: "Our Father in heaven, hallowed be your name. Your kingdom come, your will be done, on earth as it is in heaven. Give us this day our daily bread, and forgive us our debts, as we also have forgiven our debtors. And lead us not into temptation, but deliver us from evil."'
-      },
-      {
         book: 'Philippians',
         chapter: 4,
-        verse: '6-7',
-        text: 'Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.'
+        verse: '6',
+        text: 'Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Matthew',
+        chapter: 6,
+        verse: '9',
+        text: 'After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name.',
+        translation: 'KJV'
       },
       {
         book: '1 Thessalonians',
         chapter: 5,
-        verse: '16-18',
-        text: 'Rejoice always, pray without ceasing, give thanks in all circumstances; for this is the will of God in Christ Jesus for you.'
-      },
-      {
-        book: 'James',
-        chapter: 5,
-        verse: '16',
-        text: 'Therefore, confess your sins to one another and pray for one another, that you may be healed. The prayer of a righteous person has great power as it is working.'
-      },
-      {
-        book: 'Psalm',
-        chapter: 145,
-        verse: '18',
-        text: 'The Lord is near to all who call on him, to all who call on him in truth.'
-      },
-      {
-        book: 'Matthew',
-        chapter: 21,
-        verse: '22',
-        text: 'And whatever you ask in prayer, you will receive, if you have faith.'
-      },
-      {
-        book: '1 John',
-        chapter: 5,
-        verse: '14-15',
-        text: 'And this is the confidence that we have toward him, that if we ask anything according to his will he hears us. And if we know that he hears us in whatever we ask, we know that we have the requests that we have asked of him.'
-      },
-      {
-        book: 'Luke',
-        chapter: 11,
-        verse: '9-10',
-        text: 'And I tell you, ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you. For everyone who asks receives, and the one who seeks finds, and to the one who knocks it will be opened.'
-      },
-      {
-        book: 'Romans',
-        chapter: 8,
-        verse: '26',
-        text: 'Likewise the Spirit helps us in our weakness. For we do not know what to pray for as we ought, but the Spirit himself intercedes for us with groanings too deep for words.'
+        verse: '17–18',
+        text: 'Pray without ceasing. In every thing give thanks: for this is the will of God in Christ Jesus concerning you.',
+        translation: 'KJV'
       },
       {
         book: 'Jeremiah',
-        chapter: 29,
-        verse: '12',
-        text: 'Then you will call upon me and come and pray to me, and I will hear you.'
+        chapter: 33,
+        verse: '3',
+        text: 'Call unto me, and I will answer thee, and shew thee great and mighty things, which thou knowest not.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Hebrews',
+        chapter: 4,
+        verse: '16',
+        text: 'Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.',
+        translation: 'KJV'
       }
     ]
   },
