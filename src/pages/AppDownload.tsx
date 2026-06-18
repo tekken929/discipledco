@@ -3,7 +3,7 @@ import { CheckCircle, Star, ArrowRight, BookOpen, BookMarked, Heart, Zap, Users,
 
 const APP_CONFIG = {
   name: 'The Disciple Co.',
-  appStoreLink: '#',
+  appStoreLink: 'https://apps.apple.com/us/app/the-disciple-co/id6762557983',
   googlePlayLink: '#',
   version: '1.0',
   copyright: 'RYAN COLBY. 2026',
@@ -108,18 +108,17 @@ function AppStoreBadge({ href }: { href: string }) {
   );
 }
 
-function GooglePlayBadge({ href }: { href: string }) {
+function GooglePlayBadge({ href: _href }: { href: string }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer"
-      className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white px-5 py-3 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl">
+    <div className="inline-flex items-center gap-3 bg-gray-400/30 text-gray-400 px-5 py-3 rounded-xl cursor-not-allowed select-none opacity-50 relative">
       <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
         <path d="M3.18 23.76c.38.21.82.22 1.24 0L14.69 12 4.42.24c-.42-.22-.86-.2-1.24 0C2.55.59 2.25 1.19 2.25 2v19.76c0 .81.3 1.41.93 1.76zM16.34 13.65l2.54-2.54-2.54-2.54-2.54 2.54 2.54 2.54zM5.17 21.96L14.04 13l-8.87-8.96v17.92zM21.05 10.5l-2.32-1.35-2.82 2.83 2.82 2.82 2.32-1.35c.65-.38 1.07-.98 1.07-1.47s-.42-1.09-1.07-1.48z" />
       </svg>
       <div className="text-left">
-        <p className="text-[10px] font-medium text-white/70 leading-none mb-0.5">Get it on</p>
+        <p className="text-[10px] font-medium leading-none mb-0.5">Coming Soon</p>
         <p className="text-base font-bold leading-none">Google Play</p>
       </div>
-    </a>
+    </div>
   );
 }
 
