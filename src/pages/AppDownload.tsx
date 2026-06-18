@@ -22,8 +22,8 @@ const OTHER_APPS = [
   {
     id: 'gbj',
     name: 'The Great Bible Journey',
-    tagline: 'Biblical History · Exploration',
-    icon: '/images/origin1.jpg',
+    tagline: 'Bible Adventures for Kids',
+    icon: '/images/iconbj.png',
     href: 'https://thegreatbiblejourney.com',
     active: false,
   },
@@ -151,49 +151,50 @@ export function AppDownload() {
       </header>
 
       {/* ── APP SELECTOR ── */}
-      <div className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 whitespace-nowrap mr-1 flex-shrink-0">
+      <div className="bg-[#0d1a2e] border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
               Apps by DiscipleCo
             </span>
-            {OTHER_APPS.map((app) => {
-              const inner = (
-                <div className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl border transition-all flex-shrink-0 ${
-                  app.active
-                    ? 'bg-white dark:bg-gray-800 border-amber-300 dark:border-amber-600 shadow-sm'
-                    : 'bg-white dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 hover:border-amber-300 dark:hover:border-amber-600 hover:shadow-sm cursor-pointer'
-                }`}>
-                  <img
-                    src={app.icon}
-                    alt={app.name}
-                    className="w-8 h-8 rounded-lg object-cover flex-shrink-0 ring-1 ring-black/10"
-                  />
-                  <div>
-                    <p className={`text-xs font-bold leading-tight ${
-                      app.active ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
-                    }`}>{app.name}</p>
-                    <p className="text-[10px] text-gray-400 dark:text-gray-500 leading-tight">{app.tagline}</p>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              {OTHER_APPS.map((app) => {
+                const inner = (
+                  <div className={`flex items-center gap-2.5 px-3.5 py-2 rounded-xl border transition-all ${
+                    app.active
+                      ? 'bg-white/10 border-amber-400/50 shadow-sm shadow-amber-500/10'
+                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-amber-400/40 cursor-pointer'
+                  }`}>
+                    <img
+                      src={app.icon}
+                      alt={app.name}
+                      className="w-9 h-9 rounded-xl object-cover flex-shrink-0 ring-1 ring-white/15"
+                    />
+                    <div>
+                      <p className="text-xs font-bold leading-tight text-white">{app.name}</p>
+                      <p className="text-[10px] text-white/40 leading-tight">{app.tagline}</p>
+                    </div>
+                    {app.active && (
+                      <span className="ml-1 text-[9px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                        Viewing
+                      </span>
+                    )}
+                    {!app.active && (
+                      <ArrowRight className="w-3 h-3 text-white/30 flex-shrink-0 ml-0.5" />
+                    )}
                   </div>
-                  {app.active && (
-                    <span className="ml-1 text-[9px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded-full flex-shrink-0">
-                      Viewing
-                    </span>
-                  )}
-                  {!app.active && (
-                    <ArrowRight className="w-3 h-3 text-gray-400 dark:text-gray-500 flex-shrink-0 ml-0.5" />
-                  )}
-                </div>
-              );
+                );
 
-              return app.href ? (
-                <a key={app.id} href={app.href} target="_blank" rel="noopener noreferrer">
-                  {inner}
-                </a>
-              ) : (
-                <div key={app.id}>{inner}</div>
-              );
-            })}
+                return app.href ? (
+                  <a key={app.id} href={app.href} target="_blank" rel="noopener noreferrer">
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={app.id}>{inner}</div>
+                );
+              })}
+            </div>
+            <div className="w-full max-w-xs h-px bg-white/10 mt-1" />
           </div>
         </div>
       </div>
