@@ -136,7 +136,7 @@ export function AppDownload() {
             <span className="font-bold text-gray-900 dark:text-white text-sm hidden sm:block">The Disciple Co.</span>
           </Link>
           <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors hidden sm:block">
+            <Link to="/" className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
               Website
             </Link>
             <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
