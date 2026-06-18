@@ -355,7 +355,9 @@ export function Welcome() {
           {/* App Download — top right */}
           <div className="hidden sm:flex absolute top-6 right-4 sm:right-6 lg:right-8 flex-col items-end gap-3">
             <a
-              href="#"
+              href="https://apps.apple.com/us/app/the-disciple-co/id6762557983"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Download The Disciple Co. App"
               className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
             >
