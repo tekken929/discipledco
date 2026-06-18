@@ -10,6 +10,25 @@ const APP_CONFIG = {
   supportUrl: 'https://thediscipleco.org',
 };
 
+const OTHER_APPS = [
+  {
+    id: 'discipleco',
+    name: 'The Disciple Co.',
+    tagline: 'Bible · Discipleship · Prayer',
+    icon: '/images/Untitled_design_(34)_Large.jpeg',
+    href: null,
+    active: true,
+  },
+  {
+    id: 'gbj',
+    name: 'The Great Bible Journey',
+    tagline: 'Biblical History · Exploration',
+    icon: '/images/origin1.jpg',
+    href: 'https://thegreatbiblejourney.com',
+    active: false,
+  },
+];
+
 const FEATURES = [
   {
     src: '/images/dcad1.png',
@@ -130,6 +149,54 @@ export function AppDownload() {
           </div>
         </div>
       </header>
+
+      {/* ── APP SELECTOR ── */}
+      <div className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 whitespace-nowrap mr-1 flex-shrink-0">
+              Apps by DiscipleCo
+            </span>
+            {OTHER_APPS.map((app) => {
+              const inner = (
+                <div className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl border transition-all flex-shrink-0 ${
+                  app.active
+                    ? 'bg-white dark:bg-gray-800 border-amber-300 dark:border-amber-600 shadow-sm'
+                    : 'bg-white dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 hover:border-amber-300 dark:hover:border-amber-600 hover:shadow-sm cursor-pointer'
+                }`}>
+                  <img
+                    src={app.icon}
+                    alt={app.name}
+                    className="w-8 h-8 rounded-lg object-cover flex-shrink-0 ring-1 ring-black/10"
+                  />
+                  <div>
+                    <p className={`text-xs font-bold leading-tight ${
+                      app.active ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
+                    }`}>{app.name}</p>
+                    <p className="text-[10px] text-gray-400 dark:text-gray-500 leading-tight">{app.tagline}</p>
+                  </div>
+                  {app.active && (
+                    <span className="ml-1 text-[9px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                      Viewing
+                    </span>
+                  )}
+                  {!app.active && (
+                    <ArrowRight className="w-3 h-3 text-gray-400 dark:text-gray-500 flex-shrink-0 ml-0.5" />
+                  )}
+                </div>
+              );
+
+              return app.href ? (
+                <a key={app.id} href={app.href} target="_blank" rel="noopener noreferrer">
+                  {inner}
+                </a>
+              ) : (
+                <div key={app.id}>{inner}</div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
       {/* ── HERO ── */}
       <section className="relative bg-gradient-to-b from-[#0d1a2e] to-[#1a2a40] overflow-hidden">
