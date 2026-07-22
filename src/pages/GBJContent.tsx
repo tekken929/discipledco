@@ -9,9 +9,9 @@ const GBJ_CONFIG = {
 };
 
 const GBJ_STATS = [
-  { value: '∞', label: 'Bible Stories' },
-  { value: '50+', label: 'Fun Activities' },
-  { value: '100+', label: 'Quizzes' },
+  { value: '29+', label: 'Bible Stories' },
+  { value: '', label: 'Printable Lessons' },
+  { value: '100%', label: 'Trackable Progress' },
   { value: '100%', label: 'Free' },
 ];
 
@@ -36,21 +36,21 @@ const GBJ_FEATURES = [
   },
   {
     icon: Trophy,
-    headline: 'Quizzes & Challenges',
-    sub: 'Test your knowledge and earn badges along the way.',
-    body: 'Each story comes with fun quizzes and challenges that test comprehension and encourage kids to dig deeper. Earn badges and track progress as you journey through the Bible.',
+    headline: 'Bible Verses & Memory',
+    sub: 'Memorize Scripture and earn badges along the way.',
+    body: 'Each story comes with key Bible verses and memory challenges that encourage kids to hide God\'s Word in their hearts. Earn badges and track progress as you journey through the Bible.',
     accent: 'text-sky-600 dark:text-sky-400',
     badge: 'text-sky-700 dark:text-sky-300 bg-sky-100 dark:bg-sky-900/40',
-    label: 'Quizzes',
+    label: 'Bible Verses',
   },
   {
     icon: Bookmark,
-    headline: 'Save Your Favorites',
-    sub: 'Bookmark your favorite stories & activities.',
-    body: 'Kids and parents can save favorite stories, activities, and quizzes for easy access. Build a personalized collection of the Bible adventures you love most.',
+    headline: 'Trackable Progress & Parent Dashboard',
+    sub: 'Monitor your child\'s journey through the Bible.',
+    body: 'Parents can track their child\'s progress, see which stories and lessons they\'ve completed, and celebrate milestones together. A simple dashboard makes it easy to stay involved in the adventure.',
     accent: 'text-rose-600 dark:text-rose-400',
     badge: 'text-rose-700 dark:text-rose-300 bg-rose-100 dark:bg-rose-900/40',
-    label: 'Favorites',
+    label: 'Progress',
   },
 ];
 
