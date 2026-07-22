@@ -12,6 +12,7 @@ const GBJ_STATS = [
   { value: '29+', label: 'Bible Stories' },
   { value: '', label: 'Printable Lessons' },
   { value: '', label: 'Trackable Progress' },
+  { value: '100%', label: 'Free' },
 ];
 
 const GBJ_FEATURES = [
@@ -377,3 +378,6 @@ export function GBJContent() {
     </>
   );
 }
+
+
+export { GBJContent }
