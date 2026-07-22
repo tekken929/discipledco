@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun, Globe } from 'lucide-react';
 import { GBJContent } from './GBJContent';
+import { DiscipleCodeContent } from './DiscipleCodeContent';
 
 const APP_CONFIG = {
   name: 'The Disciple Co.',
@@ -24,6 +25,12 @@ const OTHER_APPS = [
     name: 'The Great Bible Journey',
     tagline: 'Bible Adventures for Kids',
     icon: '/images/iconbj.png',
+  },
+  {
+    id: 'disciplecode',
+    name: 'The Disciple Code',
+    tagline: 'Fitness · Faith · Discipline',
+    icon: '/images/appicon5.png',
   },
 ];
 
@@ -121,8 +128,9 @@ function GooglePlayBadge({ href: _href }: { href: string }) {
 }
 
 export function AppDownload() {
-  const [activeApp, setActiveApp] = useState<'discipleco' | 'gbj'>('discipleco');
+  const [activeApp, setActiveApp] = useState<'discipleco' | 'gbj' | 'disciplecode'>('discipleco');
   const isGBJ = activeApp === 'gbj';
+  const isDC = activeApp === 'disciplecode';
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
@@ -131,11 +139,12 @@ export function AppDownload() {
       <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 group">
-            <img src={isGBJ ? '/images/iconbj.png' : '/images/Untitled_design_(34)_Large.jpeg'}
-              alt={isGBJ ? 'The Great Bible Journey' : 'The Disciple Co.'}
+            <img
+              src={isGBJ ? '/images/iconbj.png' : isDC ? '/images/appicon5.png' : '/images/Untitled_design_(34)_Large.jpeg'}
+              alt={isGBJ ? 'The Great Bible Journey' : isDC ? 'The Disciple Code' : 'The Disciple Co.'}
               className="w-8 h-8 rounded-lg object-cover" />
             <span className="font-bold text-gray-900 dark:text-white text-sm hidden sm:block">
-              {isGBJ ? 'The Great Bible Journey' : 'The Disciple Co.'}
+              {isGBJ ? 'The Great Bible Journey' : isDC ? 'The Disciple Code' : 'The Disciple Co.'}
             </span>
           </Link>
           <div className="flex items-center gap-3">
@@ -145,6 +154,12 @@ export function AppDownload() {
             {isGBJ ? (
               <a href="https://thegreatbiblejourney.com" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors">
+                <Globe className="w-3.5 h-3.5" />
+                Visit Site
+              </a>
+            ) : isDC ? (
+              <a href="https://thedisciplecode.com" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors">
                 <Globe className="w-3.5 h-3.5" />
                 Visit Site
               </a>
@@ -174,7 +189,7 @@ export function AppDownload() {
                 return (
                   <button
                     key={app.id}
-                    onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj')}
+                    onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode')}
                     className={`flex items-center gap-2.5 px-3.5 py-2 rounded-xl border transition-all ${
                       isActive
                         ? 'bg-white/10 border-amber-400/50 shadow-sm shadow-amber-500/10'
@@ -209,6 +224,8 @@ export function AppDownload() {
 
       {isGBJ ? (
         <GBJContent />
+      ) : isDC ? (
+        <DiscipleCodeContent />
       ) : (
       <>
       {/* ── HERO ── */}

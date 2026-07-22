@@ -378,6 +378,3 @@ export function GBJContent() {
     </>
   );
 }
-
-
-export { GBJContent }
