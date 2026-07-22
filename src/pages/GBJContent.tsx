@@ -11,8 +11,7 @@ const GBJ_CONFIG = {
 const GBJ_STATS = [
   { value: '29+', label: 'Bible Stories' },
   { value: '', label: 'Printable Lessons' },
-  { value: '100%', label: 'Trackable Progress' },
-  { value: '100%', label: 'Free' },
+  { value: '', label: 'Trackable Progress' },
 ];
 
 const GBJ_FEATURES = [
@@ -167,10 +166,12 @@ export function GBJContent() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {GBJ_STATS.map((stat) => (
               <div key={stat.label}>
-                <p className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mt-1">
+                {stat.value ? (
+                  <p className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+                    {stat.value}
+                  </p>
+                ) : null}
+                <p className={`font-bold text-gray-900 dark:text-white ${stat.value ? 'text-sm md:text-base mt-1' : 'text-2xl md:text-3xl'}`}>
                   {stat.label}
                 </p>
               </div>
