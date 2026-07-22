@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Star, ArrowRight, BookOpen, BookMarked, Heart, Zap, Users, Target, Sun } from 'lucide-react';
+import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun, Globe } from 'lucide-react';
+import { GBJContent } from './GBJContent';
 
 const APP_CONFIG = {
   name: 'The Disciple Co.',
@@ -16,16 +18,12 @@ const OTHER_APPS = [
     name: 'The Disciple Co.',
     tagline: 'Bible · Discipleship · Prayer',
     icon: '/images/Untitled_design_(34)_Large.jpeg',
-    href: null,
-    active: true,
   },
   {
     id: 'gbj',
     name: 'The Great Bible Journey',
     tagline: 'Bible Adventures for Kids',
     icon: '/images/iconbj.png',
-    href: 'https://thegreatbiblejourney.com',
-    active: false,
   },
 ];
 
@@ -123,6 +121,9 @@ function GooglePlayBadge({ href: _href }: { href: string }) {
 }
 
 export function AppDownload() {
+  const [activeApp, setActiveApp] = useState<'discipleco' | 'gbj'>('discipleco');
+  const isGBJ = activeApp === 'gbj';
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
 
@@ -130,21 +131,32 @@ export function AppDownload() {
       <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 group">
-            <img src="/images/Untitled_design_(34)_Large.jpeg" alt="The Disciple Co."
+            <img src={isGBJ ? '/images/iconbj.png' : '/images/Untitled_design_(34)_Large.jpeg'}
+              alt={isGBJ ? 'The Great Bible Journey' : 'The Disciple Co.'}
               className="w-8 h-8 rounded-lg object-cover" />
-            <span className="font-bold text-gray-900 dark:text-white text-sm hidden sm:block">The Disciple Co.</span>
+            <span className="font-bold text-gray-900 dark:text-white text-sm hidden sm:block">
+              {isGBJ ? 'The Great Bible Journey' : 'The Disciple Co.'}
+            </span>
           </Link>
           <div className="flex items-center gap-3">
             <Link to="/" className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
               Website
             </Link>
-            <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-3.5 py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">
-              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              Download
-            </a>
+            {isGBJ ? (
+              <a href="https://thegreatbiblejourney.com" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors">
+                <Globe className="w-3.5 h-3.5" />
+                Visit Site
+              </a>
+            ) : (
+              <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-3.5 py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                </svg>
+                Download
+              </a>
+            )}
           </div>
         </div>
       </header>
@@ -158,38 +170,35 @@ export function AppDownload() {
             </span>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               {OTHER_APPS.map((app) => {
-                const inner = (
-                  <div className={`flex items-center gap-2.5 px-3.5 py-2 rounded-xl border transition-all ${
-                    app.active
-                      ? 'bg-white/10 border-amber-400/50 shadow-sm shadow-amber-500/10'
-                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-amber-400/40 cursor-pointer'
-                  }`}>
+                const isActive = activeApp === app.id;
+                return (
+                  <button
+                    key={app.id}
+                    onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj')}
+                    className={`flex items-center gap-2.5 px-3.5 py-2 rounded-xl border transition-all ${
+                      isActive
+                        ? 'bg-white/10 border-amber-400/50 shadow-sm shadow-amber-500/10'
+                        : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-amber-400/40 cursor-pointer'
+                    }`}
+                  >
                     <img
                       src={app.icon}
                       alt={app.name}
                       className="w-9 h-9 rounded-xl object-cover flex-shrink-0 ring-1 ring-white/15"
                     />
-                    <div>
+                    <div className="text-left">
                       <p className="text-xs font-bold leading-tight text-white">{app.name}</p>
                       <p className="text-[10px] text-white/40 leading-tight">{app.tagline}</p>
                     </div>
-                    {app.active && (
+                    {isActive && (
                       <span className="ml-1 text-[9px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded-full flex-shrink-0">
                         Viewing
                       </span>
                     )}
-                    {!app.active && (
+                    {!isActive && (
                       <ArrowRight className="w-3 h-3 text-white/30 flex-shrink-0 ml-0.5" />
                     )}
-                  </div>
-                );
-
-                return app.href ? (
-                  <a key={app.id} href={app.href} target="_blank" rel="noopener noreferrer">
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={app.id}>{inner}</div>
+                  </button>
                 );
               })}
             </div>
@@ -198,6 +207,10 @@ export function AppDownload() {
         </div>
       </div>
 
+      {isGBJ ? (
+        <GBJContent />
+      ) : (
+      <>
       {/* ── HERO ── */}
       <section className="relative bg-gradient-to-b from-[#0d1a2e] to-[#1a2a40] overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]">
@@ -410,6 +423,9 @@ export function AppDownload() {
           </p>
         </div>
       </section>
+
+      </>
+      )}
 
       {/* ── FOOTER ── */}
       <footer className="bg-gray-950 py-8">
