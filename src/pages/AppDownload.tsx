@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun } from 'lucide-react';
 import { GBJContent } from './GBJContent';
 import { DiscipleCodeContent } from './DiscipleCodeContent';
+import { TWContent } from './TWContent';
 
 const APP_CONFIG = {
   name: 'The Disciple Co.',
@@ -146,9 +147,10 @@ function GooglePlayBadge({ href: _href }: { href: string }) {
 }
 
 export function AppDownload() {
-  const [activeApp, setActiveApp] = useState<'discipleco' | 'gbj' | 'disciplecode'>('discipleco');
+  const [activeApp, setActiveApp] = useState<'discipleco' | 'gbj' | 'disciplecode' | 'tw'>('discipleco');
   const isGBJ = activeApp === 'gbj';
   const isDC = activeApp === 'disciplecode';
+  const isTW = activeApp === 'tw';
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
@@ -171,11 +173,11 @@ export function AppDownload() {
                     ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
                     : 'border-white/10 hover:border-amber-400/40'
                 }`}>
-                  <div className="flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-2">
+                  <div className="flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-3">
                     <img
                       src={app.icon}
                       alt={app.name}
-                      className={`w-full h-full object-contain ${isComingSoon ? '' : 'rounded-xl'}`}
+                      className="w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-2xl shadow-lg"
                     />
                   </div>
                   <div className="flex flex-col flex-1 p-3 sm:p-4 bg-white/5">
@@ -204,13 +206,10 @@ export function AppDownload() {
                   </div>
                 </div>
               );
-              if (isComingSoon) {
-                return <div key={app.id}>{inner}</div>;
-              }
               return (
                 <button
                   key={app.id}
-                  onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode')}
+                  onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw')}
                   className="text-left"
                 >
                   {inner}
@@ -226,6 +225,8 @@ export function AppDownload() {
         <GBJContent />
       ) : isDC ? (
         <DiscipleCodeContent />
+      ) : isTW ? (
+        <TWContent />
       ) : (
       <>
       {/* ── HERO ── */}
