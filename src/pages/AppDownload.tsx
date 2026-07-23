@@ -161,7 +161,7 @@ export function AppDownload() {
               Other Apps and Website by The Disciple Company
             </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {OTHER_APPS.map((app) => {
               const isActive = activeApp === app.id;
               const isComingSoon = app.id === 'tw';
@@ -171,15 +171,15 @@ export function AppDownload() {
                     ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
                     : 'border-white/10 hover:border-amber-400/40'
                 }`}>
-                  <div className="flex-shrink-0 w-28 sm:w-32">
+                  <div className="flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-2">
                     <img
                       src={app.icon}
                       alt={app.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="flex flex-col flex-1 p-4 sm:p-5 bg-white/5">
-                    <div className="flex items-start justify-between mb-2">
+                  <div className="flex flex-col flex-1 p-3 sm:p-4 bg-white/5">
+                    <div className="flex items-start justify-between mb-1.5">
                       <div className="text-left">
                         <p className="text-base font-bold leading-tight text-white">{app.name}</p>
                         <p className="text-[11px] text-white/40 leading-tight mt-0.5">{app.tagline}</p>
@@ -195,8 +195,8 @@ export function AppDownload() {
                         </span>
                       )}
                     </div>
-                    <p className="text-xs font-semibold text-white/80 leading-relaxed mb-1.5">{app.summary}</p>
-                    <p className="text-xs text-white/50 leading-relaxed mb-3 flex-1">{app.description}</p>
+                    <p className="text-xs font-semibold text-white/80 leading-snug mb-1">{app.summary}</p>
+                    <p className="text-xs text-white/50 leading-snug mb-2 flex-1">{app.description}</p>
                     <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
                       {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
                       {!isComingSoon && !isActive && <ArrowRight className="w-3.5 h-3.5" />}
