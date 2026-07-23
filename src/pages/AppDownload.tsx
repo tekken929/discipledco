@@ -253,7 +253,7 @@ export function AppDownload() {
         </div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-4">
           {/* App identity */}
           <div className="flex flex-col items-center text-center mb-10">
             <div className="flex items-center gap-4 mb-6">
@@ -303,7 +303,7 @@ export function AppDownload() {
 
       {/* ── STATS BAR ── */}
       <section className="bg-amber-50 dark:bg-amber-950/20 border-y border-amber-100 dark:border-amber-900/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {STATS.map((stat) => (
               <div key={stat.label}>
@@ -316,13 +316,13 @@ export function AppDownload() {
       </section>
 
       {/* ── FEATURE SECTIONS ── alternating layout, one per dcad image */}
-      <section id="features" className="py-4 bg-[#faf9f6] dark:bg-gray-950">
+      <section id="features" className="py-2 bg-[#faf9f6] dark:bg-gray-950">
         {FEATURES.map((feature, i) => {
           const isEven = i % 2 === 1;
           return (
             <div
               key={feature.headline}
-              className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-10 lg:gap-16`}
+              className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12`}
             >
               {/* Screenshot */}
               <div className="w-full lg:w-[45%] flex justify-center flex-shrink-0">
@@ -347,14 +347,21 @@ export function AppDownload() {
                 <p className={`text-lg font-semibold ${feature.accent} mb-4 leading-snug`}>
                   {feature.sub}
                 </p>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base mb-8 max-w-lg mx-auto lg:mx-0">
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base mb-6 max-w-lg mx-auto lg:mx-0">
                   {feature.body}
                 </p>
-                <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white hover:opacity-70 transition-opacity group">
-                  Download the App
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </a>
+                <div className="inline-flex flex-col items-center lg:items-start gap-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl px-6 py-4 shadow-sm">
+                  <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white hover:opacity-70 transition-opacity group">
+                    Download the App
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
+                  <a href={APP_CONFIG.supportUrl} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-amber-600 dark:text-amber-400 hover:opacity-70 transition-opacity">
+                    Visit the Website
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           );
@@ -362,7 +369,7 @@ export function AppDownload() {
       </section>
 
       {/* ── DIFFERENTIATOR ── */}
-      <section className="py-24 bg-[#0d1a2e] relative overflow-hidden">
+      <section className="py-16 bg-[#0d1a2e] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]">
           <svg width="100%" height="100%"><defs><pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="white"/></pattern></defs><rect width="100%" height="100%" fill="url(#dots)"/></svg>
         </div>
@@ -380,14 +387,26 @@ export function AppDownload() {
               The Bible is not just meant to be read. It is meant to be understood, believed, and lived.
             </p>
           </div>
-          <p className="text-white/55 text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-white/55 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
             Rather than focusing on trends, opinions, or endless content — Disciple Co. focuses on helping believers engage directly with Scripture and build a stronger foundation in God's Word.
           </p>
+          <div className="inline-flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 shadow-sm">
+            <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:opacity-70 transition-opacity group">
+              Download the App
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <a href={APP_CONFIG.supportUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-amber-400 hover:opacity-70 transition-opacity">
+              Visit the Website
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
       {/* ── WHO IT'S FOR ── */}
-      <section className="py-20 bg-[#f5f3ee] dark:bg-gray-900">
+      <section className="py-12 bg-[#f5f3ee] dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -423,24 +442,36 @@ export function AppDownload() {
       </section>
 
       {/* ── MISSION ── */}
-      <section className="py-20 bg-amber-50 dark:bg-amber-950/20 border-y border-amber-100 dark:border-amber-900/30">
+      <section className="py-12 bg-amber-50 dark:bg-amber-950/20 border-y border-amber-100 dark:border-amber-900/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <BookOpen className="w-10 h-10 text-amber-600 dark:text-amber-400 mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Mission</h2>
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
             Jesus commanded His followers to make disciples. Disciple Co. exists to help believers grow in faith, deepen their understanding of Scripture, strengthen their prayer life, and become lifelong followers of Christ.
           </p>
-          <blockquote className="border-l-4 border-amber-400 pl-6 text-left max-w-xl mx-auto">
+          <blockquote className="border-l-4 border-amber-400 pl-6 text-left max-w-xl mx-auto mb-8">
             <p className="text-xl font-semibold text-gray-900 dark:text-white italic leading-relaxed mb-2">
               "Your word is a lamp unto my feet, and a light unto my path."
             </p>
             <cite className="text-amber-600 dark:text-amber-400 font-bold text-sm not-italic">— Psalm 119:105</cite>
           </blockquote>
+          <div className="inline-flex flex-col items-center gap-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl px-6 py-4 shadow-sm">
+            <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white hover:opacity-70 transition-opacity group">
+              Download the App
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <a href={APP_CONFIG.supportUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-amber-600 dark:text-amber-400 hover:opacity-70 transition-opacity">
+              Visit the Website
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="py-24 bg-gradient-to-br from-[#0d1a2e] via-[#162236] to-[#0d1a2e] relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-[#0d1a2e] via-[#162236] to-[#0d1a2e] relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-amber-500/8 rounded-full blur-3xl pointer-events-none" />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <img src="/images/Untitled_design_(34)_Large.jpeg" alt="The Disciple Co."
