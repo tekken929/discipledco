@@ -260,7 +260,7 @@ export function AppDownload() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-              <AppStoreBadge href={APP_CONFIG.appStoreLink} />
+              <AppStoreBadge href="https://thediscipleco.org/app" />
               <GooglePlayBadge href={APP_CONFIG.googlePlayLink} />
             </div>
 
