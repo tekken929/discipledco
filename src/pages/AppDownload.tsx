@@ -19,18 +19,36 @@ const OTHER_APPS = [
     name: 'The Disciple Co.',
     tagline: 'Bible · Discipleship · Prayer',
     icon: '/images/Untitled_design_(34)_Large.jpeg',
+    summary: 'A complete Bible study and discipleship app designed to help believers understand, believe, and live God\u2019s Word.',
+    description: 'Verse-by-verse studies, multiple translations, a 30-day challenge, prayer tools, timelines, and a growing library of discipleship resources \u2014 all in one place, completely free.',
+    link: 'https://apps.apple.com/us/app/the-disciple-co/id6762557983',
   },
   {
     id: 'gbj',
     name: 'The Great Bible Journey',
     tagline: 'Bible Adventures for Kids',
     icon: '/images/iconbj.png',
+    summary: 'An interactive Bible adventure app that brings Scripture to life for children through engaging stories and activities.',
+    description: 'Designed for kids and families, The Great Bible Journey makes exploring the Bible fun and memorable with illustrated stories, quizzes, and age-appropriate lessons that build a lifelong foundation of faith.',
+    link: 'https://thegreatbiblejourney.com',
   },
   {
     id: 'disciplecode',
     name: 'The Disciple Code',
     tagline: 'Fitness · Faith · Discipline',
     icon: '/images/appicon5.png',
+    summary: 'A faith-based fitness app that combines physical discipline with spiritual growth.',
+    description: 'The Disciple Code pairs daily workouts with Scripture and devotionals, helping you train your body and your spirit together. Build healthy habits rooted in faith and stay motivated on your journey.',
+    link: 'https://thedisciplecode.com',
+  },
+  {
+    id: 'tw',
+    name: 'Truth & Witness',
+    tagline: 'Coming Soon',
+    icon: '/images/T&Wimage1_Medium.png',
+    summary: 'A new app from The Disciple Company, currently in development.',
+    description: 'Truth & Witness is an upcoming app designed to equip believers with tools for sharing and defending their faith. Stay tuned for more details as we get closer to launch.',
+    link: '#',
   },
 ];
 
@@ -178,47 +196,66 @@ export function AppDownload() {
 
       {/* ── APP SELECTOR ── */}
       <div className="bg-[#0d1a2e] border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col items-center gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="flex flex-col items-center gap-2 mb-8">
             <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
-              Apps by DiscipleCo
+              Other Apps and Website by The Disciple Company
             </span>
-            <div className="flex items-center justify-center gap-3 flex-wrap">
-              {OTHER_APPS.map((app) => {
-                const isActive = activeApp === app.id;
-                return (
-                  <button
-                    key={app.id}
-                    onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode')}
-                    className={`flex items-center gap-2.5 px-3.5 py-2 rounded-xl border transition-all ${
-                      isActive
-                        ? 'bg-white/10 border-amber-400/50 shadow-sm shadow-amber-500/10'
-                        : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-amber-400/40 cursor-pointer'
-                    }`}
-                  >
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {OTHER_APPS.map((app) => {
+              const isActive = activeApp === app.id;
+              const isComingSoon = app.id === 'tw';
+              const inner = (
+                <div className={`flex flex-col h-full p-6 rounded-2xl border transition-all ${
+                  isActive
+                    ? 'bg-white/10 border-amber-400/50 shadow-lg shadow-amber-500/10'
+                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-amber-400/40'
+                }`}>
+                  <div className="flex items-center gap-4 mb-4">
                     <img
                       src={app.icon}
                       alt={app.name}
-                      className="w-9 h-9 rounded-xl object-cover flex-shrink-0 ring-1 ring-white/15"
+                      className="w-16 h-16 rounded-2xl object-cover flex-shrink-0 ring-1 ring-white/15"
                     />
                     <div className="text-left">
-                      <p className="text-xs font-bold leading-tight text-white">{app.name}</p>
-                      <p className="text-[10px] text-white/40 leading-tight">{app.tagline}</p>
+                      <p className="text-lg font-bold leading-tight text-white">{app.name}</p>
+                      <p className="text-xs text-white/40 leading-tight mt-0.5">{app.tagline}</p>
                     </div>
                     {isActive && (
-                      <span className="ml-1 text-[9px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                      <span className="ml-auto text-[9px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 px-2 py-1 rounded-full flex-shrink-0">
                         Viewing
                       </span>
                     )}
-                    {!isActive && (
-                      <ArrowRight className="w-3 h-3 text-white/30 flex-shrink-0 ml-0.5" />
+                    {isComingSoon && (
+                      <span className="ml-auto text-[9px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full flex-shrink-0">
+                        Soon
+                      </span>
                     )}
-                  </button>
-                );
-              })}
-            </div>
-            <div className="w-full max-w-xs h-px bg-white/10 mt-1" />
+                  </div>
+                  <p className="text-sm font-semibold text-white/80 leading-relaxed mb-2">{app.summary}</p>
+                  <p className="text-sm text-white/50 leading-relaxed mb-5 flex-1">{app.description}</p>
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
+                    {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
+                    {!isComingSoon && !isActive && <ArrowRight className="w-3.5 h-3.5" />}
+                  </div>
+                </div>
+              );
+              if (isComingSoon) {
+                return <div key={app.id}>{inner}</div>;
+              }
+              return (
+                <button
+                  key={app.id}
+                  onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode')}
+                  className="text-left"
+                >
+                  {inner}
+                </button>
+              );
+            })}
           </div>
+          <div className="w-full max-w-xs h-px bg-white/10 mx-auto mt-8" />
         </div>
       </div>
 
