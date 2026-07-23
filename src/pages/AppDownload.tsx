@@ -166,22 +166,23 @@ export function AppDownload() {
               const isActive = activeApp === app.id;
               const isComingSoon = app.id === 'tw';
               const inner = (
-                <div className={`relative flex flex-col h-full min-h-[200px] rounded-xl overflow-hidden border transition-all ${
+                <div className={`flex h-full rounded-xl overflow-hidden border transition-all ${
                   isActive
                     ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
                     : 'border-white/10 hover:border-amber-400/40'
                 }`}>
-                  <img
-                    src={app.icon}
-                    alt={app.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
-                  <div className="relative flex flex-col h-full p-5 z-10">
-                    <div className="flex items-start justify-between mb-3">
+                  <div className="flex-shrink-0 w-28 sm:w-32">
+                    <img
+                      src={app.icon}
+                      alt={app.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 p-4 sm:p-5 bg-white/5">
+                    <div className="flex items-start justify-between mb-2">
                       <div className="text-left">
-                        <p className="text-base font-bold leading-tight text-white drop-shadow-md">{app.name}</p>
-                        <p className="text-[11px] text-white/60 leading-tight mt-0.5">{app.tagline}</p>
+                        <p className="text-base font-bold leading-tight text-white">{app.name}</p>
+                        <p className="text-[11px] text-white/40 leading-tight mt-0.5">{app.tagline}</p>
                       </div>
                       {isActive && (
                         <span className="text-[9px] font-bold uppercase tracking-wider bg-amber-400/25 text-amber-200 px-2 py-1 rounded-full flex-shrink-0">
@@ -194,8 +195,8 @@ export function AppDownload() {
                         </span>
                       )}
                     </div>
-                    <p className="text-xs font-semibold text-white/90 leading-relaxed mb-1.5">{app.summary}</p>
-                    <p className="text-xs text-white/65 leading-relaxed mb-3 flex-1">{app.description}</p>
+                    <p className="text-xs font-semibold text-white/80 leading-relaxed mb-1.5">{app.summary}</p>
+                    <p className="text-xs text-white/50 leading-relaxed mb-3 flex-1">{app.description}</p>
                     <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
                       {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
                       {!isComingSoon && !isActive && <ArrowRight className="w-3.5 h-3.5" />}
@@ -447,8 +448,7 @@ export function AppDownload() {
       <footer className="bg-gray-950 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-600 text-xs text-center sm:text-left">
-            © {APP_CONFIG.copyright} ·{' '}
-            <a href={APP_CONFIG.supportUrl} className="hover:text-gray-400 transition-colors">{APP_CONFIG.supportUrl}</a>
+            © 2026. The Disciple Company.
           </p>
           <div className="flex items-center gap-4">
             <Link to="/" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Website</Link>

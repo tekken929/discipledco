@@ -147,7 +147,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-stone-100 dark:border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-400 dark:text-gray-500">
-            © 2026 The Disciple Co. · How to break free from this world.
+            © 2026. The Disciple Company.
           </p>
           <button
             onClick={() => setShowAdminPortal(true)}
