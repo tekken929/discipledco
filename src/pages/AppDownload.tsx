@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun, Globe } from 'lucide-react';
+import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun } from 'lucide-react';
 import { GBJContent } from './GBJContent';
 import { DiscipleCodeContent } from './DiscipleCodeContent';
 
@@ -153,91 +153,53 @@ export function AppDownload() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
 
-      {/* ── HEADER ── */}
-      <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <img
-              src={isGBJ ? '/images/iconbj.png' : isDC ? '/images/appicon5.png' : '/images/Untitled_design_(34)_Large.jpeg'}
-              alt={isGBJ ? 'The Great Bible Journey' : isDC ? 'The Disciple Code' : 'The Disciple Co.'}
-              className="w-8 h-8 rounded-lg object-cover" />
-            <span className="font-bold text-gray-900 dark:text-white text-sm hidden sm:block">
-              {isGBJ ? 'The Great Bible Journey' : isDC ? 'The Disciple Code' : 'The Disciple Co.'}
-            </span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-              Website
-            </Link>
-            {isGBJ ? (
-              <a href="https://thegreatbiblejourney.com" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors">
-                <Globe className="w-3.5 h-3.5" />
-                Visit Site
-              </a>
-            ) : isDC ? (
-              <a href="https://thedisciplecode.com" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors">
-                <Globe className="w-3.5 h-3.5" />
-                Visit Site
-              </a>
-            ) : (
-              <a href={APP_CONFIG.appStoreLink} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-3.5 py-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                </svg>
-                Download
-              </a>
-            )}
-          </div>
-        </div>
-      </header>
-
       {/* ── APP SELECTOR ── */}
       <div className="bg-[#0d1a2e] border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex flex-col items-center gap-2 mb-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col items-center gap-2 mb-6">
             <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
               Other Apps and Website by The Disciple Company
             </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {OTHER_APPS.map((app) => {
               const isActive = activeApp === app.id;
               const isComingSoon = app.id === 'tw';
               const inner = (
-                <div className={`flex flex-col h-full p-6 rounded-2xl border transition-all ${
+                <div className={`relative flex flex-col h-full min-h-[200px] rounded-xl overflow-hidden border transition-all ${
                   isActive
-                    ? 'bg-white/10 border-amber-400/50 shadow-lg shadow-amber-500/10'
-                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-amber-400/40'
+                    ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
+                    : 'border-white/10 hover:border-amber-400/40'
                 }`}>
-                  <div className="flex items-center gap-4 mb-4">
-                    <img
-                      src={app.icon}
-                      alt={app.name}
-                      className="w-16 h-16 rounded-2xl object-cover flex-shrink-0 ring-1 ring-white/15"
-                    />
-                    <div className="text-left">
-                      <p className="text-lg font-bold leading-tight text-white">{app.name}</p>
-                      <p className="text-xs text-white/40 leading-tight mt-0.5">{app.tagline}</p>
+                  <img
+                    src={app.icon}
+                    alt={app.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/25" />
+                  <div className="relative flex flex-col h-full p-5 z-10">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="text-left">
+                        <p className="text-base font-bold leading-tight text-white drop-shadow-md">{app.name}</p>
+                        <p className="text-[11px] text-white/60 leading-tight mt-0.5">{app.tagline}</p>
+                      </div>
+                      {isActive && (
+                        <span className="text-[9px] font-bold uppercase tracking-wider bg-amber-400/25 text-amber-200 px-2 py-1 rounded-full flex-shrink-0">
+                          Viewing
+                        </span>
+                      )}
+                      {isComingSoon && (
+                        <span className="text-[9px] font-bold uppercase tracking-wider bg-rose-500/25 text-rose-200 px-2 py-1 rounded-full flex-shrink-0">
+                          Soon
+                        </span>
+                      )}
                     </div>
-                    {isActive && (
-                      <span className="ml-auto text-[9px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 px-2 py-1 rounded-full flex-shrink-0">
-                        Viewing
-                      </span>
-                    )}
-                    {isComingSoon && (
-                      <span className="ml-auto text-[9px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 px-2 py-1 rounded-full flex-shrink-0">
-                        Soon
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm font-semibold text-white/80 leading-relaxed mb-2">{app.summary}</p>
-                  <p className="text-sm text-white/50 leading-relaxed mb-5 flex-1">{app.description}</p>
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
-                    {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
-                    {!isComingSoon && !isActive && <ArrowRight className="w-3.5 h-3.5" />}
+                    <p className="text-xs font-semibold text-white/90 leading-relaxed mb-1.5">{app.summary}</p>
+                    <p className="text-xs text-white/65 leading-relaxed mb-3 flex-1">{app.description}</p>
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
+                      {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
+                      {!isComingSoon && !isActive && <ArrowRight className="w-3.5 h-3.5" />}
+                    </div>
                   </div>
                 </div>
               );
@@ -255,7 +217,7 @@ export function AppDownload() {
               );
             })}
           </div>
-          <div className="w-full max-w-xs h-px bg-white/10 mx-auto mt-8" />
+          <div className="w-full max-w-xs h-px bg-white/10 mx-auto mt-6" />
         </div>
       </div>
 
