@@ -43,11 +43,11 @@ const OTHER_APPS = [
   },
   {
     id: 'tw',
-    name: 'Truth & Witness',
+    name: 'Truth & Wonder Academy',
     tagline: 'Coming Soon',
     icon: '/images/T&Wimage1_Medium.png',
-    summary: 'A new app from The Disciple Company, currently in development.',
-    description: 'Truth & Witness is an upcoming app designed to equip believers with tools for sharing and defending their faith. Stay tuned for more details as we get closer to launch.',
+    summary: 'A new curriculum from The Disciple Company, currently in development.',
+    description: 'Truth & Witness is an upcoming website/app designed to help children Learn, Discover & Grow with faith based education. Stay tuned for more details as we get closer to launch.',
     link: '#',
   },
 ];
@@ -157,8 +157,8 @@ export function AppDownload() {
       <div className="bg-[#0d1a2e] border-b border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col items-center gap-2 mb-6">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
-              Other Apps and Website by The Disciple Company
+            <span className="text-sm font-bold uppercase tracking-widest text-white/50">
+              Other Apps by The Disciple Company
             </span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -175,7 +175,7 @@ export function AppDownload() {
                     <img
                       src={app.icon}
                       alt={app.name}
-                      className="w-full h-full object-contain"
+                      className={`w-full h-full object-contain ${isComingSoon ? '' : 'rounded-xl'}`}
                     />
                   </div>
                   <div className="flex flex-col flex-1 p-3 sm:p-4 bg-white/5">
