@@ -170,7 +170,7 @@ export function AppDownload() {
   const isTW = activeApp === 'tw';
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-950 overflow-x-hidden">
 
       {/* ── APP SELECTOR ── */}
       <div className="bg-[#0d1a2e] border-b border-white/10">
@@ -316,7 +316,7 @@ export function AppDownload() {
       </section>
 
       {/* ── FEATURE SECTIONS ── alternating layout, one per dcad image */}
-      <section id="features" className="py-4 bg-white dark:bg-gray-950">
+      <section id="features" className="py-4 bg-[#faf9f6] dark:bg-gray-950">
         {FEATURES.map((feature, i) => {
           const isEven = i % 2 === 1;
           return (
@@ -387,7 +387,7 @@ export function AppDownload() {
       </section>
 
       {/* ── WHO IT'S FOR ── */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section className="py-20 bg-[#f5f3ee] dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
