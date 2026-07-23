@@ -78,11 +78,11 @@ export function TWContent() {
           </div>
 
           {/* Main showcase image */}
-          <div className="max-w-5xl mx-auto">
+          <div className="flex justify-center">
             <img
               src="/images/T&Wimage1_Medium.png"
               alt="Truth & Wonder Academy"
-              className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+              className="max-w-full h-auto rounded-2xl shadow-2xl ring-1 ring-white/10"
             />
           </div>
         </div>

@@ -182,14 +182,14 @@ export function DiscipleCodeContent() {
       </section>
 
       {/* ── PILLARS BAR ── */}
-      <section className="bg-[#111009] border-b border-zinc-800/60 py-6 overflow-x-auto">
+      <section className="bg-[#111009] border-b border-zinc-800/60 py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
-          <div className="flex items-center justify-between gap-6 min-w-max mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             {CODE_PILLARS.map((p, i) => (
-              <div key={p} className="flex items-center gap-4">
-                <span className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400 whitespace-nowrap">{p}</span>
+              <div key={p} className="flex items-center gap-3">
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.25em] text-zinc-400 whitespace-nowrap">{p}</span>
                 {i < CODE_PILLARS.length - 1 && (
-                  <span className="text-orange-700 text-lg font-thin">+</span>
+                  <span className="text-orange-700 text-base sm:text-lg font-thin">+</span>
                 )}
               </div>
             ))}
@@ -208,12 +208,12 @@ export function DiscipleCodeContent() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-8 text-center">
           <Swords className="w-10 h-10 text-orange-600 mx-auto mb-6" />
           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">The Manifesto</p>
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-[1.05] tracking-tight uppercase">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-8 leading-[1.05] tracking-tight uppercase">
             Following Jesus<br />
             <span className="text-orange-500">Costs Everything.</span>
           </h2>
-          <div className="border border-orange-900/60 bg-orange-950/20 p-8 md:p-12 mb-8">
-            <p className="text-xl md:text-2xl font-bold text-white/80 leading-relaxed">
+          <div className="border border-orange-900/60 bg-orange-950/20 p-6 md:p-12 mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-white/80 leading-relaxed">
               This is not a self-help program. This is not a Sunday-only lifestyle.<br />
               <span className="text-orange-400">This is a war — and you need a code to fight it.</span>
             </p>
@@ -230,7 +230,7 @@ export function DiscipleCodeContent() {
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
           <div className="mb-14">
             <p className="text-[11px] font-black uppercase tracking-[0.4em] text-orange-600 mb-3">The Four Pillars</p>
-            <h2 className="text-3xl md:text-4xl font-black text-white uppercase leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase leading-tight tracking-tight">
               A Life of Discipline<br />Starts with a Decision
             </h2>
           </div>
@@ -272,7 +272,7 @@ export function DiscipleCodeContent() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-8">
           <div className="text-center mb-16">
             <p className="text-[11px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">Hall of Warriors</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white uppercase leading-tight tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase leading-tight tracking-tight mb-4">
               Men of the Bible
             </h2>
             <div className="w-16 h-px bg-orange-600 mx-auto mb-6" />
@@ -332,7 +332,7 @@ export function DiscipleCodeContent() {
             <div>
               <Zap className="w-8 h-8 text-orange-500 mb-5" />
               <p className="text-[11px] font-black uppercase tracking-[0.4em] text-orange-600 mb-3">Content & Community</p>
-              <h2 className="text-3xl md:text-4xl font-black text-white uppercase leading-tight mb-5 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase leading-tight mb-5 tracking-tight">
                 The Podcast.<br />The Community.<br />The Code.
               </h2>
               <p className="text-zinc-500 text-base leading-relaxed mb-6">
@@ -384,7 +384,7 @@ export function DiscipleCodeContent() {
             everywhere life demands a man to stand.
           </p>
           <div className="border-l-4 border-orange-600 pl-6 text-left max-w-xl mx-auto mb-10">
-            <p className="text-2xl font-black text-white italic uppercase leading-tight mb-2">
+            <p className="text-xl sm:text-2xl font-black text-white italic uppercase leading-tight mb-2">
               "I can do all things through Christ who strengthens me."
             </p>
             <cite className="text-orange-500 font-black text-sm not-italic uppercase tracking-widest">
@@ -402,7 +402,7 @@ export function DiscipleCodeContent() {
           <div className="w-16 h-16 border-2 border-orange-700/60 mx-auto mb-8 flex items-center justify-center">
             <Swords className="w-8 h-8 text-orange-500" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-white uppercase leading-[1.05] tracking-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase leading-[1.05] tracking-tight mb-5">
             Are You Ready to<br />
             <span className="text-orange-500">Live The Code?</span>
           </h2>
@@ -413,7 +413,7 @@ export function DiscipleCodeContent() {
           <div className="flex justify-center">
             <ActionButtons large />
           </div>
-          <div className="mt-12 flex items-center justify-center gap-6 text-zinc-700 text-[10px] uppercase tracking-[0.3em] font-black">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-zinc-700 text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] font-black">
             <span>Faith</span>
             <span className="text-orange-800">+</span>
             <span>Fitness</span>
