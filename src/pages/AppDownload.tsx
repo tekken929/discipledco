@@ -171,11 +171,11 @@ export function AppDownload() {
                     ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
                     : 'border-white/10 hover:border-amber-400/40'
                 }`}>
-                  <div className={`flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-2 ${isComingSoon ? '' : 'rounded-xl'}`}>
+                  <div className="flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-2">
                     <img
                       src={app.icon}
                       alt={app.name}
-                      className="w-full h-full object-contain"
+                      className={`w-full h-full object-contain ${isComingSoon ? '' : 'rounded-xl'}`}
                     />
                   </div>
                   <div className="flex flex-col flex-1 p-3 sm:p-4 bg-white/5">
@@ -205,44 +205,7 @@ export function AppDownload() {
                 </div>
               );
               if (isComingSoon) {
-                return (
-                  <div key={app.id} className="md:col-span-2">
-                    <div className={`flex flex-col h-full rounded-xl overflow-hidden border transition-all border-white/10`}>
-                      <div className="flex flex-1">
-                        <div className="flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-2">
-                          <img
-                            src={app.icon}
-                            alt={app.name}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                        <div className="flex flex-col flex-1 p-3 sm:p-4 bg-white/5">
-                          <div className="flex items-start justify-between mb-1.5">
-                            <div className="text-left">
-                              <p className="text-base font-bold leading-tight text-white">{app.name}</p>
-                              <p className="text-[11px] text-white/40 leading-tight mt-0.5">{app.tagline}</p>
-                            </div>
-                            <span className="text-[9px] font-bold uppercase tracking-wider bg-rose-500/25 text-rose-200 px-2 py-1 rounded-full flex-shrink-0">
-                              Soon
-                            </span>
-                          </div>
-                          <p className="text-xs font-semibold text-white/80 leading-snug mb-1">{app.summary}</p>
-                          <p className="text-xs text-white/50 leading-snug mb-2 flex-1">{app.description}</p>
-                          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
-                            Coming Soon
-                          </div>
-                        </div>
-                      </div>
-                      <div className="px-4 pb-4 bg-white/5">
-                        <img
-                          src={app.icon}
-                          alt={app.name}
-                          className="w-full max-h-64 object-contain rounded-lg"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
+                return <div key={app.id}>{inner}</div>;
               }
               return (
                 <button
