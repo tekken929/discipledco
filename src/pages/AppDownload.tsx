@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun } from 'lucide-react';
+import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun, X } from 'lucide-react';
 import { GBJContent } from './GBJContent';
 import { DiscipleCodeContent } from './DiscipleCodeContent';
 import { TWContent } from './TWContent';
@@ -192,39 +192,54 @@ export function AppDownload() {
                 return (
                   <div key={app.id} className="relative">
                     <button
-                      onClick={() => { setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw'); setPopupApp(showPopup ? null : app.id); }}
-                      onMouseEnter={() => setPopupApp(app.id)}
-                      onMouseLeave={() => setPopupApp(null)}
+                      onClick={() => { setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw'); setPopupApp(app.id); }}
                       className="text-left w-full"
                     >
-                      <div className={`flex items-center gap-3 rounded-xl overflow-hidden border transition-all h-[130px] ${
+                      <div className={`flex items-center gap-4 rounded-xl overflow-hidden border transition-all h-[130px] ${
                         isActive
                           ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
                           : 'border-white/10 hover:border-amber-400/40'
                       }`}>
-                        <div className="flex-shrink-0 w-[110px] h-full bg-white/5 flex items-center justify-center p-3">
+                        <div className="flex-shrink-0 w-[130px] h-full bg-white/5 flex items-center justify-center p-3">
                           <img
                             src={app.icon}
                             alt={app.name}
-                            className="w-[88px] h-[88px] object-cover rounded-2xl shadow-lg"
+                            className="w-[132px] h-[132px] object-cover rounded-2xl shadow-lg"
                           />
                         </div>
-                        <div className="flex flex-col flex-1 pr-4 py-3 bg-white/5 h-full justify-center">
-                          <div className="text-left">
-                            <p className="text-base font-bold leading-tight text-white">{app.name}</p>
-                            <p className="text-[11px] text-white/40 leading-tight mt-0.5">{app.tagline}</p>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-3">
+                        <div className="flex flex-col flex-1 px-2 py-3 bg-white/5 h-full justify-center items-center text-center">
+                          <p className="text-xl font-bold leading-tight text-white">{app.name}</p>
+                          <p className="text-sm text-white/50 leading-tight mt-1">{app.tagline}</p>
+                          <div className="flex items-center gap-1.5 text-sm font-bold text-amber-400 mt-3">
                             {isActive ? 'Currently Viewing' : 'View App'}
-                            {!isActive && <ArrowRight className="w-3.5 h-3.5" />}
+                            {!isActive && <ArrowRight className="w-4 h-4" />}
                           </div>
                         </div>
                       </div>
                     </button>
                     {showPopup && (
-                      <div className="absolute z-50 left-0 right-0 top-full mt-2 bg-[#0d1a2e] border border-amber-400/30 rounded-xl p-4 shadow-2xl">
-                        <p className="text-xs font-semibold text-white/80 leading-snug mb-1.5">{app.summary}</p>
-                        <p className="text-xs text-white/55 leading-relaxed">{app.description}</p>
+                      <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] px-4" onClick={() => setPopupApp(null)}>
+                        <div className="absolute inset-0 bg-black/60" />
+                        <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
+                          <button
+                            onClick={() => setPopupApp(null)}
+                            className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Close"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                          <div className="flex flex-col items-center text-center pt-2">
+                            <img
+                              src={app.icon}
+                              alt={app.name}
+                              className="w-20 h-20 object-cover rounded-2xl shadow-lg mb-4"
+                            />
+                            <p className="text-lg font-bold text-gray-900 dark:text-white">{app.name}</p>
+                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-0.5">{app.tagline}</p>
+                            <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 leading-snug mt-4">{app.summary}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-2">{app.description}</p>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
