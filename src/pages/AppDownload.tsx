@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun, X } from 'lucide-react';
+import { CheckCircle, Star, ArrowRight, BookOpen, Heart, Zap, Users, Target, Sun, X, ChevronDown } from 'lucide-react';
 import { GBJContent } from './GBJContent';
 import { DiscipleCodeContent } from './DiscipleCodeContent';
 import { TWContent } from './TWContent';
@@ -177,10 +177,10 @@ export function AppDownload() {
       {popupApp === 'discipleco' && (
         <div className="fixed inset-0 z-[200] flex items-start justify-center pt-[10vh] px-4" onClick={() => setPopupApp(null)}>
           <div className="absolute inset-0 bg-black/60" />
-          <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
+          <div className="relative bg-[#f5f3ee] dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setPopupApp(null)}
-              className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -195,6 +195,10 @@ export function AppDownload() {
               <p className="text-sm text-gray-400 dark:text-gray-500 mt-0.5">{OTHER_APPS[0].tagline}</p>
               <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 leading-snug mt-4">{OTHER_APPS[0].summary}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-2">{OTHER_APPS[0].description}</p>
+              <div className="flex flex-col items-center gap-1 mt-5 text-amber-600 dark:text-amber-400">
+                <ChevronDown className="w-5 h-5" />
+                <span className="text-xs font-bold uppercase tracking-wider">Read More</span>
+              </div>
             </div>
           </div>
         </div>
@@ -219,10 +223,10 @@ export function AppDownload() {
                 return (
                   <div key={app.id} className="relative">
                     <button
-                      onClick={() => { setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw'); setPopupApp(app.id); }}
+                      onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw')}
                       className="text-left w-full"
                     >
-                      <div className={`flex items-center gap-4 rounded-xl overflow-hidden border transition-all h-[130px] ${
+                      <div className={`flex items-center gap-4 rounded-xl overflow-hidden border transition-all h-[160px] ${
                         isActive
                           ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
                           : 'border-white/10 hover:border-amber-400/40'
@@ -237,7 +241,13 @@ export function AppDownload() {
                         <div className="flex flex-col flex-1 px-2 py-3 bg-white/5 h-full justify-center items-center text-center">
                           <p className="text-xl font-bold leading-tight text-white">{app.name}</p>
                           <p className="text-sm text-white/50 leading-tight mt-1">{app.tagline}</p>
-                          <div className="flex items-center gap-1.5 text-sm font-bold text-amber-400 mt-3">
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setPopupApp('discipleco'); }}
+                            className="mt-2 text-[11px] font-semibold text-amber-300/80 hover:text-amber-300 underline underline-offset-2 transition-colors"
+                          >
+                            Click for Description
+                          </button>
+                          <div className="flex items-center gap-1.5 text-sm font-bold text-amber-400 mt-2">
                             {isActive ? 'Currently Viewing' : 'View App'}
                             {!isActive && <ArrowRight className="w-4 h-4" />}
                           </div>
