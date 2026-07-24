@@ -165,6 +165,7 @@ function GooglePlayBadge({ href: _href }: { href: string }) {
 
 export function AppDownload() {
   const [activeApp, setActiveApp] = useState<'discipleco' | 'gbj' | 'disciplecode' | 'tw'>('discipleco');
+  const [popupApp, setPopupApp] = useState<string | null>(null);
   const isGBJ = activeApp === 'gbj';
   const isDC = activeApp === 'disciplecode';
   const isTW = activeApp === 'tw';
@@ -184,6 +185,52 @@ export function AppDownload() {
             {OTHER_APPS.map((app) => {
               const isActive = activeApp === app.id;
               const isComingSoon = app.id === 'tw';
+              const isCompact = app.id === 'discipleco';
+              const showPopup = popupApp === app.id;
+
+              if (isCompact) {
+                return (
+                  <div key={app.id} className="relative">
+                    <button
+                      onClick={() => { setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw'); setPopupApp(showPopup ? null : app.id); }}
+                      onMouseEnter={() => setPopupApp(app.id)}
+                      onMouseLeave={() => setPopupApp(null)}
+                      className="text-left w-full"
+                    >
+                      <div className={`flex items-center gap-3 rounded-xl overflow-hidden border transition-all h-[130px] ${
+                        isActive
+                          ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
+                          : 'border-white/10 hover:border-amber-400/40'
+                      }`}>
+                        <div className="flex-shrink-0 w-[110px] h-full bg-white/5 flex items-center justify-center p-3">
+                          <img
+                            src={app.icon}
+                            alt={app.name}
+                            className="w-[88px] h-[88px] object-cover rounded-2xl shadow-lg"
+                          />
+                        </div>
+                        <div className="flex flex-col flex-1 pr-4 py-3 bg-white/5 h-full justify-center">
+                          <div className="text-left">
+                            <p className="text-base font-bold leading-tight text-white">{app.name}</p>
+                            <p className="text-[11px] text-white/40 leading-tight mt-0.5">{app.tagline}</p>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-3">
+                            {isActive ? 'Currently Viewing' : 'View App'}
+                            {!isActive && <ArrowRight className="w-3.5 h-3.5" />}
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                    {showPopup && (
+                      <div className="absolute z-50 left-0 right-0 top-full mt-2 bg-[#0d1a2e] border border-amber-400/30 rounded-xl p-4 shadow-2xl">
+                        <p className="text-xs font-semibold text-white/80 leading-snug mb-1.5">{app.summary}</p>
+                        <p className="text-xs text-white/55 leading-relaxed">{app.description}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               const inner = (
                 <div className={`flex h-full rounded-xl overflow-hidden border transition-all ${
                   isActive
