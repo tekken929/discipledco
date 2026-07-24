@@ -173,36 +173,40 @@ export function AppDownload() {
   return (
     <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-950 overflow-x-hidden">
 
-      {/* ── DISCIPLE CO. POPUP MODAL ── */}
-      {popupApp === 'discipleco' && (
-        <div className="fixed inset-0 z-[200] flex items-start justify-center pt-[10vh] px-4" onClick={() => setPopupApp(null)}>
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="relative bg-[#f5f3ee] dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setPopupApp(null)}
-              className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Close"
-            >
-              <X className="w-4 h-4" />
-            </button>
-            <div className="flex flex-col items-center text-center pt-2">
-              <img
-                src={OTHER_APPS[0].icon}
-                alt={OTHER_APPS[0].name}
-                className="w-20 h-20 object-contain rounded-2xl shadow-lg mb-4"
-              />
-              <p className="text-lg font-bold text-gray-900 dark:text-white">{OTHER_APPS[0].name}</p>
-              <p className="text-sm text-gray-400 dark:text-gray-500 mt-0.5">{OTHER_APPS[0].tagline}</p>
-              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 leading-snug mt-4">{OTHER_APPS[0].summary}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-2">{OTHER_APPS[0].description}</p>
-              <div className="flex flex-col items-center gap-1 mt-5 text-amber-600 dark:text-amber-400">
-                <ChevronDown className="w-5 h-5" />
-                <span className="text-xs font-bold uppercase tracking-wider">Read More</span>
+      {/* ── APP DESCRIPTION POPUP MODAL ── */}
+      {popupApp && (() => {
+        const app = OTHER_APPS.find(a => a.id === popupApp);
+        if (!app) return null;
+        return (
+          <div className="fixed inset-0 z-[200] flex items-start justify-center pt-[10vh] px-4" onClick={() => setPopupApp(null)}>
+            <div className="absolute inset-0 bg-black/60" />
+            <div className="relative bg-[#f5f3ee] dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setPopupApp(null)}
+                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+              <div className="flex flex-col items-center text-center pt-2">
+                <img
+                  src={app.icon}
+                  alt={app.name}
+                  className="w-20 h-20 object-contain rounded-2xl shadow-lg mb-4"
+                />
+                <p className="text-lg font-bold text-gray-900 dark:text-white">{app.name}</p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-0.5">{app.tagline}</p>
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 leading-snug mt-4">{app.summary}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-2">{app.description}</p>
+                <div className="flex flex-col items-center gap-1 mt-5 text-amber-600 dark:text-amber-400">
+                  <ChevronDown className="w-5 h-5" />
+                  <span className="text-xs font-bold uppercase tracking-wider">Read More Below</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* ── APP SELECTOR ── */}
       <div className="bg-[#0d1a2e] border-b border-white/10">
@@ -216,95 +220,42 @@ export function AppDownload() {
             {OTHER_APPS.map((app) => {
               const isActive = activeApp === app.id;
               const isComingSoon = app.id === 'tw';
-              const isCompact = app.id === 'discipleco';
-              const showPopup = popupApp === app.id;
 
-              if (isCompact) {
-                return (
-                  <div key={app.id} className="relative">
-                    <button
-                      onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw')}
-                      className="text-left w-full"
-                    >
-                      <div className={`flex items-center gap-4 rounded-xl overflow-hidden border transition-all h-[160px] ${
-                        isActive
-                          ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
-                          : 'border-white/10 hover:border-amber-400/40'
-                      }`}>
-                        <div className="flex-shrink-0 w-[170px] h-full bg-white/5 flex items-center justify-center p-2">
-                          <img
-                            src={app.icon}
-                            alt={app.name}
-                            className="w-[150px] h-[150px] object-contain rounded-2xl shadow-lg"
-                          />
-                        </div>
-                        <div className="flex flex-col flex-1 px-2 py-3 bg-white/5 h-full justify-center items-center text-center">
-                          <p className="text-xl font-bold leading-tight text-white">{app.name}</p>
-                          <p className="text-sm text-white/50 leading-tight mt-1">{app.tagline}</p>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); setPopupApp('discipleco'); }}
-                            className="mt-2 text-[11px] font-semibold text-amber-300/80 hover:text-amber-300 underline underline-offset-2 transition-colors"
-                          >
-                            Click for Description
-                          </button>
-                          <div className="flex items-center gap-1.5 text-sm font-bold text-amber-400 mt-2">
-                            {isActive ? 'Currently Viewing' : 'View App'}
-                            {!isActive && <ArrowRight className="w-4 h-4" />}
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                );
-              }
-
-              const inner = (
-                <div className={`flex h-full rounded-xl overflow-hidden border transition-all ${
-                  isActive
-                    ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
-                    : 'border-white/10 hover:border-amber-400/40'
-                }`}>
-                  <div className="flex-shrink-0 w-36 sm:w-40 bg-white/5 flex items-center justify-center p-3">
-                    <img
-                      src={app.icon}
-                      alt={app.name}
-                      className="w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-2xl shadow-lg"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 p-3 sm:p-4 bg-white/5">
-                    <div className="flex items-start justify-between mb-1.5">
-                      <div className="text-left">
-                        <p className="text-base font-bold leading-tight text-white">{app.name}</p>
-                        <p className="text-[11px] text-white/40 leading-tight mt-0.5">{app.tagline}</p>
-                      </div>
-                      {isActive && (
-                        <span className="text-[9px] font-bold uppercase tracking-wider bg-amber-400/25 text-amber-200 px-2 py-1 rounded-full flex-shrink-0">
-                          Viewing
-                        </span>
-                      )}
-                      {isComingSoon && (
-                        <span className="text-[9px] font-bold uppercase tracking-wider bg-rose-500/25 text-rose-200 px-2 py-1 rounded-full flex-shrink-0">
-                          Soon
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-xs font-semibold text-white/80 leading-snug mb-1">{app.summary}</p>
-                    <p className="text-xs text-white/50 leading-snug mb-2 flex-1">{app.description}</p>
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 mt-auto">
-                      {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
-                      {!isComingSoon && !isActive && <ArrowRight className="w-3.5 h-3.5" />}
-                    </div>
-                  </div>
-                </div>
-              );
               return (
-                <button
-                  key={app.id}
-                  onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw')}
-                  className="text-left"
-                >
-                  {inner}
-                </button>
+                <div key={app.id} className="relative">
+                  <button
+                    onClick={() => setActiveApp(app.id as 'discipleco' | 'gbj' | 'disciplecode' | 'tw')}
+                    className="text-left w-full"
+                  >
+                    <div className={`flex items-center gap-4 rounded-xl overflow-hidden border transition-all h-[160px] ${
+                      isActive
+                        ? 'border-amber-400/60 shadow-lg shadow-amber-500/10'
+                        : 'border-white/10 hover:border-amber-400/40'
+                    }`}>
+                      <div className="flex-shrink-0 w-[170px] h-full bg-white/5 flex items-center justify-center p-2">
+                        <img
+                          src={app.icon}
+                          alt={app.name}
+                          className="w-[150px] h-[150px] object-contain rounded-2xl shadow-lg"
+                        />
+                      </div>
+                      <div className="flex flex-col flex-1 px-2 py-3 bg-white/5 h-full justify-center items-center text-center">
+                        <p className="text-xl font-bold leading-tight text-white">{app.name}</p>
+                        <p className="text-sm text-white/50 leading-tight mt-1">{app.tagline}</p>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setPopupApp(app.id); }}
+                          className="mt-2 text-[11px] font-semibold text-amber-300/80 hover:text-amber-300 underline underline-offset-2 transition-colors"
+                        >
+                          Click for Description
+                        </button>
+                        <div className="flex items-center gap-1.5 text-sm font-bold text-amber-400 mt-2">
+                          {isComingSoon ? 'Coming Soon' : isActive ? 'Currently Viewing' : 'View App'}
+                          {!isComingSoon && !isActive && <ArrowRight className="w-4 h-4" />}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
               );
             })}
           </div>
