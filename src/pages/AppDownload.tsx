@@ -21,7 +21,7 @@ const OTHER_APPS = [
     tagline: 'Bible · Discipleship · Prayer',
     icon: '/images/Untitled_design_(34)_Large.jpeg',
     summary: 'A complete Bible study and discipleship app designed to help believers understand, believe, and live God\u2019s Word.',
-    description: 'Verse-by-verse studies, multiple translations, a 30-day challenge, prayer tools, timelines, and a growing library of discipleship resources \u2014 all in one place, completely free.',
+    description: 'Bible Chapter studies, multiple translations, a 30-day challenge, prayer tools, timelines, and a growing library of discipleship resources \u2014 all in one place, completely free.',
     link: 'https://apps.apple.com/us/app/the-disciple-co/id6762557983',
   },
   {
@@ -29,8 +29,8 @@ const OTHER_APPS = [
     name: 'The Great Bible Journey',
     tagline: 'Bible Adventures for Kids',
     icon: '/images/iconbj.png',
-    summary: 'An interactive Bible adventure app that brings Scripture to life for children through engaging stories and activities.',
-    description: 'Designed for kids and families, The Great Bible Journey makes exploring the Bible fun and memorable with illustrated stories, quizzes, and age-appropriate lessons that build a lifelong foundation of faith.',
+    summary: 'An interactive Bible adventure that brings Scripture to life for children through engaging stories and activities.',
+    description: 'Designed for kids and families, The Great Bible Journey makes exploring the Bible fun and memorable with stories, quizzes, and age-appropriate lessons that build a lifelong foundation of faith.',
     link: 'https://thegreatbiblejourney.com',
   },
   {
@@ -39,7 +39,7 @@ const OTHER_APPS = [
     tagline: 'Fitness · Faith · Discipline',
     icon: '/images/appicon5.png',
     summary: 'A faith-based fitness app that combines physical discipline with spiritual growth.',
-    description: 'The Disciple Code pairs daily workouts with Scripture and devotionals, helping you train your body and your spirit together. Build healthy habits rooted in faith and stay motivated on your journey.',
+    description: 'The Disciple Code pairs daily workouts with Scripture and devotionals, helping you train your body, mind and your spirit together. Build healthy habits rooted in faith and stay motivated on your journey.',
     link: 'https://thedisciplecode.com',
   },
   {
@@ -48,7 +48,7 @@ const OTHER_APPS = [
     tagline: 'Coming Soon',
     icon: '/images/T&Wimage1_Medium.png',
     summary: 'A new curriculum from The Disciple Company, currently in development.',
-    description: 'Truth & Witness is an upcoming website/app designed to help children Learn, Discover & Grow with faith based education. Stay tuned for more details as we get closer to launch.',
+    description: 'Truth & Wonder is an upcoming website/app designed to help children Learn, Discover & Grow with faith based education. Stay tuned for more details as we get closer to launch.',
     link: '#',
   },
 ];
