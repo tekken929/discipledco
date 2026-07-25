@@ -60,9 +60,9 @@ const menuSections: MenuSection[] = [
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-      { to: '/bible', label: 'Bible Reading Roadmap', icon: Compass },
+      { to: '/bible', label: 'Bible Roadmap', icon: Compass },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
-      { to: '/timeline', label: 'Complete Historical Timeline', icon: Clock },
+      { to: '/timeline', label: 'Historical Timeline', icon: Clock },
     ],
   },
   {
