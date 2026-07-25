@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Map, ArrowRight, Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, BookOpen } from 'lucide-react';
+import { Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, BookOpen } from 'lucide-react';
 import { useHeroTheme, type HeroTheme } from '../context/HeroThemeContext';
 
 const LOGO_SRC = '/images/Untitled_design_(34)_Large.jpeg';
@@ -153,11 +153,11 @@ function FrostBackground() {
 function LogoBadge() {
   return (
     <div className="relative">
-      <div className="absolute inset-0 rounded-[2.5rem] opacity-60 blur-2xl scale-110 bg-sky-400/50" />
+      <div className="absolute inset-0 rounded-[3rem] opacity-60 blur-3xl scale-110 bg-sky-400/50" />
       <img
         src={LOGO_SRC}
         alt="The Disciple Company"
-        className="relative w-28 h-28 md:w-32 md:h-32 rounded-[2rem] object-cover shadow-2xl ring-1 ring-white/30"
+        className="relative w-56 h-56 md:w-64 md:h-64 rounded-[2rem] object-cover shadow-2xl ring-1 ring-white/30"
       />
     </div>
   );
@@ -179,7 +179,7 @@ function GlassHero() {
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
 
           <div className="relative px-8 py-10 md:px-12 md:py-14 text-left">
-            <div className="flex justify-start mb-6">
+            <div className="flex justify-start mb-12">
               <LogoBadge />
             </div>
 
@@ -195,17 +195,7 @@ function GlassHero() {
             <p className="text-base md:text-lg text-white/80 mb-3 leading-relaxed font-light italic drop-shadow-lg">
               "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
             </p>
-            <p className="text-sm text-white/55 mb-8 font-semibold tracking-wide">— Luke 9:23</p>
-
-            <Link
-              to="/bible"
-              className="group inline-flex items-center justify-center gap-2 w-full bg-white/15 hover:bg-white/25 border border-white/25 hover:border-white/50 rounded-2xl px-6 py-4 hover:shadow-2xl transition-all hover:-translate-y-0.5 backdrop-blur-md"
-            >
-              <Map className="w-5 h-5 text-amber-300" />
-              <span className="text-base font-bold text-white">Start Here</span>
-              <ArrowRight className="w-4 h-4 text-amber-300 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <p className="text-xs text-white/45 mt-3">Bible Overview — all 66 books, guided.</p>
+            <p className="text-sm text-white/55 font-semibold tracking-wide">— Luke 9:23</p>
           </div>
         </div>
       </div>
