@@ -198,7 +198,7 @@ export function Welcome() {
       </section>
 
       {/* Complete Bible tile — between hero and nav row */}
-      <div className="flex justify-center px-4 mt-8 pb-6">
+      <div className="flex justify-center px-4 mt-4 pb-4">
         <a
           href="/bible-lookup"
           target="_blank"
@@ -217,9 +217,9 @@ export function Welcome() {
       </div>
 
       {/* 4-TILE NAVIGATION ROW */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-2">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Everything you need, now.</h2>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <div className="mb-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Everything you need, now.</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">Your starting points — pick any path and begin today.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -378,17 +378,17 @@ export function Welcome() {
       </section>
 
       {/* FEATURED SECTIONS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-12">
         {/* Section divider */}
-        <div className="flex items-center gap-4 mb-12">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
-          <div className="flex items-center justify-center w-8 h-8 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
-            <BookOpen className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex-1 h-px hero-divider-line" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-full theme-card border hero-divider-badge shadow-sm">
+            <BookOpen className="w-3.5 h-3.5" />
           </div>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+          <div className="flex-1 h-px hero-divider-line" />
         </div>
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Gain knowledge</h2>
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Gain knowledge</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">Pick your topic below to learn more.</p>
         </div>
 
@@ -436,8 +436,8 @@ export function Welcome() {
       </section>
 
       {/* VERSE BANNER */}
-      <section className="theme-primary-bg">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+      <section className="theme-primary-bg hero-verse-banner">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
           <p className="text-2xl md:text-2xl font-bold text-white leading-relaxed mb-4">
             "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
           </p>
@@ -446,9 +446,9 @@ export function Welcome() {
       </section>
 
       {/* BELIEFS SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">What We Believe</h2>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+        <div className="mb-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">What We Believe</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">Not religion for its own sake — a path toward truth.</p>
         </div>
         <div className="theme-card border rounded-2xl p-8 md:p-12">
@@ -483,16 +483,16 @@ export function Welcome() {
       </section>
 
       {/* BEING DEVELOPED SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="flex items-center gap-4 mb-12">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
-          <div className="flex items-center justify-center w-8 h-8 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
-            <BookOpen className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex-1 h-px hero-divider-line" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-full theme-card border hero-divider-badge shadow-sm">
+            <BookOpen className="w-3.5 h-3.5" />
           </div>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+          <div className="flex-1 h-px hero-divider-line" />
         </div>
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">Being Developed</h2>
+        <div className="mb-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Being Developed</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">More features coming soon — live features are available now.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
@@ -685,7 +685,7 @@ export function Welcome() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-gray-900 dark:text-white leading-snug">Support on Patreon</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">The Disciple Co. — help us keep it free for everyone</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">The Disciple Company — help us keep it free for everyone</p>
               </div>
               <ArrowRight className="w-4 h-4 text-orange-500 dark:text-orange-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
             </a>

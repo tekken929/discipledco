@@ -3,6 +3,7 @@ import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, P
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode, ColorTheme } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
+import { HeroThemeProvider, useHeroTheme } from './context/HeroThemeContext';
 import { Footer } from './components/Footer';
 import { OnboardingQuestions } from './components/OnboardingQuestions';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
@@ -166,11 +167,11 @@ function TopNav() {
           >
             <img
               src="/images/Untitled_design_(34)_Large.jpeg"
-              alt="The Disciple Co."
+              alt="The Disciple Company"
               className="w-8 h-8 rounded-lg object-cover"
             />
             <div className="hidden sm:block">
-              <span className="text-base font-bold text-gray-900 dark:text-white tracking-tight">The Disciple Co.</span>
+              <span className="text-base font-bold text-gray-900 dark:text-white tracking-tight">The Disciple Company</span>
             </div>
           </Link>
 
@@ -354,6 +355,7 @@ function TopNav() {
 
 function AppContent() {
   const { darkMode } = useDarkMode();
+  const { heroTheme } = useHeroTheme();
   const location = useLocation();
   const [selectedBook, setSelectedBook] = useState<BookType>(books[0]);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
@@ -392,7 +394,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen theme-background transition-colors flex flex-col">
+    <div className="min-h-screen theme-background transition-colors flex flex-col" data-hero-theme={heroTheme}>
       {!isSpecialPage && <div className="grain-overlay" />}
 
       <TopNav />
@@ -442,9 +444,11 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <MusicPlayerProvider>
-        <AppContent />
-      </MusicPlayerProvider>
+      <HeroThemeProvider>
+        <MusicPlayerProvider>
+          <AppContent />
+        </MusicPlayerProvider>
+      </HeroThemeProvider>
     </Router>
   );
 }

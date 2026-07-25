@@ -226,6 +226,97 @@
   }
 }
 
+/* ── Hero theme: whole-page accent tints ────────────────────── */
+/* These ride on top of the existing color-theme system and shift the
+   page background tint, section divider accents, and the verse banner
+   gradient so the hero theme is felt throughout the page, not just in
+   the hero. */
+
+/* DAWN — warm sunrise: amber/rose tints */
+[data-hero-theme="dawn"] {
+  --hero-tint: rgba(255, 200, 120, 0.04);
+  --hero-accent: #d97706;
+  --hero-accent-soft: rgba(217, 119, 6, 0.15);
+  --hero-banner-from: #b45309;
+  --hero-banner-via: #c97b4a;
+  --hero-banner-to: #9a3412;
+}
+[data-hero-theme="dawn"].dark {
+  --hero-tint: rgba(217, 119, 6, 0.06);
+  --hero-accent: #fbbf24;
+  --hero-accent-soft: rgba(251, 191, 36, 0.12);
+  --hero-banner-from: #78350f;
+  --hero-banner-via: #92400e;
+  --hero-banner-to: #451a03;
+}
+
+/* SANCTUARY — candlelit warm gold */
+[data-hero-theme="sanctuary"] {
+  --hero-tint: rgba(217, 167, 89, 0.05);
+  --hero-accent: #b45309;
+  --hero-accent-soft: rgba(180, 83, 9, 0.15);
+  --hero-banner-from: #78350f;
+  --hero-banner-via: #92400e;
+  --hero-banner-to: #451a03;
+}
+[data-hero-theme="sanctuary"].dark {
+  --hero-tint: rgba(217, 167, 89, 0.06);
+  --hero-accent: #fbbf24;
+  --hero-accent-soft: rgba(251, 191, 36, 0.12);
+  --hero-banner-from: #451a03;
+  --hero-banner-via: #78350f;
+  --hero-banner-to: #1c0701;
+}
+
+/* AURORA — deep midnight teal/blue/green */
+[data-hero-theme="aurora"] {
+  --hero-tint: rgba(45, 212, 191, 0.035);
+  --hero-accent: #0d9488;
+  --hero-accent-soft: rgba(13, 148, 136, 0.15);
+  --hero-banner-from: #134e4a;
+  --hero-banner-via: #0f766e;
+  --hero-banner-to: #115e59;
+}
+[data-hero-theme="aurora"].dark {
+  --hero-tint: rgba(45, 212, 191, 0.05);
+  --hero-accent: #2dd4bf;
+  --hero-accent-soft: rgba(45, 212, 191, 0.12);
+  --hero-banner-from: #042f2e;
+  --hero-banner-via: #064e3b;
+  --hero-banner-to: #022c22;
+}
+
+/* Page background tint */
+[data-hero-theme] .theme-background {
+  background-image: radial-gradient(ellipse at 50% 0%, var(--hero-tint), transparent 70%);
+}
+
+/* Section dividers pick up the hero accent */
+[data-hero-theme] .hero-divider-line {
+  background: linear-gradient(to right, transparent, var(--hero-accent-soft), transparent) !important;
+}
+[data-hero-theme] .hero-divider-badge {
+  border-color: var(--hero-accent-soft) !important;
+  color: var(--hero-accent) !important;
+}
+
+/* Verse banner gradient */
+[data-hero-theme] .hero-verse-banner {
+  background: linear-gradient(135deg, var(--hero-banner-from), var(--hero-banner-via), var(--hero-banner-to)) !important;
+}
+
+/* Section heading accent */
+[data-hero-theme] .hero-heading-accent::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  border-radius: 9999px;
+  margin: 12px auto 0;
+  background: var(--hero-accent);
+  opacity: 0.7;
+}
+
 /* ── Grain overlay texture ──────────────────────────────────── */
 .grain-overlay {
   position: fixed;

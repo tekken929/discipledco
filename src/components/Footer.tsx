@@ -64,10 +64,10 @@ export function Footer() {
             <Link to="/" className="flex items-center gap-2 mb-3">
               <img
                 src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
-                alt="The Disciple Co."
+                alt="The Disciple Company"
                 className="w-7 h-7 rounded-md object-cover"
               />
-              <span className="text-sm font-bold text-gray-900 dark:text-white">The Disciple Co.</span>
+              <span className="text-sm font-bold text-gray-900 dark:text-white">The Disciple Company</span>
             </Link>
             <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
               A path toward truth — not religion for religion's sake.
