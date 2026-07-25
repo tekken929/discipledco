@@ -36,13 +36,13 @@ function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b:
 
 function AppDownloadCard() {
   return (
-    <div className="flex flex-col items-stretch sm:items-end gap-3 z-20 px-4 sm:px-6 lg:px-8 pt-6">
+    <div className="flex flex-col items-stretch gap-3 z-20 mt-8 md:absolute md:top-6 md:right-4 lg:right-8 md:mt-0 px-4 sm:px-6 lg:px-8 md:px-0">
       <a
         href="https://thediscipleco.org/app"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download The Disciple Company App"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full sm:w-[260px]"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full md:w-[260px]"
       >
         <img src={LOGO_SRC} alt="The Disciple Company App" className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0" />
         <div className="text-left">
@@ -54,7 +54,7 @@ function AppDownloadCard() {
       <Link
         to="/bible-lookup"
         aria-label="Complete Bible"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full sm:w-[260px]"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full md:w-[260px]"
       >
         <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-300/30 flex items-center justify-center flex-shrink-0">
           <BookOpen className="w-6 h-6 text-teal-300" />
@@ -68,7 +68,7 @@ function AppDownloadCard() {
       <Link
         to="/bible-lookup"
         aria-label="Lookup Any Verse"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full sm:w-[260px]"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full md:w-[260px]"
       >
         <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
           <Search className="w-6 h-6 text-amber-300" />
@@ -237,9 +237,7 @@ export function WelcomeHero() {
             <GlassHero />
           </div>
         </div>
-        <div className="mt-8 flex justify-start">
-          <AppDownloadCard />
-        </div>
+        <AppDownloadCard />
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
