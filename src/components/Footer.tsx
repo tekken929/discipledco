@@ -79,6 +79,14 @@ export function Footer() {
             <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
               A path toward truth — not religion for religion's sake.
             </p>
+            <a
+              href="https://thediscipleco.org/app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
+            >
+              Download Our Apps
+            </a>
             <div className="flex items-center gap-2">
               <a
                 href="https://facebook.com"

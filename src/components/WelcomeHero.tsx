@@ -245,7 +245,7 @@ export function WelcomeHero() {
         <AppDownloadCard />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
+      <div className="absolute -bottom-10 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
     </>
   );
 }
