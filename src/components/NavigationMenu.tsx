@@ -49,7 +49,7 @@ const sections: NavSection[] = [
     links: [
       { to: '/prayer', icon: Wind, title: 'Daily Prayer' },
       { to: '/stories', icon: Book, title: 'Popular Stories' },
-      { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies', comingSoon: true },
+      { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies' },
       { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
       { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
       { to: '/music', icon: Music, title: 'Music Jukebox', comingSoon: true },
