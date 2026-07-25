@@ -191,9 +191,8 @@ export function Welcome() {
   return (
     <div className="min-h-screen">
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION — full width */}
       <section className="relative overflow-hidden">
-        {/* Bottom fade to page */}
         <WelcomeHero />
       </section>
 

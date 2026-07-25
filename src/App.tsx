@@ -156,7 +156,7 @@ function TopNav() {
       isScrolled ? 'shadow-sm' : ''
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-between h-16 sm:h-14">
 
           <Link
             to="/"
@@ -165,10 +165,10 @@ function TopNav() {
             <img
               src="/images/Untitled_design_(34)_Large.jpeg"
               alt="The Disciple Company"
-              className="w-8 h-8 rounded-lg object-cover"
+              className="w-10 h-10 sm:w-8 sm:h-8 rounded-lg object-cover"
             />
-            <div className="hidden sm:block">
-              <span className="text-base font-bold text-gray-900 dark:text-white tracking-tight">The Disciple Company</span>
+            <div className="block">
+              <span className="text-sm sm:text-base font-bold text-gray-900 dark:text-white tracking-tight leading-tight">The Disciple Company</span>
             </div>
           </Link>
 

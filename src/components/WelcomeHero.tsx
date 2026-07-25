@@ -36,13 +36,13 @@ function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b:
 
 function AppDownloadCard() {
   return (
-    <div className="flex flex-col items-stretch gap-3 z-20 mt-8 md:absolute md:top-6 md:right-4 lg:right-8 md:mt-0 px-4 sm:px-6 lg:px-8 md:px-0">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <a
         href="https://thediscipleco.org/app"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download The Disciple Company App"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full md:w-[260px]"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
       >
         <img src={LOGO_SRC} alt="The Disciple Company App" className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0" />
         <div className="text-left">
@@ -54,7 +54,7 @@ function AppDownloadCard() {
       <Link
         to="/bible-lookup"
         aria-label="Complete Bible"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full md:w-[260px]"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
       >
         <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-300/30 flex items-center justify-center flex-shrink-0">
           <BookOpen className="w-6 h-6 text-teal-300" />
@@ -68,7 +68,7 @@ function AppDownloadCard() {
       <Link
         to="/bible-lookup"
         aria-label="Lookup Any Verse"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-full md:w-[260px]"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
       >
         <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
           <Search className="w-6 h-6 text-amber-300" />
@@ -166,12 +166,12 @@ function FrostBackground() {
 
 function LogoBadge() {
   return (
-    <div className="relative">
+    <div className="relative flex-shrink-0">
       <div className="absolute inset-0 rounded-[3rem] opacity-60 blur-3xl scale-110 bg-sky-400/50" />
       <img
         src={LOGO_SRC}
         alt="The Disciple Company"
-        className="relative w-56 h-56 md:w-64 md:h-64 rounded-[2rem] object-cover shadow-2xl ring-1 ring-white/30"
+        className="relative w-[21rem] h-[21rem] md:w-[24rem] md:h-[24rem] rounded-[2rem] object-cover shadow-2xl ring-1 ring-white/30"
       />
     </div>
   );
@@ -179,37 +179,38 @@ function LogoBadge() {
 
 function GlassHero() {
   return (
-    <div className="relative flex justify-start">
+    <div className="relative">
       <img
         src={LOGO_SRC}
         alt=""
         aria-hidden
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] h-[70vw] max-h-[560px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] h-[70vw] max-h-[560px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
       />
 
-      <div className="relative w-full">
+      <div className="relative">
         <div className="relative rounded-[2rem] bg-white/[0.08] backdrop-blur-2xl border border-white/20 shadow-2xl overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
 
-          <div className="relative px-8 py-10 md:px-12 md:py-14 text-left">
-            <div className="flex justify-start mb-12">
+          <div className="relative px-6 py-8 sm:px-10 md:px-14 md:py-14">
+            <div className="flex flex-col items-center lg:flex-row lg:items-start gap-8 lg:gap-12">
               <LogoBadge />
+              <div className="flex-1 text-center lg:text-left lg:pt-8">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-white mb-3 leading-tight tracking-wide drop-shadow-2xl">
+                  The Disciple Company
+                </h1>
+                <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-6">Discipleship, Simplified</p>
+
+                <div className="flex justify-center lg:justify-start mb-8">
+                  <div className="w-12 h-px bg-white/25" />
+                </div>
+
+                <p className="text-base md:text-lg text-white/80 mb-3 leading-relaxed font-light italic drop-shadow-lg">
+                  "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
+                </p>
+                <p className="text-sm text-white/55 font-semibold tracking-wide">— Luke 9:23</p>
+              </div>
             </div>
-
-            <h1 className="text-4xl md:text-5xl font-bold font-display text-white mb-3 leading-tight tracking-wide drop-shadow-2xl">
-              The Disciple Company
-            </h1>
-            <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-6">Discipleship, Simplified</p>
-
-            <div className="flex justify-center mb-8">
-              <div className="w-12 h-px bg-white/25" />
-            </div>
-
-            <p className="text-base md:text-lg text-white/80 mb-3 leading-relaxed font-light italic drop-shadow-lg">
-              "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
-            </p>
-            <p className="text-sm text-white/55 font-semibold tracking-wide">— Luke 9:23</p>
           </div>
         </div>
       </div>
@@ -229,14 +230,18 @@ export function WelcomeHero() {
       {heroTheme === 'ember' && <EmberBackground />}
       {heroTheme === 'frost' && <FrostBackground />}
 
-      {/* Picker and hero card share the same-width container */}
-      <div className="relative px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
-        <div className="max-w-xl">
-          <BackgroundPicker value={heroTheme} onChange={setHeroTheme} />
-          <div className="pt-14 md:pt-16">
-            <GlassHero />
-          </div>
-        </div>
+      {/* Theme picker — above hero, full width */}
+      <div className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+        <BackgroundPicker value={heroTheme} onChange={setHeroTheme} />
+      </div>
+
+      {/* Hero card — full width */}
+      <div className="relative px-4 sm:px-6 lg:px-8 pb-8">
+        <GlassHero />
+      </div>
+
+      {/* Three download cards — below hero */}
+      <div className="relative px-4 sm:px-6 lg:px-8 pb-12">
         <AppDownloadCard />
       </div>
 
@@ -244,3 +249,6 @@ export function WelcomeHero() {
     </>
   );
 }
+
+
+export { WelcomeHero }
