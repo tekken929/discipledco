@@ -80,8 +80,8 @@ const menuSections: MenuSection[] = [
     heading: 'Being Developed',
     links: [
       { to: '/prayer', label: 'Daily Prayer', icon: Wind },
-      { to: '/stories', label: 'Popular Stories', icon: Book },
-      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
+      { to: '/stories', label: 'Popular Stories', icon: Book, comingSoon: true },
+      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen, comingSoon: true },
       { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
       { to: '/resurrection', label: 'The Resurrection', icon: BookOpen },
       { to: '/music', label: 'Music Jukebox', icon: Music, comingSoon: true },

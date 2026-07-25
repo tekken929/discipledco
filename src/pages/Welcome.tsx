@@ -498,45 +498,39 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Popular Stories — PREVIEW */}
-          <Link
-            to="/stories"
-            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-rose-200 dark:border-rose-800 bg-rose-50/50 dark:bg-rose-950/20 hover:border-rose-400 dark:hover:border-rose-600 hover:shadow-md transition-all hover:-translate-y-0.5"
-          >
+          {/* Popular Stories — Coming Soon */}
+          <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-900/50 flex items-center justify-center flex-shrink-0">
-                <Book className="w-5 h-5 text-rose-600 dark:text-rose-400" />
+              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <Book className="w-5 h-5 text-gray-400 dark:text-gray-500" />
               </div>
-              <span className="text-[10px] font-bold bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+                <Lock className="w-2.5 h-2.5" /> Soon
+              </span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Popular Stories</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Engaging stories and accounts that bring biblical truths to life.</p>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Popular Stories</h3>
+              <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Engaging stories and accounts that bring biblical truths to life.</p>
             </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-rose-600 dark:text-rose-400 group-hover:gap-2 transition-all mt-auto">
-              Read stories <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </Link>
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
+          </div>
 
-          {/* Bible Studies — PREVIEW */}
-          <Link
-            to="/bible-studies"
-            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-emerald-950/20 hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-md transition-all hover:-translate-y-0.5"
-          >
+          {/* Bible Studies — Coming Soon */}
+          <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center flex-shrink-0">
-                <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="w-5 h-5 text-gray-400 dark:text-gray-500" />
               </div>
-              <span className="text-[10px] font-bold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+                <Lock className="w-2.5 h-2.5" /> Soon
+              </span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Bible Studies</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Ten in-depth study series for the beginner Christian — from who God is to living it out daily.</p>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Bible Studies</h3>
+              <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Ten in-depth study series for the beginner Christian — from who God is to living it out daily.</p>
             </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 group-hover:gap-2 transition-all mt-auto">
-              Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </Link>
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
+          </div>
 
           {/* Holiday Origins — PREVIEW */}
           <Link
