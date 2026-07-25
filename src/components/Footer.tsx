@@ -4,47 +4,54 @@ import { Modal } from './Modal';
 import { useState } from 'react';
 import { AdminPortal } from '../pages/AdminPortal';
 
-const footerColumns = [
+const footerColumns: {
+  heading: string;
+  links: { to: string; label: string; comingSoon?: boolean; external?: boolean }[];
+}[] = [
   {
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview' },
-      { to: '/bible-versions', label: 'Bible Versions' },
-      { to: '/bible-lookup', label: 'Lookup a Verse' },
-      { to: '/bible-studies', label: 'Bible Studies', comingSoon: true },
-      { to: '/verse-of-the-day', label: 'Verse of the Day' },
+      { to: '/bible', label: 'Bible Roadmap' },
       { to: '/courses', label: 'Foundation Course' },
+      { to: '/timeline', label: 'Historical Timeline' },
     ],
   },
   {
-    heading: 'Learn',
+    heading: 'Gain Knowledge',
     links: [
       { to: '/religions', label: 'What is Religion' },
-      { to: '/topics', label: 'Everyday Topics' },
-      { to: '/stories', label: 'Popular Stories' },
+      { to: '/bible-versions', label: 'Bible Versions' },
+      { to: '/bible-lookup', label: 'Lookup Any Verse' },
       { to: '/preaching', label: 'Wisdom' },
-      { to: '/guidance', label: 'Guidance', comingSoon: true },
-      { to: '/church-mentors', label: 'Mentors', comingSoon: true },
+      { to: '/topics', label: 'Biblical Topics' },
+      { to: '/bible-authors', label: 'Bible Authors' },
     ],
   },
   {
-    heading: 'Features',
+    heading: 'Being Developed',
     links: [
       { to: '/prayer', label: 'Daily Prayer' },
+      { to: '/stories', label: 'Popular Stories', comingSoon: true },
+      { to: '/bible-studies', label: 'Bible Studies', comingSoon: true },
       { to: '/christian-holidays', label: 'Holiday Origins' },
+      { to: '/resurrection', label: 'The Resurrection' },
       { to: '/music', label: 'Music Jukebox', comingSoon: true },
       { to: '/faqs', label: 'FAQs', comingSoon: true },
-      { to: '#', label: 'Media', comingSoon: true },
+      { to: '#', label: 'Media Section', comingSoon: true },
     ],
   },
   {
-    heading: 'More',
+    heading: 'Misc',
     links: [
+      { to: '/guidance', label: 'Guidance' },
+      { to: '/church-mentors', label: 'Mentors' },
       { to: '/hallowed', label: 'Hallowed Band' },
       { to: '/podcasts', label: 'Podcasts' },
       { to: '/books', label: 'Books' },
       { to: '/easter', label: 'Easter' },
-      { to: '/resurrection', label: 'Resurrection' },
+      { to: '/verse-of-the-day', label: 'Verse of the Day' },
+      { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', external: true },
     ],
   },
 ];
@@ -63,7 +70,7 @@ export function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
               <img
-                src="/images/christian-cross-free-phone-wallpapers-v0-ue93of6bivsc1.png"
+                src="/images/Untitled_design_(34)_Large.jpeg"
                 alt="The Disciple Company"
                 className="w-7 h-7 rounded-md object-cover"
               />
@@ -129,6 +136,15 @@ export function Footer() {
                       <span className="text-sm text-gray-400 dark:text-gray-600 cursor-not-allowed opacity-50 select-none">
                         {link.label}
                       </span>
+                    ) : link.external ? (
+                      <a
+                        href={link.to}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </a>
                     ) : (
                       <Link
                         to={link.to}
