@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, Map, GraduationCap, Image, Lock } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, Map, GraduationCap, Image, Lock, Compass, Clock } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -28,7 +28,9 @@ const sections: NavSection[] = [
     heading: 'Bible',
     links: [
       { to: '/bible', icon: Map, title: 'Bible Overview' },
+      { to: '/bible', icon: Compass, title: 'Bible Reading Roadmap' },
       { to: '/courses', icon: GraduationCap, title: 'Foundation Course' },
+      { to: '/timeline', icon: Clock, title: 'Complete Historical Timeline' },
     ],
   },
   {
