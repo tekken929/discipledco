@@ -392,6 +392,13 @@
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
 
+/* ── Blink animation (scroll cue) ───────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50%      { opacity: 0.25; transform: translateY(4px); }
+}
+.animate-blink { animation: blink 1.4s ease-in-out infinite; }
+
 /* ── Print styles ────────────────────────────────────────────── */
 @media print {
   @page { size: A4; margin: 1.5cm; }

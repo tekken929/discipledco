@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { Map, ArrowRight, Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, BookOpen } from 'lucide-react';
+import { Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, ChevronDown } from 'lucide-react';
 import { useHeroTheme, type HeroTheme } from '../context/HeroThemeContext';
 
 const LOGO_SRC = '/images/Untitled_design_(34)_Large.jpeg';
@@ -51,20 +50,6 @@ function AppDownloadCard() {
           <p className="text-white/60 text-xs">Available on the App Store</p>
         </div>
       </a>
-      <Link
-        to="/bible-lookup"
-        aria-label="Complete Bible"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-[260px]"
-      >
-        <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-300/30 flex items-center justify-center flex-shrink-0">
-          <BookOpen className="w-6 h-6 text-teal-300" />
-        </div>
-        <div className="text-left">
-          <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Complete Bible</p>
-          <p className="text-white text-sm font-bold leading-tight">Read any verse</p>
-          <p className="text-white/60 text-xs">KJV, ESV, NASB, NLT & WEB</p>
-        </div>
-      </Link>
     </div>
   );
 }
@@ -153,24 +138,28 @@ function FrostBackground() {
 function LogoBadge() {
   return (
     <div className="relative">
-      <div className="absolute inset-0 rounded-[2.5rem] opacity-60 blur-2xl scale-110 bg-sky-400/50" />
+      <div className="absolute inset-0 rounded-[3rem] opacity-60 blur-3xl scale-110 bg-sky-400/50" />
       <img
         src={LOGO_SRC}
         alt="The Disciple Company"
-        className="relative w-28 h-28 md:w-32 md:h-32 rounded-[2rem] object-cover shadow-2xl ring-1 ring-white/30"
+        className="relative w-72 h-72 md:w-80 md:h-80 rounded-[3rem] object-cover shadow-2xl ring-1 ring-white/30"
       />
     </div>
   );
 }
 
 function GlassHero() {
+  const scrollToNext = () => {
+    document.getElementById('welcome-next')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
-    <div className="relative flex justify-start">
+    <div className="relative flex justify-center">
       <img
         src={LOGO_SRC}
         alt=""
         aria-hidden
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] h-[70vw] max-h-[560px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[640px] h-[80vw] max-h-[640px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
       />
 
       <div className="relative w-full max-w-lg">
@@ -178,12 +167,10 @@ function GlassHero() {
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
 
-          <div className="relative px-8 py-10 md:px-12 md:py-14 text-left">
-            <div className="flex justify-start mb-6">
-              <LogoBadge />
-            </div>
+          <div className="relative px-8 py-10 md:px-12 md:py-14 text-center flex flex-col items-center">
+            <LogoBadge />
 
-            <h1 className="text-4xl md:text-5xl font-bold font-display text-white mb-3 leading-tight tracking-wide drop-shadow-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold font-display text-white mt-8 mb-3 leading-tight tracking-wide drop-shadow-2xl">
               The Disciple Company
             </h1>
             <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-6">Discipleship, Simplified</p>
@@ -197,15 +184,14 @@ function GlassHero() {
             </p>
             <p className="text-sm text-white/55 mb-8 font-semibold tracking-wide">— Luke 9:23</p>
 
-            <Link
-              to="/bible"
-              className="group inline-flex items-center justify-center gap-2 w-full bg-white/15 hover:bg-white/25 border border-white/25 hover:border-white/50 rounded-2xl px-6 py-4 hover:shadow-2xl transition-all hover:-translate-y-0.5 backdrop-blur-md"
+            <button
+              onClick={scrollToNext}
+              aria-label="Scroll to next section"
+              className="group inline-flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors"
             >
-              <Map className="w-5 h-5 text-amber-300" />
-              <span className="text-base font-bold text-white">Start Here</span>
-              <ArrowRight className="w-4 h-4 text-amber-300 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <p className="text-xs text-white/45 mt-3">Bible Overview — all 66 books, guided.</p>
+              <span className="text-xs font-semibold uppercase tracking-widest mb-1">Scroll</span>
+              <ChevronDown className="w-7 h-7 animate-blink" />
+            </button>
           </div>
         </div>
       </div>
