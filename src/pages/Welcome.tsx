@@ -198,7 +198,7 @@ export function Welcome() {
       </section>
 
       {/* 4-TILE NAVIGATION ROW */}
-      <section id="welcome-next" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 scroll-mt-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <div className="mb-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Everything you need, now.</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">Your starting points — pick any path and begin today.</p>
