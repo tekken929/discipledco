@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Compass, Clock, Users } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -60,7 +60,9 @@ const menuSections: MenuSection[] = [
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
+      { to: '/bible', label: 'Bible Reading Roadmap', icon: Compass },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
+      { to: '/timeline', label: 'Complete Historical Timeline', icon: Clock },
     ],
   },
   {
@@ -70,7 +72,8 @@ const menuSections: MenuSection[] = [
       { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
       { to: '/bible-lookup', label: 'Lookup Any Verse', icon: Lightbulb },
       { to: '/preaching', label: 'Wisdom', icon: Mic },
-      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen, comingSoon: true },
+      { to: '/topics', label: 'Biblical Topics', icon: MessageCircle },
+      { to: '/bible-authors', label: 'Bible Authors', icon: Users },
     ],
   },
   {
@@ -86,7 +89,6 @@ const menuSections: MenuSection[] = [
   {
     heading: 'Misc',
     links: [
-      { to: '/topics', label: 'Everyday Topics', icon: MessageCircle },
       { to: '/stories', label: 'Popular Stories', icon: Book },
       { to: '/guidance', label: 'Guidance', icon: BookOpen },
       { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
@@ -96,7 +98,6 @@ const menuSections: MenuSection[] = [
       { to: '/easter', label: 'Easter', icon: Sparkles },
       { to: '/resurrection', label: 'Resurrection', icon: BookOpen },
       { to: '/verse-of-the-day', label: 'Verse of the Day', icon: Image },
-      { to: '/bible-authors', label: 'Bible Authors', icon: BookOpen },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', icon: BookOpen, external: true },
     ],
   },
