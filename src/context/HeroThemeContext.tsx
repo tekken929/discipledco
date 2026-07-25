@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-export type HeroTheme = 'dawn' | 'sanctuary' | 'aurora';
+export type HeroTheme = 'dawn' | 'sanctuary' | 'aurora' | 'forest' | 'ember' | 'frost';
 
 interface HeroThemeContextValue {
   heroTheme: HeroTheme;

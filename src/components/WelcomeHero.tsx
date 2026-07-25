@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Map, ArrowRight, Sunrise, Flame, Waves } from 'lucide-react';
+import { Map, ArrowRight, Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake } from 'lucide-react';
 import { useHeroTheme, type HeroTheme } from '../context/HeroThemeContext';
 
 const LOGO_SRC = '/images/Untitled_design_(34)_Large.jpeg';
@@ -8,16 +8,19 @@ const BG_LABELS: { id: HeroTheme; label: string; icon: typeof Sunrise }[] = [
   { id: 'dawn', label: 'Dawn', icon: Sunrise },
   { id: 'sanctuary', label: 'Sanctuary', icon: Flame },
   { id: 'aurora', label: 'Aurora', icon: Waves },
+  { id: 'forest', label: 'Forest', icon: Trees },
+  { id: 'ember', label: 'Ember', icon: EmberIcon },
+  { id: 'frost', label: 'Frost', icon: Snowflake },
 ];
 
 function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b: HeroTheme) => void }) {
   return (
-    <div className="absolute top-6 left-4 sm:left-6 lg:left-8 z-30 flex items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg">
+    <div className="absolute top-6 left-4 sm:left-6 lg:left-8 z-30 flex flex-wrap items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg max-w-[calc(100vw-2rem)]">
       {BG_LABELS.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
           onClick={() => onChange(id)}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
             value === id
               ? 'bg-white/90 text-gray-900 shadow'
               : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -89,6 +92,43 @@ function AuroraBackground() {
       <div className="absolute top-0 left-[-5%] w-[120%] h-[70%] bg-[radial-gradient(ellipse_50%_35%_at_70%_35%,rgba(59,130,246,0.28),transparent)] blur-3xl" />
       <div className="absolute top-1/4 left-[10%] w-[100%] h-[60%] bg-[radial-gradient(ellipse_45%_30%_at_50%_50%,rgba(16,185,129,0.22),transparent)] blur-3xl" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15)_0.5px,transparent_1px),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.12)_0.5px,transparent_1px),radial-gradient(circle_at_60%_70%,rgba(255,255,255,0.10)_0.5px,transparent_1px),radial-gradient(circle_at_35%_80%,rgba(255,255,255,0.10)_0.5px,transparent_1px)] bg-[length:200px_200px,250px_250px,180px_180px,220px_220px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_45%,rgba(0,0,0,0.6))]" />
+    </div>
+  );
+}
+
+function ForestBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1a0f] via-[#0f2417] to-[#040c07]" />
+      <div className="absolute top-0 left-[-10%] w-[120%] h-[70%] bg-[radial-gradient(ellipse_60%_40%_at_30%_30%,rgba(34,197,94,0.22),transparent)] blur-3xl" />
+      <div className="absolute top-1/4 left-[10%] w-[100%] h-[60%] bg-[radial-gradient(ellipse_50%_35%_at_70%_40%,rgba(22,163,74,0.20),transparent)] blur-3xl" />
+      <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-green-950/40 to-transparent blur-2xl" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.10)_0.5px,transparent_1px),radial-gradient(circle_at_75%_35%,rgba(255,255,255,0.08)_0.5px,transparent_1px),radial-gradient(circle_at_55%_75%,rgba(255,255,255,0.08)_0.5px,transparent_1px)] bg-[length:220px_220px,260px_260px,200px_200px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_45%,rgba(0,0,0,0.6))]" />
+    </div>
+  );
+}
+
+function EmberBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a0606] via-[#2a0a0a] to-[#0a0202]" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120vw] h-[60vh] rounded-[100%] bg-gradient-to-t from-red-600/40 via-orange-700/20 to-transparent blur-3xl" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_80%,rgba(239,68,68,0.25),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(251,146,60,0.15)_1px,transparent_2px),radial-gradient(circle_at_70%_60%,rgba(239,68,68,0.12)_1px,transparent_2px),radial-gradient(circle_at_50%_85%,rgba(254,215,170,0.10)_1px,transparent_2px)] bg-[length:120px_120px,160px_160px,100px_100px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_40%,rgba(10,2,2,0.7))]" />
+    </div>
+  );
+}
+
+function FrostBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1228] via-[#0f1e3d] to-[#040814]" />
+      <div className="absolute top-0 left-[-10%] w-[120%] h-[70%] bg-[radial-gradient(ellipse_60%_40%_at_40%_30%,rgba(96,165,250,0.25),transparent)] blur-3xl" />
+      <div className="absolute top-1/4 left-[5%] w-[110%] h-[60%] bg-[radial-gradient(ellipse_50%_35%_at_65%_45%,rgba(186,230,253,0.18),transparent)] blur-3xl" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.20)_0.5px,transparent_1px),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.15)_0.5px,transparent_1px),radial-gradient(circle_at_50%_70%,rgba(255,255,255,0.12)_0.5px,transparent_1px),radial-gradient(circle_at_35%_85%,rgba(255,255,255,0.10)_0.5px,transparent_1px)] bg-[length:180px_180px,220px_220px,160px_160px,200px_200px]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_45%,rgba(0,0,0,0.6))]" />
     </div>
   );
@@ -167,6 +207,9 @@ export function WelcomeHero() {
       {heroTheme === 'dawn' && <DawnBackground />}
       {heroTheme === 'sanctuary' && <SanctuaryBackground />}
       {heroTheme === 'aurora' && <AuroraBackground />}
+      {heroTheme === 'forest' && <ForestBackground />}
+      {heroTheme === 'ember' && <EmberBackground />}
+      {heroTheme === 'frost' && <FrostBackground />}
 
       <BackgroundPicker value={heroTheme} onChange={setHeroTheme} />
       <AppDownloadCard />

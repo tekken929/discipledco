@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Palette, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, Map, GraduationCap, Image, Lock } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, Map, GraduationCap, Image, Lock } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -8,8 +8,6 @@ import { useBubbles } from '../context/BubblesContext';
 interface NavigationMenuProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
-  colorTheme: ColorTheme;
-  onThemeChange: (theme: ColorTheme) => void;
 }
 
 interface NavLink {
@@ -72,16 +70,14 @@ const sections: NavSection[] = [
   },
 ];
 
-export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeChange }: NavigationMenuProps) {
+export function NavigationMenu({ darkMode, toggleDarkMode }: NavigationMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [showThemeMenu, setShowThemeMenu] = useState(false);
   const location = useLocation();
   const isScrolled = useNavbarScroll(100);
   const { bubblesEnabled, toggleBubbles } = useBubbles();
 
   useEffect(() => {
     setIsOpen(false);
-    setShowThemeMenu(false);
   }, [location.pathname]);
 
   const renderLink = (link: NavLink) => {
@@ -169,93 +165,6 @@ export function NavigationMenu({ darkMode, toggleDarkMode, colorTheme, onThemeCh
             <div className="px-4 pt-2 pb-1">
               <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">Settings</p>
             </div>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowThemeMenu(!showThemeMenu);
-              }}
-              className="flex items-center justify-between w-full px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <Palette className="w-4 h-4" />
-                <span className="font-medium text-sm">Theme</span>
-              </div>
-              <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">{
-                colorTheme === 'blackwhite' ? 'Ink' :
-                colorTheme === 'happy' ? 'Warm Amber' :
-                colorTheme === 'subtle' ? 'Parchment' :
-                colorTheme === 'ocean' ? 'Ocean' :
-                colorTheme === 'dusk' ? 'Dusk' : colorTheme
-              }</span>
-            </button>
-
-            {showThemeMenu && (
-              <div className="bg-gray-50 dark:bg-gray-900 px-3 py-2 space-y-1">
-                {/* Row 1 */}
-                <div className="grid grid-cols-2 gap-1.5">
-                  <button
-                    onClick={() => { onThemeChange('subtle'); setShowThemeMenu(false); }}
-                    className={`flex flex-col items-center gap-1.5 px-2 py-2.5 rounded-xl border-2 transition-all ${colorTheme === 'subtle' ? 'border-amber-500 bg-amber-50 dark:bg-amber-950/40' : 'border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:bg-white dark:hover:bg-gray-800'}`}
-                  >
-                    <div className="flex gap-1">
-                      <div className="w-5 h-5 rounded-full bg-stone-100 border border-stone-300"></div>
-                      <div className="w-5 h-5 rounded-full bg-amber-600"></div>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Parchment</span>
-                  </button>
-                  <button
-                    onClick={() => { onThemeChange('happy'); setShowThemeMenu(false); }}
-                    className={`flex flex-col items-center gap-1.5 px-2 py-2.5 rounded-xl border-2 transition-all ${colorTheme === 'happy' ? 'border-orange-500 bg-orange-50 dark:bg-orange-950/40' : 'border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:bg-white dark:hover:bg-gray-800'}`}
-                  >
-                    <div className="flex gap-1">
-                      <div className="w-5 h-5 rounded-full bg-amber-400"></div>
-                      <div className="w-5 h-5 rounded-full bg-orange-500"></div>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Warm Amber</span>
-                  </button>
-                </div>
-                {/* Row 2 */}
-                <div className="grid grid-cols-2 gap-1.5">
-                  <button
-                    onClick={() => { onThemeChange('ocean'); setShowThemeMenu(false); }}
-                    className={`flex flex-col items-center gap-1.5 px-2 py-2.5 rounded-xl border-2 transition-all ${colorTheme === 'ocean' ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/40' : 'border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:bg-white dark:hover:bg-gray-800'}`}
-                  >
-                    <div className="flex gap-1">
-                      <div className="w-5 h-5 rounded-full bg-sky-200 dark:bg-sky-900 border border-sky-300"></div>
-                      <div className="w-5 h-5 rounded-full bg-sky-600"></div>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Ocean</span>
-                  </button>
-                  <button
-                    onClick={() => { onThemeChange('dusk'); setShowThemeMenu(false); }}
-                    className={`flex flex-col items-center gap-1.5 px-2 py-2.5 rounded-xl border-2 transition-all ${colorTheme === 'dusk' ? 'border-rose-500 bg-rose-50 dark:bg-rose-950/40' : 'border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:bg-white dark:hover:bg-gray-800'}`}
-                  >
-                    <div className="flex gap-1">
-                      <div className="w-5 h-5 rounded-full bg-rose-100 border border-rose-200"></div>
-                      <div className="w-5 h-5 rounded-full bg-rose-700"></div>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Dusk</span>
-                  </button>
-                </div>
-                {/* Row 3 */}
-                <div className="grid grid-cols-2 gap-1.5">
-                  <button
-                    onClick={() => { onThemeChange('blackwhite'); setShowThemeMenu(false); }}
-                    className={`flex flex-col items-center gap-1.5 px-2 py-2.5 rounded-xl border-2 transition-all ${colorTheme === 'blackwhite' ? 'border-gray-700 bg-gray-100 dark:bg-gray-800' : 'border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:bg-white dark:hover:bg-gray-800'}`}
-                  >
-                    <div className="flex gap-1">
-                      <div className="w-5 h-5 rounded-full bg-white border border-gray-400"></div>
-                      <div className="w-5 h-5 rounded-full bg-gray-900 border border-gray-600"></div>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Ink</span>
-                  </button>
-                  <div className="flex items-center justify-center px-2 py-2.5">
-                    <span className="text-[10px] text-gray-400 dark:text-gray-600 text-center leading-tight">More themes<br/>coming soon</span>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <button
               onClick={toggleDarkMode}

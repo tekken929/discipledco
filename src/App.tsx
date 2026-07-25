@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Palette, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
-import { useDarkMode, ColorTheme } from './context/DarkModeContext';
+import { useDarkMode } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
 import { HeroThemeProvider, useHeroTheme } from './context/HeroThemeContext';
 import { Footer } from './components/Footer';
@@ -103,13 +103,11 @@ const menuSections: MenuSection[] = [
 ];
 
 function TopNav() {
-  const { darkMode, toggleDarkMode, colorTheme, setColorTheme } = useDarkMode();
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const location = useLocation();
   const isScrolled = useNavbarScroll(60);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const settingsRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleRefresh = async () => {
@@ -135,15 +133,11 @@ function TopNav() {
   const isMusicPage = location.pathname === '/music';
 
   useEffect(() => {
-    setSettingsOpen(false);
     setMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (settingsRef.current && !settingsRef.current.contains(e.target as Node)) {
-        setSettingsOpen(false);
-      }
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setMenuOpen(false);
       }
@@ -220,62 +214,10 @@ function TopNav() {
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Settings */}
-            <div ref={settingsRef} className="relative">
-              <button
-                onClick={() => setSettingsOpen(!settingsOpen)}
-                className="flex items-center gap-1.5 p-2 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                aria-label="Settings"
-              >
-                <Palette className="w-4 h-4 flex-shrink-0" />
-                <span className="hidden sm:inline">Theme</span>
-              </button>
-              {settingsOpen && (
-                <div className="absolute right-0 top-full mt-1 w-64 theme-card rounded-xl shadow-xl border overflow-hidden z-[200]">
-                  <div className="px-4 py-2.5 border-b border-gray-200 dark:border-gray-700">
-                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Color Theme</p>
-                  </div>
-                  <div className="p-2 space-y-0.5">
-                    {([
-                      { id: 'subtle',     label: 'Parchment',   dot1: 'bg-stone-200 border border-stone-300',  dot2: 'bg-amber-600' },
-                      { id: 'happy',      label: 'Warm Amber',  dot1: 'bg-amber-400',                          dot2: 'bg-orange-500' },
-                      { id: 'ocean',      label: 'Ocean',       dot1: 'bg-sky-200 border border-sky-300',       dot2: 'bg-sky-600' },
-                      { id: 'dusk',       label: 'Dusk',        dot1: 'bg-rose-100 border border-rose-200',     dot2: 'bg-rose-700' },
-                      { id: 'blackwhite', label: 'Ink',         dot1: 'bg-white border border-gray-400',        dot2: 'bg-gray-900 border border-gray-600' },
-                    ] as { id: ColorTheme; label: string; dot1: string; dot2: string }[]).map((t) => (
-                      <button
-                        key={t.id}
-                        onClick={() => { setColorTheme(t.id); setSettingsOpen(false); }}
-                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-left ${
-                          colorTheme === t.id ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-800'
-                        }`}
-                      >
-                        <div className="flex gap-1 flex-shrink-0">
-                          <div className={`w-4 h-4 rounded-full ${t.dot1}`} />
-                          <div className={`w-4 h-4 rounded-full ${t.dot2}`} />
-                        </div>
-                        <span className="font-semibold text-gray-900 dark:text-white">{t.label}</span>
-                        {colorTheme === t.id && <span className="ml-auto text-xs font-bold text-blue-500">Active</span>}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="border-t border-gray-200 dark:border-gray-700">
-                    <button
-                      onClick={toggleDarkMode}
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
-                    >
-                      {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                      <span className="font-semibold">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
             {/* Menu button with all links */}
             <div ref={menuRef} className="relative">
               <button
-                onClick={() => { setMenuOpen(!menuOpen); setSettingsOpen(false); }}
+                onClick={() => setMenuOpen(!menuOpen)}
                 className="flex items-center gap-1.5 p-2 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="All pages menu"
               >
