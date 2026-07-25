@@ -249,6 +249,3 @@ export function WelcomeHero() {
     </>
   );
 }
-
-
-export { WelcomeHero }
