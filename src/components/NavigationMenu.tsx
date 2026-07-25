@@ -48,8 +48,10 @@ const sections: NavSection[] = [
     heading: 'Being Developed',
     links: [
       { to: '/prayer', icon: Wind, title: 'Daily Prayer' },
-      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
+      { to: '/stories', icon: Book, title: 'Popular Stories' },
       { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies', comingSoon: true },
+      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
+      { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
       { to: '/music', icon: Music, title: 'Music Jukebox', comingSoon: true },
       { to: '/faqs', icon: HelpCircle, title: 'FAQs', comingSoon: true },
       { to: '#', icon: Image, title: 'Media', comingSoon: true },
@@ -58,14 +60,12 @@ const sections: NavSection[] = [
   {
     heading: 'Misc',
     links: [
-      { to: '/stories', icon: Book, title: 'Popular Stories' },
       { to: '/guidance', icon: BookOpen, title: 'Guidance' },
       { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
       { to: '/hallowed', icon: Sparkles, title: 'Hallowed Band' },
       { to: '/podcasts', icon: Radio, title: 'Podcasts' },
       { to: '/books', icon: BookText, title: 'Books' },
       { to: '/easter', icon: Sparkles, title: 'Easter' },
-      { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
       { to: '/verse-of-the-day', icon: BookOpen, title: 'Verse of the Day' },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', icon: BookOpen, title: 'Common Prayer', external: true },
     ],
