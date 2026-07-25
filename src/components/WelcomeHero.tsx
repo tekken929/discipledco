@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Map, ArrowRight, Sparkles, LayoutGrid, AlignLeft, Quote } from 'lucide-react';
+import { Map, ArrowRight, Sunrise, Flame, Waves } from 'lucide-react';
 
 const LOGO_SRC = '/images/Untitled_design_(34)_Large.jpeg';
 
-type HeroStyle = 'spotlight' | 'editorial' | 'glass';
+type BgTheme = 'dawn' | 'sanctuary' | 'aurora';
 
-const STYLE_LABELS: { id: HeroStyle; label: string; icon: typeof Sparkles }[] = [
-  { id: 'spotlight', label: 'Spotlight', icon: Sparkles },
-  { id: 'editorial', label: 'Editorial', icon: AlignLeft },
-  { id: 'glass', label: 'Glass', icon: LayoutGrid },
+const BG_LABELS: { id: BgTheme; label: string; icon: typeof Sunrise }[] = [
+  { id: 'dawn', label: 'Dawn', icon: Sunrise },
+  { id: 'sanctuary', label: 'Sanctuary', icon: Flame },
+  { id: 'aurora', label: 'Aurora', icon: Waves },
 ];
 
-function StylePicker({ value, onChange }: { value: HeroStyle; onChange: (s: HeroStyle) => void }) {
+function BackgroundPicker({ value, onChange }: { value: BgTheme; onChange: (b: BgTheme) => void }) {
   return (
     <div className="absolute top-6 left-4 sm:left-6 lg:left-8 z-30 flex items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg">
-      {STYLE_LABELS.map(({ id, label, icon: Icon }) => (
+      {BG_LABELS.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
           onClick={() => onChange(id)}
@@ -54,140 +54,79 @@ function AppDownloadCard() {
   );
 }
 
-/* ---------- Shared pieces ---------- */
+/* ---------- Backgrounds ---------- */
 
-function LogoBadge({ size = 'lg' }: { size?: 'lg' | 'md' | 'sm' }) {
-  const dims = size === 'lg' ? 'w-36 h-36 md:w-44 md:h-44' : size === 'md' ? 'w-28 h-28 md:w-32 md:h-32' : 'w-20 h-20 md:w-24 md:h-24';
-  const radius = size === 'sm' ? 'rounded-[1.5rem]' : 'rounded-[2rem]';
+function DawnBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Deep night sky to warm horizon */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f3a] via-[#3d2f4a] to-[#c97b4a]" />
+      {/* Sun glow rising from the horizon */}
+      <div className="absolute left-1/2 bottom-[10%] -translate-x-1/2 w-[120vw] h-[60vh] rounded-[100%] bg-gradient-to-t from-amber-300/70 via-orange-400/30 to-transparent blur-3xl" />
+      {/* Warm light wash */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_85%,rgba(255,200,120,0.35),transparent_55%)]" />
+      {/* Soft cloud haze */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-amber-900/30 to-transparent blur-2xl" />
+      {/* Top vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,transparent_40%,rgba(10,10,30,0.5))]" />
+    </div>
+  );
+}
+
+function SanctuaryBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Deep warm base */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2a1810] via-[#3d2415] to-[#1a0f08]" />
+      {/* Central golden light — like light through a high window */}
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[60vw] h-full bg-gradient-to-b from-amber-300/25 via-amber-400/10 to-transparent blur-2xl" />
+      {/* Light rays */}
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-gradient-to-b from-amber-200/40 to-transparent" style={{ transform: 'translateX(-50%) rotate(8deg)', transformOrigin: 'top' }} />
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-gradient-to-b from-amber-200/30 to-transparent" style={{ transform: 'translateX(-50%) rotate(-8deg)', transformOrigin: 'top' }} />
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-gradient-to-b from-amber-200/20 to-transparent" style={{ transform: 'translateX(-50%) rotate(16deg)', transformOrigin: 'top' }} />
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px h-full bg-gradient-to-b from-amber-200/20 to-transparent" style={{ transform: 'translateX(-50%) rotate(-16deg)', transformOrigin: 'top' }} />
+      {/* Warm glow pool */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vh] rounded-full bg-amber-500/15 blur-3xl" />
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_35%,rgba(10,5,2,0.7))]" />
+    </div>
+  );
+}
+
+function AuroraBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Deep midnight base */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020a18] via-[#04142a] to-[#01060f]" />
+      {/* Aurora band 1 — teal */}
+      <div className="absolute -top-1/4 left-[-10%] w-[120%] h-[70%] bg-[radial-gradient(ellipse_60%_40%_at_30%_40%,rgba(45,212,191,0.30),transparent)] blur-3xl" />
+      {/* Aurora band 2 — blue */}
+      <div className="absolute top-0 left-[-5%] w-[120%] h-[70%] bg-[radial-gradient(ellipse_50%_35%_at_70%_35%,rgba(59,130,246,0.28),transparent)] blur-3xl" />
+      {/* Aurora band 3 — emerald */}
+      <div className="absolute top-1/4 left-[10%] w-[100%] h-[60%] bg-[radial-gradient(ellipse_45%_30%_at_50%_50%,rgba(16,185,129,0.22),transparent)] blur-3xl" />
+      {/* Subtle star dust */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15)_0.5px,transparent_1px),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.12)_0.5px,transparent_1px),radial-gradient(circle_at_60%_70%,rgba(255,255,255,0.10)_0.5px,transparent_1px),radial-gradient(circle_at_35%_80%,rgba(255,255,255,0.10)_0.5px,transparent_1px)] bg-[length:200px_200px,250px_250px,180px_180px,220px_220px]" />
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_45%,rgba(0,0,0,0.6))]" />
+    </div>
+  );
+}
+
+/* ---------- Glass hero (fixed layout) ---------- */
+
+function LogoBadge() {
   return (
     <div className="relative">
       <div className="absolute inset-0 rounded-[2.5rem] opacity-60 blur-2xl scale-110 bg-sky-400/50" />
       <img
         src={LOGO_SRC}
         alt="The Disciple Co."
-        className={`relative ${dims} ${radius} object-cover shadow-2xl ring-1 ring-white/30`}
+        className="relative w-28 h-28 md:w-32 md:h-32 rounded-[2rem] object-cover shadow-2xl ring-1 ring-white/30"
       />
     </div>
   );
 }
 
-/* ---------- 1. SPOTLIGHT ----------
-   Large blurred logo glowing behind a centered, focused layout. */
-function SpotlightHero() {
-  return (
-    <div className="relative text-center max-w-3xl mx-auto">
-      {/* Blurred logo backdrop — broad, soft, sits behind everything */}
-      <img
-        src={LOGO_SRC}
-        alt=""
-        aria-hidden
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[55%] w-[90vw] max-w-[760px] h-[90vw] max-h-[760px] object-contain opacity-[0.12] blur-3xl select-none pointer-events-none"
-      />
-      {/* Radial spotlight glow */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[640px] h-[80vw] max-h-[640px] rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
-
-      <div className="relative flex justify-center mb-8">
-        <LogoBadge size="lg" />
-      </div>
-      <div className="relative">
-        <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-4">Discipleship, Simplified</p>
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white mb-6 leading-tight tracking-wide drop-shadow-2xl">
-          The Disciple Co.
-        </h1>
-        <p className="text-lg md:text-xl text-white/80 mb-3 leading-relaxed font-light italic drop-shadow-lg">
-          "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
-        </p>
-        <p className="text-sm text-white/60 mb-10 font-semibold tracking-wide">— Luke 9:23</p>
-
-        <div className="flex justify-center">
-          <Link
-            to="/bible"
-            className="group text-left bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/40 rounded-2xl px-6 py-5 hover:shadow-2xl transition-all hover:-translate-y-1 backdrop-blur-md max-w-2xl w-full"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
-                <Map className="w-5 h-5 text-amber-300" />
-              </div>
-              <span className="text-xs font-bold text-white/60 uppercase tracking-widest">Begin Your Journey</span>
-            </div>
-            <h3 className="text-xl font-bold text-white mb-2 leading-snug">Start Here</h3>
-            <p className="text-sm text-white/70 leading-relaxed mb-4">Your guided entry point — browse all 66 books, understand the Bible's structure, and find where to begin.</p>
-            <span className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">
-              Bible Overview <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- 2. EDITORIAL ----------
-   Magazine-style: oversized left-aligned title, gold accent rule,
-   pull-quote verse, small logo badge, underlined CTA. Clean and bold. */
-function EditorialHero() {
-  return (
-    <div className="relative max-w-5xl mx-auto">
-      <div className="flex flex-col gap-10 md:gap-14">
-        {/* Top row: small logo badge + eyebrow */}
-        <div className="flex items-center gap-4">
-          <img
-            src={LOGO_SRC}
-            alt="The Disciple Co."
-            className="w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] object-cover shadow-2xl ring-1 ring-white/30 flex-shrink-0"
-          />
-          <div>
-            <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em]">The Disciple Co.</p>
-            <p className="text-white/50 text-xs md:text-sm font-medium tracking-wide mt-0.5">Discipleship, Simplified</p>
-          </div>
-        </div>
-
-        {/* Oversized title with accent rule */}
-        <div>
-          <div className="w-16 h-1 bg-amber-300/80 rounded-full mb-6" />
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display text-white leading-[1.05] tracking-tight drop-shadow-2xl">
-            Follow Him.<br />
-            <span className="text-white/85">Daily.</span>
-          </h1>
-        </div>
-
-        {/* Pull-quote verse */}
-        <div className="flex items-start gap-4 max-w-2xl">
-          <Quote className="w-8 h-8 text-amber-300/60 flex-shrink-0 mt-1" />
-          <div>
-            <p className="text-xl md:text-2xl text-white/85 leading-relaxed font-light italic drop-shadow-lg">
-              "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
-            </p>
-            <p className="text-sm text-white/55 mt-3 font-semibold tracking-wide">— Luke 9:23</p>
-          </div>
-        </div>
-
-        {/* Underlined CTA */}
-        <div>
-          <Link
-            to="/bible"
-            className="group inline-flex items-center gap-3 text-left"
-          >
-            <div className="w-12 h-12 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
-              <Map className="w-5 h-5 text-amber-300" />
-            </div>
-            <div className="border-b border-white/30 group-hover:border-amber-300 transition-colors pb-1">
-              <p className="text-xs font-bold text-white/60 uppercase tracking-widest leading-none mb-1">Begin Your Journey</p>
-              <p className="text-lg font-bold text-white leading-tight flex items-center gap-2">
-                Start Here — Bible Overview
-                <ArrowRight className="w-4 h-4 text-amber-300 group-hover:translate-x-1 transition-transform" />
-              </p>
-            </div>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- 3. GLASS ----------
-   A centered frosted-glass card — like a premium app launch screen.
-   Blurred logo glows softly behind the glass. */
 function GlassHero() {
   return (
     <div className="relative flex justify-center">
@@ -201,14 +140,12 @@ function GlassHero() {
 
       <div className="relative w-full max-w-lg">
         <div className="relative rounded-[2rem] bg-white/[0.08] backdrop-blur-2xl border border-white/20 shadow-2xl overflow-hidden">
-          {/* Top sheen */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-          {/* Subtle inner glow */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
 
           <div className="relative px-8 py-12 md:px-12 md:py-16 text-center">
             <div className="flex justify-center mb-8">
-              <LogoBadge size="md" />
+              <LogoBadge />
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold font-display text-white mb-3 leading-tight tracking-wide drop-shadow-2xl">
@@ -242,17 +179,19 @@ function GlassHero() {
 }
 
 export function WelcomeHero() {
-  const [heroStyle, setHeroStyle] = useState<HeroStyle>('spotlight');
+  const [bgTheme, setBgTheme] = useState<BgTheme>('dawn');
 
   return (
     <>
-      <StylePicker value={heroStyle} onChange={setHeroStyle} />
+      {bgTheme === 'dawn' && <DawnBackground />}
+      {bgTheme === 'sanctuary' && <SanctuaryBackground />}
+      {bgTheme === 'aurora' && <AuroraBackground />}
+
+      <BackgroundPicker value={bgTheme} onChange={setBgTheme} />
       <AppDownloadCard />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-        {heroStyle === 'spotlight' && <SpotlightHero />}
-        {heroStyle === 'editorial' && <EditorialHero />}
-        {heroStyle === 'glass' && <GlassHero />}
+        <GlassHero />
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
