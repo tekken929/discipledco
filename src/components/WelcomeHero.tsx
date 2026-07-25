@@ -15,7 +15,7 @@ const BG_LABELS: { id: HeroTheme; label: string; icon: typeof Sunrise }[] = [
 
 function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b: HeroTheme) => void }) {
   return (
-    <div className="absolute top-6 left-4 sm:left-6 lg:left-8 z-30 flex flex-wrap items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg max-w-[calc(100vw-2rem)] w-[384px]">
+    <div className="flex flex-wrap items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg">
       {BG_LABELS.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
@@ -173,7 +173,7 @@ function GlassHero() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] h-[70vw] max-h-[560px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
       />
 
-      <div className="relative w-full max-w-sm">
+      <div className="relative w-full">
         <div className="relative rounded-[2rem] bg-white/[0.08] backdrop-blur-2xl border border-white/20 shadow-2xl overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
@@ -215,12 +215,16 @@ export function WelcomeHero() {
       {heroTheme === 'ember' && <EmberBackground />}
       {heroTheme === 'frost' && <FrostBackground />}
 
-      <BackgroundPicker value={heroTheme} onChange={setHeroTheme} />
       <AppDownloadCard />
 
-      {/* Left-aligned to match the theme picker's left edge */}
-      <div className="relative px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-16 md:pb-20">
-        <GlassHero />
+      {/* Picker and hero card share the same-width container */}
+      <div className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-16 md:pb-20">
+        <div className="max-w-xl">
+          <BackgroundPicker value={heroTheme} onChange={setHeroTheme} />
+          <div className="pt-14 md:pt-16">
+            <GlassHero />
+          </div>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
