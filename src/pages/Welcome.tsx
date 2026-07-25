@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
+import { WelcomeHero } from '../components/WelcomeHero';
 import { BibleRoadmap } from '../components/BibleRoadmap';
 import { BibleVersePopup } from '../components/BibleVersePopup';
 import { timelineEvents } from '../data/timeline';
@@ -348,75 +349,7 @@ export function Welcome() {
         </div>
 
         {/* Bottom fade to page */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-
-          {/* App Download — top right */}
-          <div className="hidden sm:flex absolute top-6 right-4 sm:right-6 lg:right-8 flex-col items-end gap-3">
-            <a
-              href="https://thediscipleco.org/app"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download The Disciple Co. App"
-              className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
-            >
-              <img
-                src="/images/Untitled_design_(34)_Large.jpeg"
-                alt="The Disciple Co. App"
-                className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0"
-              />
-              <div className="text-left">
-                <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Download the App</p>
-                <p className="text-white text-sm font-bold leading-tight">The Disciple Co.</p>
-                <p className="text-white/60 text-xs">Available on the App Store</p>
-              </div>
-            </a>
-          </div>
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="flex justify-center mb-8">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-3xl opacity-40 blur-2xl scale-110 bg-sky-400" />
-                <img
-                  src="/images/Untitled_design_(34)_Large.jpeg"
-                  alt="The Disciple Co."
-                  className="relative w-64 h-64 md:w-72 md:h-72 rounded-3xl object-cover shadow-2xl ring-2 ring-white/20"
-                />
-              </div>
-            </div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white mb-6 leading-tight tracking-wide drop-shadow-2xl">
-              The Disciple Co.
-            </h1>
-
-            <p className="text-lg md:text-xl text-white/75 mb-4 leading-relaxed font-light italic drop-shadow-lg">
-              "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
-            </p>
-            <p className="text-sm text-white/55 mb-10 font-semibold tracking-wide">— Luke 9:23</p>
-
-            <div className="flex justify-center">
-              <Link
-                to="/bible"
-                className="group text-left bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl px-6 py-5 hover:shadow-xl transition-all hover:-translate-y-1 backdrop-blur-sm max-w-2xl w-full"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
-                    <Map className="w-5 h-5 text-amber-300" />
-                  </div>
-                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest">Begin Your Journey</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2 leading-snug">
-                  Start Here
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed mb-4">Your guided entry point — browse all 66 books, understand the Bible's structure, and find where to begin.</p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-300 group-hover:text-amber-200 transition-colors">
-                  Bible Overview <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
-          </div>
-
-        </div>
+        <WelcomeHero />
       </section>
 
       {/* Complete Bible tile — between hero and nav row */}
