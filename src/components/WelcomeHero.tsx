@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Map, ArrowRight, Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake } from 'lucide-react';
+import { Map, ArrowRight, Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, BookOpen } from 'lucide-react';
 import { useHeroTheme, type HeroTheme } from '../context/HeroThemeContext';
 
 const LOGO_SRC = '/images/Untitled_design_(34)_Large.jpeg';
@@ -42,7 +42,7 @@ function AppDownloadCard() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download The Disciple Company App"
-        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-[260px]"
       >
         <img src={LOGO_SRC} alt="The Disciple Company App" className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0" />
         <div className="text-left">
@@ -51,6 +51,20 @@ function AppDownloadCard() {
           <p className="text-white/60 text-xs">Available on the App Store</p>
         </div>
       </a>
+      <Link
+        to="/bible-lookup"
+        aria-label="Complete Bible"
+        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105 w-[260px]"
+      >
+        <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-300/30 flex items-center justify-center flex-shrink-0">
+          <BookOpen className="w-6 h-6 text-teal-300" />
+        </div>
+        <div className="text-left">
+          <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Complete Bible</p>
+          <p className="text-white text-sm font-bold leading-tight">Read any verse</p>
+          <p className="text-white/60 text-xs">KJV, ESV, NASB, NLT & WEB</p>
+        </div>
+      </Link>
     </div>
   );
 }
@@ -151,12 +165,12 @@ function LogoBadge() {
 
 function GlassHero() {
   return (
-    <div className="relative flex justify-center">
+    <div className="relative flex justify-start">
       <img
         src={LOGO_SRC}
         alt=""
         aria-hidden
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] h-[70vw] max-h-[560px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-[70vw] max-w-[560px] h-[70vw] max-h-[560px] object-contain opacity-[0.10] blur-3xl select-none pointer-events-none"
       />
 
       <div className="relative w-full max-w-lg">
@@ -164,8 +178,8 @@ function GlassHero() {
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
 
-          <div className="relative px-8 py-10 md:px-12 md:py-14 text-center">
-            <div className="flex justify-center mb-6">
+          <div className="relative px-8 py-10 md:px-12 md:py-14 text-left">
+            <div className="flex justify-start mb-6">
               <LogoBadge />
             </div>
 
@@ -214,8 +228,8 @@ export function WelcomeHero() {
       <BackgroundPicker value={heroTheme} onChange={setHeroTheme} />
       <AppDownloadCard />
 
-      {/* Moved up: top padding aligns with the download card top */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-16 md:pb-20">
+      {/* Left-aligned to match the theme picker's left edge */}
+      <div className="relative px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-16 md:pb-20">
         <GlassHero />
       </div>
 
@@ -223,3 +237,6 @@ export function WelcomeHero() {
     </>
   );
 }
+
+
+export { WelcomeHero }
