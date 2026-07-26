@@ -2,7 +2,7 @@ import {
   BookOpen, Church, Music, Calendar,
   Mic, Lightbulb, ArrowRight,
   HelpCircle, Shield, Heart,
-  Map, Route, GraduationCap, Clock, Star,
+  Map, Route, GraduationCap, Star,
   Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,9 +10,7 @@ import { useState } from 'react';
 import { Modal } from '../components/Modal';
 import { WelcomeHero } from '../components/WelcomeHero';
 import { BibleRoadmap } from '../components/BibleRoadmap';
-import { BibleVersePopup } from '../components/BibleVersePopup';
-import { timelineEvents } from '../data/timeline';
-import type { BibleRef } from '../types/timeline';
+
 
 // Subtle religious line-art watermarks — positioned absolute in tile background
 const CrossWatermark = ({ accentClass }: { accentClass: string }) => (
@@ -151,30 +149,6 @@ const featuredSections: {
 ];
 
 
-const getCategoryStyle = (category: string) => {
-  switch (category) {
-    case 'creation':
-      return { card: 'border-amber-200 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10', badge: 'bg-amber-500 text-white', icon: 'text-amber-600 dark:text-amber-400', title: 'text-amber-900 dark:text-amber-100', text: 'text-amber-800 dark:text-amber-200' };
-    case 'jewish':
-      return { card: 'border-blue-200 dark:border-blue-700 bg-blue-50/50 dark:bg-blue-900/10', badge: 'bg-blue-600 text-white', icon: 'text-blue-600 dark:text-blue-400', title: 'text-blue-900 dark:text-blue-100', text: 'text-blue-800 dark:text-blue-200' };
-    case 'catholic':
-      return { card: 'border-red-200 dark:border-red-700 bg-red-50/50 dark:bg-red-900/10', badge: 'bg-red-600 text-white', icon: 'text-red-600 dark:text-red-400', title: 'text-red-900 dark:text-red-100', text: 'text-red-800 dark:text-red-200' };
-    case 'protestant':
-      return { card: 'border-green-200 dark:border-green-700 bg-green-50/50 dark:bg-green-900/10', badge: 'bg-green-600 text-white', icon: 'text-green-600 dark:text-green-400', title: 'text-green-900 dark:text-green-100', text: 'text-green-800 dark:text-green-200' };
-    case 'modern':
-      return { card: 'border-teal-200 dark:border-teal-700 bg-teal-50/50 dark:bg-teal-900/10', badge: 'bg-teal-600 text-white', icon: 'text-teal-600 dark:text-teal-400', title: 'text-teal-900 dark:text-teal-100', text: 'text-teal-800 dark:text-teal-200' };
-    default:
-      return { card: 'border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/10', badge: 'bg-gray-600 text-white', icon: 'text-gray-600 dark:text-gray-400', title: 'text-gray-900 dark:text-white', text: 'text-gray-700 dark:text-gray-300' };
-  }
-};
-
-const getCategoryIcon = (category: string) => {
-  switch (category) {
-    case 'creation': return <Star className="w-4 h-4" />;
-    default: return <Calendar className="w-4 h-4" />;
-  }
-};
-
 const beliefs = [
   { icon: Shield, text: 'Scripture (the Bible) alone has everything we need and is the ultimate authority.' },
   { icon: Heart, text: 'One God: Father, Son, and Holy Spirit' },
@@ -185,8 +159,7 @@ const beliefs = [
 export function Welcome() {
   const [showWhoMadeThis, setShowWhoMadeThis] = useState(false);
   const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
-  const [showTimeline, setShowTimeline] = useState(false);
-  const [activeVersePopup, setActiveVersePopup] = useState<{ ref: BibleRef; badgeClass: string } | null>(null);
+
 
   return (
     <div className="min-h-screen">
@@ -264,97 +237,7 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Complete Historical Timeline */}
-          <button
-            onClick={() => setShowTimeline(!showTimeline)}
-            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5 text-left cursor-pointer w-full"
-          >
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
-                <Clock className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-              </div>
-              <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">{showTimeline ? 'Collapse' : 'Expand'}</span>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Complete Historical Timeline</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">From Creation to modern day — key events in Biblical history.</p>
-            </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-gray-600 dark:text-gray-400 group-hover:gap-2 transition-all mt-auto">
-              {showTimeline ? 'Hide timeline' : 'View timeline'} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </button>
         </div>
-
-        {/* Timeline expandable content */}
-        {showTimeline && (
-          <div className="mt-4 space-y-4">
-            {timelineEvents.map((event, index) => {
-              const style = getCategoryStyle(event.category);
-              return (
-                <div key={event.id} className="relative">
-                  {index !== timelineEvents.length - 1 && (
-                    <div className="absolute left-7 top-20 bottom-0 w-0.5 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600" />
-                  )}
-                  <div className={`theme-card border ${style.card} rounded-2xl shadow-sm hover:shadow-md transition-all p-6`}>
-                    <div className="flex items-start gap-4">
-                      <div className={`${style.badge} p-2.5 rounded-full shadow flex-shrink-0 mt-0.5`}>
-                        {getCategoryIcon(event.category)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                          <h3 className={`text-xl font-bold ${style.title} leading-snug`}>{event.title}</h3>
-                          <span className={`${style.badge} px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap w-fit`}>{event.year}</span>
-                        </div>
-                        <p className={`text-sm ${style.text} mb-3 leading-relaxed`}>{event.description}</p>
-                        <ul className="space-y-1.5">
-                          {event.details.map((detail, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
-                              <span className={`${style.icon} mt-0.5 font-bold`}>•</span>
-                              <span className="leading-relaxed">{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        {event.bibleRefs && event.bibleRefs.length > 0 && (
-                          <div className="mt-4">
-                            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Read in Scripture</p>
-                            <div className="flex flex-wrap gap-2">
-                              {event.bibleRefs.map((ref, idx) => (
-                                <button
-                                  key={idx}
-                                  onClick={() => setActiveVersePopup({ ref, badgeClass: style.badge })}
-                                  className={`inline-flex items-center gap-1.5 ${style.badge} opacity-90 hover:opacity-100 px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5`}
-                                >
-                                  <BookOpen className="w-3 h-3" />
-                                  {ref.label}
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {event.relatedLinks && event.relatedLinks.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {event.relatedLinks.map((link, idx) => (
-                              <a
-                                key={idx}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 theme-card border px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-300 hover:shadow transition-all"
-                              >
-                                <BookOpen className="w-3 h-3" />
-                                {link.title}
-                              </a>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
       </section>
 
       {/* FEATURED SECTIONS */}
@@ -624,17 +507,6 @@ export function Welcome() {
 
         </div>
       </section>
-
-      {/* BIBLE VERSE POPUP */}
-      {activeVersePopup && (
-        <BibleVersePopup
-          book={activeVersePopup.ref.book}
-          chapter={activeVersePopup.ref.chapter}
-          label={activeVersePopup.ref.label}
-          categoryBadgeClass={activeVersePopup.badgeClass}
-          onClose={() => setActiveVersePopup(null)}
-        />
-      )}
 
       {/* ROADMAP MODAL */}
       <Modal
