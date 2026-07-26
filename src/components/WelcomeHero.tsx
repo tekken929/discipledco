@@ -66,17 +66,17 @@ function AppDownloadCard() {
         </div>
       </Link>
       <Link
-        to="/bible-lookup"
-        aria-label="Lookup Any Verse"
+        to="/verse-of-the-day"
+        aria-label="Verse of the Day"
         className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
       >
         <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
           <Search className="w-6 h-6 text-amber-300" />
         </div>
         <div className="text-left">
-          <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Lookup Any Verse</p>
-          <p className="text-white text-sm font-bold leading-tight">Search the Bible</p>
-          <p className="text-white/60 text-xs">Find any passage instantly</p>
+          <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Verse of the Day</p>
+          <p className="text-white text-sm font-bold leading-tight">Daily Scripture</p>
+          <p className="text-white/60 text-xs">A new passage each day</p>
         </div>
       </Link>
     </div>
@@ -249,3 +249,5 @@ export function WelcomeHero() {
     </>
   );
 }
+
+export { WelcomeHero }
