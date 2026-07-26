@@ -4,14 +4,16 @@ import {
   HelpCircle, Shield, Heart,
   Map, Route, GraduationCap, Star,
   Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book, Clock,
-  ChevronDown, ChevronUp
+  ChevronDown, ChevronUp, ScrollText
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
 import { WelcomeHero } from '../components/WelcomeHero';
 import { BibleRoadmap } from '../components/BibleRoadmap';
+import { BibleVersePopup } from '../components/BibleVersePopup';
 import { timelineEvents } from '../data/timeline';
+import type { BibleRef } from '../types/timeline';
 
 const getCategoryStyle = (category: string) => {
   switch (category) {
@@ -184,6 +186,7 @@ export function Welcome() {
   const [showWhoMadeThis, setShowWhoMadeThis] = useState(false);
   const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [activeVerse, setActiveVerse] = useState<{ ref: BibleRef; badgeClass: string } | null>(null);
 
 
   return (
@@ -321,6 +324,26 @@ export function Welcome() {
                             </li>
                           ))}
                         </ul>
+                        {event.bibleRefs && event.bibleRefs.length > 0 && (
+                          <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/60">
+                            <div className="flex items-center gap-1.5 mb-2.5">
+                              <ScrollText className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+                              <span className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Read in Scripture</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {event.bibleRefs.map((ref, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => setActiveVerse({ ref, badgeClass: catStyle.badge })}
+                                  className={`${catStyle.badge} inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:shadow-md hover:-translate-y-0.5`}
+                                >
+                                  <BookOpen className="w-3 h-3 flex-shrink-0" />
+                                  {ref.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         {event.relatedLinks && event.relatedLinks.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-2">
                             {event.relatedLinks.map((link, idx) => (
@@ -614,6 +637,17 @@ export function Welcome() {
 
         </div>
       </section>
+
+      {/* BIBLE VERSE POPUP */}
+      {activeVerse && (
+        <BibleVersePopup
+          book={activeVerse.ref.book}
+          chapter={activeVerse.ref.chapter}
+          label={activeVerse.ref.label}
+          categoryBadgeClass={activeVerse.badgeClass}
+          onClose={() => setActiveVerse(null)}
+        />
+      )}
 
       {/* ROADMAP MODAL */}
       <Modal
