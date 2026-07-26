@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookOpen, Search, Loader2, ChevronDown, AlertCircle } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, AlertCircle } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 interface Verse {
@@ -91,6 +91,7 @@ export function BibleLookup() {
   const [loadedBook, setLoadedBook] = useState('John');
   const [loadedChapter, setLoadedChapter] = useState(3);
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
 
   const chapterCount = CHAPTER_COUNTS[selectedBook] || 1;
   const chapters = Array.from({ length: chapterCount }, (_, i) => i + 1);
@@ -127,13 +128,23 @@ export function BibleLookup() {
     fetchVerses('John', 3, translation);
   }, []);
 
-  function handleSearch() {
-    fetchVerses(selectedBook, selectedChapter, translation);
-  }
-
   function handleBookChange(book: string) {
     setSelectedBook(book);
     setSelectedChapter(1);
+    setSelectedVerse(null);
+    fetchVerses(book, 1, translation);
+  }
+
+  function handleChapterChange(chapter: number) {
+    setSelectedChapter(chapter);
+    setSelectedVerse(null);
+    fetchVerses(selectedBook, chapter, translation);
+  }
+
+  function handleVerseSelect(verse: number) {
+    setSelectedVerse(verse);
+    const el = document.getElementById(`verse-${verse}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function handleTranslationChange(t: Translation) {
@@ -228,7 +239,7 @@ export function BibleLookup() {
               <div className="relative">
                 <select
                   value={selectedChapter}
-                  onChange={(e) => setSelectedChapter(Number(e.target.value))}
+                  onChange={(e) => handleChapterChange(Number(e.target.value))}
                   className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm text-gray-900 dark:text-white appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
                 >
                   {chapters.map((c) => (
@@ -239,14 +250,23 @@ export function BibleLookup() {
               </div>
             </div>
 
-            <button
-              onClick={handleSearch}
-              disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-1.5 px-3 rounded-lg transition-colors text-sm"
-            >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
-              Read Chapter
-            </button>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Verse</label>
+              <div className="relative">
+                <select
+                  value={selectedVerse ?? ''}
+                  onChange={(e) => handleVerseSelect(Number(e.target.value))}
+                  disabled={!loaded || verses.length === 0}
+                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm text-gray-900 dark:text-white appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50"
+                >
+                  <option value="" disabled>Select verse</option>
+                  {verses.map((v) => (
+                    <option key={v.verse} value={v.verse}>Verse {v.verse}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -298,9 +318,21 @@ export function BibleLookup() {
                   </span>
                 </div>
               </div>
+              {selectedVerse !== null && (
+                <div className="px-5 py-4 bg-teal-50 dark:bg-teal-900/20 border-b border-teal-200 dark:border-teal-800">
+                  <div className="flex gap-3">
+                    <span className="text-sm font-bold text-teal-600 dark:text-teal-400 w-7 flex-shrink-0 pt-1 text-right tabular-nums select-none">
+                      {selectedVerse}
+                    </span>
+                    <p className="text-gray-900 dark:text-white leading-relaxed flex-1 text-lg font-medium">
+                      {verses.find((v) => v.verse === selectedVerse)?.text}
+                    </p>
+                  </div>
+                </div>
+              )}
               <div className="px-5 py-3 space-y-2 max-h-[65vh] overflow-y-auto">
                 {verses.map(({ verse, text }) => (
-                  <div key={verse} className="flex gap-3 group">
+                  <div key={verse} id={`verse-${verse}`} className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors ${selectedVerse === verse ? 'bg-teal-50 dark:bg-teal-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}>
                     <span className="text-xs font-bold text-teal-500 dark:text-teal-400 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
                       {verse}
                     </span>
