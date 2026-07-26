@@ -93,10 +93,10 @@ const featuredSections: {
     watermarkAccent: 'text-amber-600 dark:text-amber-400',
   },
   {
-    to: '/bible-lookup',
+    to: '/verse-of-the-day',
     icon: Lightbulb,
-    title: 'Lookup Any Verse',
-    description: 'Search the World English Bible by book and chapter — read any passage instantly.',
+    title: 'Verse of the Day',
+    description: 'A daily Scripture passage to encourage and guide your walk with God.',
     color: 'teal',
     bgLight: 'bg-teal-50 dark:bg-teal-950/30',
     border: 'border-teal-200 dark:border-teal-800',
