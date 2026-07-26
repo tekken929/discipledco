@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BookOpen, Loader2, ChevronDown, AlertCircle } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
 
@@ -91,7 +91,9 @@ export function BibleLookup() {
   const [loadedBook, setLoadedBook] = useState('John');
   const [loadedChapter, setLoadedChapter] = useState(3);
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
-  const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(1);
+  const translationRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const chapterCount = CHAPTER_COUNTS[selectedBook] || 1;
   const chapters = Array.from({ length: chapterCount }, (_, i) => i + 1);
@@ -128,23 +130,45 @@ export function BibleLookup() {
     fetchVerses('John', 3, translation);
   }, []);
 
+  useEffect(() => {
+    if (loaded && selectedVerse !== null && scrollContainerRef.current) {
+      const el = document.getElementById(`verse-${selectedVerse}`);
+      if (el && scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTo({
+          top: el.offsetTop - scrollContainerRef.current.offsetTop - 8,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [loaded, verses, selectedVerse]);
+
   function handleBookChange(book: string) {
     setSelectedBook(book);
     setSelectedChapter(1);
-    setSelectedVerse(null);
+    setSelectedVerse(1);
     fetchVerses(book, 1, translation);
   }
 
   function handleChapterChange(chapter: number) {
     setSelectedChapter(chapter);
-    setSelectedVerse(null);
+    setSelectedVerse(1);
     fetchVerses(selectedBook, chapter, translation);
   }
 
   function handleVerseSelect(verse: number) {
     setSelectedVerse(verse);
-    const el = document.getElementById(`verse-${verse}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (translationRef.current) {
+      translationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (scrollContainerRef.current) {
+      const el = document.getElementById(`verse-${verse}`);
+      if (el) {
+        scrollContainerRef.current.scrollTo({
+          top: el.offsetTop - scrollContainerRef.current.offsetTop - 8,
+          behavior: 'smooth',
+        });
+      }
+    }
   }
 
   function handleTranslationChange(t: Translation) {
@@ -176,7 +200,7 @@ export function BibleLookup() {
         </div>
 
         {/* Translation selector — full width */}
-        <div className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl p-3 mb-3">
+        <div ref={translationRef} className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl p-3 mb-3 scroll-mt-4">
           <h2 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">Translation</h2>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
             {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
@@ -318,19 +342,7 @@ export function BibleLookup() {
                   </span>
                 </div>
               </div>
-              {selectedVerse !== null && (
-                <div className="px-5 py-4 bg-teal-50 dark:bg-teal-900/20 border-b border-teal-200 dark:border-teal-800">
-                  <div className="flex gap-3">
-                    <span className="text-sm font-bold text-teal-600 dark:text-teal-400 w-7 flex-shrink-0 pt-1 text-right tabular-nums select-none">
-                      {selectedVerse}
-                    </span>
-                    <p className="text-gray-900 dark:text-white leading-relaxed flex-1 text-lg font-medium">
-                      {verses.find((v) => v.verse === selectedVerse)?.text}
-                    </p>
-                  </div>
-                </div>
-              )}
-              <div className="px-5 py-3 space-y-2 max-h-[65vh] overflow-y-auto">
+              <div ref={scrollContainerRef} className="px-5 py-3 space-y-2 max-h-[65vh] overflow-y-auto">
                 {verses.map(({ verse, text }) => (
                   <div key={verse} id={`verse-${verse}`} className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors ${selectedVerse === verse ? 'bg-teal-50 dark:bg-teal-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}>
                     <span className="text-xs font-bold text-teal-500 dark:text-teal-400 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
