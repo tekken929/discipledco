@@ -200,7 +200,7 @@ export function BibleLookup() {
         </div>
 
         {/* Translation selector — full width */}
-        <div ref={translationRef} className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl p-3 mb-3 scroll-mt-4">
+        <div ref={translationRef} className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl p-3 mb-3 scroll-mt-20">
           <h2 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">Translation</h2>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
             {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
