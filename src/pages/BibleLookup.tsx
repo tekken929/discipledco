@@ -240,8 +240,8 @@ export function BibleLookup() {
         <div className="mb-4">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-teal-100 dark:bg-teal-900 rounded-lg">
-                <BookOpen className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+              <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
+                <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
@@ -260,7 +260,7 @@ export function BibleLookup() {
                     title={option.name}
                     className={`w-7 h-7 rounded-full border-2 transition-all ${
                       bgIndex === i
-                        ? 'ring-2 ring-teal-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
+                        ? 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
                         : 'hover:scale-105'
                     }`}
                     style={{ backgroundColor: option.bg, borderColor: option.border }}
@@ -288,7 +288,7 @@ export function BibleLookup() {
                 onClick={() => handleTranslationChange(t)}
                 className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
                   translation === t
-                    ? 'border-teal-500 bg-teal-50 text-teal-700'
+                    ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
                     : 'border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
@@ -307,12 +307,12 @@ export function BibleLookup() {
           <h2 className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: bg.text, opacity: 0.6 }}>Select Passage</h2>
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 items-end">
             <div>
-              <p className="text-xs font-bold text-teal-600 uppercase tracking-wide mb-1">Old Testament</p>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-black">Old Testament</p>
               <div className="relative">
                 <select
                   value={BOOKS_OT.includes(selectedBook) ? selectedBook : ''}
                   onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   {!BOOKS_OT.includes(selectedBook) && <option value="">-- Select --</option>}
@@ -325,12 +325,12 @@ export function BibleLookup() {
             </div>
 
             <div>
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1">New Testament</p>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-black">New Testament</p>
               <div className="relative">
                 <select
                   value={BOOKS_NT.includes(selectedBook) ? selectedBook : ''}
                   onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   {!BOOKS_NT.includes(selectedBook) && <option value="">-- Select --</option>}
@@ -343,12 +343,12 @@ export function BibleLookup() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold mb-1" style={{ color: bg.text, opacity: 0.6 }}>Chapter</label>
+              <label className="block text-xs font-bold uppercase tracking-wide mb-1 text-black">Chapter</label>
               <div className="relative">
                 <select
                   value={selectedChapter}
                   onChange={(e) => handleChapterChange(Number(e.target.value))}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   {chapters.map((c) => (
@@ -360,13 +360,13 @@ export function BibleLookup() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold mb-1" style={{ color: bg.text, opacity: 0.6 }}>Verse</label>
+              <label className="block text-xs font-bold uppercase tracking-wide mb-1 text-black">Verse</label>
               <div className="relative">
                 <select
                   value={selectedVerse ?? ''}
                   onChange={(e) => handleVerseSelect(Number(e.target.value))}
                   disabled={!loaded || verses.length === 0}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
                   style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   <option value="" disabled>Select verse</option>
@@ -388,7 +388,7 @@ export function BibleLookup() {
           {loading && (
             <div className="flex items-center justify-center h-64">
               <div className="text-center">
-                <Loader2 className="w-8 h-8 animate-spin text-teal-500 mx-auto mb-3" />
+                <Loader2 className="w-8 h-8 animate-spin text-emerald-500 mx-auto mb-3" />
                 <p className="text-sm text-gray-500">Loading chapter...</p>
               </div>
             </div>
@@ -426,7 +426,7 @@ export function BibleLookup() {
                       {info.full} &mdash; {verses.length} verses
                     </p>
                   </div>
-                  <span className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 border border-teal-200 mt-0.5">
+                  <span className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 mt-0.5">
                     {info.label}
                   </span>
                 </div>
@@ -437,10 +437,10 @@ export function BibleLookup() {
                     key={verse}
                     id={`verse-${verse}`}
                     className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors ${
-                      selectedVerse === verse ? 'bg-teal-100/60' : 'hover:bg-black/5'
+                      selectedVerse === verse ? 'bg-emerald-100/60' : 'hover:bg-black/5'
                     }`}
                   >
-                    <span className="text-xs font-bold text-teal-500 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
+                    <span className="text-xs font-bold text-emerald-600 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
                       {verse}
                     </span>
                     <p className="leading-relaxed flex-1 text-base" style={{ color: bg.text }}>
