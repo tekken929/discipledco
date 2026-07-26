@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BookOpen, Loader2, ChevronDown, AlertCircle } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
 
 interface Verse {
@@ -31,6 +31,8 @@ const BOOKS_NT = [
   'James', '1 Peter', '2 Peter', '1 John', '2 John',
   '3 John', 'Jude', 'Revelation',
 ];
+
+const ALL_BOOKS = [...BOOKS_OT, ...BOOKS_NT];
 
 const CHAPTER_COUNTS: Record<string, number> = {
   Genesis: 50, Exodus: 40, Leviticus: 27, Numbers: 36, Deuteronomy: 34,
@@ -80,6 +82,41 @@ const TRANSLATION_INFO: Record<Translation, { label: string; full: string; descr
   },
 };
 
+const READING_BACKGROUNDS = [
+  { name: 'Paper White', bg: '#fafafa', border: '#e5e5e5', text: '#1a1a1a' },
+  { name: 'Warm Ivory', bg: '#f5f1e8', border: '#e0d9c8', text: '#2a2620' },
+  { name: 'Soft Beige', bg: '#ebe5d6', border: '#d0c8b5', text: '#2e2a22' },
+  { name: 'Muted Grey', bg: '#dcdcd5', border: '#c0c0b8', text: '#2a2a26' },
+  { name: 'Deep Stone', bg: '#c8c4b8', border: '#a8a498', text: '#26241f' },
+];
+
+function getAdjacentChapter(book: string, chapter: number, direction: 'prev' | 'next'): { book: string; chapter: number } | null {
+  const bookIndex = ALL_BOOKS.indexOf(book);
+  if (bookIndex === -1) return null;
+
+  if (direction === 'next') {
+    const maxChapter = CHAPTER_COUNTS[book] || 1;
+    if (chapter < maxChapter) {
+      return { book, chapter: chapter + 1 };
+    }
+    if (bookIndex < ALL_BOOKS.length - 1) {
+      const nextBook = ALL_BOOKS[bookIndex + 1];
+      return { book: nextBook, chapter: 1 };
+    }
+    return null;
+  } else {
+    if (chapter > 1) {
+      return { book, chapter: chapter - 1 };
+    }
+    if (bookIndex > 0) {
+      const prevBook = ALL_BOOKS[bookIndex - 1];
+      const prevMaxChapter = CHAPTER_COUNTS[prevBook] || 1;
+      return { book: prevBook, chapter: prevMaxChapter };
+    }
+    return null;
+  }
+}
+
 export function BibleLookup() {
   const [selectedBook, setSelectedBook] = useState('John');
   const [selectedChapter, setSelectedChapter] = useState(3);
@@ -92,6 +129,7 @@ export function BibleLookup() {
   const [loadedChapter, setLoadedChapter] = useState(3);
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
   const [selectedVerse, setSelectedVerse] = useState<number | null>(1);
+  const [bgIndex, setBgIndex] = useState(0);
   const translationRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -178,20 +216,57 @@ export function BibleLookup() {
     }
   }
 
+  function handleNavigate(direction: 'prev' | 'next') {
+    const target = getAdjacentChapter(loadedBook, loadedChapter, direction);
+    if (!target) return;
+    setSelectedBook(target.book);
+    setSelectedChapter(target.chapter);
+    setSelectedVerse(1);
+    fetchVerses(target.book, target.chapter, translation);
+    if (translationRef.current) {
+      translationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   const info = TRANSLATION_INFO[loadedTranslation];
+  const bg = READING_BACKGROUNDS[bgIndex];
+  const prevChapter = getAdjacentChapter(loadedBook, loadedChapter, 'prev');
+  const nextChapter = getAdjacentChapter(loadedBook, loadedChapter, 'next');
 
   return (
     <>
       <ReturnToHome />
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="mb-4">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="p-2 bg-teal-100 dark:bg-teal-900 rounded-lg">
-              <BookOpen className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-teal-100 dark:bg-teal-900 rounded-lg">
+                <BookOpen className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+              </div>
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
+                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, WEB, ESV, NASB &amp; NLT</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
-              <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, WEB, ESV, NASB &amp; NLT</p>
+
+            {/* Background color selectors */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">Reading</span>
+              <div className="flex items-center gap-1.5">
+                {READING_BACKGROUNDS.map((option, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setBgIndex(i)}
+                    title={option.name}
+                    className={`w-7 h-7 rounded-full border-2 transition-all ${
+                      bgIndex === i
+                        ? 'ring-2 ring-teal-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
+                        : 'hover:scale-105'
+                    }`}
+                    style={{ backgroundColor: option.bg, borderColor: option.border }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-1 max-w-2xl text-sm">
@@ -200,8 +275,12 @@ export function BibleLookup() {
         </div>
 
         {/* Translation selector — full width */}
-        <div ref={translationRef} className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl p-3 mb-3 scroll-mt-20">
-          <h2 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">Translation</h2>
+        <div
+          ref={translationRef}
+          className="border rounded-xl p-3 mb-3 scroll-mt-20 transition-colors"
+          style={{ backgroundColor: bg.bg, borderColor: bg.border }}
+        >
+          <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2" style={{ color: bg.text, opacity: 0.6 }}>Translation</h2>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
             {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
               <button
@@ -209,8 +288,8 @@ export function BibleLookup() {
                 onClick={() => handleTranslationChange(t)}
                 className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
                   translation === t
-                    ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
-                    : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                    ? 'border-teal-500 bg-teal-50 text-teal-700'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
                 <span className="text-sm font-bold">{TRANSLATION_INFO[t].label}</span>
@@ -221,86 +300,96 @@ export function BibleLookup() {
         </div>
 
         {/* Select Passage — full width */}
-        <div className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl p-3 mb-3">
-          <h2 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">Select Passage</h2>
+        <div
+          className="border rounded-xl p-3 mb-3 transition-colors"
+          style={{ backgroundColor: bg.bg, borderColor: bg.border }}
+        >
+          <h2 className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: bg.text, opacity: 0.6 }}>Select Passage</h2>
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 items-end">
             <div>
-              <p className="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wide mb-1">Old Testament</p>
+              <p className="text-xs font-bold text-teal-600 uppercase tracking-wide mb-1">Old Testament</p>
               <div className="relative">
                 <select
                   value={BOOKS_OT.includes(selectedBook) ? selectedBook : ''}
                   onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm text-gray-900 dark:text-white appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   {!BOOKS_OT.includes(selectedBook) && <option value="">-- Select --</option>}
                   {BOOKS_OT.map((b) => (
                     <option key={b} value={b}>{b}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
               </div>
             </div>
 
             <div>
-              <p className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-1">New Testament</p>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1">New Testament</p>
               <div className="relative">
                 <select
                   value={BOOKS_NT.includes(selectedBook) ? selectedBook : ''}
                   onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm text-gray-900 dark:text-white appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   {!BOOKS_NT.includes(selectedBook) && <option value="">-- Select --</option>}
                   {BOOKS_NT.map((b) => (
                     <option key={b} value={b}>{b}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Chapter</label>
+              <label className="block text-xs font-semibold mb-1" style={{ color: bg.text, opacity: 0.6 }}>Chapter</label>
               <div className="relative">
                 <select
                   value={selectedChapter}
                   onChange={(e) => handleChapterChange(Number(e.target.value))}
-                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm text-gray-900 dark:text-white appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   {chapters.map((c) => (
                     <option key={c} value={c}>Chapter {c}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Verse</label>
+              <label className="block text-xs font-semibold mb-1" style={{ color: bg.text, opacity: 0.6 }}>Verse</label>
               <div className="relative">
                 <select
                   value={selectedVerse ?? ''}
                   onChange={(e) => handleVerseSelect(Number(e.target.value))}
                   disabled={!loaded || verses.length === 0}
-                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1.5 text-sm text-gray-900 dark:text-white appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50"
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50"
+                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
                 >
                   <option value="" disabled>Select verse</option>
                   {verses.map((v) => (
                     <option key={v.verse} value={v.verse}>Verse {v.verse}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
               </div>
             </div>
           </div>
         </div>
 
         {/* Main reading pane — full width */}
-        <div className="theme-card border border-gray-200 dark:border-gray-700 rounded-xl min-h-[400px]">
+        <div
+          className="border rounded-xl min-h-[400px] transition-colors"
+          style={{ backgroundColor: bg.bg, borderColor: bg.border }}
+        >
           {loading && (
             <div className="flex items-center justify-center h-64">
               <div className="text-center">
                 <Loader2 className="w-8 h-8 animate-spin text-teal-500 mx-auto mb-3" />
-                <p className="text-sm text-gray-500 dark:text-gray-400">Loading chapter...</p>
+                <p className="text-sm text-gray-500">Loading chapter...</p>
               </div>
             </div>
           )}
@@ -327,38 +416,73 @@ export function BibleLookup() {
 
           {!loading && !error && loaded && verses.length > 0 && (
             <>
-              <div className="px-5 pt-4 pb-3 border-b border-gray-200 dark:border-gray-700">
+              <div className="px-5 pt-4 pb-3 border-b" style={{ borderColor: bg.border }}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    <h2 className="text-xl font-bold" style={{ color: bg.text }}>
                       {loadedBook} {loadedChapter}
                     </h2>
-                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                    <p className="text-xs mt-0.5" style={{ color: bg.text, opacity: 0.5 }}>
                       {info.full} &mdash; {verses.length} verses
                     </p>
                   </div>
-                  <span className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 mt-0.5">
+                  <span className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 border border-teal-200 mt-0.5">
                     {info.label}
                   </span>
                 </div>
               </div>
               <div ref={scrollContainerRef} className="px-5 py-3 space-y-2 max-h-[65vh] overflow-y-auto">
                 {verses.map(({ verse, text }) => (
-                  <div key={verse} id={`verse-${verse}`} className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors ${selectedVerse === verse ? 'bg-teal-50 dark:bg-teal-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}>
-                    <span className="text-xs font-bold text-teal-500 dark:text-teal-400 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
+                  <div
+                    key={verse}
+                    id={`verse-${verse}`}
+                    className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors ${
+                      selectedVerse === verse ? 'bg-teal-100/60' : 'hover:bg-black/5'
+                    }`}
+                  >
+                    <span className="text-xs font-bold text-teal-500 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
                       {verse}
                     </span>
-                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed flex-1 text-base">
+                    <p className="leading-relaxed flex-1 text-base" style={{ color: bg.text }}>
                       {text}
                     </p>
                   </div>
                 ))}
+
+                {/* Next / Previous chapter navigation */}
+                <div className="flex items-center justify-between gap-3 pt-4 mt-4 border-t" style={{ borderColor: bg.border }}>
+                  <button
+                    onClick={() => handleNavigate('prev')}
+                    disabled={!prevChapter}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    style={{ borderColor: bg.border, color: bg.text }}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <div className="text-left">
+                      <p className="text-[10px] uppercase tracking-wide opacity-60">Previous</p>
+                      <p className="text-sm font-bold">{prevChapter ? `${prevChapter.book} ${prevChapter.chapter}` : '—'}</p>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => handleNavigate('next')}
+                    disabled={!nextChapter}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    style={{ borderColor: bg.border, color: bg.text }}
+                  >
+                    <div className="text-right">
+                      <p className="text-[10px] uppercase tracking-wide opacity-60">Next</p>
+                      <p className="text-sm font-bold">{nextChapter ? `${nextChapter.book} ${nextChapter.chapter}` : '—'}</p>
+                    </div>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </>
           )}
 
           {!loading && !error && !loaded && (
-            <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-500">
+            <div className="flex items-center justify-center h-64 text-gray-400">
               <div className="text-center">
                 <BookOpen className="w-10 h-10 mx-auto mb-3 opacity-40" />
                 <p className="text-sm">Select a book and chapter to begin</p>
