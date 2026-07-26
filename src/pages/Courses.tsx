@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, ChevronRight, Users, Clock, ArrowRight, Compass, Sparkles } from 'lucide-react';
+import { ChevronRight, Users, Clock, ArrowRight, Compass, Sparkles } from 'lucide-react';
 import { courseModules, courseOverview } from '../data/courseData';
 import { ReturnToHome } from '../components/ReturnToHome';
 
@@ -35,23 +35,6 @@ export function Courses() {
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mb-8">
             {courseOverview.subtitle}
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-8">
-            <Link
-              to="/courses/module/module-1"
-              className="inline-flex items-center gap-2 px-8 py-3.5 theme-primary-button rounded-xl font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-105"
-            >
-              Start the Journey
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              to="/bible"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
-            >
-              <BookOpen className="w-5 h-5" />
-              Explore the Bible Overview
-            </Link>
-          </div>
 
           <div className="flex justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-2">
