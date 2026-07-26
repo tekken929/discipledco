@@ -72,47 +72,6 @@ export function Courses() {
         {/* Thin divider */}
         <div className="border-t border-gray-100 dark:border-gray-800 mb-20" />
 
-        {/* Module grid */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">The Course</h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-10">Eight modules, designed to be read in order.</p>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {courseModules.map((module) => (
-              <Link
-                key={module.id}
-                to={`/courses/module/${module.id}`}
-                className="group theme-card border-2 rounded-2xl p-7 hover:shadow-xl transition-all hover:border-gray-400 dark:hover:border-gray-500"
-              >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest min-w-[3rem]">
-                      {String(module.number).padStart(2, '0')}
-                    </span>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">
-                      {module.title}
-                    </h3>
-                  </div>
-                  <ChevronRight className="w-5 h-5 text-gray-300 dark:text-gray-600 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors flex-shrink-0 mt-0.5" />
-                </div>
-
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed ml-16 mb-4">
-                  {moduleDescriptions[module.number]}
-                </p>
-
-                <div className="ml-16 flex items-center gap-3">
-                  <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">
-                    {module.lessons.length} lesson{module.lessons.length !== 1 ? 's' : ''}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* Thin divider */}
-        <div className="border-t border-gray-100 dark:border-gray-800 mb-20" />
-
         {/* Who This Is For */}
         <section className="mb-20">
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -185,6 +144,47 @@ export function Courses() {
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
                 <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm">{body}</p>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Thin divider */}
+        <div className="border-t border-gray-100 dark:border-gray-800 mb-20" />
+
+        {/* Module grid */}
+        <section className="mb-20">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">The Course</h2>
+          <p className="text-gray-500 dark:text-gray-400 mb-10">Eight modules, designed to be read in order.</p>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {courseModules.map((module) => (
+              <Link
+                key={module.id}
+                to={`/courses/module/${module.id}`}
+                className="group theme-card border-2 rounded-2xl p-7 hover:shadow-xl transition-all hover:border-gray-400 dark:hover:border-gray-500"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex items-center gap-4">
+                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest min-w-[3rem]">
+                      {String(module.number).padStart(2, '0')}
+                    </span>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">
+                      {module.title}
+                    </h3>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-gray-300 dark:text-gray-600 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors flex-shrink-0 mt-0.5" />
+                </div>
+
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed ml-16 mb-4">
+                  {moduleDescriptions[module.number]}
+                </p>
+
+                <div className="ml-16 flex items-center gap-3">
+                  <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">
+                    {module.lessons.length} lesson{module.lessons.length !== 1 ? 's' : ''}
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
