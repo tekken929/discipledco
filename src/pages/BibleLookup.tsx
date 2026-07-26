@@ -164,188 +164,163 @@ export function BibleLookup() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
+        {/* Translation selector — full width */}
+        <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5 mb-6">
+          <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Translation</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+            {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
+              <button
+                key={t}
+                onClick={() => handleTranslationChange(t)}
+                className={`flex flex-col items-center gap-1 py-3 px-2 rounded-xl border-2 font-semibold text-sm transition-all ${
+                  translation === t
+                    ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
+                    : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                }`}
+              >
+                <span className="text-base font-bold">{TRANSLATION_INFO[t].label}</span>
+                <span className="text-[10px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
+              </button>
+            ))}
+          </div>
+        </div>
 
-            {/* Translation selector */}
-            <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5">
-              <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Translation</h2>
-              <div className="grid grid-cols-2 gap-2 mb-2">
-                {(['kjv', 'web'] as Translation[]).map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => handleTranslationChange(t)}
-                    className={`flex flex-col items-center gap-1 py-3 px-2 rounded-xl border-2 font-semibold text-sm transition-all ${
-                      translation === t
-                        ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
-                        : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
-                    }`}
-                  >
-                    <span className="text-base font-bold">{TRANSLATION_INFO[t].label}</span>
-                    <span className="text-[10px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
-                  </button>
-                ))}
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {(['esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => handleTranslationChange(t)}
-                    className={`flex flex-col items-center gap-1 py-3 px-1 rounded-xl border-2 font-semibold text-sm transition-all ${
-                      translation === t
-                        ? 'border-teal-500 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300'
-                        : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
-                    }`}
-                  >
-                    <span className="text-base font-bold">{TRANSLATION_INFO[t].label}</span>
-                    <span className="text-[10px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Book + Chapter selector */}
-            <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5">
-              <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">Select Passage</h2>
-
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wide mb-1">Old Testament</p>
-                  <div className="relative">
-                    <select
-                      value={BOOKS_OT.includes(selectedBook) ? selectedBook : ''}
-                      onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                      className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    >
-                      {!BOOKS_OT.includes(selectedBook) && <option value="">-- Select --</option>}
-                      {BOOKS_OT.map((b) => (
-                        <option key={b} value={b}>{b}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-1">New Testament</p>
-                  <div className="relative">
-                    <select
-                      value={BOOKS_NT.includes(selectedBook) ? selectedBook : ''}
-                      onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                      className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    >
-                      {!BOOKS_NT.includes(selectedBook) && <option value="">-- Select --</option>}
-                      {BOOKS_NT.map((b) => (
-                        <option key={b} value={b}>{b}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Chapter</label>
-                  <div className="relative">
-                    <select
-                      value={selectedChapter}
-                      onChange={(e) => setSelectedChapter(Number(e.target.value))}
-                      className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    >
-                      {chapters.map((c) => (
-                        <option key={c} value={c}>Chapter {c}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                  </div>
-                </div>
-
-                <button
-                  onClick={handleSearch}
-                  disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors text-sm"
+        {/* Select Passage — full width */}
+        <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5 mb-6">
+          <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">Select Passage</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
+            <div>
+              <p className="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wide mb-1">Old Testament</p>
+              <div className="relative">
+                <select
+                  value={BOOKS_OT.includes(selectedBook) ? selectedBook : ''}
+                  onChange={(e) => e.target.value && handleBookChange(e.target.value)}
+                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-teal-500"
                 >
-                  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
-                  Read Chapter
-                </button>
+                  {!BOOKS_OT.includes(selectedBook) && <option value="">-- Select --</option>}
+                  {BOOKS_OT.map((b) => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
-          </div>
 
-          {/* Main reading pane */}
-          <div className="lg:col-span-2">
-            <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl min-h-[500px]">
-              {loading && (
-                <div className="flex items-center justify-center h-64">
-                  <div className="text-center">
-                    <Loader2 className="w-8 h-8 animate-spin text-teal-500 mx-auto mb-3" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Loading chapter...</p>
-                  </div>
-                </div>
-              )}
-
-              {error && (
-                <div className="p-8">
-                  <div className="flex items-start gap-3 text-red-500">
-                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-semibold">Could not load this chapter</p>
-                      <p className="text-sm mt-1 text-red-400">{error}</p>
-                      {TRANSLATION_INFO[translation]?.licensed && (
-                        <p className="text-xs mt-3 text-gray-500 dark:text-gray-400">
-                          ESV, NASB &amp; NLT require a free API key from{' '}
-                          <span className="font-semibold">scripture.api.bible</span>. Add it as{' '}
-                          <code className="bg-gray-100 dark:bg-gray-800 px-1 rounded">BIBLE_API_KEY</code>{' '}
-                          in your Supabase edge function secrets.
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {!loading && !error && loaded && verses.length > 0 && (
-                <>
-                  <div className="px-6 pt-6 pb-4 border-b border-gray-200 dark:border-gray-700">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                          {loadedBook} {loadedChapter}
-                        </h2>
-                        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                          {info.full} &mdash; {verses.length} verses
-                        </p>
-                      </div>
-                      <span className="flex-shrink-0 text-xs font-bold px-3 py-1.5 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 mt-1">
-                        {info.label}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="px-6 py-5 space-y-4 max-h-[70vh] overflow-y-auto">
-                    {verses.map(({ verse, text }) => (
-                      <div key={verse} className="flex gap-4 group">
-                        <span className="text-xs font-bold text-teal-500 dark:text-teal-400 w-8 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
-                          {verse}
-                        </span>
-                        <p className="text-gray-800 dark:text-gray-200 leading-relaxed flex-1 text-[15px]">
-                          {text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {!loading && !error && !loaded && (
-                <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-500">
-                  <div className="text-center">
-                    <BookOpen className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                    <p className="text-sm">Select a book and chapter to begin</p>
-                  </div>
-                </div>
-              )}
+            <div>
+              <p className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-1">New Testament</p>
+              <div className="relative">
+                <select
+                  value={BOOKS_NT.includes(selectedBook) ? selectedBook : ''}
+                  onChange={(e) => e.target.value && handleBookChange(e.target.value)}
+                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                >
+                  {!BOOKS_NT.includes(selectedBook) && <option value="">-- Select --</option>}
+                  {BOOKS_NT.map((b) => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
             </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Chapter</label>
+              <div className="relative">
+                <select
+                  value={selectedChapter}
+                  onChange={(e) => setSelectedChapter(Number(e.target.value))}
+                  className="w-full theme-card border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white appearance-none pr-8 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                >
+                  {chapters.map((c) => (
+                    <option key={c} value={c}>Chapter {c}</option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+            </div>
+
+            <button
+              onClick={handleSearch}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors text-sm"
+            >
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+              Read Chapter
+            </button>
           </div>
+        </div>
+
+        {/* Main reading pane — full width */}
+        <div className="theme-card border-2 border-gray-200 dark:border-gray-700 rounded-2xl min-h-[500px]">
+          {loading && (
+            <div className="flex items-center justify-center h-64">
+              <div className="text-center">
+                <Loader2 className="w-8 h-8 animate-spin text-teal-500 mx-auto mb-3" />
+                <p className="text-sm text-gray-500 dark:text-gray-400">Loading chapter...</p>
+              </div>
+            </div>
+          )}
+
+          {error && (
+            <div className="p-8">
+              <div className="flex items-start gap-3 text-red-500">
+                <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold">Could not load this chapter</p>
+                  <p className="text-sm mt-1 text-red-400">{error}</p>
+                  {TRANSLATION_INFO[translation]?.licensed && (
+                    <p className="text-xs mt-3 text-gray-500 dark:text-gray-400">
+                      ESV, NASB &amp; NLT require a free API key from{' '}
+                      <span className="font-semibold">scripture.api.bible</span>. Add it as{' '}
+                      <code className="bg-gray-100 dark:bg-gray-800 px-1 rounded">BIBLE_API_KEY</code>{' '}
+                      in your Supabase edge function secrets.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && loaded && verses.length > 0 && (
+            <>
+              <div className="px-8 pt-8 pb-4 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                      {loadedBook} {loadedChapter}
+                    </h2>
+                    <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+                      {info.full} &mdash; {verses.length} verses
+                    </p>
+                  </div>
+                  <span className="flex-shrink-0 text-sm font-bold px-3 py-1.5 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 mt-1">
+                    {info.label}
+                  </span>
+                </div>
+              </div>
+              <div className="px-8 py-6 space-y-4 max-h-[70vh] overflow-y-auto">
+                {verses.map(({ verse, text }) => (
+                  <div key={verse} className="flex gap-5 group">
+                    <span className="text-sm font-bold text-teal-500 dark:text-teal-400 w-10 flex-shrink-0 pt-1 text-right tabular-nums select-none">
+                      {verse}
+                    </span>
+                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed flex-1 text-lg">
+                      {text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {!loading && !error && !loaded && (
+            <div className="flex items-center justify-center h-64 text-gray-400 dark:text-gray-500">
+              <div className="text-center">
+                <BookOpen className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                <p className="text-sm">Select a book and chapter to begin</p>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </>
