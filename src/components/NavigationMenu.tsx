@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, Map, GraduationCap, Image, Lock, Compass, Clock } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, GraduationCap, Image, Lock, Clock } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -27,45 +27,44 @@ const sections: NavSection[] = [
   {
     heading: 'Bible',
     links: [
-      { to: '/bible', icon: Map, title: 'Bible Overview' },
-      { to: '/bible', icon: Compass, title: 'Bible Reading Roadmap' },
+      { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
       { to: '/courses', icon: GraduationCap, title: 'Foundation Course' },
-      { to: '/timeline', icon: Clock, title: 'Complete Historical Timeline' },
+      { to: '/timeline', icon: Clock, title: 'Historical Timeline' },
     ],
   },
   {
-    heading: 'Gain Knowledge',
+    heading: 'Learn & Explore',
     links: [
-      { to: '/religions', icon: FolderOpen, title: 'What is Religion' },
+      { to: '/religions', icon: FolderOpen, title: 'Religions Explained' },
       { to: '/bible-versions', icon: BookOpen, title: 'Bible Versions' },
-      { to: '/bible-lookup', icon: Lightbulb, title: 'Lookup Any Verse' },
-      { to: '/preaching', icon: Mic, title: 'Wisdom' },
+      { to: '/bible-lookup', icon: Lightbulb, title: 'Verse Lookup' },
+      { to: '/preaching', icon: Mic, title: 'Preaching & Wisdom' },
       { to: '/topics', icon: MessageCircle, title: 'Biblical Topics' },
-      { to: '/bible-authors', icon: Users, title: 'Bible Authors & Evidence' },
+      { to: '/bible-authors', icon: Users, title: 'Bible Authors' },
     ],
   },
   {
-    heading: 'Being Developed',
+    heading: 'In Development',
     links: [
       { to: '/prayer', icon: Wind, title: 'Daily Prayer' },
-      { to: '/stories', icon: Book, title: 'Popular Stories' },
+      { to: '/stories', icon: Book, title: 'Bible Stories' },
       { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies' },
       { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
-      { to: '/resurrection', icon: BookOpen, title: 'Resurrection' },
-      { to: '/music', icon: Music, title: 'Music Jukebox', comingSoon: true },
+      { to: '/resurrection', icon: BookOpen, title: 'The Resurrection' },
+      { to: '/music', icon: Music, title: 'Music Player', comingSoon: true },
       { to: '/faqs', icon: HelpCircle, title: 'FAQs', comingSoon: true },
-      { to: '#', icon: Image, title: 'Media', comingSoon: true },
+      { to: '#', icon: Image, title: 'Media Library', comingSoon: true },
     ],
   },
   {
-    heading: 'Misc',
+    heading: 'More Resources',
     links: [
-      { to: '/guidance', icon: BookOpen, title: 'Guidance' },
-      { to: '/church-mentors', icon: UserCheck, title: 'Mentors' },
-      { to: '/hallowed', icon: Sparkles, title: 'Hallowed Band' },
+      { to: '/guidance', icon: BookOpen, title: 'Guidance & Q&A' },
+      { to: '/church-mentors', icon: UserCheck, title: 'Church Mentors' },
+      { to: '/hallowed', icon: Sparkles, title: 'Hallowed Music' },
       { to: '/podcasts', icon: Radio, title: 'Podcasts' },
-      { to: '/books', icon: BookText, title: 'Books' },
-      { to: '/easter', icon: Sparkles, title: 'Easter' },
+      { to: '/books', icon: BookText, title: 'Books Library' },
+      { to: '/easter', icon: Sparkles, title: 'Easter Special' },
       { to: '/verse-of-the-day', icon: BookOpen, title: 'Verse of the Day' },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', icon: BookOpen, title: 'Common Prayer', external: true },
     ],

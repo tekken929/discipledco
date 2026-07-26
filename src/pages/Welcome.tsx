@@ -3,7 +3,7 @@ import {
   Mic, Lightbulb, ArrowRight,
   HelpCircle, Shield, Heart,
   Map, Route, GraduationCap, Star,
-  Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book
+  Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book, Clock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -65,7 +65,7 @@ const featuredSections: {
   {
     to: '/religions',
     icon: Church,
-    title: 'What is Religion',
+    title: 'Religions Explained',
     description: 'How Christianity developed and how different denominations emerged.',
     color: 'red',
     bgLight: 'bg-red-50 dark:bg-red-950/30',
@@ -93,7 +93,7 @@ const featuredSections: {
   {
     to: '/bible-lookup',
     icon: Lightbulb,
-    title: 'Lookup Any Verse',
+    title: 'Verse Lookup',
     description: 'Search the World English Bible by book and chapter — read any passage instantly.',
     color: 'teal',
     bgLight: 'bg-teal-50 dark:bg-teal-950/30',
@@ -107,7 +107,7 @@ const featuredSections: {
   {
     to: '/preaching',
     icon: Mic,
-    title: 'Wisdom',
+    title: 'Preaching & Wisdom',
     description: 'Powerful preaching and biblical teachings to strengthen your faith.',
     color: 'green',
     bgLight: 'bg-green-50 dark:bg-green-950/30',
@@ -135,7 +135,7 @@ const featuredSections: {
   {
     to: '/bible-authors',
     icon: Users,
-    title: 'Bible Authors & Evidence',
+    title: 'Bible Authors',
     description: 'Who wrote Scripture, when they wrote it, and why their accounts can be trusted — with manuscript and archaeological evidence.',
     color: 'blue',
     bgLight: 'bg-blue-50 dark:bg-blue-950/30',
@@ -237,6 +237,26 @@ export function Welcome() {
             </span>
           </Link>
 
+          {/* Historical Timeline */}
+          <Link
+            to="/timeline"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/40 flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+              </div>
+              <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Creation → Today</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Historical Timeline</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Key events from Creation through modern day across all traditions.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-600 dark:text-slate-400 group-hover:gap-2 transition-all mt-auto">
+              View timeline <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
         </div>
       </section>
 
@@ -251,7 +271,7 @@ export function Welcome() {
           <div className="flex-1 h-px hero-divider-line" />
         </div>
         <div className="mb-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Gain knowledge</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Learn & Explore</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">Pick your topic below to learn more.</p>
         </div>
 
@@ -355,7 +375,7 @@ export function Welcome() {
           <div className="flex-1 h-px hero-divider-line" />
         </div>
         <div className="mb-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">Being Developed</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-2 hero-heading-accent">In Development</h2>
           <p className="text-gray-500 dark:text-gray-400 text-base">More features coming soon — live features are available now.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
@@ -380,7 +400,7 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Popular Stories — Coming Soon */}
+          {/* Bible Stories — Coming Soon */}
           <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
@@ -391,7 +411,7 @@ export function Welcome() {
               </span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Popular Stories</h3>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Bible Stories</h3>
               <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Engaging stories and accounts that bring biblical truths to life.</p>
             </div>
             <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
@@ -454,7 +474,7 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Music Jukebox — Coming Soon */}
+          {/* Music Player — Coming Soon */}
           <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
@@ -465,7 +485,7 @@ export function Welcome() {
               </span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Music Jukebox</h3>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Music Player</h3>
               <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Original songs and worship music to accompany your journey.</p>
             </div>
             <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
@@ -488,7 +508,7 @@ export function Welcome() {
             <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
           </div>
 
-          {/* Media Section — Coming Soon */}
+          {/* Media Library — Coming Soon */}
           <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
@@ -499,7 +519,7 @@ export function Welcome() {
               </span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Media Section</h3>
+              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Media Library</h3>
               <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Videos, images, and visual resources to deepen your understanding.</p>
             </div>
             <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>

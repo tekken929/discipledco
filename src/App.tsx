@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Compass, Clock, Users } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Clock, Users } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -60,44 +60,43 @@ const menuSections: MenuSection[] = [
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-      { to: '/bible', label: 'Bible Roadmap', icon: Compass },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
       { to: '/timeline', label: 'Historical Timeline', icon: Clock },
     ],
   },
   {
-    heading: 'Gain Knowledge',
+    heading: 'Learn & Explore',
     links: [
-      { to: '/religions', label: 'What is Religion', icon: FolderOpen },
+      { to: '/religions', label: 'Religions Explained', icon: FolderOpen },
       { to: '/bible-versions', label: 'Bible Versions', icon: BookText },
-      { to: '/bible-lookup', label: 'Lookup Any Verse', icon: Lightbulb },
-      { to: '/preaching', label: 'Wisdom', icon: Mic },
+      { to: '/bible-lookup', label: 'Verse Lookup', icon: Lightbulb },
+      { to: '/preaching', label: 'Preaching & Wisdom', icon: Mic },
       { to: '/topics', label: 'Biblical Topics', icon: MessageCircle },
       { to: '/bible-authors', label: 'Bible Authors', icon: Users },
     ],
   },
   {
-    heading: 'Being Developed',
+    heading: 'In Development',
     links: [
       { to: '/prayer', label: 'Daily Prayer', icon: Wind },
-      { to: '/stories', label: 'Popular Stories', icon: Book, comingSoon: true },
+      { to: '/stories', label: 'Bible Stories', icon: Book, comingSoon: true },
       { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen, comingSoon: true },
       { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
       { to: '/resurrection', label: 'The Resurrection', icon: BookOpen },
-      { to: '/music', label: 'Music Jukebox', icon: Music, comingSoon: true },
+      { to: '/music', label: 'Music Player', icon: Music, comingSoon: true },
       { to: '/faqs', label: 'FAQs', icon: HelpCircle, comingSoon: true },
-      { to: '#', label: 'Media Section', icon: Image, comingSoon: true },
+      { to: '#', label: 'Media Library', icon: Image, comingSoon: true },
     ],
   },
   {
-    heading: 'Misc',
+    heading: 'More Resources',
     links: [
-      { to: '/guidance', label: 'Guidance', icon: BookOpen },
-      { to: '/church-mentors', label: 'Mentors', icon: UserCheck },
-      { to: '/hallowed', label: 'Hallowed Band', icon: Sparkles },
+      { to: '/guidance', label: 'Guidance & Q&A', icon: BookOpen },
+      { to: '/church-mentors', label: 'Church Mentors', icon: UserCheck },
+      { to: '/hallowed', label: 'Hallowed Music', icon: Sparkles },
       { to: '/podcasts', label: 'Podcasts', icon: Radio },
-      { to: '/books', label: 'Books', icon: BookText },
-      { to: '/easter', label: 'Easter', icon: Sparkles },
+      { to: '/books', label: 'Books Library', icon: BookText },
+      { to: '/easter', label: 'Easter Special', icon: Sparkles },
       { to: '/verse-of-the-day', label: 'Verse of the Day', icon: Image },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', icon: BookOpen, external: true },
     ],
