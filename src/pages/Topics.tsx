@@ -29,7 +29,7 @@ const TILE_GRADIENTS: Record<string, string> = {
   'end-times':          'linear-gradient(135deg, #09090b 0%, #0f172a 30%, #1e293b 60%, #334155 85%, #e2e8f0 100%)',
 };
 
-type AccentKey = 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate';
+type AccentKey = 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate' | 'orange' | 'red';
 
 const ACCENT: Record<AccentKey, {
   badgeBg: string; badgeText: string;
@@ -72,6 +72,18 @@ const ACCENT: Record<AccentKey, {
     convBorder: 'border-slate-200 dark:border-slate-700', convBg: 'bg-slate-50 dark:bg-slate-800/30', convTitle: 'text-slate-800 dark:text-slate-300',
     translationBg: 'bg-slate-100 dark:bg-slate-800', translationText: 'text-slate-600 dark:text-slate-400',
     bookIcon: 'text-slate-600 dark:text-slate-400',
+  },
+  orange: {
+    badgeBg: 'bg-orange-100 dark:bg-orange-900/40', badgeText: 'text-orange-700 dark:text-orange-400',
+    convBorder: 'border-orange-200 dark:border-orange-800/50', convBg: 'bg-orange-50 dark:bg-orange-900/20', convTitle: 'text-orange-900 dark:text-orange-300',
+    translationBg: 'bg-orange-50 dark:bg-orange-900/30', translationText: 'text-orange-700 dark:text-orange-400',
+    bookIcon: 'text-orange-600 dark:text-orange-400',
+  },
+  red: {
+    badgeBg: 'bg-red-100 dark:bg-red-900/40', badgeText: 'text-red-700 dark:text-red-400',
+    convBorder: 'border-red-200 dark:border-red-800/50', convBg: 'bg-red-50 dark:bg-red-900/20', convTitle: 'text-red-900 dark:text-red-300',
+    translationBg: 'bg-red-50 dark:bg-red-900/30', translationText: 'text-red-700 dark:text-red-400',
+    bookIcon: 'text-red-600 dark:text-red-400',
   },
 };
 
@@ -289,55 +301,74 @@ export function Topics() {
             const tileGradient = topic.heroGradient ?? TILE_GRADIENTS[topic.id] ?? DEFAULT_GRADIENT;
             const isUnlocked = !!topic.bodyContent;
             return (
-              <div
-                key={topic.id}
-                className={`rounded-xl overflow-hidden shadow-md transition-all ${isUnlocked ? 'hover:shadow-xl hover:-translate-y-0.5' : 'opacity-50 cursor-not-allowed grayscale'}`}
-              >
-                <div
-                  className="relative px-6 py-7 h-full flex flex-col"
-                  style={{ background: tileGradient }}
+              isUnlocked ? (
+                <Link
+                  key={topic.id}
+                  to={`/topics/${topic.id}`}
+                  className="block rounded-xl overflow-hidden shadow-md transition-all hover:shadow-xl hover:-translate-y-0.5 group"
                 >
-                  <div className="absolute inset-0 bg-black/20" />
-
-                  {/* Coming Soon badge */}
-                  {!isUnlocked && (
+                  <div
+                    className="relative px-6 py-7 h-full flex flex-col"
+                    style={{ background: tileGradient }}
+                  >
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex-1">
+                        <h2 className="text-xl font-bold text-white mb-2 leading-snug">
+                          {topic.title}
+                        </h2>
+                        {topic.subtitle && (
+                          <p className="text-white/60 text-xs uppercase tracking-wider mb-2">{topic.subtitle}</p>
+                        )}
+                        <p className="text-white/80 text-sm leading-relaxed line-clamp-3">
+                          {topic.shortDescription}
+                        </p>
+                      </div>
+                      <div className="mt-5 pt-4 border-t border-white/20">
+                        <span className="inline-flex items-center gap-2 bg-white/20 group-hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 text-xs font-bold px-4 py-2 rounded-lg transition-all">
+                          Explore
+                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ) : (
+                <div
+                  key={topic.id}
+                  className="rounded-xl overflow-hidden shadow-md opacity-50 cursor-not-allowed grayscale"
+                >
+                  <div
+                    className="relative px-6 py-7 h-full flex flex-col"
+                    style={{ background: tileGradient }}
+                  >
+                    <div className="absolute inset-0 bg-black/20" />
                     <div className="absolute top-3 right-3 z-20 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white/80 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full border border-white/20">
                       <Lock className="w-2.5 h-2.5" />
                       Soon
                     </div>
-                  )}
-
-                  <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex-1">
-                      <h2 className="text-xl font-bold text-white mb-2 leading-snug">
-                        {topic.title}
-                      </h2>
-                      {topic.subtitle && (
-                        <p className="text-white/60 text-xs uppercase tracking-wider mb-2">{topic.subtitle}</p>
-                      )}
-                      <p className="text-white/80 text-sm leading-relaxed line-clamp-3">
-                        {topic.shortDescription}
-                      </p>
-                    </div>
-                    <div className="mt-5 pt-4 border-t border-white/20">
-                      {isUnlocked ? (
-                        <Link
-                          to={`/topics/${topic.id}`}
-                          className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 text-xs font-bold px-4 py-2 rounded-lg transition-all"
-                        >
-                          Explore
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                      ) : (
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex-1">
+                        <h2 className="text-xl font-bold text-white mb-2 leading-snug">
+                          {topic.title}
+                        </h2>
+                        {topic.subtitle && (
+                          <p className="text-white/60 text-xs uppercase tracking-wider mb-2">{topic.subtitle}</p>
+                        )}
+                        <p className="text-white/80 text-sm leading-relaxed line-clamp-3">
+                          {topic.shortDescription}
+                        </p>
+                      </div>
+                      <div className="mt-5 pt-4 border-t border-white/20">
                         <span className="inline-flex items-center gap-2 bg-black/30 text-white/50 border border-white/10 text-xs font-bold px-4 py-2 rounded-lg">
                           <Lock className="w-3 h-3" />
                           Coming Soon
                         </span>
-                      )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )
             );
           })}
         </div>
