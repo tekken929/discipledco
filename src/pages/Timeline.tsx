@@ -1,344 +1,405 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, BookOpen, Cross, Star } from 'lucide-react';
+import {
+  ArrowLeft, BookOpen, Calendar, Cross, Star, ScrollText,
+  ChevronDown, ChevronUp, Clock, Sparkles, Globe, Heart,
+} from 'lucide-react';
 import { timelineEvents, timelineSections } from '../data/timeline';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { useEffect, useState } from 'react';
+import type { BibleRef, TimelineEvent } from '../types/timeline';
 import { ReturnToHome } from '../components/ReturnToHome';
+import { BibleVersePopup } from '../components/BibleVersePopup';
+
+type CategoryId = 'creation' | 'jewish' | 'catholic' | 'protestant' | 'modern';
+
+interface CategoryStyle {
+  badge: string;
+  card: string;
+  title: string;
+  text: string;
+  icon: string;
+  gradient: string;
+  tabActive: string;
+  tabIdle: string;
+}
+
+const categoryStyles: Record<CategoryId, CategoryStyle> = {
+  creation: {
+    badge: 'bg-amber-500 text-white',
+    card: 'border-amber-200 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10',
+    title: 'text-amber-900 dark:text-amber-100',
+    text: 'text-amber-800 dark:text-amber-200',
+    icon: 'text-amber-600 dark:text-amber-400',
+    gradient: 'from-amber-500 to-yellow-600',
+    tabActive: 'bg-amber-500 text-white border-amber-500',
+    tabIdle: 'text-amber-700 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-900/20',
+  },
+  jewish: {
+    badge: 'bg-blue-600 text-white',
+    card: 'border-blue-200 dark:border-blue-700 bg-blue-50/50 dark:bg-blue-900/10',
+    title: 'text-blue-900 dark:text-blue-100',
+    text: 'text-blue-800 dark:text-blue-200',
+    icon: 'text-blue-600 dark:text-blue-400',
+    gradient: 'from-blue-600 to-indigo-600',
+    tabActive: 'bg-blue-600 text-white border-blue-600',
+    tabIdle: 'text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/20',
+  },
+  catholic: {
+    badge: 'bg-red-600 text-white',
+    card: 'border-red-200 dark:border-red-700 bg-red-50/50 dark:bg-red-900/10',
+    title: 'text-red-900 dark:text-red-100',
+    text: 'text-red-800 dark:text-red-200',
+    icon: 'text-red-600 dark:text-red-400',
+    gradient: 'from-red-600 to-rose-700',
+    tabActive: 'bg-red-600 text-white border-red-600',
+    tabIdle: 'text-red-700 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20',
+  },
+  protestant: {
+    badge: 'bg-green-600 text-white',
+    card: 'border-green-200 dark:border-green-700 bg-green-50/50 dark:bg-green-900/10',
+    title: 'text-green-900 dark:text-green-100',
+    text: 'text-green-800 dark:text-green-200',
+    icon: 'text-green-600 dark:text-green-400',
+    gradient: 'from-green-600 to-emerald-700',
+    tabActive: 'bg-green-600 text-white border-green-600',
+    tabIdle: 'text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/20',
+  },
+  modern: {
+    badge: 'bg-teal-600 text-white',
+    card: 'border-teal-200 dark:border-teal-700 bg-teal-50/50 dark:bg-teal-900/10',
+    title: 'text-teal-900 dark:text-teal-100',
+    text: 'text-teal-800 dark:text-teal-200',
+    icon: 'text-teal-600 dark:text-teal-400',
+    gradient: 'from-teal-600 to-cyan-700',
+    tabActive: 'bg-teal-600 text-white border-teal-600',
+    tabIdle: 'text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-900/20',
+  },
+};
+
+const categoryIcons: Record<CategoryId, React.ReactNode> = {
+  creation: <Star className="w-5 h-5" />,
+  jewish: <BookOpen className="w-5 h-5" />,
+  catholic: <Cross className="w-5 h-5" />,
+  protestant: <Cross className="w-5 h-5" />,
+  modern: <Calendar className="w-5 h-5" />,
+};
+
+const keyDifferences = [
+  {
+    name: 'Judaism',
+    icon: BookOpen,
+    accent: 'blue',
+    points: [
+      { label: 'Messiah', text: 'Awaits the Messiah who has not yet come' },
+      { label: 'Jesus', text: 'Does not accept Jesus as the Messiah or Son of God' },
+      { label: 'Scripture', text: 'Follows the Torah and Talmud' },
+      { label: 'Sabbath', text: 'Friday evening to Saturday evening' },
+      { label: 'God', text: 'Strict monotheism, no belief in the Trinity' },
+      { label: 'Salvation', text: 'Through following God\'s commandments (mitzvot)' },
+    ],
+  },
+  {
+    name: 'Catholicism',
+    icon: Cross,
+    accent: 'red',
+    points: [
+      { label: 'Jesus', text: 'Believes Jesus is the Messiah and Son of God' },
+      { label: 'Authority', text: 'Pope is the supreme spiritual authority on earth' },
+      { label: 'Sacraments', text: 'Seven sacraments (Baptism, Eucharist, Confirmation, Reconciliation, Anointing, Marriage, Holy Orders)' },
+      { label: 'Saints', text: 'Veneration of Mary and the saints' },
+      { label: 'Afterlife', text: 'Belief in heaven, hell, and purgatory' },
+      { label: 'Sources', text: 'Both Tradition and Scripture are authoritative' },
+    ],
+  },
+  {
+    name: 'Protestantism',
+    icon: Cross,
+    accent: 'green',
+    points: [
+      { label: 'Jesus', text: 'Believes Jesus is the Messiah and Son of God' },
+      { label: 'Authority', text: 'No pope; each denomination governs independently' },
+      { label: 'Sacraments', text: 'Typically two (Baptism and Communion/Lord\'s Supper)' },
+      { label: 'Saints', text: 'No veneration of Mary or saints; direct access to God' },
+      { label: 'Afterlife', text: 'Belief in heaven and hell; no purgatory' },
+      { label: 'Sources', text: 'Scripture alone (Sola Scriptura) as final authority' },
+      { label: 'Salvation', text: 'By faith alone (Sola Fide) through grace alone' },
+    ],
+  },
+];
 
 export function Timeline() {
-  const [activeEventIndex, setActiveEventIndex] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<CategoryId | 'all'>('all');
+  const [activeVerse, setActiveVerse] = useState<{ ref: BibleRef; badgeClass: string } | null>(null);
+  const [expandedEvents, setExpandedEvents] = useState<Set<string>>(new Set());
+  const tabSectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const windowCenter = window.innerHeight / 2;
+  const filteredEvents: TimelineEvent[] = activeTab === 'all'
+    ? timelineEvents
+    : timelineEvents.filter((e) => e.category === activeTab);
 
-      timelineEvents.forEach((_, index) => {
-        const element = document.getElementById(`timeline-event-${index}`);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementCenter = rect.top + rect.height / 2;
-
-          if (Math.abs(elementCenter - windowCenter) < 200) {
-            setActiveEventIndex(index);
-          }
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'creation':
-        return <Star className="w-5 h-5" />;
-      case 'jewish':
-        return <BookOpen className="w-5 h-5" />;
-      case 'catholic':
-        return <Cross className="w-5 h-5" />;
-      case 'protestant':
-        return <Cross className="w-5 h-5" />;
-      case 'modern':
-        return <Calendar className="w-5 h-5" />;
-      default:
-        return <Calendar className="w-5 h-5" />;
-    }
+  const eventCounts: Record<string, number> = {
+    all: timelineEvents.length,
+    creation: timelineEvents.filter((e) => e.category === 'creation').length,
+    jewish: timelineEvents.filter((e) => e.category === 'jewish').length,
+    catholic: timelineEvents.filter((e) => e.category === 'catholic').length,
+    protestant: timelineEvents.filter((e) => e.category === 'protestant').length,
+    modern: timelineEvents.filter((e) => e.category === 'modern').length,
   };
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'creation':
-        return 'from-yellow-50 to-yellow-100 dark:from-yellow-900/30 dark:to-yellow-800/30 border-yellow-200 dark:border-yellow-700';
-      case 'jewish':
-        return 'from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border-blue-200 dark:border-blue-700';
-      case 'catholic':
-        return 'from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30 border-red-200 dark:border-red-700';
-      case 'protestant':
-        return 'from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 border-green-200 dark:border-green-700';
-      case 'modern':
-        return 'from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border-purple-200 dark:border-purple-700';
-      default:
-        return 'from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/30 border-gray-200 dark:border-gray-700';
-    }
-  };
+  function toggleEvent(id: string) {
+    setExpandedEvents((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
 
-  const getCategoryTextColor = (category: string) => {
-    switch (category) {
-      case 'creation':
-        return 'text-yellow-900 dark:text-yellow-100';
-      case 'jewish':
-        return 'text-blue-900 dark:text-blue-100';
-      case 'catholic':
-        return 'text-red-900 dark:text-red-100';
-      case 'protestant':
-        return 'text-green-900 dark:text-green-100';
-      case 'modern':
-        return 'text-purple-900 dark:text-purple-100';
-      default:
-        return 'text-gray-900 dark:text-gray-100';
-    }
-  };
-
-  const getCategoryBadgeColor = (category: string) => {
-    switch (category) {
-      case 'creation':
-        return 'bg-yellow-600 text-white';
-      case 'jewish':
-        return 'bg-blue-600 text-white';
-      case 'catholic':
-        return 'bg-red-600 text-white';
-      case 'protestant':
-        return 'bg-green-600 text-white';
-      case 'modern':
-        return 'bg-purple-600 text-white';
-      default:
-        return 'bg-gray-600 text-white';
-    }
-  };
+  function selectTab(tab: CategoryId | 'all') {
+    setActiveTab(tab);
+    setTimeout(() => {
+      tabSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
 
   return (
     <>
       <ReturnToHome />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 spacing-section">
-      <Link
-        to="/religions"
-        className="link-cinematic inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-12 transition-colors font-semibold"
-      >
-        <ArrowLeft className="w-5 h-5" />
-        Back to Religions
-      </Link>
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-8 transition-colors font-semibold"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Back to Home
+        </Link>
 
-      <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors mb-16 card-cinematic">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-          The Journey of Faith
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-          A cinematic journey from creation through the development of Judaism, Christianity, Catholicism, and Protestantism
-        </p>
-
-        <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl p-6 border border-blue-200 dark:border-blue-800 mb-8">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-            <BookOpen className="w-5 h-5" />
-            How to Edit This Timeline
-          </h2>
-          <p className="text-gray-700 dark:text-gray-300 mb-2">
-            This timeline is stored in <code className="bg-white dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono">src/data/timeline.ts</code>
-          </p>
-          <p className="text-gray-700 dark:text-gray-300 text-sm">
-            Open that file to find detailed instructions on adding new events, editing existing ones, and understanding the different categories and time periods.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
-          {timelineSections.map((section) => (
-            <div
-              key={section.id}
-              className={`bg-gradient-to-br ${getCategoryColor(section.category)} rounded-lg p-3 border text-center`}
-            >
-              <div className={`font-semibold ${getCategoryTextColor(section.category)} text-sm`}>
-                {section.title}
+        {/* HERO HEADER */}
+        <div className="theme-card rounded-3xl shadow-xl p-8 md:p-12 mb-10 overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-200/20 to-blue-200/20 dark:from-amber-700/10 dark:to-blue-700/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-blue-500 flex items-center justify-center shadow-lg">
+                <Clock className="w-6 h-6 text-white" />
               </div>
+              <span className="text-xs font-bold text-blue-500 dark:text-blue-400 uppercase tracking-widest">Creation to Present Day</span>
             </div>
-          ))}
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+              The Journey of Faith
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+              A cinematic journey from creation through the development of Judaism, Christianity, Catholicism, and Protestantism. Explore the key events that shaped faith across millennia — click any Scripture reference to read it instantly.
+            </p>
+          </div>
+
+          {/* Quick stats */}
+          <div className="relative grid grid-cols-2 md:grid-cols-5 gap-3 mt-8">
+            {timelineSections.map((section) => {
+              const cat = section.category as CategoryId;
+              const style = categoryStyles[cat];
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => selectTab(cat)}
+                  className={`text-left p-4 rounded-xl border-2 transition-all hover:shadow-md hover:-translate-y-0.5 ${style.card}`}
+                >
+                  <div className={`w-8 h-8 rounded-lg ${style.badge} flex items-center justify-center mb-2`}>
+                    {categoryIcons[cat]}
+                  </div>
+                  <div className={`text-sm font-bold ${style.title} leading-snug`}>{section.title}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{eventCounts[cat]} events</div>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* TIMELINE PATH - CINEMATIC JOURNEY */}
-      <div className="relative space-y-12 md:space-y-16">
-        {/* The Path */}
-        <div className="hidden md:block timeline-path" style={{ height: `${timelineEvents.length * 400}px` }}>
-          <div className="timeline-dot" style={{
-            top: activeEventIndex !== null ? `${(activeEventIndex / timelineEvents.length) * 100}%` : '0%'
-          }} />
-        </div>
-
-        {timelineEvents.map((event, index) => {
-          const isActive = activeEventIndex === index;
-          const isPassed = activeEventIndex !== null && index < activeEventIndex;
-          const eventClass = isActive ? 'active' : isPassed ? 'passed' : '';
-
-          return (
-            <div
-              key={event.id}
-              id={`timeline-event-${index}`}
-              className={`timeline-item ${eventClass} cinematic-section ${
-                event.category === 'creation' ? 'theme-creation' :
-                event.category === 'jewish' && event.year.includes('Fall') ? 'theme-fall' :
-                event.category === 'catholic' ? 'theme-jesus' :
-                event.category === 'modern' ? 'theme-new-creation' : ''
+        {/* TAB BAR */}
+        <div ref={tabSectionRef} className="sticky top-16 z-40 mb-8 -mx-4 px-4 py-3 theme-card/95 backdrop-blur-md border-y border-gray-200 dark:border-gray-700 scroll-mt-16">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            <button
+              onClick={() => selectTab('all')}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold border-2 transition-all whitespace-nowrap ${
+                activeTab === 'all'
+                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-gray-900 dark:border-white'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border-transparent'
               }`}
             >
-              <div className={`bg-gradient-to-br ${getCategoryColor(event.category)} rounded-2xl border-2 shadow-xl hover:shadow-2xl transition-all duration-500 p-6 md:p-8 relative card-cinematic cinematic-image`}>
-              <div className="flex items-start gap-4 mb-4">
-                <div className={`${getCategoryBadgeColor(event.category)} p-3 rounded-full shadow-md flex-shrink-0 relative z-10`}>
-                  {getCategoryIcon(event.category)}
-                </div>
+              <Sparkles className="w-4 h-4" />
+              All ({eventCounts.all})
+            </button>
+            {timelineSections.map((section) => {
+              const cat = section.category as CategoryId;
+              const style = categoryStyles[cat];
+              const isActive = activeTab === cat;
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => selectTab(cat)}
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold border-2 transition-all whitespace-nowrap ${
+                    isActive ? style.tabActive : `border-transparent ${style.tabIdle}`
+                  }`}
+                >
+                  {categoryIcons[cat]}
+                  {section.title.split(' ')[0]} ({eventCounts[cat]})
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
-                <div className="flex-1">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
-                    <h2 className={`text-2xl md:text-3xl font-bold ${getCategoryTextColor(event.category)}`}>
-                      {event.title}
-                    </h2>
-                    <span className={`${getCategoryBadgeColor(event.category)} px-4 py-1 rounded-full text-sm font-bold w-fit`}>
-                      {event.year}
-                    </span>
-                  </div>
+        {/* TIMELINE EVENTS */}
+        <div className="space-y-4">
+          {filteredEvents.map((event, index) => {
+            const cat = event.category as CategoryId;
+            const style = categoryStyles[cat];
+            const isExpanded = expandedEvents.has(event.id);
+            const hasDetails = event.details.length > 0 || (event.bibleRefs && event.bibleRefs.length > 0);
 
-                  <p className={`text-lg ${getCategoryTextColor(event.category)} mb-4 opacity-90`}>
-                    {event.description}
-                  </p>
-
-                  <div className="space-y-2">
-                    {event.details.map((detail, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <span className="text-gray-600 dark:text-gray-400 mt-1">•</span>
-                        <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
-                          {detail}
-                        </p>
+            return (
+              <div key={event.id} className="relative">
+                {/* Connector line */}
+                {index !== filteredEvents.length - 1 && (
+                  <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600" />
+                )}
+                <div className={`theme-card border-2 ${style.card} rounded-2xl shadow-md hover:shadow-lg transition-all overflow-hidden`}>
+                  <button
+                    onClick={() => hasDetails && toggleEvent(event.id)}
+                    className={`w-full text-left p-5 md:p-6 ${hasDetails ? 'cursor-pointer' : 'cursor-default'}`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`${style.badge} p-2.5 rounded-full shadow flex-shrink-0 mt-0.5`}>
+                        {categoryIcons[cat]}
                       </div>
-                    ))}
-                  </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1">
+                          <h3 className={`text-lg md:text-xl font-bold ${style.title} leading-snug`}>{event.title}</h3>
+                          <span className={`${style.badge} px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap w-fit`}>
+                            {event.year}
+                          </span>
+                        </div>
+                        <p className={`text-sm ${style.text} leading-relaxed`}>{event.description}</p>
+                        {hasDetails && (
+                          <div className="flex items-center gap-1 mt-2 text-xs font-semibold text-gray-400 dark:text-gray-500">
+                            {isExpanded ? 'Show less' : 'Show details'}
+                            {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </button>
 
-                  {event.relatedLinks && event.relatedLinks.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {event.relatedLinks.map((link, idx) => (
-                        <a
-                          key={idx}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-colors text-sm font-semibold text-gray-700 dark:text-gray-300"
-                        >
-                          <BookOpen className="w-4 h-4" />
-                          {link.title}
-                        </a>
-                      ))}
+                  {/* Expanded details */}
+                  {isExpanded && hasDetails && (
+                    <div className="px-5 md:px-6 pb-5 md:pb-6 pl-16 md:pl-20">
+                      {event.details.length > 0 && (
+                        <ul className="space-y-2 mb-4">
+                          {event.details.map((detail, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                              <span className={`mt-0.5 font-bold ${style.icon}`}>•</span>
+                              <span className="leading-relaxed">{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {event.bibleRefs && event.bibleRefs.length > 0 && (
+                        <div className="pt-3 border-t border-gray-100 dark:border-gray-700/60">
+                          <div className="flex items-center gap-1.5 mb-2.5">
+                            <ScrollText className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+                            <span className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Read in Scripture</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {event.bibleRefs.map((ref, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() => setActiveVerse({ ref, badgeClass: style.badge })}
+                                className={`${style.badge} inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:shadow-md hover:-translate-y-0.5`}
+                              >
+                                <BookOpen className="w-3 h-3 flex-shrink-0" />
+                                {ref.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {event.relatedLinks && event.relatedLinks.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {event.relatedLinks.map((link, idx) => (
+                            <a
+                              key={idx}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 theme-card border px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-300 hover:shadow transition-all"
+                            >
+                              <Globe className="w-3 h-3" />
+                              {link.title}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
               </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
-      {/* SECTION DIVIDER */}
-      <div className="section-divider my-16" />
-
-      <div className="mt-12 theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-          Key Differences Today
-        </h2>
-
-        <div className="space-y-6">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
-            <h3 className="text-2xl font-bold text-blue-900 dark:text-blue-100 mb-4 flex items-center gap-2">
-              <BookOpen className="w-6 h-6" />
-              Judaism
-            </h3>
-            <ul className="space-y-2 text-gray-800 dark:text-gray-200">
-              <li className="flex items-start gap-3">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Messiah:</strong> Awaits the Messiah who has not yet come</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Jesus:</strong> Does not accept Jesus as the Messiah or Son of God</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Scripture:</strong> Follows the Torah and Talmud</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Sabbath:</strong> Friday evening to Saturday evening</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>God:</strong> Strict monotheism, no belief in the Trinity</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Salvation:</strong> Through following God's commandments (mitzvot)</span>
-              </li>
-            </ul>
+        {/* SECTION DIVIDER */}
+        <div className="flex items-center gap-4 my-16">
+          <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+          <div className="flex items-center justify-center w-10 h-10 rounded-full theme-card border border-gray-200 dark:border-gray-700 shadow-sm">
+            <Heart className="w-4 h-4 text-gray-400" />
           </div>
+          <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+        </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30 rounded-xl p-6 border border-red-200 dark:border-red-700">
-            <h3 className="text-2xl font-bold text-red-900 dark:text-red-100 mb-4 flex items-center gap-2">
-              <Cross className="w-6 h-6" />
-              Catholicism
-            </h3>
-            <ul className="space-y-2 text-gray-800 dark:text-gray-200">
-              <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold">•</span>
-                <span><strong>Jesus:</strong> Believes Jesus is the Messiah and Son of God</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold">•</span>
-                <span><strong>Authority:</strong> Pope is the supreme spiritual authority on earth</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold">•</span>
-                <span><strong>Sacraments:</strong> Seven sacraments (Baptism, Eucharist, Confirmation, Reconciliation, Anointing, Marriage, Holy Orders)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold">•</span>
-                <span><strong>Saints:</strong> Veneration of Mary and the saints</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold">•</span>
-                <span><strong>Afterlife:</strong> Belief in heaven, hell, and purgatory</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-600 font-bold">•</span>
-                <span><strong>Sources:</strong> Both Tradition and Scripture are authoritative</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 rounded-xl p-6 border border-green-200 dark:border-green-700">
-            <h3 className="text-2xl font-bold text-green-900 dark:text-green-100 mb-4 flex items-center gap-2">
-              <Cross className="w-6 h-6" />
-              Protestantism
-            </h3>
-            <ul className="space-y-2 text-gray-800 dark:text-gray-200">
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Jesus:</strong> Believes Jesus is the Messiah and Son of God</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Authority:</strong> No pope; each denomination governs independently</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Sacraments:</strong> Typically two (Baptism and Communion/Lord's Supper)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Saints:</strong> No veneration of Mary or saints; direct access to God</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Afterlife:</strong> Belief in heaven and hell; no purgatory</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Sources:</strong> Scripture alone (Sola Scriptura) as final authority</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-600 font-bold">•</span>
-                <span><strong>Salvation:</strong> By faith alone (Sola Fide) through grace alone</span>
-              </li>
-            </ul>
+        {/* KEY DIFFERENCES */}
+        <div className="theme-card rounded-3xl shadow-xl p-8 md:p-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 text-center">Key Differences Today</h2>
+          <p className="text-gray-500 dark:text-gray-400 text-center mb-8 max-w-2xl mx-auto">
+            How Judaism, Catholicism, and Protestantism differ in their core beliefs and practices.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {keyDifferences.map((group) => {
+              const Icon = group.icon;
+              const accentBg = group.accent === 'blue' ? 'from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30' : group.accent === 'red' ? 'from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30' : 'from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30';
+              const accentBorder = group.accent === 'blue' ? 'border-blue-200 dark:border-blue-700' : group.accent === 'red' ? 'border-red-200 dark:border-red-700' : 'border-green-200 dark:border-green-700';
+              const accentText = group.accent === 'blue' ? 'text-blue-900 dark:text-blue-100' : group.accent === 'red' ? 'text-red-900 dark:text-red-100' : 'text-green-900 dark:text-green-100';
+              const bulletColor = group.accent === 'blue' ? 'text-blue-600' : group.accent === 'red' ? 'text-red-600' : 'text-green-600';
+              return (
+                <div key={group.name} className={`bg-gradient-to-br ${accentBg} rounded-2xl p-6 border ${accentBorder}`}>
+                  <h3 className={`text-xl font-bold ${accentText} mb-4 flex items-center gap-2`}>
+                    <Icon className="w-5 h-5" />
+                    {group.name}
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {group.points.map((pt, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-gray-800 dark:text-gray-200">
+                        <span className={`${bulletColor} font-bold mt-0.5`}>•</span>
+                        <span className="leading-relaxed"><strong>{pt.label}:</strong> {pt.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      {/* BIBLE VERSE POPUP */}
+      {activeVerse && (
+        <BibleVersePopup
+          book={activeVerse.ref.book}
+          chapter={activeVerse.ref.chapter}
+          label={activeVerse.ref.label}
+          categoryBadgeClass={activeVerse.badgeClass}
+          onClose={() => setActiveVerse(null)}
+        />
+      )}
     </>
   );
 }

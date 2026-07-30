@@ -4,39 +4,13 @@ import {
   HelpCircle, Shield, Heart,
   Map, Route, GraduationCap, Star,
   Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book, Clock,
-  ChevronDown, ChevronUp, ScrollText
+  ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Modal } from '../components/Modal';
 import { WelcomeHero } from '../components/WelcomeHero';
 import { BibleRoadmap } from '../components/BibleRoadmap';
-import { BibleVersePopup } from '../components/BibleVersePopup';
-import { timelineEvents } from '../data/timeline';
-import type { BibleRef } from '../types/timeline';
-
-const getCategoryStyle = (category: string) => {
-  switch (category) {
-    case 'creation':
-      return { card: 'border-amber-200 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10', badge: 'bg-amber-500 text-white', icon: 'text-amber-600 dark:text-amber-400', title: 'text-amber-900 dark:text-amber-100', text: 'text-amber-800 dark:text-amber-200' };
-    case 'jewish':
-      return { card: 'border-blue-200 dark:border-blue-700 bg-blue-50/50 dark:bg-blue-900/10', badge: 'bg-blue-600 text-white', icon: 'text-blue-600 dark:text-blue-400', title: 'text-blue-900 dark:text-blue-100', text: 'text-blue-800 dark:text-blue-200' };
-    case 'catholic':
-      return { card: 'border-red-200 dark:border-red-700 bg-red-50/50 dark:bg-red-900/10', badge: 'bg-red-600 text-white', icon: 'text-red-600 dark:text-red-400', title: 'text-red-900 dark:text-red-100', text: 'text-red-800 dark:text-red-200' };
-    case 'protestant':
-      return { card: 'border-green-200 dark:border-green-700 bg-green-50/50 dark:bg-green-900/10', badge: 'bg-green-600 text-white', icon: 'text-green-600 dark:text-green-400', title: 'text-green-900 dark:text-green-100', text: 'text-green-800 dark:text-green-200' };
-    case 'modern':
-      return { card: 'border-teal-200 dark:border-teal-700 bg-teal-50/50 dark:bg-teal-900/10', badge: 'bg-teal-600 text-white', icon: 'text-teal-600 dark:text-teal-400', title: 'text-teal-900 dark:text-teal-100', text: 'text-teal-800 dark:text-teal-200' };
-    default:
-      return { card: 'border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/10', badge: 'bg-gray-600 text-white', icon: 'text-gray-600 dark:text-gray-400', title: 'text-gray-900 dark:text-white', text: 'text-gray-700 dark:text-gray-300' };
-  }
-};
-
-const getCategoryIcon = (category: string) => {
-  if (category === 'creation') return <Star className="w-4 h-4" />;
-  return <Calendar className="w-4 h-4" />;
-};
-
 
 // Subtle religious line-art watermarks — positioned absolute in tile background
 const CrossWatermark = ({ accentClass }: { accentClass: string }) => (
@@ -185,8 +159,6 @@ const beliefs = [
 export function Welcome() {
   const [showWhoMadeThis, setShowWhoMadeThis] = useState(false);
   const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
-  const [showTimeline, setShowTimeline] = useState(false);
-  const [activeVerse, setActiveVerse] = useState<{ ref: BibleRef; badgeClass: string } | null>(null);
 
 
   return (
@@ -266,9 +238,9 @@ export function Welcome() {
           </Link>
 
           {/* Historical Timeline */}
-          <button
-            onClick={() => setShowTimeline(!showTimeline)}
-            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5 text-left cursor-pointer"
+          <Link
+            to="/timeline"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/40 flex items-center justify-center flex-shrink-0">
@@ -277,98 +249,16 @@ export function Welcome() {
               <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">Creation → Today</span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Historical Timeline</h3>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Journey of Faith</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Key events from Creation through modern day across all traditions.</p>
             </div>
             <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-600 dark:text-slate-400 group-hover:gap-2 transition-all mt-auto">
-              {showTimeline ? 'Hide timeline' : 'View timeline'} {showTimeline ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              Explore timeline <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </span>
-          </button>
+          </Link>
 
         </div>
       </section>
-
-      {/* EXPANDABLE TIMELINE */}
-      {showTimeline && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-          <div className="space-y-4">
-            {timelineEvents.map((event, index) => {
-              const catStyle = getCategoryStyle(event.category);
-              const cardClass = 'theme-card border-2 ' + catStyle.card + ' rounded-2xl shadow-md hover:shadow-lg transition-all p-6';
-              const badgeCircleClass = catStyle.badge + ' p-2.5 rounded-full shadow flex-shrink-0 mt-0.5';
-              const titleClass = 'text-xl font-bold ' + catStyle.title + ' leading-snug';
-              const yearBadgeClass = catStyle.badge + ' px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap w-fit';
-              const descClass = 'text-sm ' + catStyle.text + ' mb-3 leading-relaxed';
-              const bulletClass = catStyle.icon + ' mt-0.5 font-bold';
-              return (
-                <div key={event.id} className="relative">
-                  {index !== timelineEvents.length - 1 && (
-                    <div className="absolute left-7 top-20 bottom-0 w-0.5 bg-gradient-to-b from-gray-300 to-transparent dark:from-gray-600" />
-                  )}
-                  <div className={cardClass}>
-                    <div className="flex items-start gap-4">
-                      <div className={badgeCircleClass}>
-                        {getCategoryIcon(event.category)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                          <h3 className={titleClass}>{event.title}</h3>
-                          <span className={yearBadgeClass}>{event.year}</span>
-                        </div>
-                        <p className={descClass}>{event.description}</p>
-                        <ul className="space-y-1.5">
-                          {event.details.map((detail, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
-                              <span className={bulletClass}>•</span>
-                              <span className="leading-relaxed">{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        {event.bibleRefs && event.bibleRefs.length > 0 && (
-                          <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/60">
-                            <div className="flex items-center gap-1.5 mb-2.5">
-                              <ScrollText className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
-                              <span className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Read in Scripture</span>
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                              {event.bibleRefs.map((ref, idx) => (
-                                <button
-                                  key={idx}
-                                  onClick={() => setActiveVerse({ ref, badgeClass: catStyle.badge })}
-                                  className={`${catStyle.badge} inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:shadow-md hover:-translate-y-0.5`}
-                                >
-                                  <BookOpen className="w-3 h-3 flex-shrink-0" />
-                                  {ref.label}
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {event.relatedLinks && event.relatedLinks.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {event.relatedLinks.map((link, idx) => (
-                              <a
-                                key={idx}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 theme-card border px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-300 hover:shadow transition-all"
-                              >
-                                <BookOpen className="w-3 h-3" />
-                                {link.title}
-                              </a>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
 
       {/* FEATURED SECTIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-12">
@@ -637,17 +527,6 @@ export function Welcome() {
 
         </div>
       </section>
-
-      {/* BIBLE VERSE POPUP */}
-      {activeVerse && (
-        <BibleVersePopup
-          book={activeVerse.ref.book}
-          chapter={activeVerse.ref.chapter}
-          label={activeVerse.ref.label}
-          categoryBadgeClass={activeVerse.badgeClass}
-          onClose={() => setActiveVerse(null)}
-        />
-      )}
 
       {/* ROADMAP MODAL */}
       <Modal
