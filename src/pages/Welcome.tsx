@@ -3,8 +3,7 @@ import {
   Mic, Lightbulb, ArrowRight,
   HelpCircle, Shield, Heart,
   Map, Route, GraduationCap, Star,
-  Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book, Clock,
-  ArrowRight
+  Wind, Image, HelpCircle as FAQ, Lock, Users, MessageCircle, Book, Clock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
