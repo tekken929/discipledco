@@ -210,16 +210,19 @@ function VerseCard({ verse, style }: { verse: SadnessVerse; style: typeof catego
           &ldquo;{verse.text}&rdquo;
         </p>
         <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/60">
-          <Link
-            to={lookupUrl}
-            className={`inline-flex items-center gap-1.5 text-xs font-bold ${style.accent} hover:gap-2.5 transition-all`}
+          <button
+            onClick={() => window.open(lookupUrl, '_blank', 'noopener,noreferrer,width=1024,height=768')}
+            className={`inline-flex items-center gap-1.5 text-xs font-bold ${style.accent} hover:gap-2.5 transition-all cursor-pointer`}
           >
             <BookOpen className="w-3.5 h-3.5" />
             Read in Bible Lookup
             <ExternalLink className="w-3 h-3 opacity-60" />
-          </Link>
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
+
+export { VersesOnSadness }
