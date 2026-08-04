@@ -317,13 +317,55 @@ export function Welcome() {
         </div>
       </section>
 
-      {/* VERSE BANNER */}
-      <section className="theme-primary-bg hero-verse-banner">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <p className="text-2xl md:text-2xl font-bold text-white leading-relaxed mb-4">
-            "The Lord saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time."
-          </p>
-          <p className="text-white/80 font-semibold text-lg">— Genesis 6:5 (NIV)</p>
+      {/* VERSE TOPIC TILES — replaces old verse banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Complete Bible tile */}
+          <Link
+            to="/bible-lookup"
+            className="group relative flex flex-col gap-3 p-6 rounded-2xl border-2 border-teal-200 dark:border-teal-800/50 bg-teal-50/50 dark:bg-teal-950/20 hover:border-teal-400 dark:hover:border-teal-600 hover:shadow-lg transition-all hover:-translate-y-0.5 overflow-hidden"
+          >
+            <BookWatermark accentClass="text-teal-600 dark:text-teal-400" />
+            <div className="relative flex items-center justify-between">
+              <div className="w-11 h-11 rounded-xl bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+              </div>
+              <span className="text-[10px] font-bold text-teal-500 dark:text-teal-400 uppercase tracking-widest">Full Bible</span>
+            </div>
+            <div className="relative">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 leading-snug">Complete Bible</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Read any chapter from any book — search by book and chapter, multiple translations available.</p>
+            </div>
+            <span className="relative inline-flex items-center gap-1 text-sm font-bold text-teal-600 dark:text-teal-400 group-hover:gap-2 transition-all mt-auto">
+              Open Bible <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
+          {/* Verses for Sadness tile */}
+          <Link
+            to="/verses-on-sadness"
+            className="group relative flex flex-col gap-3 p-6 rounded-2xl border-2 border-rose-200 dark:border-rose-800/50 bg-rose-50/50 dark:bg-rose-950/20 hover:border-rose-400 dark:hover:border-rose-600 hover:shadow-lg transition-all hover:-translate-y-0.5 overflow-hidden"
+          >
+            <div className="absolute bottom-3 right-3 w-20 h-24 opacity-[0.07] dark:opacity-[0.06] pointer-events-none select-none text-rose-600 dark:text-rose-400">
+              <svg viewBox="0 0 60 80" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round">
+                <line x1="30" y1="4" x2="30" y2="76" />
+                <line x1="6" y1="22" x2="54" y2="22" />
+              </svg>
+            </div>
+            <div className="relative flex items-center justify-between">
+              <div className="w-11 h-11 rounded-xl bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center flex-shrink-0">
+                <Heart className="w-5 h-5 text-rose-600 dark:text-rose-400" />
+              </div>
+              <span className="text-[10px] font-bold text-rose-500 dark:text-rose-400 uppercase tracking-widest">22 Verses · NLT</span>
+            </div>
+            <div className="relative">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 leading-snug">Verses for Sadness &amp; Sorrow</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Comfort and hope from God's Word for the hard seasons — loss, grief, anxiety, and feeling down.</p>
+            </div>
+            <span className="relative inline-flex items-center gap-1 text-sm font-bold text-rose-600 dark:text-rose-400 group-hover:gap-2 transition-all mt-auto">
+              Read verses <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
         </div>
       </section>
 

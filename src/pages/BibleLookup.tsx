@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ReturnToHome } from '../components/ReturnToHome';
 
@@ -118,9 +119,17 @@ function getAdjacentChapter(book: string, chapter: number, direction: 'prev' | '
 }
 
 export function BibleLookup() {
-  const [selectedBook, setSelectedBook] = useState('John');
-  const [selectedChapter, setSelectedChapter] = useState(3);
-  const [translation, setTranslation] = useState<Translation>('kjv');
+  const [searchParams] = useSearchParams();
+  const paramBook = searchParams.get('book') || 'John';
+  const paramChapter = parseInt(searchParams.get('chapter') || '3', 10) || 3;
+  const paramVerse = searchParams.get('verse') ? parseInt(searchParams.get('verse')!, 10) || 1 : 1;
+  const paramTranslation = (searchParams.get('translation') as Translation | null) || 'kjv';
+
+  const [selectedBook, setSelectedBook] = useState(paramBook);
+  const [selectedChapter, setSelectedChapter] = useState(paramChapter);
+  const [translation, setTranslation] = useState<Translation>(
+    ['kjv', 'web', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'kjv'
+  );
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -128,7 +137,7 @@ export function BibleLookup() {
   const [loadedBook, setLoadedBook] = useState('John');
   const [loadedChapter, setLoadedChapter] = useState(3);
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
-  const [selectedVerse, setSelectedVerse] = useState<number | null>(1);
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(paramVerse);
   const [bgIndex, setBgIndex] = useState(0);
   const translationRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -165,7 +174,8 @@ export function BibleLookup() {
   }
 
   useEffect(() => {
-    fetchVerses('John', 3, translation);
+    fetchVerses(paramBook, paramChapter, translation);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

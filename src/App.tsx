@@ -32,6 +32,7 @@ import { CourseModule } from './pages/CourseModule';
 import { BibleLookup } from './pages/BibleLookup';
 import { BibleStudies } from './pages/BibleStudies';
 import { VerseOfTheDay } from './pages/VerseOfTheDay';
+import { VersesOnSadness } from './pages/VersesOnSadness';
 import Prayer from './pages/Prayer';
 import { AppDownload } from './pages/AppDownload';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
@@ -380,6 +381,7 @@ function AppContent() {
           <Route path="/bible-studies" element={<BibleStudies />} />
           <Route path="/bible-studies/:studyId" element={<BibleStudies />} />
           <Route path="/verse-of-the-day" element={<VerseOfTheDay />} />
+          <Route path="/verses-on-sadness" element={<VersesOnSadness />} />
           <Route path="/prayer" element={<Prayer />} />
           <Route path="/app" element={<AppDownload />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
