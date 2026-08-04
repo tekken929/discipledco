@@ -6,6 +6,7 @@ import { ReturnToHome } from '../components/ReturnToHome';
 const DEFAULT_GRADIENT = 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)';
 
 const TILE_GRADIENTS: Record<string, string> = {
+  'sobriety-self-control': 'linear-gradient(135deg, #0a2e2e 0%, #064e4e 30%, #0f766e 60%, #14b8a6 85%, #5eead4 100%)',
   'forbidden-practices': 'linear-gradient(135deg, #1a0a0a 0%, #3b0f0f 30%, #7f1d1d 60%, #b91c1c 85%, #fca5a5 100%)',
   marriage:             'linear-gradient(135deg, #3b0a0a 0%, #7f1d1d 30%, #b91c1c 60%, #f43f5e 85%, #fecdd3 100%)',
   lust:                 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #1e40af 65%, #3b82f6 85%, #93c5fd 100%)',

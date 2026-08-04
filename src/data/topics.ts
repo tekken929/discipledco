@@ -2,6 +2,110 @@ import { Topic } from '../types/topic';
 
 export const topics: Topic[] = [
   {
+    id: 'sobriety-self-control',
+    title: 'Sobriety, Self-Control & Honoring God with Your Body',
+    subtitle: 'Understanding God\'s Heart',
+    description: 'Biblical guidance on sober-minded living, self-control, and honoring God with your body',
+    shortDescription: 'God calls believers to live with clear minds and disciplined lives. Our bodies are temples of the Holy Spirit, and everything we do should honor Christ.',
+    bodyContent: [
+      'One of the clearest themes running throughout Scripture is that God\'s people are called to live with minds that are clear, hearts that are governed by His Spirit, and lives that reflect His holiness. This calling reaches far beyond avoiding certain sins. It is a way of life that recognizes we belong to Christ and have been set apart for His purposes.',
+      'The Bible consistently presents self-control as evidence of spiritual maturity. A person who walks with God learns to govern their desires rather than being governed by them. This is why Scripture repeatedly calls believers to remain sober minded, alert, watchful, and disciplined. A clouded mind cannot discern truth as clearly, resist temptation as faithfully, or serve God as wholeheartedly as a mind that is fixed upon Him.',
+      'The Scriptures speak directly about alcohol. Wine itself is not condemned, but drunkenness is consistently described as sinful because it surrenders self-control and places the mind under the influence of something other than God\'s Spirit. Rather than being controlled by alcohol, believers are commanded to be filled with the Holy Spirit, whose work produces wisdom, holiness, and self-control.',
+      'Although the Bible does not specifically mention modern marijuana, the principles it gives apply naturally. If a substance is taken for the purpose of intoxication, dulls our judgment, weakens our ability to think clearly, or masters our desires, it stands in direct conflict with the biblical call to sober-minded living. The question for the Christian is never simply, "Can I?" but rather, "Does this honor Christ? Does it strengthen my walk with Him? Does it help me love God with all my heart, soul, mind, and strength?"',
+      'Scripture reminds believers that our bodies are temples of the Holy Spirit. We were purchased by the blood of Christ and no longer belong to ourselves. Everything we do with our bodies—including what we eat, drink, inhale, or consume—should reflect that glorious reality. The Christian life is not driven by personal freedom alone but by joyful obedience to the One who gave Himself for us.',
+      'The Bible also warns against becoming mastered by anything. Habits can quietly become dependencies, and dependencies can become idols. Whether the influence is alcohol, recreational drugs, pornography, gambling, or any other controlling desire, anything that begins to rule our hearts competes with the rightful lordship of Jesus Christ. The believer\'s freedom is not found in surrendering to earthly appetites but in belonging completely to Christ.',
+      'Scripture also recognizes the proper use of medicine. Throughout history, God\'s people have understood that medicines used wisely to treat illness are fundamentally different from substances taken to produce intoxication or escape reality. The issue is not simply what something is, but why it is being used and what effect it has upon the body, the mind, and the heart.',
+      'The Christian life is ultimately a life of worship. Paul writes that whether we eat, drink, or do anything else, we are to do all for the glory of God. Every decision becomes an opportunity to honor Christ. As we submit ourselves to the Holy Spirit, He produces within us the fruit of self-control, enabling us to live with clear minds, faithful hearts, and joyful obedience until the day we see Him face to face.',
+    ],
+    whatWeLearns: [
+      'God calls believers to live with sober, disciplined minds.',
+      'Our bodies belong to Jesus Christ and are temples of the Holy Spirit.',
+      'Scripture condemns drunkenness and warns against anything that masters us.',
+      'Self-control is a fruit of the Holy Spirit, not merely human willpower.',
+      'Christian freedom is exercised in ways that glorify God rather than satisfy sinful desires.',
+      'Believers should evaluate every habit by asking whether it honors Christ and strengthens their walk with Him.',
+      'The Christian life is one of joyful obedience, not bondage to earthly appetites.',
+    ],
+    familyConversation: 'When making decisions about anything we put into our bodies, what questions should we ask? Does this help me honor Christ? Does it strengthen my walk with Him? Does it help me love God and others more faithfully? Does it control me, or am I living under the control of the Holy Spirit?',
+    prayer: 'Heavenly Father,\n\nThank You for purchasing us through the precious blood of Jesus Christ and making us temples of Your Holy Spirit. Help us to honor You with our bodies, our minds, and every decision we make. Give us wisdom to recognize anything that could master our hearts or weaken our devotion to You. Produce within us the fruit of self-control, and teach us to live with sober minds, joyful obedience, and unwavering faithfulness. May every part of our lives bring glory to Your name as we seek to follow Christ wholeheartedly.\n\nIn Jesus\' name,\n\nAmen.',
+    icon: '🍷',
+    heroGradient: 'linear-gradient(135deg, #0a2e2e 0%, #064e4e 30%, #0f766e 60%, #14b8a6 85%, #5eead4 100%)',
+    accentColor: 'green',
+    order: 1.5,
+    references: [
+      {
+        book: '1 Peter',
+        chapter: 5,
+        verse: '8',
+        text: 'Be sober, be vigilant; because your adversary the devil, as a roaring lion, walketh about, seeking whom he may devour.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Ephesians',
+        chapter: 5,
+        verse: '18',
+        text: 'And be not drunk with wine, wherein is excess; but be filled with the Spirit;',
+        translation: 'KJV'
+      },
+      {
+        book: 'Galatians',
+        chapter: 5,
+        verse: '22–23',
+        text: 'But the fruit of the Spirit is love, joy, peace, longsuffering, gentleness, goodness, faith, Meekness, temperance: against such there is no law.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Proverbs',
+        chapter: 25,
+        verse: '28',
+        text: 'He that hath no rule over his own spirit is like a city that is broken down, and without walls.',
+        translation: 'KJV'
+      },
+      {
+        book: '1 Corinthians',
+        chapter: 6,
+        verse: '19–20',
+        text: 'What? know ye not that your body is the temple of the Holy Ghost which is in you, which ye have of God, and ye are not your own? For ye are bought with a price: therefore glorify God in your body, and in your spirit, which are God\'s.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Romans',
+        chapter: 12,
+        verse: '1',
+        text: 'I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service.',
+        translation: 'KJV'
+      },
+      {
+        book: '1 Corinthians',
+        chapter: 10,
+        verse: '31',
+        text: 'Whether therefore ye eat, or drink, or whatsoever ye do, do all to the glory of God.',
+        translation: 'KJV'
+      },
+      {
+        book: '1 Corinthians',
+        chapter: 6,
+        verse: '12',
+        text: 'All things are lawful unto me, but all things are not expedient: all things are lawful for me, but I will not be brought under the power of any.',
+        translation: 'KJV'
+      },
+      {
+        book: 'Romans',
+        chapter: 13,
+        verse: '1',
+        text: 'Let every soul be subject unto the higher powers. For there is no power but of God: the powers that be are ordained of God.',
+        translation: 'KJV'
+      },
+      {
+        book: '1 Peter',
+        chapter: 2,
+        verse: '13',
+        text: 'Submit yourselves to every ordinance of man for the Lord\'s sake: whether it be to the king, as supreme;',
+        translation: 'KJV'
+      }
+    ]
+  },
+  {
     id: 'forbidden-practices',
     title: 'Forbidden Practices',
     description: 'God strictly forbids all forms of occult practices, divination, witchcraft, and communication with the dead. These practices open doors to demonic influence and are an abomination to the Lord.',
