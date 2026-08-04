@@ -1,7 +1,45 @@
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen, ArrowRight, Lock } from 'lucide-react';
 import { topics } from '../data/topics';
 import { ReturnToHome } from '../components/ReturnToHome';
+import { supabase } from '../lib/supabase';
+import { Topic, BibleReference } from '../types/topic';
+
+function normalizeBookName(book: string): string {
+  if (book === 'Psalm') return 'Psalms';
+  return book;
+}
+
+function parseVerseRange(verse: string): { start: number; end: number } {
+  const cleaned = verse.replace(/[\u2013\u2014]/g, '-');
+  if (cleaned.includes('-')) {
+    const parts = cleaned.split('-').map(v => parseInt(v.trim(), 10));
+    return { start: parts[0] || 1, end: parts[1] || parts[0] || 1 };
+  }
+  const single = parseInt(cleaned.trim(), 10);
+  return { start: single, end: single };
+}
+
+async function fetchKjvVerses(refs: BibleReference[]): Promise<Record<number, string>> {
+  const results: Record<number, string> = {};
+  for (let i = 0; i < refs.length; i++) {
+    const ref = refs[i];
+    const { start, end } = parseVerseRange(ref.verse);
+    const { data, error } = await supabase
+      .from('kjv_bible')
+      .select('text')
+      .eq('book', normalizeBookName(ref.book))
+      .eq('chapter', ref.chapter)
+      .gte('verse', start)
+      .lte('verse', end)
+      .order('verse', { ascending: true });
+    if (!error && data && data.length > 0) {
+      results[i] = data.map((v: { text: string }) => v.text).join(' ');
+    }
+  }
+  return results;
+}
 
 const DEFAULT_GRADIENT = 'linear-gradient(135deg, #78350f 0%, #b45309 30%, #d97706 60%, #fbbf24 85%, #fde68a 100%)';
 
@@ -88,167 +126,182 @@ const ACCENT: Record<AccentKey, {
   },
 };
 
+function TopicDetail({ topic }: { topic: Topic }) {
+  const hasRichContent = !!(topic.bodyContent || topic.whatWeLearns || topic.prayer);
+  const accent = ACCENT[topic.accentColor ?? 'amber'];
+  const gradient = topic.heroGradient ?? DEFAULT_GRADIENT;
+
+  const [verseTexts, setVerseTexts] = useState<Record<number, string>>({});
+  const [versesLoading, setVersesLoading] = useState(true);
+
+  useEffect(() => {
+    setVersesLoading(true);
+    fetchKjvVerses(topic.references).then(texts => {
+      setVerseTexts(texts);
+      setVersesLoading(false);
+    });
+  }, [topic.id]);
+
+  return (
+    <>
+      <ReturnToHome />
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Link
+          to="/topics"
+          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Back to Topics
+        </Link>
+
+        {/* Hero header */}
+        <div className="rounded-2xl overflow-hidden shadow-xl mb-8">
+          <div
+            className="relative px-8 py-14 flex flex-col items-center text-center"
+            style={{ background: gradient }}
+          >
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative z-10">
+              {topic.subtitle && (
+                <p className="text-white/70 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
+                  {topic.subtitle}
+                </p>
+              )}
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow-sm">
+                {topic.title}
+              </h1>
+              <p className="text-white/85 text-lg leading-relaxed max-w-xl drop-shadow-sm">
+                {topic.shortDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Body paragraphs */}
+        {topic.bodyContent && (
+          <div className="space-y-5 mb-10">
+            {topic.bodyContent.map((paragraph, i) => (
+              <p key={i} className="text-gray-700 dark:text-gray-300 leading-[1.9] text-[1.05rem]">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        )}
+
+        {/* Legacy expandedContent fallback */}
+        {!hasRichContent && topic.expandedContent && (
+          <div className="mb-8 p-6 rounded-xl bg-stone-50 dark:bg-stone-900/30 border border-stone-200 dark:border-stone-700">
+            <p className="text-gray-700 dark:text-gray-300 leading-loose">
+              {topic.expandedContent}
+            </p>
+          </div>
+        )}
+
+        {/* What We Learn */}
+        {topic.whatWeLearns && (
+          <div className="mb-10 theme-card rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">What We Learn</h2>
+            </div>
+            <ul className="divide-y divide-gray-100 dark:divide-gray-800">
+              {topic.whatWeLearns.map((point, i) => (
+                <li key={i} className="flex items-start gap-4 px-6 py-4">
+                  <span className={`mt-0.5 flex-shrink-0 w-6 h-6 rounded-full ${accent.badgeBg} ${accent.badgeText} text-xs font-bold flex items-center justify-center`}>
+                    {i + 1}
+                  </span>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">{point}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Bible Verses */}
+        <div className="mb-10">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-2">
+            <BookOpen className={`w-5 h-5 ${accent.bookIcon}`} />
+            {topic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
+          </h2>
+          <div className="space-y-4">
+            {topic.references.map((ref, index) => {
+              const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
+              const fetchedText = verseTexts[index];
+              const displayText = fetchedText ?? ref.text;
+              return (
+                <div
+                  key={index}
+                  className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm"
+                >
+                  <div className="px-5 py-3 bg-gray-50 dark:bg-gray-800/60 flex items-center justify-between">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100 text-sm tracking-wide">
+                      {verseReference}
+                    </h3>
+                    <span className={`text-xs font-semibold ${accent.translationText} ${accent.translationBg} px-2 py-0.5 rounded-full`}>
+                      KJV
+                    </span>
+                  </div>
+                  <div className="px-5 py-4 theme-card">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed italic text-[0.98rem]">
+                      "{versesLoading && !fetchedText ? 'Loading…' : displayText}"
+                    </p>
+                    {ref.summary && (
+                      <p className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        {ref.summary}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Family Conversation */}
+        {topic.familyConversation && (
+          <div className={`mb-8 rounded-2xl border ${accent.convBorder} ${accent.convBg} px-6 py-5`}>
+            <h2 className={`text-sm font-bold ${accent.convTitle} uppercase tracking-widest mb-3`}>
+              Family Conversation
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              {topic.familyConversation}
+            </p>
+          </div>
+        )}
+
+        {/* Prayer */}
+        {topic.prayer && (
+          <div className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 theme-card px-6 py-6">
+            <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
+              Prayer
+            </h2>
+            <div className="space-y-3">
+              {topic.prayer.split('\n').filter(l => l.trim()).map((line, i) => (
+                <p
+                  key={i}
+                  className={`leading-relaxed ${
+                    i === 0 || line.trim().startsWith('In ') || line.trim() === 'Amen.'
+                      ? 'text-gray-500 dark:text-gray-400 text-sm'
+                      : 'text-gray-700 dark:text-gray-300'
+                  }`}
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </main>
+    </>
+  );
+}
+
 export function Topics() {
   const { topicId } = useParams();
   const selectedTopic = topicId ? topics.find(t => t.id === topicId) : null;
 
   if (selectedTopic) {
-    const hasRichContent = !!(selectedTopic.bodyContent || selectedTopic.whatWeLearns || selectedTopic.prayer);
-    const accent = ACCENT[selectedTopic.accentColor ?? 'amber'];
-    const gradient = selectedTopic.heroGradient ?? DEFAULT_GRADIENT;
-
-    return (
-      <>
-        <ReturnToHome />
-        <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link
-            to="/topics"
-            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Topics
-          </Link>
-
-          {/* Hero header */}
-          <div className="rounded-2xl overflow-hidden shadow-xl mb-8">
-            <div
-              className="relative px-8 py-14 flex flex-col items-center text-center"
-              style={{ background: gradient }}
-            >
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="relative z-10">
-                {selectedTopic.subtitle && (
-                  <p className="text-white/70 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
-                    {selectedTopic.subtitle}
-                  </p>
-                )}
-                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow-sm">
-                  {selectedTopic.title}
-                </h1>
-                <p className="text-white/85 text-lg leading-relaxed max-w-xl drop-shadow-sm">
-                  {selectedTopic.shortDescription}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Body paragraphs */}
-          {selectedTopic.bodyContent && (
-            <div className="space-y-5 mb-10">
-              {selectedTopic.bodyContent.map((paragraph, i) => (
-                <p key={i} className="text-gray-700 dark:text-gray-300 leading-[1.9] text-[1.05rem]">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-
-          {/* Legacy expandedContent fallback */}
-          {!hasRichContent && selectedTopic.expandedContent && (
-            <div className="mb-8 p-6 rounded-xl bg-stone-50 dark:bg-stone-900/30 border border-stone-200 dark:border-stone-700">
-              <p className="text-gray-700 dark:text-gray-300 leading-loose">
-                {selectedTopic.expandedContent}
-              </p>
-            </div>
-          )}
-
-          {/* What We Learn */}
-          {selectedTopic.whatWeLearns && (
-            <div className="mb-10 theme-card rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">What We Learn</h2>
-              </div>
-              <ul className="divide-y divide-gray-100 dark:divide-gray-800">
-                {selectedTopic.whatWeLearns.map((point, i) => (
-                  <li key={i} className="flex items-start gap-4 px-6 py-4">
-                    <span className={`mt-0.5 flex-shrink-0 w-6 h-6 rounded-full ${accent.badgeBg} ${accent.badgeText} text-xs font-bold flex items-center justify-center`}>
-                      {i + 1}
-                    </span>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">{point}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Bible Verses */}
-          <div className="mb-10">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-2">
-              <BookOpen className={`w-5 h-5 ${accent.bookIcon}`} />
-              {selectedTopic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
-            </h2>
-            <div className="space-y-4">
-              {selectedTopic.references.map((ref, index) => {
-                const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
-                return (
-                  <div
-                    key={index}
-                    className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm"
-                  >
-                    <div className="px-5 py-3 bg-gray-50 dark:bg-gray-800/60 flex items-center justify-between">
-                      <h3 className="font-bold text-gray-900 dark:text-gray-100 text-sm tracking-wide">
-                        {verseReference}
-                      </h3>
-                      {ref.translation && (
-                        <span className={`text-xs font-semibold ${accent.translationText} ${accent.translationBg} px-2 py-0.5 rounded-full`}>
-                          {ref.translation}
-                        </span>
-                      )}
-                    </div>
-                    <div className="px-5 py-4 theme-card">
-                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed italic text-[0.98rem]">
-                        "{ref.text}"
-                      </p>
-                      {ref.summary && (
-                        <p className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                          {ref.summary}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Family Conversation */}
-          {selectedTopic.familyConversation && (
-            <div className={`mb-8 rounded-2xl border ${accent.convBorder} ${accent.convBg} px-6 py-5`}>
-              <h2 className={`text-sm font-bold ${accent.convTitle} uppercase tracking-widest mb-3`}>
-                Family Conversation
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {selectedTopic.familyConversation}
-              </p>
-            </div>
-          )}
-
-          {/* Prayer */}
-          {selectedTopic.prayer && (
-            <div className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 theme-card px-6 py-6">
-              <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
-                Prayer
-              </h2>
-              <div className="space-y-3">
-                {selectedTopic.prayer.split('\n').filter(l => l.trim()).map((line, i) => (
-                  <p
-                    key={i}
-                    className={`leading-relaxed ${
-                      i === 0 || line.trim().startsWith('In ') || line.trim() === 'Amen.'
-                        ? 'text-gray-500 dark:text-gray-400 text-sm'
-                        : 'text-gray-700 dark:text-gray-300'
-                    }`}
-                  >
-                    {line}
-                  </p>
-                ))}
-              </div>
-            </div>
-          )}
-
-        </main>
-      </>
-    );
+    return <TopicDetail topic={selectedTopic} />;
   }
 
   const featuredTopic = topics.find(t => t.id === 'grace');
