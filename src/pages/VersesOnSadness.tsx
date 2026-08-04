@@ -223,6 +223,3 @@ function VerseCard({ verse, style }: { verse: SadnessVerse; style: typeof catego
     </div>
   );
 }
-
-
-export { VersesOnSadness }
