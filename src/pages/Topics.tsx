@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ArrowRight, Lock } from 'lucide-react';
+import { ArrowLeft, BookOpen, ArrowRight, Lock, Download } from 'lucide-react';
 import { topics } from '../data/topics';
 import { ReturnToHome } from '../components/ReturnToHome';
 import { supabase } from '../lib/supabase';
@@ -142,17 +142,185 @@ function TopicDetail({ topic }: { topic: Topic }) {
     });
   }, [topic.id]);
 
+  const handlePrint = () => {
+    const versesHtml = topic.references.map((ref, index) => {
+      const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
+      const fetchedText = verseTexts[index];
+      const displayText = fetchedText ?? ref.text;
+      return `<div class="verse-card">
+        <div class="verse-header">
+          <span class="verse-ref">${verseReference}</span>
+          <span class="verse-translation">KJV</span>
+        </div>
+        <div class="verse-body">
+          <p class="verse-text">“${displayText}”</p>
+          ${ref.summary ? `<p class="verse-summary">${ref.summary}</p>` : ''}
+        </div>
+      </div>`;
+    }).join('\n    ');
+
+    const learnHtml = topic.whatWeLearns
+      ? `<h2>What We Learn</h2>
+      <ul class="learn-list">
+        ${topic.whatWeLearns.map((point, i) => `<li><span class="learn-num">${i + 1}</span><span>${point}</span></li>`).join('\n        ')}
+      </ul>`
+      : '';
+
+    const bodyHtml = topic.bodyContent
+      ? topic.bodyContent.map(p => `<p>${p}</p>`).join('\n      ')
+      : '';
+
+    const conversationHtml = topic.familyConversation
+      ? `<div class="conversation-box">
+        <h2>Family Conversation</h2>
+        <p>${topic.familyConversation}</p>
+      </div>`
+      : '';
+
+    const prayerHtml = topic.prayer
+      ? `<div class="prayer-box">
+        <h2>Prayer</h2>
+        <div class="prayer-body">
+          ${topic.prayer.split('\n').filter(l => l.trim()).map(l => `<p>${l}</p>`).join('\n          ')}
+        </div>
+      </div>`
+      : '';
+
+    const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>${topic.title} — The Disciple Co.</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #111827;
+      padding: 40px;
+      padding-top: 88px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 8px; color: #111827; }
+    .subtitle { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #6b7280; margin-bottom: 12px; }
+    .short-desc { font-size: 1.05rem; color: #374151; line-height: 1.7; margin-bottom: 32px; }
+    h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; margin-top: 32px; color: #111827; display: flex; align-items: center; gap: 8px; }
+    .overview p { color: #374151; line-height: 1.75; margin-bottom: 12px; font-size: 0.95rem; }
+    .learn-list { list-style: none; margin-bottom: 28px; }
+    .learn-list li { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+    .learn-num { width: 26px; height: 26px; border-radius: 50%; background: #f3f4f6; color: #374151; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .learn-list li span:last-child { color: #374151; line-height: 1.6; font-size: 0.9rem; }
+    .verse-card { border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; overflow: hidden; page-break-inside: avoid; }
+    .verse-header { padding: 10px 16px; background: #f9fafb; display: flex; align-items: center; justify-content: space-between; }
+    .verse-ref { font-weight: 700; color: #111827; font-size: 0.88rem; }
+    .verse-translation { font-size: 0.72rem; font-weight: 600; color: #6b7280; background: #f3f4f6; padding: 2px 10px; border-radius: 999px; }
+    .verse-body { padding: 14px 18px; }
+    .verse-text { font-style: italic; color: #374151; line-height: 1.7; font-size: 0.92rem; margin-bottom: 8px; }
+    .verse-summary { color: #6b7280; font-size: 0.85rem; line-height: 1.6; padding-top: 10px; border-top: 1px solid #f3f4f6; }
+    .conversation-box { border-radius: 12px; border: 1px solid #e5e7eb; background: #f9fafb; padding: 18px 22px; margin-top: 28px; }
+    .conversation-box h2 { margin-top: 0; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: #6b7280; }
+    .conversation-box p { color: #374151; line-height: 1.7; font-size: 0.92rem; }
+    .prayer-box { border-radius: 12px; border: 1px solid #e5e7eb; padding: 18px 22px; margin-top: 28px; }
+    .prayer-box h2 { margin-top: 0; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: #6b7280; }
+    .prayer-body p { color: #374151; line-height: 1.7; font-size: 0.92rem; margin-bottom: 6px; }
+    .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.75rem; color: #9ca3af; }
+    .toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      z-index: 100;
+    }
+    .toolbar-title { font-size: 0.9rem; font-weight: 600; color: #6b7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .toolbar-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: opacity 0.15s, transform 0.1s; }
+    .btn:active { transform: scale(0.97); }
+    .btn-save { background: #0f766e; color: #ffffff; }
+    .btn-save:hover { opacity: 0.88; }
+    .btn-print { background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; }
+    .btn-print:hover { background: #e5e7eb; }
+    .btn-close { background: #f3f4f6; color: #6b7280; border: 1px solid #d1d5db; }
+    .btn-close:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+    @page { margin: 0; }
+    @media print {
+      .toolbar { display: none; }
+      body { padding: 20px 40px; }
+      .verse-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <span class="toolbar-title">${topic.title} — The Disciple Co.</span>
+    <div class="toolbar-actions">
+      <button class="btn btn-save" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save as PDF
+      </button>
+      <button class="btn btn-print" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+      <button class="btn btn-close" onclick="window.close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Close
+      </button>
+    </div>
+  </div>
+
+  ${topic.subtitle ? `<p class="subtitle">${topic.subtitle}</p>` : ''}
+  <h1>${topic.title}</h1>
+  <p class="short-desc">${topic.shortDescription}</p>
+
+  ${bodyHtml ? `<div class="overview">${bodyHtml}</div>` : ''}
+
+  ${learnHtml}
+
+  <h2>Biblical References</h2>
+    ${versesHtml}
+
+  ${conversationHtml}
+  ${prayerHtml}
+
+  <div class="footer">The Disciple Co. &nbsp;·&nbsp; thediscipleco.org</div>
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  };
+
   return (
     <>
       <ReturnToHome />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link
-          to="/topics"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6 transition-colors font-semibold"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          Back to Topics
-        </Link>
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <Link
+            to="/topics"
+            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-semibold"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back to Topics
+          </Link>
+          <button
+            onClick={handlePrint}
+            disabled={versesLoading}
+            className="flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg flex-shrink-0 disabled:opacity-60"
+          >
+            <Download className="w-5 h-5" />
+            <span className="hidden sm:inline">Download/Save PDF</span>
+            <span className="sm:hidden">PDF</span>
+          </button>
+        </div>
 
         {/* Hero header */}
         <div className="rounded-2xl overflow-hidden shadow-xl mb-8">
