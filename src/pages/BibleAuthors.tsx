@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ScrollText, Book, Calendar, Shield, Search, ChevronDown, ChevronUp, Quote } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 type AuthorEntry = {
   name: string;
@@ -347,7 +346,6 @@ export function BibleAuthors() {
 
   return (
     <>
-      <ReturnToHome />
       <div className="min-h-screen">
         {/* Hero */}
         <div

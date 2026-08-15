@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Sun, Sunset, Moon, Star, ChevronDown, ChevronUp, BookOpen, Heart, Wind, Flame, Clock, Calendar, ArrowLeft, Play, Pause, RotateCcw, Check } from 'lucide-react';
-import { ReturnToHome } from '../components/ReturnToHome';
 import { supabase } from '../lib/supabase';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -876,7 +875,6 @@ export default function Prayer() {
 
   return (
     <div className="min-h-screen theme-background">
-      <ReturnToHome />
 
       {/* Hero */}
       <div className="relative overflow-hidden">

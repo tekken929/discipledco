@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
-import { ReturnToHome } from '../components/ReturnToHome';
+import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Modal } from '../components/Modal';
+import { BookDisplay } from '../components/BookDisplay';
+import { books } from '../data/books';
 
 interface Verse {
   verse: number;
@@ -123,12 +126,12 @@ export function BibleLookup() {
   const paramBook = searchParams.get('book') || 'John';
   const paramChapter = parseInt(searchParams.get('chapter') || '3', 10) || 3;
   const paramVerse = searchParams.get('verse') ? parseInt(searchParams.get('verse')!, 10) || 1 : 1;
-  const paramTranslation = (searchParams.get('translation') as Translation | null) || 'kjv';
+  const paramTranslation = (searchParams.get('translation') as Translation | null) || 'nlt';
 
   const [selectedBook, setSelectedBook] = useState(paramBook);
   const [selectedChapter, setSelectedChapter] = useState(paramChapter);
   const [translation, setTranslation] = useState<Translation>(
-    ['kjv', 'web', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'kjv'
+    ['kjv', 'web', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'nlt'
   );
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(false);
@@ -136,11 +139,15 @@ export function BibleLookup() {
   const [loaded, setLoaded] = useState(false);
   const [loadedBook, setLoadedBook] = useState('John');
   const [loadedChapter, setLoadedChapter] = useState(3);
-  const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
+  const [loadedTranslation, setLoadedTranslation] = useState<Translation>('nlt');
   const [selectedVerse, setSelectedVerse] = useState<number | null>(paramVerse);
   const [bgIndex, setBgIndex] = useState(0);
+  const [overviewOpen, setOverviewOpen] = useState(false);
+  const [translationOpen, setTranslationOpen] = useState(false);
   const translationRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const overviewBook = books.find(b => b.name === loadedBook);
 
   const chapterCount = CHAPTER_COUNTS[selectedBook] || 1;
   const chapters = Array.from({ length: chapterCount }, (_, i) => i + 1);
@@ -245,9 +252,8 @@ export function BibleLookup() {
 
   return (
     <>
-      <ReturnToHome />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="mb-4">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
+        <div className="mb-1.5">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">
               <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
@@ -279,43 +285,61 @@ export function BibleLookup() {
               </div>
             </div>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-1 max-w-2xl text-sm">
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl text-sm">
             Select a translation, book, and chapter to read.
           </p>
         </div>
 
-        {/* Translation selector — full width */}
+        {/* Translation selector — collapsible */}
         <div
           ref={translationRef}
-          className="border rounded-xl p-3 mb-3 scroll-mt-20 transition-colors"
+          className="border rounded-xl mb-1.5 scroll-mt-20 transition-colors overflow-hidden"
           style={{ backgroundColor: bg.bg, borderColor: bg.border }}
         >
-          <h2 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2" style={{ color: bg.text, opacity: 0.6 }}>Translation</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
-            {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
-              <button
-                key={t}
-                onClick={() => handleTranslationChange(t)}
-                className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
-                  translation === t
-                    ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
-                    : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                }`}
-              >
-                <span className="text-sm font-bold">{TRANSLATION_INFO[t].label}</span>
-                <span className="text-[9px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
-              </button>
-            ))}
-          </div>
+          <button
+            onClick={() => setTranslationOpen(o => !o)}
+            className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-black/5 transition-colors"
+          >
+            <h2 className="text-xs font-bold uppercase tracking-widest" style={{ color: bg.text, opacity: 0.6 }}>Translation</h2>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold" style={{ color: bg.text, opacity: 0.8 }}>
+                {TRANSLATION_INFO[translation].label} — {TRANSLATION_INFO[translation].full}
+              </span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${translationOpen ? 'rotate-180' : ''}`}
+                style={{ color: bg.text, opacity: 0.5 }}
+              />
+            </div>
+          </button>
+          {translationOpen && (
+            <div className="px-3 pb-2">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+                {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => handleTranslationChange(t)}
+                    className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
+                      translation === t
+                        ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
+                        : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                    }`}
+                  >
+                    <span className="text-sm font-bold">{TRANSLATION_INFO[t].label}</span>
+                    <span className="text-[9px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Select Passage — full width */}
         <div
-          className="border rounded-xl p-3 mb-3 transition-colors"
+          className="border rounded-xl p-2 mb-1.5 transition-colors"
           style={{ backgroundColor: bg.bg, borderColor: bg.border }}
         >
-          <h2 className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: bg.text, opacity: 0.6 }}>Select Passage</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 items-end">
+          <h2 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: bg.text, opacity: 0.6 }}>Select Passage</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 items-end">
             <div>
               <p className="text-xs font-bold uppercase tracking-wide mb-1 text-black">Old Testament</p>
               <div className="relative">
@@ -426,7 +450,7 @@ export function BibleLookup() {
 
           {!loading && !error && loaded && verses.length > 0 && (
             <>
-              <div className="px-5 pt-4 pb-3 border-b" style={{ borderColor: bg.border }}>
+              <div className="px-3 pt-2 pb-1.5 border-b" style={{ borderColor: bg.border }}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h2 className="text-xl font-bold" style={{ color: bg.text }}>
@@ -436,12 +460,21 @@ export function BibleLookup() {
                       {info.full} &mdash; {verses.length} verses
                     </p>
                   </div>
-                  <span className="flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 mt-0.5">
-                    {info.label}
-                  </span>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <button
+                      onClick={() => setOverviewOpen(true)}
+                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 border border-amber-200 hover:bg-amber-200 hover:border-amber-300 transition-colors mt-0.5"
+                    >
+                      <Map className="w-3.5 h-3.5" />
+                      {loadedBook} Overview
+                    </button>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 mt-0.5">
+                      {info.label}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div ref={scrollContainerRef} className="px-5 py-3 space-y-2 max-h-[65vh] overflow-y-auto">
+              <div ref={scrollContainerRef} className="px-3 py-1.5 space-y-1 max-h-[calc(65vh+150px)] overflow-y-auto">
                 {verses.map(({ verse, text }) => (
                   <div
                     key={verse}
@@ -460,7 +493,7 @@ export function BibleLookup() {
                 ))}
 
                 {/* Next / Previous chapter navigation */}
-                <div className="flex items-center justify-between gap-3 pt-4 mt-4 border-t" style={{ borderColor: bg.border }}>
+                <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: bg.border }}>
                   <button
                     onClick={() => handleNavigate('prev')}
                     disabled={!prevChapter}
@@ -501,6 +534,18 @@ export function BibleLookup() {
           )}
         </div>
       </main>
+
+      <Modal
+        isOpen={overviewOpen}
+        onClose={() => setOverviewOpen(false)}
+        title={`${loadedBook} — Bible Overview`}
+      >
+        {overviewBook ? (
+          <BookDisplay book={overviewBook} />
+        ) : (
+          <p className="text-gray-500 dark:text-gray-400">No overview available for {loadedBook}.</p>
+        )}
+      </Modal>
     </>
   );
 }

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen, ArrowRight, Lock, Download } from 'lucide-react';
 import { topics } from '../data/topics';
-import { ReturnToHome } from '../components/ReturnToHome';
 import { supabase } from '../lib/supabase';
 import { Topic, BibleReference } from '../types/topic';
 
@@ -301,7 +300,6 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
   return (
     <>
-      <ReturnToHome />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between gap-4 mb-6">
           <Link
@@ -477,7 +475,6 @@ export function Topics() {
 
   return (
     <>
-      <ReturnToHome />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">

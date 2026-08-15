@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight, Users, Clock, ArrowRight, Compass, Sparkles } from 'lucide-react';
 import { courseModules, courseOverview } from '../data/courseData';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 const moduleDescriptions: Record<number, string> = {
   1: 'What the Bible actually is, why it can be trusted, and how the whole thing holds together.',
@@ -17,7 +16,6 @@ const moduleDescriptions: Record<number, string> = {
 export function Courses() {
   return (
     <>
-      <ReturnToHome />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 

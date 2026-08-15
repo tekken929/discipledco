@@ -371,6 +371,78 @@
   opacity: 0.7;
 }
 
+/* ── Page-wide hero theme application ────────────────────────── */
+/* These rules extend the hero theme beyond just the hero section,
+   so selecting a theme recolors cards, borders, buttons, and
+   accents throughout the entire page. */
+
+/* Cards pick up a subtle accent-tinted border + top glow */
+[data-hero-theme] .theme-card {
+  border-color: var(--hero-accent-soft) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px var(--hero-accent-soft);
+}
+[data-hero-theme].dark .theme-card {
+  border-color: var(--hero-accent-soft) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 0 1px var(--hero-accent-soft);
+}
+
+/* Primary buttons use the hero accent as their background */
+[data-hero-theme] .theme-primary-button {
+  background-color: var(--hero-accent) !important;
+  border-color: var(--hero-accent) !important;
+}
+[data-hero-theme] .theme-primary-button:hover {
+  filter: brightness(1.1);
+}
+
+/* Primary background fills */
+[data-hero-theme] .theme-primary-bg {
+  background-color: var(--hero-accent) !important;
+}
+
+/* Accent text picks up the hero accent */
+[data-hero-theme] .theme-accent {
+  color: var(--hero-accent) !important;
+}
+
+/* Section heading text gets a subtle accent tint */
+[data-hero-theme] .hero-heading-accent {
+  color: var(--hero-accent);
+}
+
+/* Link hover color shifts toward accent */
+[data-hero-theme] a:hover {
+  transition: color 0.2s;
+}
+
+/* Card hover lift gets an accent-tinted shadow */
+[data-hero-theme] .theme-card:hover {
+  box-shadow: 0 10px 30px -5px var(--hero-accent-soft), 0 0 0 1px var(--hero-accent) !important;
+}
+
+/* Section backgrounds get a stronger radial tint at top */
+[data-hero-theme] .theme-background {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, var(--hero-tint), transparent 70%),
+    radial-gradient(ellipse at 50% 100%, var(--hero-tint), transparent 60%);
+}
+
+/* Inputs and selects pick up accent focus ring */
+[data-hero-theme] input:focus,
+[data-hero-theme] select:focus,
+[data-hero-theme] textarea:focus {
+  --tw-ring-color: var(--hero-accent) !important;
+  border-color: var(--hero-accent) !important;
+}
+
+/* Scrollbar accent */
+[data-hero-theme] ::-webkit-scrollbar-thumb {
+  background: var(--hero-accent-soft);
+}
+[data-hero-theme] ::-webkit-scrollbar-thumb:hover {
+  background: var(--hero-accent);
+}
+
 /* ── Grain overlay texture ──────────────────────────────────── */
 .grain-overlay {
   position: fixed;

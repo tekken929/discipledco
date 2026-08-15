@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Info, Plus, X } from 'lucide-react';
 import { gospelEvents } from '../data/gospelEvents';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Resurrection() {
   const [activePopup, setActivePopup] = useState<string | null>(null);
@@ -41,7 +40,6 @@ export function Resurrection() {
 
   return (
     <>
-      <ReturnToHome />
       <div className="resurrection-page">
 
       {/* Hero Section */}

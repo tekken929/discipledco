@@ -1,7 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Heart, Sparkles, Cloud, Sun, Shield, ExternalLink } from 'lucide-react';
-import { ReturnToHome } from '../components/ReturnToHome';
+import { BookOpen, Heart, Sparkles, Cloud, Sun, Shield, ExternalLink } from 'lucide-react';
 import { sadnessVerses, sadnessVerseCategories } from '../data/sadnessVerses';
 import type { SadnessVerse } from '../data/sadnessVerses';
 
@@ -64,15 +62,7 @@ export function VersesOnSadness() {
 
   return (
     <>
-      <ReturnToHome />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 spacing-section">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-8 transition-colors font-semibold"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          Back to Home
-        </Link>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 spacing-section">
 
         {/* HERO */}
         <div className="theme-card rounded-3xl shadow-xl p-8 md:p-12 mb-10 overflow-hidden relative">

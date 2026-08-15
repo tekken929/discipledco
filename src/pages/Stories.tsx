@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { stories } from '../data/stories';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Stories() {
   const { storyId } = useParams();
@@ -10,7 +9,6 @@ export function Stories() {
   if (selectedStory) {
     return (
       <>
-        <ReturnToHome />
         <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link
           to="/stories"
@@ -70,7 +68,6 @@ export function Stories() {
 
   return (
     <>
-      <ReturnToHome />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">

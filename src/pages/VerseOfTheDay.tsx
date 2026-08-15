@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Download, RefreshCw, Type, BookOpen, ChevronDown, Loader2, Check, Image as ImageIcon, Monitor, AlignCenter, ZoomIn } from 'lucide-react';
-import { ReturnToHome } from '../components/ReturnToHome';
 import { supabase } from '../lib/supabase';
 
 interface SocialFormat {
@@ -507,7 +506,6 @@ export function VerseOfTheDay() {
 
   return (
     <>
-      <ReturnToHome />
       <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         {/* Header */}

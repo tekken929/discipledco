@@ -1,5 +1,4 @@
 import { BookDisplay } from '../components/BookDisplay';
-import { ReturnToHome } from '../components/ReturnToHome';
 import { Modal } from '../components/Modal';
 import { BibleRoadmap } from '../components/BibleRoadmap';
 import { Book } from '../types/book';
@@ -32,7 +31,6 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
 
   return (
     <>
-      <ReturnToHome />
 
       <div className="section-divider print:hidden" />
 

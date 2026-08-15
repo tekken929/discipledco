@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { SkipBack, SkipForward, Play, Pause, Volume2, Music as MusicIcon } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -94,7 +93,6 @@ export function Music() {
 
   return (
     <>
-      <ReturnToHome />
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),rgba(0,0,0,0))]"></div>
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'faith-journey-v4';
+const CACHE_NAME = 'faith-journey-v5';
 const urlsToCache = [
   '/images/logo.svg',
   '/images/logo-icon.svg',

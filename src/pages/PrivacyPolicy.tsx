@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, ArrowLeft } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 // ============================================================
 // PRIVACY POLICY CONFIG — Edit contact info and dates here
@@ -332,13 +332,6 @@ export function PrivacyPolicy() {
       {/* Header */}
       <div className="bg-slate-900 py-14">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-white/50 hover:text-white/80 text-sm transition-colors mb-6"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            Back to Home
-          </Link>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
               <Shield className="w-5 h-5 text-white" />

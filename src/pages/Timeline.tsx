@@ -1,12 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef } from 'react';
 import {
-  ArrowLeft, BookOpen, Calendar, Cross, Star, ScrollText,
+  BookOpen, Calendar, Cross, Star, ScrollText,
   ChevronDown, ChevronUp, Clock, Sparkles, Globe, Heart,
 } from 'lucide-react';
 import { timelineEvents, timelineSections } from '../data/timeline';
 import type { BibleRef, TimelineEvent } from '../types/timeline';
-import { ReturnToHome } from '../components/ReturnToHome';
 import { BibleVersePopup } from '../components/BibleVersePopup';
 
 type CategoryId = 'creation' | 'jewish' | 'catholic' | 'protestant' | 'modern';
@@ -163,15 +161,7 @@ export function Timeline() {
 
   return (
     <>
-      <ReturnToHome />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 spacing-section">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-8 transition-colors font-semibold"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          Back to Home
-        </Link>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 spacing-section">
 
         {/* HERO HEADER */}
         <div className="theme-card rounded-3xl shadow-xl p-8 md:p-12 mb-10 overflow-hidden relative">

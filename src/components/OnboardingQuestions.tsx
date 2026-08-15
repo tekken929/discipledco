@@ -104,14 +104,14 @@ export function OnboardingQuestions({ onComplete, onSkip }: OnboardingQuestionsP
         <div className="theme-card rounded-2xl shadow-2xl p-8 md:p-12 transition-colors">
           <div className="flex justify-center mb-6">
             <img
-              src="https://images.pexels.com/photos/6120234/pexels-photo-6120234.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
-              alt="Discipled Co."
+              src="/images/Untitled_design_(34)_Large.jpeg"
+              alt="The Disciple Co."
               className="w-24 h-24 rounded-2xl object-cover shadow-lg"
             />
           </div>
 
           <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-2">
-            Welcome to Discipled Co.
+            Welcome to The Disciple Co.
           </h1>
 
           <p className="text-center text-gray-600 dark:text-gray-300 mb-8">

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useDarkMode } from '../context/DarkModeContext';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 interface Book {
   id: string;
@@ -48,7 +47,6 @@ export function Books() {
 
   return (
     <>
-      <ReturnToHome />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="theme-card rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
         <div className="mb-8">

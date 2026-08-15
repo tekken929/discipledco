@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ChevronDown, ChevronUp, ArrowLeft, ArrowRight, BookOpen, Lightbulb } from 'lucide-react';
 import { courseModules } from '../data/courseData';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 export function CourseModule() {
   const { moduleId } = useParams<{ moduleId: string }>();
@@ -47,7 +46,6 @@ export function CourseModule() {
 
   return (
     <>
-      <ReturnToHome />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 

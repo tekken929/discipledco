@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 export function Easter() {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
@@ -168,7 +167,6 @@ export function Easter() {
 
   return (
     <>
-      <ReturnToHome />
       <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-950 dark:to-blue-950">
 
       {/* Hero Section */}

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { BookOpen, ArrowLeft, ArrowRight, ChevronDown, ChevronUp, Tag, BookMarked, Lightbulb, Star, Lock } from 'lucide-react';
 import { bibleStudies, BibleStudySeries, StudyLevel } from '../data/bibleStudiesData';
-import { ReturnToHome } from '../components/ReturnToHome';
 
 const tagColors: Record<string, string> = {
   'Foundations': 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300',
@@ -281,9 +280,7 @@ function StudiesList() {
   const lvl = levelConfig[activeLevel];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <ReturnToHome />
-
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div className="mb-10 text-center">
         <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest block mb-4">Learn & Grow</span>
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
