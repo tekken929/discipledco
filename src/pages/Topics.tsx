@@ -1,9 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ArrowRight, Lock, Download } from 'lucide-react';
+import { ArrowLeft, BookOpen, ArrowRight, Lock, Download, ChevronDown } from 'lucide-react';
 import { topics } from '../data/topics';
 import { supabase } from '../lib/supabase';
 import { Topic, BibleReference } from '../types/topic';
+
+type Translation = 'kjv' | 'web' | 'esv' | 'nasb' | 'nlt';
+
+const TRANSLATION_LABELS: Record<Translation, string> = {
+  kjv: 'KJV',
+  web: 'WEB',
+  esv: 'ESV',
+  nasb: 'NASB',
+  nlt: 'NLT',
+};
 
 function normalizeBookName(book: string): string {
   if (book === 'Psalm') return 'Psalms';
@@ -20,14 +30,15 @@ function parseVerseRange(verse: string): { start: number; end: number } {
   return { start: single, end: single };
 }
 
-async function fetchKjvVerses(refs: BibleReference[]): Promise<Record<number, string>> {
+async function fetchVersesByTranslation(refs: BibleReference[], translation: Translation): Promise<Record<number, string>> {
   const results: Record<number, string> = {};
   for (let i = 0; i < refs.length; i++) {
     const ref = refs[i];
     const { start, end } = parseVerseRange(ref.verse);
     const { data, error } = await supabase
-      .from('kjv_bible')
+      .from('translations_bible')
       .select('text')
+      .eq('translation', translation)
       .eq('book', normalizeBookName(ref.book))
       .eq('chapter', ref.chapter)
       .gte('verse', start)
@@ -132,14 +143,16 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
   const [verseTexts, setVerseTexts] = useState<Record<number, string>>({});
   const [versesLoading, setVersesLoading] = useState(true);
+  const [translation, setTranslation] = useState<Translation>('esv');
+  const [translationOpen, setTranslationOpen] = useState(false);
 
   useEffect(() => {
     setVersesLoading(true);
-    fetchKjvVerses(topic.references).then(texts => {
+    fetchVersesByTranslation(topic.references, translation).then(texts => {
       setVerseTexts(texts);
       setVersesLoading(false);
     });
-  }, [topic.id]);
+  }, [topic.id, translation]);
 
   const handlePrint = () => {
     const versesHtml = topic.references.map((ref, index) => {
@@ -149,7 +162,7 @@ function TopicDetail({ topic }: { topic: Topic }) {
       return `<div class="verse-card">
         <div class="verse-header">
           <span class="verse-ref">${verseReference}</span>
-          <span class="verse-translation">KJV</span>
+          <span class="verse-translation">${TRANSLATION_LABELS[translation]}</span>
         </div>
         <div class="verse-body">
           <p class="verse-text">“${displayText}”</p>
@@ -384,10 +397,42 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
         {/* Bible Verses */}
         <div className="mb-10">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-2">
-            <BookOpen className={`w-5 h-5 ${accent.bookIcon}`} />
-            {topic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
-          </h2>
+          <div className="flex items-center justify-between gap-4 mb-5 flex-wrap">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <BookOpen className={`w-5 h-5 ${accent.bookIcon}`} />
+              {topic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
+            </h2>
+            {/* Translation selector */}
+            <div className="relative">
+              <button
+                onClick={() => setTranslationOpen(o => !o)}
+                className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border border-gray-300 dark:border-white/20 bg-transparent dark:bg-white/5 text-gray-600 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/30 transition-colors"
+              >
+                {TRANSLATION_LABELS[translation]}
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${translationOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {translationOpen && (
+                <>
+                  <div className="fixed inset-0 z-20" onClick={() => setTranslationOpen(false)} />
+                  <div className="absolute right-0 top-full mt-1 z-30 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 py-1 min-w-[140px]">
+                    {(Object.keys(TRANSLATION_LABELS) as Translation[]).map(t => (
+                      <button
+                        key={t}
+                        onClick={() => { setTranslation(t); setTranslationOpen(false); }}
+                        className={`w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
+                          t === translation
+                            ? `${accent.badgeBg} ${accent.badgeText}`
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                        }`}
+                      >
+                        {TRANSLATION_LABELS[t]}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
           <div className="space-y-4">
             {topic.references.map((ref, index) => {
               const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
@@ -403,7 +448,7 @@ function TopicDetail({ topic }: { topic: Topic }) {
                       {verseReference}
                     </h3>
                     <span className={`text-xs font-semibold ${accent.translationText} ${accent.translationBg} px-2 py-0.5 rounded-full`}>
-                      KJV
+                      {TRANSLATION_LABELS[translation]}
                     </span>
                   </div>
                   <div className="px-5 py-4 theme-card">
