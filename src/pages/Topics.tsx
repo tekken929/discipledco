@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ArrowRight, Lock, Download, ChevronDown } from 'lucide-react';
+import { ArrowLeft, BookOpen, ArrowRight, Lock, Download, ChevronDown, Lightbulb, Sparkles, Users } from 'lucide-react';
 import { topics } from '../data/topics';
 import { supabase } from '../lib/supabase';
 import { Topic, BibleReference } from '../types/topic';
@@ -85,54 +85,81 @@ const ACCENT: Record<AccentKey, {
   convBorder: string; convBg: string; convTitle: string;
   translationBg: string; translationText: string;
   bookIcon: string;
+  sectionBg: string; sectionBorder: string;
+  headerBg: string; headerText: string;
+  verseAltBg: string; leftBar: string;
 }> = {
   amber: {
     badgeBg: 'bg-amber-100 dark:bg-amber-900/40', badgeText: 'text-amber-700 dark:text-amber-400',
     convBorder: 'border-amber-200 dark:border-amber-800/50', convBg: 'bg-amber-50 dark:bg-amber-900/20', convTitle: 'text-amber-900 dark:text-amber-300',
-    translationBg: 'bg-amber-50 dark:bg-amber-900/30', translationText: 'text-amber-700 dark:text-amber-400',
+    translationBg: 'bg-amber-100 dark:bg-amber-900/40', translationText: 'text-amber-700 dark:text-amber-400',
     bookIcon: 'text-amber-600 dark:text-amber-400',
+    sectionBg: 'bg-amber-50/40 dark:bg-amber-950/15', sectionBorder: 'border-amber-200/60 dark:border-amber-800/40',
+    headerBg: 'bg-amber-100/70 dark:bg-amber-900/40', headerText: 'text-amber-800 dark:text-amber-200',
+    verseAltBg: 'bg-amber-50/30 dark:bg-amber-950/10', leftBar: 'border-l-amber-400 dark:border-l-amber-600',
   },
   blue: {
     badgeBg: 'bg-blue-100 dark:bg-blue-900/40', badgeText: 'text-blue-700 dark:text-blue-400',
     convBorder: 'border-blue-200 dark:border-blue-800/50', convBg: 'bg-blue-50 dark:bg-blue-900/20', convTitle: 'text-blue-900 dark:text-blue-300',
-    translationBg: 'bg-blue-50 dark:bg-blue-900/30', translationText: 'text-blue-700 dark:text-blue-400',
+    translationBg: 'bg-blue-100 dark:bg-blue-900/40', translationText: 'text-blue-700 dark:text-blue-400',
     bookIcon: 'text-blue-600 dark:text-blue-400',
+    sectionBg: 'bg-blue-50/40 dark:bg-blue-950/15', sectionBorder: 'border-blue-200/60 dark:border-blue-800/40',
+    headerBg: 'bg-blue-100/70 dark:bg-blue-900/40', headerText: 'text-blue-800 dark:text-blue-200',
+    verseAltBg: 'bg-blue-50/30 dark:bg-blue-950/10', leftBar: 'border-l-blue-400 dark:border-l-blue-600',
   },
   green: {
     badgeBg: 'bg-green-100 dark:bg-green-900/40', badgeText: 'text-green-700 dark:text-green-400',
     convBorder: 'border-green-200 dark:border-green-800/50', convBg: 'bg-green-50 dark:bg-green-900/20', convTitle: 'text-green-900 dark:text-green-300',
-    translationBg: 'bg-green-50 dark:bg-green-900/30', translationText: 'text-green-700 dark:text-green-400',
+    translationBg: 'bg-green-100 dark:bg-green-900/40', translationText: 'text-green-700 dark:text-green-400',
     bookIcon: 'text-green-600 dark:text-green-400',
+    sectionBg: 'bg-green-50/40 dark:bg-green-950/15', sectionBorder: 'border-green-200/60 dark:border-green-800/40',
+    headerBg: 'bg-green-100/70 dark:bg-green-900/40', headerText: 'text-green-800 dark:text-green-200',
+    verseAltBg: 'bg-green-50/30 dark:bg-green-950/10', leftBar: 'border-l-green-400 dark:border-l-green-600',
   },
   rose: {
     badgeBg: 'bg-rose-100 dark:bg-rose-900/40', badgeText: 'text-rose-700 dark:text-rose-400',
     convBorder: 'border-rose-200 dark:border-rose-800/50', convBg: 'bg-rose-50 dark:bg-rose-900/20', convTitle: 'text-rose-900 dark:text-rose-300',
-    translationBg: 'bg-rose-50 dark:bg-rose-900/30', translationText: 'text-rose-700 dark:text-rose-400',
+    translationBg: 'bg-rose-100 dark:bg-rose-900/40', translationText: 'text-rose-700 dark:text-rose-400',
     bookIcon: 'text-rose-600 dark:text-rose-400',
+    sectionBg: 'bg-rose-50/40 dark:bg-rose-950/15', sectionBorder: 'border-rose-200/60 dark:border-rose-800/40',
+    headerBg: 'bg-rose-100/70 dark:bg-rose-900/40', headerText: 'text-rose-800 dark:text-rose-200',
+    verseAltBg: 'bg-rose-50/30 dark:bg-rose-950/10', leftBar: 'border-l-rose-400 dark:border-l-rose-600',
   },
   sky: {
     badgeBg: 'bg-sky-100 dark:bg-sky-900/40', badgeText: 'text-sky-700 dark:text-sky-400',
     convBorder: 'border-sky-200 dark:border-sky-800/50', convBg: 'bg-sky-50 dark:bg-sky-900/20', convTitle: 'text-sky-900 dark:text-sky-300',
-    translationBg: 'bg-sky-50 dark:bg-sky-900/30', translationText: 'text-sky-700 dark:text-sky-400',
+    translationBg: 'bg-sky-100 dark:bg-sky-900/40', translationText: 'text-sky-700 dark:text-sky-400',
     bookIcon: 'text-sky-600 dark:text-sky-400',
+    sectionBg: 'bg-sky-50/40 dark:bg-sky-950/15', sectionBorder: 'border-sky-200/60 dark:border-sky-800/40',
+    headerBg: 'bg-sky-100/70 dark:bg-sky-900/40', headerText: 'text-sky-800 dark:text-sky-200',
+    verseAltBg: 'bg-sky-50/30 dark:bg-sky-950/10', leftBar: 'border-l-sky-400 dark:border-l-sky-600',
   },
   slate: {
     badgeBg: 'bg-slate-100 dark:bg-slate-800/60', badgeText: 'text-slate-700 dark:text-slate-300',
     convBorder: 'border-slate-200 dark:border-slate-700', convBg: 'bg-slate-50 dark:bg-slate-800/30', convTitle: 'text-slate-800 dark:text-slate-300',
     translationBg: 'bg-slate-100 dark:bg-slate-800', translationText: 'text-slate-600 dark:text-slate-400',
     bookIcon: 'text-slate-600 dark:text-slate-400',
+    sectionBg: 'bg-slate-50/40 dark:bg-slate-900/15', sectionBorder: 'border-slate-200/60 dark:border-slate-700/40',
+    headerBg: 'bg-slate-100/70 dark:bg-slate-800/40', headerText: 'text-slate-700 dark:text-slate-200',
+    verseAltBg: 'bg-slate-50/30 dark:bg-slate-900/10', leftBar: 'border-l-slate-400 dark:border-l-slate-600',
   },
   orange: {
     badgeBg: 'bg-orange-100 dark:bg-orange-900/40', badgeText: 'text-orange-700 dark:text-orange-400',
     convBorder: 'border-orange-200 dark:border-orange-800/50', convBg: 'bg-orange-50 dark:bg-orange-900/20', convTitle: 'text-orange-900 dark:text-orange-300',
-    translationBg: 'bg-orange-50 dark:bg-orange-900/30', translationText: 'text-orange-700 dark:text-orange-400',
+    translationBg: 'bg-orange-100 dark:bg-orange-900/40', translationText: 'text-orange-700 dark:text-orange-400',
     bookIcon: 'text-orange-600 dark:text-orange-400',
+    sectionBg: 'bg-orange-50/40 dark:bg-orange-950/15', sectionBorder: 'border-orange-200/60 dark:border-orange-800/40',
+    headerBg: 'bg-orange-100/70 dark:bg-orange-900/40', headerText: 'text-orange-800 dark:text-orange-200',
+    verseAltBg: 'bg-orange-50/30 dark:bg-orange-950/10', leftBar: 'border-l-orange-400 dark:border-l-orange-600',
   },
   red: {
     badgeBg: 'bg-red-100 dark:bg-red-900/40', badgeText: 'text-red-700 dark:text-red-400',
     convBorder: 'border-red-200 dark:border-red-800/50', convBg: 'bg-red-50 dark:bg-red-900/20', convTitle: 'text-red-900 dark:text-red-300',
-    translationBg: 'bg-red-50 dark:bg-red-900/30', translationText: 'text-red-700 dark:text-red-400',
+    translationBg: 'bg-red-100 dark:bg-red-900/40', translationText: 'text-red-700 dark:text-red-400',
     bookIcon: 'text-red-600 dark:text-red-400',
+    sectionBg: 'bg-red-50/40 dark:bg-red-950/15', sectionBorder: 'border-red-200/60 dark:border-red-800/40',
+    headerBg: 'bg-red-100/70 dark:bg-red-900/40', headerText: 'text-red-800 dark:text-red-200',
+    verseAltBg: 'bg-red-50/30 dark:bg-red-950/10', leftBar: 'border-l-red-400 dark:border-l-red-600',
   },
 };
 
@@ -159,13 +186,13 @@ function TopicDetail({ topic }: { topic: Topic }) {
       const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
       const fetchedText = verseTexts[index];
       const displayText = fetchedText ?? ref.text;
-      return `<div class="verse-card">
+      return `<div class="verse-card ${index % 2 === 0 ? 'alt' : ''}">
         <div class="verse-header">
           <span class="verse-ref">${verseReference}</span>
           <span class="verse-translation">${TRANSLATION_LABELS[translation]}</span>
         </div>
         <div class="verse-body">
-          <p class="verse-text">“${displayText}”</p>
+          <p class="verse-text">"${displayText}"</p>
           ${ref.summary ? `<p class="verse-summary">${ref.summary}</p>` : ''}
         </div>
       </div>`;
@@ -174,7 +201,7 @@ function TopicDetail({ topic }: { topic: Topic }) {
     const learnHtml = topic.whatWeLearns
       ? `<h2>What We Learn</h2>
       <ul class="learn-list">
-        ${topic.whatWeLearns.map((point, i) => `<li><span class="learn-num">${i + 1}</span><span>${point}</span></li>`).join('\n        ')}
+        ${topic.whatWeLearns.map((point, i) => `<li class="${i % 2 === 0 ? 'alt' : ''}"><span class="learn-num">${i + 1}</span><span>${point}</span></li>`).join('\n        ')}
       </ul>`
       : '';
 
@@ -218,13 +245,18 @@ function TopicDetail({ topic }: { topic: Topic }) {
     .subtitle { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #6b7280; margin-bottom: 12px; }
     .short-desc { font-size: 1.05rem; color: #374151; line-height: 1.7; margin-bottom: 32px; }
     h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; margin-top: 32px; color: #111827; display: flex; align-items: center; gap: 8px; }
+    .overview { background: #fafaf9; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; }
     .overview p { color: #374151; line-height: 1.75; margin-bottom: 12px; font-size: 0.95rem; }
-    .learn-list { list-style: none; margin-bottom: 28px; }
-    .learn-list li { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+    .overview p:last-child { margin-bottom: 0; }
+    .learn-list { list-style: none; margin-bottom: 28px; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+    .learn-list li { display: flex; align-items: flex-start; gap: 14px; padding: 12px 18px; }
+    .learn-list li.alt { background: #fafaf9; }
+    .learn-list li + li { border-top: 1px solid #f3f4f6; }
     .learn-num { width: 26px; height: 26px; border-radius: 50%; background: #f3f4f6; color: #374151; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .learn-list li span:last-child { color: #374151; line-height: 1.6; font-size: 0.9rem; }
     .verse-card { border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 14px; overflow: hidden; page-break-inside: avoid; }
-    .verse-header { padding: 10px 16px; background: #f9fafb; display: flex; align-items: center; justify-content: space-between; }
+    .verse-card.alt { background: #fafaf9; }
+    .verse-header { padding: 10px 16px; background: #f5f5f4; display: flex; align-items: center; justify-content: space-between; }
     .verse-ref { font-weight: 700; color: #111827; font-size: 0.88rem; }
     .verse-translation { font-size: 0.72rem; font-weight: 600; color: #6b7280; background: #f3f4f6; padding: 2px 10px; border-radius: 999px; }
     .verse-body { padding: 14px 18px; }
@@ -233,7 +265,7 @@ function TopicDetail({ topic }: { topic: Topic }) {
     .conversation-box { border-radius: 12px; border: 1px solid #e5e7eb; background: #f9fafb; padding: 18px 22px; margin-top: 28px; }
     .conversation-box h2 { margin-top: 0; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: #6b7280; }
     .conversation-box p { color: #374151; line-height: 1.7; font-size: 0.92rem; }
-    .prayer-box { border-radius: 12px; border: 1px solid #e5e7eb; padding: 18px 22px; margin-top: 28px; }
+    .prayer-box { border-radius: 12px; border: 1px solid #e5e7eb; background: #f9fafb; padding: 18px 22px; margin-top: 28px; }
     .prayer-box h2 { margin-top: 0; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: #6b7280; }
     .prayer-body p { color: #374151; line-height: 1.7; font-size: 0.92rem; margin-bottom: 6px; }
     .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.75rem; color: #9ca3af; }
@@ -358,12 +390,19 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
         {/* Body paragraphs */}
         {topic.bodyContent && (
-          <div className="space-y-5 mb-10">
-            {topic.bodyContent.map((paragraph, i) => (
-              <p key={i} className="text-gray-700 dark:text-gray-300 leading-[1.9] text-[1.05rem]">
-                {paragraph}
-              </p>
-            ))}
+          <div className={`mb-8 rounded-2xl border ${accent.sectionBorder} ${accent.sectionBg} overflow-hidden`}>
+            <div className={`px-6 py-3 ${accent.headerBg} border-b ${accent.sectionBorder}`}>
+              <h2 className={`text-sm font-bold ${accent.headerText} uppercase tracking-widest`}>
+                Overview
+              </h2>
+            </div>
+            <div className="px-6 py-6 sm:px-8 sm:py-7 space-y-5">
+              {topic.bodyContent.map((paragraph, i) => (
+                <p key={i} className="text-gray-700 dark:text-gray-300 leading-[1.9] text-[1.05rem]">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         )}
 
@@ -378,14 +417,18 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
         {/* What We Learn */}
         {topic.whatWeLearns && (
-          <div className="mb-10 theme-card rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">What We Learn</h2>
+          <div className={`mb-8 rounded-2xl border ${accent.sectionBorder} overflow-hidden`}>
+            <div className={`px-6 py-3.5 ${accent.headerBg} border-b ${accent.sectionBorder} flex items-center gap-2`}>
+              <Lightbulb className={`w-5 h-5 ${accent.bookIcon}`} />
+              <h2 className={`text-base font-bold ${accent.headerText} tracking-tight`}>What We Learn</h2>
             </div>
-            <ul className="divide-y divide-gray-100 dark:divide-gray-800">
+            <ul>
               {topic.whatWeLearns.map((point, i) => (
-                <li key={i} className="flex items-start gap-4 px-6 py-4">
-                  <span className={`mt-0.5 flex-shrink-0 w-6 h-6 rounded-full ${accent.badgeBg} ${accent.badgeText} text-xs font-bold flex items-center justify-center`}>
+                <li
+                  key={i}
+                  className={`flex items-start gap-4 px-6 py-4 ${i % 2 === 0 ? accent.verseAltBg : ''} ${i < topic.whatWeLearns!.length - 1 ? 'border-b border-gray-100 dark:border-gray-800' : ''}`}
+                >
+                  <span className={`mt-0.5 flex-shrink-0 w-7 h-7 rounded-full ${accent.badgeBg} ${accent.badgeText} text-xs font-bold flex items-center justify-center`}>
                     {i + 1}
                   </span>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">{point}</p>
@@ -396,17 +439,17 @@ function TopicDetail({ topic }: { topic: Topic }) {
         )}
 
         {/* Bible Verses */}
-        <div className="mb-10">
-          <div className="flex items-center justify-between gap-4 mb-5 flex-wrap">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <BookOpen className={`w-5 h-5 ${accent.bookIcon}`} />
+        <div className={`mb-8 rounded-2xl border ${accent.sectionBorder} ${accent.sectionBg} overflow-hidden`}>
+          <div className={`px-6 py-3.5 ${accent.headerBg} border-b ${accent.sectionBorder} flex items-center justify-between gap-4 flex-wrap`}>
+            <h2 className={`text-base font-bold ${accent.headerText} flex items-center gap-2`}>
+              <BookOpen className="w-5 h-5" />
               {topic.references.length === 5 && hasRichContent ? 'Five Key Bible Verses' : 'Biblical References'}
             </h2>
             {/* Translation selector */}
             <div className="relative">
               <button
                 onClick={() => setTranslationOpen(o => !o)}
-                className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border border-gray-300 dark:border-white/20 bg-transparent dark:bg-white/5 text-gray-600 dark:text-white/70 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/30 transition-colors"
+                className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border border-gray-300 dark:border-white/20 bg-white/50 dark:bg-white/5 text-gray-600 dark:text-white/70 hover:bg-white dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/30 transition-colors"
               >
                 {TRANSLATION_LABELS[translation]}
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${translationOpen ? 'rotate-180' : ''}`} />
@@ -433,7 +476,7 @@ function TopicDetail({ topic }: { topic: Topic }) {
               )}
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="p-4 sm:p-5 space-y-3">
             {topic.references.map((ref, index) => {
               const verseReference = `${ref.book} ${ref.chapter}:${ref.verse}`;
               const fetchedText = verseTexts[index];
@@ -441,17 +484,17 @@ function TopicDetail({ topic }: { topic: Topic }) {
               return (
                 <div
                   key={index}
-                  className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm"
+                  className={`rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm ${index % 2 === 0 ? accent.verseAltBg : 'bg-white dark:bg-gray-900/40'}`}
                 >
-                  <div className="px-5 py-3 bg-gray-50 dark:bg-gray-800/60 flex items-center justify-between">
-                    <h3 className="font-bold text-gray-900 dark:text-gray-100 text-sm tracking-wide">
+                  <div className={`px-5 py-2.5 ${accent.headerBg} flex items-center justify-between`}>
+                    <h3 className={`font-bold ${accent.headerText} text-sm tracking-wide`}>
                       {verseReference}
                     </h3>
                     <span className={`text-xs font-semibold ${accent.translationText} ${accent.translationBg} px-2 py-0.5 rounded-full`}>
                       {TRANSLATION_LABELS[translation]}
                     </span>
                   </div>
-                  <div className="px-5 py-4 theme-card">
+                  <div className="px-5 py-4">
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed italic text-[0.98rem]">
                       "{versesLoading && !fetchedText ? 'Loading…' : displayText}"
                     </p>
@@ -469,23 +512,31 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
         {/* Family Conversation */}
         {topic.familyConversation && (
-          <div className={`mb-8 rounded-2xl border ${accent.convBorder} ${accent.convBg} px-6 py-5`}>
-            <h2 className={`text-sm font-bold ${accent.convTitle} uppercase tracking-widest mb-3`}>
-              Family Conversation
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              {topic.familyConversation}
-            </p>
+          <div className={`mb-8 rounded-2xl border ${accent.convBorder} ${accent.convBg} overflow-hidden`}>
+            <div className={`px-6 py-3.5 ${accent.headerBg} border-b ${accent.convBorder} flex items-center gap-2`}>
+              <Users className={`w-5 h-5 ${accent.bookIcon}`} />
+              <h2 className={`text-sm font-bold ${accent.convTitle} uppercase tracking-widest`}>
+                Family Conversation
+              </h2>
+            </div>
+            <div className="px-6 py-5">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {topic.familyConversation}
+              </p>
+            </div>
           </div>
         )}
 
         {/* Prayer */}
         {topic.prayer && (
-          <div className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 theme-card px-6 py-6">
-            <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
-              Prayer
-            </h2>
-            <div className="space-y-3">
+          <div className={`mb-8 rounded-2xl border ${accent.sectionBorder} ${accent.sectionBg} overflow-hidden`}>
+            <div className={`px-6 py-3.5 ${accent.headerBg} border-b ${accent.sectionBorder} flex items-center gap-2`}>
+              <Sparkles className={`w-5 h-5 ${accent.bookIcon}`} />
+              <h2 className={`text-sm font-bold ${accent.headerText} uppercase tracking-widest`}>
+                Prayer
+              </h2>
+            </div>
+            <div className="px-6 py-5 space-y-3">
               {topic.prayer.split('\n').filter(l => l.trim()).map((line, i) => (
                 <p
                   key={i}
