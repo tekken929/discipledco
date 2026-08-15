@@ -19,7 +19,7 @@ export interface Topic {
   familyConversation?: string;
   prayer?: string;
   heroGradient?: string;
-  accentColor?: 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate';
+  accentColor?: 'amber' | 'blue' | 'green' | 'rose' | 'sky' | 'slate' | 'orange' | 'red';
   icon: string;
   references: BibleReference[];
   order: number;

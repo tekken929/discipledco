@@ -111,6 +111,7 @@ export const topics: Topic[] = [
     description: 'God strictly forbids all forms of occult practices, divination, witchcraft, and communication with the dead. These practices open doors to demonic influence and are an abomination to the Lord.',
     shortDescription: 'Scripture explicitly forbids all occult practices including divination, sorcery, witchcraft, and necromancy. God calls His people to seek Him alone for guidance and truth.',
     icon: '⛔',
+    accentColor: 'red',
     order: 15,
     references: [
       {
@@ -191,6 +192,7 @@ export const topics: Topic[] = [
     description: 'Biblical guidance on marriage, commitment, and marital relationships',
     shortDescription: 'God designed marriage as a sacred covenant between one man and one woman. Biblical principles guide husbands and wives in mutual love, respect, and commitment.',
     icon: '💑',
+    accentColor: 'rose',
     order: 10,
     references: [
       {
@@ -261,6 +263,7 @@ export const topics: Topic[] = [
     description: 'Overcoming lust and maintaining sexual purity according to Scripture',
     shortDescription: 'Scripture calls believers to flee sexual immorality and pursue purity. Your body is a temple of the Holy Spirit, meant to glorify God in holiness and honor.',
     icon: '🛡️',
+    accentColor: 'blue',
     order: 16,
     references: [
       {
@@ -862,6 +865,7 @@ export const topics: Topic[] = [
     description: 'Understanding spiritual warfare, demons, and our authority in Christ',
     shortDescription: 'Our battle is spiritual, not physical. Put on the armor of God, resist the devil, and stand firm in faith knowing Christ has already won the victory.',
     icon: '⚔️',
+    accentColor: 'slate',
     order: 17,
     references: [
       {
@@ -932,6 +936,7 @@ export const topics: Topic[] = [
     description: 'What the Bible teaches about possession and freedom in Christ',
     shortDescription: 'Jesus has authority over all demonic forces. Through His name and power, believers can find complete freedom and deliverance from spiritual oppression.',
     icon: '🛡️',
+    accentColor: 'slate',
     order: 18,
     references: [
       {
@@ -1002,6 +1007,7 @@ export const topics: Topic[] = [
     description: 'Understanding suffering, trials, and God\'s sovereignty in difficult times',
     shortDescription: 'God works all things together for good for those who love Him. Trials produce endurance, character, and hope, refining our faith like gold.',
     icon: '🙏',
+    accentColor: 'amber',
     order: 11,
     references: [
       {
@@ -1072,6 +1078,7 @@ export const topics: Topic[] = [
     description: 'What happens to children who die and God\'s heart for the innocent',
     shortDescription: 'Scripture reveals God\'s special love for children. The kingdom of heaven belongs to such as these, offering comfort and hope to grieving hearts.',
     icon: '👶',
+    accentColor: 'sky',
     order: 12,
     references: [
       {
@@ -1142,6 +1149,7 @@ export const topics: Topic[] = [
     description: 'Biblical teaching on hell, judgment, and eternal separation from God',
     shortDescription: 'Hell is the eternal consequence of rejecting God. Scripture warns of judgment but offers salvation through faith in Jesus Christ to all who believe.',
     icon: '🔥',
+    accentColor: 'red',
     order: 19,
     references: [
       {
@@ -1212,6 +1220,7 @@ export const topics: Topic[] = [
     description: 'The promise of heaven and eternal life with God',
     shortDescription: 'Heaven is our eternal home prepared by Jesus. No more tears, death, or pain await believers who will dwell with God forever in perfect joy.',
     icon: '☁️',
+    accentColor: 'sky',
     order: 13,
     references: [
       {
@@ -1282,6 +1291,7 @@ export const topics: Topic[] = [
     description: 'Understanding God\'s ultimate control and what He permits',
     shortDescription: 'God is sovereign over all creation. His purposes will stand, His plans cannot be thwarted, and He works all things according to His perfect will.',
     icon: '👑',
+    accentColor: 'amber',
     order: 14,
     references: [
       {
@@ -1420,6 +1430,7 @@ export const topics: Topic[] = [
     description: 'Understanding the Holy Spirit, His role, and His work in believers',
     shortDescription: 'The Holy Spirit is our Helper, dwelling within believers. He guides into truth, empowers for service, and produces spiritual fruit in our lives.',
     icon: '🕊️',
+    accentColor: 'green',
     order: 9,
     references: [
       {
@@ -1490,6 +1501,7 @@ export const topics: Topic[] = [
     description: 'Biblical prophecy about the return of Christ and the end of the age',
     shortDescription: 'Christ will return unexpectedly like a thief in the night. Stay awake, be ready, and live faithfully as we await His glorious second coming.',
     icon: '⏰',
+    accentColor: 'slate',
     order: 20,
     references: [
       {
