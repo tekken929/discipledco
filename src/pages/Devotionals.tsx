@@ -391,6 +391,3 @@ export function Devotionals() {
     </div>
   );
 }
-
-
-export { Devotionals }
