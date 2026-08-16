@@ -5,7 +5,7 @@ import { Book } from '../types/book';
 import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { BookOpen, ChevronDown, ArrowRight, Map, Route, GraduationCap } from 'lucide-react';
+import { BookOpen, ChevronDown, ArrowRight, Map, Route, GraduationCap, BookMarked } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface HomeProps {
@@ -119,6 +119,31 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               </p>
               <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
                 Start the course
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </Link>
+          </div>
+
+          {/* Bible Studies tile */}
+          <div className="mt-4">
+            <Link
+              to="/bible-studies"
+              className="group relative text-left border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-blue-50/60 dark:bg-blue-950/20 overflow-hidden"
+            >
+              <div className="relative flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/80 transition-colors">
+                  <BookMarked className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <span className="text-xs font-bold text-blue-500 dark:text-blue-400 uppercase tracking-widest">In-Depth Studies</span>
+              </div>
+              <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+                Bible Studies
+              </h3>
+              <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+                Progressive study series organized by level — start with "Who Is God?" and go deeper at your own pace.
+              </p>
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+                Start studying
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </Link>

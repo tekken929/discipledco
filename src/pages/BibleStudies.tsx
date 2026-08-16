@@ -319,18 +319,23 @@ function StudiesList() {
         {filtered.map((study) => {
           const tagClass = tagColors[study.tag] || 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
           const isComingSoon = study.lessons.length === 0;
+          const isActive = study.id === 1;
           const levelStudies = bibleStudies.filter(s => s.level === study.level);
           const positionInLevel = levelStudies.findIndex(s => s.id === study.id) + 1;
 
-          if (isComingSoon) {
+          if (isComingSoon || !isActive) {
             return (
               <div
                 key={study.id}
-                className="group theme-card border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-6 opacity-70"
+                className="group theme-card border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-6 opacity-60"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
-                    <Lock className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                    {isComingSoon ? (
+                      <Lock className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                    ) : (
+                      <span className="text-base font-black text-gray-400 dark:text-gray-500">{positionInLevel}</span>
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className={`inline-flex items-center gap-1 text-xs font-bold px-2.5 py-0.5 rounded-full mb-1.5 ${tagClass}`}>
@@ -345,7 +350,9 @@ function StudiesList() {
                 <p className="text-sm text-gray-500 dark:text-gray-500 leading-relaxed mb-4 line-clamp-2">
                   {study.description}
                 </p>
-                <span className="text-xs font-semibold text-gray-400 dark:text-gray-500">Coming soon</span>
+                <span className="text-xs font-semibold text-gray-400 dark:text-gray-500">
+                  {isComingSoon ? 'Coming soon' : 'In development'}
+                </span>
               </div>
             );
           }
@@ -413,10 +420,12 @@ export function BibleStudies() {
   if (studyId) {
     const id = parseInt(studyId, 10);
     const study = bibleStudies.find(s => s.id === id);
-    if (!study) {
+    if (!study || study.id !== 1) {
       return (
         <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-          <p className="text-gray-500 dark:text-gray-400">Study not found.</p>
+          <p className="text-gray-500 dark:text-gray-400">
+            {study ? 'This study is still being written. Check back soon.' : 'Study not found.'}
+          </p>
           <Link to="/bible-studies" className="mt-4 inline-block text-blue-600 dark:text-blue-400 font-semibold">
             Back to Bible Studies
           </Link>

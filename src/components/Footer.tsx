@@ -32,7 +32,7 @@ const footerColumns: {
     links: [
       { to: '/prayer', label: 'Daily Prayer' },
       { to: '/stories', label: 'Bible Stories', comingSoon: true },
-      { to: '/bible-studies', label: 'Bible Studies', comingSoon: true },
+      { to: '/bible-studies', label: 'Bible Studies' },
       { to: '/christian-holidays', label: 'Holiday Origins' },
       { to: '/resurrection', label: 'The Resurrection' },
       { to: '/music', label: 'Music Player', comingSoon: true },
