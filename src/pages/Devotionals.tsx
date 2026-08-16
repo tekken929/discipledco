@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Printer } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
 
 interface Devotional {
@@ -42,26 +42,264 @@ const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg
   },
 };
 
+interface ParsedSection {
+  type: 'scripture' | 'heading' | 'body';
+  text: string;
+}
+
+function parseDevotionalContent(content: string): { title: string; subtitle: string; sections: ParsedSection[] } {
+  const lines = content.split('\n').map((l) => l.trim()).filter((l) => l);
+  const title = lines[0] || '';
+  // Line 2 is "THE DISCIPLE CODE" - skip it
+  // Lines 3+ until first scripture or heading is the subtitle
+  let subtitle = '';
+  let i = 1;
+  // Skip "THE DISCIPLE CODE"
+  if (lines[i] && lines[i].toUpperCase().includes('DISCIPLE CODE')) i++;
+  // Collect subtitle lines (typically 1-2 lines before scripture references begin)
+  while (i < lines.length && !isScriptureLine(lines[i]) && !isHeadingLine(lines[i])) {
+    if (subtitle) subtitle += ' ';
+    subtitle += lines[i];
+    i++;
+  }
+
+  const sections: ParsedSection[] = [];
+  while (i < lines.length) {
+    const line = lines[i];
+    if (isScriptureLine(line)) {
+      sections.push({ type: 'scripture', text: line });
+    } else if (isHeadingLine(line)) {
+      sections.push({ type: 'heading', text: line });
+    } else {
+      sections.push({ type: 'body', text: line });
+    }
+    i++;
+  }
+
+  return { title, subtitle, sections };
+}
+
+function isScriptureLine(line: string): boolean {
+  // Matches patterns like "Matthew 5:17 — ..." or "John 3:3 ..." or "2 Corinthians 10:4\u20135 (NLT)..."
+  return /^\d?\s?[A-Z][a-z]+\s+\d+:\d+/.test(line) || /^[A-Z][a-z]+\s+\d+:\d+/.test(line);
+}
+
+function isHeadingLine(line: string): boolean {
+  // Headings are typically Title Case, not starting with a scripture reference, not a quote
+  // and are relatively short (less than ~100 chars), and don't end with typical sentence punctuation
+  if (isScriptureLine(line)) return false;
+  if (line.startsWith('"') || line.startsWith('"') || line.startsWith('"')) return false;
+  // Headings: Title Case with spaces, not too long, no period at end
+  const words = line.split(/\s+/);
+  if (words.length < 2 || words.length > 15) return false;
+  if (line.length > 120) return false;
+  // Check if it looks like a heading: most words are capitalized
+  const capitalizedWords = words.filter((w) => /^[A-Z]/.test(w) || /^[\u201c"']/.test(w));
+  return capitalizedWords.length >= Math.ceil(words.length * 0.5) && !line.endsWith('.') && !line.endsWith('!"') && !line.endsWith('."');
+}
+
+function handlePrint(dev: Devotional) {
+  const parsed = parseDevotionalContent(dev.content);
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${parsed.title} — The Disciple Co.</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #d6d3d1;
+    @media print { display: none; }
+  }
+  .toolbar-title { font-size: 14px; font-weight: 700; color: #57534e; }
+  .toolbar-actions { display: flex; gap: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    font-family: system-ui, sans-serif;
+  }
+  .btn-print { background: #1c1917; color: white; }
+  .btn-save { background: #b45309; color: white; }
+  .btn-close { background: #e7e5e4; color: #44403c; }
+  h1 {
+    font-size: 28px; font-weight: 800; color: #1c1917;
+    margin: 0 0 4px 0; text-align: center;
+  }
+  .subtitle {
+    font-size: 14px; font-weight: 600; color: #b45309;
+    text-align: center; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .divider {
+    width: 60px; height: 2px; background: #b45309;
+    margin: 24px auto;
+  }
+  .scripture {
+    font-style: italic; color: #44403c;
+    padding: 12px 0; margin: 8px 0;
+    border-left: 3px solid #d6d3d1;
+    padding-left: 16px;
+    font-size: 15px;
+  }
+  .heading {
+    font-size: 20px; font-weight: 700; color: #1c1917;
+    margin: 32px 0 12px 0;
+  }
+  .body {
+    font-size: 16px; color: #292524; margin: 0 0 16px 0;
+  }
+  .footer {
+    margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid #d6d3d1;
+    text-align: center; font-size: 13px; color: #78716c;
+  }
+  @media print {
+    body { padding: 0; max-width: none; }
+    .toolbar { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span class="toolbar-title">${parsed.title} — The Disciple Co.</span>
+    <div class="toolbar-actions">
+      <button class="btn btn-save" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save as PDF
+      </button>
+      <button class="btn btn-print" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+      <button class="btn btn-close" onclick="window.close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Close
+      </button>
+    </div>
+  </div>
+
+  <h1>${parsed.title}</h1>
+  <div class="subtitle">The Disciple Code</div>
+  <div class="divider"></div>
+
+  ${parsed.sections.map((s) => {
+    if (s.type === 'scripture') return `<div class="scripture">${s.text}</div>`;
+    if (s.type === 'heading') return `<h2 class="heading">${s.text}</h2>`;
+    return `<p class="body">${s.text}</p>`;
+  }).join('\n  ')}
+
+  <div class="footer">By Colby Ryan Shenk, Disciple Company &nbsp;·&nbsp; thediscipleco.org</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  window.open(url, '_blank');
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}
+
 export function Devotionals() {
   const [selected, setSelected] = useState<Devotional | null>(null);
 
   if (selected) {
+    const meta = DEVOTIONAL_META[selected.title];
+    const parsed = parseDevotionalContent(selected.content);
+
     return (
       <div className="min-h-screen bg-stone-50 dark:bg-gray-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <button
-            onClick={() => setSelected(null)}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            All devotionals
-          </button>
+          <div className="flex items-center justify-between mb-8">
+            <button
+              onClick={() => setSelected(null)}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              All devotionals
+            </button>
+            <button
+              onClick={() => handlePrint(selected)}
+              className="flex items-center gap-2 theme-primary-button text-white font-semibold px-4 py-2 rounded-lg transition-all shadow-md hover:shadow-lg flex-shrink-0"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline text-sm">Download/Save PDF</span>
+              <span className="sm:hidden text-sm">Save PDF</span>
+            </button>
+          </div>
 
           <article className="theme-card border rounded-2xl p-8 md:p-12 shadow-sm">
-            <div className="prose prose-gray dark:prose-invert max-w-none">
-              <div className="whitespace-pre-wrap leading-relaxed text-gray-700 dark:text-gray-300 text-base">
-                {selected.content}
+            {/* Title header */}
+            <div className="text-center mb-8">
+              {meta && (
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${meta.bg} mb-4`}>
+                  {(() => {
+                    const Icon = meta.icon;
+                    return <Icon className={`w-6 h-6 ${meta.color}`} />;
+                  })()}
+                </div>
+              )}
+              <h1 className="text-2xl md:text-3xl font-bold font-display text-gray-900 dark:text-white mb-2">
+                {parsed.title}
+              </h1>
+              <p className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-[0.2em] mb-3">
+                The Disciple Code
+              </p>
+              {parsed.subtitle && (
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xl mx-auto">
+                  {parsed.subtitle}
+                </p>
+              )}
+              <div className="flex justify-center mt-6">
+                <div className="w-12 h-px bg-amber-400/50" />
               </div>
+            </div>
+
+            {/* Content sections */}
+            <div className="space-y-4">
+              {parsed.sections.map((section, idx) => {
+                if (section.type === 'scripture') {
+                  return (
+                    <div
+                      key={idx}
+                      className="border-l-4 border-amber-300 dark:border-amber-700 pl-4 py-2 my-4 italic text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                    >
+                      {section.text}
+                    </div>
+                  );
+                }
+                if (section.type === 'heading') {
+                  return (
+                    <h2
+                      key={idx}
+                      className="text-xl font-bold text-gray-900 dark:text-white mt-8 mb-3 leading-snug"
+                    >
+                      {section.text}
+                    </h2>
+                  );
+                }
+                return (
+                  <p
+                    key={idx}
+                    className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-4"
+                  >
+                    {section.text}
+                  </p>
+                );
+              })}
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
@@ -153,3 +391,6 @@ export function Devotionals() {
     </div>
   );
 }
+
+
+export { Devotionals }
