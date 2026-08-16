@@ -346,33 +346,33 @@ function TopicDetail({ topic }: { topic: Topic }) {
   return (
     <>
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-between gap-4 mb-6">
-          <Link
-            to="/topics"
-            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-semibold"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Topics
-          </Link>
-          <button
-            onClick={handlePrint}
-            disabled={versesLoading}
-            className="flex items-center justify-center gap-2 theme-primary-button text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg flex-shrink-0 disabled:opacity-60"
-          >
-            <Download className="w-5 h-5" />
-            <span className="hidden sm:inline">Download/Save PDF</span>
-            <span className="sm:hidden">PDF</span>
-          </button>
-        </div>
-
         {/* Hero header */}
         <div className="rounded-2xl overflow-hidden shadow-xl mb-8">
           <div
-            className="relative px-8 py-14 flex flex-col items-center text-center"
+            className="relative px-6 sm:px-8 py-14 flex flex-col items-center text-center"
             style={{ background: gradient }}
           >
             <div className="absolute inset-0 bg-black/20" />
-            <div className="relative z-10">
+            {/* Top-left: Back to Topics */}
+            <Link
+              to="/topics"
+              className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 bg-stone-100/90 dark:bg-stone-300/90 text-stone-700 dark:text-stone-800 font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-stone-200/95 dark:hover:bg-stone-400/95 transition-all text-sm"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Back to Topics</span>
+              <span className="sm:hidden">Back</span>
+            </Link>
+            {/* Top-right: Download/Save PDF */}
+            <button
+              onClick={handlePrint}
+              disabled={versesLoading}
+              className="absolute top-4 right-4 z-20 inline-flex items-center gap-2 bg-stone-100/90 dark:bg-stone-300/90 text-stone-700 dark:text-stone-800 font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-stone-200/95 dark:hover:bg-stone-400/95 transition-all text-sm disabled:opacity-60"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline">Download/Save PDF</span>
+              <span className="sm:hidden">PDF</span>
+            </button>
+            <div className="relative z-10 mt-8">
               {topic.subtitle && (
                 <p className="text-white/70 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
                   {topic.subtitle}
