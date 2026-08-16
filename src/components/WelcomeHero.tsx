@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, BookOpen, Heart } from 'lucide-react';
+import { Sunrise, Flame, Waves, Trees, Flame as EmberIcon, Snowflake, BookOpen, Heart, BookMarked } from 'lucide-react';
 import { useHeroTheme, type HeroTheme } from '../context/HeroThemeContext';
 
 const LOGO_SRC = '/images/Untitled_design_(34)_Large.jpeg';
@@ -37,20 +37,20 @@ function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b:
 function AppDownloadCard() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <a
-        href="https://thediscipleco.org/app"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Download The Disciple Company App"
+      <Link
+        to="/devotionals"
+        aria-label="Daily Devotionals"
         className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-2xl px-4 py-3 shadow-xl transition-all hover:scale-105"
       >
-        <img src={LOGO_SRC} alt="The Disciple Company App" className="w-12 h-12 rounded-xl object-cover shadow-md flex-shrink-0" />
-        <div className="text-left">
-          <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Download the App</p>
-          <p className="text-white text-sm font-bold leading-tight">The Disciple Company</p>
-          <p className="text-white/60 text-xs">Available on the App Store</p>
+        <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-300/30 flex items-center justify-center flex-shrink-0">
+          <BookMarked className="w-6 h-6 text-amber-300" />
         </div>
-      </a>
+        <div className="text-left">
+          <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Daily Devotionals</p>
+          <p className="text-white text-sm font-bold leading-tight">Read devotionals</p>
+          <p className="text-white/60 text-xs">4 reflections from The Disciple Code</p>
+        </div>
+      </Link>
       <Link
         to="/bible-lookup"
         aria-label="Complete Bible"
@@ -209,6 +209,21 @@ function GlassHero() {
                   "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me."
                 </p>
                 <p className="text-sm text-white/55 font-semibold tracking-wide">— Luke 9:23</p>
+
+                <div className="flex justify-center lg:justify-start mt-8">
+                  <a
+                    href="https://thediscipleco.org/app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-full px-5 py-2.5 shadow-lg transition-all hover:scale-105"
+                  >
+                    <img src={LOGO_SRC} alt="The Disciple Company App" className="w-7 h-7 rounded-lg object-cover shadow-sm flex-shrink-0" />
+                    <div className="text-left">
+                      <p className="text-white/60 text-[9px] font-semibold uppercase tracking-widest leading-none mb-0.5">Download the App</p>
+                      <p className="text-white text-xs font-bold leading-tight">The Disciple Company</p>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

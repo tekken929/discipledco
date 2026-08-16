@@ -36,6 +36,7 @@ import { VersesOnSadness } from './pages/VersesOnSadness';
 import Prayer from './pages/Prayer';
 import { AppDownload } from './pages/AppDownload';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { Devotionals } from './pages/Devotionals';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -461,6 +462,7 @@ function AppContent() {
           <Route path="/prayer" element={<Prayer />} />
           <Route path="/app" element={<AppDownload />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/devotionals" element={<Devotionals />} />
         </Routes>
       </div>
 
