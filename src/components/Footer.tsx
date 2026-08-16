@@ -6,7 +6,7 @@ import { AdminPortal } from '../pages/AdminPortal';
 
 const footerColumns: {
   heading: string;
-  links: { to: string; label: string; comingSoon?: boolean; external?: boolean }[];
+  links: { to: string; label: string; comingSoon?: boolean; external?: boolean; preview?: string }[];
 }[] = [
   {
     heading: 'Bible',
@@ -32,7 +32,7 @@ const footerColumns: {
     links: [
       { to: '/prayer', label: 'Daily Prayer' },
       { to: '/stories', label: 'Bible Stories', comingSoon: true },
-      { to: '/bible-studies', label: 'Bible Studies' },
+      { to: '/bible-studies', label: 'Bible Studies', preview: 'Who Is God? — an 8-lesson study now available' },
       { to: '/christian-holidays', label: 'Holiday Origins' },
       { to: '/resurrection', label: 'The Resurrection' },
       { to: '/music', label: 'Music Player', comingSoon: true },
@@ -143,6 +143,18 @@ export function Footer() {
                       <span className="text-sm text-gray-400 dark:text-gray-600 cursor-not-allowed opacity-50 select-none">
                         {link.label}
                       </span>
+                    ) : link.preview ? (
+                      <Link
+                        to={link.to}
+                        className="group block"
+                      >
+                        <span className="text-sm text-gray-900 dark:text-white font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                          {link.label}
+                        </span>
+                        <span className="block text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                          {link.preview}
+                        </span>
+                      </Link>
                     ) : link.external ? (
                       <a
                         href={link.to}
