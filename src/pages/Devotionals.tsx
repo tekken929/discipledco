@@ -45,6 +45,8 @@ const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg
 interface ParsedSection {
   type: 'scripture' | 'heading' | 'body';
   text: string;
+  reference?: string;
+  verseText?: string;
 }
 
 function parseDevotionalContent(content: string): { title: string; subtitle: string; sections: ParsedSection[] } {
@@ -67,16 +69,60 @@ function parseDevotionalContent(content: string): { title: string; subtitle: str
   while (i < lines.length) {
     const line = lines[i];
     if (isScriptureLine(line)) {
-      sections.push({ type: 'scripture', text: line });
+      const { reference, verseText, consumed } = extractScripture(lines, i);
+      if (verseText) {
+        sections.push({ type: 'scripture', text: line, reference, verseText });
+      } else {
+        sections.push({ type: 'scripture', text: line, reference, verseText: '' });
+      }
+      i += consumed;
     } else if (isHeadingLine(line)) {
       sections.push({ type: 'heading', text: line });
+      i++;
     } else {
       sections.push({ type: 'body', text: line });
+      i++;
     }
-    i++;
   }
 
   return { title, subtitle, sections };
+}
+
+function extractScripture(lines: string[], startIdx: number): { reference: string; verseText: string; consumed: number } {
+  const line = lines[startIdx];
+  // Try to split reference from verse text on the same line
+  // Pattern 1: "Matthew 5:17 — \"verse\"" (em dash separator)
+  const emDashMatch = line.match(/^(.+?)\s+[\u2014\u2013-]\s+(.*)$/);
+  if (emDashMatch) {
+    return { reference: emDashMatch[1].trim(), verseText: ensureQuotes(emDashMatch[2].trim()), consumed: 1 };
+  }
+  // Pattern 2: "2 Corinthians 10:4\u20135 (NLT)\u201cverse\u201d" (reference directly followed by quote)
+  const directQuoteMatch = line.match(/^((?:\d?\s)?[A-Z][a-z]+\s+\d+:\d+[\u2013\u2014-]?\d*[\u2013\u2014-]?\d*\s*(?:\([^)]*\))?[,\s]*)[\u201c"\u201d](.*)$/);
+  if (directQuoteMatch) {
+    return { reference: directQuoteMatch[1].trim(), verseText: ensureQuotes(directQuoteMatch[2].trim()), consumed: 1 };
+  }
+  // Pattern 3: reference only, verse text on following lines (e.g. "Hebrews 4:14\u201316 (NLT)")
+  // Collect following lines as verse text until next scripture, heading, or unquoted body text
+  let verseLines: string[] = [];
+  let j = startIdx + 1;
+  while (j < lines.length && !isScriptureLine(lines[j]) && !isHeadingLine(lines[j])) {
+    verseLines.push(lines[j]);
+    j++;
+    // Stop after we've collected at least one line and hit a closing quote
+    if (verseLines.join(' ').includes('\u201d') || verseLines.join(' ').includes('"')) break;
+  }
+  if (verseLines.length > 0) {
+    return { reference: line.trim(), verseText: ensureQuotes(verseLines.join(' ').trim()), consumed: 1 + verseLines.length };
+  }
+  // Fallback: just the reference, no verse text
+  return { reference: line.trim(), verseText: '', consumed: 1 };
+}
+
+function ensureQuotes(text: string): string {
+  // Strip surrounding smart/straight quotes and re-wrap uniformly
+  let cleaned = text.trim();
+  cleaned = cleaned.replace(/^[\u201c"\u201d\u2018'\u2019]+/, '').replace(/[\u201c"\u201d\u2018'\u2019]+$/, '');
+  return `\u201c${cleaned}\u201d`;
 }
 
 function isScriptureLine(line: string): boolean {
@@ -150,11 +196,17 @@ function handlePrint(dev: Devotional) {
     margin: 24px auto;
   }
   .scripture {
-    font-style: italic; color: #44403c;
     padding: 12px 0; margin: 8px 0;
-    border-left: 3px solid #d6d3d1;
+    border-left: 3px solid #b45309;
     padding-left: 16px;
     font-size: 15px;
+  }
+  .scripture-ref {
+    font-weight: 700; font-style: normal; color: #1c1917;
+    display: block; margin-bottom: 4px;
+  }
+  .scripture-verse {
+    font-style: italic; color: #44403c;
   }
   .heading {
     font-size: 20px; font-weight: 700; color: #1c1917;
@@ -198,7 +250,7 @@ function handlePrint(dev: Devotional) {
   <div class="divider"></div>
 
   ${parsed.sections.map((s) => {
-    if (s.type === 'scripture') return `<div class="scripture">${s.text}</div>`;
+    if (s.type === 'scripture') return `<div class="scripture"><span class="scripture-ref">${s.reference || s.text}</span><span class="scripture-verse">${s.verseText || ''}</span></div>`;
     if (s.type === 'heading') return `<h2 class="heading">${s.text}</h2>`;
     return `<p class="body">${s.text}</p>`;
   }).join('\n  ')}
@@ -275,9 +327,14 @@ export function Devotionals() {
                   return (
                     <div
                       key={idx}
-                      className="border-l-4 border-amber-300 dark:border-amber-700 pl-4 py-2 my-4 italic text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                      className="border-l-4 border-amber-400 dark:border-amber-600 pl-4 py-2 my-4 text-sm leading-relaxed"
                     >
-                      {section.text}
+                      <span className="block font-bold text-gray-900 dark:text-white mb-1">
+                        {section.reference || section.text}
+                      </span>
+                      <span className="italic text-gray-600 dark:text-gray-400">
+                        {section.verseText || ''}
+                      </span>
                     </div>
                   );
                 }
@@ -391,3 +448,5 @@ export function Devotionals() {
     </div>
   );
 }
+
+export { Devotionals }
