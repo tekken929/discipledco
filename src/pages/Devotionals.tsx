@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Printer } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
+import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
+import type { HeroTheme } from '../context/HeroThemeContext';
 
 interface Devotional {
   title: string;
@@ -267,6 +269,7 @@ function handlePrint(dev: Devotional) {
 
 export function Devotionals() {
   const [selected, setSelected] = useState<Devotional | null>(null);
+  const [devTheme, setDevTheme] = useState<HeroTheme>('frost');
 
   if (selected) {
     const meta = DEVOTIONAL_META[selected.title];
@@ -382,18 +385,39 @@ export function Devotionals() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-gray-950">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="mb-10 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/40 mb-4">
-            <BookOpen className="w-7 h-7 text-amber-600 dark:text-amber-400" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold font-display text-gray-900 dark:text-white mb-3">
-            Daily Devotionals
-          </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-base max-w-xl mx-auto leading-relaxed">
-            Short, Scripture-rich reflections to strengthen your walk with Christ.
-          </p>
+      {/* Hero header with theme picker */}
+      <section className="relative overflow-hidden">
+        <ThemeBackground theme={devTheme} />
+        <div className="relative px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+          <BackgroundPicker value={devTheme} onChange={setDevTheme} />
         </div>
+        <div className="relative px-4 sm:px-6 lg:px-8 pb-10">
+          <div className="relative rounded-[2rem] bg-white/[0.08] backdrop-blur-2xl border border-white/20 shadow-2xl overflow-hidden">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
+            <div className="relative px-6 py-10 sm:px-10 md:px-14 md:py-14 text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 border border-white/20 mb-5">
+                <BookOpen className="w-7 h-7 text-white" />
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-white mb-3 leading-tight tracking-wide drop-shadow-2xl">
+                Daily Devotionals
+              </h1>
+              <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-6">
+                The Disciple Code
+              </p>
+              <div className="flex justify-center mb-6">
+                <div className="w-12 h-px bg-white/25" />
+              </div>
+              <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed font-light italic drop-shadow-lg">
+                Short, Scripture-rich reflections to strengthen your walk with Christ.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="absolute -bottom-10 left-0 right-0 h-24 bg-gradient-to-t from-stone-50 dark:from-gray-950 to-transparent pointer-events-none" />
+      </section>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {devotionals.map((dev) => {
@@ -448,3 +472,5 @@ export function Devotionals() {
     </div>
   );
 }
+
+export { Devotionals }

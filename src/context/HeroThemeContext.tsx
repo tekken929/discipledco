@@ -10,7 +10,7 @@ interface HeroThemeContextValue {
 const HeroThemeContext = createContext<HeroThemeContextValue | undefined>(undefined);
 
 export function HeroThemeProvider({ children }: { children: ReactNode }) {
-  const [heroTheme, setHeroTheme] = useState<HeroTheme>('aurora');
+  const [heroTheme, setHeroTheme] = useState<HeroTheme>('forest');
   return (
     <HeroThemeContext.Provider value={{ heroTheme, setHeroTheme }}>
       {children}

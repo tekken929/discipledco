@@ -13,7 +13,7 @@ const BG_LABELS: { id: HeroTheme; label: string; icon: typeof Sunrise }[] = [
   { id: 'frost', label: 'Frost', icon: Snowflake },
 ];
 
-function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b: HeroTheme) => void }) {
+export function BackgroundPicker({ value, onChange }: { value: HeroTheme; onChange: (b: HeroTheme) => void }) {
   return (
     <div className="flex flex-wrap items-center gap-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-1 shadow-lg">
       {BG_LABELS.map(({ id, label, icon: Icon }) => (
@@ -230,6 +230,19 @@ function GlassHero() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function ThemeBackground({ theme }: { theme: HeroTheme }) {
+  return (
+    <>
+      {theme === 'dawn' && <DawnBackground />}
+      {theme === 'sanctuary' && <SanctuaryBackground />}
+      {theme === 'aurora' && <AuroraBackground />}
+      {theme === 'forest' && <ForestBackground />}
+      {theme === 'ember' && <EmberBackground />}
+      {theme === 'frost' && <FrostBackground />}
+    </>
   );
 }
 
