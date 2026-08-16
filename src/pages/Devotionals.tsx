@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Printer } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
 import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
 import type { HeroTheme } from '../context/HeroThemeContext';
