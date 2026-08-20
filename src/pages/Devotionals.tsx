@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
 import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
+import { DevotionalSignup } from '../components/DevotionalSignup';
 import type { HeroTheme } from '../context/HeroThemeContext';
 
 interface Devotional {
@@ -463,6 +464,8 @@ export function Devotionals() {
             );
           })}
         </div>
+
+        <DevotionalSignup />
 
         <div className="mt-12 text-center">
           <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">
