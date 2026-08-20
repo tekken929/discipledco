@@ -14,7 +14,7 @@ interface Devotional {
 const devotionals: Devotional[] = devotionalsData as Devotional[];
 
 const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg: string; border: string; description: string }> = {
-  'How God Saves Sinners and How We Know We Belong to Christ': {
+  'How God Saves Sinners': {
     icon: Cross,
     color: 'text-emerald-600 dark:text-emerald-400',
     bg: 'bg-emerald-100 dark:bg-emerald-900/40',
