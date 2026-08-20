@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
 import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
 import type { HeroTheme } from '../context/HeroThemeContext';
@@ -14,6 +14,13 @@ interface Devotional {
 const devotionals: Devotional[] = devotionalsData as Devotional[];
 
 const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg: string; border: string; description: string }> = {
+  'How God Saves Sinners and How We Know We Belong to Christ': {
+    icon: Cross,
+    color: 'text-emerald-600 dark:text-emerald-400',
+    bg: 'bg-emerald-100 dark:bg-emerald-900/40',
+    border: 'border-emerald-200 dark:border-emerald-800',
+    description: 'How a holy God redeems guilty sinners through Christ alone, and how we can know we belong to Him.',
+  },
   'The Table of Grace': {
     icon: ScrollText,
     color: 'text-amber-600 dark:text-amber-400',
