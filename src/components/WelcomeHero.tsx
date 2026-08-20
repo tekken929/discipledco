@@ -48,7 +48,7 @@ function AppDownloadCard() {
         <div className="text-left">
           <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Daily Devotionals</p>
           <p className="text-white text-sm font-bold leading-tight">Read devotionals</p>
-          <p className="text-white/60 text-xs">4 reflections from The Disciple Code</p>
+          <p className="text-white/60 text-xs">5 reflections from The Disciple Code</p>
         </div>
       </Link>
       <Link

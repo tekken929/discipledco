@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
@@ -277,6 +277,10 @@ function handlePrint(dev: Devotional) {
 export function Devotionals() {
   const [selected, setSelected] = useState<Devotional | null>(null);
   const [devTheme, setDevTheme] = useState<HeroTheme>('frost');
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [selected]);
 
   if (selected) {
     const meta = DEVOTIONAL_META[selected.title];
