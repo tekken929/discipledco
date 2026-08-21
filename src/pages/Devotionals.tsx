@@ -66,73 +66,160 @@ interface ParsedSection {
   verseText?: string;
 }
 
+interface InlineMatch {
+  reference: string;
+  verseText: string;
+  start: number;
+  end: number;
+}
+
+const INLINE_REF_REGEX = /((?:\d?\s)?[A-Z][a-z]+(?:\s\d?[A-Z][a-z]+)?\s+\d+:\d+(?:[\u2013\u2014-]\d+)?(?:\s*\([^)]*\))?)\s*[,)]?\s*$/;
+
+function findClosingQuote(text: string, start: number): number {
+  for (let i = start + 1; i < text.length; i++) {
+    if (text[i] === '\u201d' || text[i] === '"') return i;
+  }
+  return -1;
+}
+
+function findInlineVerses(text: string): InlineMatch[] {
+  const matches: InlineMatch[] = [];
+  const quoteStartRegex = /[\u201c"]/g;
+  let m: RegExpExecArray | null;
+  while ((m = quoteStartRegex.exec(text)) !== null) {
+    const closeIdx = findClosingQuote(text, m.index);
+    if (closeIdx === -1) continue;
+    const afterQuote = text.slice(closeIdx + 1);
+    const refMatch = afterQuote.match(INLINE_REF_REGEX);
+    if (refMatch) {
+      const verseText = text.slice(m.index + 1, closeIdx);
+      const refEnd = closeIdx + 1 + refMatch.index! + refMatch[0].length;
+      matches.push({
+        reference: refMatch[1].trim(),
+        verseText: verseText.trim(),
+        start: m.index,
+        end: refEnd,
+      });
+      quoteStartRegex.lastIndex = refEnd;
+    }
+  }
+  return matches;
+}
+
+function splitBodyOnVerses(text: string): ParsedSection[] {
+  const matches = findInlineVerses(text);
+  if (matches.length === 0) return [{ type: 'body', text }];
+  const result: ParsedSection[] = [];
+  let lastEnd = 0;
+  for (const match of matches) {
+    if (match.start > lastEnd) {
+      const before = text.slice(lastEnd, match.start).trim();
+      if (before) result.push({ type: 'body', text: before });
+    }
+    result.push({
+      type: 'scripture',
+      text: match.reference,
+      reference: match.reference,
+      verseText: ensureQuotes(match.verseText),
+    });
+    lastEnd = match.end;
+  }
+  if (lastEnd < text.length) {
+    const after = text.slice(lastEnd).trim();
+    if (after) result.push({ type: 'body', text: after });
+  }
+  return result;
+}
+
 function parseDevotionalContent(content: string): { title: string; subtitle: string; sections: ParsedSection[] } {
   const lines = content.split('\n').map((l) => l.trim()).filter((l) => l);
   const title = lines[0] || '';
-  // Line 2 is "THE DISCIPLE CODE" - skip it
-  // Lines 3+ until first scripture or heading is the subtitle
   let subtitle = '';
   let i = 1;
-  // Skip "THE DISCIPLE CODE"
   if (lines[i] && lines[i].toUpperCase().includes('DISCIPLE CODE')) i++;
-  // Collect subtitle lines (typically 1-2 lines before scripture references begin)
   while (i < lines.length && !isScriptureLine(lines[i]) && !isHeadingLine(lines[i])) {
     if (subtitle) subtitle += ' ';
     subtitle += lines[i];
     i++;
   }
 
-  const sections: ParsedSection[] = [];
+  const rawSections: ParsedSection[] = [];
   while (i < lines.length) {
     const line = lines[i];
     if (isScriptureLine(line)) {
-      const { reference, verseText, consumed } = extractScripture(lines, i);
-      if (verseText) {
-        sections.push({ type: 'scripture', text: line, reference, verseText });
-      } else {
-        sections.push({ type: 'scripture', text: line, reference, verseText: '' });
-      }
+      const { reference, verseText, consumed, trailingBody } = extractScripture(lines, i);
+      rawSections.push({ type: 'scripture', text: line, reference, verseText });
+      if (trailingBody) rawSections.push({ type: 'body', text: trailingBody });
       i += consumed;
     } else if (isHeadingLine(line)) {
-      sections.push({ type: 'heading', text: line });
+      rawSections.push({ type: 'heading', text: line });
       i++;
     } else {
-      sections.push({ type: 'body', text: line });
+      rawSections.push({ type: 'body', text: line });
       i++;
+    }
+  }
+
+  const merged: ParsedSection[] = [];
+  for (const s of rawSections) {
+    const last = merged[merged.length - 1];
+    if (s.type === 'body' && last && last.type === 'body') {
+      last.text += ' ' + s.text;
+    } else {
+      merged.push({ ...s });
+    }
+  }
+
+  const sections: ParsedSection[] = [];
+  for (const s of merged) {
+    if (s.type === 'body') {
+      sections.push(...splitBodyOnVerses(s.text));
+    } else {
+      sections.push(s);
     }
   }
 
   return { title, subtitle, sections };
 }
 
-function extractScripture(lines: string[], startIdx: number): { reference: string; verseText: string; consumed: number } {
+function extractScripture(lines: string[], startIdx: number): { reference: string; verseText: string; consumed: number; trailingBody: string } {
   const line = lines[startIdx];
-  // Try to split reference from verse text on the same line
-  // Pattern 1: "Matthew 5:17 — \"verse\"" (em dash separator)
   const emDashMatch = line.match(/^(.+?)\s+[\u2014\u2013-]\s+(.*)$/);
   if (emDashMatch) {
-    return { reference: emDashMatch[1].trim(), verseText: ensureQuotes(emDashMatch[2].trim()), consumed: 1 };
+    return { reference: emDashMatch[1].trim(), verseText: ensureQuotes(emDashMatch[2].trim()), consumed: 1, trailingBody: '' };
   }
-  // Pattern 2: "2 Corinthians 10:4\u20135 (NLT)\u201cverse\u201d" (reference directly followed by quote)
   const directQuoteMatch = line.match(/^((?:\d?\s)?[A-Z][a-z]+\s+\d+:\d+[\u2013\u2014-]?\d*[\u2013\u2014-]?\d*\s*(?:\([^)]*\))?[,\s]*)[\u201c"\u201d](.*)$/);
   if (directQuoteMatch) {
-    return { reference: directQuoteMatch[1].trim(), verseText: ensureQuotes(directQuoteMatch[2].trim()), consumed: 1 };
+    return { reference: directQuoteMatch[1].trim(), verseText: ensureQuotes(directQuoteMatch[2].trim()), consumed: 1, trailingBody: '' };
   }
-  // Pattern 3: reference only, verse text on following lines (e.g. "Hebrews 4:14\u201316 (NLT)")
-  // Collect following lines as verse text until next scripture, heading, or unquoted body text
   let verseLines: string[] = [];
   let j = startIdx + 1;
+  let trailingBody = '';
   while (j < lines.length && !isScriptureLine(lines[j]) && !isHeadingLine(lines[j])) {
+    const joined = verseLines.join(' ');
+    if ((joined.includes('\u201d') || joined.includes('"')) && verseLines.length > 0) {
+      trailingBody = lines[j];
+      j++;
+      break;
+    }
     verseLines.push(lines[j]);
     j++;
-    // Stop after we've collected at least one line and hit a closing quote
-    if (verseLines.join(' ').includes('\u201d') || verseLines.join(' ').includes('"')) break;
   }
   if (verseLines.length > 0) {
-    return { reference: line.trim(), verseText: ensureQuotes(verseLines.join(' ').trim()), consumed: 1 + verseLines.length };
+    const fullText = verseLines.join(' ').trim();
+    const closeIdx = fullText.lastIndexOf('\u201d');
+    const closeIdx2 = fullText.lastIndexOf('"');
+    const bestClose = Math.max(closeIdx, closeIdx2);
+    if (bestClose !== -1 && bestClose < fullText.length - 1) {
+      const versePart = fullText.slice(0, bestClose + 1).trim();
+      const bodyPart = fullText.slice(bestClose + 1).trim();
+      if (bodyPart) {
+        return { reference: line.trim(), verseText: ensureQuotes(versePart), consumed: j - startIdx, trailingBody: bodyPart };
+      }
+    }
+    return { reference: line.trim(), verseText: ensureQuotes(fullText), consumed: j - startIdx, trailingBody: '' };
   }
-  // Fallback: just the reference, no verse text
-  return { reference: line.trim(), verseText: '', consumed: 1 };
+  return { reference: line.trim(), verseText: '', consumed: 1, trailingBody: '' };
 }
 
 function ensureQuotes(text: string): string {
