@@ -50,6 +50,13 @@ const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg
     border: 'border-violet-200 dark:border-violet-800',
     description: 'How the enemy blinds minds and how the light of Christ breaks through.',
   },
+  'Repentance': {
+    icon: Heart,
+    color: 'text-teal-600 dark:text-teal-400',
+    bg: 'bg-teal-100 dark:bg-teal-900/40',
+    border: 'border-teal-200 dark:border-teal-800',
+    description: 'Turning from sin and toward God \u2014 the call that stands at the entrance of the Christian life.',
+  },
 };
 
 interface ParsedSection {
