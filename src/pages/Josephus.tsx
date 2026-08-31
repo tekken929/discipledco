@@ -1,25 +1,34 @@
 import { useState } from 'react';
-import { ScrollText, ChevronLeft, ChevronRight, Check, X } from 'lucide-react';
-import { josephusData, type JosephusVerse } from '../data/josephus';
+import { ScrollText, ChevronLeft, ChevronRight, Check, X, BookOpen, FileText } from 'lucide-react';
+import { josephusContent, type JosephusSection } from '../data/josephus';
+
+type View = 'preface' | 'chapter';
 
 export function Josephus() {
+  const [view, setView] = useState<View>('preface');
   const [chapterIdx, setChapterIdx] = useState(0);
-  const [approved, setApproved] = useState<Set<number>>(new Set());
-  const [rejected, setRejected] = useState<Set<number>>(new Set());
+  const [approved, setApproved] = useState<Set<string>>(new Set());
+  const [rejected, setRejected] = useState<Set<string>>(new Set());
 
-  const chapter = josephusData[chapterIdx];
-  const hasPrev = chapterIdx > 0;
-  const hasNext = chapterIdx < josephusData.length - 1;
+  const chapters = josephusContent.chapters;
+  const chapter = chapters[chapterIdx];
+  const hasPrev = view === 'chapter' && (chapterIdx > 0 || true);
+  const hasNext = view === 'chapter' && (chapterIdx < chapters.length - 1 || view === 'preface');
 
-  function toggleApproved(verse: number) {
+  function getKey(section: number): string {
+    if (view === 'preface') return `preface-${section}`;
+    return `ch${chapter.chapter}-${section}`;
+  }
+
+  function toggleApproved(key: string) {
     setApproved((prev) => {
       const next = new Set(prev);
-      if (next.has(verse)) next.delete(verse);
+      if (next.has(key)) next.delete(key);
       else {
-        next.add(verse);
+        next.add(key);
         setRejected((r) => {
           const nr = new Set(r);
-          nr.delete(verse);
+          nr.delete(key);
           return nr;
         });
       }
@@ -27,21 +36,84 @@ export function Josephus() {
     });
   }
 
-  function toggleRejected(verse: number) {
+  function toggleRejected(key: string) {
     setRejected((prev) => {
       const next = new Set(prev);
-      if (next.has(verse)) next.delete(verse);
+      if (next.has(key)) next.delete(key);
       else {
-        next.add(verse);
+        next.add(key);
         setApproved((a) => {
           const na = new Set(a);
-          na.delete(verse);
+          na.delete(key);
           return na;
         });
       }
       return next;
     });
   }
+
+  function renderSection(sec: JosephusSection, key: string) {
+    const isApproved = approved.has(key);
+    const isRejected = rejected.has(key);
+    return (
+      <div
+        key={key}
+        className={`grid md:grid-cols-2 gap-4 rounded-xl border p-4 transition-all ${
+          isApproved
+            ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/50 dark:bg-emerald-900/10'
+            : isRejected
+            ? 'border-red-300 dark:border-red-800 bg-red-50/50 dark:bg-red-900/10'
+            : 'border-stone-200 dark:border-gray-700 bg-white dark:bg-gray-800/50'
+        }`}
+      >
+        <div className="flex gap-3">
+          <span className="text-xs font-bold text-amber-600 dark:text-amber-400 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
+            {sec.section}
+          </span>
+          <p className="leading-relaxed text-gray-700 dark:text-gray-300 text-sm">
+            {sec.original}
+          </p>
+        </div>
+        <div className="flex gap-3 md:border-l md:border-stone-200 dark:md:border-gray-700 md:pl-4">
+          <div className="flex-1">
+            <p className="leading-relaxed text-gray-900 dark:text-gray-100 text-sm font-medium">
+              {sec.translation}
+            </p>
+          </div>
+          <div className="flex flex-col gap-1.5 flex-shrink-0">
+            <button
+              onClick={() => toggleApproved(key)}
+              title="Approve this translation"
+              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
+                isApproved
+                  ? 'bg-emerald-500 text-white'
+                  : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-emerald-900/50'
+              }`}
+            >
+              <Check className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => toggleRejected(key)}
+              title="Needs revision"
+              className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
+                isRejected
+                  ? 'bg-red-500 text-white'
+                  : 'bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50'
+              }`}
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const sections: JosephusSection[] =
+    view === 'preface' ? josephusContent.preface.sections : chapter.sections;
+  const totalSections = sections.length;
+  const approvedCount = sections.filter((s) => approved.has(getKey(s.section))).length;
+  const rejectedCount = sections.filter((s) => rejected.has(getKey(s.section))).length;
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -64,43 +136,59 @@ export function Josephus() {
         </p>
       </div>
 
-      {/* Chapter selector */}
-      <div className="flex items-center justify-center gap-3 mb-6">
+      {/* Tab selector: Preface + Chapters */}
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
         <button
-          onClick={() => hasPrev && setChapterIdx(chapterIdx - 1)}
-          disabled={!hasPrev}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          onClick={() => setView('preface')}
+          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold transition-all ${
+            view === 'preface'
+              ? 'bg-amber-500 text-white shadow-sm'
+              : 'bg-stone-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-stone-200 dark:hover:bg-gray-700'
+          }`}
         >
-          <ChevronLeft className="w-4 h-4" />
-          Prev
+          <FileText className="w-4 h-4" />
+          Preface
         </button>
-        <div className="px-4 py-2 rounded-lg bg-stone-100 dark:bg-gray-800 border border-stone-200 dark:border-gray-700">
-          <span className="text-sm font-bold text-gray-900 dark:text-white">
-            Book {chapter.book} · Chapter {chapter.chapter}
-          </span>
-        </div>
-        <button
-          onClick={() => hasNext && setChapterIdx(chapterIdx + 1)}
-          disabled={!hasNext}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          Next
-          <ChevronRight className="w-4 h-4" />
-        </button>
+        {chapters.map((ch, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              setChapterIdx(idx);
+              setView('chapter');
+            }}
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold transition-all ${
+              view === 'chapter' && chapterIdx === idx
+                ? 'bg-amber-500 text-white shadow-sm'
+                : 'bg-stone-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-stone-200 dark:hover:bg-gray-700'
+            }`}
+          >
+            <BookOpen className="w-4 h-4" />
+            Ch {ch.chapter}
+          </button>
+        ))}
+      </div>
+
+      {/* Chapter title */}
+      <div className="text-center mb-4">
+        <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+          {view === 'preface'
+            ? josephusContent.preface.title
+            : `Book ${chapter.book}, Chapter ${chapter.chapter}: ${chapter.title}`}
+        </h2>
       </div>
 
       {/* Approval summary bar */}
       <div className="flex items-center justify-center gap-4 mb-6 text-xs font-semibold">
         <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
           <Check className="w-3.5 h-3.5" />
-          {approved.size} Approved
+          {approvedCount} Approved
         </span>
         <span className="flex items-center gap-1.5 text-red-500 dark:text-red-400">
           <X className="w-3.5 h-3.5" />
-          {rejected.size} Needs Revision
+          {rejectedCount} Needs Revision
         </span>
         <span className="text-gray-400 dark:text-gray-500">
-          {chapter.verses.length - approved.size - rejected.size} Pending
+          {totalSections - approvedCount - rejectedCount} Pending
         </span>
       </div>
 
@@ -114,85 +202,41 @@ export function Josephus() {
         </div>
       </div>
 
-      {/* Side-by-side verses */}
+      {/* Side-by-side sections */}
       <div className="space-y-3">
-        {chapter.verses.map((v: JosephusVerse) => {
-          const isApproved = approved.has(v.verse);
-          const isRejected = rejected.has(v.verse);
-          return (
-            <div
-              key={v.verse}
-              className={`grid md:grid-cols-2 gap-4 rounded-xl border p-4 transition-all ${
-                isApproved
-                  ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/50 dark:bg-emerald-900/10'
-                  : isRejected
-                  ? 'border-red-300 dark:border-red-800 bg-red-50/50 dark:bg-red-900/10'
-                  : 'border-stone-200 dark:border-gray-700 bg-white dark:bg-gray-800/50'
-              }`}
-            >
-              {/* Verse number + original text */}
-              <div className="flex gap-3">
-                <span className="text-xs font-bold text-amber-600 dark:text-amber-400 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
-                  {v.verse}
-                </span>
-                <p className="leading-relaxed text-gray-700 dark:text-gray-300 text-sm">
-                  {v.original}
-                </p>
-              </div>
-
-              {/* Translation + approve/reject controls */}
-              <div className="flex gap-3 md:border-l md:border-stone-200 dark:md:border-gray-700 md:pl-4">
-                <div className="flex-1">
-                  <p className="leading-relaxed text-gray-900 dark:text-gray-100 text-sm font-medium">
-                    {v.translation}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-1.5 flex-shrink-0">
-                  <button
-                    onClick={() => toggleApproved(v.verse)}
-                    title="Approve this translation"
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
-                      isApproved
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-emerald-900/50'
-                    }`}
-                  >
-                    <Check className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => toggleRejected(v.verse)}
-                    title="Needs revision"
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
-                      isRejected
-                        ? 'bg-red-500 text-white'
-                        : 'bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50'
-                    }`}
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {sections.map((sec) => renderSection(sec, getKey(sec.section)))}
       </div>
 
       {/* Bottom navigation */}
       <div className="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-stone-200 dark:border-gray-700">
         <button
-          onClick={() => hasPrev && setChapterIdx(chapterIdx - 1)}
-          disabled={!hasPrev}
+          onClick={() => {
+            if (view === 'preface') return;
+            if (chapterIdx > 0) {
+              setChapterIdx(chapterIdx - 1);
+            } else {
+              setView('preface');
+            }
+          }}
+          disabled={view === 'preface'}
           className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-gray-700 font-semibold text-sm text-gray-600 dark:text-gray-400 hover:bg-stone-50 dark:hover:bg-gray-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="w-4 h-4" />
-          Previous Chapter
+          {view === 'chapter' && chapterIdx === 0 ? 'Preface' : 'Previous'}
         </button>
         <button
-          onClick={() => hasNext && setChapterIdx(chapterIdx + 1)}
-          disabled={!hasNext}
+          onClick={() => {
+            if (view === 'preface') {
+              setChapterIdx(0);
+              setView('chapter');
+            } else if (chapterIdx < chapters.length - 1) {
+              setChapterIdx(chapterIdx + 1);
+            }
+          }}
+          disabled={view === 'chapter' && chapterIdx >= chapters.length - 1}
           className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-gray-700 font-semibold text-sm text-gray-600 dark:text-gray-400 hover:bg-stone-50 dark:hover:bg-gray-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Next Chapter
+          {view === 'preface' ? 'Chapter 1' : 'Next'}
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
