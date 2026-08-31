@@ -149,4 +149,243 @@ export const josephusData: JosephusChapter[] = [
       },
     ],
   },
+  {
+    book: 1,
+    chapter: 2,
+    title: 'Antiquities of the Jews — Book 1, Chapter 2 (vv. 27-51)',
+    verses: [
+      {
+        verse: 27,
+        original: 'In the beginning God created the heaven and the earth. But when the earth did not come into sight, but was covered with thick darkness, and a wind moved upon its surface, God commanded that there should be light:',
+        translation: 'In the beginning God created the heavens and the earth. Now the earth was formless and covered in thick darkness, and a wind moved over its surface, when God commanded that there should be light.',
+      },
+      {
+        verse: 28,
+        original: 'and when that was made, he considered the whole mass, and separated the light and the darkness; and the name he gave to one was Night, and the other he called Day: and he named the beginning of light, and the time of rest, The Evening and The Morning,',
+        translation: 'When the light was made, He surveyed the whole mass and separated the light from the darkness. He called one Night and the other Day, and He named the beginning of light and the time of rest the Evening and the Morning.',
+      },
+      {
+        verse: 29,
+        original: 'and this was indeed the first day. But Moses said it was one day; the cause of which I am able to give even now; but because I have promised to give such reasons for all things in a treatise by itself, I shall put off its exposition till that time.',
+        translation: 'This was indeed the first day. But Moses said it was one day, the reason for which I am able to give even now. However, because I have promised to give such reasons for all things in a separate treatise, I shall defer its explanation until that time.',
+      },
+      {
+        verse: 30,
+        original: 'After this, on the second day, he placed the heaven over the whole world, and separated it from the other parts, and he determined it should stand by itself. He also placed a crystalline [firmament] round it, and put it together in a manner agreeable to the earth, and fitted it for giving moisture and rain, and for affording the advantage of dews.',
+        translation: 'After this, on the second day, He placed the heaven over the whole world and separated it from the other parts, determining that it should stand by itself. He also placed a crystalline firmament around it, fitting it to the earth in a manner suited for providing moisture and rain and for the benefit of dews.',
+      },
+      {
+        verse: 31,
+        original: 'On the third day he appointed the dry land to appear, with the sea itself round about it; and on the very same day he made the plants and the seeds to spring out of the earth. On the fourth day he adorned the heaven with the sun, the moon, and the other stars, and appointed them their motions and courses, that the vicissitudes of the seasons might be clearly signified.',
+        translation: 'On the third day He commanded the dry land to appear, with the sea surrounding it, and on that very same day He made the plants and seeds spring up from the earth. On the fourth day He adorned the heavens with the sun, the moon, and the other stars, and appointed their motions and courses so that the changing of the seasons might be clearly marked.',
+      },
+      {
+        verse: 32,
+        original: 'And on the fifth day he produced the living creatures, both those that swim, and those that fly; the former in the sea, the latter in the air: he also sorted them as to society and mixture, for procreation, and that their kinds might increase and multiply. On the sixth day he created the four-footed beasts, and made them male and female: on the same day he also formed man.',
+        translation: 'On the fifth day He brought forth living creatures, both those that swim and those that fly, the former in the sea and the latter in the air. He also arranged them by kind and pairing for procreation, so that their species might increase and multiply. On the sixth day He created the four-footed beasts and made them male and female, and on that same day He also formed man.',
+      },
+      {
+        verse: 33,
+        original: 'Accordingly Moses says, That in just six days the world, and all that is therein, was made. And that the seventh day was a rest, and a release from the labor of such operations; whence it is that we Celebrate a rest from our labors on that day, and call it the Sabbath, which word denotes rest in the Hebrew tongue.',
+        translation: 'Accordingly Moses says that in just six days the world and all that is in it was made. The seventh day was a rest, a release from the labor of such works. That is why we observe a rest from our labors on that day and call it the Sabbath, a word that means rest in the Hebrew tongue.',
+      },
+      {
+        verse: 34,
+        original: 'Moreover, Moses, after the seventh day was over begins to talk philosophically; and concerning the formation of man, says thus: That God took dust from the ground, and formed man, and inserted in him a spirit and a soul. This man was called Adam, which in the Hebrew tongue signifies one that is red, because he was formed out of red earth, compounded together; for of that kind is virgin and true earth.',
+        translation: 'After the seventh day, Moses begins to speak philosophically. Concerning the formation of man, he says this: God took dust from the ground and formed man, and placed within him a spirit and a soul. This man was called Adam, which in the Hebrew tongue means one who is red, because he was formed from red earth mixed together, for that is the nature of virgin and pure earth.',
+      },
+      {
+        verse: 35,
+        original: 'God also presented the living creatures, when he had made them, according to their kinds, both male and female, to Adam, who gave them those names by which they are still called. But when he saw that Adam had no female companion, no society, for there was no such created, and that he wondered at the other animals which were male and female, he laid him asleep, and took away one of his ribs, and out of it formed the woman;',
+        translation: 'God also presented the living creatures to Adam, each according to its kind, both male and female, and Adam gave them the names by which they are still called. But when He saw that Adam had no female companion, for none had been created, and that he marveled at the other animals which were male and female, God caused him to fall asleep, took one of his ribs, and from it formed the woman.',
+      },
+      {
+        verse: 36,
+        original: 'whereupon Adam knew her when she was brought to him, and acknowledged that she was made out of himself. Now a woman is called in the Hebrew tongue Issa; but the name of this woman was Eve, which signifies the mother of all living.',
+        translation: 'When she was brought to him, Adam recognized her and acknowledged that she was made from himself. A woman is called Issa in the Hebrew tongue, but the name of this woman was Eve, which means the mother of all living.',
+      },
+      {
+        verse: 37,
+        original: 'Moses says further, that God planted a paradise in the east, flourishing with all sorts of trees; and that among them was the tree of life, and another of knowledge, whereby was to be known what was good and evil;',
+        translation: 'Moses further says that God planted a paradise in the east, flourishing with every kind of tree, and that among them were the tree of life and the tree of knowledge, by which one could discern good and evil.',
+      },
+      {
+        verse: 38,
+        original: 'and that when he brought Adam and his wife into this garden, he commanded them to take care of the plants. Now the garden was watered by one river, which ran round about the whole earth, and was parted into four parts. And Phison, which denotes a multitude, running into India, makes its exit into the sea, and is by the Greeks called Ganges.',
+        translation: 'When He brought Adam and his wife into this garden, He commanded them to care for the plants. The garden was watered by a single river that encircled the whole earth and was divided into four parts. The Phison, which means a multitude, flows into India and empties into the sea; it is called the Ganges by the Greeks.',
+      },
+      {
+        verse: 39,
+        original: 'Euphrates also, as well as Tigris, goes down into the Red Sea. Now the name Euphrates, or Phrath, denotes either a dispersion, or a flower: by Tigris, or Diglath, is signified what is swift, with narrowness; and Geon runs through Egypt, and denotes what arises from the east, which the Greeks call Nile.',
+        translation: 'The Euphrates and the Tigris both flow into the Red Sea. The name Euphrates, or Phrath, means either a dispersion or a flower; by Tigris, or Diglath, is signified what is swift and narrow; and the Geon runs through Egypt and means what rises from the east, which the Greeks call the Nile.',
+      },
+      {
+        verse: 40,
+        original: 'God therefore commanded that Adam and his wife should eat of all the rest of the plants, but to abstain from the tree of knowledge; and foretold to them, that if they touched it, it would prove their destruction.',
+        translation: 'God therefore commanded Adam and his wife to eat of all the other plants, but to abstain from the tree of knowledge, and He warned them that if they touched it, it would prove their destruction.',
+      },
+      {
+        verse: 41,
+        original: 'But while all the living creatures had one language, at that time the serpent, which then lived together with Adam and his wife, shewed an envious disposition, at his supposal of their living happily, and in obedience to the commands of God;',
+        translation: 'While all the living creatures shared one language, the serpent, which then lived alongside Adam and his wife, displayed an envious disposition, resentful of their happy life and obedience to God\u2019s commands.',
+      },
+      {
+        verse: 42,
+        original: 'and imagining, that when they disobeyed them, they would fall into calamities, he persuaded the woman, out of a malicious intention, to taste of the tree of knowledge, telling them, that in that tree was the knowledge of good and evil; which knowledge, when they should obtain, they would lead a happy life; nay, a life not inferior to that of a god:',
+        translation: 'Imagining that if they disobeyed, they would fall into calamity, he persuaded the woman with malicious intent to taste of the tree of knowledge, telling her that within that tree lay the knowledge of good and evil, and that once they obtained it, they would live a happy life, indeed a life no less than that of a god.',
+      },
+      {
+        verse: 43,
+        original: 'by which means he overcame the woman, and persuaded her to despise the command of God. Now when she had tasted of that tree, and was pleased with its fruit, she persuaded Adam to make use of it also.',
+        translation: 'By these means he overcame the woman and persuaded her to disregard God\u2019s command. When she had tasted of the tree and was pleased with its fruit, she persuaded Adam to eat of it as well.',
+      },
+      {
+        verse: 44,
+        original: 'Upon this they perceived that they were become naked to one another; and being ashamed thus to appear abroad, they invented somewhat to cover them; for the tree sharpened their understanding; and they covered themselves with fig-leaves; and tying these before them, out of modesty, they thought they were happier than they were before, as they had discovered what they were in want of.',
+        translation: 'At this they realized they were naked before one another, and being ashamed to be seen, they devised something to cover themselves. The tree had sharpened their understanding, and they covered themselves with fig leaves, tying them in front out of modesty, and they thought themselves happier than before, having discovered what they had been lacking.',
+      },
+      {
+        verse: 45,
+        original: 'But when God came into the garden, Adam, who was wont before to come and converse with him, being conscious of his wicked behavior, went out of the way. This behavior surprised God; and he asked what was the cause of this his procedure; and why he, that before delighted in that conversation, did now fly from it, and avoid it.',
+        translation: 'But when God came into the garden, Adam, who had been accustomed to come and converse with Him, being conscious of his wrongdoing, hid himself. This behavior surprised God, and He asked what had caused this, and why he who had once delighted in that conversation now fled from it and avoided it.',
+      },
+      {
+        verse: 46,
+        original: 'When he made no reply, as conscious to himself that he had transgressed the command of God, God said, \u201cI had before determined about you both, how you might lead a happy life, without any affliction, and care, and vexation of soul; and that all things which might contribute to your enjoyment and pleasure should grow up by my providence, of their own accord, without your own labor and painstaking; which state of labor and painstaking would soon bring on old age, and death would not be at any remote distance:',
+        translation: 'When Adam made no reply, being aware that he had transgressed God\u2019s command, God said, \u201cI had previously determined for you both how you might lead a happy life, free from any affliction, care, or distress of soul, and that all things contributing to your enjoyment and pleasure would spring up by My providence of their own accord, without your own labor and toil. But that state of labor and toil would soon bring on old age, and death would not be far off.',
+      },
+      {
+        verse: 47,
+        original: 'but now thou hast abused this my good-will, and hast disobeyed my commands; for thy silence is not the sign of thy virtue, but of thy evil conscience.\u201d',
+        translation: 'But now you have abused this goodwill of Mine and disobeyed My commands, for your silence is not a sign of virtue but of an evil conscience.\u201d',
+      },
+      {
+        verse: 48,
+        original: 'However, Adam excused his sin, and entreated God not to be angry at him, and laid the blame of what was done upon his wife; and said that he was deceived by her, and thence became an offender; while she again accused the serpent.',
+        translation: 'Adam, however, excused his sin and begged God not to be angry with him, laying the blame on his wife, saying he had been deceived by her and so became an offender, while she in turn accused the serpent.',
+      },
+      {
+        verse: 49,
+        original: 'But God allotted him punishment, because he weakly submitted to the counsel of his wife; and said the ground should not henceforth yield its fruits of its own accord, but that when it should be harassed by their labor, it should bring forth some of its fruits, and refuse to bring forth others. He also made Eve liable to the inconveniency of breeding, and the sharp pains of bringing forth children; and this because she persuaded Adam with the same arguments wherewith the serpent had persuaded her, and had thereby brought him into a calamitous condition.',
+        translation: 'But God assigned him punishment because he weakly submitted to his wife\u2019s counsel, declaring that the ground would no longer yield its fruits of its own accord, but only when worked by their labor, and that it would produce some fruits and withhold others. He also made Eve subject to the burden of pregnancy and the sharp pains of childbirth, because she had persuaded Adam with the same arguments the serpent had used on her, thereby bringing him into a calamitous state.',
+      },
+      {
+        verse: 50,
+        original: 'He also deprived the serpent of speech, out of indignation at his malicious disposition towards Adam. Besides this, he inserted poison under his tongue, and made him an enemy to men; and suggested to them, that they should direct their strokes against his head, that being the place wherein lay his mischievous designs towards men, and it being easiest to take vengeance on him, that way. And when he had deprived him of the use of his feet, he made him to go rolling all along, and dragging himself upon the ground.',
+        translation: 'Out of indignation at the serpent\u2019s malicious disposition toward Adam, God also deprived him of speech. He further placed poison under his tongue and made him an enemy of mankind, and He suggested that people should strike at his head, for that was where his harmful designs against them lay, and it was the easiest way to take vengeance. And when He had taken away the use of his feet, God made him slither and drag himself along the ground.',
+      },
+      {
+        verse: 51,
+        original: 'And when God had appointed these penalties for them, he removed Adam and Eve out of the garden into another place.',
+        translation: 'And when God had appointed these penalties, He removed Adam and Eve from the garden to another place.',
+      },
+    ],
+  },
+  {
+    book: 1,
+    chapter: 3,
+    title: 'Antiquities of the Jews — Book 1, Chapter 3 (vv. 52-71)',
+    verses: [
+      {
+        verse: 52,
+        original: 'Adam and Eve had two sons: the elder of them was named Cain; which name, when it is interpreted, signifies a possession: the younger was Abel, which signifies sorrow. They had also daughters.',
+        translation: 'Adam and Eve had two sons: the elder was named Cain, a name which, when interpreted, means a possession; the younger was Abel, which means sorrow. They also had daughters.',
+      },
+      {
+        verse: 53,
+        original: 'Now the two brethren were pleased with different courses of life: for Abel, the younger, was a lover of righteousness; and believing that God was present at all his actions, he excelled in virtue; and his employment was that of a shepherd. But Cain was not only very wicked in other respects, but was wholly intent upon getting; and he first contrived to plough the ground. He slew his brother on the occasion following:\u2014',
+        translation: 'The two brothers pursued different ways of life: Abel, the younger, was a lover of righteousness who believed that God was present in all his actions, and he excelled in virtue; his occupation was that of a shepherd. But Cain was not only very wicked in other respects, but was entirely focused on acquisition, and he was the first to devise the plowing of the ground. He slew his brother on the following occasion:',
+      },
+      {
+        verse: 54,
+        original: 'They had resolved to sacrifice to God. Now Cain brought the fruits of the earth, and of his husbandry; but Abel brought milk, and the first-fruits of his flocks: but God was more delighted with the latter oblation, when he was honored with what grew naturally of its own accord, than he was with what was the invention of a covetous man, and gotten by forcing the ground;',
+        translation: 'They had agreed to offer sacrifices to God. Cain brought the fruits of the earth and of his farming, while Abel brought milk and the firstborn of his flocks. God was more pleased with the latter offering, being honored by what grew naturally of its own accord, than with what was the invention of a greedy man, obtained by forcing the ground.',
+      },
+      {
+        verse: 55,
+        original: 'whence it was that Cain was very angry that Abel was preferred by God before him; and he slew his brother, and hid his dead body, thinking to escape discovery. But God, knowing what had been done, came to Cain, and asked him what was become of his brother, because he had not seen him of many days; whereas he used to observe them conversing together at other times.',
+        translation: 'It was for this reason that Cain grew very angry that God preferred Abel over him, and he killed his brother and hid the body, thinking to escape detection. But God, knowing what had been done, came to Cain and asked what had become of his brother, for He had not seen him for many days, though He used to observe the two conversing together at other times.',
+      },
+      {
+        verse: 56,
+        original: 'But Cain was in doubt with himself, and knew not what answer to give to God. At first he said that he was himself at a loss about his brother\u2019s disappearing; but when he was provoked by God, who pressed him vehemently, as resolving to know what the matter was, he replied, he was not his brother\u2019s guardian or keeper, nor was he an observer of what he did.',
+        translation: 'Cain was at a loss and did not know what answer to give God. At first he said he himself was puzzled by his brother\u2019s disappearance, but when God pressed him insistently, determined to know the truth, Cain replied that he was not his brother\u2019s guardian or keeper, nor was he one to observe what he did.',
+      },
+      {
+        verse: 57,
+        original: 'But, in return, God convicted Cain, as having been the murderer of his brother; and said, \u201cI wonder at thee, that thou knowest not what is become of a man whom thou thyself hast destroyed.\u201d',
+        translation: 'In response, God convicted Cain of being his brother\u2019s murderer and said, \u201cI am astonished that you do not know what has become of a man whom you yourself have destroyed.\u201d',
+      },
+      {
+        verse: 58,
+        original: 'God therefore did not inflict the punishment [of death] upon him, on account of his offering sacrifice, and thereby making supplication to him not to be extreme in his wrath to him; but he made him accursed, and threatened his posterity in the seventh generation. He also cast him, together with his wife, out of that land.',
+        translation: 'God therefore did not inflict the punishment of death upon him, because he offered a sacrifice and thereby made supplication not to be treated with extreme wrath. But God placed a curse on him and threatened his descendants in the seventh generation. He also drove him, together with his wife, out of that land.',
+      },
+      {
+        verse: 59,
+        original: 'And when he was afraid that in wandering about he should fall among Wild beasts, and by that means perish, God bid him not to entertain such a melancholy suspicion, and to go over all the earth without fear of what mischief he might suffer from wild beasts; and setting a mark upon him, that he might be known, he commanded him to depart.',
+        translation: 'When Cain feared that in his wandering he might fall among wild beasts and perish, God told him not to entertain such a gloomy suspicion, and to travel over all the earth without fear of what harm he might suffer from wild beasts. And God set a mark upon him so that he would be recognized, and commanded him to depart.',
+      },
+      {
+        verse: 60,
+        original: 'And when Cain had traveled over many countries, he, with his wife, built a city, named Nod, which is a place so called, and there he settled his abode; where also he had children. However, he did not accept of his punishment in order to amendment, but to increase his wickedness; for he only aimed to procure every thing that was for his own bodily pleasure, though it obliged him to be injurious to his neighbors.',
+        translation: 'After Cain had traveled through many countries, he and his wife built a city named Nod, so called for that place, and there he settled. He also had children there. However, he did not accept his punishment as a means to reform, but rather to increase his wickedness, for he sought only to obtain everything that served his own bodily pleasure, even if it meant harming his neighbors.',
+      },
+      {
+        verse: 61,
+        original: 'He augmented his household substance with much wealth, by rapine and violence; he excited his acquaintance to procure pleasures and spoils by robbery, and became a great leader of men into wicked courses. He also introduced a change in that way of simplicity wherein men lived before; and was the author of measures and weights. And whereas they lived innocently and generously while they knew nothing of such arts, he changed the world into cunning craftiness.',
+        translation: 'He increased his household with great wealth through plunder and violence. He incited his acquaintances to seek pleasures and spoils through robbery, and became a great leader of men into wicked ways. He also introduced a change from the simplicity in which people had previously lived, and was the inventor of measures and weights. Whereas they had lived innocently and generously while they knew nothing of such arts, he transformed the world into cunning craftiness.',
+      },
+      {
+        verse: 62,
+        original: 'He first of all set boundaries about lands: he built a city, and fortified it with walls, and he compelled his family to come together to it; and called that city Enoch, after the name of his eldest son Enoch.',
+        translation: 'He was the first to set boundaries around lands. He built a city and fortified it with walls, and he compelled his family to gather there. He called that city Enoch, after the name of his eldest son Enoch.',
+      },
+      {
+        verse: 63,
+        original: 'Now Jared was the son of Enoch; whose son was Malaliel; whose son was Mathusela; whose son was Lamech; who had seventy-seven children by two wives, Silla and Ada.',
+        translation: 'Now Jared was the son of Enoch; whose son was Mahalalel; whose son was Methuselah; whose son was Lamech, who had seventy-seven children by two wives, Silla and Ada.',
+      },
+      {
+        verse: 64,
+        original: 'Of those children by Ada, one was Jabal: he erected tents, and loved the life of a shepherd. But Jubal, who was born of the same mother with him, exercised himself in music; and invented the psaltery and the harp. But Tubal, one of his children by the other wife, exceeded all men in strength, and was very expert and famous in martial performances. He procured what tended to the pleasures of the body by that method; and first of all invented the art of making brass.',
+        translation: 'Of the children by Ada, one was Jabal: he set up tents and loved the life of a shepherd. But Jubal, born of the same mother, devoted himself to music and invented the psaltery and the harp. Tubal, one of the children by the other wife, surpassed all men in strength and was highly skilled and renowned in martial feats. He obtained what served bodily pleasure by that means, and was the first to invent the art of working bronze.',
+      },
+      {
+        verse: 65,
+        original: 'Lamech was also the father of a daughter, whose name was Naamah. And because he was so skillful in matters of divine revelation, that he knew he was to be punished for Cain\u2019s murder of his brother, he made that known to his wives.',
+        translation: 'Lamech was also the father of a daughter named Naamah. And because he was so skilled in matters of divine revelation that he knew he would be punished for Cain\u2019s murder of his brother, he made this known to his wives.',
+      },
+      {
+        verse: 66,
+        original: 'Nay, even while Adam was alive, it came to pass that the posterity of Cain became exceeding wicked, every one successively dying, one after another, more wicked than the former. They were intolerable in war, and vehement in robberies; and if any one were slow to murder people, yet was he bold in his profligate behavior, in acting unjustly, and doing injuries for gain.',
+        translation: 'Indeed, even while Adam was still alive, the descendants of Cain became exceedingly wicked, each one in succession dying more wicked than the last. They were unbearable in war and violent in robbery, and if any was slow to commit murder, he was still bold in his profligate conduct, acting unjustly and doing harm for profit.',
+      },
+      {
+        verse: 67,
+        original: 'Now Adam, who was the first man, and made out of the earth, (for our discourse must now be about him,) after Abel was slain, and Cain fled away, on account of his murder, was solicitous for posterity, and had a vehement desire of children, he being two hundred and thirty years old; after which time he lived other seven hundred, and then died.',
+        translation: 'Now Adam, who was the first man, formed from the earth (for our account must now turn to him), after Abel was killed and Cain had fled because of his murder, was anxious for posterity and had a fierce desire for children. He was two hundred and thirty years old, after which he lived another seven hundred years, and then died.',
+      },
+      {
+        verse: 68,
+        original: 'He had indeed many other children, but Seth in particular. As for the rest, it would be tedious to name them; I will therefore only endeavor to give an account of those that proceeded from Seth. Now this Seth, when he was brought up, and came to those years in which he could discern what was good, became a virtuous man; and as he was himself of an excellent character, so did he leave children behind him who imitated his virtues.',
+        translation: 'He had many other children, but Seth in particular. As for the rest, it would be tedious to name them, so I will endeavor only to give an account of those who descended from Seth. When Seth was raised and reached the age at which he could discern what was good, he became a virtuous man, and as he was himself of excellent character, so he left behind children who imitated his virtues.',
+      },
+      {
+        verse: 69,
+        original: 'All these proved to be of good dispositions. They also inhabited the same country without dissensions, and in a happy condition, without any misfortunes falling upon them, till they died. They also were the inventors of that peculiar sort of wisdom which is concerned with the heavenly bodies, and their order.',
+        translation: 'All of them proved to be of good character. They inhabited the same land without discord, and in a happy condition, with no misfortunes befalling them until they died. They were also the inventors of that particular kind of wisdom concerned with the heavenly bodies and their order.',
+      },
+      {
+        verse: 70,
+        original: 'And that their inventions might not be lost before they were sufficiently known, upon Adam\u2019s prediction that the world was to be destroyed at one time by the force of fire, and at another time by the violence and quantity of water, they made two pillars, the one of brick, the other of stone: they inscribed their discoveries on them both,',
+        translation: 'So that their discoveries might not be lost before they were widely known, and because Adam had predicted that the world would be destroyed at one time by the force of fire and at another time by the violence and quantity of water, they made two pillars, one of brick and the other of stone, and inscribed their discoveries on both.',
+      },
+      {
+        verse: 71,
+        original: 'that in case the pillar of brick should be destroyed by the flood, the pillar of stone might remain, and exhibit those discoveries to mankind; and also inform them that there was another pillar of brick erected by them. Now this remains in the land of Siriad to this day.',
+        translation: 'This was so that if the pillar of brick was destroyed by the flood, the pillar of stone might remain and exhibit those discoveries to mankind, and also inform them that another pillar of brick had been erected by them. Now this pillar remains in the land of Siriad to this day.',
+      },
+    ],
+  },
 ];
