@@ -51,6 +51,7 @@ const footerColumns: {
       { to: '/easter', label: 'Easter Special' },
       { to: '/verse-of-the-day', label: 'Verse of the Day' },
       { to: 'https://modern-bcp-prayer-ex-mhio.bolt.host', label: 'Common Prayer', external: true },
+      { to: '/josephus', label: 'Josephus — Antiquities' },
     ],
   },
 ];
