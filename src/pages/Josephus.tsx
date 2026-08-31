@@ -75,10 +75,12 @@ export function Josephus() {
           </p>
         </div>
         <div className="flex gap-3 md:border-l md:border-stone-200 dark:md:border-gray-700 md:pl-4">
-          <div className="flex-1">
-            <p className="leading-relaxed text-gray-900 dark:text-gray-100 text-sm font-medium">
-              {sec.translation}
-            </p>
+          <div className="flex-1 space-y-3">
+            {sec.translation.split('\n\n').map((para, i) => (
+              <p key={i} className="leading-relaxed text-gray-900 dark:text-gray-100 text-sm font-medium">
+                {para}
+              </p>
+            ))}
           </div>
           <div className="flex flex-col gap-1.5 flex-shrink-0">
             <button
