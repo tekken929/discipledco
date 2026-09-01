@@ -95,6 +95,17 @@ const READING_BACKGROUNDS = [
   { name: 'Deep Stone', bg: '#c8c4b8', border: '#a8a498', text: '#26241f' },
 ];
 
+const READING_BACKGROUNDS_EXTRA = [
+  { name: 'Sky Mist', bg: '#eaf2f8', border: '#cfdde9', text: '#1a2733' },
+  { name: 'Pale Blue', bg: '#dce9f5', border: '#bcd0e6', text: '#1c2b3d' },
+  { name: 'Soft Slate', bg: '#d3dfee', border: '#b2c6e2', text: '#1e2840' },
+  { name: 'Icy Blue', bg: '#e8f0f6', border: '#ccd9e4', text: '#1f2a35' },
+  { name: 'Cool Mint', bg: '#e3f0ea', border: '#c4dcd2', text: '#1c2e26' },
+  { name: 'Light Sage', bg: '#e9f0e1', border: '#cdddc0', text: '#24301c' },
+  { name: 'Blush', bg: '#f7ecee', border: '#e6d2d6', text: '#332225' },
+  { name: 'Lavender Mist', bg: '#eeeaf2', border: '#d4cddd', text: '#2a2433' },
+];
+
 function getAdjacentChapter(book: string, chapter: number, direction: 'prev' | 'next'): { book: string; chapter: number } | null {
   const bookIndex = ALL_BOOKS.indexOf(book);
   if (bookIndex === -1) return null;
@@ -143,6 +154,7 @@ export function BibleLookup() {
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('nlt');
   const [selectedVerse, setSelectedVerse] = useState<number | null>(paramVerse);
   const [bgIndex, setBgIndex] = useState(0);
+  const ALL_BACKGROUNDS = [...READING_BACKGROUNDS, ...READING_BACKGROUNDS_EXTRA];
   const [overviewOpen, setOverviewOpen] = useState(false);
   const [translationOpen, setTranslationOpen] = useState(false);
   const translationRef = useRef<HTMLDivElement>(null);
@@ -247,7 +259,7 @@ export function BibleLookup() {
   }
 
   const info = TRANSLATION_INFO[loadedTranslation];
-  const bg = READING_BACKGROUNDS[bgIndex];
+  const bg = ALL_BACKGROUNDS[bgIndex];
   const prevChapter = getAdjacentChapter(loadedBook, loadedChapter, 'prev');
   const nextChapter = getAdjacentChapter(loadedBook, loadedChapter, 'next');
 
@@ -267,22 +279,42 @@ export function BibleLookup() {
             </div>
 
             {/* Background color selectors */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">Reading</span>
+            <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">Reading</span>
+                <div className="flex items-center gap-1.5">
+                  {READING_BACKGROUNDS.map((option, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setBgIndex(i)}
+                      title={option.name}
+                      className={`w-7 h-7 rounded-full border-2 transition-all ${
+                        bgIndex === i
+                          ? 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
+                          : 'hover:scale-105'
+                      }`}
+                      style={{ backgroundColor: option.bg, borderColor: option.border }}
+                    />
+                  ))}
+                </div>
+              </div>
               <div className="flex items-center gap-1.5">
-                {READING_BACKGROUNDS.map((option, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setBgIndex(i)}
-                    title={option.name}
-                    className={`w-7 h-7 rounded-full border-2 transition-all ${
-                      bgIndex === i
-                        ? 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
-                        : 'hover:scale-105'
-                    }`}
-                    style={{ backgroundColor: option.bg, borderColor: option.border }}
-                  />
-                ))}
+                {READING_BACKGROUNDS_EXTRA.map((option, i) => {
+                      const idx = i + READING_BACKGROUNDS.length;
+                      return (
+                    <button
+                      key={i}
+                      onClick={() => setBgIndex(idx)}
+                      title={option.name}
+                      className={`w-6 h-6 rounded-full border-2 transition-all ${
+                        bgIndex === idx
+                          ? 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
+                          : 'hover:scale-105'
+                      }`}
+                      style={{ backgroundColor: option.bg, borderColor: option.border }}
+                    />
+                      );
+                    })}
               </div>
             </div>
           </div>
