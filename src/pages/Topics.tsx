@@ -5,11 +5,11 @@ import { topics } from '../data/topics';
 import { supabase } from '../lib/supabase';
 import { Topic, BibleReference } from '../types/topic';
 
-type Translation = 'kjv' | 'web' | 'esv' | 'nasb' | 'nlt';
+type Translation = 'kjv' | 'niv' | 'esv' | 'nasb' | 'nlt';
 
 const TRANSLATION_LABELS: Record<Translation, string> = {
   kjv: 'KJV',
-  web: 'WEB',
+  niv: 'NIV',
   esv: 'ESV',
   nasb: 'NASB',
   nlt: 'NLT',

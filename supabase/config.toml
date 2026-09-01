@@ -1,0 +1,14 @@
+[functions.fetch-verses]
+verify_jwt = false
+
+[functions.seed-bible]
+verify_jwt = false
+
+[functions.seed-kjv]
+verify_jwt = false
+
+[functions.seed-translation]
+verify_jwt = false
+
+[functions.send-daily-devotional]
+verify_jwt = false

@@ -19,7 +19,7 @@ const VERSIONS = [
   { id: 'esv', name: 'English Standard Version' },
   { id: 'nasb', name: 'New American Standard Bible' },
   { id: 'kjv', name: 'King James Version' },
-  { id: 'web', name: 'World English Bible' },
+  { id: 'niv', name: 'New International Version' },
 ];
 
 const STORAGE_KEY = 'discipleco-bible-version';

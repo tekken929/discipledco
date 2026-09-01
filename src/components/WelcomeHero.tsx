@@ -62,7 +62,7 @@ function AppDownloadCard() {
         <div className="text-left">
           <p className="text-white/60 text-[10px] font-semibold uppercase tracking-widest leading-none mb-0.5">Complete Bible</p>
           <p className="text-white text-sm font-bold leading-tight">Read any verse</p>
-          <p className="text-white/60 text-xs">KJV, ESV, NASB, NLT & WEB</p>
+          <p className="text-white/60 text-xs">KJV, ESV, NASB, NLT & NIV</p>
         </div>
       </Link>
       <Link

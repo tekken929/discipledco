@@ -11,7 +11,7 @@ interface Verse {
   text: string;
 }
 
-type Translation = 'kjv' | 'web' | 'esv' | 'nasb' | 'nlt';
+type Translation = 'kjv' | 'niv' | 'esv' | 'nasb' | 'nlt';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -61,10 +61,11 @@ const TRANSLATION_INFO: Record<Translation, { label: string; full: string; descr
     full: 'King James Version',
     description: 'Classic 1611 — Public Domain',
   },
-  web: {
-    label: 'WEB',
-    full: 'World English Bible',
-    description: 'Modern English — Public Domain',
+  niv: {
+    label: 'NIV',
+    full: 'New International Version',
+    description: 'Balanced & readable — 2011',
+    licensed: true,
   },
   esv: {
     label: 'ESV',
@@ -131,7 +132,7 @@ export function BibleLookup() {
   const [selectedBook, setSelectedBook] = useState(paramBook);
   const [selectedChapter, setSelectedChapter] = useState(paramChapter);
   const [translation, setTranslation] = useState<Translation>(
-    ['kjv', 'web', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'nlt'
+    ['kjv', 'niv', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'nlt'
   );
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(false);
@@ -261,7 +262,7 @@ export function BibleLookup() {
               </div>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
-                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, WEB, ESV, NASB &amp; NLT</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, NIV, ESV, NASB &amp; NLT</p>
               </div>
             </div>
 
@@ -314,7 +315,7 @@ export function BibleLookup() {
           {translationOpen && (
             <div className="px-3 pb-2">
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
-                {(['kjv', 'web', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
+                {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
                   <button
                     key={t}
                     onClick={() => handleTranslationChange(t)}
