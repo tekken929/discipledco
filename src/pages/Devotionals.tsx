@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross, Clock, Clock3 } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
+import fiveMinuteData from '../data/devotionals/five-minute-devotionals.json';
 import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
 import { DevotionalSignup } from '../components/DevotionalSignup';
 import type { HeroTheme } from '../context/HeroThemeContext';
@@ -13,6 +14,7 @@ interface Devotional {
 }
 
 const devotionals: Devotional[] = devotionalsData as Devotional[];
+const fiveMinuteDevotionals: Devotional[] = fiveMinuteData as Devotional[];
 
 const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg: string; border: string; description: string }> = {
   'How God Saves Sinners': {
@@ -56,6 +58,16 @@ const DEVOTIONAL_META: Record<string, { icon: typeof BookOpen; color: string; bg
     bg: 'bg-teal-100 dark:bg-teal-900/40',
     border: 'border-teal-200 dark:border-teal-800',
     description: 'Turning from sin and toward God \u2014 the call that stands at the entrance of the Christian life.',
+  },
+};
+
+const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; bg: string; border: string; description: string }> = {
+  'Day 1 — When You Don\'t Know What to Do': {
+    icon: Lightbulb,
+    color: 'text-emerald-600 dark:text-emerald-400',
+    bg: 'bg-emerald-100 dark:bg-emerald-900/40',
+    border: 'border-emerald-200 dark:border-emerald-800',
+    description: 'How to know what God wants you to do — start with what He has already said.',
   },
 };
 
@@ -372,6 +384,7 @@ function handlePrint(dev: Devotional) {
 export function Devotionals() {
   const [selected, setSelected] = useState<Devotional | null>(null);
   const [devTheme, setDevTheme] = useState<HeroTheme>('frost');
+  const [activeCategory, setActiveCategory] = useState<'five' | 'twenty'>('five');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -525,6 +538,82 @@ export function Devotionals() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
+        {/* Category tabs */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-stone-100 dark:bg-gray-800 border border-stone-200 dark:border-gray-700">
+            <button
+              onClick={() => setActiveCategory('five')}
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                activeCategory === 'five'
+                  ? 'bg-white dark:bg-gray-900 text-emerald-700 dark:text-emerald-400 shadow-sm'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+              }`}
+            >
+              <Clock className="w-4 h-4" />
+              5 Minute Devotionals
+            </button>
+            <button
+              onClick={() => setActiveCategory('twenty')}
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                activeCategory === 'twenty'
+                  ? 'bg-white dark:bg-gray-900 text-amber-700 dark:text-amber-400 shadow-sm'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+              }`}
+            >
+              <Clock3 className="w-4 h-4" />
+              20 Minute Devotionals
+            </button>
+          </div>
+        </div>
+
+        {activeCategory === 'five' && (
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+            Short, daily Scripture-rich reflections you can read in about five minutes — perfect for starting or ending your day with God's Word.
+          </p>
+        )}
+        {activeCategory === 'twenty' && (
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+            Deeper studies for when you have more time to dig into God's Word and reflect on what it means for your life.
+          </p>
+        )}
+
+        {activeCategory === 'five' && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {fiveMinuteDevotionals.map((dev) => {
+            const meta = FIVE_MINUTE_META[dev.title] || {
+              icon: Clock,
+              color: 'text-emerald-600 dark:text-emerald-400',
+              bg: 'bg-emerald-100 dark:bg-emerald-900/40',
+              border: 'border-emerald-200 dark:border-emerald-800',
+              description: 'A quick daily devotional to strengthen your walk with Christ.',
+            };
+            const Icon = meta.icon;
+
+            return (
+              <button
+                key={dev.filename}
+                onClick={() => setSelected(dev)}
+                className={`group text-left p-6 rounded-2xl theme-card border-2 ${meta.border} hover:shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`w-11 h-11 rounded-xl ${meta.bg} flex items-center justify-center flex-shrink-0`}>
+                    <Icon className={`w-5 h-5 ${meta.color}`} />
+                  </div>
+                  <ArrowRight className={`w-4 h-4 ${meta.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+                  {dev.title}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                  {meta.description}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+        )}
+
+        {activeCategory === 'twenty' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {devotionals.map((dev) => {
             const meta = DEVOTIONAL_META[dev.title] || {
@@ -558,6 +647,8 @@ export function Devotionals() {
             );
           })}
         </div>
+
+        )}
 
         <DevotionalSignup />
 
