@@ -421,44 +421,7 @@ export function Welcome() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
 
-          {/* Daily Prayer — PREVIEW */}
-          <Link
-            to="/prayer"
-            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-teal-200 dark:border-teal-800 bg-teal-50/50 dark:bg-teal-950/20 hover:border-teal-400 dark:hover:border-teal-600 hover:shadow-md transition-all hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center flex-shrink-0">
-                <Wind className="w-5 h-5 text-teal-600 dark:text-teal-400" />
-              </div>
-              <span className="text-[10px] font-bold bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 border border-teal-300 dark:border-teal-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Daily Prayer</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Morning, evening & night prayers from the Book of Common Prayer.</p>
-            </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-600 dark:text-teal-400 group-hover:gap-2 transition-all mt-auto">
-              Open prayers <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </span>
-          </Link>
-
-          {/* Bible Stories — Coming Soon */}
-          <div className="flex flex-col gap-3 p-5 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50/80 dark:bg-gray-800/30 opacity-60 cursor-not-allowed select-none">
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center flex-shrink-0">
-                <Book className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-              </div>
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
-                <Lock className="w-2.5 h-2.5" /> Soon
-              </span>
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-gray-400 dark:text-gray-500 mb-1 leading-snug">Bible Stories</h3>
-              <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed">Engaging stories and accounts that bring biblical truths to life.</p>
-            </div>
-            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-auto">In development</span>
-          </div>
-
-          {/* Bible Studies — ACTIVE */}
+          {/* Bible Studies — NEW */}
           <Link
             to="/bible-studies"
             className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -467,7 +430,7 @@ export function Welcome() {
               <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0">
                 <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <span className="text-[10px] font-bold bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700 px-2 py-0.5 rounded-full uppercase tracking-wide">New</span>
+              <span className="text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 border border-green-300 dark:border-green-700 px-2 py-0.5 rounded-full uppercase tracking-wide">New</span>
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Bible Studies</h3>
@@ -478,7 +441,27 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Holiday Origins — PREVIEW */}
+          {/* Resurrection — NEW */}
+          <Link
+            to="/resurrection"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-sky-200 dark:border-sky-800 bg-sky-50/50 dark:bg-sky-950/20 hover:border-sky-400 dark:hover:border-sky-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center flex-shrink-0">
+                <Star className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+              </div>
+              <span className="text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 border border-green-300 dark:border-green-700 px-2 py-0.5 rounded-full uppercase tracking-wide">New</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">The Resurrection</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Historical and biblical evidence for the resurrection of Jesus Christ.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 dark:text-sky-400 group-hover:gap-2 transition-all mt-auto">
+              Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
+          {/* Holiday Origins — NEW */}
           <Link
             to="/christian-holidays"
             className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -487,7 +470,7 @@ export function Welcome() {
               <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center flex-shrink-0">
                 <Calendar className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               </div>
-              <span className="text-[10px] font-bold bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
+              <span className="text-[10px] font-bold bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 border border-green-300 dark:border-green-700 px-2 py-0.5 rounded-full uppercase tracking-wide">New</span>
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Holiday Origins</h3>
@@ -498,23 +481,43 @@ export function Welcome() {
             </span>
           </Link>
 
-          {/* Resurrection — PREVIEW */}
+          {/* Daily Prayer — PREVIEW */}
           <Link
-            to="/resurrection"
-            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-sky-200 dark:border-sky-800 bg-sky-50/50 dark:bg-sky-950/20 hover:border-sky-400 dark:hover:border-sky-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+            to="/prayer"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-teal-200 dark:border-teal-800 bg-teal-50/50 dark:bg-teal-950/20 hover:border-teal-400 dark:hover:border-teal-600 hover:shadow-md transition-all hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center flex-shrink-0">
-                <Star className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+              <div className="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center flex-shrink-0">
+                <Wind className="w-5 h-5 text-teal-600 dark:text-teal-400" />
               </div>
-              <span className="text-[10px] font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 border border-sky-300 dark:border-sky-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
+              <span className="text-[10px] font-bold bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">The Resurrection</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Historical and biblical evidence for the resurrection of Jesus Christ.</p>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Daily Prayer</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Morning, evening & night prayers from the Book of Common Prayer.</p>
             </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 dark:text-sky-400 group-hover:gap-2 transition-all mt-auto">
-              Explore <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-600 dark:text-teal-400 group-hover:gap-2 transition-all mt-auto">
+              Open prayers <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+
+          {/* Bible Stories — PREVIEW */}
+          <Link
+            to="/stories"
+            className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-purple-200 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-950/20 hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-md transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center flex-shrink-0">
+                <Book className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              </div>
+              <span className="text-[10px] font-bold bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700 px-2 py-0.5 rounded-full uppercase tracking-wide">Preview</span>
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Bible Stories</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">Engaging stories and accounts that bring biblical truths to life.</p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-purple-600 dark:text-purple-400 group-hover:gap-2 transition-all mt-auto">
+              Explore stories <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </span>
           </Link>
 
