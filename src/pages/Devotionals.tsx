@@ -90,6 +90,27 @@ const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; b
     border: 'border-rose-200 dark:border-rose-800',
     description: 'What to do when you cannot stop worrying — turn the worry into a specific prayer.',
   },
+  'Day 5 — How Can I Know I\'m Saved': {
+    icon: Cross,
+    color: 'text-emerald-600 dark:text-emerald-400',
+    bg: 'bg-emerald-100 dark:bg-emerald-900/40',
+    border: 'border-emerald-200 dark:border-emerald-800',
+    description: 'Can you actually know you are saved? Yes — assurance rests on Christ, not your feelings.',
+  },
+  'Day 6 — When You Fail Again': {
+    icon: Shield,
+    color: 'text-amber-600 dark:text-amber-400',
+    bg: 'bg-amber-100 dark:bg-amber-900/40',
+    border: 'border-amber-200 dark:border-amber-800',
+    description: 'What to do when you keep falling into the same sin — confess, repent, and get back up.',
+  },
+  'Day 7 — When You Don\'t Feel God': {
+    icon: Heart,
+    color: 'text-sky-600 dark:text-sky-400',
+    bg: 'bg-sky-100 dark:bg-sky-900/40',
+    border: 'border-sky-200 dark:border-sky-800',
+    description: 'Is God still with you when you can\'t feel Him? His presence rests on His promise, not your feelings.',
+  },
 };
 
 interface ParsedSection {
@@ -383,7 +404,7 @@ function handlePrint(dev: Devotional) {
   </div>
 
   <h1>${parsed.title}</h1>
-  <div class="subtitle">The Disciple Code</div>
+  <div class="subtitle">The Disciple Company</div>
   <div class="divider"></div>
 
   ${parsed.sections.map((s) => {
@@ -451,7 +472,7 @@ export function Devotionals() {
                 {parsed.title}
               </h1>
               <p className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-[0.2em] mb-3">
-                The Disciple Code
+                The Disciple Company
               </p>
               {parsed.subtitle && (
                 <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xl mx-auto">
@@ -543,7 +564,7 @@ export function Devotionals() {
                 Daily Devotionals
               </h1>
               <p className="text-amber-200/70 text-xs md:text-sm font-bold uppercase tracking-[0.35em] mb-6">
-                The Disciple Code
+                The Disciple Company
               </p>
               <div className="flex justify-center mb-6">
                 <div className="w-12 h-px bg-white/25" />
