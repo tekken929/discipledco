@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, BookOpen } from 'lucide-react';
+import { ArrowLeft, BookOpen, Lock } from 'lucide-react';
 import { stories } from '../data/stories';
 
 export function Stories() {
@@ -79,29 +79,56 @@ export function Stories() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {stories.sort((a, b) => a.order - b.order).map((story) => (
-          <Link
-            key={story.id}
-            to={`/stories/${story.id}`}
-            className="theme-card rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all group hover:scale-105"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-4xl group-hover:scale-110 transition-transform">
-                {story.icon}
-              </span>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {story.title}
-              </h2>
-            </div>
-            <p className="text-gray-700 dark:text-gray-200 mb-4">
-              {story.shortSummary}
-            </p>
-            <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
-              <span>Explore</span>
-              <span>→</span>
-            </div>
-          </Link>
-        ))}
+        {stories.sort((a, b) => a.order - b.order).map((story) => {
+          const isAvailable = story.id === 'creation';
+          if (!isAvailable) {
+            return (
+              <div
+                key={story.id}
+                className="theme-card rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 opacity-40 cursor-not-allowed select-none"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-4xl grayscale">
+                    {story.icon}
+                  </span>
+                  <h2 className="text-2xl font-bold text-gray-500 dark:text-gray-500">
+                    {story.title}
+                  </h2>
+                </div>
+                <p className="text-gray-400 dark:text-gray-500 mb-4">
+                  {story.shortSummary}
+                </p>
+                <div className="flex items-center justify-between text-sm text-gray-400 dark:text-gray-600 font-semibold">
+                  <span>Coming Soon</span>
+                  <Lock className="w-4 h-4" />
+                </div>
+              </div>
+            );
+          }
+          return (
+            <Link
+              key={story.id}
+              to={`/stories/${story.id}`}
+              className="theme-card rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all group hover:scale-105"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-4xl group-hover:scale-110 transition-transform">
+                  {story.icon}
+                </span>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {story.title}
+                </h2>
+              </div>
+              <p className="text-gray-700 dark:text-gray-200 mb-4">
+                {story.shortSummary}
+              </p>
+              <div className="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 font-semibold">
+                <span>Explore</span>
+                <span>→</span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </main>
     </>

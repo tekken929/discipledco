@@ -16,6 +16,7 @@ interface NavLink {
   title: string;
   external?: boolean;
   comingSoon?: boolean;
+  badge?: 'new' | 'preview';
 }
 
 interface NavSection {
@@ -46,11 +47,11 @@ const sections: NavSection[] = [
   {
     heading: 'In Development',
     links: [
-      { to: '/prayer', icon: Wind, title: 'Daily Prayer' },
-      { to: '/stories', icon: Book, title: 'Bible Stories' },
-      { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies' },
-      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins' },
-      { to: '/resurrection', icon: BookOpen, title: 'The Resurrection' },
+      { to: '/bible-studies', icon: BookOpen, title: 'Bible Studies', badge: 'new' },
+      { to: '/resurrection', icon: BookOpen, title: 'The Resurrection', badge: 'new' },
+      { to: '/christian-holidays', icon: Calendar, title: 'Holiday Origins', badge: 'new' },
+      { to: '/prayer', icon: Wind, title: 'Daily Prayer', badge: 'preview' },
+      { to: '/stories', icon: Book, title: 'Bible Stories', badge: 'preview' },
       { to: '/music', icon: Music, title: 'Music Player', comingSoon: true },
       { to: '/faqs', icon: HelpCircle, title: 'FAQs', comingSoon: true },
       { to: '#', icon: Image, title: 'Media Library', comingSoon: true },
@@ -99,6 +100,31 @@ export function NavigationMenu({ darkMode, toggleDarkMode }: NavigationMenuProps
             <Lock className="w-2.5 h-2.5" /> Soon
           </div>
         </div>
+      );
+    }
+
+    if (link.badge) {
+      return (
+        <Link
+          key={link.to}
+          to={link.to}
+          onClick={() => setIsOpen(false)}
+          className={`flex items-center gap-3 px-4 py-2.5 transition-all duration-300 ${
+            isActive
+              ? 'theme-primary-button text-white nav-link-active'
+              : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white hover:pl-6'
+          }`}
+        >
+          <Icon className="w-4 h-4" />
+          <span className="font-medium text-sm">{link.title}</span>
+          <span className={`ml-auto text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
+            link.badge === 'new'
+              ? 'bg-green-500 text-white'
+              : 'bg-blue-500 text-white'
+          }`}>
+            {link.badge === 'new' ? 'New' : 'Preview'}
+          </span>
+        </Link>
       );
     }
 
