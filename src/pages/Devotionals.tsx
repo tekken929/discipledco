@@ -69,6 +69,27 @@ const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; b
     border: 'border-emerald-200 dark:border-emerald-800',
     description: 'How to know what God wants you to do — start with what He has already said.',
   },
+  'Day 2 — When God Feels Silent': {
+    icon: Heart,
+    color: 'text-sky-600 dark:text-sky-400',
+    bg: 'bg-sky-100 dark:bg-sky-900/40',
+    border: 'border-sky-200 dark:border-sky-800',
+    description: 'What to do when you pray and God seems silent — keep praying, keep trusting.',
+  },
+  'Day 3 — When Temptation Hits': {
+    icon: Shield,
+    color: 'text-amber-600 dark:text-amber-400',
+    bg: 'bg-amber-100 dark:bg-amber-900/40',
+    border: 'border-amber-200 dark:border-amber-800',
+    description: 'What to do when you know something is wrong but still want it — look for the exit.',
+  },
+  'Day 4 — When Worry Takes Over': {
+    icon: Heart,
+    color: 'text-rose-600 dark:text-rose-400',
+    bg: 'bg-rose-100 dark:bg-rose-900/40',
+    border: 'border-rose-200 dark:border-rose-800',
+    description: 'What to do when you cannot stop worrying — turn the worry into a specific prayer.',
+  },
 };
 
 interface ParsedSection {
