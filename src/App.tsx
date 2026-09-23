@@ -51,6 +51,7 @@ interface MenuLink {
   icon: React.ElementType;
   external?: boolean;
   comingSoon?: boolean;
+  badge?: 'new' | 'preview';
 }
 
 interface MenuSection {
@@ -81,11 +82,11 @@ const menuSections: MenuSection[] = [
   {
     heading: 'In Development',
     links: [
-      { to: '/prayer', label: 'Daily Prayer', icon: Wind },
-      { to: '/stories', label: 'Bible Stories', icon: Book, comingSoon: true },
-      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen },
-      { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar },
-      { to: '/resurrection', label: 'The Resurrection', icon: BookOpen },
+      { to: '/bible-studies', label: 'Bible Studies', icon: BookOpen, badge: 'new' },
+      { to: '/resurrection', label: 'The Resurrection', icon: BookOpen, badge: 'new' },
+      { to: '/christian-holidays', label: 'Holiday Origins', icon: Calendar, badge: 'new' },
+      { to: '/prayer', label: 'Daily Prayer', icon: Wind, badge: 'preview' },
+      { to: '/stories', label: 'Bible Stories', icon: Book, badge: 'preview' },
       { to: '/music', label: 'Music Player', icon: Music, comingSoon: true },
       { to: '/faqs', label: 'FAQs', icon: HelpCircle, comingSoon: true },
       { to: '#', label: 'Media Library', icon: Image, comingSoon: true },
@@ -335,6 +336,30 @@ function TopNav() {
                                 </div>
                                 <span className="text-[10px] font-bold text-gray-400 dark:text-gray-600 uppercase tracking-wide">Soon</span>
                               </div>
+                            );
+                          }
+                          if (link.badge) {
+                            return (
+                              <Link
+                                key={link.label}
+                                to={link.to}
+                                onClick={() => setMenuOpen(false)}
+                                className={`flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all ${
+                                  isActive
+                                    ? 'theme-primary-button text-white'
+                                    : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-6'
+                                }`}
+                              >
+                                <Icon className="w-4 h-4 flex-shrink-0" />
+                                {link.label}
+                                <span className={`ml-auto text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${
+                                  link.badge === 'new'
+                                    ? 'bg-green-500 text-white'
+                                    : 'bg-blue-500 text-white'
+                                }`}>
+                                  {link.badge === 'new' ? 'New' : 'Preview'}
+                                </span>
+                              </Link>
                             );
                           }
                           if (link.external) {
