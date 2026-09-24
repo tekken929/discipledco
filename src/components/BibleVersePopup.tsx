@@ -1,10 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { X, BookOpen, Loader2, AlertCircle, ChevronDown } from 'lucide-react';
-
-interface Verse {
-  verse: number;
-  text: string;
-}
+import { fetchBibleChapter, type BibleVerse } from '../lib/bibleApi';
 
 interface BibleVersePopupProps {
   book: string;
@@ -17,11 +13,11 @@ interface BibleVersePopupProps {
 }
 
 const VERSIONS = [
-  { id: 'nlt', name: 'New Living Translation' },
-  { id: 'esv', name: 'English Standard Version' },
-  { id: 'nasb', name: 'New American Standard Bible' },
+  { id: 'nlt', name: 'Literal Standard Version' },
+  { id: 'nasb', name: 'World English Bible' },
   { id: 'kjv', name: 'King James Version' },
-  { id: 'niv', name: 'New International Version' },
+  { id: 'niv', name: 'Berean Study Bible' },
+  { id: 'esv', name: 'American Standard Version' },
 ];
 
 const STORAGE_KEY = 'discipleco-bible-version';
@@ -37,7 +33,7 @@ function getInitialVersion(): string {
 }
 
 export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onClose, verseStart = null, verseEnd = null }: BibleVersePopupProps) {
-  const [verses, setVerses] = useState<Verse[]>([]);
+  const [verses, setVerses] = useState<BibleVerse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [version, setVersion] = useState<string>(getInitialVersion);
@@ -45,32 +41,12 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-  const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
   useEffect(() => {
     async function load() {
       setLoading(true);
       setError(null);
       try {
-        let url = `${SUPABASE_URL}/functions/v1/fetch-verses?book=${encodeURIComponent(book)}&chapter=${chapter}&translation=${encodeURIComponent(version)}`;
-        if (verseStart !== null) {
-          url += `&verseStart=${verseStart}`;
-          if (verseEnd !== null) url += `&verseEnd=${verseEnd}`;
-        }
-        const res = await fetch(url, {
-          headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
-        });
-        if (!res.ok) throw new Error('Failed to load');
-        const data = await res.json();
-        if (data.error) throw new Error(data.error);
-        let result = data.verses || [];
-        if (verseStart !== null) {
-          result = result.filter((v: Verse) => {
-            if (verseEnd !== null) return v.verse >= verseStart && v.verse <= verseEnd;
-            return v.verse === verseStart;
-          });
-        }
+        const result = await fetchBibleChapter(book, chapter, version as any, verseStart, verseEnd);
         setVerses(result);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Could not load chapter. Please try again.');
@@ -79,7 +55,7 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
       }
     }
     load();
-  }, [book, chapter, version, verseStart, verseEnd, SUPABASE_URL, SUPABASE_ANON_KEY]);
+  }, [book, chapter, version, verseStart, verseEnd]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

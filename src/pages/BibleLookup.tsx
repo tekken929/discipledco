@@ -5,16 +5,9 @@ import { Link } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { BookDisplay } from '../components/BookDisplay';
 import { books } from '../data/books';
-
-interface Verse {
-  verse: number;
-  text: string;
-}
+import { fetchBibleChapter, type BibleVerse } from '../lib/bibleApi';
 
 type Translation = 'kjv' | 'niv' | 'esv' | 'nasb' | 'nlt';
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const BOOKS_OT = [
   'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
@@ -62,28 +55,24 @@ const TRANSLATION_INFO: Record<Translation, { label: string; full: string; descr
     description: 'Classic 1611 — Public Domain',
   },
   niv: {
-    label: 'NIV',
-    full: 'New International Version',
-    description: 'Balanced & readable — 2011',
-    licensed: true,
+    label: 'BSB',
+    full: 'Berean Study Bible',
+    description: 'Modern & readable — Free',
   },
   esv: {
-    label: 'ESV',
-    full: 'English Standard Version',
-    description: 'Modern literal — 2016',
-    licensed: true,
+    label: 'ASV',
+    full: 'American Standard Version',
+    description: 'Literal — Public Domain 1901',
   },
   nasb: {
-    label: 'NASB',
-    full: 'New American Standard Bible',
-    description: 'Precise & scholarly — 1995',
-    licensed: true,
+    label: 'WEB',
+    full: 'World English Bible',
+    description: 'Modern & clear — Public Domain',
   },
   nlt: {
-    label: 'NLT',
-    full: 'New Living Translation',
-    description: 'Readable & clear — 2015',
-    licensed: true,
+    label: 'LSV',
+    full: 'Literal Standard Version',
+    description: 'Consistent & literal — Free',
   },
 };
 
@@ -145,7 +134,7 @@ export function BibleLookup() {
   const [translation, setTranslation] = useState<Translation>(
     ['kjv', 'niv', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'nlt'
   );
-  const [verses, setVerses] = useState<Verse[]>([]);
+  const [verses, setVerses] = useState<BibleVerse[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -171,23 +160,18 @@ export function BibleLookup() {
     setLoaded(false);
     setVerses([]);
     try {
-      const url = `${SUPABASE_URL}/functions/v1/fetch-verses?book=${encodeURIComponent(book)}&chapter=${chapter}&translation=${trans}`;
-      const res = await fetch(url, {
-        headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
-      });
-      if (!res.ok) throw new Error('Failed to load');
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
-      setVerses(data.verses || []);
+      const data = await fetchBibleChapter(book, chapter, trans);
+      if (data.length === 0) {
+        throw new Error('No verses found for this chapter.');
+      }
+      setVerses(data);
       setLoadedBook(book);
       setLoadedChapter(chapter);
       setLoadedTranslation(trans);
       setLoaded(true);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Could not load this chapter.';
-      setError(msg.includes('API key') || msg.includes('not configured')
-        ? msg
-        : 'Could not load this chapter. Please try again.');
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -274,7 +258,7 @@ export function BibleLookup() {
               </div>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
-                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, NIV, ESV, NASB &amp; NLT</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, BSB, ASV, WEB &amp; LSV</p>
               </div>
             </div>
 
@@ -468,14 +452,6 @@ export function BibleLookup() {
                 <div>
                   <p className="text-sm font-semibold">Could not load this chapter</p>
                   <p className="text-sm mt-1 text-red-400">{error}</p>
-                  {TRANSLATION_INFO[translation]?.licensed && (
-                    <p className="text-xs mt-3 text-gray-500 dark:text-gray-400">
-                      ESV, NASB &amp; NLT require a free API key from{' '}
-                      <span className="font-semibold">scripture.api.bible</span>. Add it as{' '}
-                      <code className="bg-gray-100 dark:bg-gray-800 px-1 rounded">BIBLE_API_KEY</code>{' '}
-                      in your Supabase edge function secrets.
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
