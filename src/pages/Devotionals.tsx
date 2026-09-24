@@ -131,9 +131,9 @@ interface InlineMatch {
   end: number;
 }
 
-const INLINE_REF_REGEX = /((?:\d?\s)?[A-Z][a-z]+(?:\s\d?[A-Z][a-z]+)?\s+\d+:\d+(?:[\u2013\u2014-]\d+)?(?:\s*\([^)]*\))?)\s*[,)]?\s*$/;
+const INLINE_REF_REGEX = /((?:\d?\s)?[A-Z][a-z]+(?:\s\d?[A-Z][a-z]+)?\s+\d+:\d+(?:[\u2013\u2014-]\d+(?::\d+)?)?(?:\s*\([^)]*\))?)\s*[,)]?\s*$/;
 
-const BODY_SCRIPTURE_PATTERN = /((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?\s+\d+:\d+(?:-\d+)?(?:\s*\([A-Z]+\))?)/g;
+const BODY_SCRIPTURE_PATTERN = /((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?\s+\d+:\d+(?:[-\u2013\u2014]\d+(?::\d+)?)?(?:\s*\([A-Z]+\))?)/g;
 
 function isBreakItDownEntry(line: string): boolean {
   return /^[""\u201c][A-Z][A-Z\s'?!]+[""\u201d]\s*[\u2014\u2013-]/.test(line);
@@ -146,13 +146,24 @@ function parseBreakItDownEntry(line: string): { keyword: string; explanation: st
 }
 
 function parseScriptureRef(ref: string): { book: string; chapter: number; verseStart: number | null; verseEnd: number | null } | null {
-  const m = ref.match(/^((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(\d+):(\d+)(?:[-\u2013\u2014](\d+))?/);
+  const m = ref.match(/^((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(\d+):(\d+)(?:[-\u2013\u2014](\d+)(?::(\d+))?)?/);
   if (!m) return null;
+  const chapter = parseInt(m[2]);
+  const verseStart = parseInt(m[3]);
+  let verseEnd: number | null = null;
+  if (m[4]) {
+    if (m[5]) {
+      // Cross-chapter range like 1:1–2:25
+      verseEnd = parseInt(m[5]);
+    } else {
+      verseEnd = parseInt(m[4]);
+    }
+  }
   return {
     book: m[1].trim() === 'Psalm' ? 'Psalms' : m[1].trim(),
-    chapter: parseInt(m[2]),
-    verseStart: parseInt(m[3]),
-    verseEnd: m[4] ? parseInt(m[4]) : null,
+    chapter,
+    verseStart,
+    verseEnd,
   };
 }
 
