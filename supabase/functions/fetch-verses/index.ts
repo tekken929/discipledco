@@ -27,6 +27,9 @@ Deno.serve(async (req: Request) => {
       );
     }
 
+    // Normalize book name: "Psalm" (singular) -> "Psalms" (as stored in DB)
+    const normalizedBook = book.trim() === "Psalm" ? "Psalms" : book.trim();
+
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
@@ -38,7 +41,7 @@ Deno.serve(async (req: Request) => {
         .from("translations_bible")
         .select("verse, text")
         .eq("translation", translation)
-        .eq("book", book)
+        .eq("book", normalizedBook)
         .eq("chapter", chapter);
       if (verseStart !== null) {
         query = query.gte("verse", verseStart);
@@ -57,7 +60,7 @@ Deno.serve(async (req: Request) => {
       }
 
       return new Response(
-        JSON.stringify({ book, chapter, verses: data, source: "db", translation }),
+        JSON.stringify({ book: normalizedBook, chapter, verses: data, source: "db", translation }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -67,7 +70,7 @@ Deno.serve(async (req: Request) => {
       let kjvQuery = supabase
         .from("kjv_bible")
         .select("verse, text")
-        .eq("book", book)
+        .eq("book", normalizedBook)
         .eq("chapter", chapter);
       if (verseStart !== null) {
         kjvQuery = kjvQuery.gte("verse", verseStart);
@@ -86,7 +89,7 @@ Deno.serve(async (req: Request) => {
       }
 
       return new Response(
-        JSON.stringify({ book, chapter, verses: data, source: "kjv_db", translation: "kjv" }),
+        JSON.stringify({ book: normalizedBook, chapter, verses: data, source: "kjv_db", translation: "kjv" }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }

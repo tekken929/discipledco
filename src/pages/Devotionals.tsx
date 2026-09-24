@@ -149,7 +149,7 @@ function parseScriptureRef(ref: string): { book: string; chapter: number; verseS
   const m = ref.match(/^((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(\d+):(\d+)(?:[-\u2013\u2014](\d+))?/);
   if (!m) return null;
   return {
-    book: m[1].trim(),
+    book: m[1].trim() === 'Psalm' ? 'Psalms' : m[1].trim(),
     chapter: parseInt(m[2]),
     verseStart: parseInt(m[3]),
     verseEnd: m[4] ? parseInt(m[4]) : null,
@@ -334,8 +334,6 @@ function isHeadingLine(line: string): boolean {
   return capitalizedWords.length >= Math.ceil(words.length * 0.5) && !line.endsWith('.') && !line.endsWith('!"') && !line.endsWith('."');
 }
 
-let hoverTimer: ReturnType<typeof setTimeout> | null = null;
-
 function renderWithScriptureLinks(
   text: string,
   onRef: (ref: string) => void
@@ -350,13 +348,7 @@ function renderWithScriptureLinks(
     parts.push(
       <span
         key={m.index}
-        onMouseEnter={() => {
-          if (hoverTimer) clearTimeout(hoverTimer);
-          hoverTimer = setTimeout(() => onRef(ref), 350);
-        }}
-        onMouseLeave={() => {
-          if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
-        }}
+        onClick={() => onRef(ref)}
         className="text-amber-600 dark:text-amber-400 font-semibold underline decoration-dotted underline-offset-2 hover:text-amber-700 dark:hover:text-amber-300 transition-colors cursor-pointer"
       >
         {ref}
