@@ -507,7 +507,6 @@ export function Devotionals() {
   if (selected) {
     const meta = DEVOTIONAL_META[selected.title];
     const parsed = parseDevotionalContent(selected.content);
-    const isDay1 = selected.filename === 'day1_when_you_dont_know_what_to_do.txt';
 
     return (
       <div className="min-h-screen bg-stone-50 dark:bg-gray-950">
@@ -585,16 +584,14 @@ export function Devotionals() {
                     </h2>
                   );
                 }
-                if (section.type === 'break-it-down' && isDay1) {
+                if (section.type === 'break-it-down') {
                   return (
                     <div key={idx} className="border-l-2 border-stone-300 dark:border-gray-600 pl-4 py-1">
                       <p className="text-sm font-bold text-gray-900 dark:text-white mb-1 tracking-wide">
                         {section.keyword}
                       </p>
                       <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-                        {isDay1
-                          ? renderWithScriptureLinks(section.explanation || '', handleScriptureRefClick)
-                          : section.explanation}
+                        {renderWithScriptureLinks(section.explanation || '', handleScriptureRefClick)}
                       </p>
                     </div>
                   );
@@ -604,9 +601,7 @@ export function Devotionals() {
                     key={idx}
                     className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-4"
                   >
-                    {isDay1
-                      ? renderWithScriptureLinks(section.text, handleScriptureRefClick)
-                      : section.text}
+                    {renderWithScriptureLinks(section.text, handleScriptureRefClick)}
                   </p>
                 );
               })}
