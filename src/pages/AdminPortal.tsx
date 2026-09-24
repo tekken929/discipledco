@@ -5,6 +5,9 @@ import { BookUpload } from '../components/BookUpload';
 import { supabase } from '../lib/supabase';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
 
+const supabaseUrl = '';
+const supabaseAnonKey = '';
+
 const ADMIN_PASSWORD = import.meta.env.VITE_MUSIC_UPLOAD_PASSWORD;
 
 interface AdminPortalProps {
