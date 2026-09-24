@@ -5,6 +5,13 @@ export interface StoryReference {
   text: string;
 }
 
+export interface StorySection {
+  type: 'body' | 'scripture' | 'heading' | 'subheading' | 'emphasis';
+  text: string;
+  reference?: string;
+  verseText?: string;
+}
+
 export interface Story {
   id: string;
   title: string;
@@ -13,4 +20,5 @@ export interface Story {
   icon: string;
   order: number;
   references: StoryReference[];
+  content?: StorySection[];
 }

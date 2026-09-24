@@ -1,4 +1,87 @@
-import { Story } from '../types/story';
+import { Story, StorySection } from '../types/story';
+
+const creationContent: StorySection[] = [
+  { type: 'heading', text: 'In the Beginning' },
+  { type: 'scripture', text: 'Genesis 1:1–2:25', reference: 'Genesis 1:1–2:25', verseText: '' },
+  { type: 'body', text: 'Before there were nations, cities, families, or even a single human being, there was God.' },
+  { type: 'body', text: 'The Bible begins with a direct declaration:' },
+  { type: 'scripture', text: 'Genesis 1:1', reference: 'Genesis 1:1', verseText: 'In the beginning God created the heavens and the earth.' },
+  { type: 'body', text: 'God did not begin at creation. God already existed. The heavens and the earth, light and darkness, land and sea, plants and animals, and every human life that would follow came from Him (Genesis 1:1–25; Psalm 33:6–9).' },
+
+  { type: 'heading', text: 'God Creates' },
+  { type: 'body', text: 'God created by His word. Throughout Genesis 1, God speaks and creation responds according to His command (Genesis 1:3, 6, 9, 11, 14, 20, 24).' },
+
+  { type: 'subheading', text: 'Day 1 — Light' },
+  { type: 'body', text: 'God created light and separated the light from the darkness. He called the light day and the darkness night (Genesis 1:3–5).' },
+
+  { type: 'subheading', text: 'Day 2 — Sky' },
+  { type: 'body', text: 'God made the expanse and separated the waters, calling the expanse heaven (Genesis 1:6–8).' },
+
+  { type: 'subheading', text: 'Day 3 — Land and Plants' },
+  { type: 'body', text: 'God gathered the waters so that dry ground appeared. He called the dry ground land and the gathered waters seas. God then commanded the land to produce vegetation, plants, and trees according to their kinds (Genesis 1:9–13).' },
+
+  { type: 'subheading', text: 'Day 4 — Sun, Moon, and Stars' },
+  { type: 'body', text: 'God made the lights in the heavens to separate day from night and to mark seasons, days, and years. He made the greater light to govern the day, the lesser light to govern the night, and He made the stars (Genesis 1:14–19).' },
+
+  { type: 'subheading', text: 'Day 5 — Sea Creatures and Birds' },
+  { type: 'body', text: 'God created the creatures of the sea and the birds of the sky. He blessed them and commanded them to multiply (Genesis 1:20–23).' },
+
+  { type: 'subheading', text: 'Day 6 — Animals and Man' },
+  { type: 'body', text: 'God created the animals of the earth according to their kinds. Then God created mankind differently from the rest of the living creatures.' },
+  { type: 'body', text: 'Human beings were created in the image of God (Genesis 1:24–27).' },
+  { type: 'scripture', text: 'Genesis 1:27', reference: 'Genesis 1:27', verseText: 'So God created mankind in his own image, in the image of God he created them; male and female he created them.' },
+  { type: 'body', text: 'God formed Adam from the dust of the ground and breathed into him the breath of life (Genesis 2:7). He planted the Garden of Eden and placed Adam there to work it and care for it (Genesis 2:8, 15).' },
+  { type: 'body', text: 'God commanded Adam that he could eat from the trees of the garden, but he was not to eat from the tree of the knowledge of good and evil (Genesis 2:16–17).' },
+  { type: 'body', text: 'God then declared that it was not good for the man to be alone (Genesis 2:18). He caused Adam to fall into a deep sleep, took from his side, and made the woman. God brought Eve to Adam, establishing the union of man and woman as husband and wife (Genesis 2:21–24).' },
+  { type: 'scripture', text: 'Genesis 2:24', reference: 'Genesis 2:24', verseText: 'That is why a man leaves his father and mother and is united to his wife, and they become one flesh.' },
+  { type: 'body', text: 'God gave mankind dominion over the creatures He had made and commanded Adam and Eve to be fruitful, multiply, fill the earth, and rule over it (Genesis 1:26–28).' },
+  { type: 'body', text: 'When God looked upon everything He had made, He declared it "very good" (Genesis 1:31).' },
+
+  { type: 'heading', text: 'The Seventh Day' },
+  { type: 'body', text: "By the seventh day, God's work of creation was complete. God rested from His work and blessed the seventh day, making it holy (Genesis 2:1–3)." },
+  { type: 'body', text: "God's rest was not the result of weakness or exhaustion. Scripture says that the Creator does not grow tired or weary (Isaiah 40:28). His work of creation was finished." },
+  { type: 'body', text: 'At the end of Genesis 2, Adam and Eve lived before God without shame (Genesis 2:25).' },
+
+  { type: 'heading', text: 'The Big Picture' },
+  { type: 'body', text: 'Genesis begins with God.' },
+  { type: 'body', text: 'He is not presented as part of creation. He is its Creator.' },
+  { type: 'body', text: 'The heavens belong to Him (Psalm 19:1). The earth belongs to Him (Psalm 24:1). Every living creature exists because He gave it life (Genesis 1:20–25). Human beings possess a unique place within creation because men and women were made in His image (Genesis 1:26–27).' },
+  { type: 'body', text: 'Creation also establishes several truths that continue throughout the Bible.' },
+
+  { type: 'subheading', text: 'God is the Creator.' },
+  { type: 'body', text: 'Everything begins with Him (Genesis 1:1).' },
+
+  { type: 'subheading', text: 'God creates by His authority.' },
+  { type: 'body', text: 'He speaks, and creation obeys (Psalm 33:6, 9).' },
+
+  { type: 'subheading', text: 'Human beings are made in God\u2019s image.' },
+  { type: 'body', text: 'Human life is distinct from the rest of earthly creation (Genesis 1:26–27).' },
+
+  { type: 'subheading', text: 'God created mankind male and female.' },
+  { type: 'body', text: 'Both were created in His image and brought together in the first marriage (Genesis 1:27; 2:21–24).' },
+
+  { type: 'subheading', text: 'Human beings were given responsibility.' },
+  { type: 'body', text: 'Adam was commanded to work and care for what God had made (Genesis 2:15).' },
+
+  { type: 'subheading', text: 'God established boundaries.' },
+  { type: 'body', text: 'Adam was given both freedom and a direct command concerning the tree of the knowledge of good and evil (Genesis 2:16–17).' },
+
+  { type: 'subheading', text: "God's original creation was good." },
+  { type: 'body', text: 'After completing His work, God saw everything He had made and declared it very good (Genesis 1:31).' },
+
+  { type: 'body', text: 'The New Testament also identifies Jesus Christ with the work of creation.' },
+  { type: 'scripture', text: 'John 1:3', reference: 'John 1:3', verseText: 'Through him all things were made; without him nothing was made that has been made.' },
+  { type: 'body', text: 'Paul writes that all things in heaven and on earth were created through Christ and for Christ, and that in Him all things hold together (Colossians 1:15–17).' },
+  { type: 'body', text: 'The Bible begins with God creating the heavens and the earth (Genesis 1:1). Its final chapters describe a new heaven and a new earth and God dwelling with His people (Revelation 21:1–5).' },
+
+  { type: 'emphasis', text: 'From the first word of Scripture, God is the Creator, and creation belongs to Him.' },
+
+  { type: 'heading', text: 'Read the Story' },
+  { type: 'body', text: 'Genesis 1:1–2:25' },
+
+  { type: 'heading', text: 'Key References' },
+  { type: 'body', text: 'Genesis 1:1–2:25; Psalm 19:1; Psalm 24:1; Psalm 33:6–9; Isaiah 40:28; John 1:1–3; Colossians 1:15–17; Revelation 21:1–5' },
+];
 
 export const stories: Story[] = [
   {
@@ -30,7 +113,8 @@ This account sets a foundation—that what exists is not random, and that God's 
         verse: '2-3',
         text: 'By the seventh day God had finished the work he had been doing; so on the seventh day he rested from all his work. Then God blessed the seventh day and made it holy.'
       }
-    ]
+    ],
+    content: creationContent
   },
   {
     id: 'noah',
