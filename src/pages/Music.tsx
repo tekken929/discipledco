@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { SkipBack, SkipForward, Play, Pause, Volume2, Music as MusicIcon } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 type Category = 'All' | 'Heavy Metal' | 'House' | 'Calm' | 'Worship';
 
