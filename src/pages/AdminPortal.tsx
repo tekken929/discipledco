@@ -2,12 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { X, Upload, Music as MusicIcon, BookOpen, Loader, Trash2, ArrowLeft, FileText, CheckCircle, AlertCircle } from 'lucide-react';
 import { useDarkMode } from '../context/DarkModeContext';
 import { BookUpload } from '../components/BookUpload';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../lib/supabase';
 import { useMusicPlayer } from '../context/MusicPlayerContext';
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const ADMIN_PASSWORD = import.meta.env.VITE_MUSIC_UPLOAD_PASSWORD;
 
