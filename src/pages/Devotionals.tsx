@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import type React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross, Clock, Clock3 } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
 import fiveMinuteData from '../data/devotionals/five-minute-devotionals.json';
 import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
 import { DevotionalSignup } from '../components/DevotionalSignup';
+import { BibleVersePopup } from '../components/BibleVersePopup';
 import type { HeroTheme } from '../context/HeroThemeContext';
 
 interface Devotional {
@@ -114,10 +116,12 @@ const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; b
 };
 
 interface ParsedSection {
-  type: 'scripture' | 'heading' | 'body';
+  type: 'scripture' | 'heading' | 'body' | 'break-it-down';
   text: string;
   reference?: string;
   verseText?: string;
+  keyword?: string;
+  explanation?: string;
 }
 
 interface InlineMatch {
@@ -128,6 +132,24 @@ interface InlineMatch {
 }
 
 const INLINE_REF_REGEX = /((?:\d?\s)?[A-Z][a-z]+(?:\s\d?[A-Z][a-z]+)?\s+\d+:\d+(?:[\u2013\u2014-]\d+)?(?:\s*\([^)]*\))?)\s*[,)]?\s*$/;
+
+const BODY_SCRIPTURE_PATTERN = /((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?\s+\d+:\d+(?:-\d+)?(?:\s*\([A-Z]+\))?)/g;
+
+function isBreakItDownEntry(line: string): boolean {
+  return /^[""\u201c][A-Z][A-Z\s'?!]+[""\u201d]\s*[\u2014\u2013-]/.test(line);
+}
+
+function parseBreakItDownEntry(line: string): { keyword: string; explanation: string } {
+  const m = line.match(/^[""\u201c]([A-Z][A-Z\s'?!]+)[""\u201d]\s*[\u2014\u2013-]+\s*(.*)$/s);
+  if (m) return { keyword: m[1].trim(), explanation: m[2].trim() };
+  return { keyword: '', explanation: line };
+}
+
+function parseScriptureRef(ref: string): { book: string; chapter: number } | null {
+  const m = ref.match(/^((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(\d+)/);
+  if (!m) return null;
+  return { book: m[1].trim(), chapter: parseInt(m[2]) };
+}
 
 function findClosingQuote(text: string, start: number): number {
   for (let i = start + 1; i < text.length; i++) {
@@ -205,6 +227,10 @@ function parseDevotionalContent(content: string): { title: string; subtitle: str
       rawSections.push({ type: 'scripture', text: line, reference, verseText });
       if (trailingBody) rawSections.push({ type: 'body', text: trailingBody });
       i += consumed;
+    } else if (isBreakItDownEntry(line)) {
+      const { keyword, explanation } = parseBreakItDownEntry(line);
+      rawSections.push({ type: 'break-it-down', text: line, keyword, explanation });
+      i++;
     } else if (isHeadingLine(line)) {
       rawSections.push({ type: 'heading', text: line });
       i++;
@@ -222,6 +248,7 @@ function parseDevotionalContent(content: string): { title: string; subtitle: str
     } else {
       merged.push({ ...s });
     }
+    // break-it-down entries are always kept separate (never merged)
   }
 
   const sections: ParsedSection[] = [];
@@ -300,6 +327,32 @@ function isHeadingLine(line: string): boolean {
   // Check if it looks like a heading: most words are capitalized
   const capitalizedWords = words.filter((w) => /^[A-Z]/.test(w) || /^[\u201c"']/.test(w));
   return capitalizedWords.length >= Math.ceil(words.length * 0.5) && !line.endsWith('.') && !line.endsWith('!"') && !line.endsWith('."');
+}
+
+function renderWithScriptureLinks(
+  text: string,
+  onRef: (ref: string) => void
+): React.ReactNode {
+  const pattern = new RegExp(BODY_SCRIPTURE_PATTERN.source, 'g');
+  const parts: React.ReactNode[] = [];
+  let lastIdx = 0;
+  let m: RegExpExecArray | null;
+  while ((m = pattern.exec(text)) !== null) {
+    if (m.index > lastIdx) parts.push(text.slice(lastIdx, m.index));
+    const ref = m[1];
+    parts.push(
+      <button
+        key={m.index}
+        onClick={() => onRef(ref)}
+        className="text-amber-600 dark:text-amber-400 font-semibold underline decoration-dotted underline-offset-2 hover:text-amber-700 dark:hover:text-amber-300 transition-colors cursor-pointer"
+      >
+        {ref}
+      </button>
+    );
+    lastIdx = m.index + m[0].length;
+  }
+  if (lastIdx < text.length) parts.push(text.slice(lastIdx));
+  return parts.length > 0 ? <>{parts}</> : <>{text}</>;
 }
 
 function handlePrint(dev: Devotional) {
@@ -427,6 +480,12 @@ export function Devotionals() {
   const [selected, setSelected] = useState<Devotional | null>(null);
   const [devTheme, setDevTheme] = useState<HeroTheme>('frost');
   const [activeCategory, setActiveCategory] = useState<'five' | 'twenty'>('five');
+  const [versePopup, setVersePopup] = useState<{ book: string; chapter: number; label: string } | null>(null);
+
+  function handleScriptureRefClick(ref: string) {
+    const parsed = parseScriptureRef(ref);
+    if (parsed) setVersePopup({ ...parsed, label: ref });
+  }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -435,6 +494,7 @@ export function Devotionals() {
   if (selected) {
     const meta = DEVOTIONAL_META[selected.title];
     const parsed = parseDevotionalContent(selected.content);
+    const isDay1 = selected.filename === 'day1_when_you_dont_know_what_to_do.txt';
 
     return (
       <div className="min-h-screen bg-stone-50 dark:bg-gray-950">
@@ -512,12 +572,28 @@ export function Devotionals() {
                     </h2>
                   );
                 }
+                if (section.type === 'break-it-down' && isDay1) {
+                  return (
+                    <div key={idx} className="border-l-2 border-stone-300 dark:border-gray-600 pl-4 py-1">
+                      <p className="text-sm font-bold text-gray-900 dark:text-white mb-1 tracking-wide">
+                        {section.keyword}
+                      </p>
+                      <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+                        {isDay1
+                          ? renderWithScriptureLinks(section.explanation || '', handleScriptureRefClick)
+                          : section.explanation}
+                      </p>
+                    </div>
+                  );
+                }
                 return (
                   <p
                     key={idx}
                     className="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-4"
                   >
-                    {section.text}
+                    {isDay1
+                      ? renderWithScriptureLinks(section.text, handleScriptureRefClick)
+                      : section.text}
                   </p>
                 );
               })}
@@ -540,6 +616,16 @@ export function Devotionals() {
             </button>
           </div>
         </div>
+
+      {versePopup && (
+        <BibleVersePopup
+          book={versePopup.book}
+          chapter={versePopup.chapter}
+          label={versePopup.label}
+          categoryBadgeClass="bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400"
+          onClose={() => setVersePopup(null)}
+        />
+      )}
       </div>
     );
   }
