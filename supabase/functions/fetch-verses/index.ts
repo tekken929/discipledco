@@ -17,6 +17,8 @@ Deno.serve(async (req: Request) => {
     const book = url.searchParams.get("book");
     const chapter = parseInt(url.searchParams.get("chapter") || "0");
     const translation = (url.searchParams.get("translation") || "nlt").toLowerCase();
+    const verseStart = url.searchParams.get("verseStart") ? parseInt(url.searchParams.get("verseStart")!) : null;
+    const verseEnd = url.searchParams.get("verseEnd") ? parseInt(url.searchParams.get("verseEnd")!) : null;
 
     if (!book || !chapter) {
       return new Response(
@@ -32,13 +34,18 @@ Deno.serve(async (req: Request) => {
 
     // ESV, NASB, NLT, NIV — query translations_bible table
     if (["esv", "nasb", "nlt", "niv"].includes(translation)) {
-      const { data, error } = await supabase
+      let query = supabase
         .from("translations_bible")
         .select("verse, text")
         .eq("translation", translation)
         .eq("book", book)
-        .eq("chapter", chapter)
-        .order("verse");
+        .eq("chapter", chapter);
+      if (verseStart !== null) {
+        query = query.gte("verse", verseStart);
+        if (verseEnd !== null) query = query.lte("verse", verseEnd);
+        else query = query.eq("verse", verseStart);
+      }
+      const { data, error } = await query.order("verse");
 
       if (error) throw error;
 
@@ -57,12 +64,17 @@ Deno.serve(async (req: Request) => {
 
     // KJV — query kjv_bible table
     if (translation === "kjv") {
-      const { data, error } = await supabase
+      let kjvQuery = supabase
         .from("kjv_bible")
         .select("verse, text")
         .eq("book", book)
-        .eq("chapter", chapter)
-        .order("verse");
+        .eq("chapter", chapter);
+      if (verseStart !== null) {
+        kjvQuery = kjvQuery.gte("verse", verseStart);
+        if (verseEnd !== null) kjvQuery = kjvQuery.lte("verse", verseEnd);
+        else kjvQuery = kjvQuery.eq("verse", verseStart);
+      }
+      const { data, error } = await kjvQuery.order("verse");
 
       if (error) throw error;
 

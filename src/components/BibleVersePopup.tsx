@@ -12,6 +12,8 @@ interface BibleVersePopupProps {
   label: string;
   categoryBadgeClass: string;
   onClose: () => void;
+  verseStart?: number | null;
+  verseEnd?: number | null;
 }
 
 const VERSIONS = [
@@ -34,7 +36,7 @@ function getInitialVersion(): string {
   return 'nlt';
 }
 
-export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onClose }: BibleVersePopupProps) {
+export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onClose, verseStart = null, verseEnd = null }: BibleVersePopupProps) {
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,14 +53,25 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
       setLoading(true);
       setError(null);
       try {
-        const url = `${SUPABASE_URL}/functions/v1/fetch-verses?book=${encodeURIComponent(book)}&chapter=${chapter}&translation=${encodeURIComponent(version)}`;
+        let url = `${SUPABASE_URL}/functions/v1/fetch-verses?book=${encodeURIComponent(book)}&chapter=${chapter}&translation=${encodeURIComponent(version)}`;
+        if (verseStart !== null) {
+          url += `&verseStart=${verseStart}`;
+          if (verseEnd !== null) url += `&verseEnd=${verseEnd}`;
+        }
         const res = await fetch(url, {
           headers: { Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
         });
         if (!res.ok) throw new Error('Failed to load');
         const data = await res.json();
         if (data.error) throw new Error(data.error);
-        setVerses(data.verses || []);
+        let result = data.verses || [];
+        if (verseStart !== null) {
+          result = result.filter((v: Verse) => {
+            if (verseEnd !== null) return v.verse >= verseStart && v.verse <= verseEnd;
+            return v.verse === verseStart;
+          });
+        }
+        setVerses(result);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Could not load chapter. Please try again.');
       } finally {
@@ -66,7 +79,7 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
       }
     }
     load();
-  }, [book, chapter, version, SUPABASE_URL, SUPABASE_ANON_KEY]);
+  }, [book, chapter, version, verseStart, verseEnd, SUPABASE_URL, SUPABASE_ANON_KEY]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -103,6 +116,8 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
 
   const currentVersion = VERSIONS.find((v) => v.id === version);
 
+  const isCompact = verseStart !== null;
+
   return (
     <div
       ref={overlayRef}
@@ -110,7 +125,7 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
       onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-2xl max-h-[85vh] flex flex-col theme-card rounded-2xl shadow-2xl border-2 overflow-hidden">
+      <div className={`relative ${isCompact ? 'w-full max-w-md' : 'w-full max-w-2xl'} max-h-[85vh] flex flex-col theme-card rounded-2xl shadow-2xl border-2 overflow-hidden`}>
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0 gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <div className={`${categoryBadgeClass} p-2 rounded-lg flex-shrink-0`}>

@@ -145,10 +145,15 @@ function parseBreakItDownEntry(line: string): { keyword: string; explanation: st
   return { keyword: '', explanation: line };
 }
 
-function parseScriptureRef(ref: string): { book: string; chapter: number } | null {
-  const m = ref.match(/^((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(\d+)/);
+function parseScriptureRef(ref: string): { book: string; chapter: number; verseStart: number | null; verseEnd: number | null } | null {
+  const m = ref.match(/^((?:\d\s?)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\s+(\d+):(\d+)(?:[-\u2013\u2014](\d+))?/);
   if (!m) return null;
-  return { book: m[1].trim(), chapter: parseInt(m[2]) };
+  return {
+    book: m[1].trim(),
+    chapter: parseInt(m[2]),
+    verseStart: parseInt(m[3]),
+    verseEnd: m[4] ? parseInt(m[4]) : null,
+  };
 }
 
 function findClosingQuote(text: string, start: number): number {
@@ -488,7 +493,7 @@ export function Devotionals() {
   const [selected, setSelected] = useState<Devotional | null>(null);
   const [devTheme, setDevTheme] = useState<HeroTheme>('frost');
   const [activeCategory, setActiveCategory] = useState<'five' | 'twenty'>('five');
-  const [versePopup, setVersePopup] = useState<{ book: string; chapter: number; label: string } | null>(null);
+  const [versePopup, setVersePopup] = useState<{ book: string; chapter: number; label: string; verseStart: number | null; verseEnd: number | null } | null>(null);
 
   function handleScriptureRefClick(ref: string) {
     const parsed = parseScriptureRef(ref);
@@ -632,6 +637,8 @@ export function Devotionals() {
           label={versePopup.label}
           categoryBadgeClass="bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400"
           onClose={() => setVersePopup(null)}
+          verseStart={versePopup.verseStart}
+          verseEnd={versePopup.verseEnd}
         />
       )}
       </div>
