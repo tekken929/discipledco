@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, GraduationCap, Image, Lock, Clock } from 'lucide-react';
+import { Menu, X, BookOpen, Users, FolderOpen, MessageCircle, Book, Moon, Sun, Music, Mic, BookText, UserCheck, Radio, Sparkles, Lightbulb, Calendar, HelpCircle, Wind, GraduationCap, Image, Lock, Clock, Heart, Route } from 'lucide-react';
 import { ColorTheme } from '../context/DarkModeContext';
 import { useNavbarScroll } from '../hooks/useScrollAnimation';
 import { useBubbles } from '../context/BubblesContext';
@@ -17,6 +17,7 @@ interface NavLink {
   external?: boolean;
   comingSoon?: boolean;
   badge?: 'new' | 'preview';
+  noActive?: boolean;
 }
 
 interface NavSection {
@@ -26,11 +27,20 @@ interface NavSection {
 
 const sections: NavSection[] = [
   {
+    heading: 'Quick Access',
+    links: [
+      { to: '/devotionals', icon: Sun, title: 'Devotionals' },
+      { to: '/bible-lookup', icon: BookOpen, title: 'Complete Bible' },
+      { to: '/verses-on-sadness', icon: Heart, title: 'Verses for Sadness' },
+    ],
+  },
+  {
     heading: 'Bible',
     links: [
       { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
+      { to: '/bible?roadmap=1', icon: Route, title: 'Bible Reading Roadmap', noActive: true },
       { to: '/courses', icon: GraduationCap, title: 'Foundation Course' },
-      { to: '/timeline', icon: Clock, title: 'Historical Timeline' },
+      { to: '/timeline', icon: Clock, title: 'Journey of Faith' },
     ],
   },
   {
@@ -84,7 +94,7 @@ export function NavigationMenu({ darkMode, toggleDarkMode }: NavigationMenuProps
 
   const renderLink = (link: NavLink) => {
     const Icon = link.icon;
-    const isActive = !link.external && !link.comingSoon && location.pathname === link.to;
+    const isActive = !link.external && !link.comingSoon && !link.noActive && location.pathname === link.to;
 
     if (link.comingSoon) {
       return (

@@ -6,7 +6,7 @@ import { books } from '../data/books';
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { BookOpen, ChevronDown, ArrowRight, Map, Route, GraduationCap, BookMarked } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 interface HomeProps {
   selectedBook: Book;
@@ -15,7 +15,8 @@ interface HomeProps {
 
 export function Home({ selectedBook: initialBook }: HomeProps) {
   const [selectedBook, setSelectedBook] = useState<Book>(initialBook);
-  const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [isRoadmapModalOpen, setIsRoadmapModalOpen] = useState(searchParams.get('roadmap') === '1');
   const { ref: selectorRef, isVisible: selectorVisible } = useScrollAnimation();
 
   const oldTestamentBooks = books.filter(b => b.testament === 'Old Testament');
