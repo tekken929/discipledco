@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { X, BookOpen, Loader2, AlertCircle, ChevronDown } from 'lucide-react';
-import { fetchBibleChapter, type BibleVerse } from '../lib/bibleApi';
+import { fetchBibleChapter, type BibleVerse, type Translation, TRANSLATION_LABELS } from '../lib/bibleApi';
 
 interface BibleVersePopupProps {
   book: string;
@@ -12,13 +12,10 @@ interface BibleVersePopupProps {
   verseEnd?: number | null;
 }
 
-const VERSIONS = [
-  { id: 'nlt', name: 'Literal Standard Version' },
-  { id: 'nasb', name: 'World English Bible' },
-  { id: 'kjv', name: 'King James Version' },
-  { id: 'niv', name: 'Berean Study Bible' },
-  { id: 'esv', name: 'American Standard Version' },
-];
+const VERSIONS = (Object.keys(TRANSLATION_LABELS) as Translation[]).map((id) => ({
+  id,
+  name: TRANSLATION_LABELS[id].full,
+}));
 
 const STORAGE_KEY = 'discipleco-bible-version';
 
@@ -29,7 +26,7 @@ function getInitialVersion(): string {
   } catch {
     // ignore
   }
-  return 'nlt';
+  return 'kjv';
 }
 
 export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onClose, verseStart = null, verseEnd = null }: BibleVersePopupProps) {

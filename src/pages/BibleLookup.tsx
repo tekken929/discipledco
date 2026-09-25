@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { BookDisplay } from '../components/BookDisplay';
 import { books } from '../data/books';
-import { fetchBibleChapter, type BibleVerse } from '../lib/bibleApi';
-
-type Translation = 'kjv' | 'niv' | 'esv' | 'nasb' | 'nlt';
+import { fetchBibleChapter, type BibleVerse, type Translation, TRANSLATION_LABELS } from '../lib/bibleApi';
 
 const BOOKS_OT = [
   'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
@@ -48,33 +46,7 @@ const CHAPTER_COUNTS: Record<string, number> = {
   '3 John': 1, Jude: 1, Revelation: 22,
 };
 
-const TRANSLATION_INFO: Record<Translation, { label: string; full: string; description: string; licensed?: boolean }> = {
-  kjv: {
-    label: 'KJV',
-    full: 'King James Version',
-    description: 'Classic 1611 — Public Domain',
-  },
-  niv: {
-    label: 'BSB',
-    full: 'Berean Study Bible',
-    description: 'Modern & readable — Free',
-  },
-  esv: {
-    label: 'ASV',
-    full: 'American Standard Version',
-    description: 'Literal — Public Domain 1901',
-  },
-  nasb: {
-    label: 'WEB',
-    full: 'World English Bible',
-    description: 'Modern & clear — Public Domain',
-  },
-  nlt: {
-    label: 'LSV',
-    full: 'Literal Standard Version',
-    description: 'Consistent & literal — Free',
-  },
-};
+const TRANSLATION_INFO = TRANSLATION_LABELS;
 
 const READING_BACKGROUNDS = [
   { name: 'Paper White', bg: '#fafafa', border: '#e5e5e5', text: '#1a1a1a' },
@@ -127,12 +99,12 @@ export function BibleLookup() {
   const paramBook = searchParams.get('book') || 'John';
   const paramChapter = parseInt(searchParams.get('chapter') || '3', 10) || 3;
   const paramVerse = searchParams.get('verse') ? parseInt(searchParams.get('verse')!, 10) || 1 : 1;
-  const paramTranslation = (searchParams.get('translation') as Translation | null) || 'nlt';
+  const paramTranslation = (searchParams.get('translation') as Translation | null) || 'kjv';
 
   const [selectedBook, setSelectedBook] = useState(paramBook);
   const [selectedChapter, setSelectedChapter] = useState(paramChapter);
   const [translation, setTranslation] = useState<Translation>(
-    ['kjv', 'niv', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'nlt'
+    ['kjv', 'niv', 'esv', 'nasb', 'nlt'].includes(paramTranslation) ? paramTranslation : 'kjv'
   );
   const [verses, setVerses] = useState<BibleVerse[]>([]);
   const [loading, setLoading] = useState(false);
@@ -140,7 +112,7 @@ export function BibleLookup() {
   const [loaded, setLoaded] = useState(false);
   const [loadedBook, setLoadedBook] = useState('John');
   const [loadedChapter, setLoadedChapter] = useState(3);
-  const [loadedTranslation, setLoadedTranslation] = useState<Translation>('nlt');
+  const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
   const [selectedVerse, setSelectedVerse] = useState<number | null>(paramVerse);
   const [bgIndex, setBgIndex] = useState(0);
   const ALL_BACKGROUNDS = [...READING_BACKGROUNDS, ...READING_BACKGROUNDS_EXTRA];
@@ -258,7 +230,7 @@ export function BibleLookup() {
               </div>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
-                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, BSB, ASV, WEB &amp; LSV</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs">KJV, NIV, ESV, NASB &amp; NLT</p>
               </div>
             </div>
 

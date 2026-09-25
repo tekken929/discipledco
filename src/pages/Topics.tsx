@@ -35,15 +35,19 @@ async function fetchVersesByTranslation(refs: BibleReference[], translation: Tra
   for (let i = 0; i < refs.length; i++) {
     const ref = refs[i];
     const { start, end } = parseVerseRange(ref.verse);
-    const { data, error } = await supabase
-      .from('translations_bible')
+    const table = translation === 'kjv' ? 'kjv_bible' : 'translations_bible';
+    let query = supabase
+      .from(table)
       .select('text')
-      .eq('translation', translation)
       .eq('book', normalizeBookName(ref.book))
       .eq('chapter', ref.chapter)
       .gte('verse', start)
       .lte('verse', end)
       .order('verse', { ascending: true });
+    if (translation !== 'kjv') {
+      query = query.eq('translation', translation);
+    }
+    const { data, error } = await query;
     if (!error && data && data.length > 0) {
       results[i] = data.map((v: { text: string }) => v.text).join(' ');
     }
@@ -170,7 +174,7 @@ function TopicDetail({ topic }: { topic: Topic }) {
 
   const [verseTexts, setVerseTexts] = useState<Record<number, string>>({});
   const [versesLoading, setVersesLoading] = useState(true);
-  const [translation, setTranslation] = useState<Translation>('esv');
+  const [translation, setTranslation] = useState<Translation>('kjv');
   const [translationOpen, setTranslationOpen] = useState(false);
 
   useEffect(() => {

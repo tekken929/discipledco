@@ -137,7 +137,7 @@ export default function Guidance() {
                   {visibleResults.map((result) => (
                     <Link
                       key={result.id}
-                      to={`/bible-lookup?book=${encodeURIComponent(result.book)}&chapter=${result.chapter}&verse=${result.verse}&translation=nlt`}
+                      to={`/bible-lookup?book=${encodeURIComponent(result.book)}&chapter=${result.chapter}&verse=${result.verse}&translation=kjv`}
                       className="block bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all group"
                     >
                       <div className="flex items-start gap-3">
