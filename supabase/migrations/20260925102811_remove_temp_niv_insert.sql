@@ -1,0 +1,1 @@
+DROP POLICY "temp_niv_insert" ON translations_bible;
