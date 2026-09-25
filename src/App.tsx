@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Clock, Users, Home as HomeIcon, Heart, Route } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Clock, Users, Home as HomeIcon, Heart, Route as RouteIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -73,7 +73,7 @@ const menuSections: MenuSection[] = [
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
-      { to: '/bible?roadmap=1', label: 'Bible Reading Roadmap', icon: Route, noActive: true },
+      { to: '/bible?roadmap=1', label: 'Bible Reading Roadmap', icon: RouteIcon, noActive: true },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
       { to: '/timeline', label: 'Journey of Faith', icon: Clock },
     ],
