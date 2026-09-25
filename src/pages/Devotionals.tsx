@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross, Clock, Clock3 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ScrollText, Heart, Shield, Lightbulb, Download, Cross, Clock, Clock3, Cloud, Wind, RefreshCw, Eye, Handshake, Gift, Flame, MessageCircle, EyeOff, Compass, RotateCcw } from 'lucide-react';
 import devotionalsData from '../data/devotionals/devotionals.json';
 import fiveMinuteData from '../data/devotionals/five-minute-devotionals.json';
 import { BackgroundPicker, ThemeBackground } from '../components/WelcomeHero';
@@ -72,7 +72,7 @@ const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; b
     description: 'How to know what God wants you to do — start with what He has already said.',
   },
   'Day 2 — When God Feels Silent': {
-    icon: Heart,
+    icon: Cloud,
     color: 'text-sky-600 dark:text-sky-400',
     bg: 'bg-sky-100 dark:bg-sky-900/40',
     border: 'border-sky-200 dark:border-sky-800',
@@ -86,7 +86,7 @@ const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; b
     description: 'What to do when you know something is wrong but still want it — look for the exit.',
   },
   'Day 4 — When Worry Takes Over': {
-    icon: Heart,
+    icon: Wind,
     color: 'text-rose-600 dark:text-rose-400',
     bg: 'bg-rose-100 dark:bg-rose-900/40',
     border: 'border-rose-200 dark:border-rose-800',
@@ -94,24 +94,80 @@ const FIVE_MINUTE_META: Record<string, { icon: typeof BookOpen; color: string; b
   },
   'Day 5 — How Can I Know I\'m Saved': {
     icon: Cross,
-    color: 'text-emerald-600 dark:text-emerald-400',
-    bg: 'bg-emerald-100 dark:bg-emerald-900/40',
-    border: 'border-emerald-200 dark:border-emerald-800',
+    color: 'text-teal-600 dark:text-teal-400',
+    bg: 'bg-teal-100 dark:bg-teal-900/40',
+    border: 'border-teal-200 dark:border-teal-800',
     description: 'Can you actually know you are saved? Yes — assurance rests on Christ, not your feelings.',
   },
   'Day 6 — When You Fail Again': {
-    icon: Shield,
-    color: 'text-amber-600 dark:text-amber-400',
-    bg: 'bg-amber-100 dark:bg-amber-900/40',
-    border: 'border-amber-200 dark:border-amber-800',
+    icon: RefreshCw,
+    color: 'text-orange-600 dark:text-orange-400',
+    bg: 'bg-orange-100 dark:bg-orange-900/40',
+    border: 'border-orange-200 dark:border-orange-800',
     description: 'What to do when you keep falling into the same sin — confess, repent, and get back up.',
   },
   'Day 7 — When You Don\'t Feel God': {
-    icon: Heart,
-    color: 'text-sky-600 dark:text-sky-400',
-    bg: 'bg-sky-100 dark:bg-sky-900/40',
-    border: 'border-sky-200 dark:border-sky-800',
+    icon: Eye,
+    color: 'text-cyan-600 dark:text-cyan-400',
+    bg: 'bg-cyan-100 dark:bg-cyan-900/40',
+    border: 'border-cyan-200 dark:border-cyan-800',
     description: 'Is God still with you when you can\'t feel Him? His presence rests on His promise, not your feelings.',
+  },
+  'Day 8 — When Forgiveness Feels Impossible': {
+    icon: Handshake,
+    color: 'text-pink-600 dark:text-pink-400',
+    bg: 'bg-pink-100 dark:bg-pink-900/40',
+    border: 'border-pink-200 dark:border-pink-800',
+    description: 'Do you have to forgive someone who keeps hurting you? Forgiveness releases revenge — it doesn\'t erase the wound.',
+  },
+  'Day 9 — The Gospel': {
+    icon: Gift,
+    color: 'text-green-600 dark:text-green-400',
+    bg: 'bg-green-100 dark:bg-green-900/40',
+    border: 'border-green-200 dark:border-green-800',
+    description: 'What exactly is the Gospel? Christ died for our sins, was buried, and rose again.',
+  },
+  'Day 10 — When Anger Takes Control': {
+    icon: Flame,
+    color: 'text-red-600 dark:text-red-400',
+    bg: 'bg-red-100 dark:bg-red-900/40',
+    border: 'border-red-200 dark:border-red-800',
+    description: 'Is it wrong to be angry? You may have a reason, but you never have permission to let anger become sin.',
+  },
+  'Day 11 — The Ten Commandments': {
+    icon: ScrollText,
+    color: 'text-blue-600 dark:text-blue-400',
+    bg: 'bg-blue-100 dark:bg-blue-900/40',
+    border: 'border-blue-200 dark:border-blue-800',
+    description: 'Do the Ten Commandments still matter? They show us how to live, expose our sin, and point us to Christ.',
+  },
+  'Day 12 — How Should I Pray?': {
+    icon: MessageCircle,
+    color: 'text-yellow-700 dark:text-yellow-400',
+    bg: 'bg-yellow-100 dark:bg-yellow-900/40',
+    border: 'border-yellow-200 dark:border-yellow-800',
+    description: 'How did Jesus teach us to pray? A pattern: honor God, surrender, ask, confess, forgive, seek protection.',
+  },
+  'Day 13 — Seven Things God Hates': {
+    icon: EyeOff,
+    color: 'text-lime-700 dark:text-lime-400',
+    bg: 'bg-lime-100 dark:bg-lime-900/40',
+    border: 'border-lime-200 dark:border-lime-800',
+    description: 'Does the Bible tell us what God hates? Pride, lies, harm, wicked plans, pursuing evil, false testimony, division.',
+  },
+  'Day 14 — Why Am I Here?': {
+    icon: Compass,
+    color: 'text-stone-700 dark:text-stone-400',
+    bg: 'bg-stone-100 dark:bg-stone-900/40',
+    border: 'border-stone-200 dark:border-stone-800',
+    description: 'What is God\'s purpose for your life? Stop waiting for someday — obey faithfully with what He\'s already put in front of you.',
+  },
+  'Day 15 — What Does It Mean to Repent?': {
+    icon: RotateCcw,
+    color: 'text-slate-700 dark:text-slate-400',
+    bg: 'bg-slate-100 dark:bg-slate-900/40',
+    border: 'border-slate-200 dark:border-slate-800',
+    description: 'What does God mean by repent? More than feeling sorry — it means turning around and walking a different road.',
   },
 };
 
@@ -734,7 +790,7 @@ export function Devotionals() {
               <button
                 key={dev.filename}
                 onClick={() => setSelected(dev)}
-                className={`group text-left p-6 rounded-2xl theme-card border-2 ${meta.border} hover:shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer`}
+                className={`group text-left p-6 rounded-2xl border-2 ${meta.border} ${meta.bg} shadow-sm hover:shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer`}
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className={`w-11 h-11 rounded-xl ${meta.bg} flex items-center justify-center flex-shrink-0`}>
@@ -770,7 +826,7 @@ export function Devotionals() {
               <button
                 key={dev.filename}
                 onClick={() => setSelected(dev)}
-                className={`group text-left p-6 rounded-2xl theme-card border-2 ${meta.border} hover:shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer`}
+                className={`group text-left p-6 rounded-2xl border-2 ${meta.border} ${meta.bg} shadow-sm hover:shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer`}
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className={`w-11 h-11 rounded-xl ${meta.bg} flex items-center justify-center flex-shrink-0`}>
