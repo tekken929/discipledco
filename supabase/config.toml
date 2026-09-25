@@ -12,3 +12,6 @@ verify_jwt = false
 
 [functions.send-daily-devotional]
 verify_jwt = false
+
+[functions.seed-niv-missing]
+verify_jwt = false
