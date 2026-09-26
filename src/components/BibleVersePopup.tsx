@@ -37,6 +37,8 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
   const [versionMenuOpen, setVersionMenuOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const versionBtnRef = useRef<HTMLButtonElement>(null);
+  const [menuPos, setMenuPos] = useState<{ top: number; right: number } | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -87,6 +89,14 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
     }
   }
 
+  function openVersionMenu() {
+    if (versionBtnRef.current) {
+      const rect = versionBtnRef.current.getBoundingClientRect();
+      setMenuPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right });
+    }
+    setVersionMenuOpen((v) => !v);
+  }
+
   const currentVersion = VERSIONS.find((v) => v.id === version);
 
   const isCompact = verseStart !== null;
@@ -112,37 +122,41 @@ export function BibleVersePopup({ book, chapter, label, categoryBadgeClass, onCl
           <div className="flex items-center gap-2 flex-shrink-0">
             <div className="relative" ref={menuRef}>
               <button
-                onClick={() => setVersionMenuOpen((v) => !v)}
+                ref={versionBtnRef}
+                onClick={openVersionMenu}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors border border-gray-200 dark:border-gray-600"
                 aria-label="Choose Bible version"
               >
                 <span className="uppercase tracking-wide">{version}</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${versionMenuOpen ? 'rotate-180' : ''}`} />
               </button>
-              {versionMenuOpen && (
-                <div className="absolute right-0 mt-2 w-64 theme-card rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-10">
-                  <div className="px-3 py-2 text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest border-b border-gray-100 dark:border-gray-700">
-                    Bible Version
-                  </div>
-                  {VERSIONS.map((v) => (
-                    <button
-                      key={v.id}
-                      onClick={() => selectVersion(v.id)}
-                      className={`w-full text-left px-3 py-2.5 flex items-center justify-between transition-colors ${
-                        v.id === version
-                          ? 'bg-gray-100 dark:bg-gray-700/60'
-                          : 'hover:bg-gray-50 dark:hover:bg-gray-700/40'
-                      }`}
-                    >
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold text-gray-900 dark:text-white truncate">{v.name}</div>
-                        <div className="text-[11px] text-gray-400 dark:text-gray-500 uppercase tracking-wide">{v.id}</div>
-                      </div>
-                      {v.id === version && (
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
-                      )}
-                    </button>
-                  ))}
+              {versionMenuOpen && menuPos && (
+                <div
+                  style={{ position: 'fixed', top: menuPos.top, right: menuPos.right, maxHeight: Math.min(400, window.innerHeight - menuPos.top - 16), overflowY: 'auto' }}
+                  className="w-64 theme-card rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-[600]"
+                >
+                    <div className="px-3 py-2 text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest border-b border-gray-100 dark:border-gray-700">
+                      Bible Version
+                    </div>
+                    {VERSIONS.map((v) => (
+                      <button
+                        key={v.id}
+                        onClick={() => selectVersion(v.id)}
+                        className={`w-full text-left px-3 py-2.5 flex items-center justify-between transition-colors ${
+                          v.id === version
+                            ? 'bg-gray-100 dark:bg-gray-700/60'
+                            : 'hover:bg-gray-50 dark:hover:bg-gray-700/40'
+                        }`}
+                      >
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold text-gray-900 dark:text-white truncate">{v.name}</div>
+                          <div className="text-[11px] text-gray-400 dark:text-gray-500 uppercase tracking-wide">{v.id}</div>
+                        </div>
+                        {v.id === version && (
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+                        )}
+                      </button>
+                    ))}
                 </div>
               )}
             </div>
