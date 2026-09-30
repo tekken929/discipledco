@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen, Columns2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { BookDisplay } from '../components/BookDisplay';
@@ -131,6 +131,10 @@ export function BibleLookup() {
   const ALL_BACKGROUNDS = [...READING_BACKGROUNDS, ...READING_BACKGROUNDS_EXTRA];
   const [overviewOpen, setOverviewOpen] = useState(false);
   const [translationOpen, setTranslationOpen] = useState(false);
+  const [parallelMode, setParallelMode] = useState(false);
+  const [parallelTranslation, setParallelTranslation] = useState<Translation>('niv');
+  const [parallelVerses, setParallelVerses] = useState<BibleVerse[]>([]);
+  const [parallelLoading, setParallelLoading] = useState(false);
   const translationRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -162,10 +166,32 @@ export function BibleLookup() {
     }
   }
 
+  async function fetchParallelVerses(book: string, chapter: number, trans: Translation) {
+    setParallelLoading(true);
+    setParallelVerses([]);
+    try {
+      const data = await fetchBibleChapter(book, chapter, trans);
+      setParallelVerses(data);
+    } catch {
+      setParallelVerses([]);
+    } finally {
+      setParallelLoading(false);
+    }
+  }
+
   useEffect(() => {
     fetchVerses(paramBook, paramChapter, translation);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (parallelMode && loaded) {
+      fetchParallelVerses(loadedBook, loadedChapter, parallelTranslation);
+    } else {
+      setParallelVerses([]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [parallelMode, parallelTranslation, loadedBook, loadedChapter]);
 
   useEffect(() => {
     if (loaded && selectedVerse !== null && scrollContainerRef.current) {
@@ -215,6 +241,14 @@ export function BibleLookup() {
     }
   }
 
+  function handleParallelTranslationChange(t: Translation) {
+    setParallelTranslation(t);
+  }
+
+  function toggleParallel() {
+    setParallelMode((prev) => !prev);
+  }
+
   function handleNavigate(direction: 'prev' | 'next') {
     const target = getAdjacentChapter(loadedBook, loadedChapter, direction);
     if (!target) return;
@@ -246,7 +280,7 @@ export function BibleLookup() {
 
   return (
     <>
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
+      <main className={`${parallelMode ? 'max-w-7xl' : 'max-w-5xl'} mx-auto px-4 sm:px-6 lg:px-8 py-1 transition-all`}>
         <div className="mb-1.5">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">
@@ -327,6 +361,21 @@ export function BibleLookup() {
           </button>
           {translationOpen && (
             <div className="px-3 pb-2">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">Primary</span>
+                <button
+                  onClick={toggleParallel}
+                  className={`flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all ${
+                    parallelMode
+                      ? 'bg-emerald-600 text-white border-emerald-600'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-emerald-400'
+                  }`
+                  }
+                >
+                  <Columns2 className="w-3.5 h-3.5" />
+                  Parallel {parallelMode ? 'On' : 'Off'}
+                </button>
+              </div>
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
                 {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
                   <button
@@ -343,6 +392,32 @@ export function BibleLookup() {
                   </button>
                 ))}
               </div>
+
+              {parallelMode && (
+                <>
+                  <div className="mt-3 mb-2">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">Parallel Translation</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+                    {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[])
+                      .filter((t) => t !== translation)
+                      .map((t) => (
+                        <button
+                          key={t}
+                          onClick={() => handleParallelTranslationChange(t)}
+                          className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
+                            parallelTranslation === t
+                              ? 'border-sky-500 bg-sky-50 text-sky-700'
+                              : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                          }`}
+                        >
+                          <span className="text-sm font-bold">{TRANSLATION_INFO[t].label}</span>
+                          <span className="text-[9px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
+                        </button>
+                      ))}
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
@@ -492,6 +567,119 @@ export function BibleLookup() {
                   </div>
                 </div>
               </div>
+              {parallelMode && parallelLoading && (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+                  <span className="ml-2 text-sm text-gray-400">Loading parallel translation...</span>
+                </div>
+              )}
+
+              {parallelMode && !parallelLoading && parallelVerses.length > 0 ? (
+                <div ref={scrollContainerRef} className="px-3 py-1.5 max-h-[calc(65vh+150px)] overflow-y-auto">
+                  {/* Column headers */}
+                  <div className="flex gap-3 mb-2 pb-1.5 border-b sticky top-0" style={{ borderColor: bg.border, backgroundColor: bg.bg }}>
+                    <span className="w-7 flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200">
+                        {TRANSLATION_INFO[loadedTranslation].label}
+                      </span>
+                    </div>
+                    <span className="w-px flex-shrink-0 bg-gray-300 dark:bg-gray-600" style={{ backgroundColor: bg.border }} />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 border border-sky-200">
+                        {TRANSLATION_INFO[parallelTranslation].label}
+                      </span>
+                    </div>
+                  </div>
+                  {verses.map(({ verse, text }) => {
+                    const hlList = notebook.getHighlightsForVerse(loadedBook, loadedChapter, verse);
+                    const fullHl = hlList.find((h) => !h.highlighted_text);
+                    const partialHls = hlList.filter((h) => h.highlighted_text);
+                    const hlColor = fullHl ? (fullHl.color as HighlightColor) : null;
+                    const hlBg = hlColor ? HIGHLIGHT_COLORS[hlColor].text : '';
+
+                    let renderedText: React.ReactNode = text;
+                    if (partialHls.length > 0) {
+                      const parts: React.ReactNode[] = [];
+                      let remaining = text;
+                      let keyIdx = 0;
+                      const sorted = [...partialHls].sort((a, b) => {
+                        const ia = remaining.indexOf(a.highlighted_text!);
+                        const ib = remaining.indexOf(b.highlighted_text!);
+                        return (ia === -1 ? 9999 : ia) - (ib === -1 ? 9999 : ib);
+                      });
+                      for (const hl of sorted) {
+                        const idx = remaining.indexOf(hl.highlighted_text!);
+                        if (idx === -1) continue;
+                        if (idx > 0) parts.push(<span key={keyIdx++}>{remaining.slice(0, idx)}</span>);
+                        const c = hl.color as HighlightColor;
+                        parts.push(<mark key={keyIdx++} className={`${HIGHLIGHT_COLORS[c].text} rounded px-0.5`}>{hl.highlighted_text}</mark>);
+                        remaining = remaining.slice(idx + hl.highlighted_text!.length);
+                      }
+                      if (remaining) parts.push(<span key={keyIdx++}>{remaining}</span>);
+                      renderedText = <>{parts}</>;
+                    }
+
+                    const pv = parallelVerses.find((v) => v.verse === verse);
+
+                    return (
+                      <div
+                        key={verse}
+                        id={`verse-${verse}`}
+                        className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors cursor-pointer mb-1 ${
+                          hlBg
+                        } ${
+                          selectedVerse === verse && !hlBg ? 'bg-emerald-100/60' : ''
+                        } ${!hlBg ? 'hover:bg-black/5' : ''}`}
+                        onMouseUp={(e) => {
+                          const sel = window.getSelection();
+                          const selectedText = sel && sel.toString().trim().length > 0 ? sel.toString().trim() : null;
+                          const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                          openVersePopup(verse, rect, selectedText);
+                        }}
+                      >
+                        <span className="text-xs font-bold text-emerald-600 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
+                          {verse}
+                        </span>
+                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: bg.text }}>
+                          {renderedText}
+                        </p>
+                        <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: bg.border }} />
+                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: bg.text, opacity: 0.85 }}>
+                          {pv ? pv.text : '—'}
+                        </p>
+                      </div>
+                    );
+                  })}
+
+                  <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: bg.border }}>
+                    <button
+                      onClick={() => handleNavigate('prev')}
+                      disabled={!prevChapter}
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      style={{ borderColor: bg.border, color: bg.text }}
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                      <div className="text-left">
+                        <p className="text-[10px] uppercase tracking-wide opacity-60">Previous</p>
+                        <p className="text-sm font-bold">{prevChapter ? `${prevChapter.book} ${prevChapter.chapter}` : '—'}</p>
+                      </div>
+                    </button>
+                    <button
+                      onClick={() => handleNavigate('next')}
+                      disabled={!nextChapter}
+                      className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      style={{ borderColor: bg.border, color: bg.text }}
+                    >
+                      <div className="text-right">
+                        <p className="text-[10px] uppercase tracking-wide opacity-60">Next</p>
+                        <p className="text-sm font-bold">{nextChapter ? `${nextChapter.book} ${nextChapter.chapter}` : '—'}</p>
+                      </div>
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ) : (
               <div ref={scrollContainerRef} className="px-3 py-1.5 space-y-1 max-h-[calc(65vh+150px)] overflow-y-auto">
                 {verses.map(({ verse, text }) => {
                   const hlList = notebook.getHighlightsForVerse(loadedBook, loadedChapter, verse);
@@ -500,13 +688,11 @@ export function BibleLookup() {
                   const hlColor = fullHl ? (fullHl.color as HighlightColor) : null;
                   const hlBg = hlColor ? HIGHLIGHT_COLORS[hlColor].text : '';
 
-                  // Build rendered text with inline partial highlights
                   let renderedText: React.ReactNode = text;
                   if (partialHls.length > 0) {
                     const parts: React.ReactNode[] = [];
                     let remaining = text;
                     let keyIdx = 0;
-                    // Sort by position in text
                     const sorted = [...partialHls].sort((a, b) => {
                       const ia = remaining.indexOf(a.highlighted_text!);
                       const ib = remaining.indexOf(b.highlighted_text!);
@@ -585,6 +771,7 @@ export function BibleLookup() {
                   </button>
                 </div>
               </div>
+              )}
             </>
           )}
 
