@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen, Columns2, Palette } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen, Columns2, Palette, Type } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { BookDisplay } from '../components/BookDisplay';
@@ -74,105 +74,113 @@ interface BibleTheme {
 
 const THEMES: BibleTheme[] = [
   {
-    name: 'forest',
-    label: 'Forest',
-    swatch: '#059669',
-    bg: '#f4f7f4',
-    border: '#d4e0d4',
-    text: '#1a2e1a',
-    accent: '#059669',
-    accentLight: '#d1fae5',
-    accentText: '#047857',
-    accentBorder: '#a7f3d0',
-    accentBorderHover: '#6ee7b7',
-    parallel: '#0284c7',
+    name: 'slate',
+    label: 'Slate',
+    swatch: '#334155',
+    bg: '#f1f1f4',
+    border: '#d0d0d6',
+    text: '#1e293b',
+    accent: '#334155',
+    accentLight: '#dbeafe',
+    accentText: '#1e40af',
+    accentBorder: '#93c5fd',
+    accentBorderHover: '#60a5fa',
+    parallel: '#0ea5e9',
     parallelLight: '#e0f2fe',
     parallelText: '#0369a1',
-    parallelBorder: '#bae6fd',
-    verseNum: '#059669',
-    selectBg: '#f0fdf4',
-    selectBorder: '#bbf7d0',
+    parallelBorder: '#7dd3fc',
+    verseNum: '#1e40af',
+    selectBg: '#f8fafc',
+    selectBorder: '#cbd5e1',
+  },
+  {
+    name: 'forest',
+    label: 'Forest',
+    swatch: '#047857',
+    bg: '#f0f6f2',
+    border: '#c8e0d2',
+    text: '#0f2e1e',
+    accent: '#047857',
+    accentLight: '#a7f3d0',
+    accentText: '#065f46',
+    accentBorder: '#34d399',
+    accentBorderHover: '#10b981',
+    parallel: '#0ea5e9',
+    parallelLight: '#cffafe',
+    parallelText: '#0369a1',
+    parallelBorder: '#67e8f9',
+    verseNum: '#047857',
+    selectBg: '#ecfdf5',
+    selectBorder: '#a7f3d0',
   },
   {
     name: 'ocean',
     label: 'Ocean',
-    swatch: '#0284c7',
-    bg: '#eef4f9',
-    border: '#cfdde9',
-    text: '#1a2733',
-    accent: '#0284c7',
-    accentLight: '#e0f2fe',
-    accentText: '#0369a1',
-    accentBorder: '#bae6fd',
-    accentBorderHover: '#7dd3fc',
+    swatch: '#0369a1',
+    bg: '#eaf2f9',
+    border: '#c0d8ea',
+    text: '#0c2233',
+    accent: '#0369a1',
+    accentLight: '#bae6fd',
+    accentText: '#075985',
+    accentBorder: '#38bdf8',
+    accentBorderHover: '#0ea5e9',
     parallel: '#7c3aed',
     parallelLight: '#ede9fe',
-    parallelText: '#6d28d9',
-    parallelBorder: '#ddd6fe',
-    verseNum: '#0284c7',
+    parallelText: '#5b21b6',
+    parallelBorder: '#a78bfa',
+    verseNum: '#0369a1',
     selectBg: '#f0f9ff',
     selectBorder: '#bae6fd',
   },
   {
     name: 'sunset',
     label: 'Sunset',
-    swatch: '#d97706',
-    bg: '#faf6f0',
-    border: '#e5d8c8',
-    text: '#2a2218',
-    accent: '#d97706',
-    accentLight: '#fef3c7',
-    accentText: '#b45309',
-    accentBorder: '#fde68a',
-    accentBorderHover: '#fcd34d',
+    swatch: '#c2410c',
+    bg: '#faf5ef',
+    border: '#e4d0bc',
+    text: '#2a1e10',
+    accent: '#c2410c',
+    accentLight: '#fed7aa',
+    accentText: '#9a3412',
+    accentBorder: '#fb923c',
+    accentBorderHover: '#f97316',
     parallel: '#dc2626',
     parallelLight: '#fee2e2',
-    parallelText: '#b91c1c',
-    parallelBorder: '#fecaca',
-    verseNum: '#d97706',
-    selectBg: '#fffbeb',
-    selectBorder: '#fde68a',
-  },
-  {
-    name: 'slate',
-    label: 'Slate',
-    swatch: '#475569',
-    bg: '#f0f0f2',
-    border: '#d0d0d4',
-    text: '#2a2a2e',
-    accent: '#475569',
-    accentLight: '#e2e8f0',
-    accentText: '#334155',
-    accentBorder: '#cbd5e1',
-    accentBorderHover: '#94a3b8',
-    parallel: '#64748b',
-    parallelLight: '#f1f5f9',
-    parallelText: '#475569',
-    parallelBorder: '#cbd5e1',
-    verseNum: '#475569',
-    selectBg: '#f8fafc',
-    selectBorder: '#cbd5e1',
+    parallelText: '#991b1b',
+    parallelBorder: '#fca5a5',
+    verseNum: '#c2410c',
+    selectBg: '#fff7ed',
+    selectBorder: '#fed7aa',
   },
   {
     name: 'rose',
     label: 'Rose',
-    swatch: '#e11d48',
-    bg: '#f8f0f3',
-    border: '#e8d0d8',
-    text: '#2a1a20',
-    accent: '#e11d48',
-    accentLight: '#ffe4e6',
-    accentText: '#be123c',
-    accentBorder: '#fecdd3',
-    accentBorderHover: '#fda4af',
+    swatch: '#be123c',
+    bg: '#fbf0f3',
+    border: '#e8c8d4',
+    text: '#2a0e1e',
+    accent: '#be123c',
+    accentLight: '#fecdd3',
+    accentText: '#9f1239',
+    accentBorder: '#fb7185',
+    accentBorderHover: '#f43f5e',
     parallel: '#9333ea',
     parallelLight: '#f3e8ff',
-    parallelText: '#7e22ce',
-    parallelBorder: '#e9d5ff',
-    verseNum: '#e11d48',
+    parallelText: '#6b21a8',
+    parallelBorder: '#c084fc',
+    verseNum: '#be123c',
     selectBg: '#fff1f2',
     selectBorder: '#fecdd3',
   },
+];
+
+const READING_BACKGROUNDS = [
+  { name: 'White', bg: '#ffffff', border: '#e5e5e5', text: '#1a1a1a' },
+  { name: 'Off White', bg: '#fafafa', border: '#e0e0e0', text: '#1a1a1a' },
+  { name: 'Tan', bg: '#f5f0e6', border: '#ddd0c0', text: '#2a2620' },
+  { name: 'Light Grey', bg: '#e8e8ea', border: '#c8c8cc', text: '#2a2a2e' },
+  { name: 'Light Blue', bg: '#e8f0f8', border: '#c8d8e8', text: '#1a2a3a' },
 ];
 
 function getAdjacentChapter(book: string, chapter: number, direction: 'prev' | 'next'): { book: string; chapter: number } | null {
@@ -233,9 +241,11 @@ export function BibleLookup() {
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
   const [selectedVerse, setSelectedVerse] = useState<number | null>(paramVerse);
   const [themeIndex, setThemeIndex] = useState(0);
+  const [readingBgIndex, setReadingBgIndex] = useState(0);
   const [overviewOpen, setOverviewOpen] = useState(false);
   const [translationOpen, setTranslationOpen] = useState(false);
   const [themePickerOpen, setThemePickerOpen] = useState(false);
+  const [readingBgOpen, setReadingBgOpen] = useState(false);
   const [parallelMode, setParallelMode] = useState(false);
   const [parallelTranslation, setParallelTranslation] = useState<Translation>('niv');
   const [parallelVerses, setParallelVerses] = useState<BibleVerse[]>([]);
@@ -368,6 +378,7 @@ export function BibleLookup() {
 
   const info = TRANSLATION_INFO[loadedTranslation];
   const theme = THEMES[themeIndex];
+  const readingBg = READING_BACKGROUNDS[readingBgIndex];
   const prevChapter = getAdjacentChapter(loadedBook, loadedChapter, 'prev');
   const nextChapter = getAdjacentChapter(loadedBook, loadedChapter, 'next');
 
@@ -473,6 +484,34 @@ export function BibleLookup() {
                 <Columns2 className="w-3.5 h-3.5" />
                 Parallel {parallelMode ? 'On' : 'Off'}
               </button>
+              {/* Reading background picker — beside parallel toggle */}
+              <div className="relative">
+                <button
+                  onClick={() => setReadingBgOpen(o => !o)}
+                  className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all hover:scale-105"
+                  style={{ borderColor: theme.border, backgroundColor: theme.bg, color: theme.text }}
+                >
+                  <Type className="w-3.5 h-3.5" style={{ color: theme.accent }} />
+                  Reading
+                </button>
+                {readingBgOpen && (
+                  <div className="absolute left-0 top-full mt-1 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-600 p-2 min-w-[150px]">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-1 pb-1.5">Reading Background</p>
+                    {READING_BACKGROUNDS.map((rb, i) => (
+                      <button
+                        key={i}
+                        onClick={() => { setReadingBgIndex(i); setReadingBgOpen(false); }}
+                        className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                          readingBgIndex === i ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                        }`}
+                      >
+                        <span className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ backgroundColor: rb.bg, borderColor: rb.border }} />
+                        <span className="text-gray-700 dark:text-gray-200">{rb.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             <span className="text-xs font-medium hidden sm:block" style={{ color: theme.text, opacity: 0.5 }}>
               {TRANSLATION_INFO[translation].full}
@@ -612,7 +651,7 @@ export function BibleLookup() {
         {/* Main reading pane — full width */}
         <div
           className="border rounded-xl min-h-[400px] transition-colors"
-          style={{ backgroundColor: theme.bg, borderColor: theme.border }}
+          style={{ backgroundColor: readingBg.bg, borderColor: readingBg.border }}
         >
           {loading && (
             <div className="flex items-center justify-center h-64">
@@ -637,13 +676,13 @@ export function BibleLookup() {
 
           {!loading && !error && loaded && verses.length > 0 && (
             <>
-              <div className="px-3 pt-2 pb-1.5 border-b" style={{ borderColor: theme.border }}>
+              <div className="px-3 pt-2 pb-1.5 border-b" style={{ borderColor: readingBg.border }}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h2 className="text-xl font-bold" style={{ color: theme.text }}>
+                    <h2 className="text-xl font-bold" style={{ color: readingBg.text }}>
                       {loadedBook} {loadedChapter}
                     </h2>
-                    <p className="text-xs mt-0.5" style={{ color: theme.text, opacity: 0.5 }}>
+                    <p className="text-xs mt-0.5" style={{ color: readingBg.text, opacity: 0.5 }}>
                       {info.full} &mdash; {verses.length} verses
                     </p>
                   </div>
@@ -693,20 +732,20 @@ export function BibleLookup() {
 
               {parallelMode && !parallelLoading && parallelVerses.length > 0 ? (
                 <div ref={scrollContainerRef} className="px-3 py-1.5 max-h-[calc(65vh+150px)] overflow-y-auto">
-                  {/* Column headers — bigger, bolder, standing out */}
-                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0" style={{ borderColor: theme.border, backgroundColor: theme.bg }}>
+                  {/* Column headers — bigger, bolder, solid backgrounds */}
+                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0" style={{ borderColor: readingBg.border, backgroundColor: readingBg.bg }}>
                     <span className="w-7 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1 rounded-lg border" style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}>
+                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.accent, color: '#ffffff' }}>
                         {TRANSLATION_INFO[loadedTranslation].label}
-                        <span className="text-[10px] font-medium opacity-60 hidden sm:inline">{TRANSLATION_INFO[loadedTranslation].full}</span>
+                        <span className="text-[10px] font-medium opacity-80 hidden sm:inline">{TRANSLATION_INFO[loadedTranslation].full}</span>
                       </span>
                     </div>
-                    <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: theme.border }} />
+                    <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: readingBg.border }} />
                     <div className="flex-1 min-w-0">
-                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1 rounded-lg border" style={{ backgroundColor: theme.parallelLight, color: theme.parallelText, borderColor: theme.parallelBorder }}>
+                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.parallel, color: '#ffffff' }}>
                         {TRANSLATION_INFO[parallelTranslation].label}
-                        <span className="text-[10px] font-medium opacity-60 hidden sm:inline">{TRANSLATION_INFO[parallelTranslation].full}</span>
+                        <span className="text-[10px] font-medium opacity-80 hidden sm:inline">{TRANSLATION_INFO[parallelTranslation].full}</span>
                       </span>
                     </div>
                   </div>
@@ -760,23 +799,23 @@ export function BibleLookup() {
                         <span className="text-xs font-bold w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none" style={{ color: theme.verseNum }}>
                           {verse}
                         </span>
-                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: theme.text }}>
+                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: readingBg.text }}>
                           {renderedText}
                         </p>
-                        <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: theme.border }} />
-                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: theme.text, opacity: 0.85 }}>
+                        <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: readingBg.border }} />
+                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: readingBg.text, opacity: 0.85 }}>
                           {pv ? pv.text : '—'}
                         </p>
                       </div>
                     );
                   })}
 
-                  <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: theme.border }}>
+                  <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: readingBg.border }}>
                     <button
                       onClick={() => handleNavigate('prev')}
                       disabled={!prevChapter}
                       className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                      style={{ borderColor: theme.border, color: theme.text }}
+                      style={{ borderColor: readingBg.border, color: readingBg.text }}
                     >
                       <ChevronLeft className="w-4 h-4" />
                       <div className="text-left">
@@ -788,7 +827,7 @@ export function BibleLookup() {
                       onClick={() => handleNavigate('next')}
                       disabled={!nextChapter}
                       className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                      style={{ borderColor: theme.border, color: theme.text }}
+                      style={{ borderColor: readingBg.border, color: readingBg.text }}
                     >
                       <div className="text-right">
                         <p className="text-[10px] uppercase tracking-wide opacity-60">Next</p>
@@ -854,7 +893,7 @@ export function BibleLookup() {
                     <span className="text-xs font-bold w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none" style={{ color: theme.verseNum }}>
                       {verse}
                     </span>
-                    <p className="leading-relaxed flex-1 text-base" style={{ color: theme.text }}>
+                    <p className="leading-relaxed flex-1 text-base" style={{ color: readingBg.text }}>
                       {renderedText}
                     </p>
                   </div>
@@ -862,12 +901,12 @@ export function BibleLookup() {
                 })}
 
                 {/* Next / Previous chapter navigation */}
-                <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: theme.border }}>
+                <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: readingBg.border }}>
                   <button
                     onClick={() => handleNavigate('prev')}
                     disabled={!prevChapter}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    style={{ borderColor: theme.border, color: theme.text }}
+                    style={{ borderColor: readingBg.border, color: readingBg.text }}
                   >
                     <ChevronLeft className="w-4 h-4" />
                     <div className="text-left">
@@ -880,7 +919,7 @@ export function BibleLookup() {
                     onClick={() => handleNavigate('next')}
                     disabled={!nextChapter}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    style={{ borderColor: theme.border, color: theme.text }}
+                    style={{ borderColor: readingBg.border, color: readingBg.text }}
                   >
                     <div className="text-right">
                       <p className="text-[10px] uppercase tracking-wide opacity-60">Next</p>
