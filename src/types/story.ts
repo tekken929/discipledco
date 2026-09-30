@@ -12,6 +12,17 @@ export interface StorySection {
   verseText?: string;
 }
 
+export interface StoryTheme {
+  heroGradient: string;
+  heroDarkGradient: string;
+  headingGradient: string;
+  headingDarkGradient: string;
+  emphasisBg: string;
+  emphasisDarkBg: string;
+  emphasisText: string;
+  emphasisBorder: string;
+}
+
 export interface Story {
   id: string;
   title: string;
@@ -21,4 +32,5 @@ export interface Story {
   order: number;
   references: StoryReference[];
   content?: StorySection[];
+  theme?: StoryTheme;
 }

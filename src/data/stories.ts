@@ -1,4 +1,26 @@
-import { Story, StorySection } from '../types/story';
+import { Story, StorySection, StoryTheme } from '../types/story';
+
+const creationTheme: StoryTheme = {
+  heroGradient: 'from-emerald-600 via-teal-600 to-cyan-700',
+  heroDarkGradient: 'dark:from-emerald-800 dark:via-teal-900 dark:to-cyan-900',
+  headingGradient: 'from-emerald-600 to-teal-600',
+  headingDarkGradient: 'dark:from-emerald-700 dark:to-teal-700',
+  emphasisBg: 'from-emerald-50 to-teal-50',
+  emphasisDarkBg: 'dark:from-emerald-900/30 dark:to-teal-900/30',
+  emphasisText: 'text-emerald-800 dark:text-emerald-200',
+  emphasisBorder: 'border-emerald-200 dark:border-emerald-700',
+};
+
+const noahTheme: StoryTheme = {
+  heroGradient: 'from-blue-700 via-cyan-600 to-sky-500',
+  heroDarkGradient: 'dark:from-blue-900 dark:via-cyan-900 dark:to-sky-800',
+  headingGradient: 'from-blue-600 to-cyan-600',
+  headingDarkGradient: 'dark:from-blue-700 dark:to-cyan-700',
+  emphasisBg: 'from-blue-50 to-cyan-50',
+  emphasisDarkBg: 'dark:from-blue-900/30 dark:to-cyan-900/30',
+  emphasisText: 'text-blue-800 dark:text-blue-200',
+  emphasisBorder: 'border-blue-200 dark:border-blue-700',
+};
 
 const creationContent: StorySection[] = [
   { type: 'heading', text: 'In the Beginning' },
@@ -83,6 +105,85 @@ const creationContent: StorySection[] = [
   { type: 'body', text: 'Genesis 1:1–2:25; Psalm 19:1; Psalm 24:1; Psalm 33:6–9; Isaiah 40:28; John 1:1–3; Colossians 1:15–17; Revelation 21:1–5' },
 ];
 
+const noahContent: StorySection[] = [
+  { type: 'heading', text: 'The Flood' },
+  { type: 'scripture', text: 'Genesis 6:1–9:17', reference: 'Genesis 6:1–9:17', verseText: '' },
+  { type: 'body', text: 'Generations after Adam, mankind had multiplied across the earth. Sin had also spread throughout humanity.' },
+  { type: 'body', text: 'Genesis describes the condition of mankind directly:' },
+  { type: 'scripture', text: 'Genesis 6:5', reference: 'Genesis 6:5', verseText: 'The LORD saw how great the wickedness of the human race had become on the earth, and that every inclination of the thoughts of the human heart was only evil all the time.' },
+  { type: 'body', text: 'God saw the violence and corruption that filled the earth (Genesis 6:11–13). Against this background, Scripture introduces Noah.' },
+
+  { type: 'heading', text: 'God Calls Noah' },
+  { type: 'body', text: 'Noah was a descendant of Adam through the line of Seth (Genesis 5:3–32). He was the son of Lamech and the father of Shem, Ham, and Japheth (Genesis 5:28–32).' },
+  { type: 'body', text: 'Scripture describes Noah as a righteous man who walked faithfully with God (Genesis 6:9).' },
+  { type: 'scripture', text: 'Genesis 6:8', reference: 'Genesis 6:8', verseText: 'But Noah found favor in the eyes of the LORD.' },
+  { type: 'body', text: 'God told Noah that He had determined to bring judgment upon the earth because it was filled with violence and corruption (Genesis 6:13).' },
+  { type: 'body', text: 'God commanded Noah to build an ark of wood. He gave Noah specific instructions for its construction, including its dimensions, rooms, covering, door, and levels (Genesis 6:14–16).' },
+  { type: 'body', text: 'The ark was to be 300 cubits long, 50 cubits wide, and 30 cubits high (Genesis 6:15).' },
+  { type: 'body', text: 'God told Noah that a flood would come upon the earth and destroy creatures that had the breath of life. At the same time, God declared that He would establish His covenant with Noah (Genesis 6:17–18).' },
+  { type: 'body', text: 'Noah, his wife, his sons, and their wives would enter the ark. God also commanded Noah to bring animals into the ark and to gather food for his family and the animals (Genesis 6:18–21).' },
+  { type: 'body', text: 'Noah obeyed.' },
+  { type: 'scripture', text: 'Genesis 6:22', reference: 'Genesis 6:22', verseText: 'Noah did everything just as God commanded him.' },
+
+  { type: 'heading', text: 'The Flood' },
+  { type: 'body', text: 'Noah was six hundred years old when the flood came upon the earth (Genesis 7:6).' },
+  { type: 'body', text: 'Noah entered the ark with his wife, his three sons, and their wives. The animals entered as God had commanded, and then God shut Noah in (Genesis 7:7–16).' },
+  { type: 'body', text: 'Rain fell for forty days and forty nights. Genesis also records that the springs of the great deep burst forth and the floodgates of the heavens were opened (Genesis 7:11–12).' },
+  { type: 'body', text: 'The waters increased and lifted the ark above the earth. The mountains were covered, and every land creature outside the ark that had the breath of life died (Genesis 7:17–23).' },
+  { type: 'body', text: 'Only Noah and those with him in the ark remained (Genesis 7:23).' },
+  { type: 'body', text: 'The waters flooded the earth for 150 days (Genesis 7:24).' },
+
+  { type: 'heading', text: 'The Waters Recede' },
+  { type: 'body', text: 'God remembered Noah and all the animals with him in the ark. He sent a wind over the earth, and the waters began to recede (Genesis 8:1).' },
+  { type: 'body', text: 'The ark came to rest on the mountains of Ararat (Genesis 8:4).' },
+  { type: 'body', text: 'As the waters continued to decrease, Noah sent out a raven and later a dove. The dove eventually returned carrying a freshly plucked olive leaf, showing Noah that the waters had receded from the earth (Genesis 8:6–12).' },
+  { type: 'body', text: 'God then commanded Noah and his family to leave the ark and bring out the animals so they could multiply upon the earth (Genesis 8:15–17).' },
+  { type: 'body', text: 'Noah obeyed.' },
+  { type: 'body', text: 'After leaving the ark, Noah built an altar to the LORD and offered sacrifices to Him (Genesis 8:18–20).' },
+
+  { type: 'heading', text: 'God\u2019s Covenant' },
+  { type: 'body', text: 'God blessed Noah and his sons and again gave mankind the command to be fruitful, multiply, and fill the earth (Genesis 9:1).' },
+  { type: 'body', text: 'God then established a covenant with Noah, his descendants, and every living creature.' },
+  { type: 'scripture', text: 'Genesis 9:11', reference: 'Genesis 9:11', verseText: 'Never again will all life be destroyed by the waters of a flood; never again will there be a flood to destroy the earth.' },
+  { type: 'body', text: 'God gave a visible sign of this covenant.' },
+  { type: 'body', text: 'The rainbow.' },
+  { type: 'body', text: 'God placed the rainbow in the clouds as the sign of His covenant between Himself and the earth (Genesis 9:12–17).' },
+
+  { type: 'heading', text: 'The Big Picture' },
+  { type: 'body', text: 'The account of Noah begins with the corruption of mankind and God\u2019s judgment upon sin.' },
+  { type: 'body', text: 'God saw the condition of humanity (Genesis 6:5). He saw the violence filling the earth (Genesis 6:11). He declared the judgment that would come (Genesis 6:13). He also provided the means by which Noah and his family would be preserved (Genesis 6:17–18).' },
+  { type: 'body', text: 'Noah believed God and obeyed His commands.' },
+
+  { type: 'subheading', text: 'God judges sin.' },
+  { type: 'body', text: 'The flood came because mankind had become corrupt and violent before God (Genesis 6:5–13).' },
+
+  { type: 'subheading', text: 'God showed favor to Noah.' },
+  { type: 'body', text: 'Noah found favor in the eyes of the LORD and walked faithfully with God (Genesis 6:8–9).' },
+
+  { type: 'subheading', text: 'Noah responded with obedience.' },
+  { type: 'body', text: 'He built the ark according to God\u2019s instructions and did what God commanded him (Genesis 6:22; 7:5).' },
+
+  { type: 'subheading', text: 'God provided deliverance.' },
+  { type: 'body', text: 'Noah and his family were preserved inside the ark while judgment came upon the earth (Genesis 7:23).' },
+
+  { type: 'subheading', text: 'God established His covenant.' },
+  { type: 'body', text: 'After the flood, God made a covenant with Noah, his descendants, and every living creature (Genesis 9:8–11).' },
+
+  { type: 'subheading', text: 'God gave the rainbow as its sign.' },
+  { type: 'body', text: 'The rainbow was established as the visible sign of God\u2019s covenant with the earth (Genesis 9:12–17).' },
+
+  { type: 'body', text: 'The New Testament repeatedly refers to Noah and the flood as part of biblical history. Jesus spoke of the "days of Noah" when teaching about His future coming (Matthew 24:37–39). Hebrews identifies Noah\u2019s response to God\u2019s warning as an act of faith and obedience (Hebrews 11:7). Peter also refers to Noah and the ark when describing God\u2019s judgment and patience (1 Peter 3:20; 2 Peter 2:5).' },
+  { type: 'body', text: 'The same God who created the world in Genesis 1 is the God who judged mankind\u2019s rebellion in Genesis 6–8, preserved Noah and his family through the flood, and established His covenant after they came out of the ark.' },
+
+  { type: 'emphasis', text: 'Noah believed God, obeyed His command, and entered the ark God provided.' },
+
+  { type: 'heading', text: 'Read the Story' },
+  { type: 'body', text: 'Genesis 6:1–9:17' },
+
+  { type: 'heading', text: 'Key References' },
+  { type: 'body', text: 'Genesis 5:28–32; Genesis 6:1–9:17; Matthew 24:37–39; Hebrews 11:7; 1 Peter 3:20; 2 Peter 2:5' },
+];
+
 export const stories: Story[] = [
   {
     id: 'creation',
@@ -114,7 +215,8 @@ This account sets a foundation—that what exists is not random, and that God's 
         text: 'By the seventh day God had finished the work he had been doing; so on the seventh day he rested from all his work. Then God blessed the seventh day and made it holy.'
       }
     ],
-    content: creationContent
+    content: creationContent,
+    theme: creationTheme
   },
   {
     id: 'noah',
@@ -142,7 +244,9 @@ This account sets a foundation—that what exists is not random, and that God's 
         verse: '13',
         text: 'I have set my rainbow in the clouds, and it will be the sign of the covenant between me and the earth.'
       }
-    ]
+    ],
+    content: noahContent,
+    theme: noahTheme
   },
   {
     id: 'abraham',

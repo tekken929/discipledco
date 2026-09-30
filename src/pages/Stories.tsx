@@ -67,6 +67,7 @@ export function Stories() {
 
   if (selectedStory) {
     const hasContent = selectedStory.content && selectedStory.content.length > 0;
+    const theme = selectedStory.theme;
 
     return (
       <>
@@ -82,7 +83,7 @@ export function Stories() {
           {hasContent ? (
             <div className="space-y-0">
               {/* Hero banner */}
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 dark:from-emerald-800 dark:via-teal-900 dark:to-cyan-900 shadow-xl mb-6">
+              <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${theme ? `${theme.heroGradient} ${theme.heroDarkGradient}` : 'from-emerald-600 via-teal-600 to-cyan-700 dark:from-emerald-800 dark:via-teal-900 dark:to-cyan-900'} shadow-xl mb-6`}>
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 30%, white 1px, transparent 1px), radial-gradient(circle at 80% 70%, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
                 <div className="relative px-6 py-10 md:py-14 text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm mb-4 text-3xl">
@@ -125,7 +126,7 @@ export function Stories() {
                     return (
                       <div
                         key={idx}
-                        className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700 rounded-2xl px-5 py-3 mt-6 shadow-md"
+                        className={`bg-gradient-to-r ${theme ? `${theme.headingGradient} ${theme.headingDarkGradient}` : 'from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700'} rounded-2xl px-5 py-3 mt-6 shadow-md`}
                       >
                         <h2 className="text-lg md:text-xl font-bold text-white tracking-tight">
                           {section.text}
@@ -179,9 +180,9 @@ export function Stories() {
                     return (
                       <div
                         key={idx}
-                        className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-2xl px-6 py-5 mt-6 text-center border border-emerald-200 dark:border-emerald-700"
+                        className={`bg-gradient-to-r ${theme ? `${theme.emphasisBg} ${theme.emphasisDarkBg}` : 'from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30'} rounded-2xl px-6 py-5 mt-6 text-center border ${theme ? theme.emphasisBorder : 'border-emerald-200 dark:border-emerald-700'}`}
                       >
-                        <p className="text-base font-bold text-emerald-800 dark:text-emerald-200 leading-relaxed italic">
+                        <p className={`text-base font-bold ${theme ? theme.emphasisText : 'text-emerald-800 dark:text-emerald-200'} leading-relaxed italic`}>
                           {section.text}
                         </p>
                       </div>
@@ -290,7 +291,7 @@ export function Stories() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {stories.sort((a, b) => a.order - b.order).map((story) => {
-            const isAvailable = story.id === 'creation';
+            const isAvailable = story.id === 'creation' || story.id === 'noah';
             if (!isAvailable) {
               return (
                 <div
