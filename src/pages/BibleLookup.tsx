@@ -101,6 +101,7 @@ interface VersePopupState {
   verse: number;
   text: string;
   rect: DOMRect;
+  selectedText: string | null;
 }
 
 export function BibleLookup() {
@@ -231,9 +232,9 @@ export function BibleLookup() {
   const prevChapter = getAdjacentChapter(loadedBook, loadedChapter, 'prev');
   const nextChapter = getAdjacentChapter(loadedBook, loadedChapter, 'next');
 
-  const openVersePopup = useCallback((verse: number, rect: DOMRect) => {
+  const openVersePopup = useCallback((verse: number, rect: DOMRect, selectedText: string | null) => {
     const v = verses.find((vv) => vv.verse === verse);
-    if (v) setVersePopup({ verse, text: v.text, rect });
+    if (v) setVersePopup({ verse, text: v.text, rect, selectedText });
   }, [verses]);
 
   const currentHighlight = versePopup
@@ -493,9 +494,42 @@ export function BibleLookup() {
               </div>
               <div ref={scrollContainerRef} className="px-3 py-1.5 space-y-1 max-h-[calc(65vh+150px)] overflow-y-auto">
                 {verses.map(({ verse, text }) => {
-                  const hl = notebook.getHighlight(loadedBook, loadedChapter, verse);
-                  const hlColor = hl ? (hl.color as HighlightColor) : null;
-                  const hlBg = hlColor ? HIGHLIGHT_COLORS[hlColor].bg : '';
+                  const hlList = notebook.getHighlightsForVerse(loadedBook, loadedChapter, verse);
+                  const fullHl = hlList.find((h) => !h.highlighted_text);
+                  const partialHls = hlList.filter((h) => h.highlighted_text);
+                  const hlColor = fullHl ? (fullHl.color as HighlightColor) : null;
+                  const hlBg = hlColor ? HIGHLIGHT_COLORS[hlColor].text : '';
+
+                  // Build rendered text with inline partial highlights
+                  let renderedText: React.ReactNode = text;
+                  if (partialHls.length > 0) {
+                    const parts: React.ReactNode[] = [];
+                    let remaining = text;
+                    let keyIdx = 0;
+                    // Sort by position in text
+                    const sorted = [...partialHls].sort((a, b) => {
+                      const ia = remaining.indexOf(a.highlighted_text!);
+                      const ib = remaining.indexOf(b.highlighted_text!);
+                      return (ia === -1 ? 9999 : ia) - (ib === -1 ? 9999 : ib);
+                    });
+                    for (const hl of sorted) {
+                      const idx = remaining.indexOf(hl.highlighted_text!);
+                      if (idx === -1) continue;
+                      if (idx > 0) {
+                        parts.push(<span key={keyIdx++}>{remaining.slice(0, idx)}</span>);
+                      }
+                      const c = hl.color as HighlightColor;
+                      parts.push(
+                        <mark key={keyIdx++} className={`${HIGHLIGHT_COLORS[c].text} rounded px-0.5`}>
+                          {hl.highlighted_text}
+                        </mark>
+                      );
+                      remaining = remaining.slice(idx + hl.highlighted_text!.length);
+                    }
+                    if (remaining) parts.push(<span key={keyIdx++}>{remaining}</span>);
+                    renderedText = <>{parts}</>;
+                  }
+
                   return (
                   <div
                     key={verse}
@@ -505,16 +539,18 @@ export function BibleLookup() {
                     } ${
                       selectedVerse === verse && !hlBg ? 'bg-emerald-100/60' : ''
                     } ${!hlBg ? 'hover:bg-black/5' : ''}`}
-                    onClick={(e) => {
+                    onMouseUp={(e) => {
+                      const sel = window.getSelection();
+      const selectedText = sel && sel.toString().trim().length > 0 ? sel.toString().trim() : null;
                       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                      openVersePopup(verse, rect);
+                      openVersePopup(verse, rect, selectedText);
                     }}
                   >
                     <span className="text-xs font-bold text-emerald-600 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
                       {verse}
                     </span>
                     <p className="leading-relaxed flex-1 text-base" style={{ color: bg.text }}>
-                      {text}
+                      {renderedText}
                     </p>
                   </div>
                   );
@@ -592,8 +628,9 @@ export function BibleLookup() {
           verseText={versePopup.text}
           translation={loadedTranslation}
           currentHighlightColor={currentHighlightColor}
-          onHighlight={(color) => {
-            notebook.toggleHighlight(loadedBook, loadedChapter, versePopup.verse, color);
+          selectedText={versePopup.selectedText}
+          onHighlight={(color, highlightedText) => {
+            notebook.toggleHighlight(loadedBook, loadedChapter, versePopup.verse, color, highlightedText);
           }}
           onRemoveHighlight={() => {
             notebook.removeHighlight(loadedBook, loadedChapter, versePopup.verse);

@@ -23,15 +23,17 @@ export interface VerseHighlight {
   chapter: number;
   verse: number;
   color: string;
+  highlighted_text: string | null;
   created_at: string;
 }
 
-export type HighlightColor = 'yellow' | 'green' | 'blue';
+export type HighlightColor = 'yellow' | 'green' | 'blue' | 'red';
 
-export const HIGHLIGHT_COLORS: Record<HighlightColor, { label: string; bg: string; ring: string }> = {
-  yellow: { label: 'Yellow', bg: 'bg-amber-300/60', ring: 'ring-amber-400' },
-  green: { label: 'Green', bg: 'bg-emerald-300/60', ring: 'ring-emerald-400' },
-  blue: { label: 'Blue', bg: 'bg-sky-300/60', ring: 'ring-sky-400' },
+export const HIGHLIGHT_COLORS: Record<HighlightColor, { label: string; bg: string; ring: string; text: string }> = {
+  yellow: { label: 'Yellow', bg: 'bg-amber-300/50', ring: 'ring-amber-400', text: 'bg-amber-200/70' },
+  green: { label: 'Green', bg: 'bg-emerald-300/50', ring: 'ring-emerald-400', text: 'bg-emerald-200/70' },
+  blue: { label: 'Blue', bg: 'bg-sky-300/50', ring: 'ring-sky-400', text: 'bg-sky-200/70' },
+  red: { label: 'Red', bg: 'bg-red-300/50', ring: 'ring-red-400', text: 'bg-red-200/70' },
 };
 
 function getOrCreateUserId(): string {
@@ -129,19 +131,19 @@ export function useBibleNotebook() {
   );
 
   const toggleHighlight = useCallback(
-    async (book: string, chapter: number, verse: number, color: HighlightColor) => {
+    async (book: string, chapter: number, verse: number, color: HighlightColor, highlightedText?: string) => {
       if (!supabase || !userId) return;
       const existing = highlights.find(
         (h) => h.book === book && h.chapter === chapter && h.verse === verse,
       );
       if (existing) {
-        if (existing.color === color) {
+        if (existing.color === color && existing.highlighted_text === (highlightedText ?? null)) {
           await supabase.from('bible_verse_highlights').delete().eq('id', existing.id).eq('user_id', userId);
           setHighlights((prev) => prev.filter((h) => h.id !== existing.id));
         } else {
           const { data } = await supabase
             .from('bible_verse_highlights')
-            .update({ color })
+            .update({ color, highlighted_text: highlightedText ?? null })
             .eq('id', existing.id)
             .eq('user_id', userId)
             .select()
@@ -153,7 +155,7 @@ export function useBibleNotebook() {
       } else {
         const { data } = await supabase
           .from('bible_verse_highlights')
-          .insert({ user_id: userId, book, chapter, verse, color })
+          .insert({ user_id: userId, book, chapter, verse, color, highlighted_text: highlightedText ?? null })
           .select()
           .single();
         if (data) {
@@ -184,6 +186,13 @@ export function useBibleNotebook() {
     [highlights],
   );
 
+  const getHighlightsForVerse = useCallback(
+    (book: string, chapter: number, verse: number): VerseHighlight[] => {
+      return highlights.filter((h) => h.book === book && h.chapter === chapter && h.verse === verse);
+    },
+    [highlights],
+  );
+
   return {
     userId,
     savedVerses,
@@ -195,5 +204,6 @@ export function useBibleNotebook() {
     toggleHighlight,
     removeHighlight,
     getHighlight,
+    getHighlightsForVerse,
   };
 }

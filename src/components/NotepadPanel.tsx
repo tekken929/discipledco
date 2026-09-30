@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Bookmark, Trash2, StickyNote, Share2, NotebookPen } from 'lucide-react';
+import { X, Bookmark, Trash2, StickyNote, Send, NotebookPen } from 'lucide-react';
 import type { SavedVerse } from '../hooks/useBibleNotebook';
 
 interface NotepadPanelProps {
@@ -24,14 +24,11 @@ export function NotepadPanel({ open, onClose, savedVerses, onRemove, onUpdateNot
     setEditingNoteId(null);
   }
 
-  function shareVerse(sv: SavedVerse) {
+  function sendVerse(sv: SavedVerse) {
     const ref = sv.verse_end ? `${sv.book} ${sv.chapter}:${sv.verse}-${sv.verse_end}` : `${sv.book} ${sv.chapter}:${sv.verse}`;
     const text = `"${sv.verse_text}" — ${ref} (${sv.translation.toUpperCase()})`;
-    if (navigator.share) {
-      navigator.share({ text, title: ref }).catch(() => {});
-    } else {
-      navigator.clipboard?.writeText(text);
-    }
+    const subject = `Bible verse: ${ref}`;
+    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
   }
 
   return (
@@ -93,11 +90,11 @@ export function NotepadPanel({ open, onClose, savedVerses, onRemove, onUpdateNot
                   </div>
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
-                      onClick={() => shareVerse(sv)}
+                      onClick={() => sendVerse(sv)}
                       className="p-1.5 rounded-lg text-gray-400 hover:text-sky-600 hover:bg-sky-50 dark:hover:bg-sky-900/30 transition-colors"
-                      title="Share"
+                      title="Send"
                     >
-                      <Share2 className="w-3.5 h-3.5" />
+                      <Send className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => onRemove(sv.id)}

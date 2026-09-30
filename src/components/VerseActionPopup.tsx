@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Highlighter, Bookmark, Share2, X, Send } from 'lucide-react';
+import { Highlighter, Bookmark, X, Send } from 'lucide-react';
 import { HIGHLIGHT_COLORS, type HighlightColor } from '../hooks/useBibleNotebook';
 
 interface VerseActionPopupProps {
@@ -10,7 +10,8 @@ interface VerseActionPopupProps {
   verseText: string;
   translation: string;
   currentHighlightColor: HighlightColor | null;
-  onHighlight: (color: HighlightColor) => void;
+  selectedText: string | null;
+  onHighlight: (color: HighlightColor, highlightedText?: string) => void;
   onRemoveHighlight: () => void;
   onSave: () => void;
   onClose: () => void;
@@ -24,6 +25,7 @@ export function VerseActionPopup({
   verseText,
   translation,
   currentHighlightColor,
+  selectedText,
   onHighlight,
   onRemoveHighlight,
   onSave,
@@ -35,7 +37,7 @@ export function VerseActionPopup({
   useEffect(() => {
     if (!anchorRect) return;
     const popupWidth = 280;
-    const popupHeight = 120;
+    const popupHeight = 140;
     let left = anchorRect.left + anchorRect.width / 2 - popupWidth / 2;
     let top = anchorRect.top - popupHeight - 10;
 
@@ -59,15 +61,8 @@ export function VerseActionPopup({
   if (!anchorRect || !pos) return null;
 
   const ref = `${book} ${chapter}:${verse}`;
-
-  function handleShare() {
-    const text = `"${verseText}" — ${ref} (${translation.toUpperCase()})`;
-    if (navigator.share) {
-      navigator.share({ text, title: ref }).catch(() => {});
-    } else {
-      navigator.clipboard?.writeText(text);
-    }
-  }
+  const hasSelection = selectedText && selectedText.trim().length > 0;
+  const selectionLabel = hasSelection ? 'Highlight Selection' : 'Highlight Verse';
 
   function handleSend() {
     const text = `"${verseText}" — ${ref} (${translation.toUpperCase()})`;
@@ -95,12 +90,12 @@ export function VerseActionPopup({
         <div className="flex items-center gap-1.5 mb-2.5">
           <Highlighter className="w-3.5 h-3.5 text-gray-400" />
           <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-            Highlight
+            {selectionLabel}
           </span>
           {currentHighlightColor && (
             <button
               onClick={onRemoveHighlight}
-              className="ml-auto text-[10px] font-semibold text-gray-400 hover:text-red-500 transition-colors"
+              className="ml-auto text-xs font-semibold text-gray-500 hover:text-red-500 transition-colors"
             >
               Remove
             </button>
@@ -113,7 +108,7 @@ export function VerseActionPopup({
             return (
               <button
                 key={color}
-                onClick={() => onHighlight(color)}
+                onClick={() => onHighlight(color, hasSelection ? selectedText!.trim() : undefined)}
                 title={cfg.label}
                 className={`w-8 h-8 rounded-full ${cfg.bg} border-2 transition-all ${
                   isActive
@@ -125,6 +120,12 @@ export function VerseActionPopup({
           })}
         </div>
 
+        {hasSelection && (
+          <p className="text-[10px] text-gray-400 dark:text-gray-500 italic mb-2.5 leading-relaxed">
+            Only the selected text will be highlighted.
+          </p>
+        )}
+
         <div className="flex items-center gap-2">
           <button
             onClick={() => {
@@ -135,13 +136,6 @@ export function VerseActionPopup({
           >
             <Bookmark className="w-3.5 h-3.5" />
             Save
-          </button>
-          <button
-            onClick={handleShare}
-            className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
-            <Share2 className="w-3.5 h-3.5" />
-            Share
           </button>
           <button
             onClick={handleSend}
