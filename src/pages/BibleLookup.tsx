@@ -484,34 +484,6 @@ export function BibleLookup() {
                 <Columns2 className="w-3.5 h-3.5" />
                 Parallel {parallelMode ? 'On' : 'Off'}
               </button>
-              {/* Reading background picker — beside parallel toggle */}
-              <div className="relative">
-                <button
-                  onClick={() => setReadingBgOpen(o => !o)}
-                  className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all hover:scale-105"
-                  style={{ borderColor: theme.border, backgroundColor: theme.bg, color: theme.text }}
-                >
-                  <Type className="w-3.5 h-3.5" style={{ color: theme.accent }} />
-                  Reading
-                </button>
-                {readingBgOpen && (
-                  <div className="absolute left-0 top-full mt-1 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-600 p-2 min-w-[150px]">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-1 pb-1.5">Reading Background</p>
-                    {READING_BACKGROUNDS.map((rb, i) => (
-                      <button
-                        key={i}
-                        onClick={() => { setReadingBgIndex(i); setReadingBgOpen(false); }}
-                        className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                          readingBgIndex === i ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
-                        }`}
-                      >
-                        <span className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ backgroundColor: rb.bg, borderColor: rb.border }} />
-                        <span className="text-gray-700 dark:text-gray-200">{rb.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
             <span className="text-xs font-medium hidden sm:block" style={{ color: theme.text, opacity: 0.5 }}>
               {TRANSLATION_INFO[translation].full}
@@ -696,6 +668,34 @@ export function BibleLookup() {
                       <Columns2 className="w-3.5 h-3.5" />
                       {parallelMode ? 'Parallel On' : 'Parallel'}
                     </button>
+                    {/* Reading background picker — beside parallel, in content area */}
+                    <div className="relative">
+                      <button
+                        onClick={() => setReadingBgOpen(o => !o)}
+                        className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all hover:scale-105 mt-0.5"
+                        style={{ borderColor: theme.border, backgroundColor: theme.bg, color: theme.text }}
+                      >
+                        <Type className="w-3.5 h-3.5" style={{ color: theme.accent }} />
+                        Reading
+                      </button>
+                      {readingBgOpen && (
+                        <div className="absolute right-0 top-full mt-1 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-600 p-2 min-w-[150px]">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-1 pb-1.5">Reading Background</p>
+                          {READING_BACKGROUNDS.map((rb, i) => (
+                            <button
+                              key={i}
+                              onClick={() => { setReadingBgIndex(i); setReadingBgOpen(false); }}
+                              className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                                readingBgIndex === i ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                              }`}
+                            >
+                              <span className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ backgroundColor: rb.bg, borderColor: rb.border }} />
+                              <span className="text-gray-700 dark:text-gray-200">{rb.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                     <button
                       onClick={() => setNotepadOpen(true)}
                       className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-colors mt-0.5"
@@ -732,18 +732,18 @@ export function BibleLookup() {
 
               {parallelMode && !parallelLoading && parallelVerses.length > 0 ? (
                 <div ref={scrollContainerRef} className="px-3 py-1.5 max-h-[calc(65vh+150px)] overflow-y-auto">
-                  {/* Column headers — bigger, bolder, solid backgrounds */}
-                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0" style={{ borderColor: readingBg.border, backgroundColor: readingBg.bg }}>
+                  {/* Column headers — solid backgrounds, fully opaque */}
+                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0 z-10" style={{ borderColor: readingBg.border, backgroundColor: readingBg.bg }}>
                     <span className="w-7 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.accent, color: '#ffffff' }}>
+                      <span className="inline-flex w-full items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.accent, color: '#ffffff' }}>
                         {TRANSLATION_INFO[loadedTranslation].label}
                         <span className="text-[10px] font-medium opacity-80 hidden sm:inline">{TRANSLATION_INFO[loadedTranslation].full}</span>
                       </span>
                     </div>
                     <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: readingBg.border }} />
                     <div className="flex-1 min-w-0">
-                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.parallel, color: '#ffffff' }}>
+                      <span className="inline-flex w-full items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.parallel, color: '#ffffff' }}>
                         {TRANSLATION_INFO[parallelTranslation].label}
                         <span className="text-[10px] font-medium opacity-80 hidden sm:inline">{TRANSLATION_INFO[parallelTranslation].full}</span>
                       </span>
@@ -803,6 +803,9 @@ export function BibleLookup() {
                           {renderedText}
                         </p>
                         <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: readingBg.border }} />
+                        <span className="text-xs font-bold w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none" style={{ color: theme.parallel }}>
+                          {verse}
+                        </span>
                         <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: readingBg.text, opacity: 0.85 }}>
                           {pv ? pv.text : '—'}
                         </p>
