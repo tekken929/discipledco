@@ -22,6 +22,17 @@ const noahTheme: StoryTheme = {
   emphasisBorder: 'border-blue-200 dark:border-blue-700',
 };
 
+const abrahamTheme: StoryTheme = {
+  heroGradient: 'from-amber-600 via-orange-600 to-red-700',
+  heroDarkGradient: 'dark:from-amber-800 dark:via-orange-900 dark:to-red-900',
+  headingGradient: 'from-amber-600 to-orange-600',
+  headingDarkGradient: 'dark:from-amber-700 dark:to-orange-700',
+  emphasisBg: 'from-amber-50 to-orange-50',
+  emphasisDarkBg: 'dark:from-amber-900/30 dark:to-orange-900/30',
+  emphasisText: 'text-amber-800 dark:text-amber-200',
+  emphasisBorder: 'border-amber-200 dark:border-amber-700',
+};
+
 const creationContent: StorySection[] = [
   { type: 'heading', text: 'In the Beginning' },
   { type: 'scripture', text: 'Genesis 1:1–2:25', reference: 'Genesis 1:1–2:25', verseText: '' },
@@ -184,6 +195,92 @@ const noahContent: StorySection[] = [
   { type: 'body', text: 'Genesis 5:28–32; Genesis 6:1–9:17; Matthew 24:37–39; Hebrews 11:7; 1 Peter 3:20; 2 Peter 2:5' },
 ];
 
+const abrahamContent: StorySection[] = [
+  { type: 'heading', text: 'God Provides' },
+  { type: 'scripture', text: 'Genesis 22:1–19', reference: 'Genesis 22:1–19', verseText: '' },
+  { type: 'body', text: 'God had called Abraham to leave his country and go to the land He would show him. God promised to make Abraham into a great nation, bless him, and through him bring blessing to all peoples on earth (Genesis 12:1–3).' },
+  { type: 'body', text: 'God also promised Abraham that he would have a son. Abraham and his wife Sarah were old, and Sarah had been unable to have children, but God fulfilled His promise. Sarah gave birth to Isaac when Abraham was one hundred years old (Genesis 17:15–21; 21:1–5).' },
+  { type: 'body', text: 'Isaac was the son through whom God had promised Abraham that his offspring would be reckoned (Genesis 21:12).' },
+  { type: 'body', text: 'Then God tested Abraham.' },
+
+  { type: 'heading', text: 'God Calls Abraham' },
+  { type: 'body', text: 'God called Abraham by name, and Abraham answered Him.' },
+  { type: 'scripture', text: 'Genesis 22:2', reference: 'Genesis 22:2', verseText: 'Then God said, \u201cTake your son, your only son, whom you love—Isaac—and go to the region of Moriah. Sacrifice him there as a burnt offering on a mountain I will show you.\u201d' },
+  { type: 'body', text: 'Abraham had waited many years for Isaac. God had specifically promised that His covenant would continue through him (Genesis 17:19, 21).' },
+  { type: 'body', text: 'Abraham nevertheless obeyed God\u2019s command.' },
+  { type: 'body', text: 'Early the next morning, Abraham prepared his donkey, took two servants and Isaac with him, cut wood for the burnt offering, and began the journey to the place God had told him about (Genesis 22:3).' },
+  { type: 'body', text: 'On the third day, Abraham saw the place in the distance (Genesis 22:4).' },
+  { type: 'body', text: 'Abraham told his servants to remain behind while he and Isaac went forward to worship.' },
+  { type: 'body', text: 'Abraham placed the wood for the offering upon Isaac and carried the fire and knife himself (Genesis 22:5–6).' },
+
+  { type: 'heading', text: 'Isaac Asks About the Lamb' },
+  { type: 'body', text: 'As Abraham and Isaac walked together, Isaac recognized that something was missing.' },
+  { type: 'body', text: 'They had the fire.' },
+  { type: 'body', text: 'They had the wood.' },
+  { type: 'body', text: 'But they did not have a lamb for the burnt offering.' },
+  { type: 'body', text: 'Isaac asked his father where the lamb was (Genesis 22:7).' },
+  { type: 'body', text: 'Abraham answered:' },
+  { type: 'scripture', text: 'Genesis 22:8', reference: 'Genesis 22:8', verseText: 'God himself will provide the lamb for the burnt offering, my son.' },
+  { type: 'body', text: 'The two continued together to the place God had designated.' },
+  { type: 'body', text: 'Abraham built an altar and arranged the wood upon it. He bound Isaac and placed him on the altar (Genesis 22:9).' },
+  { type: 'body', text: 'Abraham then reached out his hand and took the knife to sacrifice his son (Genesis 22:10).' },
+
+  { type: 'heading', text: 'God Stops Abraham' },
+  { type: 'body', text: 'The angel of the LORD called to Abraham from heaven.' },
+  { type: 'body', text: 'Abraham answered, \u201cHere I am.\u201d' },
+  { type: 'body', text: 'He was commanded not to harm Isaac (Genesis 22:11–12).' },
+  { type: 'body', text: 'God had tested Abraham, and Abraham had demonstrated that he feared God and had not withheld his son from Him (Genesis 22:12).' },
+  { type: 'body', text: 'Abraham looked up and saw a ram caught by its horns in a thicket.' },
+  { type: 'body', text: 'The sacrifice was provided.' },
+  { type: 'body', text: 'Abraham took the ram and offered it as a burnt offering instead of his son (Genesis 22:13).' },
+  { type: 'body', text: 'Isaac lived because another sacrifice took his place.' },
+
+  { type: 'heading', text: 'The LORD Will Provide' },
+  { type: 'body', text: 'Abraham gave the place a name:' },
+  { type: 'body', text: 'The LORD Will Provide.' },
+  { type: 'scripture', text: 'Genesis 22:14', reference: 'Genesis 22:14', verseText: 'So Abraham called that place The LORD Will Provide. And to this day it is said, \u201cOn the mountain of the LORD it will be provided.\u201d' },
+  { type: 'body', text: 'God then reaffirmed His promises to Abraham.' },
+  { type: 'body', text: 'His descendants would become numerous. They would take possession of the cities of their enemies, and through Abraham\u2019s offspring all nations on earth would be blessed because Abraham had obeyed God (Genesis 22:15–18).' },
+  { type: 'body', text: 'Abraham and Isaac returned together, and Abraham continued living in the land of Beersheba (Genesis 22:19).' },
+
+  { type: 'heading', text: 'The Big Picture' },
+  { type: 'body', text: 'The account of Abraham and Isaac begins with God\u2019s promise and centers upon Abraham\u2019s faith in the God who made that promise.' },
+  { type: 'body', text: 'Isaac was not simply Abraham\u2019s son. He was the promised son through whom God had said His covenant would continue (Genesis 17:19; 21:12).' },
+  { type: 'body', text: 'Abraham trusted God even when he could not see how God\u2019s command and God\u2019s promise would be fulfilled together.' },
+
+  { type: 'subheading', text: 'God tested Abraham.' },
+  { type: 'body', text: 'God commanded Abraham to take Isaac to the land of Moriah and offer him there (Genesis 22:1–2).' },
+
+  { type: 'subheading', text: 'Abraham obeyed God.' },
+  { type: 'body', text: 'He rose early and went to the place God commanded (Genesis 22:3).' },
+
+  { type: 'subheading', text: 'Abraham trusted God\u2019s promise.' },
+  { type: 'body', text: 'Hebrews explains that Abraham reasoned that God could even raise Isaac from the dead because God\u2019s promise rested upon Isaac (Hebrews 11:17–19).' },
+
+  { type: 'subheading', text: 'God stopped the sacrifice.' },
+  { type: 'body', text: 'Isaac was not killed. God commanded Abraham not to harm him (Genesis 22:11–12).' },
+
+  { type: 'subheading', text: 'God provided a substitute.' },
+  { type: 'body', text: 'A ram was sacrificed in Isaac\u2019s place (Genesis 22:13).' },
+
+  { type: 'subheading', text: 'God reaffirmed His covenant.' },
+  { type: 'body', text: 'God repeated His promise concerning Abraham\u2019s descendants and the blessing that would come to the nations through his offspring (Genesis 22:15–18).' },
+
+  { type: 'body', text: 'The New Testament connects God\u2019s promise to Abraham ultimately to Jesus Christ. Paul writes that the promises were spoken to Abraham and to his \u201cseed,\u201d identifying their ultimate fulfillment in Christ (Galatians 3:16).' },
+  { type: 'body', text: 'The language of Genesis 22 also presents a father, a beloved son, wood carried to the place of sacrifice, and a substitute provided by God. The New Testament declares that God Himself ultimately gave His own Son for sinners (John 3:16; Romans 8:32).' },
+  { type: 'body', text: 'John the Baptist identified Jesus with words that reach directly into the biblical language of sacrifice:' },
+  { type: 'scripture', text: 'John 1:29', reference: 'John 1:29', verseText: 'Look, the Lamb of God, who takes away the sin of the world!' },
+  { type: 'body', text: 'On Mount Moriah, Abraham told Isaac that God Himself would provide the lamb (Genesis 22:8). God provided the ram that died in Isaac\u2019s place. Throughout the rest of Scripture, God\u2019s plan of redemption moves toward Jesus Christ, the Lamb of God who gave His life for sinners (John 1:29; 1 Peter 1:18–19).' },
+
+  { type: 'emphasis', text: 'Abraham trusted God, Isaac was spared, and God provided the sacrifice.' },
+
+  { type: 'heading', text: 'Read the Story' },
+  { type: 'body', text: 'Genesis 22:1–19' },
+
+  { type: 'heading', text: 'Key References' },
+  { type: 'body', text: 'Genesis 12:1–3; Genesis 17:15–21; Genesis 21:1–12; Genesis 22:1–19; John 1:29; John 3:16; Romans 8:32; Galatians 3:16; Hebrews 11:17–19; 1 Peter 1:18–19' },
+];
+
 export const stories: Story[] = [
   {
     id: 'creation',
@@ -277,7 +374,9 @@ At the critical moment, God provides, and what is revealed is not cruelty, but a
         verse: '17-18',
         text: 'I will surely bless you and make your descendants as numerous as the stars in the sky and as the sand on the seashore. Your descendants will take possession of the cities of their enemies, and through your offspring all nations on earth will be blessed.'
       }
-    ]
+    ],
+    content: abrahamContent,
+    theme: abrahamTheme
   },
   {
     id: 'moses',

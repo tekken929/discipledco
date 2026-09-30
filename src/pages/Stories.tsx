@@ -291,7 +291,7 @@ export function Stories() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {stories.sort((a, b) => a.order - b.order).map((story) => {
-            const isAvailable = story.id === 'creation' || story.id === 'noah';
+            const isAvailable = story.id === 'creation' || story.id === 'noah' || story.id === 'abraham';
             if (!isAvailable) {
               return (
                 <div
