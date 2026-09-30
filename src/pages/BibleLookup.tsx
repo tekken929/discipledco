@@ -1,11 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { BookDisplay } from '../components/BookDisplay';
 import { books } from '../data/books';
 import { fetchBibleChapter, type BibleVerse, type Translation, TRANSLATION_LABELS } from '../lib/bibleApi';
+import { useBibleNotebook, HIGHLIGHT_COLORS, type HighlightColor } from '../hooks/useBibleNotebook';
+import { NotepadPanel } from '../components/NotepadPanel';
+import { VerseActionPopup } from '../components/VerseActionPopup';
 
 const BOOKS_OT = [
   'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
@@ -94,7 +97,16 @@ function getAdjacentChapter(book: string, chapter: number, direction: 'prev' | '
   }
 }
 
+interface VersePopupState {
+  verse: number;
+  text: string;
+  rect: DOMRect;
+}
+
 export function BibleLookup() {
+  const notebook = useBibleNotebook();
+  const [notepadOpen, setNotepadOpen] = useState(false);
+  const [versePopup, setVersePopup] = useState<VersePopupState | null>(null);
   const [searchParams] = useSearchParams();
   const paramBook = searchParams.get('book') || 'John';
   const paramChapter = parseInt(searchParams.get('chapter') || '3', 10) || 3;
@@ -218,6 +230,18 @@ export function BibleLookup() {
   const bg = ALL_BACKGROUNDS[bgIndex];
   const prevChapter = getAdjacentChapter(loadedBook, loadedChapter, 'prev');
   const nextChapter = getAdjacentChapter(loadedBook, loadedChapter, 'next');
+
+  const openVersePopup = useCallback((verse: number, rect: DOMRect) => {
+    const v = verses.find((vv) => vv.verse === verse);
+    if (v) setVersePopup({ verse, text: v.text, rect });
+  }, [verses]);
+
+  const currentHighlight = versePopup
+    ? notebook.getHighlight(loadedBook, loadedChapter, versePopup.verse)
+    : undefined;
+  const currentHighlightColor = currentHighlight
+    ? (currentHighlight.color as HighlightColor)
+    : null;
 
   return (
     <>
@@ -443,6 +467,18 @@ export function BibleLookup() {
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <button
+                      onClick={() => setNotepadOpen(true)}
+                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 hover:bg-emerald-200 hover:border-emerald-300 transition-colors mt-0.5"
+                    >
+                      <NotebookPen className="w-3.5 h-3.5" />
+                      Notebook
+                      {notebook.savedVerses.length > 0 && (
+                        <span className="ml-0.5 text-[10px] bg-emerald-600 text-white rounded-full px-1.5 py-0.5 leading-none">
+                          {notebook.savedVerses.length}
+                        </span>
+                      )}
+                    </button>
+                    <button
                       onClick={() => setOverviewOpen(true)}
                       className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 border border-amber-200 hover:bg-amber-200 hover:border-amber-300 transition-colors mt-0.5"
                     >
@@ -456,13 +492,23 @@ export function BibleLookup() {
                 </div>
               </div>
               <div ref={scrollContainerRef} className="px-3 py-1.5 space-y-1 max-h-[calc(65vh+150px)] overflow-y-auto">
-                {verses.map(({ verse, text }) => (
+                {verses.map(({ verse, text }) => {
+                  const hl = notebook.getHighlight(loadedBook, loadedChapter, verse);
+                  const hlColor = hl ? (hl.color as HighlightColor) : null;
+                  const hlBg = hlColor ? HIGHLIGHT_COLORS[hlColor].bg : '';
+                  return (
                   <div
                     key={verse}
                     id={`verse-${verse}`}
-                    className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors ${
-                      selectedVerse === verse ? 'bg-emerald-100/60' : 'hover:bg-black/5'
-                    }`}
+                    className={`flex gap-3 group rounded-lg px-2 py-1 -mx-2 transition-colors cursor-pointer ${
+                      hlBg
+                    } ${
+                      selectedVerse === verse && !hlBg ? 'bg-emerald-100/60' : ''
+                    } ${!hlBg ? 'hover:bg-black/5' : ''}`}
+                    onClick={(e) => {
+                      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                      openVersePopup(verse, rect);
+                    }}
                   >
                     <span className="text-xs font-bold text-emerald-600 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
                       {verse}
@@ -471,7 +517,8 @@ export function BibleLookup() {
                       {text}
                     </p>
                   </div>
-                ))}
+                  );
+                })}
 
                 {/* Next / Previous chapter navigation */}
                 <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: bg.border }}>
@@ -527,6 +574,42 @@ export function BibleLookup() {
           <p className="text-gray-500 dark:text-gray-400">No overview available for {loadedBook}.</p>
         )}
       </Modal>
+
+      <NotepadPanel
+        open={notepadOpen}
+        onClose={() => setNotepadOpen(false)}
+        savedVerses={notebook.savedVerses}
+        onRemove={notebook.removeSavedVerse}
+        onUpdateNote={notebook.updateNote}
+      />
+
+      {versePopup && (
+        <VerseActionPopup
+          anchorRect={versePopup.rect}
+          book={loadedBook}
+          chapter={loadedChapter}
+          verse={versePopup.verse}
+          verseText={versePopup.text}
+          translation={loadedTranslation}
+          currentHighlightColor={currentHighlightColor}
+          onHighlight={(color) => {
+            notebook.toggleHighlight(loadedBook, loadedChapter, versePopup.verse, color);
+          }}
+          onRemoveHighlight={() => {
+            notebook.removeHighlight(loadedBook, loadedChapter, versePopup.verse);
+          }}
+          onSave={() => {
+            notebook.saveVerse({
+              book: loadedBook,
+              chapter: loadedChapter,
+              verse: versePopup.verse,
+              verse_text: versePopup.text,
+              translation: loadedTranslation,
+            });
+          }}
+          onClose={() => setVersePopup(null)}
+        />
+      )}
     </>
   );
 }
