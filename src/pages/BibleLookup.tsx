@@ -246,6 +246,8 @@ export function BibleLookup() {
   const [translationOpen, setTranslationOpen] = useState(false);
   const [themePickerOpen, setThemePickerOpen] = useState(false);
   const [readingBgOpen, setReadingBgOpen] = useState(false);
+  const [primaryHeaderDropdown, setPrimaryHeaderDropdown] = useState(false);
+  const [parallelHeaderDropdown, setParallelHeaderDropdown] = useState(false);
   const [parallelMode, setParallelMode] = useState(false);
   const [parallelTranslation, setParallelTranslation] = useState<Translation>('niv');
   const [parallelVerses, setParallelVerses] = useState<BibleVerse[]>([]);
@@ -718,7 +720,7 @@ export function BibleLookup() {
                       {loadedBook} Overview
                     </button>
                     <span className="text-xs font-bold px-2.5 py-1 rounded-full border mt-0.5" style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}>
-                      {info.label}
+                      {parallelMode ? `${info.label} / ${TRANSLATION_INFO[parallelTranslation].label}` : info.label}
                     </span>
                   </div>
                 </div>
@@ -732,21 +734,70 @@ export function BibleLookup() {
 
               {parallelMode && !parallelLoading && parallelVerses.length > 0 ? (
                 <div ref={scrollContainerRef} className="px-3 py-1.5 max-h-[calc(65vh+150px)] overflow-y-auto">
-                  {/* Column headers — solid backgrounds, fully opaque */}
-                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0 z-10" style={{ borderColor: readingBg.border, backgroundColor: readingBg.bg }}>
+                  {/* Column headers — solid backgrounds, dropdowns, divider matches verse rows */}
+                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0 z-20" style={{ borderColor: readingBg.border, backgroundColor: readingBg.bg }}>
                     <span className="w-7 flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <span className="inline-flex w-full items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.accent, color: '#ffffff' }}>
+                    <div className="flex-1 min-w-0 relative">
+                      <button
+                        onClick={() => { setPrimaryHeaderDropdown(o => !o); setParallelHeaderDropdown(false); }}
+                        className="inline-flex w-full items-center justify-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: theme.accent, color: '#ffffff' }}
+                      >
                         {TRANSLATION_INFO[loadedTranslation].label}
                         <span className="text-[10px] font-medium opacity-80 hidden sm:inline">{TRANSLATION_INFO[loadedTranslation].full}</span>
-                      </span>
+                        <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                      </button>
+                      {primaryHeaderDropdown && (
+                        <div className="absolute left-0 top-full mt-1 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-600 p-1.5 min-w-[140px]">
+                          {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[])
+                            .filter((t) => t !== parallelTranslation)
+                            .map((t) => (
+                              <button
+                                key={t}
+                                onClick={() => { handleTranslationChange(t); setPrimaryHeaderDropdown(false); }}
+                                className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                                  loadedTranslation === t ? 'text-white' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                                }`}
+                                style={loadedTranslation === t ? { backgroundColor: theme.accent } : undefined}
+                              >
+                                {TRANSLATION_INFO[t].label}
+                                <span className="text-[9px] font-medium opacity-60 ml-auto">{TRANSLATION_INFO[t].full}</span>
+                              </button>
+                            ))}
+                        </div>
+                      )}
                     </div>
                     <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: readingBg.border }} />
-                    <div className="flex-1 min-w-0">
-                      <span className="inline-flex w-full items-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg" style={{ backgroundColor: theme.parallel, color: '#ffffff' }}>
+                    <span className="w-7 flex-shrink-0" />
+                    <div className="flex-1 min-w-0 relative">
+                      <button
+                        onClick={() => { setParallelHeaderDropdown(o => !o); setPrimaryHeaderDropdown(false); }}
+                        className="inline-flex w-full items-center justify-center gap-1.5 text-sm font-bold px-3 py-1.5 rounded-lg transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: theme.parallel, color: '#ffffff' }}
+                      >
                         {TRANSLATION_INFO[parallelTranslation].label}
                         <span className="text-[10px] font-medium opacity-80 hidden sm:inline">{TRANSLATION_INFO[parallelTranslation].full}</span>
-                      </span>
+                        <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                      </button>
+                      {parallelHeaderDropdown && (
+                        <div className="absolute right-0 top-full mt-1 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-600 p-1.5 min-w-[140px]">
+                          {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[])
+                            .filter((t) => t !== loadedTranslation)
+                            .map((t) => (
+                              <button
+                                key={t}
+                                onClick={() => { handleParallelTranslationChange(t); setParallelHeaderDropdown(false); }}
+                                className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                                  parallelTranslation === t ? 'text-white' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                                }`}
+                                style={parallelTranslation === t ? { backgroundColor: theme.parallel } : undefined}
+                              >
+                                {TRANSLATION_INFO[t].label}
+                                <span className="text-[9px] font-medium opacity-60 ml-auto">{TRANSLATION_INFO[t].full}</span>
+                              </button>
+                            ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   {verses.map(({ verse, text }) => {
