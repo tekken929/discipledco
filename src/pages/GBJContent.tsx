@@ -153,7 +153,7 @@ export function GBJContent() {
           {/* Banner showcase image */}
           <div className="max-w-5xl mx-auto">
             <img
-              src="/images/tgbj_sales1 copy.png"
+              src="/images/tgbj_sales1.png"
               alt="The Great Bible Journey"
               className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
             />
@@ -253,7 +253,7 @@ export function GBJContent() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center">
               <img
-                src="/images/tgbj_sales2 copy.png"
+                src="/images/tgbj_sales2.png"
                 alt="Bible Adventure Roadmap"
                 className="w-full max-w-sm rounded-2xl shadow-2xl ring-1 ring-white/10"
               />
