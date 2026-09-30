@@ -651,30 +651,30 @@ export function BibleLookup() {
           {!loading && !error && loaded && verses.length > 0 && (
             <>
               <div className="px-3 pt-2 pb-1.5 border-b" style={{ borderColor: readingBg.border }}>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-xl font-bold" style={{ color: readingBg.text }}>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                  <div className="min-w-0 flex-shrink-0">
+                    <h2 className="text-xl font-bold whitespace-nowrap" style={{ color: readingBg.text }}>
                       {loadedBook} {loadedChapter}
                     </h2>
-                    <p className="text-xs mt-0.5" style={{ color: readingBg.text, opacity: 0.5 }}>
+                    <p className="text-xs mt-0.5 whitespace-nowrap" style={{ color: readingBg.text, opacity: 0.5 }}>
                       {info.full} &mdash; {verses.length} verses
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0 flex-wrap justify-end">
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     {/* Parallel toggle — synced clone, beside notebook */}
                     <button
                       onClick={toggleParallel}
-                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all mt-0.5"
+                      className="flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full border transition-all"
                       style={parallelBtnStyle(parallelMode)}
                     >
                       <Columns2 className="w-3.5 h-3.5" />
-                      {parallelMode ? 'Parallel On' : 'Parallel'}
+                      {parallelMode ? 'On' : 'Parallel'}
                     </button>
                     {/* Reading background picker — beside parallel, in content area */}
                     <div className="relative">
                       <button
                         onClick={() => setReadingBgOpen(o => !o)}
-                        className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all hover:scale-105 mt-0.5"
+                        className="flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full border transition-all hover:scale-105"
                         style={{ borderColor: theme.border, backgroundColor: theme.bg, color: theme.text }}
                       >
                         <Type className="w-3.5 h-3.5" style={{ color: theme.accent }} />
@@ -700,7 +700,7 @@ export function BibleLookup() {
                     </div>
                     <button
                       onClick={() => setNotepadOpen(true)}
-                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-colors mt-0.5"
+                      className="flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full border transition-colors"
                       style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}
                     >
                       <NotebookPen className="w-3.5 h-3.5" />
@@ -713,13 +713,13 @@ export function BibleLookup() {
                     </button>
                     <button
                       onClick={() => setOverviewOpen(true)}
-                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-colors mt-0.5"
+                      className="flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full border transition-colors"
                       style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}
                     >
                       <Map className="w-3.5 h-3.5" />
-                      {loadedBook} Overview
+                      Overview
                     </button>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full border mt-0.5" style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}>
+                    <span className="text-xs font-bold px-2 py-1 rounded-full border" style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}>
                       {parallelMode ? `${info.label} / ${TRANSLATION_INFO[parallelTranslation].label}` : info.label}
                     </span>
                   </div>
