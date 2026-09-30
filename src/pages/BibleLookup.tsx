@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen, Columns2 } from 'lucide-react';
+import { BookOpen, Loader2, ChevronDown, AlertCircle, ChevronLeft, ChevronRight, Map, NotebookPen, Columns2, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Modal } from '../components/Modal';
 import { BookDisplay } from '../components/BookDisplay';
@@ -51,23 +51,128 @@ const CHAPTER_COUNTS: Record<string, number> = {
 
 const TRANSLATION_INFO = TRANSLATION_LABELS;
 
-const READING_BACKGROUNDS = [
-  { name: 'Paper White', bg: '#fafafa', border: '#e5e5e5', text: '#1a1a1a' },
-  { name: 'Warm Ivory', bg: '#f5f1e8', border: '#e0d9c8', text: '#2a2620' },
-  { name: 'Soft Beige', bg: '#ebe5d6', border: '#d0c8b5', text: '#2e2a22' },
-  { name: 'Muted Grey', bg: '#dcdcd5', border: '#c0c0b8', text: '#2a2a26' },
-  { name: 'Deep Stone', bg: '#c8c4b8', border: '#a8a498', text: '#26241f' },
-];
+interface BibleTheme {
+  name: string;
+  label: string;
+  swatch: string;
+  bg: string;
+  border: string;
+  text: string;
+  accent: string;
+  accentLight: string;
+  accentText: string;
+  accentBorder: string;
+  accentBorderHover: string;
+  parallel: string;
+  parallelLight: string;
+  parallelText: string;
+  parallelBorder: string;
+  verseNum: string;
+  selectBg: string;
+  selectBorder: string;
+}
 
-const READING_BACKGROUNDS_EXTRA = [
-  { name: 'Sky Mist', bg: '#eaf2f8', border: '#cfdde9', text: '#1a2733' },
-  { name: 'Pale Blue', bg: '#dce9f5', border: '#bcd0e6', text: '#1c2b3d' },
-  { name: 'Soft Slate', bg: '#d3dfee', border: '#b2c6e2', text: '#1e2840' },
-  { name: 'Icy Blue', bg: '#e8f0f6', border: '#ccd9e4', text: '#1f2a35' },
-  { name: 'Cool Mint', bg: '#e3f0ea', border: '#c4dcd2', text: '#1c2e26' },
-  { name: 'Light Sage', bg: '#e9f0e1', border: '#cdddc0', text: '#24301c' },
-  { name: 'Blush', bg: '#f7ecee', border: '#e6d2d6', text: '#332225' },
-  { name: 'Lavender Mist', bg: '#eeeaf2', border: '#d4cddd', text: '#2a2433' },
+const THEMES: BibleTheme[] = [
+  {
+    name: 'forest',
+    label: 'Forest',
+    swatch: '#059669',
+    bg: '#f4f7f4',
+    border: '#d4e0d4',
+    text: '#1a2e1a',
+    accent: '#059669',
+    accentLight: '#d1fae5',
+    accentText: '#047857',
+    accentBorder: '#a7f3d0',
+    accentBorderHover: '#6ee7b7',
+    parallel: '#0284c7',
+    parallelLight: '#e0f2fe',
+    parallelText: '#0369a1',
+    parallelBorder: '#bae6fd',
+    verseNum: '#059669',
+    selectBg: '#f0fdf4',
+    selectBorder: '#bbf7d0',
+  },
+  {
+    name: 'ocean',
+    label: 'Ocean',
+    swatch: '#0284c7',
+    bg: '#eef4f9',
+    border: '#cfdde9',
+    text: '#1a2733',
+    accent: '#0284c7',
+    accentLight: '#e0f2fe',
+    accentText: '#0369a1',
+    accentBorder: '#bae6fd',
+    accentBorderHover: '#7dd3fc',
+    parallel: '#7c3aed',
+    parallelLight: '#ede9fe',
+    parallelText: '#6d28d9',
+    parallelBorder: '#ddd6fe',
+    verseNum: '#0284c7',
+    selectBg: '#f0f9ff',
+    selectBorder: '#bae6fd',
+  },
+  {
+    name: 'sunset',
+    label: 'Sunset',
+    swatch: '#d97706',
+    bg: '#faf6f0',
+    border: '#e5d8c8',
+    text: '#2a2218',
+    accent: '#d97706',
+    accentLight: '#fef3c7',
+    accentText: '#b45309',
+    accentBorder: '#fde68a',
+    accentBorderHover: '#fcd34d',
+    parallel: '#dc2626',
+    parallelLight: '#fee2e2',
+    parallelText: '#b91c1c',
+    parallelBorder: '#fecaca',
+    verseNum: '#d97706',
+    selectBg: '#fffbeb',
+    selectBorder: '#fde68a',
+  },
+  {
+    name: 'slate',
+    label: 'Slate',
+    swatch: '#475569',
+    bg: '#f0f0f2',
+    border: '#d0d0d4',
+    text: '#2a2a2e',
+    accent: '#475569',
+    accentLight: '#e2e8f0',
+    accentText: '#334155',
+    accentBorder: '#cbd5e1',
+    accentBorderHover: '#94a3b8',
+    parallel: '#64748b',
+    parallelLight: '#f1f5f9',
+    parallelText: '#475569',
+    parallelBorder: '#cbd5e1',
+    verseNum: '#475569',
+    selectBg: '#f8fafc',
+    selectBorder: '#cbd5e1',
+  },
+  {
+    name: 'rose',
+    label: 'Rose',
+    swatch: '#e11d48',
+    bg: '#f8f0f3',
+    border: '#e8d0d8',
+    text: '#2a1a20',
+    accent: '#e11d48',
+    accentLight: '#ffe4e6',
+    accentText: '#be123c',
+    accentBorder: '#fecdd3',
+    accentBorderHover: '#fda4af',
+    parallel: '#9333ea',
+    parallelLight: '#f3e8ff',
+    parallelText: '#7e22ce',
+    parallelBorder: '#e9d5ff',
+    verseNum: '#e11d48',
+    selectBg: '#fff1f2',
+    selectBorder: '#fecdd3',
+  },
 ];
 
 function getAdjacentChapter(book: string, chapter: number, direction: 'prev' | 'next'): { book: string; chapter: number } | null {
@@ -127,10 +232,10 @@ export function BibleLookup() {
   const [loadedChapter, setLoadedChapter] = useState(3);
   const [loadedTranslation, setLoadedTranslation] = useState<Translation>('kjv');
   const [selectedVerse, setSelectedVerse] = useState<number | null>(paramVerse);
-  const [bgIndex, setBgIndex] = useState(0);
-  const ALL_BACKGROUNDS = [...READING_BACKGROUNDS, ...READING_BACKGROUNDS_EXTRA];
+  const [themeIndex, setThemeIndex] = useState(0);
   const [overviewOpen, setOverviewOpen] = useState(false);
   const [translationOpen, setTranslationOpen] = useState(false);
+  const [themePickerOpen, setThemePickerOpen] = useState(false);
   const [parallelMode, setParallelMode] = useState(false);
   const [parallelTranslation, setParallelTranslation] = useState<Translation>('niv');
   const [parallelVerses, setParallelVerses] = useState<BibleVerse[]>([]);
@@ -262,7 +367,7 @@ export function BibleLookup() {
   }
 
   const info = TRANSLATION_INFO[loadedTranslation];
-  const bg = ALL_BACKGROUNDS[bgIndex];
+  const theme = THEMES[themeIndex];
   const prevChapter = getAdjacentChapter(loadedBook, loadedChapter, 'prev');
   const nextChapter = getAdjacentChapter(loadedBook, loadedChapter, 'next');
 
@@ -278,14 +383,20 @@ export function BibleLookup() {
     ? (currentHighlight.color as HighlightColor)
     : null;
 
+  const parallelBtnStyle = (active: boolean): React.CSSProperties => ({
+    backgroundColor: active ? theme.accent : theme.bg,
+    color: active ? '#ffffff' : theme.text,
+    borderColor: active ? theme.accent : theme.border,
+  });
+
   return (
     <>
       <main className={`${parallelMode ? 'max-w-7xl' : 'max-w-5xl'} mx-auto px-4 sm:px-6 lg:px-8 py-1 transition-all`}>
         <div className="mb-1.5">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-2 rounded-lg" style={{ backgroundColor: theme.accentLight }}>
+                <BookOpen className="w-5 h-5" style={{ color: theme.accent }} />
               </div>
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Bible Lookup</h1>
@@ -293,43 +404,37 @@ export function BibleLookup() {
               </div>
             </div>
 
-            {/* Background color selectors */}
-            <div className="flex flex-col items-end gap-1">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">Reading</span>
-                <div className="flex items-center gap-1.5">
-                  {READING_BACKGROUNDS.map((option, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setBgIndex(i)}
-                      title={option.name}
-                      className={`w-7 h-7 rounded-full border-2 transition-all ${
-                        bgIndex === i
-                          ? 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
-                          : 'hover:scale-105'
-                      }`}
-                      style={{ backgroundColor: option.bg, borderColor: option.border }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-center gap-1.5">
-                {READING_BACKGROUNDS_EXTRA.map((option, i) => {
-                      const idx = i + READING_BACKGROUNDS.length;
-                      return (
-                    <button
-                      key={i}
-                      onClick={() => setBgIndex(idx)}
-                      title={option.name}
-                      className={`w-6 h-6 rounded-full border-2 transition-all ${
-                        bgIndex === idx
-                          ? 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-gray-900 scale-110'
-                          : 'hover:scale-105'
-                      }`}
-                      style={{ backgroundColor: option.bg, borderColor: option.border }}
-                    />
-                      );
-                    })}
+            {/* Theme picker */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">Theme</span>
+              <div className="relative">
+                <button
+                  onClick={() => setThemePickerOpen(o => !o)}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-bold transition-all hover:scale-105"
+                  style={{ borderColor: theme.border, backgroundColor: theme.bg, color: theme.text }}
+                >
+                  <Palette className="w-3.5 h-3.5" style={{ color: theme.accent }} />
+                  {theme.label}
+                </button>
+                {themePickerOpen && (
+                  <div className="absolute right-0 top-full mt-1 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-600 p-2 min-w-[180px]">
+                    {THEMES.map((t, i) => (
+                      <button
+                        key={t.name}
+                        onClick={() => { setThemeIndex(i); setThemePickerOpen(false); }}
+                        className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                          themeIndex === i ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                        }`}
+                      >
+                        <span className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ backgroundColor: t.swatch, borderColor: t.border }} />
+                        <span className="text-gray-700 dark:text-gray-200">{t.label}</span>
+                        {themeIndex === i && (
+                          <span className="ml-auto w-2 h-2 rounded-full" style={{ backgroundColor: t.accent }} />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -338,54 +443,54 @@ export function BibleLookup() {
           </p>
         </div>
 
-        {/* Translation selector — collapsible */}
+        {/* Translation selector — collapsible, with inline parallel toggle */}
         <div
           ref={translationRef}
           className="border rounded-xl mb-1.5 scroll-mt-20 transition-colors overflow-hidden"
-          style={{ backgroundColor: bg.bg, borderColor: bg.border }}
+          style={{ backgroundColor: theme.bg, borderColor: theme.border }}
         >
-          <button
-            onClick={() => setTranslationOpen(o => !o)}
-            className="w-full flex items-center justify-between px-3 py-1.5 hover:bg-black/5 transition-colors"
-          >
-            <h2 className="text-xs font-bold uppercase tracking-widest" style={{ color: bg.text, opacity: 0.6 }}>Translation</h2>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold" style={{ color: bg.text, opacity: 0.8 }}>
-                {TRANSLATION_INFO[translation].label} — {TRANSLATION_INFO[translation].full}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${translationOpen ? 'rotate-180' : ''}`}
-                style={{ color: bg.text, opacity: 0.5 }}
-              />
+          <div className="w-full flex items-center justify-between px-3 py-1.5">
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                onClick={() => setTranslationOpen(o => !o)}
+                className="flex items-center gap-2 hover:opacity-70 transition-opacity"
+              >
+                <h2 className="text-xs font-bold uppercase tracking-widest" style={{ color: theme.text, opacity: 0.6 }}>Translation</h2>
+                <span className="text-xs font-bold" style={{ color: theme.text, opacity: 0.8 }}>
+                  {TRANSLATION_INFO[translation].label}
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${translationOpen ? 'rotate-180' : ''}`}
+                  style={{ color: theme.text, opacity: 0.5 }}
+                />
+              </button>
+              {/* Parallel toggle — always visible, inline beside translation */}
+              <button
+                onClick={toggleParallel}
+                className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all"
+                style={parallelBtnStyle(parallelMode)}
+              >
+                <Columns2 className="w-3.5 h-3.5" />
+                Parallel {parallelMode ? 'On' : 'Off'}
+              </button>
             </div>
-          </button>
+            <span className="text-xs font-medium hidden sm:block" style={{ color: theme.text, opacity: 0.5 }}>
+              {TRANSLATION_INFO[translation].full}
+            </span>
+          </div>
           {translationOpen && (
             <div className="px-3 pb-2">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">Primary</span>
-                <button
-                  onClick={toggleParallel}
-                  className={`flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all ${
-                    parallelMode
-                      ? 'bg-emerald-600 text-white border-emerald-600'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-emerald-400'
-                  }`
-                  }
-                >
-                  <Columns2 className="w-3.5 h-3.5" />
-                  Parallel {parallelMode ? 'On' : 'Off'}
-                </button>
-              </div>
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
                 {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[]).map((t) => (
                   <button
                     key={t}
                     onClick={() => handleTranslationChange(t)}
-                    className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
+                    className="flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all"
+                    style={
                       translation === t
-                        ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
-                        : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                    }`}
+                        ? { borderColor: theme.accent, backgroundColor: theme.accentLight, color: theme.accentText }
+                        : { borderColor: theme.border, color: theme.text, opacity: 0.7 }
+                    }
                   >
                     <span className="text-sm font-bold">{TRANSLATION_INFO[t].label}</span>
                     <span className="text-[9px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
@@ -396,7 +501,7 @@ export function BibleLookup() {
               {parallelMode && (
                 <>
                   <div className="mt-3 mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">Parallel Translation</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: theme.parallelText }}>Parallel Translation</span>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
                     {(['kjv', 'niv', 'esv', 'nasb', 'nlt'] as Translation[])
@@ -405,11 +510,12 @@ export function BibleLookup() {
                         <button
                           key={t}
                           onClick={() => handleParallelTranslationChange(t)}
-                          className={`flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all ${
+                          className="flex flex-col items-center gap-0.5 py-1.5 px-1 rounded-lg border font-semibold text-xs transition-all"
+                          style={
                             parallelTranslation === t
-                              ? 'border-sky-500 bg-sky-50 text-sky-700'
-                              : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                          }`}
+                              ? { borderColor: theme.parallel, backgroundColor: theme.parallelLight, color: theme.parallelText }
+                              : { borderColor: theme.border, color: theme.text, opacity: 0.7 }
+                          }
                         >
                           <span className="text-sm font-bold">{TRANSLATION_INFO[t].label}</span>
                           <span className="text-[9px] font-medium opacity-70 text-center leading-tight">{TRANSLATION_INFO[t].full}</span>
@@ -425,79 +531,79 @@ export function BibleLookup() {
         {/* Select Passage — full width */}
         <div
           className="border rounded-xl p-2 mb-1.5 transition-colors"
-          style={{ backgroundColor: bg.bg, borderColor: bg.border }}
+          style={{ backgroundColor: theme.bg, borderColor: theme.border }}
         >
-          <h2 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: bg.text, opacity: 0.6 }}>Select Passage</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: theme.text, opacity: 0.6 }}>Select Passage</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 items-end">
             <div>
-              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-black">Old Testament</p>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: theme.text, opacity: 0.7 }}>Old Testament</p>
               <div className="relative">
                 <select
                   value={BOOKS_OT.includes(selectedBook) ? selectedBook : ''}
                   onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2"
+                  style={{ backgroundColor: theme.selectBg, borderColor: theme.selectBorder, color: theme.text }}
                 >
                   {!BOOKS_OT.includes(selectedBook) && <option value="">-- Select --</option>}
                   {BOOKS_OT.map((b) => (
                     <option key={b} value={b}>{b}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: theme.text, opacity: 0.4 }} />
               </div>
             </div>
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-wide mb-1 text-black">New Testament</p>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: theme.text, opacity: 0.7 }}>New Testament</p>
               <div className="relative">
                 <select
                   value={BOOKS_NT.includes(selectedBook) ? selectedBook : ''}
                   onChange={(e) => e.target.value && handleBookChange(e.target.value)}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2"
+                  style={{ backgroundColor: theme.selectBg, borderColor: theme.selectBorder, color: theme.text }}
                 >
                   {!BOOKS_NT.includes(selectedBook) && <option value="">-- Select --</option>}
                   {BOOKS_NT.map((b) => (
                     <option key={b} value={b}>{b}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: theme.text, opacity: 0.4 }} />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wide mb-1 text-black">Chapter</label>
+              <label className="block text-xs font-bold uppercase tracking-wide mb-1" style={{ color: theme.text, opacity: 0.7 }}>Chapter</label>
               <div className="relative">
                 <select
                   value={selectedChapter}
                   onChange={(e) => handleChapterChange(Number(e.target.value))}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2"
+                  style={{ backgroundColor: theme.selectBg, borderColor: theme.selectBorder, color: theme.text }}
                 >
                   {chapters.map((c) => (
                     <option key={c} value={c}>Chapter {c}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: theme.text, opacity: 0.4 }} />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wide mb-1 text-black">Verse</label>
+              <label className="block text-xs font-bold uppercase tracking-wide mb-1" style={{ color: theme.text, opacity: 0.7 }}>Verse</label>
               <div className="relative">
                 <select
                   value={selectedVerse ?? ''}
                   onChange={(e) => handleVerseSelect(Number(e.target.value))}
                   disabled={!loaded || verses.length === 0}
-                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-50"
-                  style={{ backgroundColor: bg.bg, borderColor: bg.border, color: bg.text }}
+                  className="w-full border rounded-lg px-2 py-1.5 text-sm appearance-none pr-7 focus:outline-none focus:ring-2 disabled:opacity-50"
+                  style={{ backgroundColor: theme.selectBg, borderColor: theme.selectBorder, color: theme.text }}
                 >
                   <option value="" disabled>Select verse</option>
                   {verses.map((v) => (
                     <option key={v.verse} value={v.verse}>Verse {v.verse}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: bg.text, opacity: 0.4 }} />
+                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style={{ color: theme.text, opacity: 0.4 }} />
               </div>
             </div>
           </div>
@@ -506,12 +612,12 @@ export function BibleLookup() {
         {/* Main reading pane — full width */}
         <div
           className="border rounded-xl min-h-[400px] transition-colors"
-          style={{ backgroundColor: bg.bg, borderColor: bg.border }}
+          style={{ backgroundColor: theme.bg, borderColor: theme.border }}
         >
           {loading && (
             <div className="flex items-center justify-center h-64">
               <div className="text-center">
-                <Loader2 className="w-8 h-8 animate-spin text-emerald-500 mx-auto mb-3" />
+                <Loader2 className="w-8 h-8 animate-spin mx-auto mb-3" style={{ color: theme.accent }} />
                 <p className="text-sm text-gray-500">Loading chapter...</p>
               </div>
             </div>
@@ -531,37 +637,48 @@ export function BibleLookup() {
 
           {!loading && !error && loaded && verses.length > 0 && (
             <>
-              <div className="px-3 pt-2 pb-1.5 border-b" style={{ borderColor: bg.border }}>
+              <div className="px-3 pt-2 pb-1.5 border-b" style={{ borderColor: theme.border }}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h2 className="text-xl font-bold" style={{ color: bg.text }}>
+                    <h2 className="text-xl font-bold" style={{ color: theme.text }}>
                       {loadedBook} {loadedChapter}
                     </h2>
-                    <p className="text-xs mt-0.5" style={{ color: bg.text, opacity: 0.5 }}>
+                    <p className="text-xs mt-0.5" style={{ color: theme.text, opacity: 0.5 }}>
                       {info.full} &mdash; {verses.length} verses
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-shrink-0 flex-wrap justify-end">
+                    {/* Parallel toggle — synced clone, beside notebook */}
+                    <button
+                      onClick={toggleParallel}
+                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-all mt-0.5"
+                      style={parallelBtnStyle(parallelMode)}
+                    >
+                      <Columns2 className="w-3.5 h-3.5" />
+                      {parallelMode ? 'Parallel On' : 'Parallel'}
+                    </button>
                     <button
                       onClick={() => setNotepadOpen(true)}
-                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 hover:bg-emerald-200 hover:border-emerald-300 transition-colors mt-0.5"
+                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-colors mt-0.5"
+                      style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}
                     >
                       <NotebookPen className="w-3.5 h-3.5" />
                       Notebook
                       {notebook.savedVerses.length > 0 && (
-                        <span className="ml-0.5 text-[10px] bg-emerald-600 text-white rounded-full px-1.5 py-0.5 leading-none">
+                        <span className="ml-0.5 text-[10px] rounded-full px-1.5 py-0.5 leading-none text-white" style={{ backgroundColor: theme.accent }}>
                           {notebook.savedVerses.length}
                         </span>
                       )}
                     </button>
                     <button
                       onClick={() => setOverviewOpen(true)}
-                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 border border-amber-200 hover:bg-amber-200 hover:border-amber-300 transition-colors mt-0.5"
+                      className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border transition-colors mt-0.5"
+                      style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}
                     >
                       <Map className="w-3.5 h-3.5" />
                       {loadedBook} Overview
                     </button>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 mt-0.5">
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full border mt-0.5" style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}>
                       {info.label}
                     </span>
                   </div>
@@ -569,25 +686,27 @@ export function BibleLookup() {
               </div>
               {parallelMode && parallelLoading && (
                 <div className="flex items-center justify-center py-8">
-                  <Loader2 className="w-6 h-6 animate-spin text-sky-500" />
+                  <Loader2 className="w-6 h-6 animate-spin" style={{ color: theme.parallel }} />
                   <span className="ml-2 text-sm text-gray-400">Loading parallel translation...</span>
                 </div>
               )}
 
               {parallelMode && !parallelLoading && parallelVerses.length > 0 ? (
                 <div ref={scrollContainerRef} className="px-3 py-1.5 max-h-[calc(65vh+150px)] overflow-y-auto">
-                  {/* Column headers */}
-                  <div className="flex gap-3 mb-2 pb-1.5 border-b sticky top-0" style={{ borderColor: bg.border, backgroundColor: bg.bg }}>
+                  {/* Column headers — bigger, bolder, standing out */}
+                  <div className="flex gap-3 mb-3 pb-2 border-b sticky top-0" style={{ borderColor: theme.border, backgroundColor: theme.bg }}>
                     <span className="w-7 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200">
+                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1 rounded-lg border" style={{ backgroundColor: theme.accentLight, color: theme.accentText, borderColor: theme.accentBorder }}>
                         {TRANSLATION_INFO[loadedTranslation].label}
+                        <span className="text-[10px] font-medium opacity-60 hidden sm:inline">{TRANSLATION_INFO[loadedTranslation].full}</span>
                       </span>
                     </div>
-                    <span className="w-px flex-shrink-0 bg-gray-300 dark:bg-gray-600" style={{ backgroundColor: bg.border }} />
+                    <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: theme.border }} />
                     <div className="flex-1 min-w-0">
-                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 border border-sky-200">
+                      <span className="inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1 rounded-lg border" style={{ backgroundColor: theme.parallelLight, color: theme.parallelText, borderColor: theme.parallelBorder }}>
                         {TRANSLATION_INFO[parallelTranslation].label}
+                        <span className="text-[10px] font-medium opacity-60 hidden sm:inline">{TRANSLATION_INFO[parallelTranslation].full}</span>
                       </span>
                     </div>
                   </div>
@@ -638,26 +757,26 @@ export function BibleLookup() {
                           openVersePopup(verse, rect, selectedText);
                         }}
                       >
-                        <span className="text-xs font-bold text-emerald-600 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
+                        <span className="text-xs font-bold w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none" style={{ color: theme.verseNum }}>
                           {verse}
                         </span>
-                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: bg.text }}>
+                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: theme.text }}>
                           {renderedText}
                         </p>
-                        <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: bg.border }} />
-                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: bg.text, opacity: 0.85 }}>
+                        <span className="w-px flex-shrink-0 self-stretch" style={{ backgroundColor: theme.border }} />
+                        <p className="leading-relaxed flex-1 min-w-0 text-sm sm:text-base" style={{ color: theme.text, opacity: 0.85 }}>
                           {pv ? pv.text : '—'}
                         </p>
                       </div>
                     );
                   })}
 
-                  <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: bg.border }}>
+                  <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: theme.border }}>
                     <button
                       onClick={() => handleNavigate('prev')}
                       disabled={!prevChapter}
                       className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                      style={{ borderColor: bg.border, color: bg.text }}
+                      style={{ borderColor: theme.border, color: theme.text }}
                     >
                       <ChevronLeft className="w-4 h-4" />
                       <div className="text-left">
@@ -669,7 +788,7 @@ export function BibleLookup() {
                       onClick={() => handleNavigate('next')}
                       disabled={!nextChapter}
                       className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                      style={{ borderColor: bg.border, color: bg.text }}
+                      style={{ borderColor: theme.border, color: theme.text }}
                     >
                       <div className="text-right">
                         <p className="text-[10px] uppercase tracking-wide opacity-60">Next</p>
@@ -727,15 +846,15 @@ export function BibleLookup() {
                     } ${!hlBg ? 'hover:bg-black/5' : ''}`}
                     onMouseUp={(e) => {
                       const sel = window.getSelection();
-      const selectedText = sel && sel.toString().trim().length > 0 ? sel.toString().trim() : null;
+                      const selectedText = sel && sel.toString().trim().length > 0 ? sel.toString().trim() : null;
                       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
                       openVersePopup(verse, rect, selectedText);
                     }}
                   >
-                    <span className="text-xs font-bold text-emerald-600 w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none">
+                    <span className="text-xs font-bold w-7 flex-shrink-0 pt-0.5 text-right tabular-nums select-none" style={{ color: theme.verseNum }}>
                       {verse}
                     </span>
-                    <p className="leading-relaxed flex-1 text-base" style={{ color: bg.text }}>
+                    <p className="leading-relaxed flex-1 text-base" style={{ color: theme.text }}>
                       {renderedText}
                     </p>
                   </div>
@@ -743,12 +862,12 @@ export function BibleLookup() {
                 })}
 
                 {/* Next / Previous chapter navigation */}
-                <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: bg.border }}>
+                <div className="flex items-center justify-between gap-3 pt-2 mt-2 border-t" style={{ borderColor: theme.border }}>
                   <button
                     onClick={() => handleNavigate('prev')}
                     disabled={!prevChapter}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    style={{ borderColor: bg.border, color: bg.text }}
+                    style={{ borderColor: theme.border, color: theme.text }}
                   >
                     <ChevronLeft className="w-4 h-4" />
                     <div className="text-left">
@@ -761,7 +880,7 @@ export function BibleLookup() {
                     onClick={() => handleNavigate('next')}
                     disabled={!nextChapter}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-lg border font-semibold text-sm transition-all hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    style={{ borderColor: bg.border, color: bg.text }}
+                    style={{ borderColor: theme.border, color: theme.text }}
                   >
                     <div className="text-right">
                       <p className="text-[10px] uppercase tracking-wide opacity-60">Next</p>
