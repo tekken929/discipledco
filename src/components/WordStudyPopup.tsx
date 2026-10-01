@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { X, Loader2, BookOpen, Languages, ListChecks, ExternalLink } from 'lucide-react';
+import { X, Loader2, BookOpen, Languages, ExternalLink } from 'lucide-react';
 
 export interface WordStudyData {
   book: string;
@@ -8,14 +8,14 @@ export interface WordStudyData {
   selectedWord: string;
   interlinear: {
     strongsNumber: string;
-    greekOrHebrew: string;
+    originalWord: string;
     transliteration: string;
     englishGloss: string;
     partOfSpeech: string;
   }[];
   matchedWord: {
     strongsNumber: string;
-    greekOrHebrew: string;
+    originalWord: string;
     transliteration: string;
     englishGloss: string;
     partOfSpeech: string;
@@ -47,14 +47,6 @@ interface WordStudyPopupProps {
   sourceTranslation: string;
   onClose: () => void;
 }
-
-const TRANSLATION_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  KJV: { bg: 'bg-amber-50 dark:bg-amber-900/20', text: 'text-amber-700 dark:text-amber-300', border: 'border-amber-200 dark:border-amber-700' },
-  NIV: { bg: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-700 dark:text-blue-300', border: 'border-blue-200 dark:border-blue-700' },
-  ESV: { bg: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-700 dark:text-emerald-300', border: 'border-emerald-200 dark:border-emerald-700' },
-  NASB: { bg: 'bg-rose-50 dark:bg-rose-900/20', text: 'text-rose-700 dark:text-rose-300', border: 'border-rose-200 dark:border-rose-700' },
-  NLT: { bg: 'bg-violet-50 dark:bg-violet-900/20', text: 'text-violet-700 dark:text-violet-300', border: 'border-violet-200 dark:border-violet-700' },
-};
 
 export function WordStudyPopup({
   anchorRect,
@@ -258,52 +250,31 @@ export function WordStudyPopup({
                   </div>
                 )}
 
-                {/* Translation comparison */}
-                {data.translations.length > 0 && (
-                  <div>
-                    <div className="flex items-center gap-1.5 mb-2">
-                      <ListChecks className="w-3.5 h-3.5 text-gray-400" />
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                        Translation Comparison
-                      </p>
-                    </div>
-                    <div className="space-y-1.5">
-                      {data.translations.map((t) => {
-                        const colors = TRANSLATION_COLORS[t.translation] || {
-                          bg: 'bg-gray-50 dark:bg-gray-700/40',
-                          text: 'text-gray-700 dark:text-gray-300',
-                          border: 'border-gray-200 dark:border-gray-600',
-                        };
-                        return (
-                          <div
-                            key={t.translation}
-                            className={`flex items-center gap-2 rounded-lg border ${colors.border} ${colors.bg} px-2.5 py-1.5`}
-                          >
-                            <span className={`text-[10px] font-bold w-10 flex-shrink-0 ${colors.text}`}>
-                              {t.translation}
-                            </span>
-                            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                              {t.word}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* KJV / NASB translation lists */}
+                {/* How this word is applied / translated */}
                 {(data.lexicon.kjvTranslation || data.lexicon.nasbTranslation) && (
-                  <div className="border-t border-gray-100 dark:border-gray-700 pt-2 space-y-1.5">
+                  <div className="border-t border-gray-100 dark:border-gray-700 pt-2.5 space-y-2">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                      How This Word Is Applied
+                    </p>
                     {data.lexicon.kjvTranslation && (
-                      <p className="text-[10px] text-gray-500 dark:text-gray-400">
-                        <span className="font-bold">KJV uses:</span> {data.lexicon.kjvTranslation}
-                      </p>
+                      <div className="flex items-start gap-2">
+                        <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
+                          KJV
+                        </span>
+                        <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
+                          {data.lexicon.kjvTranslation}
+                        </p>
+                      </div>
                     )}
                     {data.lexicon.nasbTranslation && (
-                      <p className="text-[10px] text-gray-500 dark:text-gray-400">
-                        <span className="font-bold">NASB uses:</span> {data.lexicon.nasbTranslation}
-                      </p>
+                      <div className="flex items-start gap-2">
+                        <span className="text-[10px] font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
+                          NASB
+                        </span>
+                        <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
+                          {data.lexicon.nasbTranslation}
+                        </p>
+                      </div>
                     )}
                   </div>
                 )}
