@@ -1063,6 +1063,7 @@ export function BibleLookup() {
           chapter={loadedChapter}
           verse={wordStudyPopup.verse}
           selectedWord={wordStudyPopup.selectedWord}
+          sourceTranslation={loadedTranslation}
           onClose={() => setWordStudyPopup(null)}
         />
       )}

@@ -44,6 +44,7 @@ interface WordStudyPopupProps {
   chapter: number;
   verse: number;
   selectedWord: string;
+  sourceTranslation: string;
   onClose: () => void;
 }
 
@@ -61,6 +62,7 @@ export function WordStudyPopup({
   chapter,
   verse,
   selectedWord,
+  sourceTranslation,
   onClose,
 }: WordStudyPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
@@ -97,7 +99,7 @@ export function WordStudyPopup({
     setError(null);
     setData(null);
 
-    const url = `${supabaseUrl}/functions/v1/word-study?book=${encodeURIComponent(book)}&chapter=${chapter}&verse=${verse}&word=${encodeURIComponent(selectedWord)}`;
+    const url = `${supabaseUrl}/functions/v1/word-study?book=${encodeURIComponent(book)}&chapter=${chapter}&verse=${verse}&word=${encodeURIComponent(selectedWord)}&sourceTranslation=${encodeURIComponent(sourceTranslation)}`;
 
     fetch(url, {
       headers: {
@@ -117,7 +119,7 @@ export function WordStudyPopup({
         setError('Could not load word study data. Please try again.');
       })
       .finally(() => setLoading(false));
-  }, [book, chapter, verse, selectedWord, supabaseUrl, supabaseAnonKey]);
+  }, [book, chapter, verse, selectedWord, sourceTranslation, supabaseUrl, supabaseAnonKey]);
 
   useEffect(() => {
     function onClick(e: MouseEvent) {

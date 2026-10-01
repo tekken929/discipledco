@@ -8,7 +8,7 @@ const corsHeaders = {
 
 interface InterlinearWord {
   strongsNumber: string;
-  greekOrHebrew: string;
+  originalWord: string;
   transliteration: string;
   englishGloss: string;
   partOfSpeech: string;
@@ -40,6 +40,7 @@ interface WordStudyResponse {
   matchedWord: InterlinearWord | null;
   lexicon: LexiconEntry | null;
   translations: TranslationWord[];
+  error?: string;
 }
 
 const BOOK_SLUGS: Record<string, string> = {
@@ -72,31 +73,44 @@ const BOOK_SLUGS: Record<string, string> = {
   'Jude': 'jude', 'Revelation': 'revelation',
 };
 
+const OT_BOOKS = new Set([
+  'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
+  'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings',
+  '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 'Job',
+  'Psalms', 'Psalm', 'Proverbs', 'Ecclesiastes', 'Song of Solomon',
+  'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 'Hosea',
+  'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk',
+  'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
+]);
+
+const STOP_WORDS = new Set([
+  'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'of', 'for',
+  'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does',
+  'did', 'will', 'would', 'could', 'should', 'may', 'might', 'shall', 'can',
+  'that', 'this', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they',
+  'not', 'no', 'so', 'if', 'as', 'by', 'with', 'from', 'up', 'out', 'about',
+  'into', 'over', 'after', 'now', 'then', 'there', 'here', 'all', 'also',
+]);
+
 function isOldTestament(book: string): boolean {
-  const otBooks = ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
-    'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings',
-    '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 'Job',
-    'Psalms', 'Psalm', 'Proverbs', 'Ecclesiastes', 'Song of Solomon',
-    'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 'Hosea',
-    'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk',
-    'Zephaniah', 'Haggai', 'Zechariah', 'Malachi'];
-  return otBooks.includes(book);
+  return OT_BOOKS.has(book);
 }
 
 function stripTags(html: string): string {
-  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&#\d+;/g, '').trim();
-}
-
-function decodeEntities(text: string): string {
-  return text
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n)))
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, ' ')
-    .replace(/<[^>]*>/g, '')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
     .trim();
+}
+
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 async function fetchInterlinear(book: string, chapter: number, verse: number): Promise<InterlinearWord[]> {
@@ -105,92 +119,51 @@ async function fetchInterlinear(book: string, chapter: number, verse: number): P
 
   const url = `https://biblehub.com/interlinear/${slug}/${chapter}-${verse}.htm`;
   const res = await fetch(url, {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; BibleStudyApp/1.0)' },
+    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
   });
 
   if (!res.ok) return [];
 
   const html = await res.text();
+  const isHebrew = isOldTestament(book);
+  const langCode = isHebrew ? 'hebrew' : 'greek';
+  const tableClass = isHebrew ? 'tablefloatheb' : 'tablefloat';
   const words: InterlinearWord[] = [];
 
-  // BibleHub interlinear pages have table rows with this pattern:
-  // Each word is in a <td> with links like /greek/3870.htm or /hebrew/430.htm
-  const isHebrew = isOldTestament(book);
-  const langPrefix = isHebrew ? 'hebrew' : 'greek';
-  const langCode = isHebrew ? 'hebrew' : 'greek';
+  const tableRegex = new RegExp(`<table class="${tableClass}">(.*?)</table>`, 'gs');
+  const tables = html.match(tableRegex);
+  if (!tables) return [];
 
-  // Extract all Strong's number links and their associated data
-  // Pattern: [number](/greek/NUMBER.htm "Title") or links with strongs_ prefix
-  const strongsRegex = new RegExp(
-    `\\[(\\d+[a-z]?)\\]\\(/${langCode}/(\\d+[a-z]?)\\.htm\\s+"([^"]+)"\\)`,
-    'g'
-  );
-
-  // Also try parsing the table structure more directly
-  // Look for patterns: number, transliteration, greek word, english gloss, part of speech
-  const rowRegex = new RegExp(
-    `(?:\\[(\\d+[a-z]?)\\]\\(/${langCode}/(?:strongs_)?(\\d+[a-z]?)\\.htm[^)]*\\))?` +
-    `.*?\\[([^\\]]+)\\]\\(/${langCode}/(?:strongs_)?\\d+[a-z]?\\.htm[^)]*\\)` +
-    `.*?([\\u0370-\\u03FF\\u0590-\\u05FF\\s]+)` +
-    `.*?([A-Za-z][^|\\[]{2,40})` +
-    `.*?(?:\\[([A-Z][^\\]]{2,50})\\]\\(/grammar/[^)]*\\))?`,
-    'gs'
-  );
-
-  // Simpler approach: extract all the td cells in order
-  // The interlinear table has columns: Strong's # | Transliteration | Original Word | English | Grammar
-  const tableMatch = html.match(/<table[^>]*class="table"[^>]*>([\s\S]*?)<\/table>/i);
-  if (tableMatch) {
-    const tableHtml = tableMatch[1];
-    const rowMatches = tableHtml.match(/<tr[^>]*>([\s\S]*?)<\/tr>/gi) || [];
-
-    for (const rowHtml of rowMatches) {
-      const cells = rowHtml.match(/<td[^>]*>([\s\S]*?)<\/td>/gi) || [];
-      if (cells.length < 4) continue;
-
-      // Extract Strong's number from first cell
-      const strongsMatch = cells[0].match(new RegExp(`/${langCode}/(\\d+[a-z]?)\\.htm`, 'i'));
-      if (!strongsMatch) continue;
-
-      const strongsNumber = strongsMatch[1];
-      const englishGloss = decodeEntities(cells[3] || '');
-      const transliteration = decodeEntities(cells[1] || '');
-      const originalWord = decodeEntities(cells[2] || '');
-      const partOfSpeech = decodeEntities(cells[4] || '');
-
-      if (strongsNumber && englishGloss) {
-        words.push({
-          strongsNumber,
-          greekOrHebrew: originalWord,
-          transliteration,
-          englishGloss,
-          partOfSpeech,
-        });
-      }
-    }
-  }
-
-  // Fallback: if table parsing didn't work, try regex approach
-  if (words.length === 0) {
-    const linkRegex = new RegExp(
-      `\\[(\\d+[a-z]?)\\]\\(/${langCode}/(?:strongs_)?(\\d+[a-z]?)\\.htm\\s+"([^"]+)"\\)`,
-      'g'
+  for (const tableHtml of tables) {
+    const strongsMatch = tableHtml.match(
+      new RegExp(`<a href="/${langCode}/(\\d+[a-z]?)\\.htm"`, 'i')
     );
-    let match;
-    while ((match = linkRegex.exec(html)) !== null) {
-      const strongsNumber = match[1];
-      const title = match[3];
-      // Title usually contains: "Strong's Greek 3870: I exhort"
-      const glossMatch = title.match(/:\s*(.+)$/);
-      const englishGloss = glossMatch ? glossMatch[1] : title;
+    if (!strongsMatch) continue;
 
-      words.push({
-        strongsNumber,
-        greekOrHebrew: '',
-        transliteration: '',
-        englishGloss,
-        partOfSpeech: '',
-      });
+    const strongsNumber = strongsMatch[1];
+
+    const translitMatch = tableHtml.match(/<span class="translit"><a[^>]*>(.*?)<\/a><\/span>/s);
+    const transliteration = translitMatch ? stripTags(translitMatch[1]) : '';
+
+    const origMatch = tableHtml.match(
+      new RegExp(`<span class="${isHebrew ? 'hebrew' : 'greek'}">(.*?)</span>`, 's')
+    );
+    const originalWord = origMatch ? stripTags(origMatch[1]) : '';
+
+    const engMatch = tableHtml.match(/<span class="eng">(.*?)<\/span>/s);
+    const englishGloss = engMatch ? stripTags(engMatch[1]) : '';
+
+    const strongsntMatches = tableHtml.matchAll(
+      /<span class="strongsnt"><a[^>]*>(.*?)<\/a><\/span>/gs
+    );
+    const strongsntList = [...strongsntMatches];
+    let partOfSpeech = '';
+    if (strongsntList.length >= 2) {
+      partOfSpeech = stripTags(strongsntList[1][1]);
+    }
+
+    if (strongsNumber && englishGloss) {
+      words.push({ strongsNumber, originalWord, transliteration, englishGloss, partOfSpeech });
     }
   }
 
@@ -202,83 +175,110 @@ async function fetchLexicon(strongsNumber: string, isHebrew: boolean): Promise<L
   const url = `https://biblehub.com/${langCode}/${strongsNumber}.htm`;
 
   const res = await fetch(url, {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; BibleStudyApp/1.0)' },
+    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
   });
 
   if (!res.ok) return null;
 
   const html = await res.text();
 
-  // Extract data from the page using text patterns
-  // The extracted text has patterns like:
-  // "Original Word: παρακαλέω Part of Speech: Verb Transliteration: parakaleó"
-  // "KJV: beseech, call for..." "NASB: urge, comforted..."
-
   function extractField(label: string): string {
-    const regex = new RegExp(`${label}:\\s*([^\\n]+?)(?=\\s+(?:Part of Speech|Transliteration|Pronunciation|Phonetic|KJV|NASB|Word Origin|Strong's|Original|Definition|see|HELPS|$))`, 'i');
-    const match = html.match(regex);
-    return match ? decodeEntities(match[1]) : '';
+    const pattern = new RegExp(
+      `<span class="tophdg">${escapeRegex(label)}:?\\s*</span>(.*?)(?=<span class="tophdg">|<span class="hdg">|$)`,
+      's'
+    );
+    const match = html.match(pattern);
+    return match ? stripTags(match[1]) : '';
   }
 
-  // Try to extract from the text content
-  const textContent = html.replace(/<[^>]*>/g, '\n').replace(/\n{3,}/g, '\n\n');
-
-  const originalWordMatch = textContent.match(/Original Word:\s*(\S+)/);
-  const transliterationMatch = textContent.match(/Transliteration:\s*(\S+)/);
-  const pronunciationMatch = textContent.match(/Phonetic Spelling:\s*\(([^)]+)\)/);
-  const kjvMatch = textContent.match(/KJV:\s*([^\n]+)/);
-  const nasbMatch = textContent.match(/NASB:\s*([^\n]+)/);
-  const wordOriginMatch = textContent.match(/Word Origin:\s*([^\n]+)/);
-
-  // Definition - try "Strong's Exhaustive Concordance" section
-  const defMatch = textContent.match(/Strong's Exhaustive Concordance\s*([^\n]+(?:\n(?!\s*(?:see|HELPS|Thayer))[^\n]+)*)/);
-
-  // Part of speech
-  const partOfSpeechMatch = textContent.match(/Part of Speech:\s*(\S+)/);
+  let definition = '';
+  const secIdx = html.indexOf("Strong's Exhaustive Concordance");
+  if (secIdx >= 0) {
+    let chunk = html.slice(secIdx);
+    const cutIdx = chunk.search(/HELPS Word-studies|NAS Exhaustive/i);
+    if (cutIdx > 0) chunk = chunk.slice(0, cutIdx);
+    chunk = chunk.replace(/Strong's Exhaustive Concordance\s*/i, '');
+    const fullText = stripTags(chunk);
+    definition = fullText.split(/\.\s/)[0] || fullText.slice(0, 200);
+  }
 
   return {
     strongsNumber,
     language: isHebrew ? 'Hebrew' : 'Greek',
-    originalWord: originalWordMatch ? decodeEntities(originalWordMatch[1]) : '',
-    transliteration: transliterationMatch ? decodeEntities(transliterationMatch[1]) : '',
-    pronunciation: pronunciationMatch ? pronunciationMatch[1] : '',
-    kjvTranslation: kjvMatch ? decodeEntities(kjvMatch[1]) : '',
-    nasbTranslation: nasbMatch ? decodeEntities(nasbMatch[1]) : '',
-    definition: defMatch ? decodeEntities(defMatch[1]).trim() : '',
-    wordOrigin: wordOriginMatch ? decodeEntities(wordOriginMatch[1]) : '',
+    originalWord: extractField('Original Word'),
+    transliteration: extractField('Transliteration'),
+    pronunciation: extractField('Phonetic Spelling'),
+    kjvTranslation: extractField('KJV'),
+    nasbTranslation: extractField('NASB'),
+    definition,
+    wordOrigin: extractField('Word Origin'),
   };
 }
 
-function findMatchingWord(
+function normalize(s: string): string {
+  return s.toLowerCase().replace(/[^\w]/g, '');
+}
+
+function findMatchingWordByGloss(
   selectedWord: string,
   interlinear: InterlinearWord[]
 ): InterlinearWord | null {
-  const lower = selectedWord.toLowerCase().replace(/[^\w]/g, '');
+  const lower = normalize(selectedWord);
 
-  // Try exact match on English gloss
   for (const w of interlinear) {
-    if (w.englishGloss.toLowerCase().replace(/[^\w]/g, '') === lower) {
-      return w;
-    }
+    if (normalize(w.englishGloss) === lower) return w;
   }
-
-  // Try partial match - the selected word contains the gloss or vice versa
   for (const w of interlinear) {
-    const gloss = w.englishGloss.toLowerCase().replace(/[^\w]/g, '');
-    if (gloss && (lower.includes(gloss) || gloss.includes(lower))) {
-      return w;
-    }
+    const gloss = normalize(w.englishGloss);
+    if (gloss && (lower.includes(gloss) || gloss.includes(lower))) return w;
   }
-
-  // Try matching first word of gloss
   for (const w of interlinear) {
-    const firstWord = w.englishGloss.split(/\s+/)[0]?.toLowerCase().replace(/[^\w]/g, '');
-    if (firstWord && firstWord === lower) {
-      return w;
+    const glossWords = w.englishGloss.split(/\s+/).map(normalize);
+    if (glossWords.includes(lower)) return w;
+  }
+  return null;
+}
+
+function findMatchingWordByLexicon(
+  selectedWord: string,
+  interlinear: InterlinearWord[],
+  lexicons: Map<string, LexiconEntry>
+): InterlinearWord | null {
+  const lower = normalize(selectedWord);
+
+  for (const w of interlinear) {
+    const lex = lexicons.get(w.strongsNumber);
+    if (!lex) continue;
+
+    if (lex.kjvTranslation) {
+      const kjvWords = lex.kjvTranslation.split(/[,;]/).map(s => normalize(s.trim()));
+      if (kjvWords.includes(lower)) return w;
+    }
+
+    if (lex.nasbTranslation) {
+      const nasbWords = lex.nasbTranslation.split(/[,;]/).map(s => normalize(s.trim()));
+      if (nasbWords.includes(lower)) return w;
+    }
+
+    if (lex.definition) {
+      const defWords = lex.definition.toLowerCase().split(/\W+/);
+      if (defWords.includes(selectedWord.toLowerCase())) return w;
     }
   }
 
   return null;
+}
+
+function findWordInVerse(verseText: string, candidates: string[]): string {
+  const verseLower = verseText.toLowerCase();
+  const sorted = [...candidates].filter(w => w.length > 2).sort((a, b) => b.length - a.length);
+  for (const w of sorted) {
+    const escaped = escapeRegex(w.toLowerCase());
+    if (new RegExp(`\\b${escaped}\\b`, 'i').test(verseLower)) {
+      return w;
+    }
+  }
+  return '';
 }
 
 Deno.serve(async (req: Request) => {
@@ -292,6 +292,7 @@ Deno.serve(async (req: Request) => {
     const chapter = parseInt(url.searchParams.get("chapter") || "0");
     const verse = parseInt(url.searchParams.get("verse") || "0");
     const word = url.searchParams.get("word");
+    const sourceTranslation = (url.searchParams.get("sourceTranslation") || 'kjv').toLowerCase();
 
     if (!book || !chapter || !verse || !word) {
       return new Response(
@@ -303,56 +304,48 @@ Deno.serve(async (req: Request) => {
     const isHebrew = isOldTestament(book);
     const normalizedBook = book === 'Psalm' ? 'Psalms' : book;
 
-    // Fetch interlinear data
+    // Step 1: Fetch interlinear data
     const interlinear = await fetchInterlinear(normalizedBook, chapter, verse);
 
     if (interlinear.length === 0) {
       return new Response(
         JSON.stringify({
-          book: normalizedBook,
-          chapter,
-          verse,
-          selectedWord: word,
-          interlinear: [],
-          matchedWord: null,
-          lexicon: null,
-          translations: [],
+          book: normalizedBook, chapter, verse, selectedWord: word,
+          interlinear: [], matchedWord: null, lexicon: null, translations: [],
           error: "Word study data not available for this verse.",
         }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    // Find the matching word
-    const matchedWord = findMatchingWord(word, interlinear);
+    // Step 2: Try matching by English gloss first (fast path)
+    let matchedWord = findMatchingWordByGloss(word, interlinear);
 
-    // Fetch lexicon entry if we found a match
-    let lexicon: LexiconEntry | null = null;
-    if (matchedWord) {
-      lexicon = await fetchLexicon(matchedWord.strongsNumber, isHebrew);
+    // Step 3: If no gloss match, fetch all lexicons and match by KJV/NASB translation lists
+    const lexicons = new Map<string, LexiconEntry>();
+
+    if (!matchedWord) {
+      const uniqueStrongs = [...new Set(interlinear.map(w => w.strongsNumber))];
+      const lexiconPromises = uniqueStrongs.map(async (sn) => {
+        const lex = await fetchLexicon(sn, isHebrew);
+        if (lex) lexicons.set(sn, lex);
+      });
+      await Promise.all(lexiconPromises);
+      matchedWord = findMatchingWordByLexicon(word, interlinear, lexicons);
     }
 
-    // Build translation comparison
-    // We know KJV uses the word from the interlinear gloss
-    // For other translations, we'll fetch the verse text and find the corresponding word
-    const translations: TranslationWord[] = [];
-
-    // KJV - from interlinear gloss or lexicon
+    // Step 4: Fetch the matched word's lexicon if not already fetched
+    let lexicon: LexiconEntry | null = null;
     if (matchedWord) {
-      if (lexicon?.kjvTranslation) {
-        // The KJV translation list from lexicon shows all possible translations
-        // Try to find which one appears in the actual verse
-        translations.push({
-          translation: 'KJV',
-          word: word, // The user selected this word from KJV text
-        });
-      } else {
-        translations.push({ translation: 'KJV', word: matchedWord.englishGloss });
+      lexicon = lexicons.get(matchedWord.strongsNumber) || null;
+      if (!lexicon) {
+        lexicon = await fetchLexicon(matchedWord.strongsNumber, isHebrew);
       }
     }
 
-    // For other translations, we need to fetch the verse text
-    // We'll use the Supabase database to get the verse in each translation
+    // Step 5: Build translation comparison using the database
+    const translations: TranslationWord[] = [];
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
@@ -360,9 +353,19 @@ Deno.serve(async (req: Request) => {
       const { createClient } = await import("npm:@supabase/supabase-js@2");
       const supabase = createClient(supabaseUrl, supabaseKey);
 
-      // Fetch verse from translations_bible for NIV, ESV, NASB, NLT
-      const transList = ['niv', 'esv', 'nasb', 'nlt'];
-      const versePromises = transList.map(async (trans) => {
+      // Fetch verse text in all 5 translations
+      const allTrans = ['kjv', 'niv', 'esv', 'nasb', 'nlt'];
+      const versePromises = allTrans.map(async (trans) => {
+        if (trans === 'kjv') {
+          const { data } = await supabase
+            .from('kjv_bible')
+            .select('text')
+            .eq('book', normalizedBook)
+            .eq('chapter', chapter)
+            .eq('verse', verse)
+            .single();
+          return { translation: trans, text: data?.text || '' };
+        }
         const { data } = await supabase
           .from('translations_bible')
           .select('text')
@@ -376,79 +379,103 @@ Deno.serve(async (req: Request) => {
 
       const verseResults = await Promise.all(versePromises);
 
-      // Also get KJV
-      const { data: kjvData } = await supabase
-        .from('kjv_bible')
-        .select('text')
-        .eq('book', normalizedBook)
-        .eq('chapter', chapter)
-        .eq('verse', verse)
-        .single();
+      // Find word position in the source translation text
+      const sourceResult = verseResults.find(r => r.translation === sourceTranslation) || verseResults[0];
+      const sourceText = sourceResult?.text || '';
+      let wordPosition = -1;
+      if (sourceText) {
+        const sourceWords = sourceText.split(/\s+/);
+        const lower = word.toLowerCase().replace(/[^a-z]/g, '');
+        for (let i = 0; i < sourceWords.length; i++) {
+          if (sourceWords[i].toLowerCase().replace(/[^a-z]/g, '') === lower) {
+            wordPosition = i;
+            break;
+          }
+        }
+        if (wordPosition === -1) {
+          for (let i = 0; i < sourceWords.length; i++) {
+            const sw = sourceWords[i].toLowerCase().replace(/[^a-z]/g, '');
+            if (sw && (sw.includes(lower) || lower.includes(sw))) {
+              wordPosition = i;
+              break;
+            }
+          }
+        }
+      }
 
-      const kjvText = kjvData?.text || '';
+      // Build candidate word list from lexicon
+      const lexiconWords: string[] = [];
+      if (lexicon) {
+        if (lexicon.kjvTranslation) lexiconWords.push(...lexicon.kjvTranslation.split(/[,;]/).map(w => w.trim()));
+        if (lexicon.nasbTranslation) lexiconWords.push(...lexicon.nasbTranslation.split(/[,;]/).map(w => w.trim()));
+      }
 
-      // For each translation, try to find the corresponding word
-      // We use the lexicon's translation lists to identify which word each translation uses
       for (const result of verseResults) {
+        const transLabel = result.translation.toUpperCase();
+
         if (!result.text) {
-          translations.push({ translation: result.translation.toUpperCase(), word: '—' });
+          translations.push({ translation: transLabel, word: '—' });
           continue;
         }
 
-        // Try to find the word in the verse text
-        // Use the NASB translation list from lexicon if available
-        let foundWord = '';
-
-        if (lexicon) {
-          // Try NASB translations first for NASB
-          if (result.translation === 'nasb' && lexicon.nasbTranslation) {
-            const nasbWords = lexicon.nasbTranslation.split(/[,;]/).map(w => w.trim().toLowerCase());
-            for (const nw of nasbWords) {
-              if (nw && result.text.toLowerCase().includes(nw)) {
-                foundWord = nw;
-                break;
-              }
-            }
-          }
-
-          // Try KJV translations for matching
-          if (!foundWord && lexicon.kjvTranslation) {
-            const kjvWords = lexicon.kjvTranslation.split(/[,;]/).map(w => w.trim().toLowerCase());
-            for (const kw of kjvWords) {
-              if (kw && kw !== 'pray' && result.text.toLowerCase().includes(kw)) {
-                foundWord = kw;
-                break;
-              }
-            }
-          }
+        // The source translation always shows the user's selected word
+        if (result.translation === sourceTranslation) {
+          translations.push({ translation: transLabel, word });
+          continue;
         }
 
-        // Fallback: try the selected word itself
+        let foundWord = '';
+
+        // Strategy 1: Use lexicon translation lists with word-boundary matching
+        if (lexiconWords.length > 0) {
+          foundWord = findWordInVerse(result.text, lexiconWords);
+        }
+
+        // Strategy 2: Try the selected word itself
         if (!foundWord) {
-          if (result.text.toLowerCase().includes(word.toLowerCase())) {
+          const escaped = escapeRegex(word.toLowerCase());
+          if (new RegExp(`\\b${escaped}\\b`, 'i').test(result.text.toLowerCase())) {
             foundWord = word;
           }
         }
 
-        // Fallback: try the English gloss from interlinear
+        // Strategy 3: Try the English gloss from interlinear
         if (!foundWord && matchedWord) {
-          if (result.text.toLowerCase().includes(matchedWord.englishGloss.toLowerCase())) {
+          const glossLower = matchedWord.englishGloss.toLowerCase();
+          const escaped = escapeRegex(glossLower);
+          if (new RegExp(`\\b${escaped}\\b`, 'i').test(result.text.toLowerCase())) {
             foundWord = matchedWord.englishGloss;
           }
         }
 
-        translations.push({
-          translation: result.translation.toUpperCase(),
-          word: foundWord || '—',
-        });
-      }
-
-      // Update KJV entry with actual verse text lookup
-      if (kjvText) {
-        const kjvEntry = translations.find(t => t.translation === 'KJV');
-        if (kjvEntry) {
-          kjvEntry.word = word;
+        // Strategy 4: Positional matching as last resort (skip stop words)
+        if (!foundWord && wordPosition >= 0) {
+          const resultWords = result.text.split(/\s+/);
+          // Try exact position
+          if (wordPosition < resultWords.length) {
+            const candidate = resultWords[wordPosition].replace(/[^a-zA-Z']/g, '');
+            if (candidate && candidate.length > 1 && !STOP_WORDS.has(candidate.toLowerCase())) {
+              foundWord = candidate;
+            }
+          }
+          // Try nearby positions (±2)
+          if (!foundWord) {
+            for (let offset = 1; offset <= 2; offset++) {
+              for (const pos of [wordPosition + offset, wordPosition - offset]) {
+                if (pos >= 0 && pos < resultWords.length) {
+                  const candidate = resultWords[pos].replace(/[^a-zA-Z']/g, '');
+                  if (candidate && candidate.length > 2 && !STOP_WORDS.has(candidate.toLowerCase())) {
+                    foundWord = candidate;
+                    break;
+                  }
+                }
+              }
+              if (foundWord) break;
+            }
+          }
         }
+
+        translations.push({ translation: transLabel, word: foundWord || '—' });
       }
     }
 
