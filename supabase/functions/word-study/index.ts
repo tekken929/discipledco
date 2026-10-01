@@ -17,13 +17,16 @@ interface InterlinearWord {
 interface LexiconEntry {
   strongsNumber: string;
   language: string;
+  title: string;
   originalWord: string;
+  partOfSpeech: string;
   transliteration: string;
   pronunciation: string;
   kjvTranslation: string;
   nasbTranslation: string;
   definition: string;
   wordOrigin: string;
+  detailedDefinitions: string[];
 }
 
 interface TranslationWord {
@@ -200,12 +203,48 @@ async function fetchLexicon(strongsNumber: string, isHebrew: boolean): Promise<L
     return match ? stripTags(match[1]) : '';
   }
 
-  // Extract the clean Definition from the hdg section (much cleaner than the tophdg Word Origin)
+  // Extract the title (toptitle2) - the lexical summary line
+  const titleMatch = html.match(/<span class="toptitle2">(.*?)<\/span>/s);
+  const title = titleMatch ? stripTags(titleMatch[1]) : '';
+
+  // Extract the clean Definition from the hdg section
   const cleanDefinition = extractHdgField('Definition');
   const cleanWordOrigin = extractHdgField('Word Origin');
 
-  // Fallback: if no hdg Definition, use the Strong's Exhaustive Concordance section
+  // Extract the numbered definition list from the tophdg Word Origin field
+  // The tophdg Word Origin contains: [from G3844... ] 1. ... 2. ... 3. ... 4. ...Strong's Exhaustive...
+  // We want just the bracketed origin + numbered list, cut off before Strong's
+  const rawWordOrigin = extractField('Word Origin');
+  let wordOrigin = cleanWordOrigin;
+  const detailedDefinitions: string[] = [];
+
+  if (rawWordOrigin) {
+    // Extract the bracketed origin part: [from G3844 (παρά - than) and G2564 (καλέω - called)]
+    const bracketMatch = rawWordOrigin.match(/^(\[.*?\])/);
+    if (bracketMatch) {
+      wordOrigin = bracketMatch[1].replace(/\[|\]/g, '');
+    }
+
+    // Extract numbered definitions: 1. ... 2. ... etc.
+    // Cut off everything at Strong's Exhaustive Concordance
+    const beforeStrong = rawWordOrigin.split(/Strong's Exhaustive/i)[0] || rawWordOrigin;
+    // Remove the bracketed origin part so it doesn't interfere
+    const afterBracket = beforeStrong.replace(/^\[.*?\]/, '').trim();
+    // Match each numbered item: "1. text" up to the next "N." or end
+    const numberedMatches = afterBracket.matchAll(/\d+\.\s+(.+?)(?=\d+\.\s|$)/gs);
+    for (const m of numberedMatches) {
+      const def = m[1].trim();
+      if (def && def.length > 3) {
+        detailedDefinitions.push(def);
+      }
+    }
+  }
+
+  // Fallback: if no hdg Definition, use the first numbered definition or Strong's section
   let definition = cleanDefinition;
+  if (!definition && detailedDefinitions.length > 0) {
+    definition = detailedDefinitions.join('; ');
+  }
   if (!definition) {
     const secIdx = html.indexOf("Strong's Exhaustive Concordance");
     if (secIdx >= 0) {
@@ -221,13 +260,16 @@ async function fetchLexicon(strongsNumber: string, isHebrew: boolean): Promise<L
   return {
     strongsNumber,
     language: isHebrew ? 'Hebrew' : 'Greek',
+    title,
     originalWord: extractField('Original Word'),
+    partOfSpeech: extractField('Part of Speech'),
     transliteration: extractField('Transliteration'),
     pronunciation: extractField('Phonetic Spelling'),
     kjvTranslation: extractField('KJV'),
     nasbTranslation: extractField('NASB'),
     definition,
-    wordOrigin: cleanWordOrigin || extractField('Word Origin'),
+    wordOrigin,
+    detailedDefinitions,
   };
 }
 

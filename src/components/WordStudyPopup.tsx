@@ -23,13 +23,16 @@ export interface WordStudyData {
   lexicon: {
     strongsNumber: string;
     language: string;
+    title: string;
     originalWord: string;
+    partOfSpeech: string;
     transliteration: string;
     pronunciation: string;
     kjvTranslation: string;
     nasbTranslation: string;
     definition: string;
     wordOrigin: string;
+    detailedDefinitions: string[];
   } | null;
   translations: {
     translation: string;
@@ -70,7 +73,7 @@ export function WordStudyPopup({
     if (!anchorRect) return;
 
     const popupWidth = 380;
-    const popupMaxHeight = 520;
+    const popupMaxHeight = 560;
     let left = anchorRect.left + anchorRect.width / 2 - popupWidth / 2;
     let top = anchorRect.top - popupMaxHeight - 10;
 
@@ -162,10 +165,12 @@ export function WordStudyPopup({
         strongsPrefix: 'G',
       };
 
+  const lex = data?.lexicon;
+
   return (
     <div
       ref={popupRef}
-      style={{ position: 'fixed', top: pos.top, left: pos.left, zIndex: 700, maxHeight: '520px' }}
+      style={{ position: 'fixed', top: pos.top, left: pos.left, zIndex: 700, maxHeight: '560px' }}
       className="w-[380px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-600 overflow-hidden flex flex-col"
     >
       {/* Header with gradient */}
@@ -211,82 +216,119 @@ export function WordStudyPopup({
               </p>
             </div>
 
-            {data.matchedWord && data.lexicon ? (
+            {data.matchedWord && lex ? (
               <>
-                {/* Original Language Word */}
-                <div className={`rounded-xl border-2 ${theme.accentBorder} ${theme.accentBg} p-3.5`}>
-                  <div className="flex items-center gap-1.5 mb-2">
-                    <Languages className={`w-3.5 h-3.5 ${theme.accent}`} />
-                    <span className={`text-[10px] font-bold uppercase tracking-widest ${theme.accent}`}>
-                      {data.lexicon.language}
-                    </span>
-                    <span className="ml-auto text-[10px] font-mono text-gray-400">
+                {/* Lexical Summary card */}
+                <div className={`rounded-xl border-2 ${theme.accentBorder} ${theme.accentBg} p-3.5 space-y-2.5`}>
+                  {/* Title line (the summary) */}
+                  {lex.title && (
+                    <p className={`text-sm font-bold ${theme.accent} text-center leading-snug`}>
+                      {lex.title}
+                    </p>
+                  )}
+
+                  {/* Original Word */}
+                  {lex.originalWord && (
+                    <p className="text-3xl font-bold text-gray-800 dark:text-gray-100 text-center" dir={isHebrew ? 'rtl' : 'ltr'}>
+                      {lex.originalWord}
+                    </p>
+                  )}
+
+                  {/* Transliteration */}
+                  {lex.transliteration && (
+                    <p className={`text-base font-semibold ${theme.accent} text-center`}>
+                      {lex.transliteration}
+                    </p>
+                  )}
+
+                  {/* Pronunciation */}
+                  {lex.pronunciation && (
+                    <p className="text-xs text-gray-400 text-center italic">
+                      {lex.pronunciation}
+                    </p>
+                  )}
+
+                  {/* Part of Speech + Strong's number */}
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    {lex.partOfSpeech && (
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${theme.chipBg} ${theme.chipText}`}>
+                        {lex.partOfSpeech}
+                      </span>
+                    )}
+                    <span className="text-[10px] font-mono text-gray-400">
                       {theme.strongsPrefix}{data.matchedWord.strongsNumber}
                     </span>
                   </div>
-
-                  {data.lexicon.originalWord && (
-                    <p className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-1.5 text-center" dir={isHebrew ? 'rtl' : 'ltr'}>
-                      {data.lexicon.originalWord}
-                    </p>
-                  )}
-
-                  {data.lexicon.transliteration && (
-                    <p className={`text-base font-semibold ${theme.accent} text-center mb-1`}>
-                      {data.lexicon.transliteration}
-                    </p>
-                  )}
-
-                  {data.lexicon.pronunciation && (
-                    <p className="text-xs text-gray-400 text-center italic">
-                      {data.lexicon.pronunciation}
-                    </p>
-                  )}
-
-                  {data.matchedWord.partOfSpeech && (
-                    <div className="flex justify-center mt-2">
-                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${theme.chipBg} ${theme.chipText}`}>
-                        {data.matchedWord.partOfSpeech}
-                      </span>
-                    </div>
-                  )}
                 </div>
 
-                {/* Definition */}
-                {data.lexicon.definition && (
+                {/* Word Origin */}
+                {lex.wordOrigin && (
+                  <div className={`rounded-lg ${theme.sectionBg} px-3 py-2.5`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-widest ${theme.labelColor} mb-1`}>
+                      Word Origin
+                    </p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {lex.wordOrigin}
+                    </p>
+                  </div>
+                )}
+
+                {/* Detailed Definitions (numbered list) */}
+                {lex.detailedDefinitions.length > 0 && (
                   <div className={`rounded-lg ${theme.sectionBg} px-3 py-2.5`}>
                     <p className={`text-[10px] font-bold uppercase tracking-widest ${theme.labelColor} mb-1.5`}>
                       Definition
                     </p>
+                    <ol className="space-y-1.5">
+                      {lex.detailedDefinitions.map((def, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className={`text-[10px] font-bold ${theme.accent} flex-shrink-0 mt-0.5 w-4 text-right`}>
+                            {i + 1}.
+                          </span>
+                          <span className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {def}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+
+                {/* Fallback definition if no numbered list */}
+                {lex.detailedDefinitions.length === 0 && lex.definition && (
+                  <div className={`rounded-lg ${theme.sectionBg} px-3 py-2.5`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-widest ${theme.labelColor} mb-1`}>
+                      Definition
+                    </p>
                     <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {data.lexicon.definition}
+                      {lex.definition}
                     </p>
                   </div>
                 )}
 
                 {/* How this word is applied */}
-                {(data.lexicon.kjvTranslation || data.lexicon.nasbTranslation) && (
+                {(lex.kjvTranslation || lex.nasbTranslation) && (
                   <div className="border-t border-gray-100 dark:border-gray-700 pt-2.5 space-y-2">
                     <p className={`text-[10px] font-bold uppercase tracking-widest ${theme.labelColor}`}>
                       How This Word Is Applied
                     </p>
-                    {data.lexicon.kjvTranslation && (
+                    {lex.kjvTranslation && (
                       <div className="flex items-start gap-2">
                         <span className="text-[10px] font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
                           KJV
                         </span>
                         <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
-                          {data.lexicon.kjvTranslation}
+                          {lex.kjvTranslation}
                         </p>
                       </div>
                     )}
-                    {data.lexicon.nasbTranslation && (
+                    {lex.nasbTranslation && (
                       <div className="flex items-start gap-2">
                         <span className="text-[10px] font-bold text-rose-700 dark:text-rose-300 bg-rose-100 dark:bg-rose-900/30 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
                           NASB
                         </span>
                         <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
-                          {data.lexicon.nasbTranslation}
+                          {lex.nasbTranslation}
                         </p>
                       </div>
                     )}
