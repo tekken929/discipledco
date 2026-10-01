@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { X, Loader2, BookOpen, Languages, ExternalLink } from 'lucide-react';
+import { X, Loader2, BookOpen, Languages } from 'lucide-react';
 
 export interface WordStudyData {
   book: string;
@@ -335,16 +335,6 @@ export function WordStudyPopup({
                   </div>
                 )}
 
-                {/* Link to BibleHub */}
-                <a
-                  href={`https://biblehub.com/${isHebrew ? 'hebrew' : 'greek'}/${data.matchedWord.strongsNumber}.htm`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 text-[10px] font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors pt-1"
-                >
-                  <ExternalLink className="w-3 h-3" />
-                  View full lexicon on BibleHub
-                </a>
               </>
             ) : (
               <div className="text-center py-4">
