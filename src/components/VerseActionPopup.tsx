@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Highlighter, Bookmark, X, Send } from 'lucide-react';
+import { Highlighter, Bookmark, X, Send, Search } from 'lucide-react';
 import { HIGHLIGHT_COLORS, type HighlightColor } from '../hooks/useBibleNotebook';
 
 interface VerseActionPopupProps {
@@ -15,6 +15,7 @@ interface VerseActionPopupProps {
   onRemoveHighlight: () => void;
   onSave: () => void;
   onClose: () => void;
+  onWordStudy?: (selectedWord: string, rect: DOMRect) => void;
 }
 
 export function VerseActionPopup({
@@ -30,6 +31,7 @@ export function VerseActionPopup({
   onRemoveHighlight,
   onSave,
   onClose,
+  onWordStudy,
 }: VerseActionPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
@@ -126,7 +128,19 @@ export function VerseActionPopup({
           </p>
         )}
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          {hasSelection && onWordStudy && (
+            <button
+              onClick={() => {
+                onWordStudy(selectedText!.trim(), anchorRect);
+                onClose();
+              }}
+              className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+            >
+              <Search className="w-3.5 h-3.5" />
+              Word Study
+            </button>
+          )}
           <button
             onClick={() => {
               onSave();

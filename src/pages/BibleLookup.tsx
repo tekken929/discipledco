@@ -9,6 +9,7 @@ import { fetchBibleChapter, type BibleVerse, type Translation, TRANSLATION_LABEL
 import { useBibleNotebook, HIGHLIGHT_COLORS, type HighlightColor } from '../hooks/useBibleNotebook';
 import { NotepadPanel } from '../components/NotepadPanel';
 import { VerseActionPopup } from '../components/VerseActionPopup';
+import { WordStudyPopup } from '../components/WordStudyPopup';
 
 const BOOKS_OT = [
   'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
@@ -221,6 +222,11 @@ export function BibleLookup() {
   const notebook = useBibleNotebook();
   const [notepadOpen, setNotepadOpen] = useState(false);
   const [versePopup, setVersePopup] = useState<VersePopupState | null>(null);
+  const [wordStudyPopup, setWordStudyPopup] = useState<{
+    rect: DOMRect;
+    selectedWord: string;
+    verse: number;
+  } | null>(null);
   const [searchParams] = useSearchParams();
   const paramBook = searchParams.get('book') || 'John';
   const paramChapter = parseInt(searchParams.get('chapter') || '3', 10) || 3;
@@ -1044,6 +1050,20 @@ export function BibleLookup() {
             });
           }}
           onClose={() => setVersePopup(null)}
+          onWordStudy={(selectedWord, rect) => {
+            setWordStudyPopup({ rect, selectedWord, verse: versePopup.verse });
+          }}
+        />
+      )}
+
+      {wordStudyPopup && (
+        <WordStudyPopup
+          anchorRect={wordStudyPopup.rect}
+          book={loadedBook}
+          chapter={loadedChapter}
+          verse={wordStudyPopup.verse}
+          selectedWord={wordStudyPopup.selectedWord}
+          onClose={() => setWordStudyPopup(null)}
         />
       )}
     </>
