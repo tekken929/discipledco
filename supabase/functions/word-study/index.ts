@@ -191,15 +191,31 @@ async function fetchLexicon(strongsNumber: string, isHebrew: boolean): Promise<L
     return match ? stripTags(match[1]) : '';
   }
 
-  let definition = '';
-  const secIdx = html.indexOf("Strong's Exhaustive Concordance");
-  if (secIdx >= 0) {
-    let chunk = html.slice(secIdx);
-    const cutIdx = chunk.search(/HELPS Word-studies|NAS Exhaustive/i);
-    if (cutIdx > 0) chunk = chunk.slice(0, cutIdx);
-    chunk = chunk.replace(/Strong's Exhaustive Concordance\s*/i, '');
-    const fullText = stripTags(chunk);
-    definition = fullText.split(/\.\s/)[0] || fullText.slice(0, 200);
+  function extractHdgField(label: string): string {
+    const pattern = new RegExp(
+      `<span class="hdg">${escapeRegex(label)}</span>(.*?)(?=<span class="hdg">|<span class="tophdg">|<h\\d|$)`,
+      's'
+    );
+    const match = html.match(pattern);
+    return match ? stripTags(match[1]) : '';
+  }
+
+  // Extract the clean Definition from the hdg section (much cleaner than the tophdg Word Origin)
+  const cleanDefinition = extractHdgField('Definition');
+  const cleanWordOrigin = extractHdgField('Word Origin');
+
+  // Fallback: if no hdg Definition, use the Strong's Exhaustive Concordance section
+  let definition = cleanDefinition;
+  if (!definition) {
+    const secIdx = html.indexOf("Strong's Exhaustive Concordance");
+    if (secIdx >= 0) {
+      let chunk = html.slice(secIdx);
+      const cutIdx = chunk.search(/HELPS Word-studies|NAS Exhaustive/i);
+      if (cutIdx > 0) chunk = chunk.slice(0, cutIdx);
+      chunk = chunk.replace(/Strong's Exhaustive Concordance\s*/i, '');
+      const fullText = stripTags(chunk);
+      definition = fullText.split(/\.\s/)[0] || fullText.slice(0, 200);
+    }
   }
 
   return {
@@ -211,7 +227,7 @@ async function fetchLexicon(strongsNumber: string, isHebrew: boolean): Promise<L
     kjvTranslation: extractField('KJV'),
     nasbTranslation: extractField('NASB'),
     definition,
-    wordOrigin: extractField('Word Origin'),
+    wordOrigin: cleanWordOrigin || extractField('Word Origin'),
   };
 }
 

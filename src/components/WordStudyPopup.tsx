@@ -134,9 +134,33 @@ export function WordStudyPopup({
 
   const ref = `${book} ${chapter}:${verse}`;
   const isHebrew = data?.lexicon?.language === 'Hebrew';
-  const langColor = isHebrew ? 'text-amber-600 dark:text-amber-400' : 'text-blue-600 dark:text-blue-400';
-  const langBg = isHebrew ? 'bg-amber-50 dark:bg-amber-900/20' : 'bg-blue-50 dark:bg-blue-900/20';
-  const langBorder = isHebrew ? 'border-amber-200 dark:border-amber-700' : 'border-blue-200 dark:border-blue-700';
+
+  // Color themes: Hebrew = warm amber/rose, Greek = cool teal/sky
+  const theme = isHebrew
+    ? {
+        gradFrom: 'from-amber-500',
+        gradTo: 'to-rose-500',
+        accent: 'text-amber-600 dark:text-amber-400',
+        accentBg: 'bg-amber-50 dark:bg-amber-900/30',
+        accentBorder: 'border-amber-300 dark:border-amber-700',
+        chipBg: 'bg-amber-100 dark:bg-amber-900/40',
+        chipText: 'text-amber-700 dark:text-amber-300',
+        labelColor: 'text-amber-500 dark:text-amber-400',
+        sectionBg: 'bg-amber-50/60 dark:bg-amber-900/10',
+        strongsPrefix: 'H',
+      }
+    : {
+        gradFrom: 'from-teal-500',
+        gradTo: 'to-sky-600',
+        accent: 'text-teal-600 dark:text-teal-400',
+        accentBg: 'bg-teal-50 dark:bg-teal-900/30',
+        accentBorder: 'border-teal-300 dark:border-teal-700',
+        chipBg: 'bg-teal-100 dark:bg-teal-900/40',
+        chipText: 'text-teal-700 dark:text-teal-300',
+        labelColor: 'text-teal-500 dark:text-teal-400',
+        sectionBg: 'bg-teal-50/60 dark:bg-teal-900/10',
+        strongsPrefix: 'G',
+      };
 
   return (
     <div
@@ -144,17 +168,17 @@ export function WordStudyPopup({
       style={{ position: 'fixed', top: pos.top, left: pos.left, zIndex: 700, maxHeight: '520px' }}
       className="w-[380px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-600 overflow-hidden flex flex-col"
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/80">
+      {/* Header with gradient */}
+      <div className={`flex items-center justify-between px-4 py-2.5 bg-gradient-to-r ${theme.gradFrom} ${theme.gradTo} text-white`}>
         <div className="flex items-center gap-2 min-w-0">
-          <BookOpen className="w-4 h-4 text-gray-400 flex-shrink-0" />
-          <span className="text-xs font-bold text-gray-700 dark:text-gray-300 truncate">
+          <BookOpen className="w-4 h-4 flex-shrink-0" />
+          <span className="text-xs font-bold truncate text-white">
             Word Study — {ref}
           </span>
         </div>
         <button
           onClick={onClose}
-          className="p-1 rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex-shrink-0"
+          className="p-1 rounded-md text-white/70 hover:text-white hover:bg-white/20 transition-colors flex-shrink-0"
         >
           <X className="w-4 h-4" />
         </button>
@@ -190,25 +214,25 @@ export function WordStudyPopup({
             {data.matchedWord && data.lexicon ? (
               <>
                 {/* Original Language Word */}
-                <div className={`rounded-xl border ${langBorder} ${langBg} p-3`}>
+                <div className={`rounded-xl border-2 ${theme.accentBorder} ${theme.accentBg} p-3.5`}>
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Languages className={`w-3.5 h-3.5 ${langColor}`} />
-                    <span className={`text-[10px] font-bold uppercase tracking-widest ${langColor}`}>
+                    <Languages className={`w-3.5 h-3.5 ${theme.accent}`} />
+                    <span className={`text-[10px] font-bold uppercase tracking-widest ${theme.accent}`}>
                       {data.lexicon.language}
                     </span>
                     <span className="ml-auto text-[10px] font-mono text-gray-400">
-                      {isHebrew ? 'H' : 'G'}{data.matchedWord.strongsNumber}
+                      {theme.strongsPrefix}{data.matchedWord.strongsNumber}
                     </span>
                   </div>
 
                   {data.lexicon.originalWord && (
-                    <p className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-1 text-center" dir={isHebrew ? 'rtl' : 'ltr'}>
+                    <p className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-1.5 text-center" dir={isHebrew ? 'rtl' : 'ltr'}>
                       {data.lexicon.originalWord}
                     </p>
                   )}
 
                   {data.lexicon.transliteration && (
-                    <p className={`text-sm font-semibold ${langColor} text-center mb-1`}>
+                    <p className={`text-base font-semibold ${theme.accent} text-center mb-1`}>
                       {data.lexicon.transliteration}
                     </p>
                   )}
@@ -220,45 +244,35 @@ export function WordStudyPopup({
                   )}
 
                   {data.matchedWord.partOfSpeech && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-1">
-                      {data.matchedWord.partOfSpeech}
-                    </p>
+                    <div className="flex justify-center mt-2">
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${theme.chipBg} ${theme.chipText}`}>
+                        {data.matchedWord.partOfSpeech}
+                      </span>
+                    </div>
                   )}
                 </div>
 
                 {/* Definition */}
                 {data.lexicon.definition && (
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">
+                  <div className={`rounded-lg ${theme.sectionBg} px-3 py-2.5`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-widest ${theme.labelColor} mb-1.5`}>
                       Definition
                     </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                       {data.lexicon.definition}
                     </p>
                   </div>
                 )}
 
-                {/* Word Origin */}
-                {data.lexicon.wordOrigin && (
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">
-                      Word Origin
-                    </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {data.lexicon.wordOrigin}
-                    </p>
-                  </div>
-                )}
-
-                {/* How this word is applied / translated */}
+                {/* How this word is applied */}
                 {(data.lexicon.kjvTranslation || data.lexicon.nasbTranslation) && (
                   <div className="border-t border-gray-100 dark:border-gray-700 pt-2.5 space-y-2">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                    <p className={`text-[10px] font-bold uppercase tracking-widest ${theme.labelColor}`}>
                       How This Word Is Applied
                     </p>
                     {data.lexicon.kjvTranslation && (
                       <div className="flex items-start gap-2">
-                        <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
+                        <span className="text-[10px] font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
                           KJV
                         </span>
                         <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -268,7 +282,7 @@ export function WordStudyPopup({
                     )}
                     {data.lexicon.nasbTranslation && (
                       <div className="flex items-start gap-2">
-                        <span className="text-[10px] font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
+                        <span className="text-[10px] font-bold text-rose-700 dark:text-rose-300 bg-rose-100 dark:bg-rose-900/30 rounded px-1.5 py-0.5 flex-shrink-0 mt-0.5">
                           NASB
                         </span>
                         <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
