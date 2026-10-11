@@ -5,7 +5,7 @@ import { useDarkMode } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
 import { HeroThemeProvider, useHeroTheme } from './context/HeroThemeContext';
 import { Footer } from './components/Footer';
-import { OnboardingQuestions } from './components/OnboardingQuestions';
+import { LandingPage } from './components/LandingPage';
 import { FloatingMusicPlayer } from './components/FloatingMusicPlayer';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
@@ -423,8 +423,8 @@ function AppContent() {
   const { heroTheme } = useHeroTheme();
   const location = useLocation();
   const [selectedBook, setSelectedBook] = useState<BookType>(books[0]);
-  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(() => {
-    return localStorage.getItem('onboardingCompleted') === 'true';
+  const [hasEnteredApp, setHasEnteredApp] = useState(() => {
+    return sessionStorage.getItem('hasEnteredApp') === 'true';
   });
 
   const isResurrectionPage = location.pathname === '/resurrection';
@@ -439,22 +439,14 @@ function AppContent() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const handleOnboardingComplete = () => {
-    localStorage.setItem('onboardingCompleted', 'true');
-    setHasCompletedOnboarding(true);
+  const handleEnterApp = () => {
+    sessionStorage.setItem('hasEnteredApp', 'true');
+    setHasEnteredApp(true);
   };
 
-  const handleOnboardingSkip = () => {
-    localStorage.setItem('onboardingCompleted', 'true');
-    setHasCompletedOnboarding(true);
-  };
-
-  if (!hasCompletedOnboarding && !isAppPage && !isPrivacyPage) {
+  if (!hasEnteredApp && !isAppPage && !isPrivacyPage) {
     return (
-      <OnboardingQuestions
-        onComplete={handleOnboardingComplete}
-        onSkip={handleOnboardingSkip}
-      />
+      <LandingPage onEnter={handleEnterApp} />
     );
   }
 

@@ -85,7 +85,7 @@ function AppDownloadCard() {
 
 /* ---------- Backgrounds ---------- */
 
-function DawnBackground() {
+export function DawnBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f3a] via-[#3d2f4a] to-[#c97b4a]" />
@@ -97,7 +97,7 @@ function DawnBackground() {
   );
 }
 
-function SanctuaryBackground() {
+export function SanctuaryBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#2a1810] via-[#3d2415] to-[#1a0f08]" />
@@ -112,7 +112,7 @@ function SanctuaryBackground() {
   );
 }
 
-function AuroraBackground() {
+export function AuroraBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#020a18] via-[#04142a] to-[#01060f]" />
@@ -125,7 +125,7 @@ function AuroraBackground() {
   );
 }
 
-function ForestBackground() {
+export function ForestBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a1a0f] via-[#0f2417] to-[#040c07]" />
@@ -138,7 +138,7 @@ function ForestBackground() {
   );
 }
 
-function EmberBackground() {
+export function EmberBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#1a0606] via-[#2a0a0a] to-[#0a0202]" />
@@ -150,7 +150,7 @@ function EmberBackground() {
   );
 }
 
-function FrostBackground() {
+export function FrostBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a1228] via-[#0f1e3d] to-[#040814]" />
