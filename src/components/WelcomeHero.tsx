@@ -212,7 +212,7 @@ function GlassHero() {
 
                 <div className="flex justify-center lg:justify-start mt-8">
                   <a
-                    href="https://thediscipleco.org/app"
+                    href="https://thedisciplecompany.org"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 rounded-full px-5 py-2.5 shadow-lg transition-all hover:scale-105"

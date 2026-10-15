@@ -221,9 +221,9 @@ export function LandingPage({ onEnter }: LandingPageProps) {
             <span className="text-white/60 text-sm font-semibold">The Disciple Company</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link to="/app" className="text-white/50 hover:text-white text-sm transition-colors" onClick={onEnter}>
+            <a href="https://thedisciplecompany.org" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white text-sm transition-colors">
               Download App
-            </Link>
+            </a>
             <Link to="/privacy" className="text-white/50 hover:text-white text-sm transition-colors" onClick={onEnter}>
               Privacy Policy
             </Link>
