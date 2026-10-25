@@ -14,6 +14,7 @@ const footerColumns: {
       { to: '/bible', label: 'Bible Overview' },
       { to: '/courses', label: 'Foundation Course' },
       { to: '/timeline', label: 'Historical Timeline' },
+      { to: '/septuagint', label: 'Septuagint Reader' },
     ],
   },
   {
