@@ -772,11 +772,11 @@ export function Septuagint() {
           <Toolbar />
 
           {/* Reading area */}
-          <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 flex flex-col overflow-hidden">
             {focusedPane === 'both' ? (
               <>
                 {/* Headers row — equal height via flex stretch */}
-                <div className="flex flex-shrink-0">
+                <div className="flex flex-shrink-0 items-stretch">
                   <div style={{ width: `${dividerPos}%` }} className="flex flex-col">
                     <PaneHeader pane={leftPane} isLeft={true} isDual={true} />
                   </div>
