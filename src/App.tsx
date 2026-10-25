@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Clock, Users, Home as HomeIcon, Heart, Route as RouteIcon } from 'lucide-react';
+import { Moon, Sun, Menu, X, BookOpen, MessageCircle, FolderOpen, Book, Music, Sparkles, Mic, BookText, UserCheck, Radio, Calendar, Lightbulb, GraduationCap, HelpCircle, Image, Wind, Globe, RefreshCw, Clock, Users, Home as HomeIcon, Heart, Route as RouteIcon, Scroll } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useDarkMode } from './context/DarkModeContext';
 import { MusicPlayerProvider } from './context/MusicPlayerContext';
@@ -38,6 +38,7 @@ import { AppDownload } from './pages/AppDownload';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Devotionals } from './pages/Devotionals';
 import { Josephus } from './pages/Josephus';
+import { Septuagint } from './pages/Septuagint';
 import { books } from './data/books';
 import { Book as BookType } from './types/book';
 import { useNavbarScroll } from './hooks/useScrollAnimation';
@@ -76,6 +77,7 @@ const menuSections: MenuSection[] = [
       { to: '/bible?roadmap=1', label: 'Bible Reading Roadmap', icon: RouteIcon, noActive: true },
       { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
       { to: '/timeline', label: 'Journey of Faith', icon: Clock },
+      { to: '/septuagint', label: 'Septuagint Reader', icon: Scroll },
     ],
   },
   {
@@ -162,7 +164,7 @@ function TopNav() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/app' || location.pathname === '/privacy') return null;
+  if (isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || location.pathname === '/app' || location.pathname === '/privacy' || location.pathname === '/septuagint') return null;
 
   return (
     <header className={`sticky top-0 z-[100] transition-all duration-200 print:hidden theme-card border-b ${
@@ -433,7 +435,8 @@ function AppContent() {
   const isMusicPage = location.pathname === '/music';
   const isAppPage = location.pathname === '/app';
   const isPrivacyPage = location.pathname === '/privacy';
-  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage || isPrivacyPage;
+  const isSeptuagintPage = location.pathname === '/septuagint';
+  const isSpecialPage = isResurrectionPage || isEasterPage || isHallowedPage || isMusicPage || isAppPage || isPrivacyPage || isSeptuagintPage;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -492,6 +495,7 @@ function AppContent() {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/devotionals" element={<Devotionals />} />
           <Route path="/josephus" element={<Josephus />} />
+          <Route path="/septuagint" element={<Septuagint />} />
         </Routes>
       </div>
 
