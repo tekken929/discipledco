@@ -85,6 +85,47 @@
   box-shadow: var(--lxx-shadow);
 }
 
+.lxx-verse-flow {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.lxx-verse-inline {
+  cursor: text;
+  border-radius: 3px;
+  transition: background-color 0.15s ease;
+}
+
+.lxx-verse-inline:hover {
+  background: var(--lxx-accent-soft);
+}
+
+.lxx-verse-num-inline {
+  color: var(--lxx-verse-num);
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.62em;
+  font-weight: 600;
+  vertical-align: super;
+  margin-right: 0.18em;
+  user-select: none;
+}
+
+.lxx-section-header {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--lxx-muted);
+  padding: 0.6rem 1rem 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.lxx-divider-header {
+  width: 5px;
+  flex-shrink: 0;
+  background: var(--lxx-border);
+}
+
 .lxx-verse-row {
   display: flex;
   gap: 0.5rem;

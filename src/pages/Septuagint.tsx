@@ -69,6 +69,13 @@ const MODERN_CHAPTER_COUNTS: Record<string, number> = {
   Haggai: 2, Zechariah: 14, Malachi: 4,
 };
 
+const LXX_BOOK_SECTIONS: { title: string; osisIds: string[] }[] = [
+  { title: 'The Law', osisIds: ['Gen', 'Exod', 'Lev', 'Num', 'Deut'] },
+  { title: 'Historical Books', osisIds: ['Josh', 'Judg', 'Ruth', '1Sam', '2Sam', '1Kgs', '2Kgs', '1Chr', '2Chr', 'Ezra', '1Esd', 'Neh', 'Esth', 'Tob', 'Jdt', '1Macc', '2Macc', '3Macc', '4Macc'] },
+  { title: 'Poetry & Wisdom', osisIds: ['Job', 'Ps', 'Ps151', 'Prov', 'Eccl', 'Song', 'Wis', 'Sir'] },
+  { title: 'Prophets', osisIds: ['Hos', 'Joel', 'Amos', 'Obad', 'Jonah', 'Mic', 'Nah', 'Hab', 'Zeph', 'Hag', 'Zech', 'Mal', 'Isa', 'Jer', 'Lam', 'Bar', 'Ezek', 'Dan', 'AddDan', 'Sus', 'BelTh', 'PrMan'] },
+];
+
 export function Septuagint() {
   const [index, setIndex] = useState<LxxIndex | null>(null);
   const [indexError, setIndexError] = useState<string | null>(null);
@@ -101,6 +108,7 @@ export function Septuagint() {
   const [tocCompareBook, setTocCompareBook] = useState<string>('');
 
   const draggingRef = useRef(false);
+  const syncingScrollRef = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const leftScrollRef = useRef<HTMLDivElement>(null);
   const rightScrollRef = useRef<HTMLDivElement>(null);
@@ -186,6 +194,41 @@ export function Septuagint() {
       document.removeEventListener('mouseup', onUp);
     };
   }, []);
+
+  // Reset scroll position on chapter change
+  useEffect(() => {
+    if (leftScrollRef.current) leftScrollRef.current.scrollTop = 0;
+  }, [leftPane.osisId, leftPane.chapter]);
+
+  useEffect(() => {
+    if (rightScrollRef.current) rightScrollRef.current.scrollTop = 0;
+  }, [rightPane.osisId, rightPane.chapter]);
+
+  // Linked scroll synchronization
+  useEffect(() => {
+    const leftEl = leftScrollRef.current;
+    const rightEl = rightScrollRef.current;
+    if (!leftEl || !rightEl) return;
+
+    function onLeftScroll() {
+      if (!linkedNav || syncingScrollRef.current) return;
+      syncingScrollRef.current = true;
+      rightEl.scrollTop = leftEl.scrollTop;
+      requestAnimationFrame(() => { syncingScrollRef.current = false; });
+    }
+    function onRightScroll() {
+      if (!linkedNav || syncingScrollRef.current) return;
+      syncingScrollRef.current = true;
+      leftEl.scrollTop = rightEl.scrollTop;
+      requestAnimationFrame(() => { syncingScrollRef.current = false; });
+    }
+    leftEl.addEventListener('scroll', onLeftScroll);
+    rightEl.addEventListener('scroll', onRightScroll);
+    return () => {
+      leftEl.removeEventListener('scroll', onLeftScroll);
+      rightEl.removeEventListener('scroll', onRightScroll);
+    };
+  }, [linkedNav]);
 
   const filteredBooks = useMemo(() => {
     if (!index) return [];
@@ -275,24 +318,23 @@ export function Septuagint() {
       );
     }
     return (
-      <div className="lxx-serif" style={{ fontSize: `${fontSize}px`, lineHeight: 1.8 }}>
+      <div className="lxx-serif lxx-verse-flow" style={{ fontSize: `${fontSize}px`, lineHeight: 1.8 }}>
         {verses.map((v) => (
-          <div key={v.verse} className="lxx-verse-row" id={`v-${isLxx ? 'lxx' : 'mod'}-${v.verse}`}>
-            {showVerseNums && <span className="lxx-verse-num">{v.verse}</span>}
-            <span className="lxx-verse-text">
-              {v.text}
-              {showNotes && isLxx && v.notes && v.notes.length > 0 && v.notes.map((note, i) => (
-                <span
-                  key={i}
-                  className="lxx-note"
-                  onMouseEnter={(e) => setHoveredNote({ text: note, x: e.clientX, y: e.clientY })}
-                  onMouseLeave={() => setHoveredNote(null)}
-                >
-                  [{i + 1}]
-                </span>
-              ))}
-            </span>
-          </div>
+          <span key={v.verse} className="lxx-verse-inline" id={`v-${isLxx ? 'lxx' : 'mod'}-${v.verse}`}>
+            {showVerseNums && <sup className="lxx-verse-num-inline">{v.verse}</sup>}
+            {v.text}
+            {showNotes && isLxx && v.notes && v.notes.length > 0 && v.notes.map((note, i) => (
+              <span
+                key={i}
+                className="lxx-note"
+                onMouseEnter={(e) => setHoveredNote({ text: note, x: e.clientX, y: e.clientY })}
+                onMouseLeave={() => setHoveredNote(null)}
+              >
+                [{i + 1}]
+              </span>
+            ))}
+            {' '}
+          </span>
         ))}
       </div>
     );
@@ -350,51 +392,60 @@ export function Septuagint() {
       <div className="flex-1 overflow-y-auto lxx-scroll">
         {sidebarView === 'books' ? (
           <div className="py-1">
-            {filteredBooks.map(book => {
-              const corr = getCorrespondence(book.osisId);
-              const isActive = leftPane.osisId === book.osisId;
-              const isExpanded = expandedBook === book.osisId;
+            {LXX_BOOK_SECTIONS.map(section => {
+              const sectionBooks = filteredBooks.filter(b => section.osisIds.includes(b.osisId));
+              if (sectionBooks.length === 0) return null;
               return (
-                <div key={book.osisId}>
-                  <button
-                    onClick={() => {
-                      setExpandedBook(isExpanded ? null : book.osisId);
-                      navigateLeft(book.osisId, 1);
-                    }}
-                    className={`lxx-sidebar-book w-full text-left px-4 py-2 flex items-center gap-2 border-l-2 ${isActive ? 'active' : ''}`}
-                    style={{ borderColor: isActive ? 'var(--lxx-accent)' : 'transparent' }}
-                  >
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 flex-shrink-0 transition-transform ${isExpanded ? '' : '-rotate-90'}`}
-                      style={{ color: 'var(--lxx-muted)' }}
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate" style={{ color: 'var(--lxx-text)' }}>
-                        {book.name}
-                      </p>
-                      {corr && corr.status !== 'matching' && (
-                        <p className="text-[10px] mt-0.5" style={{ color: 'var(--lxx-muted)' }}>
-                          {STATUS_LABELS[corr.status]}
-                        </p>
-                      )}
-                    </div>
-                    <span className="text-[10px] flex-shrink-0" style={{ color: 'var(--lxx-muted)' }}>
-                      {book.chapterCount}
-                    </span>
-                  </button>
-                  {isExpanded && (
-                    <div className="px-4 py-2 flex flex-wrap gap-1.5" style={{ background: 'var(--lxx-bg)' }}>
-                      {book.chapters.map(ch => (
+                <div key={section.title} className="mb-1">
+                  <p className="lxx-section-header">{section.title}</p>
+                  {sectionBooks.map(book => {
+                    const corr = getCorrespondence(book.osisId);
+                    const isActive = leftPane.osisId === book.osisId;
+                    const isExpanded = expandedBook === book.osisId;
+                    return (
+                      <div key={book.osisId}>
                         <button
-                          key={ch}
-                          onClick={() => navigateLeft(book.osisId, ch)}
-                          className={`lxx-chapter-pill ${leftPane.osisId === book.osisId && leftPane.chapter === ch ? 'active' : ''}`}
+                          onClick={() => {
+                            setExpandedBook(isExpanded ? null : book.osisId);
+                            navigateLeft(book.osisId, 1);
+                          }}
+                          className={`lxx-sidebar-book w-full text-left px-4 py-2 flex items-center gap-2 border-l-2 ${isActive ? 'active' : ''}`}
+                          style={{ borderColor: isActive ? 'var(--lxx-accent)' : 'transparent' }}
                         >
-                          {ch}
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 flex-shrink-0 transition-transform ${isExpanded ? '' : '-rotate-90'}`}
+                            style={{ color: 'var(--lxx-muted)' }}
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium truncate" style={{ color: 'var(--lxx-text)' }}>
+                              {book.name}
+                            </p>
+                            {corr && corr.status !== 'matching' && (
+                              <p className="text-[10px] mt-0.5" style={{ color: 'var(--lxx-muted)' }}>
+                                {STATUS_LABELS[corr.status]}
+                              </p>
+                            )}
+                          </div>
+                          <span className="text-[10px] flex-shrink-0" style={{ color: 'var(--lxx-muted)' }}>
+                            {book.chapterCount}
+                          </span>
                         </button>
-                      ))}
-                    </div>
-                  )}
+                        {isExpanded && (
+                          <div className="px-4 py-2 flex flex-wrap gap-1.5" style={{ background: 'var(--lxx-bg)' }}>
+                            {book.chapters.map(ch => (
+                              <button
+                                key={ch}
+                                onClick={() => navigateLeft(book.osisId, ch)}
+                                className={`lxx-chapter-pill ${leftPane.osisId === book.osisId && leftPane.chapter === ch ? 'active' : ''}`}
+                              >
+                                {ch}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
@@ -587,7 +638,7 @@ export function Septuagint() {
     </div>
   );
 
-  const PaneHeader = ({ pane, isLeft }: { pane: PaneState; isLeft: boolean }) => {
+  const PaneHeader = ({ pane, isLeft, isDual = false }: { pane: PaneState; isLeft: boolean; isDual?: boolean }) => {
     const corr = getCorrespondence(pane.osisId);
     const bookName = getLxxBookName(index, pane.osisId);
 
@@ -595,8 +646,8 @@ export function Septuagint() {
       const adjPrev = getAdjacentLxxChapter(index, pane.osisId, pane.chapter, 'prev');
       const adjNext = getAdjacentLxxChapter(index, pane.osisId, pane.chapter, 'next');
       return (
-        <div className="px-4 py-2.5 border-b lxx-sans" style={{ borderColor: 'var(--lxx-border)' }}>
-          <div className="flex items-center justify-between gap-2">
+        <div className={`px-4 py-2.5 border-b lxx-sans ${isDual ? 'flex-1 flex items-center' : 'flex-shrink-0'}`} style={{ borderColor: 'var(--lxx-border)' }}>
+          <div className="flex items-center justify-between gap-2 w-full">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
                 <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--lxx-accent)' }}>LXX</span>
@@ -636,8 +687,8 @@ export function Septuagint() {
     const adjPrev = leftAdj;
     const adjNext = leftAdjNext;
     return (
-      <div className="px-4 py-2.5 border-b lxx-sans" style={{ borderColor: 'var(--lxx-border)' }}>
-        <div className="flex items-center justify-between gap-2">
+      <div className={`px-4 py-2.5 border-b lxx-sans ${isDual ? 'flex-1 flex items-center' : 'flex-shrink-0'}`} style={{ borderColor: 'var(--lxx-border)' }}>
+        <div className="flex items-center justify-between gap-2 w-full">
           <div className="min-w-0 flex-1">
             {/* Translation selector */}
             <div className="flex items-center gap-1.5 mb-1">
@@ -724,50 +775,62 @@ export function Septuagint() {
           <div className="flex-1 flex overflow-hidden">
             {focusedPane === 'both' ? (
               <>
-                {/* Left pane — LXX */}
-                <div
-                  className="flex flex-col overflow-hidden"
-                  style={{ width: `${dividerPos}%` }}
-                >
-                  <PaneHeader pane={leftPane} isLeft={true} />
-                  <div
-                    ref={leftScrollRef}
-                    className="flex-1 overflow-y-auto lxx-scroll px-5 py-4"
-                  >
-                    <div className="lxx-pane rounded-xl p-5 sm:p-6 max-w-3xl mx-auto">
-                      <ChapterContent
-                        verses={lxxVerses}
-                        loading={lxxLoading}
-                        error={lxxError}
-                        isLxx={true}
-                      />
-                    </div>
+                {/* Headers row — equal height via flex stretch */}
+                <div className="flex flex-shrink-0">
+                  <div style={{ width: `${dividerPos}%` }} className="flex flex-col">
+                    <PaneHeader pane={leftPane} isLeft={true} isDual={true} />
+                  </div>
+                  <div className="lxx-divider-header" />
+                  <div className="flex-1 flex flex-col">
+                    <PaneHeader pane={rightPane} isLeft={false} isDual={true} />
                   </div>
                 </div>
 
-                {/* Divider */}
-                <div
-                  className="lxx-divider"
-                  onMouseDown={() => {
-                    draggingRef.current = true;
-                    document.body.style.cursor = 'col-resize';
-                  }}
-                />
-
-                {/* Right pane — Modern Bible */}
-                <div className="flex flex-col overflow-hidden flex-1">
-                  <PaneHeader pane={rightPane} isLeft={false} />
+                {/* Content row */}
+                <div className="flex-1 flex overflow-hidden">
+                  {/* Left pane — LXX */}
                   <div
-                    ref={rightScrollRef}
-                    className="flex-1 overflow-y-auto lxx-scroll px-5 py-4"
+                    className="flex flex-col overflow-hidden"
+                    style={{ width: `${dividerPos}%` }}
                   >
-                    <div className="lxx-pane rounded-xl p-5 sm:p-6 max-w-3xl mx-auto">
-                      <ChapterContent
-                        verses={modernVerses}
-                        loading={modernLoading}
-                        error={modernError}
-                        isLxx={false}
-                      />
+                    <div
+                      ref={leftScrollRef}
+                      className="flex-1 overflow-y-auto lxx-scroll px-5 py-4"
+                    >
+                      <div className="lxx-pane rounded-xl p-5 sm:p-6 max-w-3xl mx-auto">
+                        <ChapterContent
+                          verses={lxxVerses}
+                          loading={lxxLoading}
+                          error={lxxError}
+                          isLxx={true}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div
+                    className="lxx-divider"
+                    onMouseDown={() => {
+                      draggingRef.current = true;
+                      document.body.style.cursor = 'col-resize';
+                    }}
+                  />
+
+                  {/* Right pane — Modern Bible */}
+                  <div className="flex flex-col overflow-hidden flex-1">
+                    <div
+                      ref={rightScrollRef}
+                      className="flex-1 overflow-y-auto lxx-scroll px-5 py-4"
+                    >
+                      <div className="lxx-pane rounded-xl p-5 sm:p-6 max-w-3xl mx-auto">
+                        <ChapterContent
+                          verses={modernVerses}
+                          loading={modernLoading}
+                          error={modernError}
+                          isLxx={false}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
