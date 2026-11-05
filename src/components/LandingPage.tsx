@@ -36,7 +36,7 @@ export function LandingPage({ onEnter }: LandingPageProps) {
     { icon: BookMarked, title: 'Daily Devotionals', desc: '5-minute study devotionals for your day', to: '/devotionals' },
     { icon: Compass, title: 'Bible Roadmap', desc: 'Where to start, what to read next, and why order matters', to: '/bible' },
     { icon: Heart, title: 'Verses for Sadness', desc: 'Comfort and hope from God\u2019s Word for the hard seasons', to: '/verses-on-sadness' },
-    { icon: ScrollText, title: 'Foundation Course', desc: 'A guided discipleship path covering what the Bible is', to: '/courses' },
+    { icon: ScrollText, title: 'Biblical Foundations', desc: 'A guided discipleship path covering what the Bible is', to: '/courses' },
     { icon: Sparkles, title: 'Religions Explained', desc: 'How Christianity developed and how denominations emerged', to: '/religions' },
   ];
 

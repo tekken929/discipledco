@@ -45,7 +45,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               Most people open the Bible and do not know where to start.
             </h2>
             <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
-              Not because they do not care, but because no one ever showed them how to approach it. Our Reading Roadmap, will show you how to approach reading and what order we suggest to start in.  The Bible Overview will give you a summary of each book of the Bible, and our Foundation Course will give you an introductory summary class of everything Bible and Faith.
+              Not because they do not care, but because no one ever showed them how to approach it. Our Reading Roadmap, will show you how to approach reading and what order we suggest to start in.  The Bible Overview will give you a summary of each book of the Bible, and our Biblical Foundations course will give you an introductory summary class of everything Bible and Faith.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
               </span>
             </button>
 
-            {/* Step 3 — Foundation Course */}
+            {/* Step 3 — Biblical Foundations */}
             <Link
               to="/courses"
               className="group relative text-left border-2 border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 bg-emerald-50/60 dark:bg-emerald-950/20 overflow-hidden"
@@ -113,7 +113,7 @@ export function Home({ selectedBook: initialBook }: HomeProps) {
                 <span className="text-xs font-bold text-emerald-500 dark:text-emerald-400 uppercase tracking-widest">8 Modules</span>
               </div>
               <h3 className="relative text-lg font-bold text-gray-900 dark:text-white mb-2 leading-snug">
-                The Foundation Course
+                Biblical Foundations
               </h3>
               <p className="relative text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
                 A guided discipleship path covering what the Bible is, who God is, salvation, and how to live it out.

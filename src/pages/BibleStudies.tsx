@@ -262,7 +262,7 @@ function StudyDetail({ study }: { study: BibleStudySeries }) {
           >
             <div className="min-w-0 flex-1">
               <p className="text-xs font-bold text-green-500 dark:text-green-400 uppercase tracking-widest mb-0.5">Well done!</p>
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">Explore the Foundation Course</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">Explore Biblical Foundations</p>
             </div>
             <ArrowRight className="w-5 h-5 text-green-400 group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
           </Link>
@@ -398,9 +398,9 @@ function StudiesList() {
 
       <div className="mt-10 theme-card rounded-2xl border-2 p-8 text-center">
         <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">Want structured discipleship?</p>
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Try the Foundation Course</h3>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Try Biblical Foundations</h3>
         <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-lg mx-auto leading-relaxed">
-          The Foundation Course is a structured 8-module discipleship path that takes you from the basics of Scripture all the way through how to live out your faith.
+          Biblical Foundations is a structured 8-module discipleship path that takes you from the basics of Scripture all the way through how to live out your faith.
         </p>
         <Link
           to="/courses"

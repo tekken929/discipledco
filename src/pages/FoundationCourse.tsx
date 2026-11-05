@@ -31,7 +31,7 @@ export function FoundationCourse() {
       <section className="text-center mb-2">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 text-sm font-medium mb-6">
           <Compass className="w-4 h-4" />
-          Foundation Course
+          Biblical Foundations
         </div>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-5 leading-tight tracking-tight max-w-4xl mx-auto">

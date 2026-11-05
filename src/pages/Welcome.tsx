@@ -216,7 +216,7 @@ export function Welcome() {
             </span>
           </button>
 
-          {/* Foundation Course */}
+          {/* Biblical Foundations */}
           <Link
             to="/courses"
             className="group flex flex-col gap-3 p-5 rounded-2xl theme-card border border-stone-200 dark:border-gray-700 hover:border-stone-300 dark:hover:border-gray-600 hover:shadow-md transition-all hover:-translate-y-0.5"
@@ -228,7 +228,7 @@ export function Welcome() {
               <span className="text-[10px] font-bold text-stone-400 dark:text-gray-500 uppercase tracking-widest">8 Modules</span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">The Foundation Course</h3>
+              <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1 leading-snug">Biblical Foundations</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">A guided discipleship path covering what the Bible is.</p>
             </div>
             <span className="inline-flex items-center gap-1 text-xs font-bold text-green-600 dark:text-green-400 group-hover:gap-2 transition-all mt-auto">

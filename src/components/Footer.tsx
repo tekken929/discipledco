@@ -12,7 +12,7 @@ const footerColumns: {
     heading: 'Bible',
     links: [
       { to: '/bible', label: 'Bible Overview' },
-      { to: '/courses', label: 'Foundation Course' },
+      { to: '/courses', label: 'Biblical Foundations' },
       { to: '/timeline', label: 'Historical Timeline' },
       { to: '/septuagint', label: 'Septuagint Reader' },
     ],

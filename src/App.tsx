@@ -78,7 +78,7 @@ const menuSections: MenuSection[] = [
     links: [
       { to: '/bible', label: 'Bible Overview', icon: BookOpen },
       { to: '/bible?roadmap=1', label: 'Bible Reading Roadmap', icon: RouteIcon, noActive: true },
-      { to: '/courses', label: 'Foundation Course', icon: GraduationCap },
+      { to: '/courses', label: 'Biblical Foundations', icon: GraduationCap },
       { to: '/timeline', label: 'Journey of Faith', icon: Clock },
       { to: '/septuagint', label: 'Septuagint Reader', icon: Scroll },
     ],

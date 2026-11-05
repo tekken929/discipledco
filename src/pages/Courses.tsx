@@ -25,7 +25,7 @@ export function Courses() {
         </div>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-5 leading-tight tracking-tight max-w-4xl mx-auto">
-          Foundation Course
+          Biblical Foundations
         </h1>
 
         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
@@ -36,7 +36,7 @@ export function Courses() {
 
       {/* Two tiles */}
       <section className="grid md:grid-cols-2 gap-6">
-        {/* Foundation Course tile */}
+        {/* Biblical Foundations tile */}
         <Link
           to="/courses/foundation"
           className="group rounded-2xl border-2 border-emerald-200 dark:border-emerald-800/60 bg-gradient-to-br from-emerald-50 to-stone-50 dark:from-emerald-900/15 dark:to-stone-900/10 p-7 md:p-9 hover:shadow-xl transition-all hover:scale-[1.01]"
@@ -50,7 +50,7 @@ export function Courses() {
                 Start Here
               </p>
               <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-snug">
-                The Foundation
+                Biblical Foundations
               </h2>
             </div>
           </div>
@@ -125,7 +125,7 @@ export function Courses() {
       <section className="grid md:grid-cols-2 gap-6 text-sm">
         <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-5">
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-            <span className="font-bold text-gray-900 dark:text-white">The Foundation</span> is the
+            <span className="font-bold text-gray-900 dark:text-white">Biblical Foundations</span> is the
             place to start if you are new to the Bible or want a clear, structured path through
             what Scripture teaches and how to live it.
           </p>

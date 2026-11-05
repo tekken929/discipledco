@@ -39,7 +39,7 @@ const sections: NavSection[] = [
     links: [
       { to: '/bible', icon: BookOpen, title: 'Bible Overview' },
       { to: '/bible?roadmap=1', icon: Route, title: 'Bible Reading Roadmap', noActive: true },
-      { to: '/courses', icon: GraduationCap, title: 'Foundation Course' },
+      { to: '/courses', icon: GraduationCap, title: 'Biblical Foundations' },
       { to: '/timeline', icon: Clock, title: 'Journey of Faith' },
     ],
   },
