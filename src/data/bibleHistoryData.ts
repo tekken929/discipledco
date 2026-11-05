@@ -861,9 +861,97 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'Luther\u2019s challenge to indulgences in 1517 began a Reformation that reshaped the Western church. His discovery of justification by faith through reading the letters of Paul, his translation of the New Testament into German while hidden at Wartburg Castle, and his influence on Tyndale and the spread of vernacular Scripture made him one of the pivotal figures in the history of the Bible.',
         dateRange: 'c. 1483 \u2013 1546',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'A Scholar in a Changing Europe',
+            body: 'When Martin Luther entered the University of Wittenberg in the early sixteenth century, the religious life of Europe was already undergoing change. Printed books circulated more widely than they had a generation earlier, scholars were comparing ancient manuscripts, and debates about the authority of church leaders were reaching universities and royal courts. Luther would become one of the best-known figures in these disputes, but his work began within the institutions of the Western Church, where he served as a monk, priest, and university teacher. Luther was born in Eisleben, in the German territories of the Holy Roman Empire, in 1483. He studied at Erfurt and entered an Augustinian monastery in 1505. He was ordained a priest in 1507 and began teaching at Wittenberg soon afterward, receiving his doctorate in theology in 1512. His university work involved the close reading of biblical books, especially the Psalms and the letters of Paul. The Holy Roman Empire was not a single nation like modern Germany; it was a complex collection of territories governed by princes, cities, and ecclesiastical authorities under an elected emperor. The account of Luther\u2019s rise is sometimes connected in later retellings with secret networks of earlier reformers, including the followers of John Wycliffe. Wycliffe\u2019s writings did influence the Bohemian reformer Jan Hus, and the memory of Hus became important in later Protestant accounts of Luther. Surviving contemporary records, however, do not establish that a secret Lollard organization selected or directed Luther. His documented path into public controversy runs through his religious order, his university teaching, and his disagreements with the sale of indulgences.',
+          },
+          {
+            heading: 'Indulgences and the Ninety-Five Theses',
+            body: 'An indulgence, in Catholic teaching, concerns the remission of temporal punishment associated with sins whose guilt has been forgiven. In late medieval practice, indulgences were also connected with prescribed acts of devotion and, in some circumstances, financial contributions. The preaching and administration of indulgences became controversial when promises made to ordinary believers appeared to exceed the Church\u2019s stated teaching. In 1517, a campaign to promote indulgences was associated with the Dominican preacher Johann Tetzel and with the financing arrangements of Archbishop Albert of Mainz. A portion of the revenue was connected with the rebuilding of St. Peter\u2019s Basilica in Rome, while other financial obligations were also involved. Luther objected particularly to claims that appeared to make spiritual benefits dependent upon payment and to encourage people to place confidence in an indulgence certificate rather than repentance. On 31 October 1517, Luther sent a letter to Archbishop Albert containing ninety-five propositions for theological debate. These became known as the Ninety-Five Theses. The familiar story that Luther nailed the theses to the door of the Castle Church at Wittenberg belongs to the traditional account; the surviving evidence most securely establishes the letter and the circulation of the theses. Their Latin text was soon printed and distributed, carrying a university dispute into a much wider public discussion. The theses did not begin as a complete statement of a separate Protestant religion. They questioned the preaching of indulgences, the limits of papal authority over penalties, and the relationship between repentance and forgiveness. As the controversy developed, Luther\u2019s disagreements extended to the authority of councils and popes, the interpretation of Scripture, and the nature of salvation.',
+          },
+          {
+            heading: 'Faith, Scripture, and the Letters of Paul',
+            body: 'Luther\u2019s biblical studies were central to his developing theology. The language of faith and righteousness in Paul\u2019s letter to the Romans became especially important. Romans 1:17 quotes the declaration that the righteous will live by faith, a passage drawn from Habakkuk 2:4. Hebrews 11:1 likewise describes faith in relation to things hoped for and not seen. These passages appear in discussions of Luther because they illuminate the scriptural language through which he explained his understanding of salvation. Luther taught that sinners are justified before God through faith in Christ rather than by earning acceptance through human works. The Latin expression sola fide means \u201cby faith alone.\u201d Another Reformation expression, sola scriptura, describes Scripture as the final governing authority for Christian doctrine, rather than denying that teachers, councils, and historical traditions have any role. These positions became defining features of Lutheran and other Protestant movements, although Protestant reformers did not agree on every doctrine. His opponents argued that his teaching challenged the Church\u2019s established authority and misrepresented the relationship between faith, grace, and Christian obedience. The dispute was therefore not simply over access to books. It concerned who possessed authority to interpret Scripture and how its teachings should be understood within the life of the Church.',
+          },
+          {
+            heading: 'The Diet of Worms',
+            body: 'By 1520, the dispute had reached the papacy. Pope Leo X issued a document threatening Luther with excommunication unless he withdrew specified teachings. Luther publicly burned a copy of the papal document, and in January 1521 he was excommunicated. The matter then came before the imperial assembly convened at Worms under Emperor Charles V. A diet was a formal assembly of political authorities within the Holy Roman Empire. At the Diet of Worms in April 1521, Luther was asked whether he acknowledged the books placed before him and whether he would retract their contents. He acknowledged his writings but requested an opportunity to answer carefully. His response the following day appealed to Scripture and reasoned argument, insisting that his conscience was bound by the word of God. Later retellings frequently conclude Luther\u2019s declaration with the words \u201cHere I stand; I can do no other.\u201d The precise wording of this famous conclusion is uncertain in the earliest surviving accounts, although the broader substance of his refusal to recant is well documented. The imperial Edict of Worms condemned Luther and placed him under an imperial ban, making his protection and movements politically dangerous.',
+          },
+          {
+            heading: 'Wartburg Castle and the German New Testament',
+            body: 'After leaving Worms, Luther was taken into protective custody by supporters of Frederick the Wise, Elector of Saxony. He was concealed at Wartburg Castle, where he lived under an assumed identity. During this period he began translating the New Testament into German from the Greek text, drawing upon the scholarship and printed editions available in his day. Luther completed an initial translation in approximately eleven weeks during the winter of 1521\u20131522. The work was revised with assistance after his return to Wittenberg and appeared in print in September 1522. It is often called the September Testament. Its illustrations, language, and relatively accessible presentation helped it reach a broad German readership. The full Luther Bible, including the Old Testament, followed in 1534 after years of additional translation work. German-speaking Christians had possessed biblical translations before Luther, including printed editions from the fifteenth century. His translation nevertheless became especially influential because of its use of the original languages, its circulation through the printing trade, and its German prose. He aimed to write in language ordinary German readers could understand rather than reproduce foreign sentence structures word for word. The work also raised questions about the ordering and authority of biblical books. Luther placed certain New Testament writings, including Hebrews, James, Jude, and Revelation, toward the end of his edition and expressed reservations about their relative standing. His treatment of Old Testament books not found in the Hebrew canon also influenced later Protestant Bible publishing.',
+          },
+          {
+            heading: 'Luther, Tyndale, and the Spread of Vernacular Scripture',
+            body: 'The English translator William Tyndale worked during the same period. Both men made use of the growing availability of printed Greek biblical texts and both sought to put Scripture into the language of ordinary readers. Tyndale\u2019s translation work began while Luther\u2019s writings were already circulating across Europe. Their translations were not identical, but they belonged to a connected world of scholarship, religious dispute, and printing. Luther\u2019s writings also traveled through merchant networks, university circles, and printers. In England, religious authorities examined and condemned books associated with his teaching, even as students and reform-minded clergy continued to read them. The controversies surrounding Luther and Tyndale demonstrate how printing made it increasingly difficult for authorities to confine religious arguments to a single city or university. The Reformation did not end with Luther\u2019s appearance at Worms or with the publication of his German Bible. It developed through many regions and under leaders who sometimes disagreed sharply with one another. Yet the sequence from the Ninety-Five Theses to the Diet of Worms and the Wartburg translation shows how a dispute over religious practice became connected with the authority of Scripture and the availability of the Bible in everyday language. In England, these developments formed part of the longer history that eventually led to the commissioning of a new translation under King James I.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'From monk to reformer',
+            body: 'Luther was an Augustinian monk, priest, and university teacher at Wittenberg, not a lay revolutionary. His path into public controversy ran through his religious order, his university teaching on the Psalms and Paul\u2019s letters, and his objections to the sale of indulgences.',
+          },
+          {
+            title: 'The Ninety-Five Theses and the printing press',
+            body: 'On 31 October 1517, Luther sent ninety-five propositions for debate to Archbishop Albert. The theses were soon printed and distributed, carrying a university dispute into a much wider public discussion \u2014 demonstrating how the printing press amplified religious controversy.',
+          },
+          {
+            title: 'Sola fide and sola scriptura',
+            body: 'Luther taught that sinners are justified before God through faith in Christ (sola fide) and that Scripture is the final governing authority for Christian doctrine (sola scriptura). These became defining features of Lutheran and other Protestant movements.',
+          },
+          {
+            title: 'The September Testament',
+            body: 'Hidden at Wartburg Castle under an assumed identity, Luther translated the New Testament into German from the Greek text in approximately eleven weeks. Published in September 1522, it reached a broad readership and demonstrated that the Bible could be put into the language of ordinary people.',
+          },
+        ],
+        timeline: [
+          {
+            label: '1483',
+            title: 'Luther is born',
+            body: 'Martin Luther is born in Eisleben, in the German territories of the Holy Roman Empire.',
+          },
+          {
+            label: '1505',
+            title: 'Enters the Augustinian monastery',
+            body: 'After studying at Erfurt, Luther enters an Augustinian monastery. He is ordained a priest in 1507.',
+          },
+          {
+            label: '1512',
+            title: 'Doctor of theology at Wittenberg',
+            body: 'Luther receives his doctorate in theology and begins teaching at the University of Wittenberg, where his close reading of the Psalms and Paul\u2019s letters shapes his developing theology.',
+          },
+          {
+            label: '31 October 1517',
+            title: 'The Ninety-Five Theses',
+            body: 'Luther sends a letter to Archbishop Albert of Mainz containing ninety-five propositions questioning the preaching and theology of indulgences. The theses are soon printed and distributed widely.',
+          },
+          {
+            label: '1520 \u2013 January 1521',
+            title: 'Excommunication',
+            body: 'Pope Leo X issues a document threatening excommunication. Luther publicly burns the papal bull and is excommunicated in January 1521.',
+          },
+          {
+            label: 'April 1521',
+            title: 'The Diet of Worms',
+            body: 'Before Emperor Charles V, Luther is asked to retract his writings. He refuses, insisting his conscience is bound by Scripture. The Edict of Worms condemns him and places him under an imperial ban.',
+          },
+          {
+            label: '1521 \u2013 1522',
+            title: 'Wartburg Castle and the German New Testament',
+            body: 'Hidden at Wartburg Castle by Frederick the Wise, Luther translates the New Testament into German from the Greek text in approximately eleven weeks. The September Testament appears in print in September 1522.',
+          },
+          {
+            label: '1534',
+            title: 'The complete Luther Bible',
+            body: 'After years of additional translation work, the full Luther Bible including the Old Testament is published, shaping German religious and literary language for centuries.',
+          },
+        ],
+        reflectivePrompt:
+          'Luther was a university teacher who discovered in Paul\u2019s letters that the righteous will live by faith. His study of Scripture led him to challenge the most powerful institution in Europe, and his translation of the New Testament into German put the Bible into the hands of ordinary people. How has your own reading of Scripture challenged or changed your understanding of God?',
+        keyTakeaway:
+          'Martin Luther was an Augustinian monk and university teacher at Wittenberg whose 1517 Ninety-Five Theses challenged the sale of indulgences and sparked the Protestant Reformation. His study of Romans led him to teach justification by faith alone (sola fide) and the final authority of Scripture (sola scriptura). After his refusal to recant at the Diet of Worms in 1521, he was concealed at Wartburg Castle, where he translated the New Testament into German from the Greek text in approximately eleven weeks. The September Testament appeared in 1522 and the complete Luther Bible in 1534, shaping German religious life and influencing William Tyndale and the spread of vernacular Scripture across Europe.',
       },
       {
         id: 'king-james',
@@ -873,9 +961,86 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'King James I commissioned a new English translation to unite a divided church. The translators drew heavily on Tyndale\u2019s work and produced a Bible that would shape the English language and the English-speaking world for four centuries. This module examines how it was made, what it inherited from Tyndale, and why it was designed to be free of polemical marginal notes.',
         dateRange: '1604 \u2013 1611',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'A New King and a Divided Church',
+            body: 'When James VI of Scotland became James I of England in 1603, he inherited a kingdom that had experienced nearly a century of religious upheaval. The English Church had separated from papal authority under Henry VIII, undergone further Protestant reforms during the reign of Edward VI, returned to Roman Catholic rule under Mary I, and established a Protestant settlement under Elizabeth I. By the beginning of the seventeenth century, England possessed several English translations of the Bible. The work begun by John Wycliffe\u2019s followers had been followed by William Tyndale, Miles Coverdale, John Rogers, and the translators responsible for the Geneva Bible and the Bishops\u2019 Bible. Each translation had emerged from a particular historical setting, and their differences reflected developments in language, biblical scholarship, and religious authority. The Geneva Bible, first published in 1560, had become especially popular among English Protestants. Its smaller format made it suitable for personal and family reading, while its numbered verses, explanatory notes, and cross-references helped readers study Scripture independently. The Bishops\u2019 Bible, published in 1568, served a different purpose. Prepared under the authority of the Church of England, it was intended to provide a suitable English Bible for public worship. Although it received official support, it did not displace the Geneva Bible from the homes of many English readers. James inherited these competing translations along with disagreements over how the Church of England should be governed and how its worship should be conducted. Among those seeking further reform were the Puritans, Protestants who believed that the English Church retained practices and ceremonies that should be changed.',
+          },
+          {
+            heading: 'The Hampton Court Conference of 1604',
+            body: 'In January 1604, James convened a religious conference at Hampton Court Palace, near London. The meeting brought together representatives of the established Church and a small group of ministers seeking additional reforms. Among the Puritan representatives was John Rainolds, also known as Reynolds, an Oxford scholar and president of Corpus Christi College. During the discussions, Rainolds proposed that a new translation of the Bible be undertaken. The suggestion arose partly from dissatisfaction with existing English versions. The Geneva Bible was admired for its usefulness, but its explanatory notes sometimes expressed political and religious interpretations that James considered objectionable. The Bishops\u2019 Bible had official standing but was not universally regarded as a satisfactory translation. James approved the proposal. His role was not to translate the Bible personally but to authorize a scholarly undertaking and establish conditions for the work. The new translation was intended for public worship and was to omit the contentious doctrinal and political notes found in some earlier editions. The translators were instructed to follow the Bishops\u2019 Bible as a starting point while consulting earlier English versions when their wording more faithfully represented the original text.',
+          },
+          {
+            heading: 'The Scholars and Their Work',
+            body: 'The translation was organized into six companies of scholars working at Westminster, Oxford, and Cambridge. Approximately fifty men were appointed, although the precise number who participated throughout the project is uncertain. They included university professors, ministers, and specialists in Hebrew and Greek. Two companies worked at each of the three locations, dividing responsibility for the Old Testament, the Apocrypha, and the New Testament. The translators had access to earlier English Bibles, printed Hebrew and Greek editions, Latin translations, and other scholarly resources. Their task involved comparing texts, examining difficult passages, and deciding how biblical language could be represented accurately and clearly in English. The instructions called for individual examination of assigned passages followed by collective review. Difficult questions could be referred to scholars beyond the immediate company, and the companies could communicate with one another. The method brought individual expertise together with discussion and revision, helping produce a consistent literary style across the finished work.',
+          },
+          {
+            heading: 'William Tyndale and the English Bible Tradition',
+            body: 'The new Bible stood upon the work of earlier translators, especially William Tyndale. His English New Testament of 1526 had introduced phrasing that continued through later editions, including the Matthew Bible, the Great Bible, the Geneva Bible, and the Bishops\u2019 Bible. The King James translators were instructed to consult this inherited English tradition rather than discard it. A substantial amount of Tyndale\u2019s wording survived in the Authorized Version, particularly in the New Testament. Estimates of the proportion vary because scholars measure verbal dependence in different ways. The frequently repeated figure that more than ninety percent of the King James New Testament follows Tyndale should therefore be understood as an estimate rather than an exact count established by the translation committees. The continuity can be heard in familiar expressions and sentence rhythms that had already appeared in English Scripture before 1611. Yet the Authorized Version was not simply a reprint of Tyndale. Its translators revised vocabulary, grammar, and passages in light of their available sources and the standards established for the new work.',
+          },
+          {
+            heading: 'The Bible of 1611',
+            body: 'The completed translation appeared in 1611, printed in London by Robert Barker, the king\u2019s printer. Its title page identified it as newly translated from the original tongues and compared with former translations, a description that acknowledged both the Hebrew and Greek sources and the work of previous English translators. The first edition was a large volume intended especially for reading in churches. Its text appeared in a style of black-letter printing familiar from earlier English Bibles. The edition contained the Old Testament, a separate section of books called the Apocrypha, and the New Testament. It also included introductory material, calendars, and other features customary in early modern Bible printing. The presence of the Apocrypha in the 1611 Bible is an important part of its original form. These books were printed between the Old and New Testaments, rather than being silently omitted. Their later removal from many Protestant editions belongs to a subsequent chapter of Bible publishing history.',
+          },
+          {
+            heading: 'A Bible Without Polemical Marginal Notes',
+            body: 'One distinguishing feature of the new translation was its treatment of marginal notes. The Geneva Bible had offered extensive explanatory comments, including interpretations that sometimes criticized rulers or identified religious opponents with figures in biblical prophecy. James objected to notes he considered politically dangerous or disrespectful of royal authority. The new translation\u2019s instructions restricted marginal notes to explanations of Hebrew or Greek words and similar textual matters. Readers would encounter the biblical text without the extensive doctrinal commentary that had helped make the Geneva Bible popular. The decision reflected the religious and political circumstances of the commission as well as its editorial design. The King James Bible did not immediately replace every other English Bible. Geneva editions continued to circulate for years, and the Authorized Version\u2019s influence expanded through repeated printing, church use, and familiarity. Over time, its language became deeply associated with English Protestant worship and literature.',
+          },
+          {
+            heading: 'The Legacy of the Authorized Version',
+            body: 'The King James Bible became one of the most influential books in the history of the English language. Its expressions entered preaching, literature, public speech, and ordinary conversation. Its literary influence came not from a single author but from the accumulated history of English biblical translation, shaped by the scholarship and editorial decisions of the 1611 companies. The Authorized Version also preserves the complicated history of the Bible in England. Wycliffe\u2019s movement had circulated handwritten English Scriptures; Tyndale had translated from Greek and Hebrew while living in exile; Coverdale and later editors had produced complete printed English Bibles; and the Geneva translators had created a portable study Bible for English-speaking Protestants. The 1611 edition gathered much of that earlier work into a translation prepared under royal authority.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'A Puritan proposal at Hampton Court',
+            body: 'The new translation was proposed by John Rainolds, a Puritan scholar, at the Hampton Court Conference of 1604. James approved it not to advance Puritanism but to provide a Bible for public worship without the Geneva Bible\u2019s controversial notes.',
+          },
+          {
+            title: 'Six companies, three locations',
+            body: 'Approximately fifty scholars in six companies at Westminster, Oxford, and Cambridge divided responsibility for the Old Testament, Apocrypha, and New Testament. Individual work was followed by collective review, producing a consistent literary style.',
+          },
+          {
+            title: 'Built on Tyndale\u2019s foundation',
+            body: 'The translators were instructed to follow the Bishops\u2019 Bible as a base while consulting earlier English versions. A substantial proportion of Tyndale\u2019s wording survived, particularly in the New Testament \u2014 making the King James Bible a culmination of nearly a century of English translation.',
+          },
+          {
+            title: 'No polemical notes',
+            body: 'Unlike the Geneva Bible, the King James Bible restricted marginal notes to explanations of Hebrew or Greek words. James objected to the Geneva Bible\u2019s political commentary, especially notes that appeared to justify resistance to rulers.',
+          },
+        ],
+        timeline: [
+          {
+            label: '1603',
+            title: 'James VI becomes James I of England',
+            body: 'James inherits a kingdom with competing English Bible translations and deep disagreements over how the Church of England should be governed and how its worship should be conducted.',
+          },
+          {
+            label: 'January 1604',
+            title: 'The Hampton Court Conference',
+            body: 'James convenes a religious conference at Hampton Court Palace. The Puritan scholar John Rainolds proposes a new Bible translation. James approves the project.',
+          },
+          {
+            label: '1604 \u2013 1611',
+            title: 'The translation work',
+            body: 'Approximately fifty scholars in six companies at Westminster, Oxford, and Cambridge translate and review the Bible, comparing texts and examining difficult passages over seven years.',
+          },
+          {
+            label: '1611',
+            title: 'The King James Bible is published',
+            body: 'The completed translation appears, printed by Robert Barker. It includes the Old Testament, a separate Apocrypha section, and the New Testament \u2014 with marginal notes restricted to textual matters rather than doctrinal commentary.',
+          },
+          {
+            label: 'After 1611',
+            title: 'Gradual dominance',
+            body: 'The King James Bible does not immediately replace the Geneva Bible. Its influence expands through repeated printing, church use, and familiarity, eventually becoming the dominant English Bible for centuries.',
+          },
+        ],
+        reflectivePrompt:
+          'The King James Bible was not the work of a single genius but of approximately fifty scholars building on a century of translation \u2014 from Wycliffe\u2019s handwritten manuscripts to Tyndale\u2019s printed New Testament to the Geneva Bible\u2019s study notes. The 1611 edition gathered all of that earlier work into one translation. What does this tell you about how God works through generations of ordinary people to accomplish something that lasts?',
+        keyTakeaway:
+          'The King James Bible was commissioned by James I at the Hampton Court Conference of 1604, proposed by the Puritan scholar John Rainolds. Approximately fifty scholars in six companies at Westminster, Oxford, and Cambridge worked from 1604 to 1611, using the Bishops\u2019 Bible as their base while consulting earlier English versions \u2014 especially Tyndale\u2019s. The 1611 edition included the Apocrypha and restricted marginal notes to textual matters, omitting the polemical commentary of the Geneva Bible. Its language, shaped by a century of English translation, became one of the most influential books in the history of the English language.',
       },
       {
         id: 'septuagint-apocrypha',
@@ -885,9 +1050,109 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'The Old Testament was preserved in both Hebrew and Greek, and different Christian traditions came to different conclusions about which books belonged in the Bible. This module examines the Septuagint, Jerome\u2019s distinction between the Hebrew canon and other books, what was actually printed in the 1611 King James Bible, and how the Apocrypha disappeared from many Protestant editions.',
         dateRange: 'c. 250 BC \u2013 19th century',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'The Bible Was Not Always Printed with the Same Table of Contents',
+            body: 'The first edition of the King James Bible, printed in London in 1611, contained a section that many readers of modern Protestant Bibles have never encountered. Between the Old and New Testaments stood a collection of writings commonly called the Apocrypha. Their presence in that edition was neither a printing accident nor a later addition. The translators and printers of the Authorized Version inherited a long English and European tradition in which these books were frequently published alongside the other biblical writings. The presence or absence of these books raises two separate questions. The first concerns translation: how the writings of Scripture moved from Hebrew, Aramaic, and Greek into Latin, English, German, and other languages. The second concerns the canon: which writings a particular religious community recognized as Scripture. A translation can be accurate within its chosen books while differing from another Bible in the number of books printed. Understanding this distinction makes the history of the Septuagint, Vulgate, and King James Bible considerably easier to follow. For much of Christian history, handwritten and printed Bibles did not always have identical tables of contents. Jewish, Roman Catholic, Protestant, and Eastern Orthodox traditions developed different practices concerning a relatively small group of ancient writings. The disagreement concerns the boundaries of the Old Testament, not whether the four Gospels or the letters of Paul belong in the New Testament.',
+          },
+          {
+            heading: 'The Hebrew Scriptures and Their Arrangement',
+            body: 'The Jewish Scriptures are traditionally arranged in three divisions: the Torah, the Prophets, and the Writings. The collection is known as the Tanakh, a name formed from the Hebrew initials of those divisions. In the familiar Jewish reckoning, the Tanakh contains twenty-four books. That number does not mean it omits the writings found in the thirty-nine-book Protestant Old Testament. The books are counted and grouped differently. Samuel, Kings, and Chronicles, for example, are each counted as one book in the Hebrew arrangement, while the twelve shorter prophetic books form one collection. The Protestant Old Testament contains the same basic collection of writings in a different order and division, producing thirty-nine books. The order most familiar to English readers follows a pattern shaped by ancient Greek and Latin biblical traditions, with historical books, poetry and wisdom, and prophets arranged in groups. The books now called deuterocanonical by Catholics, or commonly called Apocrypha by Protestants, were not included within the traditional Jewish Tanakh. Their appearance in ancient Greek and Latin biblical collections became part of the later Christian discussion about the Old Testament canon.',
+          },
+          {
+            heading: 'The Septuagint: Jewish Scripture in Greek',
+            body: 'Greek became an important language across the eastern Mediterranean following the conquests of Alexander the Great in the fourth century BC. Jewish communities living outside Judea increasingly used Greek in daily life. In Alexandria, Egypt, the translation of the Torah into Greek began during the third century BC. Other Jewish writings were translated in subsequent generations. The resulting Greek biblical tradition is commonly called the Septuagint, often abbreviated LXX. The name is associated with the ancient story of seventy or seventy-two translators. That tradition appears in the Letter of Aristeas, a Jewish account of the translation of the Law for an Egyptian ruler. The story is part of the historical reception of the Greek Scriptures, although the full collection now associated with the Septuagint was not translated by one group at one time. Different books have different histories and styles of translation. Greek biblical manuscripts preserve a wider range of Jewish writings than the traditional Hebrew canon. Important surviving Christian codices, including Vaticanus, Sinaiticus, and Alexandrinus, do not all contain exactly the same books. Among the writings transmitted in Greek were Wisdom of Solomon, Sirach, Tobit, Judith, Baruch, and the books of Maccabees. Greek versions of Esther and Daniel also preserve material beyond the shorter Hebrew and Aramaic forms.',
+          },
+          {
+            heading: 'Jerome and the Latin Bible',
+            body: 'Jerome began revising Latin Gospel texts under Pope Damasus I in the late fourth century and later translated much of the Old Testament with close attention to Hebrew. His work contributed to the Latin biblical tradition eventually known as the Vulgate. This Bible became the principal scriptural text of much of Western Christianity, although the Latin Vulgate as used in later centuries also contained texts and revisions that were not all produced by Jerome himself. Jerome recognized a distinction between the books of the Hebrew Bible and certain other Jewish writings read among Christians. In his preface to Samuel and Kings, commonly called the Prologus Galeatus, he discussed the Hebrew collection and placed other books outside it. Elsewhere his treatment of these writings was not uniform, and their continued circulation in Latin Bibles shows that Jerome\u2019s views did not settle their reception throughout the Western Church. Latin manuscripts could include Tobit, Judith, Wisdom, Sirach, and the Maccabean books, among others. Over centuries of copying, the contents and arrangement of particular biblical volumes varied. The Latin Bible shaped Christian worship, scholarship, and teaching, but the precise canonical status of every accompanying writing was not described identically by all medieval authors.',
+          },
+          {
+            heading: 'The Councils, the Reformation, and the Council of Trent',
+            body: 'Regional church councils at Hippo in 393 and Carthage in 397 are frequently cited in histories of the biblical canon. Their lists included writings that Roman Catholic tradition later called deuterocanonical. These records should not be confused with a declaration that such books were merely historical reading; the surviving canonical lists place them among books designated for scriptural reading. Later church traditions nevertheless interpreted and received these writings in different ways. In the sixteenth century, Protestant reformers increasingly distinguished the Hebrew collection from the additional writings preserved in Greek and Latin Bibles. Martin Luther\u2019s German Bible of 1534 placed the Apocrypha in a separate section. Its heading explained that the books were not held equal to Holy Scripture but were useful and good to read. The separation was a statement about their status, not evidence that every copy was immediately printed without them. The Roman Catholic Council of Trent, in its fourth session in 1546, issued a decree listing the biblical books it received as sacred and canonical. The list included Tobit, Judith, Wisdom, Sirach, Baruch, and First and Second Maccabees, as well as the fuller forms of Esther and Daniel. Catholic and Protestant disagreements about these writings thus became more explicitly defined during the Reformation. Eastern Orthodox churches inherited Greek biblical traditions with somewhat different collections and liturgical practices. Depending on the church and edition, books such as First Esdras, Third Maccabees, and Psalm 151 may appear.',
+          },
+          {
+            heading: 'What Was Printed in the 1611 King James Bible?',
+            body: 'The 1611 Authorized Version was printed with the thirty-nine books of the Protestant Old Testament, twenty-seven books of the New Testament, and a separate Apocrypha section between them. The Apocrypha commonly contained fourteen separately titled items: First Esdras, Second Esdras, Tobit, Judith, the Rest of Esther, Wisdom of Solomon, Ecclesiasticus or Sirach, Baruch with the Epistle of Jeremiah, the Song of the Three Holy Children, the History of Susanna, Bel and the Dragon, the Prayer of Manasses, First Maccabees, and Second Maccabees. The familiar statement that the 1611 Bible had eighty books comes from adding those fourteen separately listed items to the sixty-six books of the Protestant canon. It describes the organization of that edition, not a universal agreement that all eighty were equally canonical. The translators included the Apocrypha in keeping with an established publishing practice, while the Church of England\u2019s Thirty-Nine Articles distinguished those writings from books used to establish doctrine.',
+          },
+          {
+            heading: 'How the Apocrypha Disappeared from Many Protestant Editions',
+            body: 'Over time, Protestant Bible printing increasingly favored editions containing only the sixty-six books recognized as canonical in many Protestant churches. One influential development occurred in 1826, when the British and Foreign Bible Society adopted a policy against using its funds to print or circulate the Apocrypha. This decision influenced Bible distribution on a large scale, although editions including the Apocrypha continued to be published. It would therefore be inaccurate to describe 1885 as the year when the Apocrypha was first removed from Protestant Bibles. The Revised Version of the English Bible appeared in stages during the 1880s, but the movement toward sixty-six-book Protestant editions had begun much earlier. An English Bible printed without the Apocrypha is not necessarily a new translation. It may contain exactly the same wording in Genesis, Isaiah, Matthew, and Romans as another printing that includes the additional section. The difference can lie entirely in the publisher\u2019s selection and arrangement of books.',
+          },
+          {
+            heading: 'The Bibles Along the Road to the King James Version',
+            body: 'The history of English Scripture is easier to follow when the major editions are considered in order. The Wycliffite Bible of the late fourteenth century was translated from the Latin Vulgate into Middle English and circulated in handwritten copies. The Gutenberg Bible, produced in Mainz around 1454\u20131455, was a printed Latin Vulgate whose importance lies in its use of movable-type printing. Erasmus\u2019s Novum Instrumentum of 1516 was a printed Greek New Testament that helped make the Greek text available to scholars and translators. William Tyndale\u2019s English New Testament appeared in 1526, translated from Greek. The Coverdale Bible of 1535 was the first complete printed English Bible. The Matthew Bible of 1537 brought together Tyndale\u2019s and Coverdale\u2019s work. The Great Bible of 1539 was intended for use in English churches. The Geneva Bible of 1560 became popular for its accessible format and notes. The Bishops\u2019 Bible of 1568 was produced for public worship. The Douay\u2013Rheims Bible, translated by English Catholics from the Latin Vulgate, appeared in stages between 1582 and 1610. The King James Bible of 1611 followed the Bishops\u2019 Bible as its principal English base while drawing on earlier versions, especially Tyndale\u2019s language.',
+          },
+          {
+            heading: 'A Guide to the Major Bible Traditions',
+            body: 'The Hebrew Tanakh is the Jewish collection of Scripture, traditionally counted as twenty-four books. The Septuagint is the ancient Greek translation tradition of Jewish writings, with a manuscript history that includes books beyond the Hebrew collection. The Latin Vulgate is the principal historical Latin biblical tradition of Western Christianity. These are not simply three editions of an identical bound book; they differ in language, textual history, and, in particular manuscripts, contents. The Roman Catholic Bible ordinarily contains seventy-three books: forty-six in the Old Testament and twenty-seven in the New. The Protestant Bible ordinarily contains sixty-six: thirty-nine in the Old Testament and twenty-seven in the New. Orthodox biblical collections may be broader and vary by ecclesiastical tradition. The New Testament collection of twenty-seven books is shared by these major Christian traditions.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'Translation versus canon',
+            body: 'The number of books in a Bible is a question of canon \u2014 which writings a religious community recognizes as Scripture \u2014 not a question of translation accuracy. A Bible can be faithfully translated while containing different books from another Bible in the same language.',
+          },
+          {
+            title: 'The Septuagint preserved more books',
+            body: 'The ancient Greek translation of Jewish Scripture, begun in Alexandria in the third century BC, preserved writings beyond the Hebrew canon \u2014 including Tobit, Judith, Wisdom, Sirach, Baruch, and Maccabees. These books entered Christian biblical traditions through Greek manuscripts.',
+          },
+          {
+            title: 'The 1611 Bible had eighty books',
+            body: 'The original King James Bible contained the thirty-nine Old Testament books, twenty-seven New Testament books, and fourteen Apocryphal items between them \u2014 totaling eighty. The Church of England\u2019s Thirty-Nine Articles distinguished these writings from books used to establish doctrine.',
+          },
+          {
+            title: 'The Apocrypha\u2019s gradual disappearance',
+            body: 'The British and Foreign Bible Society\u2019s 1826 policy against funding Apocrypha printing influenced Protestant Bible distribution on a large scale. The movement toward sixty-six-book Protestant editions had begun well before the Revised Version of the 1880s.',
+          },
+        ],
+        timeline: [
+          {
+            label: 'c. 250 BC',
+            title: 'The Septuagint translation begins',
+            body: 'Jewish communities in Alexandria begin translating the Torah into Greek. Other Jewish writings are translated in subsequent generations, producing a Greek biblical tradition that includes books beyond the Hebrew canon.',
+          },
+          {
+            label: 'c. 90 BC \u2013 1st century AD',
+            title: 'Greek biblical manuscripts circulate',
+            body: 'Greek manuscripts preserve a wider range of Jewish writings than the Hebrew canon. Codices Vaticanus, Sinaiticus, and Alexandrinus later preserve portions of this tradition with somewhat varying contents.',
+          },
+          {
+            label: 'c. 390s AD',
+            title: 'Jerome and the Prologus Galeatus',
+            body: 'Jerome translates much of the Old Testament from Hebrew and distinguishes the Hebrew canon from other Jewish writings in his preface to Samuel and Kings. His views do not settle the reception of those writings in the Western Church.',
+          },
+          {
+            label: '393 / 397',
+            title: 'Councils of Hippo and Carthage',
+            body: 'Regional church councils produce canon lists that include writings later called deuterocanonical by Catholics. The lists place these books among writings designated for scriptural reading.',
+          },
+          {
+            label: '1534',
+            title: 'Luther\u2019s German Bible separates the Apocrypha',
+            body: 'Martin Luther places the Apocrypha in a separate section with a heading explaining the books are not held equal to Holy Scripture but are useful and good to read.',
+          },
+          {
+            label: '1546',
+            title: 'The Council of Trent defines the Catholic canon',
+            body: 'The Council of Trent issues a decree listing the biblical books it receives as sacred and canonical, including Tobit, Judith, Wisdom, Sirach, Baruch, and First and Second Maccabees, and the fuller forms of Esther and Daniel.',
+          },
+          {
+            label: '1611',
+            title: 'The King James Bible includes the Apocrypha',
+            body: 'The 1611 Authorized Version is printed with the thirty-nine Old Testament books, twenty-seven New Testament books, and fourteen Apocryphal items between them \u2014 totaling eighty books.',
+          },
+          {
+            label: '1826',
+            title: 'The British and Foreign Bible Society policy',
+            body: 'The British and Foreign Bible Society adopts a policy against using its funds to print or circulate the Apocrypha, influencing Protestant Bible distribution on a large scale and accelerating the movement toward sixty-six-book editions.',
+          },
+        ],
+        reflectivePrompt:
+          'The original 1611 King James Bible contained eighty books, not sixty-six. The extra books were part of a centuries-old tradition going back to the Greek Septuagint. They were gradually removed from Protestant editions not by translators but by Bible societies and publishers. Understanding why different Bibles have different books helps us respect both the history of Scripture and the traditions of other Christians. How does knowing this history change the way you think about your own Bible?',
+        keyTakeaway:
+          'The Old Testament was preserved in both Hebrew and Greek. The Septuagint, begun in Alexandria around 250 BC, transmitted writings beyond the Hebrew canon \u2014 including Tobit, Judith, Wisdom, Sirach, Baruch, and Maccabees. Jerome recognized the distinction in his Prologus Galeatus, but these books continued to circulate in Latin Bibles. The Council of Trent in 1546 defined them as canonical for Catholics, while Protestant reformers placed them in a separate section. The 1611 King James Bible included fourteen Apocryphal items between the Old and New Testaments, totaling eighty books. The British and Foreign Bible Society\u2019s 1826 policy against funding Apocrypha printing accelerated their disappearance from Protestant editions. Catholic Bibles contain seventy-three books, Protestant Bibles sixty-six, and Orthodox collections vary by tradition \u2014 but all share the same twenty-seven-book New Testament.',
       },
       {
         id: 'american-bible',
@@ -897,9 +1162,109 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'The English Bible crossed the Atlantic with the colonists, but printing Scripture in America faced legal and financial obstacles. Robert Aitken produced the first American English Bible, Bible societies expanded distribution, and the new constitutional order of religious liberty created conditions for the Bible to spread as never before.',
         dateRange: 'c. 1600s \u2013 1800s',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'An English Bible Crosses the Atlantic',
+            body: 'By the time permanent English settlements were established along the Atlantic coast of North America, the Bible had already passed through centuries of translation, dispute, printing, and religious reform. The settlers did not bring a single uniform edition. They carried Bibles shaped by the churches and movements from which they came, and those differences traveled with them into the new colonies. The Geneva Bible had been widely used by English Protestants since its publication in 1560. Its compact format and extensive study notes made it practical for household reading, and its influence extended into the early years of English settlement in America. The King James Bible, first published in 1611, gradually became increasingly familiar, especially in communities associated with the Church of England. Neither translation displaced the other overnight. Availability, church allegiance, family inheritance, and the cost of books all affected what readers owned. The English colonies also contained people whose religious lives did not fit the established English church. Puritans, Separatists, Quakers, Baptists, Catholics, and other groups disagreed about worship, church authority, and the proper relationship between civil government and religious belief. The Bible was central to many of their arguments, but agreement about its importance did not produce agreement about its interpretation. For much of the colonial period, imported books supplied the English-speaking population. Printing a complete Bible required a substantial investment in type, paper, labor, and distribution.',
+          },
+          {
+            heading: 'The First Bible Printed in British North America',
+            body: 'One of the earliest and most remarkable biblical printing projects in North America was not an English Bible. It was a translation prepared for Indigenous readers in the language now commonly called Massachusett, an Algonquian language spoken in parts of southern New England. The missionary John Eliot worked with Native speakers and assistants to prepare the text. Their contributions were indispensable to a project that required knowledge of a language unfamiliar to European printers and scholars. The New Testament appeared in 1661, followed by the complete Bible in 1663. The full edition was printed at Cambridge, Massachusetts, and is often called the Eliot Indian Bible. Its title began Mamusse Wunneetupanatamwe Up-Biblum God, meaning, in broad terms, the whole holy Bible of God. It was the first complete Bible printed in British North America. The printing was undertaken by Samuel Green and Marmaduke Johnson, with assistance from James Printer, also known as Wowaus, an Indigenous printer who worked in the Cambridge press. The project required special typographical arrangements to represent unfamiliar sounds and long words. The historical setting was complicated. Eliot\u2019s work was connected to efforts to convert Native communities to Christianity and to the creation of so-called praying towns. These communities existed amid expanding English settlement, land pressures, and conflicts that profoundly affected Indigenous peoples. Copies of the Eliot Bible survive today in research libraries and collections. They preserve evidence of a written form of Massachusett and of the collaborative labor that made the translation possible.',
+          },
+          {
+            heading: 'Printing Scripture in the Colonies',
+            body: 'The growth of colonial printing did not immediately result in a locally printed English Bible. A Bible was a lengthy and expensive undertaking, and colonial presses operated under economic and political constraints. Printers could import English editions, but producing their own required access to sufficient materials and a market capable of supporting the cost. The first complete Bible printed in America in a European language was a German Bible produced by Christopher Sower, also spelled Sauer, at Germantown, Pennsylvania, in 1743. Sower served the German-speaking communities of Pennsylvania and drew on the Luther Bible tradition. His edition illustrates the multilingual religious life of the colonies. These are distinct milestones: the first Bible printed in British North America was the Eliot Bible in Massachusett in 1663; the first complete Bible printed in America in a European language was Sower\u2019s German Bible in 1743; and the first complete English Bible printed in the United States was Robert Aitken\u2019s edition in 1782. These descriptions refer to different milestones, not competing claims to the same event.',
+          },
+          {
+            heading: 'The Revolution and the Problem of Supply',
+            body: 'When conflict between Britain and its American colonies developed into war in 1775, imported goods became more difficult to obtain. Printed Bibles were among the books affected by disruptions to Atlantic commerce. The scarcity prompted proposals for domestic printing and for importing Bibles from other European sources. In 1777, a memorial presented to the Continental Congress raised the shortage of Bibles. A congressional committee considered the matter and recommended importing 20,000 Bibles from Holland, Scotland, or elsewhere. Congress did not establish a government Bible press or commission a new American translation. The surviving congressional records describe a proposed response to scarcity, not a general policy of government-sponsored Bible publication. The episode is sometimes retold as though the Continental Congress ordered a Bible to be printed and distributed throughout the colonies. That description goes beyond what the records support. The committee\u2019s recommendation concerned the importation of existing Bibles; the subsequent printing of an American English Bible was undertaken by a private printer.',
+          },
+          {
+            heading: 'Robert Aitken and the First American English Bible',
+            body: 'Robert Aitken was a Philadelphia printer who undertook the difficult task of producing a complete English Bible during the Revolutionary War. He printed an English New Testament in 1777 and, in 1782, completed an edition containing both the Old and New Testaments. His Bible followed the King James translation and was issued in a relatively small format. Aitken petitioned the Continental Congress concerning his undertaking. In September 1782, Congress received a committee report that described an examination of the edition by two chaplains, William White and George Duffield. The chaplains commended the printing as accurate and suitable for publication. Congress recommended Aitken\u2019s edition to the inhabitants of the United States. This recommendation was significant, but its nature should be described carefully. Congress did not translate the text, finance the original printing, purchase copies for every citizen, or create a national Bible. Aitken\u2019s Bible remained a privately printed commercial publication. The congressional action acknowledged the quality and usefulness of an edition already produced. The Aitken Bible is sometimes called the \u201cBible of the Revolution.\u201d The name refers to the historical period in which it appeared and the unusual congressional recommendation it received. The practical difficulties of the project were substantial. Paper and type were costly, skilled labor was limited, and wartime uncertainty complicated trade. Aitken\u2019s edition nonetheless demonstrated that a complete English Bible could be produced by an American printer rather than imported from Britain.',
+          },
+          {
+            heading: 'Religious Liberty and the New Constitutional Order',
+            body: 'The establishment of the United States did not settle the religious disagreements inherited from colonial society. Some states retained religious tests or supported particular churches, while others moved toward broader legal protections for religious practice. The federal Constitution of 1787 prohibited religious tests for federal office in Article VI, a provision that departed from the practice of several earlier political systems. The First Amendment, ratified in 1791, prohibited Congress from making a law respecting an establishment of religion or prohibiting its free exercise. These provisions did not declare the Bible irrelevant to American life. They placed important limits on the religious powers of the federal government and protected religious exercise against congressional interference. The constitutional language emerged from sustained debates. Baptists and other dissenting groups had long objected to government preference for particular churches. James Madison and Thomas Jefferson became influential advocates of religious liberty, although their arguments and beliefs were not identical. In Virginia, the Statute for Religious Freedom, drafted by Jefferson and enacted in 1786, rejected coercion in matters of religious belief and provided an important example for later discussion. For Bible readers, religious liberty meant that the circulation of Scripture was increasingly sustained by churches, families, booksellers, printers, and voluntary associations rather than by a single national church. The same legal order also protected those who interpreted Scripture differently, followed other religious traditions, or rejected religious belief.',
+          },
+          {
+            heading: 'Bible Societies and the Expansion of Distribution',
+            body: 'After independence, American printing expanded rapidly. The development of transportation networks, commercial publishing, and voluntary religious organizations changed the scale on which Bibles could be produced and circulated. Local Bible societies appeared in the early nineteenth century, following developments already underway in Britain and elsewhere. The American Bible Society was founded in 1816 to encourage the publication and distribution of Scripture. It brought together supporters from different Protestant denominations who believed that the Bible should be widely available. Its work relied on donations, printing arrangements, local auxiliaries, and networks of volunteers and clergy. Bible societies helped make printed Scripture more accessible, but their efforts also involved choices about translation and the biblical canon. In the English-speaking Protestant world, the King James Bible was widely favored. Many societies distributed editions without the Apocrypha, reflecting the canonical preferences of the Protestant organizations that supported them. The growth of Bible distribution did not eliminate disagreements about Scripture. Catholic communities used their own approved translations, including the Douay\u2013Rheims tradition, and Jewish communities maintained the Hebrew Bible and developed English translations for their readers. Indigenous-language translations continued in many regions, sometimes through missionary institutions and sometimes through the substantial intellectual and linguistic work of Indigenous translators themselves.',
+          },
+          {
+            heading: 'The Bible in Public Life and Private Homes',
+            body: 'During the eighteenth and nineteenth centuries, biblical language appeared frequently in American sermons, newspapers, speeches, literature, and political debate. Familiar phrases from the King James Bible became part of the vocabulary of English-speaking communities, even among readers who did not share the same religious convictions. Household Bibles often served purposes beyond worship. Families recorded births, marriages, and deaths in their pages, turning a printed religious book into a lasting family record. Churches used Scripture in preaching and instruction, while schools and charitable societies sometimes incorporated biblical readings into education. Yet the presence of the Bible in public culture should not be mistaken for agreement about its interpretation. Protestants debated baptism, church government, salvation, and biblical authority. Catholics and Protestants disagreed over the canon and the relationship between Scripture and tradition. The Bible also figured in struggles over national identity. Supporters of abolition drew on biblical themes of liberation, justice, and human dignity, while defenders of slavery cited other passages in support of their position. Reformers and their opponents could appeal to the same collection of sacred writings. These conflicts reveal the difference between possessing a biblical text and agreeing about its meaning.',
+          },
+          {
+            heading: 'What the American Story Reveals',
+            body: 'The history of the Bible in America began long before the United States existed. It involved imported English translations, Indigenous-language scholarship, German printing, wartime shortages, private publishing, and the creation of voluntary organizations devoted to distributing Scripture. The central milestones are distinct. Eliot\u2019s Massachusett Bible of 1663 was the first complete Bible printed in British North America. Christopher Sower\u2019s German Bible of 1743 was the first complete Bible printed there in a European language. Robert Aitken\u2019s 1782 King James edition was the first complete English Bible printed in the United States and received a formal recommendation from the Continental Congress. None of these achievements requires exaggeration to establish its historical significance. Across these developments, the question of who could obtain and read Scripture remained closely connected to language, printing technology, money, religious institutions, and political authority. The ability to print a Bible did not guarantee that everyone could read one, and the freedom to read it did not require agreement about its meaning. The journey from manuscript copying to American mass printing was neither a straight line nor the achievement of a single person. It depended on generations of scribes, translators, scholars, printers, patrons, readers, and communities.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'The first American Bible was not in English',
+            body: 'John Eliot\u2019s Massachusett Bible of 1663, printed at Cambridge, Massachusetts, was the first complete Bible printed in British North America. It was prepared with Native speakers and assistants, including the Indigenous printer James Printer (Wowaus).',
+          },
+          {
+            title: 'Three distinct firsts',
+            body: 'The Eliot Bible (1663) was the first complete Bible in British North America. Sower\u2019s German Bible (1743) was the first in a European language. Aitken\u2019s English Bible (1782) was the first complete English Bible printed in the United States. These are different milestones, not competing claims.',
+          },
+          {
+            title: 'The Aitken Bible and Congress',
+            body: 'Robert Aitken\u2019s 1782 King James edition received a congressional recommendation after chaplains examined it. Congress did not translate, finance, or create a national Bible. The Aitken Bible was a privately printed commercial publication, sometimes called the \u201cBible of the Revolution.\u201d',
+          },
+          {
+            title: 'Religious liberty and Bible distribution',
+            body: 'The First Amendment (1791) and state-level religious liberty statutes created a legal order in which Bible circulation was sustained by churches, families, and voluntary associations like the American Bible Society (founded 1816) rather than by a single national church.',
+          },
+        ],
+        timeline: [
+          {
+            label: '1661 / 1663',
+            title: 'The Eliot Indian Bible',
+            body: 'John Eliot\u2019s Massachusett New Testament appears in 1661 and the complete Bible in 1663, printed at Cambridge, Massachusetts. It is the first complete Bible printed in British North America, prepared with Native speakers including the Indigenous printer James Printer.',
+          },
+          {
+            label: '1743',
+            title: 'Sower\u2019s German Bible',
+            body: 'Christopher Sower prints a German Bible at Germantown, Pennsylvania, drawing on the Luther Bible tradition. It is the first complete Bible printed in America in a European language, serving German-speaking communities.',
+          },
+          {
+            label: '1775 \u2013 1777',
+            title: 'Wartime Bible shortages',
+            body: 'The Revolutionary War disrupts Atlantic commerce, making imported Bibles scarce. In 1777, a memorial to the Continental Congress raises the shortage. A committee recommends importing 20,000 Bibles, but Congress does not establish a government Bible press.',
+          },
+          {
+            label: '1782',
+            title: 'Robert Aitken\u2019s English Bible',
+            body: 'Philadelphia printer Robert Aitken completes the first English Bible printed in the United States, following the King James translation. Congress recommends the edition after chaplains examine it. It is sometimes called the \u201cBible of the Revolution.\u201d',
+          },
+          {
+            label: '1786',
+            title: 'Virginia Statute for Religious Freedom',
+            body: 'Thomas Jefferson\u2019s statute, enacted in Virginia in 1786, rejects coercion in matters of religious belief and provides an important example for later federal protections.',
+          },
+          {
+            label: '1787 / 1791',
+            title: 'The Constitution and the First Amendment',
+            body: 'The Constitution of 1787 prohibits religious tests for federal office (Article VI). The First Amendment, ratified in 1791, prohibits Congress from establishing a religion or prohibiting its free exercise.',
+          },
+          {
+            label: '1816',
+            title: 'The American Bible Society',
+            body: 'The American Bible Society is founded to encourage the publication and distribution of Scripture, bringing together supporters from different Protestant denominations. Its work relies on donations, printing arrangements, and networks of volunteers.',
+          },
+          {
+            label: '19th century',
+            title: 'Mass distribution and ongoing disagreement',
+            body: 'Bible societies and mass printing make inexpensive copies widely available. The King James Bible remains influential, but Catholics use the Douay\u2013Rheims tradition, Jewish communities maintain the Hebrew Bible, and disagreements over slavery and interpretation reveal the difference between possessing the Bible and agreeing about its meaning.',
+          },
+        ],
+        reflectivePrompt:
+          'The first complete Bible printed in America was not in English but in Massachusett, an Algonquian language, prepared with Native speakers. The first English Bible printed in America was produced by a private printer during the Revolutionary War, not by the government. And the new constitutional order protected the freedom of every person to read Scripture \u2014 or not \u2014 according to conscience. What does the American story teach you about the relationship between the Bible, freedom, and the communities that produced it?',
+        keyTakeaway:
+          'The Bible crossed the Atlantic with English colonists who carried different translations \u2014 Geneva Bibles, King James Bibles, and others. The first complete Bible printed in British North America was John Eliot\u2019s Massachusett Bible of 1663, prepared with Native speakers. Christopher Sower\u2019s German Bible of 1743 was the first in a European language. Robert Aitken\u2019s 1782 King James edition was the first complete English Bible printed in the United States, receiving a congressional recommendation. The First Amendment (1791) created a legal order in which Bible circulation was sustained by voluntary associations like the American Bible Society (1816) rather than by a national church. Biblical language shaped American public life, but possession of the Bible did not produce agreement about its meaning \u2014 as debates over slavery and religious freedom revealed.',
       },
     ],
   },
