@@ -11,6 +11,7 @@ import {
   ScrollText,
   CheckCircle2,
   Circle,
+  Clock,
 } from 'lucide-react';
 import { getHistoryModule } from '../data/bibleHistoryData';
 
@@ -159,6 +160,37 @@ export function BibleHistoryModule() {
             ))}
           </div>
         </article>
+      )}
+
+      {/* Timeline */}
+      {module.timeline && module.timeline.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-5">
+            Timeline
+          </h2>
+          <div className="relative pl-6 sm:pl-8">
+            <div className="absolute left-2 sm:left-3 top-2 bottom-2 w-px bg-gray-200 dark:bg-gray-700" />
+            <div className="space-y-6">
+              {module.timeline.map((entry, i) => (
+                <div key={i} className="relative">
+                  <span className="absolute -left-[1.35rem] sm:-left-[1.85rem] top-1 w-3 h-3 rounded-full bg-amber-500 border-2 border-white dark:border-gray-900 shadow-sm" />
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Clock className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+                    <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
+                      {entry.label}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1.5 leading-snug">
+                    {entry.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {entry.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* Key points */}

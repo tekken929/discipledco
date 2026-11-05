@@ -3,11 +3,11 @@
  *
  * Structured as eras -> modules so the series can expand indefinitely
  * under the same "Bible History" umbrella. Each module studies an
- * original historical document alongside original commentary.
+ * original historical document alongside original commentary and a
+ * timeline drawn from the document itself.
  *
- * The Early Church era is the first section. The Didache module is
- * fully written; the remaining Early Church modules are scaffolded
- * with titles and descriptions so they are ready to be filled in.
+ * Content for the Didache module is based on the actual Didache PDF
+ * hosted at /public/didache.pdf (Saint Ignatius Orthodox Press edition).
  */
 
 export interface HistoryStudySection {
@@ -16,6 +16,12 @@ export interface HistoryStudySection {
 }
 
 export interface HistoryKeyPoint {
+  title: string;
+  body: string;
+}
+
+export interface HistoryTimelineEntry {
+  label: string;
   title: string;
   body: string;
 }
@@ -32,6 +38,8 @@ export interface HistoryModule {
   documentLabel?: string;
   sections: HistoryStudySection[];
   keyPoints: HistoryKeyPoint[];
+  /** A timeline built from the document's own contents and context. */
+  timeline?: HistoryTimelineEntry[];
   reflectivePrompt?: string;
   keyTakeaway?: string;
   /** True once the module's content has been fully written. */
@@ -51,158 +59,222 @@ export const bibleHistoryEras: HistoryEra[] = [
   {
     id: 'early-church',
     title: 'The Early Church',
-    subtitle: 'The first six hundred years of church history',
+    subtitle: 'The first generations of believers, from the apostles to the councils',
     description:
-      'The early church was forged in the centuries after the apostles. This section traces how the first Christians worshipped, suffered, debated, and spread — from the first house churches through the conversion of an empire and the councils that shaped Christian belief. Each module studies an original document from the period alongside commentary on its context and meaning.',
-    dateRange: 'c. 30 – 600 AD',
+      'This series opens with the earliest Christian communities — the people who first received the apostles\u2019 teaching and worked out, in real time, how to worship, lead, and live as followers of Jesus. Each module takes a primary document from the period as its anchor and builds a study around what that document actually says.',
+    dateRange: 'First to seventh century',
     modules: [
       {
         id: 'didache',
         number: 101,
         title: 'The Didache',
-        tagline: 'An early church manual instructs in Christian behavior',
+        tagline: 'A first-century manual for Christian living',
         description:
-          'The Didache (Greek for "teaching") is one of the earliest Christian documents outside the New Testament — likely written in the first or early second century. It is a short manual of instruction covering the way of life, baptism, the Eucharist, church order, and hospitality. Reading it gives us a window into how the first generations of believers ordered their communities.',
-        dateRange: 'c. 50 – 120 AD',
+          'The Didache \u2014 Greek for \u201cteaching\u201d \u2014 is a short early Christian text that lays out, in plain language, how a community should live, worship, and order itself. This module walks through the document section by section, using the text itself as the source.',
+        dateRange: 'First or early second century',
         documentUrl: '/didache.pdf',
-        documentLabel: "Read the Didache (PDF)",
+        documentLabel: 'Read the Didache (PDF)',
         complete: true,
         sections: [
           {
-            heading: 'What the Didache Is',
-            body: 'The Didache, formally titled "The Teaching of the Lord through the Twelve Apostles to the Gentiles," is a compact instruction manual for Christian communities. It was not written by the apostles, but it claims to preserve their teaching. It was likely composed in Syria or Palestine in the late first or early second century, making it a near-contemporary of some New Testament writings. It was rediscovered in 1873 in a monastery library after being lost for centuries. Its value is immense: it shows us how ordinary believers — not just apostles and theologians — understood and practiced the faith in the very first generations.',
+            heading: 'What this text is',
+            body: 'The Didache (pronounced did-a-key) carries the full title \u201cThe Teaching of the Twelve Apostles.\u201d It is not a letter or a story but a manual \u2014 a catechism for new converts and a guide for a community that is figuring out its practices. Most scholars place its writing in the first or early second century, which makes it one of the very earliest Christian writings outside the New Testament. As the introduction to this edition notes, it was held in such high regard that before the New Testament canon was formally settled, some Bibles even included it. It was then lost for centuries and rediscovered in 1873 by Philotheos Bryennios, the Metropolitan of Nicomedia. Today it sits among the writings known as the Apostolic Fathers \u2014 the second generation of Christian literature.',
           },
           {
             heading: 'The Two Ways',
-            body: 'The Didache opens with the "Two Ways" — the Way of Life and the Way of Death. This framing was common in Jewish wisdom literature and appears elsewhere in early Christian writing. The Way of Life is summarized in the command to love God and love your neighbor, then expanded with practical instructions: bless those who curse you, pray for your enemies, turn the other cheek, give to everyone who asks. The Way of Death is a list of the behaviors that destroy community — murder, adultery, sorcery, greed, hypocrisy. What stands out is how practical and concrete it is. This is not abstract theology. It is a manual for how to live, written for people new to the faith.',
+            body: 'The text opens with a simple framing: \u201cThere are two ways, one of life and one of death, and there is a great difference between the two ways.\u201d The Way of Life begins with the command to love the God who made you and to love your neighbor as yourself, then adds the negative form of the golden rule \u2014 \u201call things you would not want done to you, do not do to another.\u201d From there it expands into concrete instruction: bless those who curse you, pray for your enemies, turn the other cheek, give to everyone who asks without hesitating or complaining. A middle section called \u201cthe Fences\u201d traces how small attitudes give birth to serious sin \u2014 anger leads to murder, lust to promiscuity, greed to theft, complaining to blasphemy. The Way of Death is then read out as a list of what destroys a person and a community: murder, adultery, sorcery, hypocrisy, pride, greed, turning away from the needy. The whole opening is practical, not abstract \u2014 it tells a new believer what to do and what to flee.',
           },
           {
-            heading: 'Baptism and the Eucharist',
-            body: 'The Didache gives us some of the earliest evidence for how baptism was practiced. It prefers baptism in "living" (running) water, but allows cold water if living water is unavailable, and pouring water over the head three times in the name of the Father, Son, and Holy Spirit if neither is possible. Fasting before baptism is instructed for both the candidate and the one baptizing. The Eucharist instructions are equally revealing. The prayer given thanks first for the cup, then the bread, and calls it "the holy vine of David" and "the bread of life." It is a thanksgiving meal, not yet the developed liturgy of later centuries, but clearly already a central act of worship.',
+            heading: 'Food, fasting, and prayer',
+            body: 'After the Two Ways the manual turns to how a catechumen should live day to day. On food, it gives one firm rule: do not eat meat sacrificed to idols, because that is the worship of dead gods. On fasting, it draws a clear line from surrounding Jewish practice \u2014 \u201cdo not let your fasts fall on the same days as the hypocrites, for they fast on Mondays and Thursdays. Keep your fast on Wednesdays and Fridays.\u201d On prayer, it instructs believers to pray the Lord\u2019s Prayer three times each day, and it gives the text of the prayer in a form very close to Matthew\u2019s Gospel. What stands out is how little is left to invention: the community is handed a shared rhythm of fasting and prayer that binds them together.',
           },
           {
-            heading: 'Church Order and Hospitality',
-            body: 'The Didache reveals a church still in transition. It instructs believers to welcome traveling teachers and apostles, but also warns against false ones — a teacher staying more than two days or asking for money is to be regarded with suspicion. Itinerant prophets are honored, but communities are also told to test them. Alongside the traveling ministers, local leaders are emerging: the Didache instructs communities to "appoint for yourselves bishops and deacons" worthy of the Lord. This tension — between charismatic traveling ministers and settled local leadership — marks a real moment in history, when the church was shifting from the era of the apostles to the era of organized local congregations.',
+            heading: 'Baptism',
+            body: 'The baptism instruction is brief but remarkably specific. The preferred setting is running (\u201cliving\u201d) water, in the Name of the Father, Son, and Holy Spirit. If running water is unavailable, other water will do. If cold water is not possible, use warm. And if none of that is available, pour water on the head three times in the same Trinitarian Name. Before the baptism, both the baptizer and the catechumen \u2014 along with any others who are able \u2014 are to fast, with the catechumen fasting a day or two in advance. The flexibility is striking: the form matters, but the availability of water does not prevent the baptism from happening. And the Trinitarian formula is already fixed as the norm.',
           },
           {
-            heading: 'Why It Matters Today',
-            body: 'The Didache matters because it shows us Christianity before it became institutional, before the great theologians, before the councils. What you find is strikingly simple and strikingly demanding: love your enemies, give generously, baptize in the name of the Trinity, share a thanksgiving meal, test those who claim spiritual authority, and appoint humble local leaders. It is a reminder that the core of the faith has always been practical obedience to Jesus, lived out in community. For modern readers, it offers a bracing contrast to a comfortable Christianity — and a window into what the first believers thought essential.',
+            heading: 'The Eucharist',
+            body: 'The Eucharist instructions give us one of the earliest glimpses of Christian worship outside the New Testament. Thanksgiving is offered first over the cup \u2014 \u201cWe give you thanks, our Father, for the holy vine of your son David, which you made known to us through your Son Jesus\u201d \u2014 and then over the broken bread, which is compared to the church itself: \u201cAs this broken bread was scattered upon the mountains and being gathered together became one, so may your Church be gathered together from the ends of the earth into your kingdom.\u201d Only the baptized may receive, \u201cfor concerning this the Lord has said, Do not give the holy things to the dogs.\u201d A longer post-communion prayer follows, thanking God for knowledge, faith, and immortality made known through Jesus, and asking that the church be delivered from evil and perfected in love. This is not yet the developed liturgy of later centuries, but the shape of Christian worship is already unmistakably there.',
+          },
+          {
+            heading: 'Apostles, prophets, and local leaders',
+            body: 'The final section reveals a community in the middle of a real transition. It instructs believers to welcome traveling teachers and apostles and to honor prophets, but it also builds in safeguards \u2014 a teacher staying more than two days or asking for money is a false prophet, and prophets are to be tested by their conduct. At the same time, the community is told to \u201cappoint for yourselves bishops and deacons\u201d who are worthy of the Lord, because \u201cthey also perform the service of prophets and teachers.\u201d What we are watching is the shift from itinerant, charismatic ministry to settled local leadership. The manual does not resolve the tension; it holds both together. It closes with a short warning about the end times and an exhortation to be ready, \u201cfor the whole time of your faith will not profit you if you are not made perfect in the last time.\u201d',
           },
         ],
         keyPoints: [
           {
-            title: 'One of the earliest non-biblical Christian texts',
-            body: 'Likely written in the late first or early second century, the Didache is a near-contemporary of parts of the New Testament and gives us rare evidence for how the first generations actually practiced the faith.',
+            title: 'A manual, not a treatise',
+            body: 'The Didache is organized around practice \u2014 how to live, how to fast, how to pray, how to baptize, how to receive the Eucharist, how to receive teachers. It shows Christianity as a shared way of life before it was a system of doctrine.',
           },
           {
-            title: 'A practical manual, not a theological treatise',
-            body: 'It is organized around instruction for living — the Two Ways, baptism, the Eucharist, hospitality, and church order — rather than doctrinal argument. It shows Christianity as a way of life before it was a system of belief.',
+            title: 'Scripture woven through',
+            body: 'As this edition\u2019s introduction notes, \u201cScripture weaves through the text\u2019s clear and simple teachings.\u201d The manual is saturated in allusions and quotes from the Gospels and the Old Testament, which is why it was so well-loved by the early church.',
           },
           {
-            title: 'A church in transition',
-            body: 'The Didache captures the moment when traveling apostles and prophets were giving way to settled local bishops and deacons — a pivotal shift in how the church was organized.',
+            title: 'Trinitarian baptism from the start',
+            body: 'Baptism \u201cin the Name of the Father, and of the Son, and of the Holy Spirit\u201d appears here as the established pattern, with flexibility about the water but no flexibility about the Name.',
           },
           {
-            title: 'Trinitarian worship from the very beginning',
-            body: 'Baptism "in the name of the Father and of the Son and of the Holy Spirit" appears here as established practice, confirming that Trinitarian language shaped worship from the earliest period.',
+            title: 'A community in transition',
+            body: 'The text holds side by side the traveling apostle and prophet and the settled bishop and deacon. That tension is a snapshot of the moment when local, organized congregations were becoming the norm.',
+          },
+          {
+            title: 'Lost and found',
+            body: 'The Didache vanished for centuries and was rediscovered in 1873 by Philotheos Bryennios. Its return gave the modern church a direct window into first-century practice that had been missing from view.',
+          },
+        ],
+        timeline: [
+          {
+            label: 'First century',
+            title: 'The apostolic generation',
+            body: 'The apostles teach the first communities. The Didache preserves, in summary form, the kind of practical instruction new converts would have received in this period.',
+          },
+          {
+            label: 'First / early second century',
+            title: 'The Didache is written',
+            body: 'A community \u2014 likely in Syria or Palestine \u2014 composes a manual that distills the apostles\u2019 teaching into a guide for living, worship, and order. It circulates among the early churches.',
+          },
+          {
+            label: 'Before 692 AD',
+            title: 'Included in some Bibles',
+            body: 'Before the New Testament canon was formally settled, some Bibles even included the Didache alongside the books that would become the New Testament \u2014 a sign of how highly it was regarded.',
+          },
+          {
+            label: 'Centuries of loss',
+            title: 'The text disappears',
+            body: 'The Didache falls out of common use and is lost to the wider church for centuries, surviving only in the background of later writers who quote or allude to it.',
+          },
+          {
+            label: '1873',
+            title: 'Rediscovered by Bryennios',
+            body: 'Philotheos Bryennios, Metropolitan of Nicomedia, rediscovers the text in a monastery library. It is published a few years later and returns to the church\u2019s attention.',
+          },
+          {
+            label: 'Today',
+            title: 'Numbered among the Apostolic Fathers',
+            body: 'The Didache is now read as one of the second-generation Christian writings known as the Apostolic Fathers \u2014 a practical witness to how the first believers ordered their life together.',
           },
         ],
         reflectivePrompt:
-          'The Didache assumes that knowing Jesus means changing how you live. Where do you see the gap between what you believe and how you actually practice it day to day?',
+          'The Didache assumes that following Jesus shows up in how you live day to day \u2014 how you give, how you fast, how you pray, how you treat a visitor. Where do you see the gap between what you believe and what your daily practice actually looks like?',
         keyTakeaway:
-          'The Didache shows us a faith that was concrete, communal, and demanding from the very start — obedience to Jesus expressed in daily life, not just in belief.',
+          'The Didache is a first-century manual that shows us Christianity as a shared way of life: concrete instruction, common rhythms of prayer and fasting, Trinitarian baptism, a thanksgiving meal, and a community learning to lead itself.',
       },
       {
-        id: 'pliny',
+        id: 'polycarp',
         number: 102,
-        title: "Pliny's Letter to Trajan",
-        tagline: 'A pagan official asks the emperor how Christians are to be handled',
+        title: 'Polycarp of Smyrna',
+        tagline: 'A bishop who knew the apostles and died for his Lord',
         description:
-          'Around 112 AD, Pliny the Younger, the Roman governor of Bithynia, wrote to the emperor Trajan asking how to deal with the growing number of Christians in his province. His letter and Trajan\'s reply are some of the earliest pagan references to Christianity and reveal how the faith appeared to outsiders — and how dangerous it was simply to be a Christian.',
-        dateRange: 'c. 112 AD',
+          'Polycarp was bishop of Smyrna in Asia Minor and, by tradition, a disciple of the apostle John. His own letter to the Philippians and the account of his martyrdom give us a direct link between the apostolic age and the generation that came after. This module will study his writings and the record of his death.',
+        dateRange: 'c. 69 \u2013 155 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
-        id: 'polycarp',
+        id: 'ignatius',
         number: 103,
-        title: "Polycarp's Martyrdom",
-        tagline: 'How a faithful Christian bishop died in flame',
+        title: 'Ignatius of Antioch',
+        tagline: 'Letters written on the road to martyrdom',
         description:
-          'Polycarp was the bishop of Smyrna and a link to the apostolic age — tradition says he was a disciple of the apostle John. Around 155 AD he was arrested and burned alive for refusing to deny Christ. The account of his martyrdom, sent from his church to others, is one of the earliest Christian martyr narratives and shaped how the church understood faithful witness unto death.',
-        dateRange: 'c. 155 AD',
+          'Ignatius, bishop of Antioch, wrote a series of letters while being escorted to Rome for execution in the early second century. His letters are some of the earliest testimony to a developing understanding of church order, the Eucharist, and the reality of Christ\u2019s humanity and divinity.',
+        dateRange: 'c. 35 \u2013 108 AD',
+        complete: false,
+        sections: [],
+        keyPoints: [],
+      },
+      {
+        id: 'justin',
+        number: 104,
+        title: 'Justin Martyr',
+        tagline: 'A philosopher makes the case for Christ',
+        description:
+          'Justin was a pagan philosopher who converted to Christianity and became its first major apologist. His writings describe a Christian worship service in striking detail and argue, before the emperor himself, that the Christian faith is both reasonable and true.',
+        dateRange: 'c. 100 \u2013 165 AD',
+        complete: false,
+        sections: [],
+        keyPoints: [],
+      },
+      {
+        id: 'irenaeus',
+        number: 105,
+        title: 'Irenaeus of Lyons',
+        tagline: 'Defending the faith against the Gnostics',
+        description:
+          'Irenaeus, bishop of Lyons in Gaul, wrote a massive refutation of Gnostic teaching that threatened to fracture the early church. His work gives us some of the earliest sustained reflection on the unity of Scripture, the rule of faith, and the continuity of apostolic teaching.',
+        dateRange: 'c. 130 \u2013 202 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'tertullian',
-        number: 104,
-        title: "Tertullian's Defense",
-        tagline: 'The first theologian of the western church speaks out',
+        number: 106,
+        title: 'Tertullian of Carthage',
+        tagline: 'The first great writer in Latin',
         description:
-          'Tertullian (c. 155 – 220 AD) was a lawyer and thinker in Carthage who became the first major theologian to write in Latin. His apologetic writings defended Christians against the rumors and legal persecution of their day, arguing that Christians were loyal citizens whose worship of one God was no threat to Rome.',
-        dateRange: 'c. 155 – 220 AD',
+          'Tertullian was a lawyer and thinker in North Africa who became the first major Christian theologian to write in Latin. His apologetic works defended believers before the Roman authorities, and his later writings shaped how the western church would talk about the Trinity and Christ for centuries.',
+        dateRange: 'c. 155 \u2013 220 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'cyprian',
-        number: 105,
-        title: 'Cyprian on Church Unity',
-        tagline: 'A North African bishop writes on the unity of the church',
+        number: 107,
+        title: 'Cyprian of Carthage',
+        tagline: 'A bishop shepherds his people through persecution',
         description:
-          'Cyprian was bishop of Carthage in the mid-third century and led his church through fierce persecution under the emperor Decius. His writings on church unity — especially the claim that no one can have God as Father who does not have the church as mother — shaped the church\'s understanding of itself for centuries.',
-        dateRange: 'c. 200 – 258 AD',
+          'Cyprian led the church in Carthage through the empire-wide persecution under the emperor Decius. His letters and treatises work out how to receive back those who had lapsed under pressure, and what it means for the church to be one.',
+        dateRange: 'c. 200 \u2013 258 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'antony',
-        number: 106,
-        title: 'Antony of Egypt',
-        tagline: 'A biography of the first notable Christian monk',
+        number: 108,
+        title: 'Antony and the Desert',
+        tagline: 'The rise of Christian monasticism',
         description:
-          'Antony (c. 251 – 356 AD) is regarded as the father of Christian monasticism. The biography written by Athanasius tells how he sold his inheritance, retreated to the desert, and spent decades in prayer and spiritual combat. His life inspired thousands to follow him into the desert and reshaped Christian understandings of discipleship.',
-        dateRange: 'c. 251 – 356 AD',
+          'Antony of Egypt sold what he had and retreated to the desert, where decades of prayer and spiritual combat made him the model of the monk. The life written about him by Athanasius spread quickly and inspired thousands to follow him into the desert.',
+        dateRange: 'c. 251 \u2013 356 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'constantine',
-        number: 107,
-        title: "Constantine's Vision",
-        tagline: "Constantine's conversion had a mighty impact",
+        number: 109,
+        title: 'Constantine and the Empire',
+        tagline: 'When the persecuted became favored',
         description:
-          'Constantine\'s embrace of Christianity before the battle of the Milvian Bridge in 312 AD changed the church from a persecuted minority to a favored religion of empire. This module examines the accounts of his vision, the Edict of Milan, and the lasting consequences of imperial favor for the church.',
-        dateRange: 'c. 312 AD',
+          'Constantine\u2019s embrace of Christianity changed the church\u2019s place in the world almost overnight. This module examines the accounts of his conversion, the edict that ended imperial persecution, and the difficult consequences of imperial favor for a church that had grown up under opposition.',
+        dateRange: 'c. 272 \u2013 337 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'athanasius',
-        number: 108,
-        title: 'Athanasius on Christ',
-        tagline: 'Implications of Christ becoming a man',
+        number: 110,
+        title: 'Athanasius and the Incarnation',
+        tagline: 'Defending the full divinity of Christ',
         description:
-          'Athanasius of Alexandria (c. 296 – 373 AD) defended the full divinity of Christ against the teaching of Arius, even when it cost him repeated exile. His famous work "On the Incarnation" remains one of the clearest explanations of why the Word became flesh and what it means for humanity.',
-        dateRange: 'c. 296 – 373 AD',
+          'Athanasius of Alexandria spent his life \u2014 and endured repeated exile \u2014 defending the claim that the Son of God is truly God. His work On the Incarnation remains one of the clearest explanations of why the Word became flesh and what it means for humanity.',
+        dateRange: 'c. 296 \u2013 373 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'nicea',
-        number: 109,
-        title: 'Council of Nicea',
-        tagline: "The battle over Christ's divinity",
+        number: 111,
+        title: 'The Council of Nicaea',
+        tagline: 'A defining moment for Christian confession',
         description:
-          'In 325 AD Constantine convened the first ecumenical council at Nicea to settle the dispute over whether the Son was truly God or a created being. The council produced the Nicene Creed, which confessed the Son as "of one being with the Father" — a definition that has shaped Christian orthodoxy ever since.',
+          'In 325, bishops gathered at Nicaea to settle the dispute over whether the Son was truly God or a created being. The creed they produced confessed the Son as \u201cof one being with the Father\u201d \u2014 language that has shaped Christian orthodoxy ever since.',
         dateRange: '325 AD',
         complete: false,
         sections: [],
@@ -210,48 +282,24 @@ export const bibleHistoryEras: HistoryEra[] = [
       },
       {
         id: 'augustine',
-        number: 110,
-        title: "Augustine's Love Sermon",
-        tagline: 'A sermon on love — but will you agree with his definition?',
+        number: 112,
+        title: 'Augustine of Hippo',
+        tagline: 'The bishop who reshaped the western mind',
         description:
-          'Augustine of Hippo (354 – 430 AD) is perhaps the most influential Christian thinker after the apostles. This module studies one of his sermons on love, exploring how he understood the right ordering of desire and what it means to love God and neighbor rightly.',
-        dateRange: 'c. 354 – 430 AD',
-        complete: false,
-        sections: [],
-        keyPoints: [],
-      },
-      {
-        id: 'leo',
-        number: 111,
-        title: 'Leo Claims Special Role',
-        tagline: 'Leo I claims the bishop of Rome is above all other bishops',
-        description:
-          'Leo the Great (pope 440 – 461 AD) articulated the case for the primacy of the bishop of Rome, grounding it in Christ\'s words to Peter. His Tome, read at the Council of Chalcedon in 451, also shaped the church\'s confession of Christ\'s two natures in one person.',
-        dateRange: 'c. 440 – 461 AD',
+          'Augustine is perhaps the most influential Christian thinker after the apostles. His Confessions, his work on the Trinity, and his writing on grace and the city of God shaped both the church and western thought for more than a thousand years.',
+        dateRange: '354 \u2013 430 AD',
         complete: false,
         sections: [],
         keyPoints: [],
       },
       {
         id: 'patrick',
-        number: 112,
-        title: "Patrick's Own Tale",
-        tagline: "St. Patrick's confession, a short autobiography",
-        description:
-          'Patrick (c. 385 – 461 AD) tells his own story in his Confession — kidnapped from Britain, enslaved in Ireland, called back as a missionary to the people who once held him captive. It is one of the few first-person accounts we have from the early medieval church.',
-        dateRange: 'c. 385 – 461 AD',
-        complete: false,
-        sections: [],
-        keyPoints: [],
-      },
-      {
-        id: 'gregory',
         number: 113,
-        title: 'Gregory I and England',
-        tagline: 'How Gregory sent Augustine to convert the English',
+        title: 'Patrick and Ireland',
+        tagline: 'A missionary returns to the people who once held him',
         description:
-          'Gregory the Great (pope 590 – 604 AD) sent Augustine of Canterbury on a mission to the Anglo-Saxons in 597 AD, an event often dated as the beginning of English Christianity. This module examines Gregory\'s vision for mission and the church he helped build.',
-        dateRange: 'c. 590 – 604 AD',
+          'Patrick was taken from Britain as a slave and later returned to Ireland as a missionary. His own Confession tells the story in his own words \u2014 one of the few first-person accounts we have from the early medieval church.',
+        dateRange: 'c. 385 \u2013 461 AD',
         complete: false,
         sections: [],
         keyPoints: [],
@@ -263,7 +311,7 @@ export const bibleHistoryEras: HistoryEra[] = [
 export const bibleHistoryOverview = {
   title: 'Bible History',
   subtitle:
-    'A study series tracing the people, documents, and decisions that shaped the church across the centuries. Built to expand, era by era.',
+    'A study series built around the original documents that shaped the church. Beginning with the Early Church and the Didache, and expanding era by era.',
   totalEras: bibleHistoryEras.length,
   totalModules: bibleHistoryEras.reduce((sum, era) => sum + era.modules.length, 0),
 };
