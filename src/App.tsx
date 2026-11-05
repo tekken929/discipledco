@@ -28,7 +28,10 @@ import { Easter } from './pages/Easter';
 import { Hallowed } from './pages/Hallowed';
 import Guidance from './pages/Guidance';
 import { Courses } from './pages/Courses';
+import { FoundationCourse } from './pages/FoundationCourse';
 import { CourseModule } from './pages/CourseModule';
+import { BibleHistory } from './pages/BibleHistory';
+import { BibleHistoryModule } from './pages/BibleHistoryModule';
 import { BibleLookup } from './pages/BibleLookup';
 import { BibleStudies } from './pages/BibleStudies';
 import { VerseOfTheDay } from './pages/VerseOfTheDay';
@@ -484,7 +487,10 @@ function AppContent() {
           <Route path="/hallowed" element={<Hallowed />} />
           <Route path="/guidance" element={<Guidance />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/module/:moduleId" element={<CourseModule />} />
+          <Route path="/courses/foundation" element={<FoundationCourse />} />
+          <Route path="/courses/foundation/module/:moduleId" element={<CourseModule />} />
+          <Route path="/bible-history" element={<BibleHistory />} />
+          <Route path="/bible-history/:eraId/:moduleId" element={<BibleHistoryModule />} />
           <Route path="/bible-lookup" element={<BibleLookup />} />
           <Route path="/bible-studies" element={<BibleStudies />} />
           <Route path="/bible-studies/:studyId" element={<BibleStudies />} />

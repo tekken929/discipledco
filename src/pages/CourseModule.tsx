@@ -17,7 +17,7 @@ export function CourseModule() {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
         <p className="text-gray-500 dark:text-gray-400 mb-6">Module not found.</p>
-        <Link to="/courses" className="theme-accent font-semibold">Back to Course</Link>
+        <Link to="/courses/foundation" className="theme-accent font-semibold">Back to Foundation</Link>
       </div>
     );
   }
@@ -51,11 +51,11 @@ export function CourseModule() {
 
         {/* Back to course */}
         <Link
-          to="/courses"
+          to="/courses/foundation"
           className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors mb-10"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Course
+          Back to Foundation
         </Link>
 
         {/* Module header */}
@@ -195,7 +195,7 @@ export function CourseModule() {
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-stretch">
           {prevModule ? (
             <Link
-              to={`/courses/module/${prevModule.id}`}
+              to={`/courses/foundation/module/${prevModule.id}`}
               className="flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all group flex-1"
             >
               <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0" />
@@ -206,7 +206,7 @@ export function CourseModule() {
             </Link>
           ) : (
             <Link
-              to="/courses"
+              to="/courses/foundation"
               className="flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all group flex-1"
             >
               <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" />
@@ -219,7 +219,7 @@ export function CourseModule() {
 
           {nextModule ? (
             <Link
-              to={`/courses/module/${nextModule.id}`}
+              to={`/courses/foundation/module/${nextModule.id}`}
               className="flex items-center justify-between gap-3 px-6 py-4 rounded-xl theme-primary-button shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group flex-1"
             >
               <div className="text-right">
@@ -230,7 +230,7 @@ export function CourseModule() {
             </Link>
           ) : (
             <Link
-              to="/topics"
+              to="/courses/foundation"
               className="flex items-center justify-between gap-3 px-6 py-4 rounded-xl theme-primary-button shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group flex-1"
             >
               <div className="text-right">
