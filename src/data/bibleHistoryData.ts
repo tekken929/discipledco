@@ -546,9 +546,91 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'Thomas Bilney was a Cambridge scholar who bought a copy of Erasmus\u2019s Greek New Testament and was struck by a single verse. His conversion, his influence on Hugh Latimer, and his eventual martyrdom represent the quiet beginnings of the English Reformation \u2014 a movement that started not with a hammer on a door but with a reader and a text.',
         dateRange: 'c. 1495 \u2013 1531',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'An England on the Edge of Change',
+            body: 'In the opening decades of the sixteenth century, the religious life of England remained closely connected to the institutions and traditions of the medieval Western Church. Churches and monasteries stood at the center of local communities, priests conducted worship in Latin, and the universities trained generations of clergy in theology, philosophy, and the interpretation of Scripture. Yet the same universities were also becoming places where students encountered new editions of ancient texts and began to question whether inherited explanations always reflected the language of the earliest Christian writings. The printing press had made it possible to reproduce books in quantities that earlier generations could scarcely have imagined. Scholars could now compare editions, exchange arguments through printed publications, and study works that had previously been difficult to obtain. The revival of Greek learning was especially important for the study of the New Testament, whose books had originally been written in Greek rather than Latin. The appearance of Erasmus\u2019s printed Greek New Testament in 1516 brought these developments into direct contact with the religious education of young English scholars. Among the students whose lives became connected to this changing world was Thomas Bilney. His story belongs to the years before the English monarchy formally broke with Rome, when calls for reform were still developing within universities, preaching circles, and small communities of readers. Bilney did not become a king, bishop, or famous Bible translator. His influence was carried chiefly through personal conversations, preaching, and the people who remembered him after his death.',
+          },
+          {
+            heading: 'Thomas Bilney at Cambridge',
+            body: 'Thomas Bilney was born in Norfolk, probably near the end of the fifteenth century, and studied at Cambridge. The surviving record of his early life is incomplete, but his later association with Trinity Hall places him within a university known for training students in law and other learned disciplines. Cambridge was a place where the older methods of medieval scholarship existed alongside growing interest in the writings of classical antiquity and the languages of the Bible. University learning required long hours of reading and disputation. Students examined established authorities and practiced defending propositions through formal argument. Religious questions were often approached through collections of theological explanations developed over centuries. For some students, the renewed availability of biblical texts in Greek created an opportunity to examine familiar teachings in a different way. A passage heard repeatedly in Latin could acquire new force when read directly in a recently printed edition of the New Testament. Bilney became associated with a circle of Cambridge scholars interested in these new studies. His religious development was remembered by later Protestant writers as an early example of the change that could occur when a reader encountered the biblical text for himself.',
+          },
+          {
+            heading: 'A Greek New Testament and a Single Verse',
+            body: 'Erasmus\u2019s New Testament, printed at Basel in 1516, presented the Greek text alongside a revised Latin translation. For English readers accustomed to the Latin Bible, the edition offered a new way to examine the wording of the apostolic writings. Erasmus also encouraged the reading of Scripture beyond the narrow circle of professional scholars, arguing that its teachings should become familiar to ordinary Christians. The account of Bilney most often repeated in Reformation histories describes him purchasing a copy of Erasmus\u2019s New Testament and reading the first letter of Paul to Timothy. One sentence in particular became associated with his religious awakening: \u201cChrist Jesus came into the world to save sinners,\u201d followed by Paul\u2019s acknowledgment that he was foremost among them (1 Timothy 1:15). The verse places the purpose of Christ\u2019s coming beside a personal confession of sin, and Bilney\u2019s later admirers presented his encounter with it as a decisive turning point. John Foxe, whose sixteenth-century collection of martyr narratives became an influential record of the English Reformation, preserved an account of Bilney\u2019s experience. Foxe described Bilney as having been troubled by the burden of sin and as finding consolation through Paul\u2019s words. The importance of this episode in the wider story of the English Bible lies in the relationship between reading and religious change. Bilney\u2019s experience was not presented as the discovery of an unknown passage. The words had existed for centuries. What had changed was the availability of a printed edition that invited readers to examine the New Testament closely and consider its teaching for themselves.',
+          },
+          {
+            heading: 'Hugh Latimer and the Influence of a Conversation',
+            body: 'One of the most significant figures connected to Bilney was Hugh Latimer, another Cambridge scholar who would later become one of the best-known preachers of the English Reformation. Latimer\u2019s early position was not identical to Bilney\u2019s. Later accounts describe him as a defender of established religious teaching who opposed some of the newer reforming arguments circulating in the university. According to the tradition preserved by Foxe, Bilney approached Latimer and asked to make a confession to him. In the course of their conversation, Bilney spoke about his own religious struggles and the understanding of Scripture that had brought him relief. The story portrays a private exchange, rather than a public confrontation, as the occasion through which Latimer began to reconsider his position. The connection between the two men is well established in the literature of the English Reformation, and Latimer\u2019s later career gave the episode enduring importance. He became an influential preacher, served as bishop of Worcester, and was eventually executed during the reign of Mary I in 1555. Bilney\u2019s work at Cambridge also brought him into contact with other men who would become involved in religious reform. The movement did not begin as a single organization with a unified plan. It developed through reading, preaching, debate, friendship, and disagreement.',
+          },
+          {
+            heading: 'Preaching, Arrest, and Recantation',
+            body: 'Bilney began preaching beyond the university, carrying his understanding of Scripture into churches and communities where religious authorities were increasingly concerned about the spread of unauthorized teachings. England had already experienced conflicts over vernacular Scripture and the legacy of the Lollards. The writings associated with Martin Luther, which began circulating after 1517, added new urgency to questions about religious authority, salvation, and the interpretation of the Bible. Bilney was brought before church authorities in 1527. His examination concerned teachings that officials regarded as dangerous or contrary to accepted doctrine. Faced with the possibility of severe punishment, he submitted to the authorities and recanted. A recantation was a formal withdrawal of beliefs or statements that had been condemned. Such acts could allow an accused person to escape a harsher sentence, but they also placed the individual under continuing scrutiny. The record of Bilney\u2019s recantation is important because it complicates any simple picture of a reformer who moved directly from conviction to execution. His life included hesitation, fear, and a public reversal. Later Protestant accounts describe him as deeply distressed by his recantation and determined to resume preaching. Religious persecution in this period was carried out through institutions that regarded doctrinal unity as a matter of public as well as spiritual order. An accusation of heresy was therefore not merely a disagreement over an interpretation of Scripture. It could involve formal investigations, required statements of belief, imprisonment, and punishment by civil authorities following an ecclesiastical judgment.',
+          },
+          {
+            heading: 'The Road to Norwich',
+            body: 'Bilney returned to public religious activity and was arrested again. His earlier recantation increased the seriousness of the renewed accusation, since a person who returned to condemned teachings could be treated as a relapsed heretic. He was ultimately condemned and handed over for execution at Norwich in Norfolk. Thomas Bilney was burned at the stake in August 1531. His death came before the formal establishment of the Church of England\u2019s independence from papal jurisdiction and before the great wave of officially authorized English Bible printing later in the decade. He belonged to an earlier and more uncertain phase of reform, when the boundaries between established church life and emerging evangelical teaching were still being contested. Accounts of Bilney\u2019s final days describe his conversations with friends, his prayers, and his preparation for death. Norwich was an important English city with an established religious life, and a public execution there served as a warning to others accused of spreading condemned beliefs. The death of Bilney was remembered by later reformers as part of a sequence of prosecutions that preceded the more familiar persecutions of the mid-sixteenth century.',
+          },
+          {
+            heading: 'Bilney and the Changing English Religious World',
+            body: 'Bilney did not leave behind a complete English Bible, nor did he direct the large translation projects that would later transform religious reading in England. His place in this history is different. He represents the growing influence of printed biblical texts upon educated readers and the way personal engagement with Scripture could lead to public conflict over religious teaching. His encounter with Erasmus\u2019s New Testament links the scholarship of the Renaissance to the preaching and persecution of the English Reformation. His relationship with Hugh Latimer connects an early Cambridge circle to later national events. His examination and execution show the consequences that could follow when a preacher\u2019s interpretation of Scripture came into conflict with ecclesiastical authority. The next stage of the English Bible\u2019s history would involve a man who sought not only to study the biblical text in its original languages but to place an English translation directly into the hands of ordinary readers.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'A reader, not a translator',
+            body: 'Bilney did not produce a Bible translation. His influence was carried through personal conversations, preaching, and the people he influenced \u2014 representing how printed Scripture changed educated readers before it changed the public church.',
+          },
+          {
+            title: 'Erasmus\u2019s New Testament and 1 Timothy 1:15',
+            body: 'Bilney purchased a copy of Erasmus\u2019s 1516 Greek New Testament and was struck by Paul\u2019s words: \u201cChrist Jesus came into the world to save sinners.\u201d His encounter shows how the availability of a printed edition invited readers to examine the New Testament for themselves.',
+          },
+          {
+            title: 'A private conversation changed Latimer',
+            body: 'Bilney\u2019s conversation with Hugh Latimer \u2014 who later became a famous preacher and bishop executed under Mary I \u2014 shows how reform spread through personal relationships before it became a public movement.',
+          },
+          {
+            title: 'Recantation and relapse',
+            body: 'Bilney recanted under pressure in 1527 but returned to preaching and was arrested again as a relapsed heretic. He was burned at Norwich in August 1531, before the English Church broke with Rome.',
+          },
+        ],
+        timeline: [
+          {
+            label: 'c. 1495',
+            title: 'Thomas Bilney is born',
+            body: 'Bilney is born in Norfolk, probably near the end of the fifteenth century. He will later study at Cambridge during a period of growing interest in Greek and the biblical languages.',
+          },
+          {
+            label: '1516',
+            title: 'Erasmus\u2019s Greek New Testament appears',
+            body: 'Erasmus\u2019s Novum Instrumentum is published at Basel, presenting the Greek New Testament alongside a revised Latin translation. The edition reaches English universities and changes how young scholars encounter Scripture.',
+          },
+          {
+            label: 'c. 1520s',
+            title: 'Bilney reads 1 Timothy 1:15',
+            body: 'Bilney purchases a copy of Erasmus\u2019s New Testament and reads Paul\u2019s words: \u201cChrist Jesus came into the world to save sinners.\u201d The encounter becomes a decisive turning point in his religious life.',
+          },
+          {
+            label: 'c. 1520s',
+            title: 'Bilney and Latimer at Cambridge',
+            body: 'Bilney\u2019s private conversation with Hugh Latimer leads the future bishop and preacher to reconsider his opposition to reforming arguments.',
+          },
+          {
+            label: '1527',
+            title: 'Bilney examined and recants',
+            body: 'Bilney is brought before church authorities for teachings deemed dangerous. Faced with severe punishment, he formally recants \u2014 a decision that later distresses him deeply.',
+          },
+          {
+            label: 'August 1531',
+            title: 'Bilney burned at Norwich',
+            body: 'After returning to preaching and being arrested as a relapsed heretic, Bilney is burned at the stake in Norwich \u2014 before the Church of England\u2019s formal break with Rome.',
+          },
+        ],
+        reflectivePrompt:
+          'Bilney\u2019s life was changed by reading a single verse in a Bible he could finally afford to buy. He did not write a famous translation or lead a national movement \u2014 he simply read, believed, and told others. Who are the quiet people in your life whose influence has shaped your faith without ever being famous for it?',
+        keyTakeaway:
+          'Thomas Bilney was a Cambridge scholar whose encounter with Erasmus\u2019s printed Greek New Testament \u2014 and a single verse, 1 Timothy 1:15 \u2014 became a turning point in his life. Through personal conversations, especially with Hugh Latimer, and through preaching, he helped shape the early English Reformation. He recanted under pressure in 1527, returned to preaching, and was burned at Norwich in 1531 as a relapsed heretic \u2014 before the English Church formally broke with Rome.',
       },
       {
         id: 'tyndale',
@@ -558,9 +640,106 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'Tyndale set out to translate the New Testament from Greek into English so that, in his words, \u201cthe boy that driveth the plough\u201d might know the Scripture. He was forced to leave England, worked in hiding on the continent, was betrayed, arrested, and executed. His translation became the foundation of nearly every English Bible that followed.',
         dateRange: 'c. 1494 \u2013 1536',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'An English Bible from the Original Languages',
+            body: 'William Tyndale was born in Gloucestershire around the end of the fifteenth century, in an England where religion, education, and public authority were closely connected. Latin remained the principal language of university theology and church worship, although English was the language most people used in daily life. The Bible associated with John Wycliffe had demonstrated that Scripture could be read in English, but those translations were based upon the Latin Vulgate and circulated in handwritten copies. Tyndale would pursue a different method. He wanted to work from the Hebrew and Greek texts themselves, and he wanted the resulting English words to reach readers through the printing press. Tyndale studied at Oxford, where he received academic degrees, and later spent time at Cambridge, a center of new interest in the biblical languages. Renaissance scholarship had encouraged students to examine older texts, while Erasmus\u2019s printed Greek New Testament of 1516 gave scholars a widely available resource for studying the language of the Christian Scriptures. These developments made possible a kind of translation that had previously required access to rare manuscripts and specialized libraries. Tyndale acquired the linguistic training needed to use them. Accounts of his early years also connect him with conversations among scholars and reform-minded readers in Cambridge. The White Horse inn became associated in later histories with meetings of men interested in Luther\u2019s writings and religious reform. What is clear is that questions about Scripture, preaching, and church authority were circulating among educated Englishmen during these years.',
+          },
+          {
+            heading: 'The Plowboy and the Meaning of Translation',
+            body: 'Tyndale\u2019s ambition was not simply to produce a more elegant Bible for scholars. He believed that ordinary English readers should be able to encounter the biblical text in a language they understood. An early account of his life, preserved by John Foxe in Acts and Monuments, describes an argument with a learned opponent in which Tyndale declared that, if God spared his life, he would cause a boy driving a plow to know more Scripture than that opponent. The remark is known through Foxe\u2019s later narrative rather than a surviving transcript of the exchange, but it expresses the purpose with which Tyndale\u2019s work became identified. The obstacles were substantial. English church authorities had placed restrictions upon unauthorized biblical translation and reading, particularly after the spread of Wycliffite teaching. The Constitutions of Oxford, associated with Archbishop Thomas Arundel in 1408, required ecclesiastical approval for new English translations and for the use of certain earlier ones. Such regulations did not mean that no English biblical passage existed or that every English reader was prosecuted, but they made the printing and circulation of a new unauthorized translation a dangerous undertaking. Tyndale entered this world of religious suspicion at a time when the circulation of Luther\u2019s writings had sharpened official concern about reforming ideas.',
+          },
+          {
+            heading: 'Leaving England',
+            body: 'Tyndale sought support for a translation project in London. He approached Cuthbert Tunstall, bishop of London, hoping that the work might proceed with episcopal protection. The request was unsuccessful. Tyndale spent time in the household of the merchant Humphrey Monmouth, whose support helped sustain him, but he eventually concluded that he could not complete and publish his work safely in England. In 1524 he departed for the continent. His subsequent movements are not documented at every stage, and accounts differ about the precise order of his visits. Wittenberg, where Martin Luther taught, is often connected with his travels; Cologne and Worms are more firmly connected with the printing history of his New Testament. Cologne was a major center of printing and commerce. There, in 1525, Tyndale arranged for an English New Testament to be printed. The undertaking was interrupted after authorities learned of it. The printer\u2019s work stopped, but a fragment of the unfinished edition survived. Known as the Cologne Fragment, it preserves part of Matthew\u2019s Gospel and demonstrates that the first attempt to print Tyndale\u2019s English New Testament had already advanced before the interruption. Tyndale then continued the project at Worms, where a complete printed New Testament appeared in 1526. Unlike Wycliffe\u2019s handwritten Bible, this edition could be reproduced in hundreds or thousands of copies. Printing did not eliminate the danger of possessing the book, but it transformed the speed at which copies could be made and distributed.',
+          },
+          {
+            heading: 'The New Testament Crosses the Channel',
+            body: 'The 1526 New Testament was a compact book intended to be read and transported. Copies entered England through commercial routes linking continental ports with English merchants. Religious authorities regarded the unauthorized translation and its accompanying reforming ideas as a serious threat. Bishop Tunstall publicly condemned the book, and copies were burned at St Paul\u2019s Cross in London. Burning a book was a public act of religious and political condemnation. The authorities sought to demonstrate that the text was unacceptable and to discourage its circulation. Yet the existence of printing presses beyond England meant that destroying one shipment could not necessarily prevent new copies from arriving. The controversy became a struggle over publication, distribution, and the authority to determine which English biblical texts could be read. Tyndale\u2019s English was direct and frequently memorable. He sought wording that ordinary readers could understand while remaining closely connected to the Greek text. His translation choices also provoked controversy. Words such as congregation, elder, and repentance were debated because their meaning touched questions of church structure and doctrine. These disagreements were not merely about literary style. They concerned how the language of Scripture should be understood and who possessed authority to interpret it.',
+          },
+          {
+            heading: 'Translation Beyond the New Testament',
+            body: 'Tyndale did not stop with the New Testament. He also worked on the Hebrew Scriptures, publishing the Pentateuch in English in 1530. These five books, Genesis through Deuteronomy, required him to work with Hebrew as well as Greek and to make decisions about names, legal terms, and religious expressions that did not always have obvious English equivalents. His translation of the book of Jonah appeared in 1531, and work attributed to him on additional Old Testament books survived through later English Bible editions. The task was immense. The original languages belonged to cultures separated from Tudor England by many centuries, and translating them demanded both linguistic knowledge and judgment about how ancient expressions could be rendered intelligibly. Tyndale\u2019s writings also placed him in conflict with powerful figures. He disputed the theology of Thomas More and criticized religious practices that he believed lacked scriptural warrant. In The Practice of Prelates, published in 1530, he opposed Henry VIII\u2019s attempt to end his marriage to Catherine of Aragon. His position complicated any simple assumption that his disagreement with Roman church authority meant agreement with the king. Tyndale\u2019s convictions could bring him into conflict with both ecclesiastical and royal power.',
+          },
+          {
+            heading: 'Antwerp, Betrayal, and Arrest',
+            body: 'During the 1530s, Tyndale lived in Antwerp, an important trading city in the Habsburg Netherlands. English merchants there provided contacts and, at times, practical support. The city offered opportunities for publishing and communication, but it did not place him beyond the reach of religious authorities. In 1535, a man named Henry Phillips gained Tyndale\u2019s confidence and became involved in the events leading to his arrest. Tyndale was seized and imprisoned at Vilvoorde, near Brussels, where he remained for more than a year. One surviving letter attributed to Tyndale\u2019s imprisonment gives an unusually personal view of his circumstances. Written in Latin to a prison official, it asks for warmer clothing, a lamp, and, above all, a Hebrew Bible, Hebrew grammar, and Hebrew dictionary so that he could continue his studies. The request reveals the practical difficulties of imprisonment and the persistence of his interest in translation. While Tyndale was imprisoned, English Bible publishing continued to develop. Miles Coverdale\u2019s complete printed English Bible appeared in 1535, drawing upon earlier translation work, including Tyndale\u2019s.',
+          },
+          {
+            heading: 'The Death of William Tyndale',
+            body: 'Tyndale was tried for heresy in the Habsburg Netherlands and condemned. In October 1536, he was executed at Vilvoorde. Accounts describe him as being strangled before his body was burned, a form of execution used in some cases involving condemned heretics. Later accounts preserve a final prayer attributed to him: that the king of England\u2019s eyes might be opened. The words are famous through the tradition recorded by Foxe, rather than through a contemporary transcript of the execution. Only a few years after Tyndale\u2019s execution, English Bibles were being printed with royal permission. The Matthew Bible of 1537, associated with John Rogers and incorporating substantial work by Tyndale, received royal license. The Great Bible followed in 1539 and was authorized for use in English churches. These editions were not simply identical reprints of Tyndale\u2019s work, but they carried forward a large part of the translation he had begun. Tyndale did not live to see a complete English Bible openly placed in parish churches. Nevertheless, his translation helped shape the English biblical language that later generations inherited. Phrases and patterns of expression from his New Testament passed into subsequent versions and, through them, into the King James Bible of 1611.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'From the original languages, not the Latin',
+            body: 'Unlike Wycliffe\u2019s Bible, which was translated from the Latin Vulgate, Tyndale worked from the Hebrew and Greek texts themselves. This was made possible by Erasmus\u2019s 1516 printed Greek New Testament and the Renaissance revival of biblical language study.',
+          },
+          {
+            title: 'The plowboy and the printing press',
+            body: 'Tyndale declared he would cause a boy driving a plow to know more Scripture than his opponents. Combined with the printing press, his translation could reach ordinary readers in hundreds or thousands of copies \u2014 a transformation Wycliffe\u2019s handwritten manuscripts could never achieve.',
+          },
+          {
+            title: 'Cologne, Worms, and the channel crossing',
+            body: 'Tyndale\u2019s 1525 printing at Cologne was interrupted but survived as the Cologne Fragment. The complete New Testament appeared at Worms in 1526 and entered England through merchant routes, where Bishop Tunstall condemned it and copies were burned at St Paul\u2019s Cross.',
+          },
+          {
+            title: 'Vilvoorde and the final prayer',
+            body: 'Tyndale was betrayed by Henry Phillips in Antwerp in 1535, imprisoned at Vilvoorde for over a year, and executed in October 1536. His final prayer \u2014 \u201cthat the king of England\u2019s eyes might be opened\u201d \u2014 was fulfilled within years as English Bibles received royal license.',
+          },
+        ],
+        timeline: [
+          {
+            label: 'c. 1494',
+            title: 'William Tyndale is born',
+            body: 'Tyndale is born in Gloucestershire. He will study at Oxford and Cambridge, acquiring the linguistic training needed to translate from Hebrew and Greek.',
+          },
+          {
+            label: '1524',
+            title: 'Tyndale leaves England',
+            body: 'Unable to secure episcopal support for his translation from Bishop Tunstall of London, Tyndale departs for the European continent to pursue the work in safety.',
+          },
+          {
+            label: '1525',
+            title: 'The Cologne Fragment',
+            body: 'Tyndale arranges for an English New Testament to be printed at Cologne, but authorities interrupt the work. A surviving fragment of Matthew\u2019s Gospel proves the attempt had already advanced.',
+          },
+          {
+            label: '1526',
+            title: 'The complete New Testament at Worms',
+            body: 'A complete printed English New Testament appears at Worms. Copies enter England through merchant routes. Bishop Tunstall condemns the book, and copies are burned at St Paul\u2019s Cross in London.',
+          },
+          {
+            label: '1530',
+            title: 'The Pentateuch in English',
+            body: 'Tyndale publishes the first five books of the Old Testament in English, working from Hebrew. In The Practice of Prelates, he also opposes Henry VIII\u2019s attempt to end his marriage to Catherine of Aragon.',
+          },
+          {
+            label: '1531',
+            title: 'The book of Jonah',
+            body: 'Tyndale\u2019s translation of Jonah appears, extending his Old Testament work.',
+          },
+          {
+            label: '1535',
+            title: 'Betrayal and arrest at Antwerp',
+            body: 'Henry Phillips gains Tyndale\u2019s confidence and betrays him. Tyndale is seized and imprisoned at Vilvoorde near Brussels. From prison, he writes asking for a Hebrew Bible, grammar, and dictionary to continue his work.',
+          },
+          {
+            label: 'October 1536',
+            title: 'Tyndale executed at Vilvoorde',
+            body: 'Tyndale is tried for heresy, condemned, strangled, and burned. His final prayer \u2014 \u201cthat the king of England\u2019s eyes might be opened\u201d \u2014 is remembered through Foxe\u2019s account. Within years, English Bibles receive royal license.',
+          },
+          {
+            label: '1537 / 1539',
+            title: 'The Matthew Bible and the Great Bible',
+            body: 'The Matthew Bible (1537), incorporating Tyndale\u2019s work, receives royal license. The Great Bible (1539) is authorized for use in English churches \u2014 fulfilling the hope Tyndale did not live to see.',
+          },
+        ],
+        reflectivePrompt:
+          'Tyndale left England, worked in hiding, was betrayed by a friend, spent over a year in prison, and was executed \u2014 so that a plowboy could read the Bible in English. His translation became the foundation of nearly every English Bible that followed. What would you be willing to sacrifice so that someone else could read God\u2019s word?',
+        keyTakeaway:
+          'William Tyndale was the translator who gave England the Bible from the original Hebrew and Greek. His 1526 New Testament, printed at Worms, entered England through merchant routes and was burned at St Paul\u2019s Cross. He published the Pentateuch in 1530 and Jonah in 1531, was betrayed in Antwerp in 1535, and was executed at Vilvoorde in October 1536. Within years, his translation received royal license and carried forward into the King James Bible of 1611.',
       },
       {
         id: 'geneva-bible',
@@ -570,9 +749,109 @@ export const bibleHistoryEras: HistoryEra[] = [
         description:
           'When Mary I took the throne and began burning Protestants, English exiles fled to Geneva and produced a new English Bible \u2014 the Geneva Bible. It was the first English Bible translated from the original languages, designed for home reading, and it became the Bible of Shakespeare, the Puritans, and the Pilgrims. John Foxe\u2019s Book of Martyrs recorded the stories of those who died.',
         dateRange: 'c. 1553 \u2013 1560',
-        complete: false,
-        sections: [],
-        keyPoints: [],
+        complete: true,
+        sections: [
+          {
+            heading: 'England After Tyndale',
+            body: 'William Tyndale died in 1536, but the struggle surrounding English Scripture did not end with his execution. Within a few years, English Bibles were being printed under royal permission, even as religious authority remained deeply contested. Henry VIII had broken with the authority of the pope, yet that political separation did not mean that England had adopted every teaching associated with Protestant reform. The Crown continued to determine what could be preached, printed, and practiced, and changes in the monarch could bring sudden changes in religious policy. The Bible itself stood at the center of these developments. Miles Coverdale\u2019s complete printed English Bible appeared in 1535. The Matthew Bible, published in 1537 under a name associated with John Rogers, drew extensively on Tyndale\u2019s work. In 1539, the Great Bible appeared as a large edition intended for use in churches. These editions made the English biblical text more visible, but the question of which translation could be used, and who could interpret it, remained inseparable from the religious policies of the government. The reign of Edward VI, who succeeded Henry VIII in 1547, encouraged Protestant reforms in English worship. His death in 1553 brought his half-sister Mary Tudor to the throne.',
+          },
+          {
+            heading: 'Mary I and the Marian Persecutions',
+            body: 'Mary I ruled from 1553 until 1558. During her reign, the government restored Catholic religious policy and revived the prosecution of Protestant heresy. Heresy was a legal and religious charge applied to teachings that authorities judged contrary to the established faith. Those convicted under the revived laws could be handed over to secular officials for execution by burning. The number of Protestants executed during Mary\u2019s reign is commonly given as approximately 280 to 300. The victims included bishops, clergy, artisans, and ordinary believers. Among the most widely remembered were Hugh Latimer and Nicholas Ridley, burned at Oxford in October 1555, and Thomas Cranmer, the former archbishop of Canterbury, executed in March 1556. Their deaths became central episodes in the Protestant memory of the English Reformation. The records also preserve the names of less prominent people. Their cases demonstrate that the prosecutions extended beyond famous religious leaders. Men and women from different walks of life faced examinations concerning the Mass, the Eucharist, and their willingness to accept the restored religious settlement. Religious persecution was not confined to one confession or one reign. In sixteenth-century Europe, both Catholic and Protestant governments used law and punishment to enforce religious conformity. The English persecutions under Mary nevertheless acquired a particularly lasting place in English Protestant history because of the writings that followed them.',
+          },
+          {
+            heading: 'John Foxe and the Book of Martyrs',
+            body: 'John Foxe was an English Protestant scholar and writer who spent part of Mary\u2019s reign in exile. He gathered accounts of Christians who had suffered or died for their religious beliefs and assembled them into a large historical work. Its full title, Acts and Monuments of These Latter and Perilous Days, Touching Matters of the Church, was often shortened to Acts and Monuments. It became widely known as Foxe\u2019s Book of Martyrs. The first English edition appeared in 1563, after Mary\u2019s death and the accession of Elizabeth I. Foxe continued to revise and expand the work in later editions. His book drew upon letters, court proceedings, official records, personal accounts, and earlier chronicles. It described persecutions from the early history of Christianity through the conflicts of the Reformation, giving particular attention to the English Protestants executed under Mary. Foxe\u2019s work is an important historical source because it preserves material that might otherwise have been lost. It is also a work written from a clearly Protestant perspective, and its narratives must be read alongside surviving legal documents and other contemporary testimony. The book was illustrated with woodcuts depicting trials, imprisonment, and executions. Woodcuts were images made from carved wooden blocks that could be printed alongside movable type. In an age when many readers encountered history through sermons, public readings, and pictures, the combination of narrative and illustration helped make the stories memorable.',
+          },
+          {
+            heading: 'The English Exiles in Geneva',
+            body: 'Many Protestants who fled England during Mary\u2019s reign settled in European cities where Protestant churches were established. Geneva, in present-day Switzerland, became one of the most important destinations. The city was closely associated with John Calvin, whose teaching and church organization had made Geneva a center of Reformed Protestantism. The English community in Geneva included ministers, scholars, and other refugees. John Knox, the Scottish reformer, served for a time among English-speaking Protestants there. Other exiles brought experience in biblical translation, printing, and theological study. Their work developed within a community that regarded the reading and explanation of Scripture as central to religious life. Geneva offered more than temporary safety. Its printing industry and network of scholars made it possible to prepare a new English Bible. The translators could consult earlier English versions, including Tyndale\u2019s work, and compare them with Hebrew and Greek texts. The resulting translation would become one of the most influential English Bibles of the sixteenth and seventeenth centuries.',
+          },
+          {
+            heading: 'The Geneva Bible of 1560',
+            body: 'The complete Geneva Bible was published in 1560. An English New Testament associated with the Geneva exiles had appeared in 1557. The 1560 edition presented the whole Bible in an accessible printed format and became especially well known for its explanatory notes, introductions, maps, and other aids for readers. Unlike the large Great Bible designed for public reading in churches, the Geneva Bible was produced in editions suited to private and household use. Its smaller format made it easier to own and carry. Readers could encounter the biblical text alongside explanations intended to help them understand unfamiliar places, words, and passages. The Geneva Bible was also influential in the use of numbered verses throughout the text. Robert Estienne had introduced a familiar system of New Testament verse numbering in the middle of the century, and the Geneva Bible helped establish the practice of printing both Old and New Testament passages with numbered verses. These numbers allowed readers to locate a passage quickly and compare it with other texts. The familiar habit of identifying a biblical passage by book, chapter, and verse became increasingly practical for everyday readers.',
+          },
+          {
+            heading: 'Marginal Notes and Political Controversy',
+            body: 'The Geneva Bible\u2019s marginal notes were another distinctive feature. A marginal note is a short explanation printed beside or near the main text. The Geneva notes reflected Reformed Protestant teaching and sometimes addressed the conduct of rulers, the duties of subjects, and the limits of earthly authority. Certain notes were sharply critical of practices associated with the papacy. Their presence meant that the Geneva Bible was more than a translation: it was also a printed guide to a particular way of reading and interpreting Scripture. The distinction between biblical text and explanatory notes would become important when King James I later supported a new English translation. He objected to some of the Geneva Bible\u2019s political commentary, especially notes that appeared to justify resistance to rulers. The new translation published in 1611 was therefore prepared without the same kind of extensive polemical marginal commentary.',
+          },
+          {
+            heading: 'A Bible in English Homes',
+            body: 'After Elizabeth I became queen in 1558, the Geneva Bible found a broad English-speaking readership. It was printed in numerous editions and used for generations alongside other English Bibles. Its influence extended into the literary culture of the period, when biblical language and imagery were familiar to writers, preachers, and audiences. William Shakespeare lived during the years when the Geneva Bible was widely read. Biblical references and turns of phrase appear throughout his plays, although identifying the exact translation behind an individual allusion requires careful comparison. The Geneva Bible was among the versions available in the England Shakespeare knew, and its widespread circulation made it an important part of the religious and literary setting of his age. English settlers also carried Bibles across the Atlantic. The Geneva Bible is associated with early Protestant migration, including the period of the Mayflower voyage in 1620. It was among the English versions used by seventeenth-century colonists, though the surviving evidence does not establish that every passenger or household owned the same edition. References to the Bible in early colonial accounts show how strongly biblical language shaped the communities these migrants formed.',
+          },
+          {
+            heading: 'Earlier Movements and the Waldensians',
+            body: 'The history of religious dissent did not begin with the sixteenth-century reformers. Among the earlier movements remembered in Protestant histories were the Waldensians, whose origins are associated with Peter Waldo, a merchant from Lyon in the late twelfth century. Waldo and his followers emphasized preaching, poverty, and the use of Scripture in language that ordinary people could understand. The movement came into conflict with ecclesiastical authorities over unauthorized preaching and other religious practices. Waldensian communities endured persecution and survived in parts of Europe, particularly in Alpine regions. During the Reformation, some Waldensians entered into closer association with Protestant churches. Their history became part of later Protestant accounts of believers who had challenged established religious authority before Luther and Tyndale. Stories about the Waldensians sometimes portray them as an unbroken, fully formed Protestant church extending back to the earliest centuries of Christianity. The surviving medieval evidence instead places the movement\u2019s recognizable beginnings in the late twelfth century.',
+          },
+          {
+            heading: 'From the Geneva Bible to a New Royal Translation',
+            body: 'By the beginning of the seventeenth century, English readers had access to several influential biblical translations. Tyndale\u2019s work had shaped the language of the English New Testament. Coverdale and other translators had contributed complete Bibles. The Great Bible had been used in churches, while the Geneva Bible had become particularly popular in homes and among many Protestant readers. These translations were not identical. They differed in wording, editorial choices, and explanatory material. The Geneva Bible\u2019s notes in particular reflected religious and political disputes that continued after the Elizabethan settlement. A new king would soon be asked to authorize a translation intended to serve the English Church without those controversial notes. The English Bible had moved from the dangerous work of exiled translators into the center of national religious life. Its history remained closely tied to rulers, church authorities, printers, and readers, but it had also become a familiar book in households and communities.',
+          },
+        ],
+        keyPoints: [
+          {
+            title: 'The Marian persecutions',
+            body: 'Mary I ruled from 1553 to 1558 and restored Catholic religious policy. Approximately 280 to 300 Protestants were executed by burning, including Hugh Latimer, Nicholas Ridley, and Thomas Cranmer. The prosecutions extended to ordinary men and women, not only famous leaders.',
+          },
+          {
+            title: 'Foxe\u2019s Book of Martyrs',
+            body: 'John Foxe gathered accounts of Christians who suffered for their faith into Acts and Monuments (1563), widely known as the Book of Martyrs. Illustrated with woodcuts, it shaped English Protestant memory of the Reformation for generations.',
+          },
+          {
+            title: 'The Geneva Bible of 1560',
+            body: 'English exiles in Geneva produced a complete Bible in 1560, designed for home reading in a smaller format than the church-sized Great Bible. It featured explanatory notes, maps, introductions, and numbered verses \u2014 making it the most reader-friendly English Bible of its age.',
+          },
+          {
+            title: 'Notes that provoked a king',
+            body: 'The Geneva Bible\u2019s marginal notes reflected Reformed Protestant teaching and sometimes justified resistance to rulers. King James I\u2019s objection to these political notes would lead to the commissioning of the King James Bible in 1611 without such commentary.',
+          },
+        ],
+        timeline: [
+          {
+            label: '1535 / 1537 / 1539',
+            title: 'English Bibles under royal permission',
+            body: 'Coverdale\u2019s Bible (1535), the Matthew Bible (1537), and the Great Bible (1539) make the English biblical text increasingly visible \u2014 but religious policy remains tied to the monarch.',
+          },
+          {
+            label: '1547 \u2013 1553',
+            title: 'Edward VI and Protestant reform',
+            body: 'Edward VI\u2019s reign encourages Protestant reforms in English worship. His death in 1553 brings Mary Tudor to the throne and reverses the direction of religious policy.',
+          },
+          {
+            label: '1553 \u2013 1558',
+            title: 'Mary I and the burnings',
+            body: 'Mary I restores Catholic policy and revives prosecution of Protestant heresy. Approximately 280 to 300 Protestants are burned, including Latimer, Ridley, and Cranmer. Many reformers flee to the continent.',
+          },
+          {
+            label: 'October 1555 / March 1556',
+            title: 'Latimer, Ridley, and Cranmer',
+            body: 'Hugh Latimer and Nicholas Ridley are burned at Oxford in October 1555. Thomas Cranmer, former archbishop of Canterbury, is executed in March 1556. Their deaths become central to Protestant memory of the Reformation.',
+          },
+          {
+            label: '1557',
+            title: 'Geneva New Testament',
+            body: 'English exiles in Geneva publish an English New Testament, a precursor to the complete Geneva Bible. The city\u2019s printing industry and scholarly community make the work possible.',
+          },
+          {
+            label: '1560',
+            title: 'The complete Geneva Bible',
+            body: 'The Geneva Bible is published, presenting the whole Bible in an accessible format with explanatory notes, maps, and numbered verses. It is designed for home reading and becomes the most popular English Bible for generations.',
+          },
+          {
+            label: '1563',
+            title: 'Foxe\u2019s Book of Martyrs',
+            body: 'John Foxe publishes Acts and Monuments, gathering accounts of persecuted Christians with woodcut illustrations. The work shapes English Protestant memory of the Reformation for centuries.',
+          },
+          {
+            label: '1558 onward',
+            title: 'The Geneva Bible in English homes',
+            body: 'After Elizabeth I becomes queen, the Geneva Bible finds a broad readership. It shapes the language of Shakespeare, crosses the Atlantic with colonists, and remains the most widely used English Bible until the King James Bible of 1611.',
+          },
+        ],
+        reflectivePrompt:
+          'During Mary\u2019s reign, approximately 280 to 300 people were burned for their faith, and many more fled to Geneva, where they produced the Bible that would fill English homes for generations. Foxe\u2019s Book of Martyrs made sure their stories were not forgotten. What stories of faith and sacrifice do you think should be remembered in your own community?',
+        keyTakeaway:
+          'The Geneva Bible was produced by English exiles who fled the Marian persecutions and settled in John Calvin\u2019s Geneva. Published in 1560, it was designed for home reading with explanatory notes, maps, and numbered verses \u2014 becoming the Bible of Shakespeare, the Puritans, and the Pilgrims. John Foxe\u2019s Book of Martyrs preserved the stories of those who died under Mary I. The Geneva Bible\u2019s political marginal notes would later provoke King James I to commission a new translation without them.',
       },
       {
         id: 'luther',
